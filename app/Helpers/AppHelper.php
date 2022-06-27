@@ -31,9 +31,4 @@ class AppHelper
     return (string) str_replace($search, $replace, mb_strtolower($string, 'UTF-8'));
   }
 
-  public static function number($amount)
-  {
-    return number_format(round($amount * 20) / 20, 2, '.', '');
-  }
-
 }
