@@ -43,7 +43,6 @@ class User extends Authenticatable implements MustVerifyEmail
     'email_verified_at' => 'datetime',
   ];
 
-
   /**
    * The roles that belong to this user
    */
@@ -54,16 +53,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
   /**
    * Check for multiple roles
+   * @return Boolean
    */
 
-  public function hasRoles()
+  public function hasMultipleRoles()
   {
     return $this->roles->count() > 1 ? TRUE : FALSE;
   }
 
   /**
    * Check for a single role by role
+   * 
    * @param Role $role
+   * @return Boolean
    */
 
   public function hasRole(Role $role)
@@ -73,14 +75,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
   /**
    * Check for at least one role by an array of roles
+   * 
    * @param Array $roles
+   * @return Boolean
    */
 
   public function hasAtLeastOneRole($roles)
   {
     foreach($roles as $role)
     {
-      $r = Role::where('key', $role)->first();
+      $r = Role::where('key', $role)->firstOrFail();
       if ($this->roles->contains($r->id))
       {
         return TRUE;
@@ -88,8 +92,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     return FALSE;
   }
-
-
 
   /**
    * Get the user's full name.

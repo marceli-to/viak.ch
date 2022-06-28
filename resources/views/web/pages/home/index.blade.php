@@ -2,8 +2,8 @@
 @section('content')
 <section>
   @auth
-    @if (session('selected-role'))
-      <div style="position: fixed; top: 10px; right: 10px; color: green">Angemeldet als: {{ session('selected-role')->name }}</div>
+    @if (session('user-selected-role'))
+      <div style="position: fixed; top: 10px; right: 10px; color: green">Angemeldet als: {{ session('user-selected-role')->name }}</div>
     @endif
   @endauth
 

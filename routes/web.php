@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/administration/roles', [RolesController::class, 'index'])->name('page.role.select');
   Route::get('/administration/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set');
 
+  // Routes for testing
   Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin,student,expert']);
 
 

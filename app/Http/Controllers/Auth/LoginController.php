@@ -38,7 +38,7 @@ class LoginController extends BaseController
    */
   public function redirectTo()
   {
-    if (auth()->user()->hasRoles())
+    if (auth()->user()->hasMultipleRoles())
     {
       return RouteServiceProvider::ROLES;
     }

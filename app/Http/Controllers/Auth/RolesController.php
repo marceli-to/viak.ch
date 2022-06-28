@@ -34,7 +34,7 @@ class RolesController extends BaseController
   {
     if (auth()->user()->hasRole($role))
     {
-      session(['selected-role' => $role]);
+      session(['user-selected-role' => $role]);
     }
     return redirect(RouteServiceProvider::HOME);
   }
