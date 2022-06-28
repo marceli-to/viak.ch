@@ -7,11 +7,6 @@
 %btn-secondary,
 .btn-secondary {
   @extend %btn;
-  background-color: #c8c8c8;
+  background-color: $color-secondary;
   color: $color-white;
-  @include font-bold();
-  
-  &:hover {
-    background-color: $color-dark-grey;
-  }
 }

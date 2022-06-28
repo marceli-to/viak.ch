@@ -24,12 +24,10 @@
 @import 'typo/helpers'; 
 
 // Components
-@import 'components/anchors';
-@import 'components/alerts';
+@import 'components/alert';
 @import 'components/blocks';
 @import 'components/boxes/global';
 @import 'components/boxes/ratio';
-@import 'components/bullet';
 @import 'components/buttons/global';
 @import 'components/buttons/primary';
 @import 'components/buttons/secondary';
@@ -38,20 +36,17 @@
 @import 'components/dialog';
 @import 'components/grid';
 @import 'components/icons/global';
-@import 'components/icons/ui';
 @import 'components/headings/global';
 @import 'components/headings/h1';
 @import 'components/headings/h2';
 @import 'components/headings/h3';
-@import 'components/hr';
+@import 'components/links';
 @import 'components/list';
-@import 'components/loader';
 @import 'components/images';
 @import 'components/progress';
 
 // Forms
 @import 'form/global';
-@import 'form/forms';
 @import 'form/input';
 @import 'form/label';
 @import 'form/layout';
@@ -67,13 +62,9 @@
 // Menu
 @import 'menu/global';
 @import 'menu/site';
-@import 'menu/page';
-@import 'menu/selector';
 
 
 // Views
 @import 'views/auth';
-@import 'views/apartments';
-@import 'views/collection';
 
 

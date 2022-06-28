@@ -26,8 +26,9 @@ $url-icons:  '../img/icons/';
 /* Breakpoints
  * -------------------- */
 
-$bp-sm:  900px;
-$bp-md: 1024px;
+$bp-xs:  699px;
+$bp-sm:  700px;
+$bp-md:  900px;
 $bp-lg: 1440px;
 
 $breakpoints: (
@@ -39,7 +40,5 @@ $breakpoints: (
 /* Site config
  * -------------------- */
 
-$site-max-width:     1280px;
-$content-max-width:  1020px;
-$site-header-height:   80px;
+$site-max-width: 1280px;
 

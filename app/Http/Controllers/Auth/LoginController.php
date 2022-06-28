@@ -38,6 +38,10 @@ class LoginController extends BaseController
    */
   public function redirectTo()
   {
+    if (auth()->user()->hasRoles())
+    {
+      return RouteServiceProvider::ROLES;
+    }
     return RouteServiceProvider::HOME;
   }
 }

@@ -23,7 +23,7 @@
  */
 
 @mixin font-regular() {
-  font-family: 'neuzeit-grotesk', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-display: auto;
   font-style: normal;
   font-stretch: normal;
@@ -31,7 +31,7 @@
 }
 
 @mixin font-bold() {
-  font-family: 'neuzeit-grotesk', Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-display: auto;
   font-style: normal;
   font-stretch: normal;

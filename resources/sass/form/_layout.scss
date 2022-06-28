@@ -5,18 +5,16 @@
  */
 
 .form-group {
+  @extend %mb-3x;
+}
 
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .form-helper {
   color: $color-primary;
   display: inline-block;
   text-decoration: none;
-  @include font-size($fs-md);
-
-  &:hover {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 1px;
-  }
 }

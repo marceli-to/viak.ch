@@ -56,6 +56,6 @@ class Button extends Component
    */
   public function render()
   {
-    return view('components.button');
+    return view('web.components.button');
   }
 }

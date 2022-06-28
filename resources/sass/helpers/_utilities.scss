@@ -4,29 +4,14 @@
  * -----------------------------------------------------------------------------
  */
 
-.hide-sm {
-	display: none;
-	@include bp-md() {
-		display: block;
-	}
+.xs\:hide {
+  @include bp-xs() {
+    display: none !important;
+  }
 }
 
-.hide-md {
-	display: block;
-	@include bp-md() {
-		display: none;
-	}
-}
-
-.line-after {
-  position: relative;
-  &:after {
-    background-color: $color-light-grey;
-    content: '';
-    height: 100%;
-    position: absolute;
-    right: -8px;
-    top: 0;
-    width: 1px;
+.sm\:hide {
+  @include bp-sm() {
+    display: none !important;
   }
 }

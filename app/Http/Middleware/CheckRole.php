@@ -2,6 +2,7 @@
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
+use App\Models\Role;
 use Closure;
 
 class CheckRole
@@ -14,9 +15,9 @@ class CheckRole
    * @param  string  $role
    * @return mixed
    */
-  public function handle($request, Closure $next, $role)
+  public function handle($request, Closure $next, ...$roles)
   {
-    if (Auth::user()->role !== $role && Auth::user()->role !== 'admin')
+    if (!auth()->user()->hasAtLeastOneRole($roles))
     {
       return abort(403);
     }

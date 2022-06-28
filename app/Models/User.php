@@ -3,6 +3,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -14,7 +15,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * @var array
    */
   protected $fillable = [
-    'uuid', 'firstname', 'name', 'email', 'password', 'role'
+    'uuid', 'firstname', 'name', 'email', 'password'
   ];
 
   /**
@@ -22,8 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
    *
    * @var array
    */
-  protected $appends = ['full_name', 'role'];
-
+  protected $appends = ['full_name'];
 
   /**
    * The attributes that should be hidden for arrays.
@@ -31,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * @var array
    */
   protected $hidden = [
-    'password', 'remember_token', 'role'
+    'password', 'remember_token'
   ];
 
   /**
@@ -43,14 +43,53 @@ class User extends Authenticatable implements MustVerifyEmail
     'email_verified_at' => 'datetime',
   ];
 
+
   /**
-   * Role helper for admins
+   * The roles that belong to this user
+   */
+  public function roles()
+  {
+    return $this->belongsToMany(Role::class);
+  }
+
+  /**
+   * Check for multiple roles
    */
 
-  public function isAdmin()
+  public function hasRoles()
   {
-    return $this->role == 'admin' ? TRUE : FALSE;
+    return $this->roles->count() > 1 ? TRUE : FALSE;
   }
+
+  /**
+   * Check for a single role by role
+   * @param Role $role
+   */
+
+  public function hasRole(Role $role)
+  {
+    return $this->roles->contains($role->id);
+  }
+
+  /**
+   * Check for at least one role by an array of roles
+   * @param Array $roles
+   */
+
+  public function hasAtLeastOneRole($roles)
+  {
+    foreach($roles as $role)
+    {
+      $r = Role::where('key', $role)->first();
+      if ($this->roles->contains($r->id))
+      {
+        return TRUE;
+      }
+    }
+    return FALSE;
+  }
+
+
 
   /**
    * Get the user's full name.

@@ -9,24 +9,8 @@
 .inner-block {
   margin-left: auto;
   margin-right: auto;
-  padding: 0 $space-6x;
-  position: relative;
-  
-  @include bp-sm() {
-    max-width: $site-max-width;
-  }
-}
-
-%content-block,
-.content-block {
-  margin-left: auto;
-  margin-right: auto;
+  max-width: $site-max-width;
   padding: 0;
   position: relative;
-  
-  @include bp-sm() {
-    max-width: $content-max-width;
-  }
 }
-
 

@@ -31,6 +31,14 @@ class RouteServiceProvider extends ServiceProvider
     public const DASHBOARD = '/';
 
     /**
+     * The path to the "roles" route for your application.
+     *
+     * @var string
+     */
+    public const ROLES = '/administration/roles';
+
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void

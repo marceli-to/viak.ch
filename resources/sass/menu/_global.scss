@@ -8,70 +8,10 @@ nav {
 
   li {
     display: block;
-    &.page-title {
-      a {
-        @include font-regular();
-        text-decoration: none !important;
-      }
-    }
   }
 
   a {
     display: block;
     transition: all .04s ease-in;
-  }
-}
-
-.is-collection,
-.has-collection,
-.has-filter {
-  nav {
-
-    a:not(.icon-collection):not(.icon-filter):not(.icon-offer) {
-      color: $color-dark-blue !important;
-      &:hover {
-        color: $color-white !important
-      }
-    }
-
-    .icon-logo {
-      color: $color-dark-blue !important;
-    }
-  }
-}
-
-
-.has-filter {
-  .icon-collection {
-    color: $color-dark-blue !important;
-    path {
-      fill: $color-dark-blue !important;
-    }
-  }
-}
-
-.has-collection {
-  .icon-filter {
-    color: $color-dark-blue !important;
-    &:hover {
-      color: $color-white !important
-    }
-    // pointer-events: none;
-  }
-}
-
-.is-collection {
-  .icon-filter {
-    color: $color-dark-blue !important;
-    &:hover {
-      color: $color-white !important
-    }
-    // pointer-events: none;
-  }
-  .icon-collection {
-    color: $color-dark-blue !important;
-    path {
-      fill: $color-dark-blue !important;
-    }
   }
 }

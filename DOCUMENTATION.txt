@@ -1,0 +1,7 @@
+# Middleware for role checking
+
+# Single
+Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin']);
+
+# Multiple
+Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin,student,expert']);

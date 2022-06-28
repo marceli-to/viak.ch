@@ -183,37 +183,3 @@ img {
 }
 
 /* Views */
-table.notification-table {
-  -premailer-cellpadding: 0;
-  -premailer-cellspacing: 0;
-  -premailer-width: 100%;
-  color: #32648c;
-  font-size: 14px;
-  line-height: 1.2;
-  margin: 20px 0 0 0;
-  padding: 0;
-  width: 100%;
-}
-
-table.notification-table th,
-table.notification-table td {
-  color: #32648c;
-  font-size: 14px;
-  line-height: 1.2;
-  text-align: left;
-  vertical-align: top;
-}
-
-table.notification-table th {
-  border-bottom: 1px solid #32648c;
-  font-weight: bold;
-  font-size: 12px;
-  padding-bottom: 24px;
-  text-transform: uppercase;
-}
-
-table.notification-table td {
-  border-bottom: 1px solid #e6e6e6;
-  padding-bottom: 12px;
-  padding-top: 12px;
-}

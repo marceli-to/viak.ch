@@ -6,19 +6,21 @@
  */
 
 .alert {
-  @include font-bold();
-  @include font-size($fs-md);
-  margin-bottom: $space-12x;
+  @extend %p-5x;
+  color: $color-white;
+  display: inline-block;
   max-width: 480px;
-  text-align: center;
-  text-transform: uppercase;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: auto;
 
   &.alert--danger {
-    color: $color-danger;
+    background-color: $color-danger;
   }
 
   &.alert--success {
-    color: $color-success;
+    background-color: $color-success;
   }
 }
 

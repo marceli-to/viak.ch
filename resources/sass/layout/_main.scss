@@ -5,8 +5,7 @@
  */
 
 main.site {
-  padding-bottom: $space-15x;
-  position: relative;
+  @extend %mt-20x;
   > div {
     @extend %inner-block;
   }

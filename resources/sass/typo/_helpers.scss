@@ -16,27 +16,6 @@
 .align-right { text-align: right; }
 .nobr { white-space: nowrap; }
 
-.text-primary {
-  color: $color-primary !important;
-}
-
-.text-grey {
-  color: $color-dark-grey !important;
-}
-
-.text-danger {
-  color: $color-danger !important;
-}
-
-.border-primary {
-  border-color: $color-primary !important;
-}
-
-.border-secondary {
-  border-color: $color-secondary !important;
-}
-
-
 /**
  * Typography - Generic elements
  * -----------------------------------------------------------------------------
@@ -47,7 +26,6 @@ strong, b {
 }
 
 p {
-	margin-bottom: $space-3x;
 	&:last-child {
 		margin-bottom: 0 !important;
 	}
