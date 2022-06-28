@@ -7,14 +7,16 @@ use Closure;
 
 class CheckRole
 {
+  
   /**
    * Handle the incoming request.
    *
    * @param  \Illuminate\Http\Request  $request
    * @param  \Closure  $next
-   * @param  string  $role
+   * @param  string $role
    * @return mixed
    */
+
   public function handle($request, Closure $next, ...$roles)
   {
     if (!auth()->user()->hasAtLeastOneRole($roles))
