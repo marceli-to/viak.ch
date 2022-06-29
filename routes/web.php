@@ -17,7 +17,7 @@ use App\Http\Controllers\TestController;
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
 // Public auth routes
-Auth::routes(['verify' => true, 'register' => false]);
+Auth::routes(['verify' => true, 'register' => true]);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // Protected routes
@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   // Routes for testing
   Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin,student,expert']);
+  Route::get('/administration/notify', [TestController::class, 'notify'])->middleware(['role:admin,student,expert']);
+  Route::get('/administration/notify/process', [TestController::class, 'process'])->middleware(['role:admin,student,expert']);
+  Route::get('/administration/booked', [TestController::class, 'booked'])->middleware(['role:admin,student,expert']);
 
 
   // 

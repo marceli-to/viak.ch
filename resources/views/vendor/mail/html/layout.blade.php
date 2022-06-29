@@ -7,7 +7,7 @@
 <meta name="supported-color-schemes" content="light">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 <style>
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 660px) {
 .inner-body {
 width: 100% !important;
 }

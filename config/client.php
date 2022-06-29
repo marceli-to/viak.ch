@@ -19,10 +19,9 @@ return [
   */
 
   'email' => [
-    'from' => env('VIAK_MAIL_FROM', 'marcel@jamon.digital'),
-    'recipient' => env('VIAK_MAIL_RECIPIENT', 'm@marceli.to'),
-    'bcc' => env('VIAK_MAIL_BCC', 'm@marceli.to'),
-    'recipient_test' => env('VIAK_MAIL_RECIPIENT_TEST', 'm@marceli.to')
+    'from' => env('MAIL_FROM_ADDRESS', 'marcel@jamon.digital'),
+    'recipient' => env('MAIL_TO', 'm@marceli.to'),
+    'bcc' => env('MAIL_BCC', 'm@marceli.to'),
   ],
 
   /*
