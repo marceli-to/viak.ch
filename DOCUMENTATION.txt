@@ -5,3 +5,7 @@ Route::get('/administration/test', [TestController::class, 'test'])->middleware(
 
 # Multiple
 Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin,student,expert']);
+
+
+# Factories and seeders
+https://dev.to/shanisingh03/generate-dummy-laravel-data-with-model-factories-seeder-gg4
