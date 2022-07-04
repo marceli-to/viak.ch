@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class RoleUser extends Pivot
 {
   protected $fillable = [
-    'role_id',
-    'user_id'
+    'course_id', 
+    'software_id'
   ];
 }

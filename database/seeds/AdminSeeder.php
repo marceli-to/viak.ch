@@ -1,0 +1,78 @@
+<?php
+namespace Database\Seeders;
+use App\Models\User;
+use App\Models\RoleUser;
+use Illuminate\Database\Seeder;
+
+class AdminSeeder extends Seeder
+{
+  /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+  public function run()
+  {
+
+    $admins = [
+      [
+        'firstname' => 'Marcel',
+        'name'  => 'Stadelmann',
+        'email' => 'm@marceli.to',
+        'email_verified_at' => \Carbon\Carbon::now(),
+        'password' => \Hash::make('7aq31rr'),
+        'uuid' => \Str::uuid(),
+      ],
+      [
+        'firstname' => 'Oliver',
+        'name'  => 'Schmid',
+        'email' => 'oliver.schmid@visualisierungs-akademie.ch',
+        'email_verified_at' => \Carbon\Carbon::now(),
+        'password' => \Hash::make('$LiV3r2022'),
+        'uuid' => \Str::uuid(),
+      ],
+      [
+        'firstname' => 'Lutz',
+        'name'  => 'Kögler',
+        'email' => 'koegler@nightnurse.ch',
+        'email_verified_at' => \Carbon\Carbon::now(),
+        'password' => \Hash::make('#Lut3en*2022'),
+        'uuid' => \Str::uuid(),
+      ],
+      [
+        'firstname' => 'Benedikt',
+        'name'  => 'Flüeler',
+        'email' => 'bf@wbg.ch',
+        'email_verified_at' => \Carbon\Carbon::now(),
+        'password' => \Hash::make('!3n3d1kT2022*'),
+        'uuid' => \Str::uuid(),
+      ],
+      [
+        'firstname' => 'Bettina',
+        'name'  => 'Puorger',
+        'email' => 'bp@wbg.ch',
+        'email_verified_at' => \Carbon\Carbon::now(),
+        'password' => \Hash::make('%B3tT1nA*2022'),
+        'uuid' => \Str::uuid(),
+      ],
+    ];
+
+    foreach($admins as $admin)
+    {
+      $user = User::create([
+        'firstname' => $admin['firstname'],
+        'name'  => $admin['name'],
+        'email' => $admin['email'],
+        'email_verified_at' => $admin['email_verified_at'],
+        'password' => $admin['password'],
+        'uuid' => $admin['uuid'],
+      ]);
+
+      RoleUser::create([
+        'role_id' => 1,
+        'user_id' => $user->id
+      ]);
+    }
+
+  }
+}

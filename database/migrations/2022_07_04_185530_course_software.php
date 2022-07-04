@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventsTable extends Migration
+class CourseSoftware extends Migration
 {
   /**
    * Run the migrations.
@@ -13,11 +13,10 @@ class CreateEventsTable extends Migration
    */
   public function up()
   {
-    Schema::create('events', function (Blueprint $table) {
-      $table->id();
-      $table->string('title', 255);
-      $table->date('date')->nullable();
-      $table->string('expert', 255);
+    Schema::create('course_software', function (Blueprint $table) {
+      $table->foreignId('course_id')->constrained();
+      $table->foreignId('software_id')->constrained();
+      $table->primary(['course_id', 'software_id']);
       $table->timestamps();
     });
   }
@@ -29,6 +28,6 @@ class CreateEventsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('events');
+    Schema::dropIfExists('course_software');
   }
 }

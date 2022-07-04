@@ -1,9 +1,9 @@
 <?php
 namespace Database\Seeders;
-use App\Models\User;
+use App\Models\Event;
 use Illuminate\Database\Seeder;
 
-class UserTableSeeder extends Seeder
+class EventSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -12,6 +12,6 @@ class UserTableSeeder extends Seeder
    */
   public function run()
   {
-    User::factory()->count(50)->create();
+    Event::factory()->count(50)->create();
   }
 }

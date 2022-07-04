@@ -1,6 +1,7 @@
 <?php
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Mail;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,7 +22,15 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot()
   {
+    // Set locales
     setLocale(LC_ALL, 'de_CH.UTF-8');
     \Carbon\Carbon::setLocale('de_CH.UTF-8');
+
+    // Set global mailto address
+    if ($this->app->environment('local'))
+    {
+      Mail::alwaysTo('m@marceli.to');
+    }
+
   }
 }

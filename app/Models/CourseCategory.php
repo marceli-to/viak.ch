@@ -3,10 +3,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class RoleUser extends Pivot
+class CourseCategory extends Pivot
 {
+  protected $table = 'course_category';
+
   protected $fillable = [
-    'role_id',
-    'user_id'
+    'course_id', 
+    'category_id'
   ];
 }
