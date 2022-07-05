@@ -17,6 +17,8 @@ php artisan db:seed --class=SoftwareSeeder &&
 php artisan db:seed --class=TagSeeder &&
 php artisan db:seed --class=LocationSeeder
 
+php artisan migrate:fresh --seed
+
 - Expert IDs: 6 - 16
 - composer dump-autoload 
 
