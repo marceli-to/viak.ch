@@ -26,8 +26,8 @@ class Category extends Model
 
   protected $attributes = [
     'description' => '{
-        "de": "null",
-        "en": "null"
+      "de": "null",
+      "en": "null"
     }'
   ];
 
