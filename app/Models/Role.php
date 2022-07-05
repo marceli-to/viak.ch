@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Base
 {
   
+  public const ADMIN = 1;
+  public const EXPERT = 2;
+  public const STUDENT = 3;
+
   /**
    * The attributes that are mass assignable.
    *

@@ -65,6 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
     return $this->belongsToMany(Role::class);
   }
 
+  /**
+   * The events that belong to this user.
+   */
+
+  public function events()
+  {
+    return $this->belongsToMany(Event::class);
+  }
 
   /**
    * The gender that belongs to this user.
@@ -73,6 +81,45 @@ class User extends Authenticatable implements MustVerifyEmail
   public function gender()
   {
     return $this->hasOne(Gender::class, 'id', 'gender_id');
+  }
+
+  /**
+   * Scope a query to only include users with role 'admin'.
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeAdmins($query)
+  {
+    return $query->whereHas('roles', function ($q) {
+      $q->where('role_id', \App\Models\Role::ADMIN);
+    });
+  }
+
+  /**
+   * Scope a query to only include users with role 'admin'.
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeExperts($query)
+  {
+    return $query->whereHas('roles', function ($q) {
+      $q->where('role_id', \App\Models\Role::EXPERT);
+    });
+  }  
+
+  /**
+   * Scope a query to only include users with role 'student'.
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeStudents($query)
+  {
+    return $query->whereHas('roles', function ($q) {
+      $q->where('role_id', \App\Models\Role::STUDENT);
+    });
   }
 
   /**
@@ -118,6 +165,7 @@ class User extends Authenticatable implements MustVerifyEmail
     return FALSE;
   }
 
+  
   /**
    * Get the user's full name.
    *
@@ -127,6 +175,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
   public function getFullNameAttribute($value)
   {
-    return $this->firstname . ' ' . $this->name;
+    return "{$this->firstname} {$this->name}";
   }
 }

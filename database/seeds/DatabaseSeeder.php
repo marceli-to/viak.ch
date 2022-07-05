@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
       \Database\Seeders\CategorySeeder::class,
       \Database\Seeders\SoftwareSeeder::class,
       \Database\Seeders\TagSeeder::class,
-      \Database\Seeders\LocationSeeder::class
+      \Database\Seeders\LocationSeeder::class,
+      \Database\Seeders\CourseSeeder::class,
+      \Database\Seeders\EventSeeder::class,
     ]);
   }
 }

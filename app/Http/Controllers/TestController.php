@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\Job;
 use App\Models\Event;
+use App\Models\Course;
 use App\Models\User;
 use App\Events\EventBooked;
 use Illuminate\Http\Request;
@@ -59,45 +60,54 @@ class TestController extends BaseController
 
   public function models()
   {
-    $software = \App\Models\Software::get();
-    foreach($software as $s)
-    {
-      echo $s->description;
-      echo '<br>';
-    }
+    // $software = \App\Models\Software::get();
+    // foreach($software as $s)
+    // {
+    //   echo $s->description;
+    //   echo '<br>';
+    // }
 
-    echo '<br>';
+    // echo '<br>';
 
-    $category = \App\Models\Category::get();
-    foreach($category as $c)
-    {
-      echo $c->description;
-      echo '<br>';
-    }
+    // $category = \App\Models\Category::get();
+    // foreach($category as $c)
+    // {
+    //   echo $c->description;
+    //   echo '<br>';
+    // }
 
-    echo '<br>';
+    // echo '<br>';
 
-    $tag = \App\Models\Tag::get();
-    foreach($tag as $t)
-    {
-      echo $t->description;
-      echo '<br>';
-    }
+    // $tag = \App\Models\Tag::get();
+    // foreach($tag as $t)
+    // {
+    //   echo $t->description;
+    //   echo '<br>';
+    // }
 
-    echo '<br>';
+    // echo '<br>';
 
-    $user = \App\Models\User::with('gender')->get();
-    foreach($user as $u)
-    {
-      echo "{$u->firstname} {$u->name}, {$u->email}, {$u->gender->description}";
-      echo '<br>';
-    }
+    // $user = \App\Models\User::with('gender')->get();
+    // foreach($user as $u)
+    // {
+    //   echo "{$u->firstname} {$u->name}, {$u->email}, {$u->gender->description}";
+    //   echo '<br>';
+    // }
     
-    echo '<br>';
+    // echo '<br>';
+    // $genders = \App\Models\Gender::with('users')->get();
+    // dd($genders);
+    // $courses = Course::with('events.location')->get();
+    // dd($courses[0], $courses[5]);
+    
+    //$user = \App\Models\User::with('gender')->get();
 
-    $genders = \App\Models\Gender::with('users')->get();
-    //dd($genders);
+    // $users = \App\Models\User::experts()->get();
+    // dd($users);
+
+    $courses = \App\Models\Course::with('events.location', 'events.dates', 'events.experts')->get();
+    dd($courses[10]);
+
     die();
-    //dd($software);
   }
 }

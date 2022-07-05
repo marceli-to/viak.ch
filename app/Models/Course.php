@@ -104,4 +104,12 @@ class Course extends Base
     return $this->belongsToMany(Tag::class);
   }
 
+  /**
+   * The events that belong to this course.
+   */
+  
+  public function events()
+  {
+    return $this->hasMany(Event::class, 'course_id', 'id');
+  }
 }
