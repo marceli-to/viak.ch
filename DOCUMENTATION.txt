@@ -8,8 +8,14 @@ Route::get('/administration/test', [TestController::class, 'test'])->middleware(
 
 
 # Seed DB
-php artisan db:seed --class=RoleSeeder && php artisan db:seed --class=AdminSeeder && php artisan db:seed --class=ExpertSeeder && php artisan db:seed --class=StudentSeeder && php artisan db:seed --class=CategorySeeder && php artisan db:seed --class=SoftwareSeeder
-
+php artisan db:seed --class=RoleSeeder && 
+php artisan db:seed --class=AdminSeeder && 
+php artisan db:seed --class=ExpertSeeder && 
+php artisan db:seed --class=StudentSeeder && 
+php artisan db:seed --class=CategorySeeder && 
+php artisan db:seed --class=SoftwareSeeder &&
+php artisan db:seed --class=TagSeeder &&
+php artisan db:seed --class=LocationSeeder
 
 - Expert IDs: 6 - 16
 - composer dump-autoload 

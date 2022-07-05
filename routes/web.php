@@ -33,6 +33,9 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/administration/notify/process', [TestController::class, 'process'])->middleware(['role:admin,student,expert']);
   Route::get('/administration/booked', [TestController::class, 'booked'])->middleware(['role:admin,student,expert']);
 
+  Route::get('/administration/models', [TestController::class, 'models'])->middleware(['role:admin,student,expert']);
+
+
 
   // 
   Route::get('/administration/{any?}', function () {

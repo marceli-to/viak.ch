@@ -14,18 +14,6 @@ class TestController extends BaseController
     parent::__construct();
   }
 
-  /**
-   * Test method
-   *
-   * @param  Request $request
-   * @return \Illuminate\Http\Response
-   */
-
-  public function test()
-  {
-    //dd('test');
-  }
-
   public function booked()
   {
     $user = User::first();
@@ -67,5 +55,33 @@ class TestController extends BaseController
       }
     }
 
+  }
+
+  public function models()
+  {
+    $software = \App\Models\Software::get();
+    foreach($software as $s)
+    {
+      echo $s->description;
+      echo '<br>';
+    }
+    echo '<br>';
+    $category = \App\Models\Category::get();
+    foreach($category as $c)
+    {
+      echo $c->description;
+      echo '<br>';
+    }
+    echo '<br>';
+    $tag = \App\Models\Tag::get();
+    foreach($tag as $t)
+    {
+      echo $t->description;
+      echo '<br>';
+    }
+
+
+    die();
+    //dd($software);
   }
 }

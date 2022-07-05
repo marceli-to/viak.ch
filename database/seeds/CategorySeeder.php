@@ -14,20 +14,32 @@ class CategorySeeder extends Seeder
   {
     $data = [
       [
-        'description' => '3D-Software',
+        'description' => [
+          'de' => '3D-Software',
+          'en' => '3D-Software (en)',
+        ],
       ],
       [
-        'description' => 'Bildgestaltung & Handwerk',
+        'description' => [
+          'de' => 'Bildgestaltung & Handwerk',
+          'en' => 'Bildgestaltung & Handwerk (en)',
+        ],
       ],
       [
-        'description' => 'Management & Kommunikation',
+        'description' => [
+          'de' => 'Management & Kommunikation',
+          'en' => 'Management & Kommunikation (en)',
+        ],
       ],
     ];
     
     foreach($data as $d)
     {
       Category::create([
-        'description' => $d['description'],
+        'description' => [
+          'de' => $d['description']['de'],
+          'en' => $d['description']['en'],
+        ],
       ]);
     }
   }

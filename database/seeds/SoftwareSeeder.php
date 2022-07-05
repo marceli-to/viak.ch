@@ -12,24 +12,34 @@ class SoftwareSeeder extends Seeder
    */
   public function run()
   {
-    
     $data = [
       [
-        'description' => 'Rhinoceros 7',
+        'description' => [
+          'de' => 'Rhinoceros 7',
+          'en' => 'Rhinoceros 7 (en)',
+        ],
       ],
       [
-        'description' => 'Blender 3',
+        'description' => [
+          'de' => 'Blender 3',
+          'en' => 'Blender 3 (en)',
+        ],
       ],
       [
-        'description' => 'SketchUp 2022',
+        'description' => [
+          'de' => 'SketchUp 2022',
+          'en' => 'SketchUp 2022 (en)',
+        ],
       ],
-
     ];
     
     foreach($data as $d)
     {
       Software::create([
-        'description' => $d['description'],
+        'description' => [
+          'de' => $d['description']['de'],
+          'en' => $d['description']['en'],
+        ],
       ]);
     }
   }
