@@ -15,6 +15,7 @@ class Course extends Base
    */
   
   protected $casts = [
+    'slug' => 'array',
     'title' => 'array',
     'subtitle' => 'array',
     'text' => 'array',
@@ -29,6 +30,9 @@ class Course extends Base
    */
 
   protected $attributes = [
+    'slug' => '{
+      "de": "null", "en": "null"
+    }',
     'title' => '{
       "de": "null", "en": "null"
     }',
@@ -53,6 +57,7 @@ class Course extends Base
    */
 
   public $translatable = [
+    'slug',
     'title',
     'subtitle',
     'text',
@@ -111,5 +116,16 @@ class Course extends Base
   public function events()
   {
     return $this->hasMany(Event::class, 'course_id', 'id');
+  }
+
+  /**
+   * Scope a query to get the "next / closest" event
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeNextEvent($query)
+  {
+
   }
 }

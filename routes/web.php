@@ -16,6 +16,9 @@ use App\Http\Controllers\TestController;
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
+Route::get('/kurse', [TestController::class, 'courses'])->name('page.courses');
+Route::get('/kurs/{course::slug}', [TestController::class, 'course'])->name('page.course');
+
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);
 Route::get('/logout', [LoginController::class, 'logout']);

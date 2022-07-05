@@ -15,6 +15,7 @@ class CreateEventsTable extends Migration
   {
     Schema::create('events', function (Blueprint $table) {
       $table->id();
+      $table->date('date')->nullable();
       $table->date('registration_until')->nullable();
       $table->tinyInteger('min_participants')->default(1);
       $table->tinyInteger('max_participants')->default(1);

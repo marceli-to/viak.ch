@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'AppHelper' => App\Helpers\AppHelper::class,
+        'SlugHelper' => App\Helpers\SlugHelper::class,
         'FormatHelper' => App\Helpers\FormatHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],

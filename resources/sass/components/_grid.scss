@@ -10,7 +10,7 @@
   .grid-cols-#{$i} {
     display: grid;
     grid-template-columns: repeat($i, minmax(0, 1fr));
-    grid-column-gap: $space-4x;
+    grid-gap: $space-4x;
   }
 }
 

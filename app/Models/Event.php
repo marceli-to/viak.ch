@@ -14,6 +14,7 @@ class Event extends Base
 
   protected $casts = [
     'registration_deadline' => 'date:d.m.Y',
+    'date' => 'date:d.m.Y',
   ];
 
   /**
@@ -24,6 +25,7 @@ class Event extends Base
    
 	protected $fillable = [
     'uuid',
+    'date',
     'registration_deadline',
     'min_participants',
     'max_participants',

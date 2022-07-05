@@ -1,7 +1,7 @@
 <?php
 namespace Database\Seeders;
 use App\Models\Course;
-use App\Models\Event;
+use App\Models\CategoryCourse;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -41,6 +41,10 @@ class CourseSeeder extends Seeder
     {
       $rand2 = mt_rand(0,3);
       $course = Course::create([
+        'slug' => [
+          'de' => \SlugHelper::make($courses[$i]),
+          'en' => \SlugHelper::make($courses[$i]),
+        ],
         'title' => [
           'de' => $courses[$i],
           'en' => $courses[$i],
@@ -56,6 +60,11 @@ class CourseSeeder extends Seeder
         'fee' => $fees[$rand2],
         'uuid' => \Str::uuid(),
         'publish' => 1,
+      ]);
+
+      CategoryCourse::create([
+        'category_id' => rand(1,3),
+        'course_id' => $course->id,
       ]);
     }
   }

@@ -25,8 +25,8 @@ class EventSeeder extends Seeder
       $course = $courses->random();
 
       $date_event = $faker->dateTimeBetween('-4 week', '+16 week');
-      $date_event = new \Carbon\Carbon($date_event);
-      $date_deadline = $date_event->subDays(30);
+      $date_event_2 = (new \Carbon\Carbon($date_event))->addDays(1);
+      $date_deadline = (new \Carbon\Carbon($date_event))->subDays(14);
 
       $event = Event::create([
         'registration_until' => $date_deadline,
@@ -44,11 +44,17 @@ class EventSeeder extends Seeder
         for($ii = 0; $ii < 2; $ii++)
         {
           EventDate::create([
-            'date' => $ii == 1 ? $date_event->addDays(1) : $date_event,
+            'date' => $ii == 1 ? $date_event_2 : $date_event,
             'time_start' => '15.30',
             'time_end' =>  '21.15',
             'event_id' => $event->id
           ]);
+
+          if ($ii == 0)
+          {
+            $event->date = $date_event;
+            $event->save();
+          }
         }
       }
       else
@@ -59,6 +65,9 @@ class EventSeeder extends Seeder
           'time_end' => '19.00',
           'event_id' => $event->id
         ]);
+        
+        $event->date = $date_event;
+        $event->save();
       }
 
       $experts = User::experts()->get();

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class TestController extends BaseController
 {
+  protected $viewPath = 'web.pages.';
+
   public function __construct()
   {
     parent::__construct();
@@ -105,9 +107,20 @@ class TestController extends BaseController
     // $users = \App\Models\User::experts()->get();
     // dd($users);
 
-    $courses = \App\Models\Course::with('events.location', 'events.dates', 'events.experts')->get();
-    dd($courses[10]);
+    // $courses = \App\Models\Course::with('events.location', 'events.dates', 'events.experts')->get();
+    // dd($courses[10]);
 
     die();
+  }
+
+  public function courses()
+  {
+    $courses = Course::with('events.location', 'events.dates', 'events.experts', 'categories')->get();
+    return view($this->viewPath . 'courses.index', ['courses' => $courses]);
+  }
+
+  public function course()
+  {
+    return view($this->viewPath . 'courses.show');
   }
 }

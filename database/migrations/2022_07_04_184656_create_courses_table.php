@@ -14,6 +14,7 @@ class CreateCoursesTable extends Migration
   {
     Schema::create('courses', function (Blueprint $table) {
       $table->id();
+      $table->json('slug');
       $table->json('title');
       $table->json('subtitle');
       $table->json('text');
