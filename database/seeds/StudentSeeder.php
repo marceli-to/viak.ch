@@ -25,6 +25,7 @@ class StudentSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('*poLksmBv$!)('),
         'uuid' => \Str::uuid(),
+        'gender_id' => rand(1,2)
       ]);
 
       RoleUser::create([

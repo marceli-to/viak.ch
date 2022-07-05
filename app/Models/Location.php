@@ -1,12 +1,12 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Location extends Model
+class Location extends Base
 {
-  use HasFactory, HasTranslations;
+  use HasTranslations;
   
   /**
    * The attributes that should be cast to native types.
@@ -27,12 +27,10 @@ class Location extends Model
 
   protected $attributes = [
     'description' => '{
-      "de": "null",
-      "en": "null"
+      "de": "null", "en": "null"
     }',
     'address' => '{
-      "de": "null",
-      "en": "null"
+      "de": "null", "en": "null"
     }',
   ];
   
@@ -59,4 +57,14 @@ class Location extends Model
     'map',
     'publish',
   ];
+
+  /**
+   * The events this location belongs to.
+   */
+  
+
+	public function events()
+	{
+		return $this->belongsToMany(Event::class);
+	}
 }

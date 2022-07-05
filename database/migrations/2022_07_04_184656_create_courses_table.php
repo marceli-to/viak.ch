@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
       $table->text('reviews')->nullable();
       $table->text('seo_description')->nullable();
       $table->text('seo_tags')->nullable();
+      $table->string('uuid', 36);
       $table->tinyInteger('publish')->default(1);
       $table->timestamps();
     });

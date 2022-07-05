@@ -1,12 +1,12 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Software extends Model
+class Software extends Base
 {
-  use HasFactory, HasTranslations;
+  use HasTranslations;
 
   /**
    * The attributes that should be cast to native types.
@@ -26,8 +26,7 @@ class Software extends Model
 
   protected $attributes = [
     'description' => '{
-        "de": "null",
-        "en": "null"
+      "de": "null", "en": "null"
     }'
   ];
   

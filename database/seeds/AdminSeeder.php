@@ -22,6 +22,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('7aq31rr'),
         'uuid' => \Str::uuid(),
+        'gender_id' => 1,
       ],
       [
         'firstname' => 'Oliver',
@@ -30,6 +31,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('$LiV3r2022'),
         'uuid' => \Str::uuid(),
+        'gender_id' => 1,
       ],
       [
         'firstname' => 'Lutz',
@@ -38,6 +40,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('#Lut3en*2022'),
         'uuid' => \Str::uuid(),
+        'gender_id' => 1,
       ],
       [
         'firstname' => 'Benedikt',
@@ -46,6 +49,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('!3n3d1kT2022*'),
         'uuid' => \Str::uuid(),
+        'gender_id' => 1,
       ],
       [
         'firstname' => 'Bettina',
@@ -54,6 +58,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('%B3tT1nA*2022'),
         'uuid' => \Str::uuid(),
+        'gender_id' => 2,
       ],
     ];
 
@@ -66,6 +71,7 @@ class AdminSeeder extends Seeder
         'email_verified_at' => $admin['email_verified_at'],
         'password' => $admin['password'],
         'uuid' => $admin['uuid'],
+        'gender_id' => $admin['gender_id'],
       ]);
 
       RoleUser::create([

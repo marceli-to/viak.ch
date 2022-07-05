@@ -1,19 +1,28 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Base extends Model
 {
-  use HasFactory;
 
+  /**
+   * The attributes that should be cast to native types.
+   *
+   * @var array
+   */
+  
   protected $casts = [
     'created_at' => 'date:d.m.Y',
     'updated_at' => 'date:d.m.Y',
   ];
 
+  /**
+   * The scope for published records.
+   * 
+   */
+  
 	public function scopePublished($query)
 	{
-		return $query->where('publish', '=', '1');
+		return $query->where('publish', '1');
 	}
 }

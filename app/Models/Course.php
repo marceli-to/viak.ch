@@ -1,14 +1,84 @@
 <?php
 namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
-class Course extends Model
+class Course extends Base
 {
-  use HasFactory;
+  use HasTranslations;
 
   /**
-   * The categories that belong to this course
+   * The attributes that should be cast to native types.
+   *
+   * @var array
+   */
+  
+  protected $casts = [
+    'title' => 'array',
+    'subtitle' => 'array',
+    'text' => 'array',
+    'seo_description' => 'array',
+    'seo_tags' => 'array',
+  ];
+
+  /**
+   * The model's default values for attributes.
+   *
+   * @var array
+   */
+
+  protected $attributes = [
+    'title' => '{
+      "de": "null", "en": "null"
+    }',
+    'subtitle' => '{
+      "de": "null", "en": "null"
+    }',
+    'text' => '{
+      "de": "null", "en": "null"
+    }',
+    'seo_description' => '{
+      "de": "null", "en": "null"
+    }',
+    'seo_tags' => '{
+      "de": "null", "en": "null"
+    }',
+  ];
+  
+  /**
+   * The attributes that are translatable.
+   *
+   * @var array
+   */
+
+  public $translatable = [
+    'title',
+    'subtitle',
+    'text',
+    'seo_description',
+    'seo_tags'
+  ];
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+   
+	protected $fillable = [
+    'uuid',
+    'title',
+    'subtitle',
+    'text',
+    'fee',
+    'reviews',
+    'seo_description',
+    'seo_tags',
+  ];
+
+  /**
+   * The categories that belong to this course.
    */
   
   public function categories()
@@ -17,7 +87,7 @@ class Course extends Model
   }
 
   /**
-   * The softwares that belong to this course
+   * The softwares that belong to this course.
    */
   
   public function softwares()
@@ -26,7 +96,7 @@ class Course extends Model
   }
 
   /**
-   * The tags that belong to this course
+   * The tags that belong to this course.
    */
   
   public function tags()

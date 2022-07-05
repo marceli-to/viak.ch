@@ -4,7 +4,7 @@ use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Category extends Base
+class Gender extends Base
 {
   use HasTranslations;
 
@@ -27,7 +27,7 @@ class Category extends Base
   protected $attributes = [
     'description' => '{
       "de": "null", "en": "null"
-    }'
+    }',
   ];
 
   /**
@@ -45,18 +45,16 @@ class Category extends Base
    *
    * @var array
    */
-
   protected $fillable = [
     'description'
   ];
 
   /**
-   * The courses that belong to this category
+   * The users that gender belongs to.
    */
-  
-  public function courses()
-  {
-    return $this->belongsToMany(Course::class);
-  }
 
+  public function users()
+  {
+    return $this->hasMany(User::class);
+  }
 }

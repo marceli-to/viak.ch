@@ -65,14 +65,18 @@ class TestController extends BaseController
       echo $s->description;
       echo '<br>';
     }
+
     echo '<br>';
+
     $category = \App\Models\Category::get();
     foreach($category as $c)
     {
       echo $c->description;
       echo '<br>';
     }
+
     echo '<br>';
+
     $tag = \App\Models\Tag::get();
     foreach($tag as $t)
     {
@@ -80,7 +84,19 @@ class TestController extends BaseController
       echo '<br>';
     }
 
+    echo '<br>';
 
+    $user = \App\Models\User::with('gender')->get();
+    foreach($user as $u)
+    {
+      echo "{$u->firstname} {$u->name}, {$u->email}, {$u->gender->description}";
+      echo '<br>';
+    }
+    
+    echo '<br>';
+
+    $genders = \App\Models\Gender::with('users')->get();
+    //dd($genders);
     die();
     //dd($software);
   }

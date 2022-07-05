@@ -1,22 +1,38 @@
 <?php
 namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-  use Notifiable, HasFactory;
+  use Notifiable;
+  
+  /**
+   * The attributes that should be cast to native types.
+   *
+   * @var array
+   */
+  
+  protected $casts = [
+    'email_verified_at' => 'datetime',
+  ];
   
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
+
   protected $fillable = [
-    'uuid', 'firstname', 'name', 'email', 'password'
+    'uuid', 
+    'firstname', 
+    'name', 
+    'email', 
+    'password',
+    'gender_id',
+    'data',
   ];
 
   /**
@@ -24,36 +40,44 @@ class User extends Authenticatable implements MustVerifyEmail
    *
    * @var array
    */
-  protected $appends = ['full_name'];
+
+  protected $appends = [
+    'full_name'
+  ];
 
   /**
    * The attributes that should be hidden for arrays.
    *
    * @var array
    */
+
   protected $hidden = [
-    'password', 'remember_token'
+    'password', 
+    'remember_token'
   ];
 
   /**
-   * The attributes that should be cast to native types.
-   *
-   * @var array
+   * The roles that belong to this user.
    */
-  protected $casts = [
-    'email_verified_at' => 'datetime',
-  ];
 
-  /**
-   * The roles that belong to this user
-   */
   public function roles()
   {
     return $this->belongsToMany(Role::class);
   }
 
+
   /**
-   * Check for multiple roles
+   * The gender that belongs to this user.
+   */
+
+  public function gender()
+  {
+    return $this->hasOne(Gender::class, 'id', 'gender_id');
+  }
+
+  /**
+   * Check for multiple roles.
+   * 
    * @return Boolean
    */
 
@@ -63,7 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * Check for a single role by role
+   * Check for a single role by role.
    * 
    * @param Role $role
    * @return Boolean
@@ -100,6 +124,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * @param  string  $value
    * @return string
    */
+
   public function getFullNameAttribute($value)
   {
     return $this->firstname . ' ' . $this->name;
