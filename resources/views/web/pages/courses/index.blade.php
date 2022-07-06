@@ -6,8 +6,8 @@
       <div class="span-8">
         <div class="grid-cols-12">
           @foreach($courses as $course)
-            <div class="span-6 p-4x"style="border: 1px solid green">
-              <a href="{{ route('page.course', ['course' => $course->slug]) }}" class="mb-12x">
+            <article class="card-teaser span-6">
+              <a href="{{ route('page.course', ['course' => $course->slug]) }}">
                 <div>
                   <div>
                     @if ($course->categories)
@@ -19,10 +19,35 @@
                   <h1>{{ $course->title }}</h1>
                 </div>
                 <figure>
+                  <div>
+                    @if ($course->hasUpcomingEvents())
+                      Übersicht:<br>
+                      <ul>
+                        <li>
+                          Experte: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
+                        </li>
+                        <li>
+                          ab {{ date('d. F Y', strtotime($course->upcomingEvents()->first()->date)) }}
+                        </li>
+                        @if ($course->upcomingEvents()->first()->online)
+                          <li>
+                            Online Schulung
+                          </li>
+                        @endif
+                        <li>
+                          CHF {{ $course->fee }}
+                        </li>
+                      </ul>
+                    @else
+
+                    @endif
+                    <p>Weitere Informationen</p>
+
+                  </div>
                   <img src="/media/dummy-{{rand(1,5)}}.png" class="is-responsive">
                 </figure>
               </a>
-            </div>
+            </article>
           @endforeach
         </div>
       </div>

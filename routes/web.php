@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -16,8 +17,9 @@ use App\Http\Controllers\TestController;
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
-Route::get('/kurse', [TestController::class, 'courses'])->name('page.courses');
-Route::get('/kurs/{course::slug}', [TestController::class, 'course'])->name('page.course');
+Route::get('/kurse', [CourseController::class, 'courses'])->name('page.courses');
+Route::get('/kurs/{course::slug}', [CourseController::class, 'course'])->name('page.course');
+
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);

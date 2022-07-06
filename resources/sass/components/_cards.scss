@@ -8,3 +8,39 @@
 .card {
   
 }
+
+.card-teaser {
+  @extend %card;
+  @extend %p-4x;
+  border: 1px solid $color-secondary;
+
+  figure {
+    display: block;
+    position: relative;
+
+    > div {
+      @extend %p-4x;
+      background-color: $color-secondary;
+      color: $color-white;
+      height: 100%;
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+
+      ul {
+        @extend %list;
+      }
+    }
+  }
+
+  > a:hover {
+
+    figure {
+
+      > div {
+        opacity: 1;
+      }
+
+    }
+  }
+}

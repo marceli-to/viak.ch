@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
    */
 
   protected $appends = [
-    'full_name'
+    'fullname'
   ];
 
   /**
@@ -173,7 +173,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * @return string
    */
 
-  public function getFullNameAttribute($value)
+  public function getFullnameAttribute($value)
   {
     return "{$this->firstname} {$this->name}";
   }

@@ -82,8 +82,34 @@ class Course extends Base
     'seo_tags',
   ];
 
+
   /**
-   * The categories that belong to this course.
+   * ------------------------------------------
+   * Helpers
+   * ------------------------------------------
+   */
+
+
+  /**
+   * Check for upcoming events
+   * 
+   * @return Boolean
+   */
+
+  public function hasUpcomingEvents()
+  {
+    return $this->upcomingEvents()->count() > 0 ? TRUE : FALSE;
+  }
+
+  /**
+   * ------------------------------------------
+   * Relationships
+   * ------------------------------------------
+   */
+
+   
+  /**
+   * 
    */
   
   public function categories()
@@ -115,17 +141,17 @@ class Course extends Base
   
   public function events()
   {
-    return $this->hasMany(Event::class, 'course_id', 'id');
+    return $this->hasMany(Event::class);
   }
 
   /**
-   * Scope a query to get the "next / closest" event
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
+   * The upcoming events that belong to this course.
    */
-  public function scopeNextEvent($query)
+  
+  public function upcomingEvents()
   {
-
+    $constraint = date('Y-m-d', time());
+    return $this->hasMany(Event::class)->where('date', '>', $constraint);
   }
+
 }
