@@ -104,13 +104,147 @@ class TestController extends BaseController
     
     //$user = \App\Models\User::with('gender')->get();
 
+    // dd(\App\Models\Event::with('experts')->get());
+
     // $users = \App\Models\User::experts()->get();
-    // dd($users);
+    // $ids = $users->pluck('id');
+
+    // dd($ids->all());
+    // foreach($users as $u)
+    // {
+    //   echo $u->fullname;
+    //   echo '<br>';
+    // }
 
     // $courses = \App\Models\Course::with('events.location', 'events.dates', 'events.experts')->get();
     // dd($courses[10]);
 
-    die();
+    // $ids = \App\Models\EventUser::get(['user_id'])->unique('user_id')->pluck('user_id');
+    // $experts = \App\Models\User::whereIn('id', $ids)->get();
+    // $data = $experts->pluck('fullname', 'uuid');
+    // dd($data->all());
+
+
+    // $ids = \App\Models\CategoryCourse::get(['category_id'])->unique('category_id')->pluck('category_id');
+    // $categories = \App\Models\Category::whereIn('id', $ids)->get();
+    // $data = $categories->pluck('description', 'id');
+    // dd($data->all());
+
+    // $ids =  \App\Models\CourseSoftware::get(['software_id'])->unique('software_id')->pluck('software_id');
+    // $software =  \App\Models\Software::whereIn('id', $ids)->get();
+    // $data = $software->pluck('description', 'id');
+    // dd($data->all());
+
+    // $courses = \App\Models\Course::with('upcomingEvents.experts', 'categories')->get();
+    // $courses = \App\Models\Course::whereHas('categories', function($q) {
+    //   $q->whereIn('id', [1]);
+    // })->with('upcomingEvents.experts', 'categories')->get();
+
+
+    $query = \App\Models\Course::query()->with('upcomingEvents.experts', 'categories', 'softwares');
+    
+
+    // categories
+    $categories = [1,2,3];
+    $query->whereHas('categories', function ($query) use ($categories) {
+      $query->whereIn('id', $categories);
+    });
+
+    // software
+    $softwares= [1,2,3];
+    $query->whereHas('softwares', function ($query) use ($softwares) {
+      $query->whereIn('id', $softwares);
+    });
+
+    $expertUuid = 'eadd3a4e-92f2-4a84-ae3c-75c92eab15e1';
+    $query->whereHas('upcomingEvents.experts', function ($query) use ($expertUuid) {
+      $query->where('uuid', $expertUuid);
+    });
+    
+    $courses = $query->get();
+
+    $data = [];
+    foreach($courses as $course)
+    {
+      if ($course->hasUpcomingEvents())
+      {
+        foreach($course->upcomingEvents as $upcomingEvent)
+        {
+          foreach($upcomingEvent->experts as $expert)
+          {
+            if ($expert->uuid == $expertUuid)
+            {
+              $event = $upcomingEvent;
+            }
+          }
+        }
+
+        $data[] = [
+          'uuid' => $course->uuid,
+          'slug' => $course->slug,
+          'title' => $course->title,
+          'date' => date('d. F Y', strtotime($event->date)),
+          'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
+          'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
+          'fee' => $course->fee,
+          'online' => $event->online ? TRUE : FALSE,
+          'upcoming' => TRUE,
+        ];
+      }
+      else
+      {
+        $data[] = [
+          'uuid' => $course->uuid,
+          'slug' => $course->slug,
+          'title' => $course->title,
+          'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
+          'upcoming' => FALSE,
+        ];
+      }
+    }
+
+
+
+    dd($data);
+
+    // $expert = 'eadd3a4e-92f2-4a84-ae3c-75c92eab15e1';
+
+    // $filtered = $data->each(function($course) use ($expert) {
+    //   $course->upcomingEvents()->each(function($event) use ($expert) {
+    //     $event->experts->filter(function($value, $key) use ($expert) {
+    //       return $value->uuid == $expert;
+    //     });
+    //   });
+    // });
+
+
+
+    return $query->get();
+
+    // if ($request->filled('category')) {
+    //   $categorySlug = $request->category;
+    //   $query->whereHas('category', function ($query) use ($categorySlug) {
+    //       $query->where('slug', $categorySlug);
+    //   });
+    // }
+
+    // if ($request->filled('brand')) {
+    //   $brandSlug = $request->brand;
+    //   $query->whereHas('brand', function ($query) use ($brandSlug) {
+    //       $query->where('slug', $brandSlug);
+    //   });
+    // }
+
+
+
+    // $courses = \App\Models\Course::whereHas('user', function($q) {
+    //   $q->where('uuid', '442d63c8-27a1-4ea7-9d1f-cedf9e955e6e');
+    // })->with('upcomingEvents.experts', 'categories')->get();
+    // dd($courses);
+
+
+
+ 
   }
 
   public function courses()

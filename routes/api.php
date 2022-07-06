@@ -2,10 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\ApartmentController;
-use App\Http\Controllers\Api\SettingsController;
-use App\Http\Controllers\Api\CollectionController;
-use App\Http\Controllers\Api\CollectionItemController;
+use App\Http\Controllers\Api\FilterController;
 
 
 /*
@@ -26,3 +23,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function() {
   Route::get('user', [UserController::class, 'find']);
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes - Filter
+|--------------------------------------------------------------------------
+|
+|
+*/
+
+Route::get('/course/filters', [FilterController::class, 'settings']);
+Route::post('/course/filter', [FilterController::class, 'filter']);

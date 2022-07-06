@@ -14,4 +14,14 @@ class EventUser extends Pivot
     'event_id', 
     'user_id'
   ];
+
+  /**
+   * The event_dates that belong to this event.
+   */
+  
+  public function user()
+  {
+    return $this->hasOne(User::class, 'id', 'user_id');
+  }
+
 }

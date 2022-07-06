@@ -2,6 +2,7 @@
 namespace Database\Seeders;
 use App\Models\Course;
 use App\Models\CategoryCourse;
+use App\Models\CourseSoftware;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -64,6 +65,11 @@ class CourseSeeder extends Seeder
 
       CategoryCourse::create([
         'category_id' => rand(1,3),
+        'course_id' => $course->id,
+      ]);
+
+      CourseSoftware::create([
+        'software_id' => rand(1,3),
         'course_id' => $course->id,
       ]);
     }

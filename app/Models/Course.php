@@ -83,12 +83,13 @@ class Course extends Base
   ];
 
 
-  /**
-   * ------------------------------------------
-   * Helpers
-   * ------------------------------------------
-   */
-
+  /*
+  |--------------------------------------------------------------------------
+  | Helpers
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
 
   /**
    * Check for upcoming events
@@ -101,15 +102,17 @@ class Course extends Base
     return $this->upcomingEvents()->count() > 0 ? TRUE : FALSE;
   }
 
-  /**
-   * ------------------------------------------
-   * Relationships
-   * ------------------------------------------
-   */
 
-   
+  /*
+  |--------------------------------------------------------------------------
+  | Relationships
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
   /**
-   * 
+   * The categories that belong to this course.
    */
   
   public function categories()
@@ -118,7 +121,7 @@ class Course extends Base
   }
 
   /**
-   * The softwares that belong to this course.
+   * The software that belong to this course.
    */
   
   public function softwares()
@@ -151,7 +154,7 @@ class Course extends Base
   public function upcomingEvents()
   {
     $constraint = date('Y-m-d', time());
-    return $this->hasMany(Event::class)->where('date', '>', $constraint);
+    return $this->hasMany(Event::class)->where('date', '>', $constraint)->orderBy('date', 'ASC');
   }
 
 }
