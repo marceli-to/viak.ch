@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
       \Database\Seeders\CategorySeeder::class,
       \Database\Seeders\SoftwareSeeder::class,
       \Database\Seeders\TagSeeder::class,
+      \Database\Seeders\LanguageSeeder::class,
+      \Database\Seeders\LevelSeeder::class,
       \Database\Seeders\LocationSeeder::class,
       \Database\Seeders\CourseSeeder::class,
       \Database\Seeders\EventSeeder::class,

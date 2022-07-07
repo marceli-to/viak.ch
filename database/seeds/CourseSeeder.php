@@ -2,6 +2,8 @@
 namespace Database\Seeders;
 use App\Models\Course;
 use App\Models\CategoryCourse;
+use App\Models\CourseLanguage;
+use App\Models\CourseLevel;
 use App\Models\CourseSoftware;
 use Illuminate\Database\Seeder;
 
@@ -72,6 +74,17 @@ class CourseSeeder extends Seeder
         'software_id' => rand(1,3),
         'course_id' => $course->id,
       ]);
+
+      CourseLanguage::create([
+        'language_id' => rand(1,2),
+        'course_id' => $course->id,
+      ]);
+
+      CourseLevel::create([
+        'level_id' => rand(1,2),
+        'course_id' => $course->id,
+      ]);
+
     }
   }
 }

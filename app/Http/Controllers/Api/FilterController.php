@@ -44,7 +44,8 @@ class FilterController extends Controller
     }
 
     // Filter by 'expert'
-    if ($request->input('expert')) {
+    if ($request->input('expert'))
+    {
       $expert = $request->input('expert');
       $query->whereHas('upcomingEvents.experts', function ($query) use ($expert) {
         $query->where('uuid', $expert);
