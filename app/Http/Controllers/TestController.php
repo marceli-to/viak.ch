@@ -168,17 +168,12 @@ class TestController extends BaseController
     {
       if ($course->hasUpcomingEvents())
       {
-        foreach($course->upcomingEvents as $upcomingEvent)
-        {
-          foreach($upcomingEvent->experts as $expert)
-          {
-            if ($expert->uuid == $expertUuid)
-            {
-              $event = $upcomingEvent;
-            }
-          }
-        }
+        $filtered = $course->upcomingEvents->filter(function ($value, $key) use ($expertUuid) {
+          return $value->experts->firstWhere('uuid', $expertUuid);
+        });
 
+        $event = collect($filtered->all())->first();
+       
         $data[] = [
           'uuid' => $course->uuid,
           'slug' => $course->slug,

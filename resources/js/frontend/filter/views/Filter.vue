@@ -56,7 +56,6 @@
           </option>
         </select>
       </div>
-
       <div class="mt-10x">
         <a href="" @click.prevent="resetFilterItems()">Zurücksetzen</a>
       </div>
@@ -132,30 +131,29 @@ export default {
 
     setFilterItem(type, value) {
       let filter = this.$store.state.filter;
-      if (filter[type] != null) {
 
-        // Multi types
-        if (Array.isArray(filter[type])) {
-          if (this.isFilterAttribute(type,value)) {
-            const index = filter[type].findIndex(x => x === value);
-            if (index > -1) {
-              filter[type].splice(index, 1);
-            }
-          }
-          else {
-            filter[type].push(value);
+      // Multi types
+      if (Array.isArray(filter[type])) {
+        if (this.isFilterAttribute(type,value)) {
+          const index = filter[type].findIndex(x => x === value);
+          if (index > -1) {
+            filter[type].splice(index, 1);
           }
         }
-        // Single types
         else {
-          if (filter[type] == value) {
-            filter[type] = null;
-          }
-          else {
-            filter[type] = value;
-          }
+          filter[type].push(value);
         }
       }
+      // Single types
+      else {
+        if (filter[type] == value) {
+          filter[type] = null;
+        }
+        else {
+          filter[type] = value;
+        }
+      }
+      
       filter['set'] = true;
       this.$store.commit('filter', filter);
       this.getData();

@@ -126,23 +126,14 @@ class FilterController extends Controller
     foreach($courses as $course)
     {
       if ($course->hasUpcomingEvents())
-      {
-        $event = $course->upcomingEvents()->first();
-
-        // Filter out events with non matching experts
-        if ($expertUuid)
-        {
-          foreach($course->upcomingEvents as $upcomingEvent)
-          {
-            foreach($upcomingEvent->experts as $expert)
-            {
-              if ($expert->uuid == $expertUuid)
-              {
-                $event = $upcomingEvent;
-              }
-            }
-          }
-        }
+      { 
+        // Get the first upcoming event with a matching expert uuid,
+        // the 'upcomingEvents' are sorted by date, so first matching
+        // is the closest to todays date.
+        $filtered = $course->upcomingEvents->filter(function ($value, $key) use ($expertUuid) {
+          return $value->experts->firstWhere('uuid', $expertUuid);
+        });
+        $event = collect($filtered->all())->first();
        
         $data[] = [
           'uuid' => $course->uuid,
