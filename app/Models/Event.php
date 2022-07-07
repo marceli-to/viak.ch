@@ -35,6 +35,35 @@ class Event extends Base
     'publish'
   ];
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Helpers
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  /**
+   * Check for online
+   * 
+   * @return Boolean
+   */
+
+  public function isOnline()
+  {
+    return $this->online == 1 ? TRUE : FALSE;
+  }
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | Relationships
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
   /**
    * The course for this event.
    */
@@ -71,4 +100,34 @@ class Event extends Base
     return $this->belongsToMany(User::class);
   }
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Local scopes
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  /**
+   * Scope a query to only include online events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeOnline($query)
+  {
+    return $query->where('online', 1);
+  }
+
+  /**
+   * Scope a query to only include online events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeOffline($query)
+  {
+    return $query->where('online', 0);
+  }
 }

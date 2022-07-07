@@ -8,25 +8,25 @@
       <div class="grid-cols-12">
         <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
           <a href="">
+            <div>
+              <div>{{ d.categories }}</div>
+              <h1>{{ d.title }}</h1>
+            </div>
+            <figure>
               <div>
-                <div>{{ d.categories }}</div>
-                <h1>{{ d.title }}</h1>
-              </div>
-              <figure>
-                <div>
-                  <div v-if="d.upcoming">
-                    Übersicht:<br>
-                    <ul>
-                      <li>Experte: {{ d.experts}}</li>
-                      <li>ab {{ d.date }}</li>
-                      <li v-if="d.online">Online Schulung</li>
-                      <li>CHF {{ d.fee }}</li>
-                    </ul>
-                  </div>
-                  <p>Weitere Informationen</p>
+                <div v-if="d.upcoming">
+                  Übersicht:<br>
+                  <ul>
+                    <li>Experte: {{ d.experts}}</li>
+                    <li>ab {{ d.date }}</li>
+                    <li v-if="d.online">Online Schulung</li>
+                    <li>CHF {{ d.fee }}</li>
+                  </ul>
                 </div>
-                <img src="/media/dummy-1.png" class="is-responsive">
-              </figure>
+                <p>Weitere Informationen</p>
+              </div>
+              <img src="/media/dummy-1.png" class="is-responsive">
+            </figure>
           </a>
         </article>
       </div>
@@ -37,27 +37,68 @@
     <form @submit.prevent="filter()">
       <div class="mb-8x">
         <a 
-          v-for="(category, id) in settings.categories" :key="id"
+          v-for="(option, id) in options.categories" :key="id"
           href="" 
-          @click.prevent="setFilterItem('category', id)" 
+          @click.prevent="updateFilterItem('category', id)" 
           class="btn-filter">
-          <span v-if="isFilterAttribute('category', id)" class="mr-1x">&bull;</span>
-          {{ category }}
+          <span v-if="filter.category == id" class="mr-1x">&bull;</span>
+          {{ option }}
         </a>
       </div>
       <div class="select-wrapper">
-        <select @change.prevent="setFilterItem('expert', $event.target.value)">
-          <option value="NULL">Experte</option>
+        <select 
+          v-model="filter.location"
+          @change="getData()">
+          <option value="null">Ort</option>
+          <option value="online">online</option>
+          <option value="offline">vor Ort</option>
+        </select>
+      </div>
+      <div class="select-wrapper">
+        <select 
+          v-model="filter.level"
+          @change="getData()">
+          <option value="null">Level</option>
           <option 
-            v-for="(expert, id) in settings.experts" 
+            v-for="(option, id) in options.levels" 
             :key="id" 
             :value="id">
-            {{expert}}
+            {{option}}
+          </option>
+        </select>
+      </div>
+      <div class="select-wrapper">
+        <select 
+          v-model="filter.language"
+          @change="getData()">
+          <option value="null">Sprache</option>
+          <option 
+            v-for="(option, id) in options.languages" 
+            :key="id" 
+            :value="id">
+            {{option}}
+          </option>
+        </select>
+      </div>
+      <div class="select-wrapper">
+        <select 
+          v-model="filter.expert"
+          @change="getData()">
+          <option value="null">Experte</option>
+          <option 
+            v-for="(option, id) in options.experts" 
+            :key="id" 
+            :value="id">
+            {{option}}
           </option>
         </select>
       </div>
       <div class="mt-10x">
-        <a href="" @click.prevent="resetFilterItems()">Zurücksetzen</a>
+        <a href="" @click.prevent="showResults()" class="">
+          Anzeigen {{ data.length ? `(${data.length})` : '' }}
+        </a>
+        <br><br>
+        <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
       </div>
     </form>
   </div> 
@@ -81,7 +122,17 @@ export default {
       // Data
       data: [],
 
-      settings: [],
+      // Options 
+      options: [],
+
+      // Filter
+      filter: {
+        location: null,
+        category: null,
+        language: null,
+        level: null,
+        expert: null
+      },
 
       // States
       isLoading: false,
@@ -92,7 +143,6 @@ export default {
         filter: '/api/course/filter',
         settings: '/api/course/filters',
       },
-
     };
   },
 
@@ -104,14 +154,10 @@ export default {
   methods: {
 
     getData() {
-      const store = this.$store.state.filter;
-      let param = {
-        category: store.category ? store.category : null,
-        expert: store.expert ? store.expert : null,
-      };
       NProgress.start();
       this.isFetched = false;
-      this.axios.post(`${this.routes.filter}`, param).then(response => {
+      console.log(this.filter);
+      this.axios.post(`${this.routes.filter}`, this.filter).then(response => {
         this.data = response.data;
         this.isFetched = true;
         this.hasResults = true;
@@ -123,59 +169,36 @@ export default {
       this.isFetched = false;
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
-        this.settings = response.data;
+        this.options = response.data;
         this.isFetched = true;
         NProgress.done();
       });
     },
 
-    setFilterItem(type, value) {
-      let filter = this.$store.state.filter;
-
-      // Multi types
-      if (Array.isArray(filter[type])) {
-        if (this.isFilterAttribute(type,value)) {
-          const index = filter[type].findIndex(x => x === value);
-          if (index > -1) {
-            filter[type].splice(index, 1);
-          }
-        }
-        else {
-          filter[type].push(value);
-        }
+    updateFilterItem(type, value) {
+      if (this.filter[type] == value) {
+        this.filter[type] = null;
       }
-      // Single types
       else {
-        if (filter[type] == value) {
-          filter[type] = null;
-        }
-        else {
-          filter[type] = value;
-        }
+        this.filter[type] = value;
       }
-      
-      filter['set'] = true;
-      this.$store.commit('filter', filter);
+      this.$store.commit('filter', this.filter);
       this.getData();
     },
 
     resetFilterItems() {
-      let filter = {
-        set: false,
-        category: '',
-        expert: '',
-      };
-      this.$store.commit('filter', filter);
+      this.filter.location = null;
+      this.filter.category = null;
+      this.filter.language = null;
+      this.filter.level = null;
+      this.filter.expert = null;
+      this.data = [];
+      this.$store.commit('filter', this.filter);
       this.hasResults = false;
     },
-    
-    isFilterAttribute(type, value) {
-      let filter = this.$store.state.filter;
-      if (filter[type] == value) {
-        return true;
-      }
-      return false;
-    }
+
+    showResults() {},
+
   },
 }
 </script>

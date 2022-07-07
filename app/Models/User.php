@@ -56,6 +56,16 @@ class User extends Authenticatable implements MustVerifyEmail
     'remember_token'
   ];
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Relationships
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+
   /**
    * The roles that belong to this user.
    */
@@ -82,6 +92,16 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return $this->hasOne(Gender::class, 'id', 'gender_id');
   }
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | Local scopes
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
 
   /**
    * Scope a query to only include users with role 'admin'.
@@ -122,6 +142,16 @@ class User extends Authenticatable implements MustVerifyEmail
     });
   }
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Helpers
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  
   /**
    * Check for multiple roles.
    * 

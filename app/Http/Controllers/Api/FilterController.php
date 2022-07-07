@@ -9,6 +9,10 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\CourseSoftware;
 use App\Models\Software;
+use App\Models\CourseLanguage;
+use App\Models\Language;
+use App\Models\CourseLevel;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
 class FilterController extends Controller
@@ -37,9 +41,27 @@ class FilterController extends Controller
     // Filter by 'software'
     if ($request->input('software'))
     {
-      $software= $request->input('software');
+      $software = $request->input('software');
       $query->whereHas('softwares', function ($query) use ($software) {
         $query->where('id', $software);
+      });
+    }
+
+    // Filter by 'language'
+    if ($request->input('language'))
+    {
+      $language= $request->input('language');
+      $query->whereHas('languages', function ($query) use ($language) {
+        $query->where('id', $language);
+      });
+    }
+
+    // Filter by 'level'
+    if ($request->input('level'))
+    {
+      $level= $request->input('level');
+      $query->whereHas('levels', function ($query) use ($level) {
+        $query->where('id', $level);
       });
     }
 
@@ -52,10 +74,27 @@ class FilterController extends Controller
       });
     }
 
-    $data = $this->map($query->get(), $request->input('expert'));
+    // Filter by 'location'
+    if ($request->input('location'))
+    {
+      $location = $request->input('location');
+      if ($location == 'online')
+      {
+        $query->online();
+      }
+      if ($location == 'offline')
+      {
+        $query->offline();
+      }
+    }
+
+    $data = $this->map(
+      $query->get(), 
+      $request->input('expert')
+    );
+
     return response()->json($data);
   }
-
 
   /**
    * Get filter settings
@@ -69,6 +108,8 @@ class FilterController extends Controller
       'experts' => $this->getExperts(),
       'categories' => $this->getCategories(),
       'software' => $this->getSoftware(),
+      'languages' => $this->getLanguages(),
+      'levels' => $this->getLevels(),
     ];
     return response()->json($data);
   }
@@ -116,6 +157,34 @@ class FilterController extends Controller
   }
 
   /**
+   * Get languages assigned to courses.
+   * 
+   * @return array
+   */
+  
+  private function getLanguages()
+  {
+    $ids = CourseLanguage::get(['language_id'])->unique('language_id')->pluck('language_id');
+    $language = Language::whereIn('id', $ids)->get();
+    $data = $language->pluck('description', 'id');
+    return $data->all();
+  }
+
+  /**
+   * Get levels assigned to courses.
+   * 
+   * @return array
+   */
+  
+  private function getLevels()
+  {
+    $ids = CourseLevel::get(['level_id'])->unique('level_id')->pluck('level_id');
+    $level = Level::whereIn('id', $ids)->get();
+    $data = $level->pluck('description', 'id');
+    return $data->all();
+  }
+
+  /**
    * Map filtered data for JSON output
    * 
    * @param Collection courses
@@ -128,14 +197,19 @@ class FilterController extends Controller
     {
       if ($course->hasUpcomingEvents())
       { 
-        // Get the first upcoming event with a matching expert uuid,
-        // the 'upcomingEvents' are sorted by date, so first matching
-        // is the closest to todays date.
-        $filtered = $course->upcomingEvents->filter(function ($value, $key) use ($expertUuid) {
-          return $value->experts->firstWhere('uuid', $expertUuid);
-        });
-        $event = collect($filtered->all())->first();
-       
+        $event = $course->upcomingEvents->first();
+        
+        // Get the first upcoming event with a matching expert uuid.
+        // The 'upcomingEvents' are sorted by date, so the first 
+        // matching event is the closest to todays date.
+        if ($expertUuid)
+        {
+          $filtered = $course->upcomingEvents->filter(function ($value, $key) use ($expertUuid) {
+            return $value->experts->firstWhere('uuid', $expertUuid);
+          });
+          $event = collect($filtered->all())->first();
+        }
+
         $data[] = [
           'uuid' => $course->uuid,
           'slug' => $course->slug,
@@ -144,7 +218,7 @@ class FilterController extends Controller
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
           'fee' => $course->fee,
-          'online' => $event->online ? TRUE : FALSE,
+          'online' => $course->online ? TRUE : FALSE,
           'upcoming' => TRUE,
         ];
       }

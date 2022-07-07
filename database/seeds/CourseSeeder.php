@@ -62,6 +62,7 @@ class CourseSeeder extends Seeder
         ],
         'fee' => $fees[$rand2],
         'uuid' => \Str::uuid(),
+        'online' => rand(0,1),
         'publish' => 1,
       ]);
 

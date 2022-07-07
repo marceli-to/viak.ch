@@ -80,6 +80,8 @@ class Course extends Base
     'reviews',
     'seo_description',
     'seo_tags',
+    'online',
+    'publish'
   ];
 
 
@@ -90,6 +92,7 @@ class Course extends Base
   |
   |
   */
+
 
   /**
    * Check for upcoming events
@@ -139,6 +142,24 @@ class Course extends Base
   }
 
   /**
+   * The languages that belong to this course.
+   */
+  
+  public function languages()
+  {
+    return $this->belongsToMany(Language::class);
+  }
+
+  /**
+   * The levels that belong to this course.
+   */
+  
+  public function levels()
+  {
+    return $this->belongsToMany(Level::class);
+  }
+
+  /**
    * The events that belong to this course.
    */
   
@@ -157,4 +178,34 @@ class Course extends Base
     return $this->hasMany(Event::class)->where('date', '>', $constraint)->orderBy('date', 'ASC');
   }
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Local scopes
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  /**
+   * Scope a query to only include online courses
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeOnline($query)
+  {
+    return $query->where('online', 1);
+  }
+
+  /**
+   * Scope a query to only include online courses
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeOffline($query)
+  {
+    return $query->where('online', 0);
+  }
 }

@@ -28,7 +28,7 @@
                     <li>
                       ab {{ date('d. F Y', strtotime($course->upcomingEvents()->first()->date)) }}
                     </li>
-                    @if ($course->upcomingEvents()->first()->online)
+                    @if ($course->online)
                       <li>
                         Online Schulung
                       </li>

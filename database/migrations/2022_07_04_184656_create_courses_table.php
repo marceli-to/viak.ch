@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
       $table->json('seo_description');
       $table->json('seo_tags');
       $table->string('uuid', 36);
+      $table->tinyInteger('online')->default(0);
       $table->tinyInteger('publish')->default(1);
       $table->timestamps();
     });

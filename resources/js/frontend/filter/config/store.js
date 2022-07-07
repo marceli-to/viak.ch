@@ -6,9 +6,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     filter: {
-      set: false,
-      category: '',
-      expert: '',
+      category: null,
+      expert: null,
+      language: null,
+      level: null,
     },
   },
   mutations: {
