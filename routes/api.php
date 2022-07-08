@@ -35,3 +35,5 @@ Route::middleware('auth:sanctum')->group(function() {
 
 Route::get('/course/filters', [FilterController::class, 'settings']);
 Route::post('/course/filter', [FilterController::class, 'filter']);
+Route::post('/course/search', [FilterController::class, 'search']);
+

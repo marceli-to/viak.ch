@@ -3,10 +3,23 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Laravel\Scout\Searchable;
 
 class Category extends Base
 {
-  use HasTranslations;
+  use HasTranslations, Searchable;
+
+  /**
+   * Get the name of the index associated with the model.
+   *
+   * @return string
+   */
+  
+  public function searchableAs()
+  {
+    return 'courses';
+  }
+
 
   /**
    * The attributes that should be cast to native types.

@@ -252,4 +252,10 @@ class TestController extends BaseController
   {
     return view($this->viewPath . 'courses.show');
   }
+
+  public function search()
+  {
+    $courses = Course::with('events.location', 'events.dates', 'events.experts', 'categories')->get();
+    return response()->json($courses);
+  }
 }

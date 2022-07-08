@@ -19,7 +19,7 @@ class FilterController extends Controller
 {
 
   /**
-   * Get a filtered ist of apartments
+   * Filter courses.
    * 
    * @param  \Illuminate\Http\Request $request
    * @return \Illuminate\Http\Response
@@ -95,6 +95,30 @@ class FilterController extends Controller
 
     return response()->json($data);
   }
+
+  /**
+   * Search courses.
+   * 
+   * @param  \Illuminate\Http\Request $request
+   * @return \Illuminate\Http\Response
+   */
+  public function search(Request $request)
+  { 
+   //$query = Course::search($request->input('keyword'))->get();
+
+    $query = Course::search($request->input('keyword'))->query(function (\Illuminate\Database\Eloquent\Builder $builder) {
+      $builder->with(['upcomingEvents.experts', 'categories', 'softwares']);
+    })->get();
+
+    $data = $this->map(
+      $query, 
+    );
+
+    return response()->json($data);
+  }
+
+
+
 
   /**
    * Get filter settings

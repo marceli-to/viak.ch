@@ -48,7 +48,7 @@
       <div class="select-wrapper">
         <select 
           v-model="filter.location"
-          @change="getData()">
+          @change="doFilter()">
           <option value="null">Ort</option>
           <option value="online">online</option>
           <option value="offline">vor Ort</option>
@@ -57,7 +57,7 @@
       <div class="select-wrapper">
         <select 
           v-model="filter.level"
-          @change="getData()">
+          @change="doFilter()">
           <option value="null">Level</option>
           <option 
             v-for="(option, id) in options.levels" 
@@ -70,7 +70,7 @@
       <div class="select-wrapper">
         <select 
           v-model="filter.language"
-          @change="getData()">
+          @change="doFilter()">
           <option value="null">Sprache</option>
           <option 
             v-for="(option, id) in options.languages" 
@@ -83,7 +83,7 @@
       <div class="select-wrapper">
         <select 
           v-model="filter.expert"
-          @change="getData()">
+          @change="doFilter()">
           <option value="null">Experte</option>
           <option 
             v-for="(option, id) in options.experts" 
@@ -93,13 +93,15 @@
           </option>
         </select>
       </div>
-      <div class="mt-10x">
+      <div class="mt-10x flex justify-between">
         <a href="" @click.prevent="showResults()" class="">
           Anzeigen {{ data.length ? `(${data.length})` : '' }}
         </a>
         <br><br>
         <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
       </div>
+      <h2 class="mb-8x mt-8x">Suche</h2>
+      <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
     </form>
   </div> 
 </div>
@@ -127,6 +129,7 @@ export default {
 
       // Filter
       filter: {
+        keyword: null,
         location: null,
         category: null,
         language: null,
@@ -141,6 +144,7 @@ export default {
       // Routes
       routes: {
         filter: '/api/course/filter',
+        search: '/api/course/search',
         settings: '/api/course/filters',
       },
     };
@@ -153,11 +157,21 @@ export default {
 
   methods: {
 
-    getData() {
+    doFilter() {
       NProgress.start();
       this.isFetched = false;
-      console.log(this.filter);
       this.axios.post(`${this.routes.filter}`, this.filter).then(response => {
+        this.data = response.data;
+        this.isFetched = true;
+        this.hasResults = true;
+        NProgress.done();
+      });
+    },
+
+    doSearch() {
+      NProgress.start();
+      this.isFetched = false;
+      this.axios.post(`${this.routes.search}`, {keyword: this.filter.keyword}).then(response => {
         this.data = response.data;
         this.isFetched = true;
         this.hasResults = true;
@@ -183,7 +197,7 @@ export default {
         this.filter[type] = value;
       }
       this.$store.commit('filter', this.filter);
-      this.getData();
+      this.doFilter();
     },
 
     resetFilterItems() {
