@@ -7,20 +7,20 @@
       @foreach($courses as $course)
         <article class="card-teaser span-6">
           <a href="{{ route('page.course', ['course' => $course->slug]) }}">
-            <div>
-              <div>
+            <header>
+              <div class="card__category">
                 @if ($course->categories)
                   @foreach($course->categories as $category)
                     {{$loop->last ? $category->description : $category->description . ', '}}
                   @endforeach
                 @endif
               </div>
-              <h1>{{ $course->title }}</h1>
-            </div>
+              <h2 class="card__heading">{{ $course->title }}</h2>
+            </header>
             <figure>
               <div>
                 @if ($course->hasUpcomingEvents())
-                  Übersicht:<br>
+                  <h3>Übersicht:</h3>
                   <ul>
                     <li>
                       Experte: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
@@ -38,7 +38,7 @@
                     </li>
                   </ul>
                 @endif
-                <p>Weitere Informationen</p>
+                <p class="mt-4x sm:mt-6x">Weitere Informationen</p>
               </div>
               <img src="/media/dummy-{{rand(1,5)}}.png" class="is-responsive">
             </figure>

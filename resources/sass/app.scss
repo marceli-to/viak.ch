@@ -19,6 +19,7 @@
 @import 'helpers/utilities';
 
 // Typo
+@import 'typo/fonts';
 @import 'typo/mixins';
 @import 'typo/sizes';
 @import 'typo/helpers'; 
@@ -67,5 +68,6 @@
 
 // Views
 @import 'views/auth';
+@import 'views/debug';
 
 

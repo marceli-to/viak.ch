@@ -5,24 +5,43 @@
  *
  */
 
+$fs-xs: (
+  null: (12px,1.2),
+  sm:   (14px,1.2),
+  md:   (16px,1.2),
+  lg:   (16px,1.2),
+);
+
 $fs-sm: (
-  null: (12px,1.4),
-  sm:   (12px,1.4),
-  md:   (14px,1.4),
-  lg:   (14px,1.4),
+  null: (12px,1.33),
+  sm:   (12px,1.33),
+  md:   (18px,1.44),
+  lg:   (18px,1.44),
 );
 
 $fs-md: (
-  null: (14px,1.4),
-  sm:   (14px,1.4),
-  md:   (16px,1.4),
-  lg:   (16px,1.4),
+  null: (16px,1.25),
+  sm:   (16px,1.25),
+  md:   (24px,1.33),
+  lg:   (24px,1.33),
 );
 
 $fs-lg: (
-  null: (16px,1.4),
-  sm:   (16px,1.4),
-  md:   (20px,1.4),
-  lg:   (20px,1.4),
+  null: (24px,1.25),
+  sm:   (24px,1.25),
+  md:   (28px,1.14),
+  lg:   (28px,1.14),
 );
 
+$fs-menu: (
+  null: (24px,1),
+  sm:   (24px,1),
+  md:   (20px,1),
+  lg:   (20px,1),
+);
+
+$step: 1px;
+
+@for $i from 10 through 40 { %fs-#{$i}x, .fs-#{$i}x { font-size: $i * $step } }
+@for $i from 10 through 40 { %sm\:fs-#{$i}x, .sm\:fs-#{$i}x { @include bp-sm() { font-size: $i * $step; } } }
+@for $i from 10 through 40 { %md\:fs-#{$i}x, .md\:fs-#{$i}x { @include bp-md() { font-size: $i * $step; } } }

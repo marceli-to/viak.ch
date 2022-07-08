@@ -23,20 +23,30 @@
  */
 
 @mixin font-regular() {
-  font-family: Helvetica, Arial, sans-serif;
-  font-display: auto;
-  font-style: normal;
-  font-stretch: normal;
+  font-family: effra, sans-serif;
   font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font-medium() {
+  font-family: effra, sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 @mixin font-bold() {
-  font-family: Helvetica, Arial, sans-serif;
-  font-display: auto;
-  font-style: normal;
-  font-stretch: normal;
+  font-family: effra, sans-serif;
   font-weight: 700;
+  font-style: normal;
 }
+
+@mixin font-italic() {
+  font-family: effra, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+
 
 
 %word-break,

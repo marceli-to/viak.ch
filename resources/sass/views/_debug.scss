@@ -1,0 +1,33 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/debug
+ * -----------------------------------------------------------------------------
+ */
+
+
+body {
+  position: relative;
+
+  &:after {
+    @extend %fs-16x;
+    color: $color-secondary;
+    @include font-bold();
+    content: '';
+    display: block;
+    right: 10px;
+    position: fixed;
+    top: 10px;
+  }
+
+  @include bp-sm() {
+    &:after { content: 'sm'; }
+  }
+
+  @include bp-md() {
+    &:after { content: 'md'; }
+  }
+
+  @include bp-lg() {
+    &:after { content: 'lg'; }
+  }
+}

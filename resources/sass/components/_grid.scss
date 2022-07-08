@@ -11,6 +11,10 @@
     display: grid;
     grid-template-columns: repeat($i, minmax(0, 1fr));
     grid-gap: $space-4x;
+
+    @include bp-md() {
+      grid-gap: $space-10x;
+    }
   }
 }
 
@@ -85,6 +89,26 @@
     }
   }
 }
+
+@for $i from 1 through 12 {
+  %md\:span-#{$i},
+  .md\:span-#{$i} {
+    @include bp-md() {
+      grid-column: span $i / span $i;
+    }
+  }
+}
+
+
+@for $i from 1 through 12 {
+  %lg\:span-#{$i},
+  .lg\:span-#{$i} {
+    @include bp-lg() {
+      grid-column: span $i / span $i;
+    }
+  }
+}
+
 
 %span-full,
 .span-full	{

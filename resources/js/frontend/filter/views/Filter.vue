@@ -1,6 +1,6 @@
 <template>
 <div class="grid-cols-12">
-  <div class="span-8">
+  <div class="span-12 sm:span-8">
     <template v-if="!hasResults">
       <slot />
     </template>
@@ -8,10 +8,14 @@
       <div class="grid-cols-12">
         <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
           <a href="">
-            <div>
-              <div>{{ d.categories }}</div>
-              <h1>{{ d.title }}</h1>
-            </div>
+            <header>
+              <div class="card__category">
+                {{ d.categories }}
+              </div>
+              <h2 class="card__heading">
+                {{ d.title }}
+              </h2>
+            </header>
             <figure>
               <div>
                 <div v-if="d.upcoming">
@@ -23,7 +27,7 @@
                     <li>CHF {{ d.fee }}</li>
                   </ul>
                 </div>
-                <p>Weitere Informationen</p>
+                <p class="mt-4x sm:mt-6x">Weitere Informationen</p>
               </div>
               <img src="/media/dummy-1.png" class="is-responsive">
             </figure>
@@ -32,9 +36,9 @@
       </div>
     </template>
   </div>
-  <div class="span-4">
+  <div class="xs:hide sm:span-4">
     <h2 class="mb-8x">Filter</h2>
-    <form @submit.prevent="filter()">
+    <form @submit.prevent="filter()" class="">
       <div class="mb-8x">
         <a 
           v-for="(option, id) in options.categories" :key="id"

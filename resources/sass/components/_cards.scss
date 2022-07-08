@@ -11,24 +11,83 @@
 
 .card-teaser {
   @extend %card;
-  @extend %p-4x;
+  @extend %p-2x;
+  @extend %md\:p-4x;
   border: 1px solid $color-secondary;
 
+  a {
+    color: $color-black;
+  }
+
+  header {
+    min-height: 70px;
+    @include bp-sm() {
+      min-height: 90px
+    }
+    @include bp-md() {
+      min-height: 130px
+    }
+  }
+
+  .card__category {
+    @extend %fs-10x;
+    @extend %sm\:fs-13x;
+    @extend %md\:fs-16x;
+    @extend %mb-1x;
+    @include font-medium();
+    line-height: 1;
+  }
+
+  .card__heading {
+    @extend %fs-15x;
+    @extend %sm\:fs-20x;
+    @extend %md\:fs-28x;
+    @extend %word-break;
+    @include font-regular();
+    color: $color-secondary;
+    line-height: 1.2;
+  }
+
   figure {
+    @extend %mt-2x;
     display: block;
     position: relative;
 
     > div {
-      @extend %p-4x;
+      @extend %p-2x;
+      @extend %md\:p-4x;
+      @extend %sm\:fs-14x;
+      @extend %md\:fs-18x;
+      @include font-bold();
+      line-height: 1.2;
       background-color: $color-secondary;
       color: $color-white;
+      display: none;
       height: 100%;
       position: absolute;
       opacity: 0;
       width: 100%;
 
+      * {
+        @include font-bold();
+        color: $color-white;
+      }
+
+      @include bp-sm() {
+        display: block;
+      }
+
+      h3 {
+        @extend %mb-2x;
+      }
+
       ul {
         @extend %list;
+
+        li {
+          @extend %py-1x;
+          @extend %md\:py-2x;
+        }
       }
     }
   }
