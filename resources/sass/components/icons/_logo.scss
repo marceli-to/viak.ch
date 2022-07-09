@@ -1,11 +1,11 @@
 /**
  * -----------------------------------------------------------------------------
- * File: layout/main
+ * File: components/icons/logo
  * -----------------------------------------------------------------------------
  */
 
-main.site {
-  > div {
-    @extend %inner-block;
-  }
+.icon-logo {
+  display: block;
+  height: 48px;
+  width: auto;
 }

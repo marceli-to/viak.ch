@@ -84,29 +84,17 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ "./resources/js/vanilla/validation.js":
-/*!********************************************!*\
-  !*** ./resources/js/vanilla/validation.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/marceli.to/Jamon.digital/Webroot/viak.ch/resources/js/vanilla/validation.js'");
-
-/***/ }),
-
-/***/ 1:
+/******/ ([
+/* 0 */,
+/* 1 */
 /*!**************************************************!*\
   !*** multi ./resources/js/vanilla/validation.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/marceli.to/Jamon.digital/Webroot/viak.ch/resources/js/vanilla/validation.js */"./resources/js/vanilla/validation.js");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Users/marceli.to/Jamon.digital/Webroot/viak.ch/resources/js/vanilla/validation.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 
 
 /***/ })
-
-/******/ });
+/******/ ]);

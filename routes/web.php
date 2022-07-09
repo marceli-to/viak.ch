@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   // 
   Route::get('/administration/{any?}', function () {
-    return view('layout.authenticated');
+    return view('web.layout.backend');
   })->where('any', '.*')->middleware(['role:admin']);
 });
 

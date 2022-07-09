@@ -1,4 +1,4 @@
-@extends('web.layout.guest')
+@extends('web.layout.frontend')
 @section('content')
 
 <form method="POST" action="{{ route('register') }}" class="auth">

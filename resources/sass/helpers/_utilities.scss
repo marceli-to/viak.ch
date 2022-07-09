@@ -10,6 +10,7 @@
   }
 }
 
+%sm\:hide,
 .sm\:hide {
   @include bp-sm() {
     display: none !important;

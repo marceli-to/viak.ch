@@ -1,0 +1,26 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/menu
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-menu {
+  display: block;
+
+  &__burger {
+    @extend %sm\:hide;
+    bottom: $space-5x;
+    height: 24px;
+    position: fixed;
+    right: $space-5x;
+    width: 32px;
+    z-index: 99;
+  }
+
+  &__cross {
+    @extend %mr-3x;
+    height: 30px;
+    height: 31px;
+  }
+
+}

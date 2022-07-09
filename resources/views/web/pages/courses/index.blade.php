@@ -1,4 +1,4 @@
-@extends('web.layout.guest')
+@extends('web.layout.frontend')
 @section('content')
 <section id="app-courses">
 <course-filter>

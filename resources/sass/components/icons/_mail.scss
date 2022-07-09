@@ -1,11 +1,13 @@
 /**
  * -----------------------------------------------------------------------------
- * File: layout/main
+ * File: components/icons/mail
  * -----------------------------------------------------------------------------
  */
 
-main.site {
-  > div {
-    @extend %inner-block;
-  }
+.icon-mail {
+  @extend %ml-2x;
+  @extend %mr-4x;
+  display: block;
+  height: 24px;
+  width: auto;
 }

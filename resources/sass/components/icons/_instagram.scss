@@ -1,11 +1,12 @@
 /**
  * -----------------------------------------------------------------------------
- * File: layout/main
+ * File: components/icons/insta
  * -----------------------------------------------------------------------------
  */
 
-main.site {
-  > div {
-    @extend %inner-block;
-  }
+.icon-instagram {
+  @extend %ml-2x;
+  display: block;
+  height: 25px;
+  width: 25px;
 }

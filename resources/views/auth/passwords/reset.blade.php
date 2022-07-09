@@ -1,4 +1,4 @@
-@extends('web.layout.guest')
+@extends('web.layout.frontend')
 @section('seo_title', 'Passwort zurücksetzen')
 @section('content')
 <section class="auth">
