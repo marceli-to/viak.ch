@@ -103,3 +103,44 @@
     }
   }
 }
+
+
+%card-text-media,
+.text-media {
+
+  h1, p {
+    @extend %fs-16x;
+    @extend %sm\:fs-18x;
+    @extend %md\:fs-24x;
+    color: $color-secondary;
+    @include font-bold();
+  }
+
+  figure {
+    @extend %xs\:mb-6x;
+
+    img {
+      @extend %is-responsive;
+    }
+  }
+
+  @include bp-sm() {
+    display: flex;
+    flex-direction: column;
+
+    .text-media__visual {
+      order: 2;
+    }
+  
+    .text-media__content {
+      margin-bottom: $space-12x;
+      order: 1;
+    }
+  }
+
+  @include bp-md() {
+    .text-media__content {
+      margin-bottom: $space-16x;
+    }
+  }
+}

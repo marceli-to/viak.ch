@@ -3,7 +3,7 @@
 <section id="app-courses">
 <course-filter>
   @if ($courses)
-    <div class="grid-cols-12">
+    <div class="grid-cols-12 grid-gap">
       @foreach($courses as $course)
         <article class="card-teaser span-6">
           <a href="{{ route('page.course', ['course' => $course->slug]) }}">

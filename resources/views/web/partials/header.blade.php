@@ -2,7 +2,7 @@
 <header class="site-header">
   <div>
     <div class="sm:span-4">
-      <a href="{{ route('page.home') }}" target="_blank" title="Home | {{env('APP_NAME')}}">
+      <a href="{{ route('page.home') }}" title="Home | {{env('APP_NAME')}}">
         @include('web.partials.icons.logo')
       </a>
     </div>

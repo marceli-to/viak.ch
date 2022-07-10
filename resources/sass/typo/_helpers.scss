@@ -26,6 +26,9 @@ strong, b {
 }
 
 p {
+  @extend %mb-3x;
+  @extend %md\:mb-4x;
+
 	&:last-child {
 		margin-bottom: 0 !important;
 	}

@@ -5,7 +5,9 @@
  */
 
 header.site-header {
-
+  @extend %mb-6x;
+  @extend %md\:mb-7x;
+  
   @include bp-sm() {
     min-height: 64px
   }

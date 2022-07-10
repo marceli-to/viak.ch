@@ -1,6 +1,6 @@
 <nav class="site-menu js-menu">
   <div>
-    <a href="{{ route('page.home') }}" target="_blank" title="Home | {{env('APP_NAME')}}" class="sm:hide">
+    <a href="{{ route('page.home') }}" title="Home | {{env('APP_NAME')}}" class="sm:hide">
       @include('web.partials.icons.logo')
     </a>
     <div class="site-menu__main">

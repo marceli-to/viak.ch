@@ -1,11 +1,11 @@
 <template>
-<div class="grid-cols-12">
+<div class="grid-cols-12 grid-gap">
   <div class="span-12 sm:span-8">
     <template v-if="!hasResults">
       <slot />
     </template>
     <template v-else>
-      <div class="grid-cols-12">
+      <div class="grid-cols-12  grid-gap">
         <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
           <a href="">
             <header>

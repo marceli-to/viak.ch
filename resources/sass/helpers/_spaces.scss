@@ -57,6 +57,7 @@ $space-25x: 25 * $step;
 @for $i from 1 through $max-step { %md\:mt-#{$i}x, .md\:mt-#{$i}x { @include bp-md() { margin-top: $i * $step; } } }
 
 @for $i from 1 through $max-step { %mb-#{$i}x, .mb-#{$i}x { margin-bottom: $i * $step; } }
+@for $i from 1 through $max-step { %xs\:mb-#{$i}x, .sm\:mb-#{$i}x { @include bp-xs() { margin-bottom: $i * $step; } } }
 @for $i from 1 through $max-step { %sm\:mb-#{$i}x, .sm\:mb-#{$i}x { @include bp-sm() { margin-bottom: $i * $step; } } }
 @for $i from 1 through $max-step { %md\:mb-#{$i}x, .md\:mb-#{$i}x { @include bp-md() { margin-bottom: $i * $step; } } }
 

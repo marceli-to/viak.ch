@@ -52,14 +52,14 @@
 %grid-gap,
 .grid-gap {
   grid-gap: $space-4x;
+  @include bp-md() {
+    grid-gap: $space-10x;
+  }
 }
 
 %grid-column-gap,
 .grid-column-gap {
   grid-column-gap: $space-4x;
-  @include bp-sm() {
-    grid-column-gap: $space-6x;
-  }
   @include bp-md() {
     grid-column-gap: $space-10x;
   }
