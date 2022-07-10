@@ -5,7 +5,23 @@
  */
 
 header.site-header {
+
+  @include bp-sm() {
+    min-height: 64px
+  }
+
+  @include bp-md() {
+    min-height: 80px
+  }
+
   > div {
     @extend %inner-block;
+    @extend %sm\:grid-cols-12;
+    @extend %grid-column-gap;
+    min-height: inherit;
+
+    @include bp-sm() {
+      border-bottom: 1px solid $color-black;
+    }
   }
 }

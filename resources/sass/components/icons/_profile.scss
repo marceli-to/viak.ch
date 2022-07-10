@@ -1,20 +1,22 @@
 /**
  * -----------------------------------------------------------------------------
- * File: components/icons/logo
+ * File: components/icons/profile
  * -----------------------------------------------------------------------------
  */
 
-.icon-logo {
-  @extend %sm\:mt-1x;
+.icon-profile {
+  @extend %sm\:mx-4x;
+  @extend %md\:mx-8x;
   display: block;
-  height: 48px;
+  height: 16px;
   width: auto;
-
-  @include bp-sm() {
-    height: 44px;
+  
+  svg {
+    height: inherit;
+    width: inherit;
   }
 
   @include bp-md() {
-    height: 56px;
+    height: 20px;
   }
 }

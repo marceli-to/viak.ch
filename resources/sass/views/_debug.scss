@@ -10,17 +10,20 @@ body {
 
   &:after {
     @extend %fs-16x;
-    color: $color-secondary;
+    @extend %p-3x;
+    background-color: $color-secondary;
+    color: $color-white;
     @include font-bold();
+    line-height: 1 !important;
     content: '';
-    display: block;
-    right: 10px;
+    display: none;
+    right: 20px;
     position: fixed;
-    top: 10px;
+    bottom: 20px;
   }
 
   @include bp-sm() {
-    &:after { content: 'sm'; }
+    &:after { display: block; content: 'sm'; }
   }
 
   @include bp-md() {

@@ -1,9 +1,13 @@
 @include('web.partials.head')
 <header class="site-header">
   <div>
-    <a href="{{ route('page.home') }}" target="_blank" title="Home | {{env('APP_NAME')}}">
-      @include('web.partials.icons.logo')
-    </a>
-    @include('web.partials.menu')
+    <div class="sm:span-4">
+      <a href="{{ route('page.home') }}" target="_blank" title="Home | {{env('APP_NAME')}}">
+        @include('web.partials.icons.logo')
+      </a>
+    </div>
+    <div class="sm:span-8">
+      @include('web.partials.menu')
+    </div>
   </div>
 </header>
