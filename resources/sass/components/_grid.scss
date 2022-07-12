@@ -10,6 +10,10 @@
   .grid-cols-#{$i} {
     display: grid;
     grid-template-columns: repeat($i, minmax(0, 1fr));
+    grid-gap: $space-4x;
+    @include bp-md() {
+      grid-gap: $space-10x;
+    }
   }
 }
 
@@ -19,6 +23,7 @@
     @include bp-xs() {
       display: grid;
       grid-template-columns: repeat($i, minmax(0, 1fr));
+      grid-gap: $space-4x;
     }
   }
 }
@@ -29,6 +34,10 @@
     @include bp-sm() {
       display: grid;
       grid-template-columns: repeat($i, minmax(0, 1fr));
+      grid-gap: $space-4x;
+      @include bp-md() {
+        grid-gap: $space-10x;
+      }
     }
   }
 }
@@ -39,6 +48,10 @@
     @include bp-md() {
       display: grid;
       grid-template-columns: repeat($i, minmax(0, 1fr));
+      grid-gap: $space-4x;
+      @include bp-md() {
+        grid-gap: $space-10x;
+      }
     }
   }
 }

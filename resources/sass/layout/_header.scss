@@ -7,13 +7,17 @@
 header.site-header {
   @extend %mb-6x;
   @extend %md\:mb-7x;
+  @extend %pt-4x;
+  @extend %sm\:pt-7x;
+  background-color: $color-white;
+  min-height: $header-min-height-xs;
   
   @include bp-sm() {
-    min-height: 64px
+    min-height: $header-min-height-sm;
   }
 
   @include bp-md() {
-    min-height: 80px
+    min-height: $header-min-height-md;
   }
 
   > div {
@@ -24,6 +28,20 @@ header.site-header {
 
     @include bp-sm() {
       border-bottom: 1px solid $color-black;
+    }
+  }
+
+  .site-header__title {
+    @extend %pb-3x;
+    align-items: flex-end;
+    border-bottom: 1px solid $color-black;
+    display: flex;
+    min-height: 48px;
+    
+    h1 {
+      @extend %fs-24x;
+      margin-bottom: 0;
+      line-height: 1;
     }
   }
 }

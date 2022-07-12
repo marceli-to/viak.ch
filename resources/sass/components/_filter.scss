@@ -1,0 +1,25 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/filter
+ * -----------------------------------------------------------------------------
+ */
+
+@include bp-xs() {
+  .filter {
+    background-color: $color-white;
+    height: calc(100% - 88px);
+    left: 16px;
+    opacity: 1;
+    pointer-events: all;
+    position: fixed;
+    top: 88px; // 48 + 24 + 16 (min-height header, margin-bottom header, padding-top body)
+    width: calc(100% - 32px);
+    z-index: 1;
+  }
+}
+
+@include bp-sm() {
+  .filter {
+    display: block !important;
+  }
+}

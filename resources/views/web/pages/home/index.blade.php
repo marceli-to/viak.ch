@@ -17,6 +17,5 @@
   </article>
 </section>
 <section>
-  asdf
 </section>
 @endsection

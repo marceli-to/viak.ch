@@ -1,11 +1,14 @@
 <template>
-<div class="grid-cols-12 grid-gap">
+<div class="grid-cols-12">
   <div class="span-12 sm:span-8">
+    <a href="javascript:;" class="icon-filter sm:hide" @click.prevent="toggleFilter()">
+      <icon-filter :active="hasFilter ? true : false" />
+    </a>
     <template v-if="!hasResults">
       <slot />
     </template>
     <template v-else>
-      <div class="grid-cols-12  grid-gap">
+      <div class="grid-cols-12">
         <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
           <a href="">
             <header>
@@ -36,7 +39,7 @@
       </div>
     </template>
   </div>
-  <div class="xs:hide sm:span-4">
+  <div class="filter sm:span-4" v-show="hasFilter">
     <h2 class="mb-8x">Filter</h2>
     <form @submit.prevent="filter()" class="">
       <div class="mb-8x">
@@ -104,8 +107,10 @@
         <br><br>
         <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
       </div>
-      <h2 class="mb-8x mt-8x">Suche</h2>
-      <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
+      <template v-if="hasSearch">
+        <h2 class="mb-8x mt-8x">Suche</h2>
+        <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
+      </template>
     </form>
   </div> 
 </div>
@@ -113,11 +118,13 @@
 <script>
 import ErrorHandling from "@frontend/filter/mixins/ErrorHandling";
 import NProgress from 'nprogress';
+import IconFilter from "@/components/ui/icons/Filter.vue";
 
 export default {
 
   components: {
     NProgress,
+    IconFilter,
   },
 
   mixins: [ErrorHandling],
@@ -144,6 +151,8 @@ export default {
       // States
       isLoading: false,
       hasResults: false,
+      hasSearch: false,
+      hasFilter: false,
 
       // Routes
       routes: {
@@ -213,6 +222,10 @@ export default {
       this.data = [];
       this.$store.commit('filter', this.filter);
       this.hasResults = false;
+    },
+
+    toggleFilter() {
+      this.hasFilter = this.hasFilter ? false : true;
     },
 
     showResults() {},

@@ -69,7 +69,7 @@
     </div>
     <div>
       <a href="javascript:;" title="Menü" class="icon-menu icon-menu__cross js-menu-btn-hide">
-        @include('web.partials.icons.cross')
+        @include('web.partials.icons.cross', ['size' => 'large'])
       </a>
     </div>
   </footer>

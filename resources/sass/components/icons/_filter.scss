@@ -1,0 +1,19 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-filter {
+  display: block;
+  height: 22px;
+  right: 16px;
+  position: fixed;
+  top: 26px;
+  width: 22px;
+  z-index: 50;
+
+  svg {
+    @extend %is-responsive;
+  }
+}

@@ -35,8 +35,10 @@
 @import 'components/buttons/tertiary';
 @import 'components/cards';
 @import 'components/dialog';
+@import 'components/filter';
 @import 'components/grid';
 @import 'components/icons/global';
+@import 'components/icons/filter';
 @import 'components/icons/instagram';
 @import 'components/icons/logo';
 @import 'components/icons/mail';
@@ -69,7 +71,6 @@
 // Menu
 @import 'menu/global';
 @import 'menu/site';
-
 
 // Views
 @import 'views/auth';

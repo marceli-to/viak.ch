@@ -15,6 +15,7 @@ body {
 	color: $color-primary;
 	@include font-smoothing();
 	@include font-regular();
+  padding-top: 0;
 	position: relative;
 }
 

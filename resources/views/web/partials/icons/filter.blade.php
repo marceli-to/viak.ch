@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="icon-filter" width="22" height="22" viewBox="0 0 22 22"><path fill="#000000" d="M0 0l8.556 9.778V22h4.889V9.777L22.001 0z"/></svg>

@@ -1,16 +1,21 @@
 <template>
-<div>
-  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" v-if="$props.active"><path fill="currentColor" d="M19 21.6V29h2v-7.4l5.4-8.6H13.6z"/><path fill="currentColor" d="M20 0C9 0 0 9 0 20s9 20 20 20 20-9 20-20S31 0 20 0zm3 22.2V31h-6v-8.8L10 11h20l-7 11.2z" /></svg>
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" v-else><path fill="currentColor" d="M0 0l7 11.2V20h6v-8.8L20 0H0zm11 10.6V18H9v-7.4L3.6 2h12.8L11 10.6z" /></svg>
-</div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <g v-if="!$props.active">
+      <path fill="#000000" d="M0 0l8.556 9.778V22h4.889V9.777L22.001 0z"/>
+    </g>
+    <g v-else>
+      <path fill="#000000" d="M20.116 0L11 9.01 1.886 0 0 1.886 9.166 11l-8.59 8.538L2.41 21.53 11 12.939l8.54 8.591 1.886-1.992L12.834 11 22 1.886z"/>
+    </g>
+  </svg>
 </template>
+
 <script>
 export default {
   props: {
     active: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 }
 </script>
