@@ -6,7 +6,9 @@
     <div class="site-menu__main">
       <ul>
         <li>
-          <a href="">{{ __('Kurse') }}</a>
+          <a href="{{ route('page.courses')}}" class="{{ request()->routeIs('page.courses') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
+            {{ __('Kurse') }}
+          </a>
         </li>
         <li>
           <a href="">{{ __('Experten') }}</a>
@@ -39,7 +41,7 @@
         <li class="sm:hide">
           <a href="">{{ __('Warenkorb') }}</a>
         </li>
-        <li class="sm:hide">
+        <li class="language-switcher sm:hide">
           <a href="">
             @if (app()->getLocale() == 'de')
               {{ __('English') }}

@@ -5,3 +5,4 @@
 // Modules
 require('./modules/validation.js');
 require('./modules/menu.js');
+require('./modules/touch.js');

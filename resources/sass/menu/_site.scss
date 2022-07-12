@@ -8,12 +8,23 @@ nav.site-menu {
 
   ul {
     li {
+
+      a {
+        transition: color .1s ease-in;
+      }
+
       a, span {
         @extend %fs-24x;
         @extend %sm\:fs-16x;
         @extend %md\:fs-20x;
         color: $color-primary;
         @include font-bold();
+      }
+
+      &.language-switcher {
+        a, span {
+          @include font-regular();
+        }
       }
     }
   }
@@ -26,7 +37,6 @@ nav.site-menu {
       @extend %sm\:span-6;
     }
   }
-
 
   .site-menu__footer {
     @extend %sm\:hide;
@@ -72,9 +82,16 @@ nav.site-menu {
           a {
             align-items: center;
             border-top: 1px solid $color-primary;
+            color: $color-primary;
             display: flex;
             justify-content: flex-end;
             min-height: 48px;
+
+            &.is-touched,
+            &.is-active,
+            &:hover {
+              color: $color-white;
+            }
           }
         }
       }
@@ -114,6 +131,14 @@ nav.site-menu {
         &.language-switcher {
           a, span {
             @include font-regular();
+          }
+        }
+
+        a {
+          &.is-touched,
+          &.is-active,
+          &:hover {
+            color: $color-secondary;
           }
         }
       }

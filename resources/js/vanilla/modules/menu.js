@@ -10,11 +10,11 @@
     btnHide: '.js-menu-btn-hide',
   };
 
-  const init = function() {
+  const init = () => {
     const btnShow = document.querySelector(selectors.btnShow);
     const btnHide = document.querySelector(selectors.btnHide);
-    btnShow.addEventListener("click", toggle, false );
-    btnHide.addEventListener("click", toggle, false );
+    btnShow.addEventListener("click", toggle, false);
+    btnHide.addEventListener("click", toggle, false);
   };
 
   const toggle = function(btn){
@@ -22,6 +22,6 @@
     menu.classList.toggle(classes.visible);
   };
 
-  window.onload = init;
+  init();
   
 })();
