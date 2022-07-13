@@ -5,7 +5,6 @@ mix.webpackConfig({
     extensions: ['.js', '.vue', '.json'],
     alias: {
       '@': __dirname + '/resources/js/vue/',
-      '@frontend': __dirname + '/resources/js/vue/frontend/',
     },
   },
 });
@@ -27,4 +26,4 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 
 // Frontend: filter.js
-mix.js('resources/js/vue/frontend/filter/filter.js', 'public/assets/js/filter.js').version();
+mix.js('resources/js/vue/modules/filter/filter.js', 'public/assets/js/filter.js').version();

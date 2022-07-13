@@ -13,7 +13,7 @@ window.axios = require('axios');
 Vue.use(VueAxios, axios);
 
 // Filters
-require('@/mixins/Filters');
+require('@/shared/mixins/Filters');
 
 // Vue-Axios defaults
 Vue.axios.defaults.withCredentials = true;
@@ -23,24 +23,20 @@ import Notifications from 'vue-notification';
 Vue.use(Notifications);
 
 // Store
-import store from '@/config/store';
+import store from '@/shared/config/store';
 
 // Vue-Router
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // Routes
-import baseRoutes from '@/config/routes';
-import apartmentRoutes from '@/views/backend/pages/apartment/config/routes';
-import collectionRoutes from '@/views/backend/pages/collection/config/routes';
+import baseRoutes from '@/shared/config/routes';
 
 const router = new VueRouter(
   { 
     mode: 'history', 
     routes: [
       ...baseRoutes,
-      ...apartmentRoutes,
-      ...collectionRoutes,
     ]
   }
 );

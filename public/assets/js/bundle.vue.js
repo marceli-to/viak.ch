@@ -2121,10 +2121,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ui_icons_Free_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/icons/Free.vue */ "./resources/js/vue/components/ui/icons/Free.vue");
-/* harmony import */ var _components_ui_icons_Reserved_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/icons/Reserved.vue */ "./resources/js/vue/components/ui/icons/Reserved.vue");
-/* harmony import */ var _components_ui_icons_Rented_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/icons/Rented.vue */ "./resources/js/vue/components/ui/icons/Rented.vue");
-/* harmony import */ var _components_ui_icons_Sold_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/icons/Sold.vue */ "./resources/js/vue/components/ui/icons/Sold.vue");
+/* harmony import */ var _components_ui_icons_Free_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/shared/components/ui/icons/Free.vue */ "./resources/js/vue/components/ui/icons/Free.vue");
+/* harmony import */ var _components_ui_icons_Reserved_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/components/ui/icons/Reserved.vue */ "./resources/js/vue/components/ui/icons/Reserved.vue");
+/* harmony import */ var _components_ui_icons_Rented_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/components/ui/icons/Rented.vue */ "./resources/js/vue/components/ui/icons/Rented.vue");
+/* harmony import */ var _components_ui_icons_Sold_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/components/ui/icons/Sold.vue */ "./resources/js/vue/components/ui/icons/Sold.vue");
 //
 //
 //
@@ -2247,14 +2247,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ui_icons_Logo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/icons/Logo.vue */ "./resources/js/vue/components/ui/icons/Logo.vue");
-/* harmony import */ var _components_ui_icons_List_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/icons/List.vue */ "./resources/js/vue/components/ui/icons/List.vue");
-/* harmony import */ var _components_ui_icons_Collection_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/icons/Collection.vue */ "./resources/js/vue/components/ui/icons/Collection.vue");
-/* harmony import */ var _components_ui_icons_User_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/icons/User.vue */ "./resources/js/vue/components/ui/icons/User.vue");
-/* harmony import */ var _components_ui_icons_Filter_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/ui/icons/Filter.vue */ "./resources/js/vue/components/ui/icons/Filter.vue");
-/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
-/* harmony import */ var _components_ui_icons_ArrowLeft_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/icons/ArrowLeft.vue */ "./resources/js/vue/components/ui/icons/ArrowLeft.vue");
-/* harmony import */ var _components_ui_icons_ArrowRight_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ui/icons/ArrowRight.vue */ "./resources/js/vue/components/ui/icons/ArrowRight.vue");
+/* harmony import */ var _components_ui_icons_Logo_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/shared/components/ui/icons/Logo.vue */ "./resources/js/vue/components/ui/icons/Logo.vue");
+/* harmony import */ var _components_ui_icons_List_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/components/ui/icons/List.vue */ "./resources/js/vue/components/ui/icons/List.vue");
+/* harmony import */ var _components_ui_icons_Collection_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/components/ui/icons/Collection.vue */ "./resources/js/vue/components/ui/icons/Collection.vue");
+/* harmony import */ var _components_ui_icons_User_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/components/ui/icons/User.vue */ "./resources/js/vue/components/ui/icons/User.vue");
+/* harmony import */ var _components_ui_icons_Filter_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/shared/components/ui/icons/Filter.vue */ "./resources/js/vue/components/ui/icons/Filter.vue");
+/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/shared/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
+/* harmony import */ var _components_ui_icons_ArrowLeft_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/shared/components/ui/icons/ArrowLeft.vue */ "./resources/js/vue/components/ui/icons/ArrowLeft.vue");
+/* harmony import */ var _components_ui_icons_ArrowRight_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/shared/components/ui/icons/ArrowRight.vue */ "./resources/js/vue/components/ui/icons/ArrowRight.vue");
 //
 //
 //
@@ -2408,25 +2408,25 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
-/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
-/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
+/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
+/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
+/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
 /* harmony import */ var _views_backend_pages_mixins_Filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/backend/pages/mixins/Filter */ "./resources/js/vue/views/backend/pages/mixins/Filter.js");
 /* harmony import */ var _views_backend_pages_mixins_Collection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/backend/pages/mixins/Collection */ "./resources/js/vue/views/backend/pages/mixins/Collection.js");
-/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
-/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
-/* harmony import */ var _components_ui_icons_Radio_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/ui/icons/Radio.vue */ "./resources/js/vue/components/ui/icons/Radio.vue");
-/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
-/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
-/* harmony import */ var _components_ui_misc_Bullet_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/ui/misc/Bullet.vue */ "./resources/js/vue/components/ui/misc/Bullet.vue");
+/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/shared/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
+/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/shared/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
+/* harmony import */ var _components_ui_icons_Radio_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/shared/components/ui/icons/Radio.vue */ "./resources/js/vue/components/ui/icons/Radio.vue");
+/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/shared/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
+/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/shared/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
+/* harmony import */ var _components_ui_misc_Bullet_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/shared/components/ui/misc/Bullet.vue */ "./resources/js/vue/components/ui/misc/Bullet.vue");
 /* harmony import */ var _views_backend_layout_Header_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/views/backend/layout/Header.vue */ "./resources/js/vue/views/backend/layout/Header.vue");
 /* harmony import */ var _views_backend_layout_Main_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/views/backend/layout/Main.vue */ "./resources/js/vue/views/backend/layout/Main.vue");
-/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
-/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
-/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
-/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
-/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
-/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
+/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/shared/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
+/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/shared/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
+/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/shared/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
+/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/shared/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
+/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/shared/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
+/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/shared/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
 /* harmony import */ var _views_backend_pages_apartment_components_Isometrie_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Isometrie.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Isometrie.vue");
 //
 //
@@ -2800,7 +2800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _views_backend_pages_mixins_Filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/views/backend/pages/mixins/Filter */ "./resources/js/vue/views/backend/pages/mixins/Filter.js");
-/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
+/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
 /* harmony import */ var _views_backend_layout_Header_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/views/backend/layout/Header.vue */ "./resources/js/vue/views/backend/layout/Header.vue");
 /* harmony import */ var _views_backend_layout_Main_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/backend/layout/Main.vue */ "./resources/js/vue/views/backend/layout/Main.vue");
 /* harmony import */ var _views_backend_pages_apartment_components_Menu_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Menu.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Menu.vue");
@@ -2811,8 +2811,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_backend_pages_apartment_components_Label_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Label.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Label.vue");
 /* harmony import */ var _views_backend_pages_apartment_components_Input_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Input.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Input.vue");
 /* harmony import */ var _views_backend_pages_apartment_components_Isometrie_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Isometrie.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Isometrie.vue");
-/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
-/* harmony import */ var _components_ui_icons_Checkmark_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/ui/icons/Checkmark.vue */ "./resources/js/vue/components/ui/icons/Checkmark.vue");
+/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/shared/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
+/* harmony import */ var _components_ui_icons_Checkmark_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/shared/components/ui/icons/Checkmark.vue */ "./resources/js/vue/components/ui/icons/Checkmark.vue");
 //
 //
 //
@@ -3007,9 +3007,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
-/* harmony import */ var _components_ui_icons_Replace_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/icons/Replace.vue */ "./resources/js/vue/components/ui/icons/Replace.vue");
-/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
+/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
+/* harmony import */ var _components_ui_icons_Replace_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/components/ui/icons/Replace.vue */ "./resources/js/vue/components/ui/icons/Replace.vue");
+/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
 /* harmony import */ var _views_backend_layout_Header_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/backend/layout/Header.vue */ "./resources/js/vue/views/backend/layout/Header.vue");
 /* harmony import */ var _views_backend_layout_Main_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/backend/layout/Main.vue */ "./resources/js/vue/views/backend/layout/Main.vue");
 /* harmony import */ var _views_backend_pages_apartment_components_Menu_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/views/backend/pages/apartment/components/Menu.vue */ "./resources/js/vue/views/backend/pages/apartment/components/Menu.vue");
@@ -5168,11 +5168,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_ui_icons_ArrowLeft_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/ui/icons/ArrowLeft.vue */ "./resources/js/vue/components/ui/icons/ArrowLeft.vue");
-/* harmony import */ var _components_ui_icons_Reset_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/ui/icons/Reset.vue */ "./resources/js/vue/components/ui/icons/Reset.vue");
-/* harmony import */ var _components_ui_icons_Pencil_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/ui/icons/Pencil.vue */ "./resources/js/vue/components/ui/icons/Pencil.vue");
-/* harmony import */ var _components_ui_icons_Bubble_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/ui/icons/Bubble.vue */ "./resources/js/vue/components/ui/icons/Bubble.vue");
-/* harmony import */ var _components_ui_icons_Document_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/ui/icons/Document.vue */ "./resources/js/vue/components/ui/icons/Document.vue");
+/* harmony import */ var _components_ui_icons_ArrowLeft_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/shared/components/ui/icons/ArrowLeft.vue */ "./resources/js/vue/components/ui/icons/ArrowLeft.vue");
+/* harmony import */ var _components_ui_icons_Reset_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/components/ui/icons/Reset.vue */ "./resources/js/vue/components/ui/icons/Reset.vue");
+/* harmony import */ var _components_ui_icons_Pencil_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/components/ui/icons/Pencil.vue */ "./resources/js/vue/components/ui/icons/Pencil.vue");
+/* harmony import */ var _components_ui_icons_Bubble_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/components/ui/icons/Bubble.vue */ "./resources/js/vue/components/ui/icons/Bubble.vue");
+/* harmony import */ var _components_ui_icons_Document_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/shared/components/ui/icons/Document.vue */ "./resources/js/vue/components/ui/icons/Document.vue");
 //
 //
 //
@@ -5212,7 +5212,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//import DialogWrapper from "@/components/ui/misc/Dialog.vue";
+//import DialogWrapper from "@/shared/components/ui/misc/Dialog.vue";
 
 
 
@@ -5258,27 +5258,27 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
-/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
-/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
+/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
+/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
+/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
 /* harmony import */ var _views_backend_pages_mixins_Filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/backend/pages/mixins/Filter */ "./resources/js/vue/views/backend/pages/mixins/Filter.js");
 /* harmony import */ var _views_backend_pages_mixins_Collection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/backend/pages/mixins/Collection */ "./resources/js/vue/views/backend/pages/mixins/Collection.js");
-/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
-/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
-/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
-/* harmony import */ var _components_ui_icons_Radio_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/ui/icons/Radio.vue */ "./resources/js/vue/components/ui/icons/Radio.vue");
-/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
-/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
-/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
-/* harmony import */ var _components_ui_icons_ArrowRight_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/ui/icons/ArrowRight.vue */ "./resources/js/vue/components/ui/icons/ArrowRight.vue");
+/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/shared/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
+/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/shared/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
+/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/shared/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
+/* harmony import */ var _components_ui_icons_Radio_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/shared/components/ui/icons/Radio.vue */ "./resources/js/vue/components/ui/icons/Radio.vue");
+/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/shared/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
+/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/shared/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
+/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/shared/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
+/* harmony import */ var _components_ui_icons_ArrowRight_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/shared/components/ui/icons/ArrowRight.vue */ "./resources/js/vue/components/ui/icons/ArrowRight.vue");
 /* harmony import */ var _views_backend_layout_Header_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/views/backend/layout/Header.vue */ "./resources/js/vue/views/backend/layout/Header.vue");
 /* harmony import */ var _views_backend_layout_Main_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/views/backend/layout/Main.vue */ "./resources/js/vue/views/backend/layout/Main.vue");
-/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
-/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
-/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
-/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
-/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
-/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
+/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/shared/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
+/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/shared/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
+/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/shared/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
+/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/shared/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
+/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/shared/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
+/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/shared/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
 //
 //
 //
@@ -5677,28 +5677,28 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
-/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
-/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
+/* harmony import */ var _mixins_ErrorHandling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/shared/mixins/ErrorHandling */ "./resources/js/vue/mixins/ErrorHandling.js");
+/* harmony import */ var _mixins_Helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/shared/mixins/Helpers */ "./resources/js/vue/mixins/Helpers.js");
+/* harmony import */ var _mixins_Sort__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/mixins/Sort */ "./resources/js/vue/mixins/Sort.js");
 /* harmony import */ var _views_backend_pages_mixins_Filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/backend/pages/mixins/Filter */ "./resources/js/vue/views/backend/pages/mixins/Filter.js");
 /* harmony import */ var _views_backend_pages_mixins_Collection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/backend/pages/mixins/Collection */ "./resources/js/vue/views/backend/pages/mixins/Collection.js");
-/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
-/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
-/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
-/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
-/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
-/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
-/* harmony import */ var _components_ui_icons_Checkmark_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/components/ui/icons/Checkmark.vue */ "./resources/js/vue/components/ui/icons/Checkmark.vue");
-/* harmony import */ var _components_ui_icons_Hourglass_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/ui/icons/Hourglass.vue */ "./resources/js/vue/components/ui/icons/Hourglass.vue");
-/* harmony import */ var _components_ui_icons_Download_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/components/ui/icons/Download.vue */ "./resources/js/vue/components/ui/icons/Download.vue");
+/* harmony import */ var _components_ui_misc_Dialog_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/shared/components/ui/misc/Dialog.vue */ "./resources/js/vue/components/ui/misc/Dialog.vue");
+/* harmony import */ var _components_ui_icons_Sort_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/shared/components/ui/icons/Sort.vue */ "./resources/js/vue/components/ui/icons/Sort.vue");
+/* harmony import */ var _components_ui_icons_State_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/shared/components/ui/icons/State.vue */ "./resources/js/vue/components/ui/icons/State.vue");
+/* harmony import */ var _components_ui_icons_Plus_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/shared/components/ui/icons/Plus.vue */ "./resources/js/vue/components/ui/icons/Plus.vue");
+/* harmony import */ var _components_ui_icons_Trash_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/shared/components/ui/icons/Trash.vue */ "./resources/js/vue/components/ui/icons/Trash.vue");
+/* harmony import */ var _components_ui_icons_Cross_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/shared/components/ui/icons/Cross.vue */ "./resources/js/vue/components/ui/icons/Cross.vue");
+/* harmony import */ var _components_ui_icons_Checkmark_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/shared/components/ui/icons/Checkmark.vue */ "./resources/js/vue/components/ui/icons/Checkmark.vue");
+/* harmony import */ var _components_ui_icons_Hourglass_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/shared/components/ui/icons/Hourglass.vue */ "./resources/js/vue/components/ui/icons/Hourglass.vue");
+/* harmony import */ var _components_ui_icons_Download_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @/shared/components/ui/icons/Download.vue */ "./resources/js/vue/components/ui/icons/Download.vue");
 /* harmony import */ var _views_backend_layout_Header_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @/views/backend/layout/Header.vue */ "./resources/js/vue/views/backend/layout/Header.vue");
 /* harmony import */ var _views_backend_layout_Main_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @/views/backend/layout/Main.vue */ "./resources/js/vue/views/backend/layout/Main.vue");
-/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
-/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
-/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
-/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
-/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
-/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
+/* harmony import */ var _components_ui_layout_List_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @/shared/components/ui/layout/List.vue */ "./resources/js/vue/components/ui/layout/List.vue");
+/* harmony import */ var _components_ui_layout_ListHeader_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/shared/components/ui/layout/ListHeader.vue */ "./resources/js/vue/components/ui/layout/ListHeader.vue");
+/* harmony import */ var _components_ui_layout_ListRow_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/shared/components/ui/layout/ListRow.vue */ "./resources/js/vue/components/ui/layout/ListRow.vue");
+/* harmony import */ var _components_ui_layout_ListItem_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @/shared/components/ui/layout/ListItem.vue */ "./resources/js/vue/components/ui/layout/ListItem.vue");
+/* harmony import */ var _components_ui_layout_ListAction_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @/shared/components/ui/layout/ListAction.vue */ "./resources/js/vue/components/ui/layout/ListAction.vue");
+/* harmony import */ var _components_ui_layout_ListEmpty_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @/shared/components/ui/layout/ListEmpty.vue */ "./resources/js/vue/components/ui/layout/ListEmpty.vue");
 //
 //
 //
@@ -54161,9 +54161,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-notification */ "./node_modules/vue-notification/dist/index.js");
 /* harmony import */ var vue_notification__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_notification__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _config_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/config/store */ "./resources/js/vue/config/store.js");
+/* harmony import */ var _config_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/shared/config/store */ "./resources/js/vue/config/store.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _config_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/config/routes */ "./resources/js/vue/config/routes.js");
+/* harmony import */ var _config_routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/shared/config/routes */ "./resources/js/vue/config/routes.js");
 /* harmony import */ var _views_backend_pages_apartment_config_routes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/views/backend/pages/apartment/config/routes */ "./resources/js/vue/views/backend/pages/apartment/config/routes.js");
 /* harmony import */ var _views_backend_pages_collection_config_routes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/views/backend/pages/collection/config/routes */ "./resources/js/vue/views/backend/pages/collection/config/routes.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/App.vue */ "./resources/js/vue/App.vue");
@@ -54192,7 +54192,7 @@ __webpack_require__(/*! vue-axios-interceptors */ "./node_modules/vue-axios-inte
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_0___default.a, axios__WEBPACK_IMPORTED_MODULE_1___default.a); // Filters
 
-__webpack_require__(/*! @/mixins/Filters */ "./resources/js/vue/mixins/Filters.js"); // Vue-Axios defaults
+__webpack_require__(/*! @/shared/mixins/Filters */ "./resources/js/vue/mixins/Filters.js"); // Vue-Axios defaults
 
 
 Vue.axios.defaults.withCredentials = true; // Vue-Notifications

@@ -11,7 +11,7 @@
 </template>
 <script>
 import vue2Dropzone from "vue2-dropzone";
-import fileConfig from "@/components/files/config/config.js";
+import fileConfig from "@/shared/components/files/config/config.js";
 
 export default {
 

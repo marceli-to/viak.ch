@@ -12,7 +12,7 @@
 </template>
 <script>
 import vue2Dropzone from "vue2-dropzone";
-import config from "@/components/images/config/config.js";
+import config from "@/shared/components/images/config/config.js";
 
 export default {
 

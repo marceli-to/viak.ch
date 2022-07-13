@@ -99,12 +99,12 @@
 <script>
 
 // Image components
-import ImageActions from "@/components/images/Actions.vue";
+import ImageActions from "@/shared/components/images/Actions.vue";
 
 // Image mixins
-import ImageEdit from "@/components/images/mixins/edit";
-import ImageCrop from "@/components/images/mixins/crop";
-import ImageUtils from "@/components/images/mixins/utils";
+import ImageEdit from "@/shared/components/images/mixins/edit";
+import ImageCrop from "@/shared/components/images/mixins/crop";
+import ImageUtils from "@/shared/components/images/mixins/utils";
 
 // Cropper
 import { Cropper } from "vue-advanced-cropper";

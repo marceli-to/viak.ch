@@ -1,4 +1,4 @@
-require('@frontend/filter/bootstrap');
+require('@/modules/filter/bootstrap');
 
 // Vue
 import Vue from 'vue';
@@ -17,10 +17,10 @@ Vue.use(VueAxios, axios);
 Vue.axios.defaults.withCredentials = false;
 
 // Vuex store
-import store from '@frontend/filter/config/store';
+import store from '@/modules/filter/config/store';
 
 // Component
-Vue.component('course-filter', require('@frontend/filter/views/Filter.vue').default);
+Vue.component('course-filter', require('@/modules/filter/Index.vue').default);
 
 // Mount
 if (document.getElementById("app-courses")) {

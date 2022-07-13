@@ -60,7 +60,7 @@ import {
   ImageIcon,
 } from 'vue-feather-icons';
 
-import ImageUtils from "@/components/images/mixins/utils";
+import ImageUtils from "@/shared/components/images/mixins/utils";
 export default {
 
   components: {

@@ -116,9 +116,9 @@
 </div>
 </template>
 <script>
-import ErrorHandling from "@frontend/filter/mixins/ErrorHandling";
+import ErrorHandling from "@/modules/filter/mixins/ErrorHandling";
 import NProgress from 'nprogress';
-import IconFilter from "@/components/ui/icons/Filter.vue";
+import IconFilter from "@/shared/components/ui/icons/Filter.vue";
 
 export default {
 
