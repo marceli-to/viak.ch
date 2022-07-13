@@ -17,8 +17,7 @@
     <div class="filter">
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
-        <div 
-          :class="[filter.category == id ? 'is-active' : '', 'filter__item']"
+        <div :class="[filter.category == id ? 'is-active' : '', 'filter__item']"
           v-for="(category, id) in options.categories" :key="id">
           <a href="" @click.prevent="updateFilterItem('category', id)">
             {{ category }}
@@ -80,14 +79,15 @@
             </select>
           </div>
         </div>
-
-        <div class="mt-10x flex justify-between">
-          <a href="" @click.prevent="showResults()" class="">
-            Anzeigen {{ data.length ? `(${data.length})` : '' }}
+        <div class="filter__buttons mt-10x">
+          <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
+            {{ __('Anzeigen') }} {{ data.length ? `(${data.length})` : '' }}
           </a>
-          <br><br>
-          <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
+          <a href="" @click.prevent="resetFilterItems()" class="link-helper">
+            {{ __('Zurücksetzen') }}
+          </a>
         </div>
+
         <!--
         <template v-if="hasSearch">
           <h2 class="mb-8x mt-8x">Suche</h2>
@@ -213,13 +213,16 @@ export default {
       this.data = [];
       this.$store.commit('filter', this.filter);
       this.hasResults = false;
+      this.showResults();
     },
 
     toggleFilter() {
       this.hasFilter = this.hasFilter ? false : true;
     },
 
-    showResults() {},
+    showResults() {
+      this.hasFilter = false;
+    },
 
   },
 }

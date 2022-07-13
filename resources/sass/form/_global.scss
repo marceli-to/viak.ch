@@ -13,6 +13,7 @@ input[type=time],
 textarea,
 select,
 button {
+  @extend %fs-16x;
 	background-color: transparent;
 	border-radius: 0;
 	border: none;
