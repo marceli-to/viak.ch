@@ -16,3 +16,17 @@
     display: none !important;
   }
 }
+
+%sm\:block,
+.sm\:block {
+  @include bp-sm() {
+    display: block;
+  }
+}
+
+%\!sm\:block,
+.\!sm\:block {
+  @include bp-sm() {
+    display: block !important;
+  }
+}

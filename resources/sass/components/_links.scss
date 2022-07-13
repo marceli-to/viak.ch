@@ -9,8 +9,11 @@
 .link {
   text-decoration: none;
   transition: color .1s ease-out;
-  
   &:hover {
     text-decoration: underline;
   }
+}
+
+a:not([class*="btn-"]) {
+  color: $color-black;
 }

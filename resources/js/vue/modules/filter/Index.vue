@@ -1,6 +1,6 @@
 <template>
-<div class="grid-cols-12">
-  <div class="span-12 sm:span-8">
+<grid class="grid-cols-12">
+  <grid-col class="span-12 sm:span-8">
     <a href="javascript:;" class="icon-filter sm:hide" @click.prevent="toggleFilter()">
       <icon-filter :active="hasFilter ? true : false" />
     </a>
@@ -8,120 +8,103 @@
       <slot />
     </template>
     <template v-else>
-      <div class="grid-cols-12">
-
+      <grid class="grid-cols-12">
         <card v-for="d in data" :key="d.uuid" class="card-teaser span-6" :data="d" />
-
-        <!-- <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
-          <a href="">
-            <header>
-              <div class="card__category">
-                {{ d.categories }}
-              </div>
-              <h2 class="card__heading">
-                {{ d.title }}
-              </h2>
-            </header>
-            <figure>
-              <div>
-                <div v-if="d.upcoming">
-                  {{ i18n('Übersicht') }}:<br>
-                  <ul>
-                    <li>Experte: {{ d.experts}}</li>
-                    <li>ab {{ d.date }}</li>
-                    <li v-if="d.online">Online Schulung</li>
-                    <li>CHF {{ d.fee }}</li>
-                  </ul>
-                </div>
-                <p class="mt-4x sm:mt-6x">Weitere Informationen</p>
-              </div>
-              <img src="/media/dummy-1.png" class="is-responsive">
-            </figure>
-          </a>
-        </article> -->
-      </div>
+      </grid>
     </template>
-  </div>
-  <div class="filter sm:span-4" v-show="hasFilter">
-    <h2 class="mb-8x">Filter</h2>
-    <form @submit.prevent="filter()" class="">
-      <div class="mb-8x">
-        <a 
-          v-for="(option, id) in options.categories" :key="id"
-          href="" 
-          @click.prevent="updateFilterItem('category', id)" 
-          class="btn-filter">
-          <span v-if="filter.category == id" class="mr-1x">&bull;</span>
-          {{ option }}
-        </a>
-      </div>
-      <div class="select-wrapper">
-        <select 
-          v-model="filter.location"
-          @change="doFilter()">
-          <option value="null">Ort</option>
-          <option value="online">online</option>
-          <option value="offline">vor Ort</option>
-        </select>
-      </div>
-      <div class="select-wrapper">
-        <select 
-          v-model="filter.level"
-          @change="doFilter()">
-          <option value="null">Level</option>
-          <option 
-            v-for="(option, id) in options.levels" 
-            :key="id" 
-            :value="id">
-            {{option}}
-          </option>
-        </select>
-      </div>
-      <div class="select-wrapper">
-        <select 
-          v-model="filter.language"
-          @change="doFilter()">
-          <option value="null">Sprache</option>
-          <option 
-            v-for="(option, id) in options.languages" 
-            :key="id" 
-            :value="id">
-            {{option}}
-          </option>
-        </select>
-      </div>
-      <div class="select-wrapper">
-        <select 
-          v-model="filter.expert"
-          @change="doFilter()">
-          <option value="null">Experte</option>
-          <option 
-            v-for="(option, id) in options.experts" 
-            :key="id" 
-            :value="id">
-            {{option}}
-          </option>
-        </select>
-      </div>
-      <div class="mt-10x flex justify-between">
-        <a href="" @click.prevent="showResults()" class="">
-          Anzeigen {{ data.length ? `(${data.length})` : '' }}
-        </a>
-        <br><br>
-        <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
-      </div>
-      <template v-if="hasSearch">
-        <h2 class="mb-8x mt-8x">Suche</h2>
-        <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
-      </template>
-    </form>
-  </div> 
-</div>
+  </grid-col>
+  <grid-col class="sm:span-4 !sm:block" v-show="hasFilter">
+    <div class="filter">
+      <h2>Filter</h2>
+      <form @submit.prevent="filter()">
+        <div 
+          :class="[filter.category == id ? 'is-active' : '', 'filter__item']"
+          v-for="(category, id) in options.categories" :key="id">
+          <a href="" @click.prevent="updateFilterItem('category', id)">
+            {{ category }}
+          </a>
+        </div>
+        <div :class="[filter.location ? 'is-active' : '', 'filter__item mt-10x']">
+          <div class="select-wrapper">
+            <select 
+              v-model="filter.location"
+              @change="doFilter()">
+              <option value="null">Ort</option>
+              <option value="online">online</option>
+              <option value="offline">vor Ort</option>
+            </select>
+          </div>
+        </div>
+        <div :class="[filter.level ? 'is-active' : '', 'filter__item']">
+          <div class="select-wrapper">
+            <select 
+              v-model="filter.level"
+              @change="doFilter()">
+              <option value="null">Level</option>
+              <option 
+                v-for="(option, id) in options.levels" 
+                :key="id" 
+                :value="id">
+                {{option}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div :class="[filter.language ? 'is-active' : '', 'filter__item']">
+          <div class="select-wrapper">
+            <select 
+              v-model="filter.language"
+              @change="doFilter()">
+              <option value="null">Sprache</option>
+              <option 
+                v-for="(option, id) in options.languages" 
+                :key="id" 
+                :value="id">
+                {{option}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div :class="[filter.expert ? 'is-active' : '', 'filter__item']">
+          <div class="select-wrapper">
+            <select 
+              v-model="filter.expert"
+              @change="doFilter()">
+              <option value="null">Experte</option>
+              <option 
+                v-for="(option, id) in options.experts" 
+                :key="id" 
+                :value="id">
+                {{option}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-10x flex justify-between">
+          <a href="" @click.prevent="showResults()" class="">
+            Anzeigen {{ data.length ? `(${data.length})` : '' }}
+          </a>
+          <br><br>
+          <a href="" @click.prevent="resetFilterItems()">Filter zurücksetzen</a>
+        </div>
+        <!--
+        <template v-if="hasSearch">
+          <h2 class="mb-8x mt-8x">Suche</h2>
+          <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
+        </template>
+        -->
+      </form>
+    </div> 
+  </grid-col>
+</grid>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/modules/filter/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
+import Grid from "@/shared/components/ui/layout/Grid.vue";
+import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
 import Card from "@/modules/filter/components/Card.vue";
 
@@ -130,6 +113,8 @@ export default {
   components: {
     NProgress,
     IconFilter,
+    Grid,
+    GridCol,
     Card,
   },
 

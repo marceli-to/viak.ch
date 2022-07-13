@@ -4,17 +4,50 @@
  * -----------------------------------------------------------------------------
  */
 
+.filter {
+  h2 {
+    @extend %fs-16x;
+    @extend %mb-8x;
+    @include font-bold();
+  }
+
+  .filter__item {
+    align-items: center;
+    border-top: 2px solid $color-tertiary;
+    display: flex;
+    min-height: 40px;
+
+    &.is-active {
+      color: $color-tertiary;
+      @include font-bold();
+
+      a, select {
+        color: $color-tertiary;
+        @include font-bold();
+      }
+    }
+
+    .select-wrapper {
+      align-items: center;
+      border-bottom: none;
+      display: flex;
+      min-height: inherit;
+    }
+  }
+}
+
 @include bp-xs() {
   .filter {
     background-color: $color-white;
-    height: calc(100% - 88px);
+    height: 100%;
     left: 16px;
     opacity: 1;
     pointer-events: all;
     position: fixed;
-    top: 88px; // 48 + 24 + 16 (min-height header, margin-bottom header, padding-top body)
+    padding-top: 88px; // 48 + 24 + 16 (min-height header, margin-bottom header, padding-top body)
+    top: 0;
     width: calc(100% - 32px);
-    z-index: 1;
+    z-index: 100;
   }
 }
 
