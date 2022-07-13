@@ -17,7 +17,7 @@ Vue.use(VueAxios, axios);
 Vue.axios.defaults.withCredentials = false;
 
 // Vuex store
-import store from '@/modules/filter/config/store';
+import store from '@/shared/config/store';
 
 // Component
 Vue.component('course-filter', require('@/modules/filter/Index.vue').default);

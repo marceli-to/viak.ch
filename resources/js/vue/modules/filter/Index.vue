@@ -9,7 +9,10 @@
     </template>
     <template v-else>
       <div class="grid-cols-12">
-        <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
+
+        <card v-for="d in data" :key="d.uuid" class="card-teaser span-6" :data="d" />
+
+        <!-- <article v-for="d in data" :key="d.uuid" class="card-teaser span-6">
           <a href="">
             <header>
               <div class="card__category">
@@ -35,7 +38,7 @@
               <img src="/media/dummy-1.png" class="is-responsive">
             </figure>
           </a>
-        </article>
+        </article> -->
       </div>
     </template>
   </div>
@@ -116,16 +119,18 @@
 </div>
 </template>
 <script>
+import NProgress from 'nprogress';
 import ErrorHandling from "@/modules/filter/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
-import NProgress from 'nprogress';
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
+import Card from "@/modules/filter/components/Card.vue";
 
 export default {
 
   components: {
     NProgress,
     IconFilter,
+    Card,
   },
 
   mixins: [ErrorHandling, i18n],

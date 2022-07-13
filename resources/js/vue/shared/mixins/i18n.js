@@ -14,12 +14,18 @@ export default {
   },
 
   mounted() {
-    this._getTranslations();
+    let store = this.$store.state.i18n;
+    if (store !== false) {
+      this.translations = store;
+    }
+    else {
+      this._getTranslations();
+    }
   },
 
   methods: {
 
-    i18n(key) {
+    __(key) {
       if (this.translations[key]) {
         return this.translations[key];
       }
@@ -36,6 +42,7 @@ export default {
       if (locale != this.fallback_locale) {
         this.axios.get(`${this.routes.get}/${locale}`).then(response => {
           this.translations = JSON.parse(response.data);
+          this.$store.commit('i18n', this.translations);
         });
       }
     },
