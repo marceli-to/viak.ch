@@ -26,4 +26,4 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 
 // Frontend: filter.js
-mix.js('resources/js/vue/modules/filter/filter.js', 'public/assets/js/filter.js').version();
+mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/filter.js').version();

@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FilterController;
-
+use App\Http\Controllers\Api\TranslationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +25,12 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| API Routes - Filter
-|--------------------------------------------------------------------------
-|
-|
-*/
-
+// Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);
 Route::post('/course/filter', [FilterController::class, 'filter']);
 Route::post('/course/search', [FilterController::class, 'search']);
+
+// Translations
+Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
+
 

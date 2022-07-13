@@ -22,7 +22,7 @@
             <figure>
               <div>
                 <div v-if="d.upcoming">
-                  Übersicht:<br>
+                  {{ i18n('Übersicht') }}:<br>
                   <ul>
                     <li>Experte: {{ d.experts}}</li>
                     <li>ab {{ d.date }}</li>
@@ -117,6 +117,7 @@
 </template>
 <script>
 import ErrorHandling from "@/modules/filter/mixins/ErrorHandling";
+import i18n from "@/shared/mixins/i18n";
 import NProgress from 'nprogress';
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
 
@@ -127,7 +128,7 @@ export default {
     IconFilter,
   },
 
-  mixins: [ErrorHandling],
+  mixins: [ErrorHandling, i18n],
 
   data() {
     return {

@@ -21,10 +21,6 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
-    $path = resource_path('lang/en.json');
-    $json = json_decode(file_get_contents($path), true);
-    dd($json);
-    dd(__('*', [], 'en'));
     return view($this->viewPath . 'index');
   }
 }
