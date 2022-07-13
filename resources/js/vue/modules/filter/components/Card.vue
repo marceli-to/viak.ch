@@ -11,16 +11,20 @@
       </header>
       <figure>
         <div>
-          <div v-if="data.upcoming">
-            {{ __('Übersicht') }}:<br>
-            <ul>
-              <li>{{ __('Experte') }}: {{ data.experts}}</li>
-              <li>{{ __('ab') }} {{ data.date }}</li>
-              <li v-if="data.online">{{ __('Online Schulung')}}</li>
-              <li>CHF {{ data.fee }}</li>
-            </ul>
+          <template v-if="data.upcoming">
+            <h3>{{ __('Übersicht') }}:</h3>
+            <div class="mb-4x sm:mb-6x">
+              <ul>
+                <li>{{ __('Experte') }}: {{ data.experts}}</li>
+                <li>{{ __('ab') }} {{ data.date }}</li>
+                <li v-if="data.online">{{ __('Online Schulung')}}</li>
+                <li>CHF {{ data.fee }}</li>
+              </ul>
+            </div>
+          </template>
+          <div>
+            {{ __('Weitere Informationen') }}
           </div>
-          <p class="mt-4x sm:mt-6x">{{ __('Weitere Informationen') }}</p>
         </div>
         <img src="/media/dummy-1.png" class="is-responsive">
       </figure>

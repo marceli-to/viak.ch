@@ -9,9 +9,11 @@
   list-style-type: disc;
   margin: 0;
   padding: 0;
+}
 
-  li {
-    display: list-item;
-    margin: 0 0 0 $space-4x;
-  }
+%list-item,
+.list-item {
+  display: list-item;
+  list-style-type: disc;
+  margin: 0 0 0 $space-4x;
 }

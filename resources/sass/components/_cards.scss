@@ -85,8 +85,8 @@
         @extend %list;
 
         li {
+          @extend %list-item;
           @extend %py-1x;
-          @extend %md\:py-2x;
         }
       }
     }

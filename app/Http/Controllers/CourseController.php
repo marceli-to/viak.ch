@@ -8,14 +8,26 @@ class CourseController extends BaseController
 {
   protected $viewPath = 'web.pages.courses.';
 
-  public function courses()
+  /**
+   * Show a list of courses
+   * @return \Illuminate\Http\Response
+   */
+   
+  public function list()
   {
     $courses = Course::with('upcomingEvents.experts', 'categories')->get();
-    return view($this->viewPath . 'index', ['courses' => $courses]);
+    return view($this->viewPath . 'list', ['courses' => $courses]);
   }
 
-  public function course()
+  /**
+   * Show a course.
+   * 
+   * @param  Course $course
+   * @return \Illuminate\Http\Response
+   */
+
+  public function show($slug = NULL, Course $course)
   {
-    return view($this->viewPath . 'show');
+    return view($this->viewPath . 'show', ['course' => Course::find($course->id) ]);
   }
 }

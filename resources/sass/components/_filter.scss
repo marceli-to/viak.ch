@@ -11,9 +11,13 @@
     @include font-bold();
   }
 
+  .filter__items {
+    border-top: 2px solid $color-tertiary;
+  }
+  
   .filter__item {
     align-items: center;
-    border-top: 2px solid $color-tertiary;
+    border-bottom: 2px solid $color-tertiary;
     display: flex;
     min-height: 40px;
 
@@ -46,6 +50,7 @@
 
     .link-helper {
       @extend %py-4x;
+      @include font-bold();
     }
   }
 }

@@ -6,12 +6,14 @@
     <div class="site-menu__main">
       <ul>
         <li>
-          <a href="{{ route('page.courses')}}" class="{{ request()->routeIs('page.courses') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
+          <a href="{{ route('page.courses')}}" class="{{ request()->routeIs('page.course*') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
             {{ __('Kurse') }}
           </a>
         </li>
         <li>
-          <a href="">{{ __('Experten') }}</a>
+          <a href="{{ route('page.experts')}}" class="{{ request()->routeIs('page.expert*') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
+            {{ __('Experten') }}
+          </a>
         </li>
         <li>
           <a href="">{{ __('Kontakt') }}</a>

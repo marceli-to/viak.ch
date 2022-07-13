@@ -1,5 +1,5 @@
 <article class="card-teaser span-6" data-touch>
-  <a href="{{ route('page.course', ['course' => $course->slug]) }}">
+  <a href="{{ route('page.course', ['slug' => $course->slug, 'course' => $course->uuid]) }}">
     <header>
       <div class="card__category">
         @if ($course->categories)
@@ -14,24 +14,26 @@
       <div>
         @if ($course->hasUpcomingEvents())
           <h3>{{ __('Übersicht') }}:</h3>
-          <ul>
-            <li>
-              {{ __('Experte') }}: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
-            </li>
-            <li>
-              {{ __('ab') }} {{ date('d. F Y', strtotime($course->upcomingEvents()->first()->date)) }}
-            </li>
-            @if ($course->online)
+          <div class="mb-4x sm:mb-6x">
+            <ul>
               <li>
-                {{ __('Online Schulung') }}
+                {{ __('Experte') }}: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
               </li>
-            @endif
-            <li>
-              CHF {{ $course->fee }}
-            </li>
-          </ul>
+              <li>
+                {{ __('ab') }} {{ date('d. F Y', strtotime($course->upcomingEvents()->first()->date)) }}
+              </li>
+              @if ($course->online)
+                <li>
+                  {{ __('Online Schulung') }}
+                </li>
+              @endif
+              <li>
+                CHF {{ $course->fee }}
+              </li>
+            </ul>
+          </div>
         @endif
-        <div class="mt-4x sm:mt-6x">
+        <div>
           {{ __('Weitere Informationen') }}
         </div>
       </div>

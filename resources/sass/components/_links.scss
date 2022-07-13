@@ -15,11 +15,13 @@ a.link {
   text-decoration: none;
   transition: color .1s ease-out;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
 a.link-helper {
   @extend %link;
-  color: $color-tertiary;
+  &:hover {
+    color: $color-tertiary;
+  }
 }

@@ -5,6 +5,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExpertController;
+
+
+
 use App\Http\Controllers\TestController;
 
 /*
@@ -17,9 +21,10 @@ use App\Http\Controllers\TestController;
 // Public routes
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
-Route::get('/kurse', [CourseController::class, 'courses'])->name('page.courses');
-Route::get('/kurs/{course::slug}', [CourseController::class, 'course'])->name('page.course');
-
+Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
+Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
+Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
+Route::get('/experte/{expert:slug}', [ExpertController::class, 'show'])->name('page.expert');
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);

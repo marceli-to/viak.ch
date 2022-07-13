@@ -17,6 +17,7 @@
     <div class="filter">
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
+      <div class="filter__items">
         <div :class="[filter.category == id ? 'is-active' : '', 'filter__item']"
           v-for="(category, id) in options.categories" :key="id">
           <a href="" @click.prevent="updateFilterItem('category', id)">
@@ -79,7 +80,7 @@
             </select>
           </div>
         </div>
-        <div class="filter__buttons mt-10x">
+        <div class="filter__buttons mt-10x sm:mt-4x">
           <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
             {{ __('Anzeigen') }} {{ data.length ? `(${data.length})` : '' }}
           </a>
@@ -87,7 +88,7 @@
             {{ __('Zurücksetzen') }}
           </a>
         </div>
-
+      </div>
         <!--
         <template v-if="hasSearch">
           <h2 class="mb-8x mt-8x">Suche</h2>
