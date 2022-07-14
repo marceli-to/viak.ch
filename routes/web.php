@@ -24,7 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('page.home');
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
-Route::get('/experte/{expert:slug}', [ExpertController::class, 'show'])->name('page.expert');
+Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);

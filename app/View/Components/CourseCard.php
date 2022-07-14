@@ -3,7 +3,7 @@ namespace App\View\Components;
 use App\Models\Course;
 use Illuminate\View\Component;
 
-class CardTeaserCourse extends Component
+class CourseCard extends Component
 {
 
   /**
@@ -30,6 +30,6 @@ class CardTeaserCourse extends Component
    */
   public function render()
   {
-    return view('web.pages.courses.components.teaser');
+    return view('web.pages.courses.components.card');
   }
 }

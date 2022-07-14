@@ -33,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
     'password',
     'gender_id',
     'data',
+    'publish',
+    'visible',
   ];
 
   /**
@@ -102,6 +104,25 @@ class User extends Authenticatable implements MustVerifyEmail
   |
   */
 
+  /**
+   * The scope for published users.
+   * 
+   */
+  
+	public function scopePublished($query)
+	{
+		return $query->where('publish', '1');
+	}
+
+  /**
+   * The scope for published users.
+   * 
+   */
+  
+	public function scopeVisible($query)
+	{
+		return $query->where('visible', '1');
+	}
 
   /**
    * Scope a query to only include users with role 'admin'.
@@ -127,7 +148,7 @@ class User extends Authenticatable implements MustVerifyEmail
     return $query->whereHas('roles', function ($q) {
       $q->where('role_id', \App\Models\Role::EXPERT);
     });
-  }  
+  }
 
   /**
    * Scope a query to only include users with role 'student'.

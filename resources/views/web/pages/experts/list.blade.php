@@ -2,14 +2,13 @@
 @section('content')
 <section id="app-courses">
   <course-filter>
-    @if ($courses)
+    @if ($experts)
       <div class="grid-cols-12">
-        @foreach($courses as $course)
-          <x-course-card :course="$course" />
+        @foreach($experts as $user)
+          <x-expert-card :user="$user" />
         @endforeach
       </div>
     @endif
   </course-filter>
 </section>
-<script src="{{ mix('assets/js/filter.js') }}" type="text/javascript"></script>
 @endsection

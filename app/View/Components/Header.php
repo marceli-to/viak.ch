@@ -11,6 +11,6 @@ class Header extends Component
    */
   public function render()
   {
-    return view('web.components.header');
+    return view('web.components.layout.header');
   }
 }

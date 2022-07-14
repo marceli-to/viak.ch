@@ -15,7 +15,8 @@ class ExpertController extends BaseController
 
   public function list()
   {
-    return view($this->viewPath . 'list', ['experts' => User::get()]);
+    $experts = User::experts()->published()->visible()->get();
+    return view($this->viewPath . 'list', ['experts' => $experts]);
   }
 
   /**
@@ -25,8 +26,9 @@ class ExpertController extends BaseController
    * @return \Illuminate\Http\Response
    */
 
-  public function show(User $user)
+  public function show($slug = NULL, User $user)
   {
-    return view($this->viewPath . 'show', ['expert' => User::findOrFail($user)]);
+    $expert = User::experts()->published()->visible()->with('events.course')->findOrFail($user->id);
+    return view($this->viewPath . 'show', ['expert' => $expert]);
   }
 }
