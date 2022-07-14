@@ -14,6 +14,7 @@ class EventDate extends Base
     'date' => 'date:d.m.Y',
   ];
 
+
   /**
    * The attributes that are mass assignable.
    *
@@ -26,7 +27,6 @@ class EventDate extends Base
     'time_end',
     'event_id',
   ];
-
 
   /**
    * The event for this event date.
@@ -72,7 +72,7 @@ class EventDate extends Base
 
   public function getTimeStartAttribute($value)
   {   
-    return $value;
+    return date('H.i', strtotime($value));
   }
 
   /**
@@ -84,7 +84,19 @@ class EventDate extends Base
 
   public function getTimeEndAttribute($value)
   {   
-    return $value;
+    return date('H.i', strtotime($value));
   }
 
+  /**
+   * Get the date for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateAttribute($value)
+  {   
+    return date('d. F Y', strtotime($value));
+  }
+  
 }

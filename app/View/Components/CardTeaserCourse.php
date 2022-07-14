@@ -3,7 +3,7 @@ namespace App\View\Components;
 use App\Models\Course;
 use Illuminate\View\Component;
 
-class TeaserCourse extends Component
+class CardTeaserCourse extends Component
 {
 
   /**

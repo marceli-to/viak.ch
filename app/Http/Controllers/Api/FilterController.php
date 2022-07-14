@@ -238,7 +238,7 @@ class FilterController extends Controller
           'uuid' => $course->uuid,
           'slug' => $course->slug,
           'title' => $course->title,
-          'date' => date('d. F Y', strtotime($event->date)),
+          'date' => $event->date,
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
           'fee' => $course->fee,

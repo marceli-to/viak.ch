@@ -28,6 +28,7 @@ class CourseController extends BaseController
 
   public function show($slug = NULL, Course $course)
   {
-    return view($this->viewPath . 'show', ['course' => Course::find($course->id) ]);
+    $course = Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'categories')->find($course->id);
+    return view($this->viewPath . 'show', ['course' =>  $course ]);
   }
 }

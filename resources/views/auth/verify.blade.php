@@ -12,7 +12,7 @@
   <form method="POST" action="{{ route('verification.resend') }}">
     @csrf
     <div class="form-buttons">
-      <x-button label="Anfordern" name="request-link" btnClass="btn-primary" type="submit" />
+      <x-form-button label="Anfordern" name="request-link" btnClass="btn-primary" type="submit" />
     </div>
   </form>
 </section>

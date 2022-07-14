@@ -2,7 +2,7 @@
 namespace App\View\Components;
 use Illuminate\View\Component;
 
-class TextArea extends Component
+class FormTextField extends Component
 {
 
   /**
@@ -11,6 +11,13 @@ class TextArea extends Component
    * @var string
    */
   public $name;
+
+  /**
+   * Type
+   *
+   * @var string
+   */
+  public $type;
 
   /**
    * Label
@@ -41,6 +48,13 @@ class TextArea extends Component
   public $css;
 
   /**
+   * Autocomplete
+   *
+   * @var boolean
+   */
+  public $autocomplete;
+
+  /**
    * Create a new component instance.
    *
    * @param $name
@@ -52,13 +66,15 @@ class TextArea extends Component
    * 
    * @return void
    */
-  public function __construct($name, $label, $placeholder = NULL, $required = FALSE, $css = NULL)
+  public function __construct($name, $type = 'text', $label = NULL, $placeholder = NULL, $required = FALSE, $css = NULL, $autocomplete = TRUE)
   {
     $this->name = $name;
+    $this->type = $type;
     $this->label = $label;
     $this->placeholder = $placeholder;
     $this->required = $required;
     $this->css = $css;
+    $this->autocomplete = $autocomplete;
   }
 
   /**
@@ -68,6 +84,6 @@ class TextArea extends Component
    */
   public function render()
   {
-    return view('web.components.text-area');
+    return view('web.components.form.text-field');
   }
 }

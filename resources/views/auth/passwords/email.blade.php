@@ -12,9 +12,9 @@
   @endif
   <form method="POST" action="{{ route('password.email') }}">
     @csrf
-    <x-text-field type="email" name="email" placeholder="mail@beispiel.ch" required />
+    <x-form-text-field type="email" name="email" placeholder="mail@beispiel.ch" required />
     <div class="form-buttons">
-      <x-button label="Senden" name="register" btnClass="btn-primary" type="submit" />
+      <x-form-button label="Senden" name="register" btnClass="btn-primary" type="submit" />
       <a href="{{ route('login') }}" class="form-helper">Zurück</a>
     </div>
   </form>

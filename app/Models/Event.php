@@ -130,4 +130,25 @@ class Event extends Base
   {
     return $query->where('online', 0);
   }
+
+
+  /*
+  |--------------------------------------------------------------------------
+  | Mutators & Accessors
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  /**
+   * Get the date for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateAttribute($value)
+  {   
+    return date('d. F Y', strtotime($value));
+  }
 }

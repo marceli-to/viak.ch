@@ -5,7 +5,7 @@
     @if ($courses)
       <div class="grid-cols-12">
         @foreach($courses as $course)
-          <x-teaser-course :course="$course" />
+          <x-card-teaser-course :course="$course" />
         @endforeach
       </div>
     @endif

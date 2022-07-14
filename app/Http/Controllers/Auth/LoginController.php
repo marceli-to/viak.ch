@@ -42,6 +42,7 @@ class LoginController extends BaseController
     {
       return RouteServiceProvider::ROLES;
     }
+
     return RouteServiceProvider::HOME;
   }
 }

@@ -10,9 +10,9 @@
   @endif
   <form method="POST" action="{{ route('password.confirm') }}">
     @csrf
-    <x-text-field type="password" name="password" placeholder="passwort" required />
+    <x-form-text-field type="password" name="password" placeholder="passwort" required />
     <div class="form-buttons">
-      <x-button label="{{ __('Confirm Password') }}" name="register" btnClass="btn-primary" type="submit" />
+      <x-form-button label="{{ __('Confirm Password') }}" name="register" btnClass="btn-primary" type="submit" />
       @if (Route::has('password.request'))
         <a class="form-helper" href="{{ route('password.request') }}">
           {{ __('Forgot Your Password?') }}

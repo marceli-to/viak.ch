@@ -13,11 +13,11 @@
   <form method="POST" action="{{ route('password.update') }}">
     @csrf
     <input type="hidden" name="token" value="{{ $token }}">
-    <x-text-field type="email" required name="email" placeholder="mail@beispiel.ch" />
-    <x-text-field type="password" required name="password" placeholder="Passwort" />
-    <x-text-field type="password" name="password_confirmation" placehodler="Passwort bestätigen" required autocomplete="new-password" />
+    <x-form-text-field type="email" required name="email" placeholder="mail@beispiel.ch" />
+    <x-form-text-field type="password" required name="password" placeholder="Passwort" />
+    <x-form-text-field type="password" name="password_confirmation" placehodler="Passwort bestätigen" required autocomplete="new-password" />
     <div class="form-buttons">
-      <x-button label="Zurücksetzen" name="reset_password" btnClass="btn-primary" type="submit" />
+      <x-form-button label="Zurücksetzen" name="reset_password" btnClass="btn-primary" type="submit" />
     </div>
   </form>
 </section>
