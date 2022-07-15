@@ -1,6 +1,6 @@
 <template>
   <article>
-    <a href="">
+    <a :href="`/kurs/${data.slug}/${data.uuid}`" :title="data.title">
       <header>
         <div class="card__category">
           {{ data.categories }}

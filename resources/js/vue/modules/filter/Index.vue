@@ -18,8 +18,8 @@
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
       <div class="filter__items">
-        <div :class="[filter.category == id ? 'is-active' : '', 'filter__item']"
-          v-for="(category, id) in options.categories" :key="id">
+        <div :class="[filter.category == id || options.filter.category == id ? 'is-active' : '', 'filter__item']"
+          v-for="(category, id) in options.settings.categories" :key="id">
           <a href="" @click.prevent="updateFilterItem('category', id)">
             {{ category }}
           </a>
@@ -42,7 +42,7 @@
               @change="doFilter()">
               <option value="null">Level</option>
               <option 
-                v-for="(option, id) in options.levels" 
+                v-for="(option, id) in options.settings.levels" 
                 :key="id" 
                 :value="id">
                 {{option}}
@@ -57,7 +57,7 @@
               @change="doFilter()">
               <option value="null">Sprache</option>
               <option 
-                v-for="(option, id) in options.languages" 
+                v-for="(option, id) in options.settings.languages" 
                 :key="id" 
                 :value="id">
                 {{option}}
@@ -72,7 +72,7 @@
               @change="doFilter()">
               <option value="null">Experte</option>
               <option 
-                v-for="(option, id) in options.experts" 
+                v-for="(option, id) in options.settings.experts" 
                 :key="id" 
                 :value="id">
                 {{option}}
@@ -128,7 +128,10 @@ export default {
       data: [],
 
       // Options 
-      options: [],
+      options: {
+        settings: [],
+        filter: [],
+      },
 
       // Filter
       filter: {
@@ -139,6 +142,8 @@ export default {
         level: null,
         expert: null
       },
+
+      store: {},
 
       // States
       isLoading: false,
@@ -166,7 +171,7 @@ export default {
       NProgress.start();
       this.isFetched = false;
       this.axios.post(`${this.routes.filter}`, this.filter).then(response => {
-        this.data = response.data;
+        this.data = response.data.courses;
         this.isFetched = true;
         this.hasResults = true;
         NProgress.done();
@@ -177,7 +182,7 @@ export default {
       NProgress.start();
       this.isFetched = false;
       this.axios.post(`${this.routes.search}`, {keyword: this.filter.keyword}).then(response => {
-        this.data = response.data;
+        this.data = response.data.courses;
         this.isFetched = true;
         this.hasResults = true;
         NProgress.done();

@@ -18,9 +18,9 @@ class CourseCard extends Component
    *
    * @return void
    */
-  public function __construct(Course $course)
+  public function __construct($uuid)
   {
-    $this->course = $course;
+    $this->course = Course::where('uuid', $uuid)->first();
   }
 
   /**

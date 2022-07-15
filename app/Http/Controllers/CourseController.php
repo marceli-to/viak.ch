@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\Course;
+use App\Services\CourseFilter;
 use Illuminate\Http\Request;
 
 class CourseController extends BaseController
@@ -9,14 +10,25 @@ class CourseController extends BaseController
   protected $viewPath = 'web.pages.courses.';
 
   /**
+   * Constructor
+   */
+
+  public function __construct()
+  {
+
+  }
+
+  /**
    * Show a list of courses
+   * 
+   * @param  \Illuminate\Http\Request $request
    * @return \Illuminate\Http\Response
    */
    
-  public function list()
+  public function list(Request $request)
   {
-    $courses = Course::with('upcomingEvents.experts', 'categories')->get();
-    return view($this->viewPath . 'list', ['courses' => $courses]);
+    $data = (new CourseFilter())->apply(null, true);
+    return view($this->viewPath . 'list', ['courses' => $data['courses']]);
   }
 
   /**

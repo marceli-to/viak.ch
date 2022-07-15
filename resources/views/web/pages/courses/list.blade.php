@@ -5,7 +5,7 @@
     @if ($courses)
       <div class="grid-cols-12">
         @foreach($courses as $course)
-          <x-course-card :course="$course" />
+          <x-course-card :uuid="$course['uuid']" />
         @endforeach
       </div>
     @endif
