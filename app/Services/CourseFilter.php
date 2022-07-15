@@ -297,7 +297,7 @@ class CourseFilter
     $this->location = $this->store->getAttribute('items.location');
     if ($request && $request->input('location'))
     {
-      $this->expert = $request->input('location') !== 'null' ? $request->input('location') : NULL;
+      $this->location = $request->input('location') !== 'null' ? $request->input('location') : NULL;
       $this->store->setAttribute('items.location', $this->location);
     }
   }

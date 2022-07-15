@@ -11,18 +11,7 @@
   width: 100%;
 
 	&:after {
-    background-color: $color-white;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 9px solid $color-tertiary;
-    content: '';
-    display: block;
-    height: 0; 
-    right: 0;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 0; 
+    @extend %icon-chevron-down;
 	}
 
 	select {

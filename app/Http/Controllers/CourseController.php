@@ -41,6 +41,54 @@ class CourseController extends BaseController
   public function show($slug = NULL, Course $course)
   {
     $course = Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'categories')->find($course->id);
-    return view($this->viewPath . 'show', ['course' =>  $course ]);
+    return view($this->viewPath . 'show', ['course' =>  $course, 'browse' => $this->getBrowse($course)]);
   }
+
+  /**
+   * Get the previous and the next course in the
+   * filtered list of courses.
+   * 
+   * @param  Course $course
+   * @return \Illuminate\Http\Response
+   */
+
+  protected function getBrowse(Course $course)
+  {
+    $data = (new CourseFilter())->apply(null, true);
+    
+    if (collect($data['courses'])->count() <= 1)
+    {
+      return [];
+    }
+    $keys = [];
+    foreach($data['courses'] as $c)
+    {
+      $keys[] = $c['uuid'];
+    }
+    // Get current key
+    $key = array_search($course->uuid, $keys);
+
+    if ($key == 0)
+    {
+      $prevUuid = end($keys);
+      $nextUuid = isset($keys[$key+1]) ? $keys[$key+1] : NULL;
+    }
+    else if ($key == count($keys) - 1)
+    {
+      $prevUuid = $keys[$key-1];
+      $nextUuid = $keys[0];
+    }
+    else
+    {
+      $prevUuid = $keys[$key-1];
+      $nextUuid = $keys[$key+1];
+    }
+
+    $items = [
+      'prev' => Course::where('uuid', $prevUuid)->first(),
+      'next' => Course::where('uuid', $nextUuid)->first()
+    ];
+    return $items;
+  }
+
 }

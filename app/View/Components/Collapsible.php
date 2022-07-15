@@ -13,13 +13,21 @@ class Collapsible extends Component
   public $title;
 
   /**
+   * Expanded
+   *
+   * @var Boolean $expanded
+   */
+  public $expanded;
+
+  /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($title = NULL)
+  public function __construct($title = NULL, $expanded = FALSE)
   {
     $this->title = $title;
+    $this->expanded = $expanded;
   }
 
   /**

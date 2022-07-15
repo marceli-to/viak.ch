@@ -25,8 +25,21 @@
   @extend %mb-16x;
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-  border-top: 2px solid $color-tertiary;
-  
+  border-top: 1px solid $color-tertiary;
+
+  @include bp-sm() {
+    border-top-width: 2px;
+  }
+
+  h2 {
+    @extend %fs-14x;
+    @extend %sm\:fs-16x;
+    @extend %md\:fs-18x;
+    color: $color-tertiary;
+    @include font-bold();
+    line-height: 1 !important;
+  }
+
   // min-height: 80px;
   // @include bp-sm() {
   //   min-height: 96px;

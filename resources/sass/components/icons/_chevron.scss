@@ -1,0 +1,48 @@
+
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+%icon-chevron-down {
+  background-color: $color-white;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 8px solid $color-tertiary;
+  content: '';
+  display: block;
+  height: 0; 
+  right: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 0;
+  
+  @include bp-sm() {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 9px solid $color-tertiary;
+  }
+}
+
+%icon-chevron-up {
+  background-color: $color-white;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid $color-tertiary;
+  content: '';
+  display: block;
+  height: 0; 
+  right: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 0; 
+
+  @include bp-sm() {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 9px solid $color-tertiary;
+  }
+}

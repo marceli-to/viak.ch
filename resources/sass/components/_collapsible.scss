@@ -10,13 +10,17 @@
   &.is-expanded {
 
     .btn-collapsible {
-
+      &:before {
+        @extend %icon-chevron-up;
+      }
+      &:after {
+        display: none;
+      }
     }
   }
 
-  h2,
   .btn-collapsible {
-    @extend %fs-12x;
+    @extend %fs-14x;
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;
     color: $color-tertiary;
@@ -28,5 +32,13 @@
   .btn-collapsible {
     @extend %py-2x;
     @extend %sm\:py-4x;
+    position: relative;
+
+    &:after {
+      @extend %icon-chevron-down;
+    }
+    &:before {
+      display: none;
+    }
   }
 }

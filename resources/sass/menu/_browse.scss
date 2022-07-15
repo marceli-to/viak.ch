@@ -1,0 +1,52 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: layout/menu/site
+ * -----------------------------------------------------------------------------
+ */
+
+nav.browse {
+  @extend %mt-6x;
+  @extend %sm\:mt-8x;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      max-width: 150px;
+
+      @include bp-sm() {
+        max-width: 225px;
+      }
+
+      &:first-of-type {
+        text-align: left;
+        a {
+          align-items: flex-start;
+        }
+      }
+      
+      &:last-of-type {
+        text-align: right;
+        a {
+          align-items: flex-end;
+        }
+      }
+
+      a {
+        display: flex;
+        flex-direction: column;
+
+        &:hover {
+          color: $color-secondary;
+        }
+
+        svg {
+          @extend %mt-2x;
+          display: block;
+        }
+      }
+    }
+  }
+
+}
