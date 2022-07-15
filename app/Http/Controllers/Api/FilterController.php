@@ -32,6 +32,19 @@ class FilterController extends Controller
   }
 
   /**
+   * Reset the filter.
+   * 
+   * @return \Illuminate\Http\Response
+   */
+  public function reset()
+  { 
+    return response()->json(
+      (new CourseFilter())->reset()
+    );
+  }
+
+
+  /**
    * Get filter settings.
    *
    * @return \Illuminate\Http\Response

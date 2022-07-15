@@ -118,12 +118,11 @@ class CourseFilter
   /**
    * Reset the filter.
    * 
-   * @param  \Illuminate\Http\Request $request
-   * @return Array $data
+   * @return Void
    */
   public function reset()
   {
-
+    return $this->store->clear();
   }
 
   /**
@@ -226,7 +225,7 @@ class CourseFilter
     $this->category = $this->store->getAttribute('items.category');
     if ($request && $request->input('category'))
     {
-      $this->category = $request->input('category');
+      $this->category = $request->input('category') !== 'null' ? $request->input('category') : NULL;
       $this->store->setAttribute('items.category', $this->category);
     }
   }
@@ -241,7 +240,7 @@ class CourseFilter
     $this->software = $this->store->getAttribute('items.software');
     if ($request && $request->input('software'))
     {
-      $this->software = $request->input('software');
+      $this->software = $request->input('software') !== 'null' ? $request->input('software') : NULL;
       $this->store->setAttribute('items.software', $this->software);
     }
   }
@@ -256,7 +255,7 @@ class CourseFilter
     $this->language = $this->store->getAttribute('items.language');
     if ($request && $request->input('language'))
     {
-      $this->language = $request->input('language');
+      $this->language = $request->input('language') !== 'null' ? $request->input('language') : NULL;
       $this->store->setAttribute('items.language', $this->language);
     }
   }
@@ -270,7 +269,7 @@ class CourseFilter
     $this->level = $this->store->getAttribute('items.level');
     if ($request && $request->input('level'))
     {
-      $this->level = $request->input('level');
+      $this->level = $request->input('level') !== 'null' ? $request->input('level') : NULL;
       $this->store->setAttribute('items.level', $this->level);
     }
   }
@@ -284,7 +283,7 @@ class CourseFilter
     $this->expert = $this->store->getAttribute('items.expert');
     if ($request && $request->input('expert'))
     {
-      $this->expert = $request->input('expert');
+      $this->expert = $request->input('expert') !== 'null' ? $request->input('expert') : NULL;
       $this->store->setAttribute('items.expert', $this->expert);
     }
   }
@@ -298,7 +297,7 @@ class CourseFilter
     $this->location = $this->store->getAttribute('items.location');
     if ($request && $request->input('location'))
     {
-      $this->location = $request->input('location');
+      $this->expert = $request->input('location') !== 'null' ? $request->input('location') : NULL;
       $this->store->setAttribute('items.location', $this->location);
     }
   }

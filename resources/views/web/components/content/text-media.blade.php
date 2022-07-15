@@ -1,4 +1,4 @@
-<article class="text-media {{ $reverse ? 'is-reverse' : 'is-natural' }}">
+<article class="text-media {{ $reverse ? 'is-reverse' : '' }}">
   <figure class="text-media__visual">
     @if ($image)
       <img src="/media/{{$image}}" height="1050" width="1600">

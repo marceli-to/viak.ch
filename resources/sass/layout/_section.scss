@@ -5,6 +5,15 @@
  */
 
 section {
-  @extend %mb-6x;
-  @extend %sm\:mb-8x;
+
+}
+
+section.content {
+  @extend %mb-12x;
+  @extend %md\:mb-16x;
+
+  &.content--home {
+    @extend %mb-6x;
+    @extend %md\:mb-8x;
+  }
 }

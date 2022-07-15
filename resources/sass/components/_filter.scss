@@ -5,8 +5,12 @@
  */
 
 .filter {
-  h2 {
+
+  h2, a {
     @extend %fs-16x;
+  }
+  
+  h2 {
     @extend %mb-8x;
     @include font-bold();
   }
@@ -20,13 +24,12 @@
     border-bottom: 2px solid $color-tertiary;
     display: flex;
     min-height: 40px;
-
+    
     &.is-active {
       color: $color-tertiary;
       @include font-bold();
 
       a, select {
-        color: $color-tertiary;
         @include font-bold();
       }
     }

@@ -7,9 +7,14 @@
     <template v-if="!hasResults">
       <slot />
     </template>
+    <template v-else-if="courses.length">
+      <grid class="grid-cols-12">
+        <card v-for="d in courses" :key="d.uuid" class="card-teaser span-6" :data="d" />
+      </grid>
+    </template>
     <template v-else>
       <grid class="grid-cols-12">
-        <card v-for="d in data" :key="d.uuid" class="card-teaser span-6" :data="d" />
+        <div class="span-12">{{ __('Leider keine Kurse gefunden.') }}</div>
       </grid>
     </template>
   </grid-col>
@@ -18,28 +23,28 @@
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
       <div class="filter__items">
-        <div :class="[filter.category == id || options.filter.category == id ? 'is-active' : '', 'filter__item']"
+        <div :class="[filterItems.category == id || options.filter.items.category == id ? 'is-active' : '', 'filter__item']"
           v-for="(category, id) in options.settings.categories" :key="id">
-          <a href="" @click.prevent="updateFilterItem('category', id)">
+          <a href="" @click.prevent="updateFilter('category', id)">
             {{ category }}
           </a>
         </div>
-        <div :class="[filter.location ? 'is-active' : '', 'filter__item mt-10x']">
+        <div :class="[filterItems.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
           <div class="select-wrapper">
             <select 
-              v-model="filter.location"
-              @change="doFilter()">
+              v-model="filterItems.location"
+              @change="filter()">
               <option value="null">Ort</option>
               <option value="online">online</option>
               <option value="offline">vor Ort</option>
             </select>
           </div>
         </div>
-        <div :class="[filter.level ? 'is-active' : '', 'filter__item']">
+        <div :class="[filterItems.level != 'null' ? 'is-active' : '', 'filter__item']">
           <div class="select-wrapper">
             <select 
-              v-model="filter.level"
-              @change="doFilter()">
+              v-model="filterItems.level"
+              @change="filter()">
               <option value="null">Level</option>
               <option 
                 v-for="(option, id) in options.settings.levels" 
@@ -50,11 +55,11 @@
             </select>
           </div>
         </div>
-        <div :class="[filter.language ? 'is-active' : '', 'filter__item']">
+        <div :class="[filterItems.language != 'null' ? 'is-active' : '', 'filter__item']">
           <div class="select-wrapper">
             <select 
-              v-model="filter.language"
-              @change="doFilter()">
+              v-model="filterItems.language"
+              @change="filter()">
               <option value="null">Sprache</option>
               <option 
                 v-for="(option, id) in options.settings.languages" 
@@ -65,11 +70,11 @@
             </select>
           </div>
         </div>
-        <div :class="[filter.expert ? 'is-active' : '', 'filter__item']">
+        <div :class="[filterItems.expert != 'null' ? 'is-active' : '', 'filter__item']">
           <div class="select-wrapper">
             <select 
-              v-model="filter.expert"
-              @change="doFilter()">
+              v-model="filterItems.expert"
+              @change="filter()">
               <option value="null">Experte</option>
               <option 
                 v-for="(option, id) in options.settings.experts" 
@@ -82,9 +87,9 @@
         </div>
         <div class="filter__buttons mt-10x sm:mt-4x">
           <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
-            {{ __('Anzeigen') }} {{ data.length ? `(${data.length})` : '' }}
+            {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
           </a>
-          <a href="" @click.prevent="resetFilterItems()" class="link-helper">
+          <a href="" @click.prevent="resetFilter()" class="link-helper">
             {{ __('Zurücksetzen') }}
           </a>
         </div>
@@ -92,7 +97,7 @@
         <!--
         <template v-if="hasSearch">
           <h2 class="mb-8x mt-8x">Suche</h2>
-          <input type="text" name="keyword" v-model="filter.keyword" @blur="doSearch()">
+          <input type="text" name="keyword" v-model="filterItems.keyword" @blur="search()">
         </template>
         -->
       </form>
@@ -124,23 +129,25 @@ export default {
   data() {
     return {
 
-      // Data
-      data: [],
+      // Courses
+      courses: [],
 
       // Options 
       options: {
         settings: [],
-        filter: [],
+        filter: {
+          items: { }
+        },
       },
 
       // Filter
-      filter: {
+      filterItems: {
         keyword: null,
-        location: null,
         category: null,
-        language: null,
-        level: null,
-        expert: null
+        location: 'null',
+        language: 'null',
+        level: 'null',
+        expert: 'null'
       },
 
       store: {},
@@ -154,6 +161,7 @@ export default {
       // Routes
       routes: {
         filter: '/api/course/filter',
+        reset: '/api/course/filter',
         search: '/api/course/search',
         settings: '/api/course/filters',
       },
@@ -162,68 +170,81 @@ export default {
 
   mounted() {
     NProgress.configure({ showBar: false });
-    this.getSettings();
+    this.settings();
   },
 
   methods: {
 
-    doFilter() {
+    filter() {
       NProgress.start();
       this.isFetched = false;
-      this.axios.post(`${this.routes.filter}`, this.filter).then(response => {
-        this.data = response.data.courses;
+      this.axios.post(`${this.routes.filter}`, this.filterItems).then(response => {
+        this.courses = response.data.courses;
+        this.options.filter = response.data.filter;
         this.isFetched = true;
         this.hasResults = true;
+        this.markupFilters();
         NProgress.done();
       });
     },
 
-    doSearch() {
-      NProgress.start();
-      this.isFetched = false;
-      this.axios.post(`${this.routes.search}`, {keyword: this.filter.keyword}).then(response => {
-        this.data = response.data.courses;
-        this.isFetched = true;
-        this.hasResults = true;
-        NProgress.done();
-      });
-    },
+    // search() {
+    //   NProgress.start();
+    //   this.isFetched = false;
+    //   this.axios.post(`${this.routes.search}`, {keyword: this.filterItems.keyword}).then(response => {
+    //     this.courses = response.data.courses;
+    //     this.isFetched = true;
+    //     this.hasResults = true;
+    //     NProgress.done();
+    //   });
+    // },
 
-    getSettings() {
+    settings() {
       this.isFetched = false;
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
-        this.options = response.data;
+        this.options.settings = response.data.settings;
+        this.options.filter = response.data.filter;
         this.isFetched = true;
+        this.markupFilters();
         NProgress.done();
       });
     },
 
-    updateFilterItem(type, value) {
-      if (this.filter[type] == value) {
-        this.filter[type] = null;
+    updateFilter(type, value) {
+      if (this.filterItems[type] == value) {
+        this.filterItems[type] = 'null';
       }
       else {
-        this.filter[type] = value;
+        this.filterItems[type] = value;
       }
-      this.$store.commit('filter', this.filter);
-      this.doFilter();
+      this.$store.commit('filter', this.filterItems);
+      this.filter();
     },
 
-    resetFilterItems() {
-      this.filter.location = null;
-      this.filter.category = null;
-      this.filter.language = null;
-      this.filter.level = null;
-      this.filter.expert = null;
-      this.data = [];
-      this.$store.commit('filter', this.filter);
-      this.hasResults = false;
-      this.showResults();
+    resetFilter() {
+      NProgress.start();
+      this.axios.delete(`${this.routes.reset}`).then(response => {
+        this.filterItems.category = null;
+        this.filterItems.location = 'null';
+        this.filterItems.language = 'null';
+        this.filterItems.level = 'null';
+        this.filterItems.expert = 'null';
+        this.courses = [];
+        this.$store.commit('filter', this.filterItems);
+        this.filter();
+      });
     },
 
     toggleFilter() {
       this.hasFilter = this.hasFilter ? false : true;
+    },
+
+    markupFilters() {
+      this.filterItems.expert = this.options.filter.items.expert != null ? this.options.filter.items.expert : 'null';
+      this.filterItems.location = this.options.filter.items.location != null ? this.options.filter.items.location : 'null';
+      this.filterItems.language = this.options.filter.items.language != null ? this.options.filter.items.language : 'null';
+      this.filterItems.level = this.options.filter.items.level != null ? this.options.filter.items.level : 'null';
     },
 
     showResults() {

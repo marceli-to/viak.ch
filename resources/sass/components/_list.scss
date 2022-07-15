@@ -4,16 +4,44 @@
  * -----------------------------------------------------------------------------
  */
 
-%list,
-.list {
+%unordered-list,
+.unordered-list {
   list-style-type: disc;
   margin: 0;
   padding: 0;
 }
 
-%list-item,
-.list-item {
+%unordered-list-item,
+.unordered-list-item {
   display: list-item;
   list-style-type: disc;
   margin: 0 0 0 $space-4x;
+}
+
+%content-list-item,
+%content-list-collapsible,
+.content-list-item,
+.content-list-collapsible {
+  @extend %mb-16x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  border-top: 2px solid $color-tertiary;
+  
+  // min-height: 80px;
+  // @include bp-sm() {
+  //   min-height: 96px;
+  // }
+
+  // &.is-slim {
+  //   min-height: 48px;
+  //   @include bp-sm() {
+  //     min-height: 64px;
+  //   }
+  // }
+}
+
+%content-list-item,
+.content-list-item {
+  @extend %pt-2x;
+  @extend %sm\:pt-4x;
 }

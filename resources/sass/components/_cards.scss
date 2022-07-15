@@ -82,10 +82,10 @@
       }
 
       ul {
-        @extend %list;
+        @extend %unordered-list;
 
         li {
-          @extend %list-item;
+          @extend %unordered-list-item;
           @extend %py-1x;
         }
       }
@@ -106,7 +106,6 @@
 
 
 %card-text-media,
-
 .text-media {
   @extend %fs-16x;
   @extend %sm\:fs-18x;
@@ -136,7 +135,6 @@
       @extend %is-responsive;
     }
   }
-
     
   @include bp-sm() {
     display: flex;
@@ -152,11 +150,11 @@
     }
   }
   
-  @include bp-md() {
-    .text-media__content {
-      margin-bottom: $space-16x;
-    }
-  }
+  // @include bp-md() {
+  //   .text-media__content {
+  //     margin-bottom: $space-16x;
+  //   }
+  // }
 
   &.is-reverse {
     @include bp-sm() {

@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function() {
 Route::get('/course/filters', [FilterController::class, 'settings']);
 Route::post('/course/filter', [FilterController::class, 'filter']);
 Route::post('/course/search', [FilterController::class, 'search']);
+Route::delete('/course/filter', [FilterController::class, 'reset']);
 
 // Translations
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);

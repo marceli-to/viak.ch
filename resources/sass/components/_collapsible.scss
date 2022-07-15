@@ -1,0 +1,32 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/collapsible
+ * -----------------------------------------------------------------------------
+ */
+
+.collapsible {
+  @extend %content-list-collapsible;
+
+  &.is-expanded {
+
+    .btn-collapsible {
+
+    }
+  }
+
+  h2,
+  .btn-collapsible {
+    @extend %fs-12x;
+    @extend %sm\:fs-16x;
+    @extend %md\:fs-18x;
+    color: $color-tertiary;
+    display: block;
+    @include font-bold();
+    line-height: 1 !important;
+  }
+
+  .btn-collapsible {
+    @extend %py-2x;
+    @extend %sm\:py-4x;
+  }
+}
