@@ -56,25 +56,27 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Fuga recusandae ab eligendi est tenetur explicabo eius.</p>
   </x-collapsible>
 
-  <div class="content-list-item">
-    <h2>{{ __('Weitere Kurse') }}</h2>
-    <nav class="browse">
-      <ul>
-        <li>
-          <a href="{{ route('page.course', ['slug' => $browse['prev']->slug, 'course' => $browse['prev']->uuid]) }}" title="{{ $browse['prev']->title }}">
-            <span>{{ $browse['prev']->title }}</span>
-            @include('web.partials.icons.arrow-left')
-          </a>
-        </li>
-        <li>
-          <a href="{{ route('page.course', ['slug' => $browse['next']->slug, 'course' => $browse['next']->uuid]) }}" title="{{ $browse['next']->title }}">
-            <span>{{ $browse['next']->title }}</span>
-            @include('web.partials.icons.arrow-right')
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  @if ($browse)
+    <div class="content-list-item">
+      <h2>{{ __('Weitere Kurse') }}</h2>
+      <nav class="browse">
+        <ul>
+          <li>
+            <a href="{{ route('page.course', ['slug' => $browse['prev']->slug, 'course' => $browse['prev']->uuid]) }}" title="{{ $browse['prev']->title }}">
+              <span>{{ $browse['prev']->title }}</span>
+              @include('web.partials.icons.arrow-left')
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('page.course', ['slug' => $browse['next']->slug, 'course' => $browse['next']->uuid]) }}" title="{{ $browse['next']->title }}">
+              <span>{{ $browse['next']->title }}</span>
+              @include('web.partials.icons.arrow-right')
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  @endif
 </section>
 
 

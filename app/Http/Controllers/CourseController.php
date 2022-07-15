@@ -58,7 +58,7 @@ class CourseController extends BaseController
     
     if (collect($data['courses'])->count() <= 1)
     {
-      return [];
+      return NULL;
     }
     $keys = [];
     foreach($data['courses'] as $c)
