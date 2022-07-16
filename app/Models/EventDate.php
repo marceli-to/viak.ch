@@ -14,7 +14,6 @@ class EventDate extends Base
     'date' => 'date:d.m.Y',
   ];
 
-
   /**
    * The attributes that are mass assignable.
    *
@@ -98,5 +97,16 @@ class EventDate extends Base
   {   
     return date('d. F Y', strtotime($value));
   }
-  
+
+  /**
+   * Get the date for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateShortAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->date));
+  }
 }

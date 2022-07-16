@@ -15,8 +15,8 @@ class LocationSeeder extends Seeder
     $data = [
       [
         'description' => [
-          'de' => 'VIAK Zürich',
-          'en' => 'VIAK Zürich (en)',
+          'de' => 'Visualisierungs-Akademie, Zürich',
+          'en' => 'Visualisierungs-Akademie, Zurich',
         ],
         'address' => [
           'de' => "Förlibuckstrasse 240\n8006 Zürich",
@@ -26,8 +26,8 @@ class LocationSeeder extends Seeder
       ],
       [
         'description' => [
-          'de' => 'VIAK Bern',
-          'en' => 'VIAK Bern (en)',
+          'de' => 'Visualisierungs-Akademie, Bern',
+          'en' => 'Visualisierungs-Akademie, Bern',
         ],
         'address' => [
           'de' => "Bundesstrasse 4\nBern",

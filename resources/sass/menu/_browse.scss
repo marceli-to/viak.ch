@@ -13,6 +13,8 @@ nav.browse {
     justify-content: space-between;
 
     li {
+      list-style-type: none;
+      margin: 0;
       max-width: 150px;
 
       @include bp-sm() {

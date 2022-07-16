@@ -16,4 +16,12 @@ section.content {
     @extend %mb-6x;
     @extend %md\:mb-8x;
   }
+
+  ul {
+    @extend %unordered-list;
+
+    li {
+      @extend %unordered-list-item;
+    }
+  }
 }

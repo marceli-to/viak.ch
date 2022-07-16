@@ -6,8 +6,14 @@
 
 nav {
 
+  ul {
+    margin: 0;
+    list-style-type: none;
+  }
+
   li {
     display: block;
+    list-style-type: none;
   }
 
   a {

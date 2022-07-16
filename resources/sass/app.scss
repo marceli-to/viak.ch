@@ -33,7 +33,10 @@
 @import 'components/buttons/primary';
 @import 'components/buttons/secondary';
 @import 'components/buttons/tertiary';
-@import 'components/cards';
+@import 'components/cards/global';
+@import 'components/cards/event';
+@import 'components/cards/teaser';
+@import 'components/cards/text-media';
 @import 'components/collapsible';
 @import 'components/dialog';
 @import 'components/filter';

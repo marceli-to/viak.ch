@@ -15,7 +15,14 @@
     <div class="sm:grid-cols-12">
       <div class="mb-4x sm:mb-0 sm:span-4">
         <h3>Kursinhalt</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Exercitationem, iusto vitae ut voluptas ducimus ad sint alias impedit, fuga recusandae ab eligendi est tenetur explicabo eius.</p>
+        <ul>
+          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+          <li>Vamet consectetur adipisicing elit</li>
+          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+          <li>Vamet consectetur adipisicing elit</li>
+          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+          <li>Vamet consectetur adipisicing elit</li>
+        </ul>
       </div>
       <div class="mb-4x sm:mb-0 sm:span-4">
         <h3>Methodik</h3>
@@ -27,28 +34,15 @@
       </div>
     </div>
   </x-collapsible>
-
-  @if ($course->upcomingEvents)
-    <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
+  <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
+    @if ($course->upcomingEvents->count() > 0)
       @foreach($course->upcomingEvents as $event)
-        <div class="mb-6x">
-          <div>
-            @if ($event->dates)
-              @foreach($event->dates as $date)
-                <strong>{{ $date->date }}</strong><br>
-                {{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
-              @endforeach
-            @endif
-            @if ($event->experts)
-            <div>
-              mit {{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
-            </div>
-            @endif
-          </div>
-        </div>
+        <x-event-card :event="$event" :isBookmark="true" />
       @endforeach
-    </x-collapsible>
-  @endif
+    @else
+      <p>Zur Zeit sind keine Kurse geplant.</p>
+    @endif
+  </x-collapsible>
 
   <x-collapsible title="{{ __('Weitere Informationen') }}" class="mt-24x">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Exercitationem, iusto vitae ut voluptas ducimus ad sint alias impedit, fuga recusandae ab eligendi est tenetur explicabo eius.</p>

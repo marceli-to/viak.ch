@@ -23,17 +23,16 @@
     @extend %fs-14x;
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;
+    @extend %py-2x;
+    @extend %pb-3x;
+    @extend %sm\:py-4x;
+    @extend %sm\:pb-6x;
     color: $color-tertiary;
     display: block;
     @include font-bold();
     line-height: 1 !important;
-  }
-
-  .btn-collapsible {
-    @extend %py-2x;
-    @extend %sm\:py-4x;
     position: relative;
-
+    
     &:after {
       @extend %icon-chevron-down;
     }

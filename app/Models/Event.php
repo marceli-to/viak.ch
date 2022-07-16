@@ -30,6 +30,7 @@ class Event extends Base
     'min_participants',
     'max_participants',
     'online',
+    'fee',
     'course_id',
     'location_id',
     'publish'

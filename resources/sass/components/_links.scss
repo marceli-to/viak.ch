@@ -19,6 +19,13 @@ a.link {
   }
 }
 
+%link-small,
+a.link-sm {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+}
+
 a.link-helper {
   @extend %link;
   &:hover {

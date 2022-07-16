@@ -53,6 +53,7 @@ $space-25x: 25 * $step;
 @for $i from 1 through $max-step { %md\:mx-#{$i}x, .md\:mx-#{$i}x { @include bp-md() { margin: 0 $i * $step; } } }
 
 @for $i from 1 through $max-step { %mt-#{$i}x, .mt-#{$i}x { margin-top: $i * $step; } }
+@for $i from 1 through $max-step { %xs\:mt-#{$i}x, .xs\:mt-#{$i}x { @include bp-xs() { margin-top: $i * $step; } } }
 @for $i from 1 through $max-step { %sm\:mt-#{$i}x, .sm\:mt-#{$i}x { @include bp-sm() { margin-top: $i * $step; } } }
 @for $i from 1 through $max-step { %md\:mt-#{$i}x, .md\:mt-#{$i}x { @include bp-md() { margin-top: $i * $step; } } }
 
