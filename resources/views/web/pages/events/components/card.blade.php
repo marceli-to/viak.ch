@@ -64,7 +64,7 @@
         @endif
       </div>
       <div class="card-event__action">
-        <a href="" class="btn-primary">Annulieren</a>
+        <a href="" class="btn-primary">{{ __('Buchen') }}</a>
       </div>
     </div>
   </div>
