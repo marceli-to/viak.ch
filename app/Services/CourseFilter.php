@@ -141,7 +141,7 @@ class CourseFilter
         'languages' => $this->getLanguages(),
         'levels' => $this->getLevels(),
       ],
-      'filter' => $this->store->get(),
+      'filter' => (!empty($this->store->get())) ? $this->store->get() : NULL,
     ];
   }
 

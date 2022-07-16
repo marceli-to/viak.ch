@@ -136,7 +136,9 @@ export default {
       options: {
         settings: [],
         filter: {
-          items: { }
+          items: {
+            category: null,
+          }
         },
       },
 
@@ -204,7 +206,9 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
         this.options.settings = response.data.settings;
-        this.options.filter = response.data.filter;
+        if (response.data.filter != null) {
+          this.options.filter = response.data.filter;
+        }
         this.isFetched = true;
         this.markupFilters();
         NProgress.done();
