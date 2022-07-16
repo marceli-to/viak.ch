@@ -6,5 +6,12 @@
 
 %btn,
 .btn {
-  display: block;
+  @extend %px-8x;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  @include font-bold();
+  max-width: 360px;
+  min-height: 30px;
+  transition: background-color .1s ease-in;
 }

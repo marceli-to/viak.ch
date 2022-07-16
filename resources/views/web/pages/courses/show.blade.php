@@ -37,7 +37,7 @@
   <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
     @if ($course->upcomingEvents->count() > 0)
       @foreach($course->upcomingEvents as $event)
-        <x-event-card :event="$event" :isBookmark="true" />
+        <x-event-card :event="$event" />
       @endforeach
     @else
       <p>Zur Zeit sind keine Kurse geplant.</p>

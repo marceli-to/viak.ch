@@ -7,6 +7,10 @@
 %btn-secondary,
 .btn-secondary {
   @extend %btn;
-  background-color: $color-secondary;
+  background-color: $color-tertiary;
   color: $color-white;
+
+  &:hover {
+    background-color: $color-primary;
+  }
 }
