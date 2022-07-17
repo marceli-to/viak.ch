@@ -4,12 +4,8 @@
  * -----------------------------------------------------------------------------
  */
 
-html,
-body {
-} 
-
 html {
-  min-height: 100vh;
+  //min-height: 100vh;
 	overflow-y: scroll;
 
   &.is-auth {
@@ -35,12 +31,6 @@ body {
   // min-height: calc(100vh - #{$space-4x});
   padding-top: 0;
 	position: relative;
-
-  @include bp-sm() {
-    min-height: calc(100vh - #{$space-7x});
-  }
-
-
 }
 
 
