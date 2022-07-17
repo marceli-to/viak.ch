@@ -22,7 +22,7 @@
           @include('web.partials.icons.arrow-right')
         </div>
       </div>
-      <img src="/media/dummy-{{rand(1,5)}}.png" class="is-responsive">
+      <img src="/media/dummy-{{rand(1,5)}}.png" class="is-responsive" alt="{{ $expert->fullname }}">
     </figure>
   </a>
 </article>
