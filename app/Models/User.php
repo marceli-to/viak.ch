@@ -216,6 +216,19 @@ class User extends Authenticatable implements MustVerifyEmail
     return FALSE;
   }
 
+
+  /**
+   * Get all courses for a user. This is only
+   * applicable for users with the role 'expert'
+   * 
+   * @param  User $user
+   * @return Event $event
+   */
+
+  public function getCourses(User $user)
+  {
+    return $user->events()->with('course')->get();
+  }
   
   /**
    * Get the user's full name.

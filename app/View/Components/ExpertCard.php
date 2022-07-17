@@ -7,12 +7,12 @@ class ExpertCard extends Component
 {
 
   /**
-   * User
+   * Expert
    *
    * @var User $user
    */
 
-  public $user;
+  public $expert;
 
   /**
    * Courses
@@ -29,8 +29,8 @@ class ExpertCard extends Component
    */
   public function __construct(User $user)
   {
-    $this->user = $user;
-    $this->courses = collect($user->events()->with('course')->get()->pluck('course.title')->unique());
+    $this->expert = $user;
+    $this->courses = collect($this->expert->getCourses($user)->pluck('course.title')->unique());
   }
 
   /**

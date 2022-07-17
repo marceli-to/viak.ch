@@ -1,0 +1,35 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/arrow
+ * -----------------------------------------------------------------------------
+ */
+
+[class*="icon-arrow-right"],
+.icon-arrow-right {
+  align-items: center;
+  display: flex;
+  
+  span {
+    display: block;
+  }
+  
+}
+
+.icon-arrow-right\:before {
+  @extend %link;
+  @extend %mb-2x;
+  @extend %sm\:mb-4x;
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+  span {
+    @extend %ml-2x;
+    @extend %sm\:ml-3x;
+  }
+}
+
+.icon-arrow-right\:after {
+  justify-content: space-between;
+}

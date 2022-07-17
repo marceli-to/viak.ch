@@ -34,10 +34,11 @@
       </div>
     </div>
   </x-collapsible>
+  
   <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
     @if ($course->upcomingEvents->count() > 0)
       @foreach($course->upcomingEvents as $event)
-        <x-event-card :event="$event" state="booked" />
+        <x-event-card :event="$event" />
       @endforeach
     @else
       <p>Zur Zeit sind keine Kurse geplant.</p>
@@ -72,11 +73,4 @@
     </div>
   @endif
 </section>
-
-
-
-  
-
-  
-
 @endsection

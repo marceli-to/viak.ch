@@ -29,6 +29,7 @@ class ExpertController extends BaseController
   public function show($slug = NULL, User $user)
   {
     $expert = User::experts()->published()->visible()->with('events.course')->findOrFail($user->id);
-    return view($this->viewPath . 'show', ['expert' => $expert]);
+    $courses = collect($expert->getCourses($user)->pluck('course')->unique());
+    return view($this->viewPath . 'show', ['expert' => $expert, 'courses' => $courses]);
   }
 }
