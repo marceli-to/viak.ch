@@ -1,80 +1,48 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
+@section('seo_title', __('Registrieren'))
 @section('content')
-
-<form method="POST" action="{{ route('register') }}" class="auth">
-  @csrf
-  <div class="form-group row">
-  <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-  <div class="col-md-6">
-  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-  @if ($errors->has('name'))
-  <span class="invalid-feedback">
-  <strong>{{ $errors->first('name') }}</strong>
-  </span>
+<section class="content">
+  @if ($errors->any())
+    <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
   @endif
-  </div>
-  </div>
-  <div class="form-group row">
-  <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
-  <div class="col-md-6">
-  <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
-  @if ($errors->has('first_name'))
-  <span class="invalid-feedback">
-  <strong>{{ $errors->first('first_name') }}</strong>
-  </span>
-  @endif
-  </div>
-  </div>
-  <div class="form-group row">
-  <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
-  <div class="col-md-6">
-  <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
-  @if ($errors->has('last_name'))
-  <span class="invalid-feedback">
-  <strong>{{ $errors->first('last_name') }}</strong>
-  </span>
-  @endif
-  </div>
-  </div>
-
-  <div class="form-group row">
-  <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-  <div class="col-md-6">
-  <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-  @if ($errors->has('email'))
-  <span class="invalid-feedback">
-  <strong>{{ $errors->first('email') }}</strong>
-  </span>
-  @endif
-  </div>
-  </div>
-
-  <div class="form-group row">
-  <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-  <div class="col-md-6">
-  <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-  @if ($errors->has('password'))
-  <span class="invalid-feedback">
-  <strong>{{ $errors->first('password') }}</strong>
-  </span>
-  @endif
-  </div>
-  </div>
-  <div class="form-group row">
-  <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-  <div class="col-md-6">
-  <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-  </div>
-  </div>
-  <div class="form-group row mb-4">
-  <div class="col-md-6 offset-md-4">
-  <button type="submit" class="btn btn-primary">
-  {{ __('Register') }}
-  </button>
-  </div>
-  </div>
-</form>
+  <x-article-text>
+    <x-slot name="aside">
+      <h1 class="xs:hide">{{ __('Registrieren') }}</h1>
+      <div class="sm:mt-10x md:mt-20x">
+        <a href="{{ route('login') }}" class="!block icon-arrow-right" title="{{ __('Login') }}">
+          <span>{{ __('Bereits registriert?') }}</span>
+          @include('web.partials.icons.arrow-right')
+        </a>
+      </div>
+    </x-slot>
+    <x-slot name="content">
+      <form method="POST" action="{{ route('register') }}" class="auth">
+        @csrf
+        <x-form-text-field type="text" label="{{ __('Vorname') }}" name="firstname" required />
+        <x-form-text-field type="text" label="{{ __('Name') }}" name="lastname" required />
+        <x-form-text-field type="text" label="{{ __('Telefon') }}" name="phone" required />
+        <div class="sm:grid-cols-12">
+          <div class="span-6">
+            <x-form-text-field type="text" label="{{ __('Strasse') }}" name="street" required />
+          </div>
+          <div class="span-6">
+            <x-form-text-field type="text" label="{{ __('Nr.') }}" name="street_no" required />
+          </div>
+        </div>
+        <div class="sm:grid-cols-12">
+          <div class="span-6">
+            <x-form-text-field type="text" label="{{ __('PLZ') }}" name="zip" required />
+          </div>
+          <div class="span-6">
+            <x-form-text-field type="text" label="{{ __('Ort') }}" name="city" required />
+          </div>
+        </div>
+        <x-form-text-field type="email" label="{{ __('E-Mail') }}" name="email" required autocomplete="false" aria-autocomplete="false" />
+        <x-form-text-field type="password" label="{{ __('Passwort') }}" name="password" required autocomplete="false" />
+        <x-form-button label="{{ __('Anmelden') }}" name="submit" btnClass="btn-primary" type="submit" />
+      </form>
+    </x-slot>
+  </x-article-text>
+</section>
 @endsection

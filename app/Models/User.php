@@ -28,11 +28,19 @@ class User extends Authenticatable implements MustVerifyEmail
   protected $fillable = [
     'uuid', 
     'firstname', 
-    'name', 
+    'name',
+    'street',
+    'street_no',
+    'zip',
+    'city',
+    'phone',
+    'invoice_address',
+    'expert_description',
+    'expert_bio',
+    'operating_system',
     'email', 
     'password',
     'gender_id',
-    'data',
     'publish',
     'visible',
   ];
@@ -44,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
    */
 
   protected $appends = [
-    'fullname'
+    'fullname', 'address'
   ];
 
   /**
@@ -240,5 +248,21 @@ class User extends Authenticatable implements MustVerifyEmail
   public function getFullnameAttribute($value)
   {
     return "{$this->firstname} {$this->name}";
+  }
+
+  
+  /**
+   * Get the user's full name.
+   *
+   * @param  string  $value
+   * @return string
+   */
+
+  public function getAddressAttribute($value)
+  {
+    $address  = "{$this->firstname} {$this->name}<br>";
+    $address .= "{$this->street} {$this->street_no}<br>";
+    $address .= "{$this->zip} {$this->city}";
+    return $address;
   }
 }
