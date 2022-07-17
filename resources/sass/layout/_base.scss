@@ -4,13 +4,16 @@
  * -----------------------------------------------------------------------------
  */
 
- html,body{min-height:100%;} 
+html,
+body {
+  min-height:100vh;
+} 
 
 html {
 	overflow-y: scroll;
 
   &.is-auth {
-    background-color: rebeccapurple;
+    background-color: $color-secondary;
   }
 }
 
