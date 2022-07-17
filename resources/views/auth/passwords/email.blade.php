@@ -1,22 +1,17 @@
 @extends('web.layout.frontend')
+@section('html_class', 'is-auth')
 @section('seo_title', __('Passwort vergessen'))
 @section('content')
 <section class="content">
   @if ($errors->any())
-    <x-alert type="danger" message="{{ __('Bitte überprüfen Sie Ihre Eingabe!') }}" />
+    <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
   @endif
   @if (session('status'))
     <x-alert type="success" message="{{ session('status') }}" />
   @endif
   <x-article-text>
     <x-slot name="aside">
-      <h1>{{ __('Passwort vergessen') }}</h1>
-      <p>
-        <a href="{{ route('login') }}" class="form-helper icon-arrow-right" title="{{ __('Zurück') }}">
-          <span>{{ __('Zurück') }}</span>
-          @include('web.partials.icons.arrow-right')
-      </a>
-      </p>
+      <h1 class="xs:hide">{{ __('Passwort vergessen') }}</h1>
     </x-slot>
     <x-slot name="content">
       <p>{{__('Halb so wild - alles was wir brauchen ist Ihre E-Mail und Sie erhalten einen Link um das Passwort zurücksetzen zu können.')}}</p>
@@ -25,6 +20,9 @@
         <x-form-text-field type="email" label="{{ __('E-Mail') }}" name="email" required />
         <x-form-button label="{{ __('Link anfordern') }}" name="register" btnClass="btn-primary" type="submit" />
       </form>
+      <a href="{{ route('login') }}" class="form-helper" title="{{ __('Zurück') }}">
+        {{ __('Zurück') }}
+      </a>
     </x-slot>
   </x-article-text>
 </section>

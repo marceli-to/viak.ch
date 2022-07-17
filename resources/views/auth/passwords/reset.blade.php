@@ -1,16 +1,17 @@
 @extends('web.layout.frontend')
+@section('html_class', 'is-auth')
 @section('seo_title', __('Passwort zurücksetzen'))
 @section('content')
 <section class="content">
   @if ($errors->any())
-    <x-alert type="danger" message="{{ __('Bitte überprüfen Sie Ihre Eingabe!') }}" />
+    <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
   @endif
   @if (session('status'))
     <x-alert type="success" message="{{ session('status') }}" />
   @endif
   <x-article-text>
     <x-slot name="aside">
-      <h1>{{ __('Passwort zurücksetzen') }}</h1>
+      <h1 class="xs:hide">{{ __('Passwort zurücksetzen') }}</h1>
     </x-slot>
     <x-slot name="content">
       <p>{{__('Fast geschafft - wir brauchen die E-Mail sowie ein neues Passwort sowie eine Bestätigung des neuen Passworts.')}}</p>

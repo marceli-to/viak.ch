@@ -1,4 +1,5 @@
 @extends('web.layout.frontend')
+@section('html_class', 'is-auth')
 @section('seo_title', __('E-Mail verifizieren'))
 @section('content')
 <section class="content">
@@ -7,7 +8,7 @@
   @endif
   <x-article-text>
     <x-slot name="aside">
-      <h1>{{ __('E-Mail verifizieren') }}</h1>
+      <h1 class="xs:hide">{{ __('E-Mail verifizieren') }}</h1>
     </x-slot>
     <x-slot name="content">
       <p>{{__('Bevor Du weiterfahren kannst, musst Du deine E-Mail-Adresse bestätigen. Wir haben Dir dazu eine E-Mail mit einem Bestätigungs-Link geschickt.') }}</p>

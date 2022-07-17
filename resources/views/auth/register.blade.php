@@ -1,4 +1,5 @@
 @extends('web.layout.frontend')
+@section('html_class', 'is-auth')
 @section('content')
 
 <form method="POST" action="{{ route('register') }}" class="auth">

@@ -5,11 +5,17 @@
  */
 
 .form-group {
-  @extend %mb-3x;
+  @extend %mb-4x;
+  @extend %md\:mb-6x;
+  position: relative;
 }
 
 .form-helper {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
   color: $color-primary;
   display: inline-block;
+  @include font-italic();
   text-decoration: none;
 }

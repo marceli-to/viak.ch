@@ -6,9 +6,6 @@ use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
-
-
-
 use App\Http\Controllers\TestController;
 
 /*
@@ -28,6 +25,7 @@ Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->n
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);
+
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // Protected routes

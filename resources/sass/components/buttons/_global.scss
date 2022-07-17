@@ -6,6 +6,9 @@
 
 %btn,
 .btn {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
   @extend %px-8x;
   align-items: center;
   display: flex;
@@ -28,6 +31,12 @@
 %btn-auto-width,
 .btn-auto-w {
   width: auto;
+}
+
+.\!xs\:btn-full-w {
+  @include bp-xs() {
+    width: 100% !important;
+  }
 }
 
 

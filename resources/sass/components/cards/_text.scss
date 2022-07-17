@@ -23,12 +23,13 @@ article.text {
     @extend %sm\:grid-cols-12;
 
     > aside {
-      @extend %mb-3x;
       @extend %sm\:span-4;
     }
       
     > div {
       @extend %sm\:span-8;
+      @extend %mt-6x;
+      @extend %sm\:mt-0;
     }
   }
 

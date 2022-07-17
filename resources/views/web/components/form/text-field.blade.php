@@ -16,5 +16,7 @@
       autocomplete="off"
     @endif
   >
-
+  @error($name)
+    <div class="error-message">{{ $message }}</div>
+  @enderror
 </div>

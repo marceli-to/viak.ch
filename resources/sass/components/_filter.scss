@@ -6,8 +6,9 @@
 
 .filter {
 
-  h2, a {
+  h2, a, select {
     @extend %fs-16x;
+    @include font-regular();
   }
   
   h2 {

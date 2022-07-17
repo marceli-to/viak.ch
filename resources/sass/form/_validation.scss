@@ -4,6 +4,17 @@
  * -----------------------------------------------------------------------------
  */
 
+.has-error,
+.error-message,
 .errors {
   color: $color-danger;
+}
+
+.error-message {
+  @extend %fs-14x;
+  @extend %md\:fs-16x;
+  @extend %py-2x;
+  @include font-italic();
+  text-align: right;
+  width: 100%;
 }

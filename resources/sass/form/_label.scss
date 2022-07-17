@@ -5,5 +5,9 @@
  */
  
 label {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  @extend %mb-1x;
   display: block;
 }
