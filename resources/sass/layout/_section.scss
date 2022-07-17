@@ -17,6 +17,10 @@ section.content {
     @extend %md\:mb-8x;
   }
 
+  &:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
   ul {
     @extend %unordered-list;
 
