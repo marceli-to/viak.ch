@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function() {
   Route::get('user', [UserController::class, 'find']);
 });
 
+// Register
+Route::post('/student/register', [RegisterController::class, 'create']);
 
 // Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);
@@ -33,5 +35,3 @@ Route::delete('/course/filter', [FilterController::class, 'reset']);
 
 // Translations
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
-
-

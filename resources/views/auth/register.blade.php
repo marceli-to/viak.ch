@@ -2,10 +2,11 @@
 @section('html_class', 'is-auth')
 @section('seo_title', __('Registrieren'))
 @section('content')
-<section class="content">
-  @if ($errors->any())
+<section class="content" id="app-register">
+  <register-form />
+  {{-- @if ($errors->any())
     <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
-  @endif
+  @endif --}}
   <x-article-text>
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Registrieren') }}</h1>
@@ -45,4 +46,5 @@
     </x-slot>
   </x-article-text>
 </section>
+<script src="{{ mix('assets/js/register.js') }}" type="text/javascript"></script>
 @endsection

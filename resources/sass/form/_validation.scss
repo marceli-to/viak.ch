@@ -10,7 +10,8 @@
   color: $color-danger;
 }
 
-.error-message {
+.error-message,
+.requirements {
   @extend %fs-14x;
   @extend %md\:fs-16x;
   @extend %py-2x;

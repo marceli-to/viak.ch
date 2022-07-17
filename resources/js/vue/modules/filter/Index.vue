@@ -107,7 +107,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/modules/filter/mixins/ErrorHandling";
+import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
