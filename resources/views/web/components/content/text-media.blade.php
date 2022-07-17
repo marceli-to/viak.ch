@@ -4,18 +4,16 @@
       <img src="/media/{{$image}}" height="1000" width="1600">
     @endif
   </figure>
-  <div class="text-media__content sm:grid-cols-12">
-    <div class="sm:span-4">
-      <header>
-        @if ($title)
-          <h1>{{ $title }}
-        @endif
-        @if ($subtitle)
-          <h2>{{ $subtitle }}</h2>
-        @endif
-      </header>
-    </div>
-    <div class="content__text sm:span-8">
+  <div class="text-media__content">
+    <aside>
+      @if ($title)
+        <h1>{{ $title }}
+      @endif
+      @if ($subtitle)
+        <h2>{{ $subtitle }}</h2>
+      @endif
+    </aside>
+    <div>
       @if ($text)
         {!! $text !!}
       @endif

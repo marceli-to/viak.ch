@@ -1,0 +1,35 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/cards/text
+ * -----------------------------------------------------------------------------
+ */
+
+%card-text,
+article.text {
+  @extend %fs-16x;
+  @extend %sm\:fs-18x;
+  @extend %md\:fs-24x;
+  color: $color-primary;
+
+  h1 {
+    color: $color-secondary;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .text__content {
+    @extend %sm\:grid-cols-12;
+
+    > aside {
+      @extend %mb-3x;
+      @extend %sm\:span-4;
+    }
+      
+    > div {
+      @extend %sm\:span-8;
+    }
+  }
+
+}

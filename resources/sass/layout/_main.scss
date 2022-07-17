@@ -6,6 +6,6 @@
 
 main.site {
   > div {
-    @extend %inner-block;
+    //@extend %inner-block;
   }
 }

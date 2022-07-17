@@ -5,9 +5,6 @@
  */
 
 .auth {
-  @extend %mx-auto;
-  @extend %mt-20x;
-  max-width: 480px;
   width: 100%;
 
   input[type=text],

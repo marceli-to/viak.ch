@@ -21,7 +21,7 @@ header.site-header {
   }
 
   > div {
-    @extend %inner-block;
+    //@extend %inner-block;
     @extend %sm\:grid-cols-12;
     @extend %grid-column-gap;
     min-height: inherit;

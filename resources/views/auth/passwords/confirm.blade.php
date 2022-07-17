@@ -1,24 +1,28 @@
-@extends('layouts.auth')
+@extends('web.layout.frontend')
+@section('seo_title', __('Password bestätigen'))
 @section('content')
-<section class="auth">
-  <h1>{{ __('Confirm Password') }}</h1>
-  <div class="mb-6x">
-    {{ __('Please confirm your password before continuing.') }}
-  </div>
+<section class="content">
   @if ($errors->any())
-    <x-alert type="danger" message="{{__('messages.general_error')}}" />
+    <x-alert type="danger" message="{{ __('Bitte überprüfen Sie Ihre Eingabe!') }}" />
   @endif
-  <form method="POST" action="{{ route('password.confirm') }}">
-    @csrf
-    <x-form-text-field type="password" name="password" placeholder="passwort" required />
-    <div class="form-buttons">
-      <x-form-button label="{{ __('Confirm Password') }}" name="register" btnClass="btn-primary" type="submit" />
+  <x-article-text>
+    <x-slot name="aside">
+      <h1>{{ __('Password bestätigen') }}</h1>
       @if (Route::has('password.request'))
-        <a class="form-helper" href="{{ route('password.request') }}">
-          {{ __('Forgot Your Password?') }}
+        <a class="form-helper icon-arrow-right" href="{{ route('password.request') }}" title="{{ __('Passwort vergessen?') }}">
+          <span>{{ __('Passwort vergessen?') }}</span>
+          @include('web.partials.icons.arrow-right')
         </a>
       @endif
-    </div>
-  </form>
+    </x-slot>
+    <x-slot name="content">
+      <p>{{ __('Bitte bestätigen Sie Ihr Passwort, bevor Sie fortfahren.') }}</p>
+      <form method="POST" action="{{ route('password.confirm') }}">
+        @csrf
+        <x-form-text-field type="password" label="{{ __('Passwort') }}" name="password" placeholder="passwort" required />
+        <x-form-button label="{{ __('Passwort bestätigen') }}" name="submit" btnClass="btn-primary" type="submit" />
+      </form>  
+    </x-slot>
+  </x-article-text>
 </section>
 @endsection

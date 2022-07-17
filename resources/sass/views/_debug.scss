@@ -11,7 +11,7 @@ body {
   &:after {
     @extend %fs-16x;
     @extend %p-3x;
-    background-color: $color-secondary;
+    background-color: rebeccapurple;
     color: $color-white;
     @include font-bold();
     line-height: 1 !important;

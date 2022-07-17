@@ -4,8 +4,14 @@
  * -----------------------------------------------------------------------------
  */
 
+ html,body{min-height:100%;} 
+
 html {
 	overflow-y: scroll;
+
+  &.is-auth {
+    background-color: rebeccapurple;
+  }
 }
 
 body {
@@ -14,6 +20,7 @@ body {
   @extend %fs-16x;
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
+  @extend %inner-block;
 	background-color: $color-white;
 	color: $color-primary;
 	@include font-smoothing();

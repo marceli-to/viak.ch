@@ -11,10 +11,6 @@
   @extend %md\:fs-24x;
   color: $color-secondary;
 
-  .content__text {
-    @include font-bold();
-  }
-
   h1, h2, p {
     color: $color-secondary;
   }
@@ -23,17 +19,27 @@
     margin-bottom: 0;
   }
 
-  header {
-    @extend %mb-3x;
-  }
-
   figure {
     @extend %xs\:mb-6x;
     img {
       @extend %is-responsive;
     }
   }
-    
+
+  .text-media__content {
+    @extend %sm\:grid-cols-12;
+
+    > aside {
+      @extend %mb-3x;
+      @extend %sm\:span-4;
+    }
+      
+    > div {
+      @extend %sm\:span-8;
+      @include font-bold();
+    }
+  }
+
   @include bp-sm() {
     display: flex;
     flex-direction: column;

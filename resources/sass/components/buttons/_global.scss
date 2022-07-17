@@ -11,7 +11,23 @@
   display: flex;
   justify-content: center;
   @include font-bold();
-  max-width: 360px;
   min-height: 30px;
   transition: background-color .1s ease-in;
 }
+
+%btn-full-width,
+.btn-full-w {
+  width: 100%;
+}
+
+%btn-half-width,
+.btn-half-w {
+  width: 50%;
+}
+
+%btn-auto-width,
+.btn-auto-w {
+  width: auto;
+}
+
+

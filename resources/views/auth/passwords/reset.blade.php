@@ -1,25 +1,29 @@
 @extends('web.layout.frontend')
-@section('seo_title', 'Passwort zurücksetzen')
+@section('seo_title', __('Passwort zurücksetzen'))
 @section('content')
-<section class="auth">
-  <h1>Passwort zurücksetzen</h1>
-  <p>{{__('messages.password_reset')}}</p>
+<section class="content">
   @if ($errors->any())
-    <x-alert type="danger" message="{{__('messages.general_error')}}" />
+    <x-alert type="danger" message="{{ __('Bitte überprüfen Sie Ihre Eingabe!') }}" />
   @endif
   @if (session('status'))
     <x-alert type="success" message="{{ session('status') }}" />
   @endif
-  <form method="POST" action="{{ route('password.update') }}">
-    @csrf
-    <input type="hidden" name="token" value="{{ $token }}">
-    <x-form-text-field type="email" required name="email" placeholder="mail@beispiel.ch" />
-    <x-form-text-field type="password" required name="password" placeholder="Passwort" />
-    <x-form-text-field type="password" name="password_confirmation" placehodler="Passwort bestätigen" required autocomplete="new-password" />
-    <div class="form-buttons">
-      <x-form-button label="Zurücksetzen" name="reset_password" btnClass="btn-primary" type="submit" />
-    </div>
-  </form>
+  <x-article-text>
+    <x-slot name="aside">
+      <h1>{{ __('Passwort zurücksetzen') }}</h1>
+    </x-slot>
+    <x-slot name="content">
+      <p>{{__('Fast geschafft - wir brauchen die E-Mail sowie ein neues Passwort sowie eine Bestätigung des neuen Passworts.')}}</p>
+      <form method="POST" action="{{ route('password.update') }}">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}">
+        <x-form-text-field label="{{ __('E-Mail') }}" type="email" required name="email" />
+        <x-form-text-field label="{{ __('Passwort') }}" type="password" required name="password" />
+        <x-form-text-field label="{{ __('Passwort wiederholen') }}" type="password" name="password_confirmation" required autocomplete="new-password" />
+        <x-form-button label="{{ __('Zurücksetzen') }}" name="reset_password" btnClass="btn-primary" type="submit" />
+      </form>
+    </x-slot>
+  </x-article-text>
 </section>
 @endsection
 

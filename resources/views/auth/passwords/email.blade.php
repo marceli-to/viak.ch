@@ -1,22 +1,31 @@
 @extends('web.layout.frontend')
-@section('seo_title', 'Passwort vergessen')
+@section('seo_title', __('Passwort vergessen'))
 @section('content')
-<section class="auth">
-  <h1>Passwort vergessen</h1>
-  <div class="mb-6x">{{__('messages.password_recovery')}}</div>
+<section class="content">
   @if ($errors->any())
-    <x-alert type="danger" message="{{__('messages.general_error')}}" />
+    <x-alert type="danger" message="{{ __('Bitte überprüfen Sie Ihre Eingabe!') }}" />
   @endif
   @if (session('status'))
     <x-alert type="success" message="{{ session('status') }}" />
   @endif
-  <form method="POST" action="{{ route('password.email') }}">
-    @csrf
-    <x-form-text-field type="email" name="email" placeholder="mail@beispiel.ch" required />
-    <div class="form-buttons">
-      <x-form-button label="Senden" name="register" btnClass="btn-primary" type="submit" />
-      <a href="{{ route('login') }}" class="form-helper">Zurück</a>
-    </div>
-  </form>
+  <x-article-text>
+    <x-slot name="aside">
+      <h1>{{ __('Passwort vergessen') }}</h1>
+      <p>
+        <a href="{{ route('login') }}" class="form-helper icon-arrow-right" title="{{ __('Zurück') }}">
+          <span>{{ __('Zurück') }}</span>
+          @include('web.partials.icons.arrow-right')
+      </a>
+      </p>
+    </x-slot>
+    <x-slot name="content">
+      <p>{{__('Halb so wild - alles was wir brauchen ist Ihre E-Mail und Sie erhalten einen Link um das Passwort zurücksetzen zu können.')}}</p>
+      <form method="POST" action="{{ route('password.email') }}">
+        @csrf
+        <x-form-text-field type="email" label="{{ __('E-Mail') }}" name="email" required />
+        <x-form-button label="{{ __('Link anfordern') }}" name="register" btnClass="btn-primary" type="submit" />
+      </form>
+    </x-slot>
+  </x-article-text>
 </section>
 @endsection
