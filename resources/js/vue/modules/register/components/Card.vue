@@ -26,7 +26,7 @@
             {{ __('Weitere Informationen') }}
           </div>
         </div>
-        <img src="/media/dummy-1.png" class="is-responsive" :alt="data.title">
+        <img src="/media/dummy-1.jpg" height="600" width="600" class="is-responsive" :alt="data.title">
       </figure>
     </a>
   </article>

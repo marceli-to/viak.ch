@@ -38,7 +38,7 @@
           @include('web.partials.icons.arrow-right')
         </div>
       </div>
-      <img src="/media/dummy-{{rand(1,5)}}.png" class="is-responsive" alt="{{ $course->title}}">
+      <img src="/media/dummy-{{rand(1,5)}}.jpg" height="600" width="600" class="is-responsive" alt="{{ $course->title}}">
     </figure>
   </a>
 </article>
