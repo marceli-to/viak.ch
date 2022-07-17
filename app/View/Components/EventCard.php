@@ -14,32 +14,23 @@ class EventCard extends Component
   public $event;
 
   /**
-   * Is bookmarked
-   *
-   * @var Boolean $isBookmark
+   * Event state
+   * 
+   * @var String $state
    */
 
-  public $isBookmark;
-
-  /**
-   * Is booked
-   *
-   * @var Boolean $isBooked
-   */
-
-  public $isBooked;
+  public $state;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct(Event $event, $isBookmark = FALSE, $isBooked = FALSE)
+  public function __construct(Event $event, $state = NULL)
   {
     $this->event   = $event;
     $this->experts = collect($event->experts->pluck('fullname')->all());
-    $this->isBookmark = $isBookmark;
-    $this->isBooked = $isBooked;
+    $this->state   = $state;
   }
 
   /**

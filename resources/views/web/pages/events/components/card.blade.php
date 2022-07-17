@@ -1,14 +1,13 @@
 <article class="card-event" data-touch>
-  <div class="sm:grid-cols-12">
-    <div class="sm:span-4">
-      <div class="{{ $isBooked || $isBookmark ? 'sm:flex' : '' }}">
-
-        @if ($isBookmark)
+  <div>
+    <div class="card-event__col">
+      <div class="{{ $state ? 'sm:flex' : '' }}">
+        @if ($state == 'bookmark')
           <div class="card-event__icon">
             @include('web.partials.icons.heart')
           </div>
         @endif
-        @if ($isBooked)
+        @if ($state == 'booked')
           <div class="card-event__icon">
             @include('web.partials.icons.checkmark')
           </div>
@@ -28,7 +27,6 @@
               @endif
             </div>
           @endif
-
           @if ($event->experts)
             <div>
               mit 
@@ -40,8 +38,7 @@
         </div>
       </div>
     </div>
-
-    <div class="sm:span-4">
+    <div class="card-event__col">
       @if ($event->online)
         {{ __('Online') }}
       @else
@@ -54,8 +51,7 @@
         @endif
       @endif
     </div>
-
-    <div class="sm:span-4 md:flex items-start justify-between">
+    <div class="card-event__col card-event__col--cta">
       <div>
         @if ($event->fee)
           CHF {{ $event->fee }}

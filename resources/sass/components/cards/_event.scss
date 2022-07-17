@@ -17,6 +17,20 @@
     line-height: 1.4;
   }
 
+  > div {
+    @extend %sm\:grid-cols-12;
+  }
+
+  .card-event__col {
+    @extend %sm\:span-4;
+
+    &.card-event__col--cta {
+      @extend %md\:flex;
+      @extend %items-start;
+      @extend %justify-between;
+    }
+  }
+
   .card-event__icon {
     @extend %sm\:pr-4x;
     @extend %sm\:pt-1x;
