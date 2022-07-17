@@ -25,6 +25,10 @@ strong, b {
   @include font-bold()
 }
 
+em, i {
+  @include font-italic();
+}
+
 p {
   @extend %mb-3x;
   @extend %md\:mb-4x;
