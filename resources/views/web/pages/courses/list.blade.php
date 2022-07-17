@@ -11,5 +11,5 @@
     @endif
   </course-filter>
 </section>
-<script src="{{ mix('assets/js/filter.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/filter.js') }}" type="text/javascript" defer></script>
 @endsection
