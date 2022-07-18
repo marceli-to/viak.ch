@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
       $table->foreignId('gender_id')->constrained();
       $table->rememberToken();
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

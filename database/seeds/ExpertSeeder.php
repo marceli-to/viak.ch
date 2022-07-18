@@ -25,7 +25,8 @@ class ExpertSeeder extends Seeder
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('*poLksmBv$!)('),
         'uuid' => \Str::uuid(),
-        'gender_id' => rand(1,2)
+        'gender_id' => rand(1,2),
+        'visible' => 1,
       ]);
 
       RoleUser::create([
