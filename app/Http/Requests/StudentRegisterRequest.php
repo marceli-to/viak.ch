@@ -111,7 +111,7 @@ class StudentRegisterRequest extends FormRequest
       ],
       'accept_tos.required' => [
         'field' => 'accept_tos',
-        'error' => 'AGB und Datenschutzbestimmungen müssen akzeptiert werden'
+        'error' => 'Allgemeine Geschäftsbedingungen müssen akzeptiert werden'
       ],
     ];
   }
