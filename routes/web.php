@@ -30,7 +30,10 @@ Route::get('/student/register', [StudentController::class, 'register'])->name('p
 Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile');
 
 // Public auth routes
-Auth::routes(['verify' => true, 'register' => false]);
+Auth::routes(['verify' => true, 'register' => true]);
+Route::match(['get', 'post'], 'register', function(){
+  return redirect()->route('page.student.register');
+});
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/email/verify', function () {

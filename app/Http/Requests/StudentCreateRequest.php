@@ -55,7 +55,7 @@ class StudentCreateRequest extends FormRequest
       ],
       'email.unique' => [
         'field' => 'email',
-        'error' => 'E-Mail bereits registriert'
+        'error' => 'E-Mail kann nicht verwendet werden'
       ],
       'email.max' => [
         'field' => 'email',
