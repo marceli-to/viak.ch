@@ -26,7 +26,6 @@ input[type=checkbox] {
 	-webkit-tap-highlight-color: $color-white;
 
   @include bp-sm() {
-    margin-top: $space-tiny;
     height: 14px;
     width: 14px;
   }

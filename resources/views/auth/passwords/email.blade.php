@@ -21,7 +21,7 @@
         <x-form-button label="{{ __('Link anfordern') }}" name="register" btnClass="btn-primary" type="submit" />
       </form>
       <a href="{{ route('login') }}" class="form-helper" title="{{ __('Zurück') }}">
-        {{ __('Zurück') }}
+        {{ __('Login') }}
       </a>
     </x-slot>
   </x-article-text>
