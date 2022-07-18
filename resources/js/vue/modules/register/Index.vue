@@ -16,9 +16,9 @@
           <select v-model="form.gender" @change="removeError('gender')">
             <option value="null">Geschlecht</option>
             <option 
-              v-for="(option, id) in settings.genders" 
-              :key="id" 
-              :value="id">
+              v-for="(option) in settings.genders" 
+              :key="option.id" 
+              :value="option.id">
               {{option.description[_getLocale()]}}
             </option>
           </select>
