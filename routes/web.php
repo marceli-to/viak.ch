@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
@@ -25,8 +26,16 @@ Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->n
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);
-
 Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::get('/email/verify', function () {
+  return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+  return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 // Protected routes
 Route::middleware('auth:sanctum', 'verified')->group(function() {
@@ -43,8 +52,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   Route::get('/administration/models', [TestController::class, 'models'])->middleware(['role:admin,student,expert']);
   Route::get('/administration/search', [TestController::class, 'search'])->middleware(['role:admin,student,expert']);
-
-
 
   // 
   Route::get('/administration/{any?}', function () {

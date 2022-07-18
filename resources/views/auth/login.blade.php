@@ -17,7 +17,7 @@
       </div>
     </x-slot>
     <x-slot name="content">
-      <form method="POST" action="{{ route('login') }}" class="auth">
+      <form method="POST" action="{{ route('login') }}">
         @csrf
         <x-form-text-field type="email" label="{{ __('E-Mail') }}" name="email" required autocomplete="false" aria-autocomplete="false" />
         <x-form-text-field type="password" label="{{ __('Passwort') }}" name="password" required autocomplete="false" />

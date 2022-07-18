@@ -5,7 +5,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 <style>
 @media only screen and (max-width: 660px) {
 .inner-body {
@@ -17,11 +16,11 @@ width: 100% !important;
 }
 }
 
-@media only screen and (max-width: 500px) {
+/* @media only screen and (max-width: 500px) {
 .button {
 width: 100% !important;
 }
-}
+} */
 </style>
 </head>
 <body>

@@ -14,8 +14,9 @@
 .requirements {
   @extend %fs-14x;
   @extend %md\:fs-16x;
-  @extend %py-2x;
+  @extend %pt-2x;
   @include font-italic();
+  color: $color-tertiary;
   text-align: right;
   width: 100%;
 }

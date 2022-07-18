@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
     'zip',
     'city',
     'phone',
+    'has_invoice_address',
     'invoice_address',
     'expert_description',
     'expert_bio',

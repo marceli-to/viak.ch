@@ -8,7 +8,47 @@
   @extend %mb-4x;
   @extend %md\:mb-6x;
   position: relative;
+
+  &.has-underline {
+    @extend %pb-6x;
+    @extend %sm\:pb-8x;
+    @extend %md\:pb-10x;
+    border-bottom: 1px solid $color-primary;
+  }
+
+  ul {
+
+    li {
+      @extend %sm\:fs-14x;
+      @extend %sm\:fs-16x;
+      @extend %md\:fs-18x;
+
+      a {
+        @extend %py-1x;
+        @include font-italic();
+        display: block;
+      }
+    }
+  }
 }
+
+.form-group-header {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  @extend %mb-4x;
+  @extend %md\:mb-6x;
+  position: relative;
+  display: block;
+
+  h3 {
+    @extend %fs-14x;
+    @extend %sm\:fs-16x;
+    @extend %md\:fs-18x;
+    @include font-regular();
+  }
+}
+
 
 .form-helper {
   @extend %fs-14x;

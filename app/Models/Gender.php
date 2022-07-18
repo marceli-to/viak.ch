@@ -50,6 +50,14 @@ class Gender extends Base
   ];
 
   /**
+   * The attributes that protected from the output.
+   *
+   * @var array
+   */
+
+  protected $hidden = ['created_at', 'updated_at'];
+
+  /**
    * The users that gender belongs to.
    */
 

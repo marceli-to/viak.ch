@@ -18,7 +18,7 @@
       </div>
     </x-slot>
     <x-slot name="content">
-      <form method="POST" action="{{ route('register') }}" class="auth">
+      <form method="POST" action="{{ route('register') }}">
         @csrf
         <x-form-text-field type="text" label="{{ __('Vorname') }}" name="firstname" required />
         <x-form-text-field type="text" label="{{ __('Name') }}" name="lastname" required />

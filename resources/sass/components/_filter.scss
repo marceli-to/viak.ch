@@ -40,6 +40,10 @@
       border-bottom: none;
       display: flex;
       min-height: inherit;
+
+      select {
+        color: $color-primary;
+      }
     }
   }
 

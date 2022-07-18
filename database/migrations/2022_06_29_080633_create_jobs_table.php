@@ -14,7 +14,7 @@ class CreateJobsTable extends Migration
   public function up()
   {
     Schema::create('jobs', function (Blueprint $table) {
-      $table->bigInteger('id');
+      $table->id();
       $table->string('recipient', 255)->nullable();
       $table->tinyInteger('processed')->default(0);
       $table->longText('error')->nullable();

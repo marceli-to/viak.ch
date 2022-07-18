@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\TranslationController;
-
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\GenderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,3 +36,6 @@ Route::delete('/course/filter', [FilterController::class, 'reset']);
 
 // Translations
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
+
+// Genders
+Route::get('/genders', [GenderController::class, 'fetch']);

@@ -16,6 +16,10 @@ Vue.use(VueAxios, axios);
 // Vue axios defaults
 Vue.axios.defaults.withCredentials = false;
 
+// Vue-Notifications
+import Notifications from 'vue-notification';
+Vue.use(Notifications);
+
 // Vuex store
 import store from '@/shared/config/store';
 
