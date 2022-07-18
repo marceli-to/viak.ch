@@ -87,7 +87,7 @@
         <div class="flex items-center mb-2x md:mb-4x">
           <input type="checkbox" id="accept_tos" name="accept_tos" required value="1" v-model="form.accept_tos">
           <label for="accept_tos" v-if="errors.accept_tos">{{ errors.accept_tos }}</label>
-          <label for="accept_tos" v-else>{{ __('Ich akzeptiere die Allgemeinen Geschäftsbedingungen') }}</label>
+          <label for="accept_tos" v-else>{{ __('Ich akzeptiere die Allg. Geschäftsbedingungen') }}</label>
         </div>
         <ul>
           <li>
