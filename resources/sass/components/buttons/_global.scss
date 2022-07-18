@@ -16,6 +16,11 @@
   @include font-bold();
   min-height: 30px;
   transition: background-color .1s ease-in;
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: .8;
+  }
 }
 
 %btn-full-width,

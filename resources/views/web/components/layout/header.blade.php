@@ -32,5 +32,9 @@
   @if (request()->routeIs('page.role.select'))
     <h1>{{ __('Rolle wählen') }}</h1>
   @endif
+
+  @if(trim($__env->yieldContent('mobile_page_title')))
+    <h1>{{ trim($__env->yieldContent('mobile_page_title')) }}</h1>
+  @endif
   
 </div>

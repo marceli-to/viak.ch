@@ -13,6 +13,30 @@ section.content {
     @extend %md\:mb-8x;
   }
 
+  &.content--error {
+    color: $color-secondary;
+    @include font-bold();
+    text-align: center;
+
+    h1 {
+      color: inherit
+    }
+
+    p {
+      @extend %mx-auto;
+      color: inherit;
+      max-width: 480px;
+    }
+
+    a {
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 1px;
+      }
+    }
+  }
+
   &:last-of-type {
     margin-bottom: 0 !important;
   }

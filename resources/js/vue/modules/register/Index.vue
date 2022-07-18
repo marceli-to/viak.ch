@@ -103,7 +103,7 @@
         </div>
       </form-group>
       <form-group>
-        <a href="" @click.prevent="submit()" class="btn-primary">
+        <a href="" @click.prevent="submit()" :class="[isLoading ? 'disabled' : '', 'btn-primary']">
           {{ __('Anmelden') }}
         </a>
       </form-group>
@@ -170,6 +170,7 @@ export default {
       isValid: false,
       isFetched: false,
       isRegistered: false,
+      isLoading: false,
 
       // Routes
       routes: {
@@ -194,9 +195,11 @@ export default {
       }
       if (this.validate()) {
         NProgress.start();
+        this.isLoading = true;
         this.axios.post(`${this.routes.register}`, this.form).then(response => {
           NProgress.done();
-          this.isRegistered == true;
+          this.isRegistered = true;
+          this.isLoading = false;
         });
       }
     },
@@ -221,8 +224,8 @@ export default {
         !this.form.email ||
         !this.form.password ||
         this.form.os.length == 0 ||
-        !this.form.gender_id ||
-        (this.form.has_invoice_address && !this.form.invoice_address)
+        !this.form.gender_id// ||
+        //(this.form.has_invoice_address && this.form.invoice_address == null)
       ) {
         alert('Bitte alle markierten Felder überprüfen!');
         return false;
