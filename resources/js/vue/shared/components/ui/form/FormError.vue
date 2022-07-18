@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group-header">
+  <div class="error-message">
     <slot />
   </div>
 </template>

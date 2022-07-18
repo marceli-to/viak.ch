@@ -11,9 +11,9 @@
   </template>
   <template #content v-if="!isRegistered">
     <form method="POST">
-      <form-group :label="__('Geschlecht')" :required="true">
+      <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender">
         <div class="select-wrapper">
-          <select v-model="form.gender_id">
+          <select v-model="form.gender" @change="removeError('gender')">
             <option value="null">Geschlecht</option>
             <option 
               v-for="(option, id) in settings.genders" 
@@ -24,47 +24,50 @@
           </select>
         </div>
       </form-group>
-      <form-group :label="__('Vorname')" :required="true">
-        <input type="text" v-model="form.firstname" required />
+      <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
+        <input type="text" v-model="form.firstname" required @focus="removeError('firstname')" />
       </form-group>
-      <form-group :label="__('Name')" :required="true">
-        <input type="text" v-model="form.name" required />
+      <form-group :label="__('Name')" :required="true" :error="errors.name">
+        <input type="text" v-model="form.name" required @focus="removeError('name')" />
       </form-group>
       <form-group :label="__('Telefon')">
         <input type="text" v-model="form.phone" maxlength="15" />
       </form-group>
       <grid class="sm:grid-cols-12">
-        <form-group :label="__('Strasse')" :required="true" class="span-6">
-          <input type="text" v-model="form.street" required />
+        <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">
+          <input type="text" v-model="form.street" required @focus="removeError('street')" />
         </form-group>
         <form-group :label="__('Nr.')" class="span-6">
           <input type="text" v-model="form.street_no" maxlength="5" />
         </form-group>
       </grid>
       <grid class="sm:grid-cols-12">
-        <form-group :label="__('PLZ')" :required="true" class="span-6">
-          <input type="text" v-model="form.zip" required maxlength="10" />
+        <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.zip">
+          <input type="text" v-model="form.zip" required maxlength="10" @focus="removeError('zip')" />
         </form-group>
-        <form-group :label="__('Ort')" :required="true" class="span-6">
-          <input type="text" v-model="form.city" required />
+        <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.city">
+          <input type="text" v-model="form.city" required @focus="removeError('city')" />
         </form-group>
       </grid>
-      <form-group class="has-underline">
+      <form-group class="has-underline" :error="errors.invoice_address">
         <div class="flex items-center">
           <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
-          <label for="has_invoice_address"><em>{{__('Rechnungsadresse (abweichend)')}}</em></label>
+          <label for="has_invoice_address">
+            <em v-if="errors.invoice_address">{{__('Rechnungsadresse (abweichend) wird benötigt')}}</em>
+            <em v-else>{{__('Rechnungsadresse (abweichend)')}}</em>
+          </label>
         </div>
         <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x" v-if="form.has_invoice_address"></textarea>
       </form-group>
-      <form-group :label="__('E-Mail')" :required="true">
-        <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" />
+      <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
+        <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
       </form-group>
-      <form-group :label="__('Passwort')" :required="true">
-        <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" />
+      <form-group :label="__('Passwort')" :required="true" :error="errors.password">
+        <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
         <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
       </form-group>
       <form-group-header>
-        <h3>{{__('Betriebssystem')}} *</h3>
+        <h3>{{__('Betriebssystem')}}</h3>
       </form-group-header>
       <form-group>
         <div class="flex items-center">
@@ -72,16 +75,23 @@
           <label for="os_win">Windows</label>
         </div>
       </form-group>
-      <form-group class="has-underline">
+      <form-group>
         <div class="flex items-center">
           <input type="checkbox" id="os_mac" name="os_mac" required value="macOS" v-model="form.os">
           <label for="os_mac">macOS</label>
         </div>
       </form-group>
       <form-group class="has-underline">
+        <div class="flex items-center">
+          <input type="checkbox" id="os_other" name="os_other" required value="anderes" v-model="form.os">
+          <label for="os_other">anderes</label>
+        </div>
+      </form-group>
+      <form-group class="has-underline" :error="errors.accept_tos">
         <div class="flex items-center mb-2x md:mb-4x">
           <input type="checkbox" id="accept_tos" name="accept_tos" required value="1" v-model="form.accept_tos">
-          <label for="accept_tos">{{ __('Ich akzeptiere die AGB und Datenschutzbestimmungen') }}</label>
+          <label for="accept_tos" v-if="errors.accept_tos">{{ errors.accept_tos }}</label>
+          <label for="accept_tos" v-else>{{ __('Ich akzeptiere die AGB und Datenschutzbestimmungen') }}</label>
         </div>
         <ul>
           <li>
@@ -123,6 +133,7 @@ import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
+import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
@@ -134,7 +145,9 @@ export default {
     ArticleText,
     FormGroup,
     FormGroupHeader,
-    IconArrowRight
+    FormError,
+    IconArrowRight,
+    ErrorHandling
   },
 
   mixins: [ErrorHandling, i18n],
@@ -155,9 +168,22 @@ export default {
         os: [],
         has_invoice_address: false,
         invoice_address: null,
-        accept_tos: false,
+        accept_tos: null,
         subscribe_newsletter: false,
-        gender_id: null,
+        gender: null,
+      },
+
+      errors: {
+        firstname: null,
+        name: null,
+        street: null,
+        zip: null,
+        city: null,
+        email: null,
+        password: null,
+        invoice_address: null,
+        gender: null,
+        accept_tos: null,
       },
 
       settings: {
@@ -189,19 +215,17 @@ export default {
   methods: {
 
     submit() {
-      if (this.form.accept_tos == false) {
-        alert(this.__('Bitte AGB und Datenschutzbestimmungen akzeptieren!'));
-        return false;
-      }
-      if (this.validate()) {
-        NProgress.start();
-        this.isLoading = true;
-        this.axios.post(`${this.routes.register}`, this.form).then(response => {
-          NProgress.done();
-          this.isRegistered = true;
-          this.isLoading = false;
-        });
-      }
+      // if (this.form.accept_tos == false) {
+      //   alert(this.__('Bitte AGB und Datenschutzbestimmungen akzeptieren!'));
+      //   return false;
+      // }
+      NProgress.start();
+      this.isLoading = true;
+      this.axios.post(`${this.routes.register}`, this.form).then(response => {
+        NProgress.done();
+        this.isRegistered = true;
+        this.isLoading = false;
+      });
     },
 
     getSettings() {
@@ -212,29 +236,6 @@ export default {
         this.isFetched = true;
         NProgress.done();
       });
-    },
-
-    validate() {
-      if (
-        !this.form.firstname ||
-        !this.form.name ||
-        !this.form.street ||
-        !this.form.zip ||
-        !this.form.city ||
-        !this.form.email ||
-        !this.form.password ||
-        this.form.os.length == 0 ||
-        this.form.gender_id == null ||
-        (this.form.has_invoice_address && this.form.invoice_address == null)
-      ) {
-        alert('Bitte alle markierten Felder überprüfen!');
-        return false;
-      }
-      return true;
-    },
-
-    reset() {
-
     },
   },
 }

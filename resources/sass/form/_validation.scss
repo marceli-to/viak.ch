@@ -4,10 +4,28 @@
  * -----------------------------------------------------------------------------
  */
 
-.has-error,
-.error-message,
-.errors {
-  color: $color-danger;
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=date],
+input[type=time],
+textarea,
+select,
+button {
+  &.is-invalid {
+    background-color: rgba($color-danger, .1);
+  }
+}
+
+.form-group {
+  &.is-invalid {
+    color: $color-danger;
+
+    li {
+      color: $color-danger;
+    }
+  }
 }
 
 .error-message,
@@ -15,8 +33,15 @@
   @extend %fs-14x;
   @extend %md\:fs-16x;
   @extend %pt-2x;
-  @include font-italic();
+  //@include font-italic();
+  //text-align: right;
+  width: auto;
+}
+
+.error-message {
+  color: $color-danger;
+}
+
+.requirements {
   color: $color-tertiary;
-  text-align: right;
-  width: 100%;
 }

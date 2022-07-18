@@ -1,9 +1,11 @@
+import NProgress from 'nprogress';
+
 export default {
 
   data() {
     return { 
       errors: null,
-    }
+    };
   },
   
   mounted() {
@@ -48,16 +50,18 @@ export default {
     validationError(data) {
       let errors = {};
       data.body.forEach(function(key) {
-        errors[key.field] = true;
+        errors[key.field] = key.error;
       });
       this.errors = errors;
       this.isLoading = false;
-      this.$notify({ type: "error", text: `Bitte alle mit * markierten Felder prüfen!`});
+      NProgress.done();
+      alert('Bitte alle mit * markierten Felder prüfen!');
     },
 
     serverError(data) {
       this.isLoading = false;
-      this.$notify({ type: "error", text: `${data.status} ${data.code}<br>${data.body.message}`});
+      NProgress.done();
+      alert(`${data.status} ${data.code}<br>${data.body.message}`);
     },
 
     notFoundError(data) {
@@ -67,17 +71,23 @@ export default {
 
     notAllowed(data) {
       this.isLoading = false;
-      this.$notify({ type: "error", text: `${data.status} ${data.code}`});
+      NProgress.done();
+      alert(`${data.status} ${data.code}<br>${data.body.message}`);
     },
 
     forbiddenError(data) {
       this.isLoading = false;
-      this.$notify({ type: "error", text: `${data.status} - Zugriff verweigert!`});
+      NProgress.done();
+      alert(`${data.status} - Zugriff verweigert!`);
       this.$router.push({ name: 'forbidden' });
     },
 
     unauthorized(data) {
       document.location.href = '/login';
+    },
+
+    removeError(field) {
+      this.errors[field] = null;
     }
   },
 

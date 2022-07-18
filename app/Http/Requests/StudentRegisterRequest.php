@@ -31,7 +31,7 @@ class StudentRegisterRequest extends FormRequest
       'city' => 'required',
       'invoice_address' => 'required_if:has_invoice_address,true',
       'accept_tos' => 'required',
-      'gender_id' =>  'exists:App\Models\Gender,id'
+      'gender' =>  'required|exists:App\Models\Gender,id'
     ];
   }
 
@@ -44,6 +44,75 @@ class StudentRegisterRequest extends FormRequest
 
   public function messages()
   {
-    return [];
+    return [
+      'email.required' => [
+        'field' => 'email',
+        'error' => 'E-Mail wird benötigt'
+      ],
+      'email.string' => [
+        'field' => 'email',
+        'error' => 'E-Mail muss vom Typ "String" sein'
+      ],
+      'email.unique' => [
+        'field' => 'email',
+        'error' => 'E-Mail bereits registriert'
+      ],
+      'email.max' => [
+        'field' => 'email',
+        'error' => 'E-Mail darf nicht länger als 255 Zeichen sein'
+      ],
+      'password.required' => [
+        'field' => 'password',
+        'error' => 'Passwort wird benötigt'
+      ],
+      'password.string' => [
+        'field' => 'password',
+        'error' => 'Passwort muss vom Typ "String" sein'
+      ],
+      'password.min' => [
+        'field' => 'password',
+        'error' => 'Passwort muss mind. 8 Zeichen lang sein'
+      ],
+      'name.required' => [
+        'field' => 'name',
+        'error' => 'Name wird benötigt'
+      ],
+      'firstname.required' => [
+        'field' => 'firstname',
+        'error' => 'Vorname wird benötigt'
+      ],
+      'street.required' => [
+        'field' => 'street',
+        'error' => 'Strasse wird benötigt'
+      ],
+      'zip.required' => [
+        'field' => 'zip',
+        'error' => 'PLZ wird benötigt'
+      ],
+      'city.required' => [
+        'field' => 'city',
+        'error' => 'Ort wird benötigt'
+      ],
+      'invoice_address.required_if' => [
+        'field' => 'invoice_address',
+        'error' => 'Rechnungsadresse wird benötigt'
+      ],
+      'accept_tos.required' => [
+        'field' => 'accept_tos',
+        'error' => 'AGB müssen akzeptiert werden'
+      ],
+      'gender.required' => [
+        'field' => 'gender',
+        'error' => 'Geschlecht wird benötigt'
+      ],
+      'gender.exists' => [
+        'field' => 'gender',
+        'error' => 'Geschlecht wird benötigt'
+      ],
+      'accept_tos.required' => [
+        'field' => 'accept_tos',
+        'error' => 'AGB und Datenschutzbestimmungen müssen akzeptiert werden'
+      ],
+    ];
   }
 }

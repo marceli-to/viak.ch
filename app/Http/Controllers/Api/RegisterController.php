@@ -45,12 +45,16 @@ class RegisterController extends Controller
       'email' => $request->input('email'),
       'password' => \Hash::make($request->input('password')),
       'uuid' => \Str::uuid(),
-      'gender_id' => 1
+      'gender_id' => $request->input('gender')
     ]);
 
+    // Attach role
     $user->roles()->attach(Role::STUDENT);
+
+    // Send confirmation email
     event(new StudentRegistered($user));
-    return response()->json($user);
+
+    return response()->json($user->uuid);
   }
 
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="form-group">
+  <div :class="[$props.error ? 'is-invalid' : '', 'form-group']">
     <template v-if="$props.label">
       <label :class="[required ? 'is-required' : '', '']">
-        {{ $props.label }}
+        {{ $props.error ? $props.error : $props.label }}
         <template v-if="required">*</template>
       </label>
     </template>
@@ -22,6 +22,11 @@ export default {
       type: [Boolean, Number],
       default: false
     },
+
+    error: {
+      type: [String, Boolean],
+      default: false,
+    }
   }
 }
 </script>
