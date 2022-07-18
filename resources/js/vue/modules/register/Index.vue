@@ -224,8 +224,8 @@ export default {
         !this.form.email ||
         !this.form.password ||
         this.form.os.length == 0 ||
-        !this.form.gender_id// ||
-        //(this.form.has_invoice_address && this.form.invoice_address == null)
+        !this.form.gender_id == null ||
+        (this.form.has_invoice_address && this.form.invoice_address == null)
       ) {
         alert('Bitte alle markierten Felder überprüfen!');
         return false;
