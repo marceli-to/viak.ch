@@ -197,7 +197,7 @@ export default {
       // Routes
       routes: {
         login: '/login',
-        register: '/api/student/register',
+        register: '/api/student/create',
         settings: '/api/genders',
       },
     };

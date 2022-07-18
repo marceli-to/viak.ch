@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -21,8 +22,11 @@ Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
+
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
+
+Route::get('/student/register', [StudentController::class, 'register'])->name('page.student');
 
 // Public auth routes
 Auth::routes(['verify' => true, 'register' => true]);
@@ -36,6 +40,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
   $request->fulfill();
   return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
 
 // Protected routes
 Route::middleware('auth:sanctum', 'verified')->group(function() {

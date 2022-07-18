@@ -9,7 +9,7 @@ use App\Http\Requests\StudentRegisterRequest;
 use App\Events\StudentRegistered;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class StudentRegisterController extends Controller
 {
   use RegistersUsers;
   

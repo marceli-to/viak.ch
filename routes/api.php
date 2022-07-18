@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\TranslationController;
-use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\GenderController;
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 // Register
-Route::post('/student/register', [RegisterController::class, 'create']);
+Route::post('/student/create', [StudentRegisterController::class, 'create']);
 
 // Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);
