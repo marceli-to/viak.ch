@@ -10,8 +10,7 @@
   position: relative;
 
   &.has-underline {
-    @extend %pb-6x;
-    @extend %sm\:pb-8x;
+    @extend %pb-8x;
     @extend %md\:pb-10x;
     border-bottom: 1px solid $color-primary;
   }

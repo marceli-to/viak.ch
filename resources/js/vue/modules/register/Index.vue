@@ -69,22 +69,18 @@
       <form-group-header>
         <h3>{{__('Betriebssystem')}}</h3>
       </form-group-header>
-      <form-group>
-        <div class="flex items-center">
+      <form-group class="has-underline">
+        <div class="flex items-center mb-2x">
           <input type="checkbox" id="os_win" name="os_win" required value="Windows" v-model="form.os">
           <label for="os_win">Windows</label>
         </div>
-      </form-group>
-      <form-group>
+        <div class="flex items-center mb-2x">
+          <input type="checkbox" id="os_other" name="os_other" required value="anderes" v-model="form.os">
+          <label for="os_other">anderes</label>
+        </div>
         <div class="flex items-center">
           <input type="checkbox" id="os_mac" name="os_mac" required value="macOS" v-model="form.os">
           <label for="os_mac">macOS</label>
-        </div>
-      </form-group>
-      <form-group class="has-underline">
-        <div class="flex items-center">
-          <input type="checkbox" id="os_other" name="os_other" required value="anderes" v-model="form.os">
-          <label for="os_other">anderes</label>
         </div>
       </form-group>
       <form-group class="has-underline" :error="errors.accept_tos">

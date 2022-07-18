@@ -78,7 +78,11 @@ select:-webkit-autofill:focus {
 
 textarea {
 	height: auto;
-  min-height: 100px;
+  min-height: 80px;
+
+  @include bp-sm() {
+    min-height: 100px;
+  }
 
   &.is-plain {
     border-bottom: none;
