@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
@@ -53,6 +54,9 @@ class StudentRegisterController extends Controller
 
     // Send confirmation email
     event(new StudentRegistered($user));
+
+    // Log the user in
+    Auth::login($user);
 
     return response()->json($user->uuid);
   }
