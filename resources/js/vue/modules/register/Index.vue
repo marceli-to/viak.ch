@@ -14,7 +14,7 @@
       <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender">
         <div class="select-wrapper">
           <select v-model="form.gender" @change="removeError('gender')">
-            <option value="null">Geschlecht</option>
+            <option value="null">{{ __('Geschlecht') }}</option>
             <option 
               v-for="(option) in settings.genders" 
               :key="option.id" 
