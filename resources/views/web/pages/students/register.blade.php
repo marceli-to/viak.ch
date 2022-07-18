@@ -5,5 +5,5 @@
 <section class="content" id="app-register">
   <register-form />
 </section>
-<script src="{{ mix('assets/js/register.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/student/register.js') }}" type="text/javascript"></script>
 @endsection

@@ -5,7 +5,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
-use App\Http\Requests\StudentRegisterRequest;
+use App\Http\Requests\StudentCreateRequest;
 use App\Events\StudentRegistered;
 use Illuminate\Http\Request;
 
@@ -26,10 +26,10 @@ class StudentRegisterController extends Controller
   /**
    * Create a new user
    * 
-   * @param StudentRegisterRequest $request
+   * @param StudentCreateRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function create(StudentRegisterRequest $request)
+  public function create(StudentCreateRequest $request)
   { 
     $user = User::create([
       'firstname' => $request->input('firstname'),

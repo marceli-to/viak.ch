@@ -26,10 +26,11 @@ Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->na
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
 
-Route::get('/student/register', [StudentController::class, 'register'])->name('page.student');
+Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
+Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile');
 
 // Public auth routes
-Auth::routes(['verify' => true, 'register' => true]);
+Auth::routes(['verify' => true, 'register' => false]);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/email/verify', function () {
