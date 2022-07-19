@@ -22,9 +22,9 @@ class StudentStoreRequest extends FormRequest
   public function rules()
   {
     return [
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required_with:password_confirmation|same:password_confirmation|min:8',
-      'password_confirmation' => 'min:8',
+      'email' => 'required|email|max:255|unique:users',
+      'password' => 'required|required_with:password_confirmation|same:password_confirmation|min:8',
+      'password_confirmation' => 'required|min:8',
       'name' => 'required',
       'firstname' => 'required',
       'street' => 'required',
@@ -50,9 +50,9 @@ class StudentStoreRequest extends FormRequest
         'field' => 'email',
         'error' => 'E-Mail wird benötigt'
       ],
-      'email.string' => [
+      'email.email' => [
         'field' => 'email',
-        'error' => 'E-Mail muss vom Typ "String" sein'
+        'error' => 'E-Mail ist nicht gültig'
       ],
       'email.unique' => [
         'field' => 'email',
@@ -66,17 +66,29 @@ class StudentStoreRequest extends FormRequest
         'field' => 'password',
         'error' => 'Passwort wird benötigt'
       ],
+      'password.required_with' => [
+        'field' => 'password',
+        'error' => 'Passwort wird benötigt'
+      ],
       'password.same' => [
         'field' => 'password',
-        'error' => 'Passwort muss mit Passwort wiederholen übereinstimmen'
+        'error' => 'Passwort muss mit Bestätigung übereinstimmen'
       ],
       'password.min' => [
-        'field' => 'password',
-        'error' => 'Passwort muss mind. 8 Zeichen lang sein'
+        'string' => [
+          'field' => 'password',
+          'error' => 'Passwort muss mind. 8 Zeichen lang sein'
+        ]
+      ],
+      'password_confirmation.required' => [
+        'field' => 'password_confirmation',
+        'error' => 'Passwortbestätigung wird benötigt'
       ],
       'password_confirmation.min' => [
-        'field' => 'password_confirmation',
-        'error' => 'Passwort muss mind. 8 Zeichen lang sein'
+        'string' => [
+          'field' => 'password_confirmation',
+          'error' => 'Passwortbestätigung muss mind. 8 Zeichen lang sein'
+        ]
       ],
       'name.required' => [
         'field' => 'name',
