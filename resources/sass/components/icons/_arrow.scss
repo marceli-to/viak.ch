@@ -6,11 +6,6 @@
 
 [class*="icon-arrow-right"],
 .icon-arrow-right {
-
-  &:hover {
-    color: $color-secondary;
-  }
-
   span {
     display: block;
   }
@@ -43,4 +38,7 @@
 
 .icon-arrow-right\:below {
   display: inline-block;
+  &:hover {
+    color: $color-secondary;
+  }
 }
