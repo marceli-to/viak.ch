@@ -20,43 +20,9 @@
         </li>
       </ul>
       <ul>
-        @auth
-          <li>
-            <a href="" title="{{ __('Profil') }}">
-              <span class="sm:hide">{{ __('Profil') }}</span>
-              <span class="xs:hide icon-profile">
-                @include('web.partials.icons.profile')
-              </span>
-            </a>
-          </li>
-        @endauth
-        @guest
-          <li>
-            <a href="{{ route('login') }}" title="{{ __('Profil') }}">
-              <span class="sm:hide">{{ __('Profil') }}</span>
-              <span class="xs:hide icon-profile">
-                @include('web.partials.icons.profile')
-              </span>
-            </a>
-          </li>
-        @endguest
-        <li class="sm:hide">
-          <a href="" title="{{ __('Warenkorb') }}">{{ __('Warenkorb') }}</a>
-        </li>
-        <li class="language-switcher sm:hide">
-          <a href="{{ app()->getLocale() == 'de' ? '/en' : '/de' }}">
-            @if (app()->getLocale() == 'de')
-              {{ __('English') }}
-            @else
-              {{ __('Deutsch') }}
-            @endif
-          </a>
-        </li>
-        <li class="language-switcher xs:hide">
-          <a href="/de" title="{{ __('Deutsch') }}">DE</a>
-          <span>&nbsp;/&nbsp;</span>
-          <a href="/en" title="{{ __('English') }}">EN</a>
-        </li>
+        <x-menu-item-profile />
+        <x-menu-item-basket />
+        <x-menu-item-language />
       </ul>
     </div>
   </div>

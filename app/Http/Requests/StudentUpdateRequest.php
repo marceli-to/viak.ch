@@ -2,7 +2,7 @@
 namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentCreateRequest extends FormRequest
+class StudentUpdateRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -22,16 +22,13 @@ class StudentCreateRequest extends FormRequest
   public function rules()
   {
     return [
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8',
       'name' => 'required',
       'firstname' => 'required',
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
       'invoice_address' => 'required_if:has_invoice_address,true',
-      'accept_tos' => 'required',
-      'gender' =>  'required|exists:App\Models\Gender,id'
+      'gender_id' =>  'required|exists:App\Models\Gender,id'
     ];
   }
 
@@ -45,34 +42,6 @@ class StudentCreateRequest extends FormRequest
   public function messages()
   {
     return [
-      'email.required' => [
-        'field' => 'email',
-        'error' => 'E-Mail wird benötigt'
-      ],
-      'email.string' => [
-        'field' => 'email',
-        'error' => 'E-Mail muss vom Typ "String" sein'
-      ],
-      'email.unique' => [
-        'field' => 'email',
-        'error' => 'E-Mail kann nicht verwendet werden'
-      ],
-      'email.max' => [
-        'field' => 'email',
-        'error' => 'E-Mail darf nicht länger als 255 Zeichen sein'
-      ],
-      'password.required' => [
-        'field' => 'password',
-        'error' => 'Passwort wird benötigt'
-      ],
-      'password.string' => [
-        'field' => 'password',
-        'error' => 'Passwort muss vom Typ "String" sein'
-      ],
-      'password.min' => [
-        'field' => 'password',
-        'error' => 'Passwort muss mind. 8 Zeichen lang sein'
-      ],
       'name.required' => [
         'field' => 'name',
         'error' => 'Name wird benötigt'
@@ -97,21 +66,13 @@ class StudentCreateRequest extends FormRequest
         'field' => 'invoice_address',
         'error' => 'Rechnungsadresse wird benötigt'
       ],
-      'accept_tos.required' => [
-        'field' => 'accept_tos',
-        'error' => 'AGB müssen akzeptiert werden'
-      ],
-      'gender.required' => [
-        'field' => 'gender',
+      'gender_id.required' => [
+        'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
       ],
-      'gender.exists' => [
-        'field' => 'gender',
+      'gender_id.exists' => [
+        'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
-      ],
-      'accept_tos.required' => [
-        'field' => 'accept_tos',
-        'error' => 'Allgemeine Geschäftsbedingungen müssen akzeptiert werden'
       ],
     ];
   }

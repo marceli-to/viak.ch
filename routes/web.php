@@ -17,7 +17,6 @@ use App\Http\Controllers\TestController;
 |
 */
 
-// Public routes
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
@@ -27,9 +26,16 @@ Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts')
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
 
 Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
-Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile');
+Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student', 'verified']);
 
-// Public auth routes
+
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+|
+*/
+
 Auth::routes(['verify' => true, 'register' => true]);
 Route::match(['get', 'post'], 'register', function(){
   return redirect()->route('page.student.register');
@@ -45,6 +51,13 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
   return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes (protected)
+|--------------------------------------------------------------------------
+|
+*/
 
 // Protected routes
 Route::middleware('auth:sanctum', 'verified')->group(function() {
@@ -62,7 +75,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/administration/models', [TestController::class, 'models'])->middleware(['role:admin,student,expert']);
   Route::get('/administration/search', [TestController::class, 'search'])->middleware(['role:admin,student,expert']);
 
-  // 
   Route::get('/administration/{any?}', function () {
     return view('web.layout.backend');
   })->where('any', '.*')->middleware(['role:admin']);

@@ -1,4 +1,4 @@
-require('@/modules/register/bootstrap');
+require('@/modules/student/bootstrap');
 
 // Vue
 import Vue from 'vue';
@@ -24,9 +24,9 @@ Vue.use(Notifications);
 import store from '@/shared/config/store';
 
 // Component
-Vue.component('register-form', require('@/modules/register/Index.vue').default);
+Vue.component('student-profile', require('@/modules/student/profile/Index.vue').default);
 
 // Mount
-if (document.getElementById("app-register")) {
-  const app = new Vue({store}).$mount('#app-register');
+if (document.getElementById("app-profile")) {
+  const app = new Vue({store}).$mount('#app-profile');
 }

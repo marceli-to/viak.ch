@@ -54,7 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
    */
 
   protected $appends = [
-    'fullname', 'address'
+    'fullname',
+    'address', 
   ];
 
   /**
@@ -226,7 +227,6 @@ class User extends Authenticatable implements MustVerifyEmail
     return FALSE;
   }
 
-
   /**
    * Get all courses for a user. This is only
    * applicable for users with the role 'expert'
@@ -251,10 +251,9 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return "{$this->firstname} {$this->name}";
   }
-
   
   /**
-   * Get the user's full name.
+   * Get the user's address as html-string
    *
    * @param  string  $value
    * @return string
@@ -267,4 +266,5 @@ class User extends Authenticatable implements MustVerifyEmail
     $address .= "{$this->zip} {$this->city}";
     return $address;
   }
+
 }

@@ -1,0 +1,20 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-edit {
+  @extend %icon;
+  height: 18px;
+  right: 0;
+  position: absolute;
+  width: 18px;
+  z-index: 50;
+  
+  svg {
+    display: block;
+    height: 18px;
+    width: auto;
+  }
+}

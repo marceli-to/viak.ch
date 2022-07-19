@@ -112,7 +112,7 @@ import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
-import Card from "@/modules/filter/components/Card.vue";
+import Card from "@/modules/course/filter/components/Card.vue";
 
 export default {
 

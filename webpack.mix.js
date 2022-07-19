@@ -26,7 +26,9 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 
 // Frontend: filter.js
-mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/filter.js').version();
+mix.js('resources/js/vue/modules/course/filter/Index.js', 'public/assets/js/filter.js').version();
 
-// Frontend: register.js
-mix.js('resources/js/vue/modules/register/Index.js', 'public/assets/js/student/register.js').version();
+// Frontend: register.js & profile.js
+mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();
+mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
+

@@ -28,4 +28,5 @@ class Role extends Base
   {
     return $this->belongsToMany(User::class);
   }
+
 }

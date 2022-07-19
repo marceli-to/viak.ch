@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\TranslationController;
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\GenderController;
 /*
@@ -25,8 +26,12 @@ Route::middleware('auth:sanctum')->group(function() {
   Route::get('user', [UserController::class, 'find']);
 });
 
-// Register
-Route::post('/student/create', [StudentRegisterController::class, 'create']);
+// Student
+Route::get('/student', [StudentController::class, 'find']);
+Route::put('/student', [StudentController::class, 'update']);
+Route::delete('/student', [StudentController::class, 'destroy']);
+Route::post('/student/register', [StudentRegisterController::class, 'create']);
+
 
 // Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);

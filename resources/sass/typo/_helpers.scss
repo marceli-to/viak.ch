@@ -29,6 +29,11 @@ em, i {
   @include font-italic();
 }
 
+pre {
+  @include font-regular();
+  margin: 0;
+}
+
 p {
   @extend %mb-3x;
   @extend %md\:mb-4x;

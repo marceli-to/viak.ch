@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
-use App\Http\Requests\StudentCreateRequest;
+use App\Http\Requests\StudentStoreRequest;
 use App\Events\StudentRegistered;
 use Illuminate\Http\Request;
 
@@ -27,10 +27,10 @@ class StudentRegisterController extends Controller
   /**
    * Create a new user
    * 
-   * @param StudentCreateRequest $request
+   * @param StudentStoreRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function create(StudentCreateRequest $request)
+  public function create(StudentStoreRequest $request)
   { 
     $user = User::create([
       'firstname' => $request->input('firstname'),
@@ -42,11 +42,11 @@ class StudentRegisterController extends Controller
       'phone' => $request->input('phone') ? $request->input('phone') : NULL,
       'has_invoice_address' => $request->input('has_invoice_address'),
       'invoice_address' => $request->input('alt_invoice_address'),
-      'operating_system' => $request->input('os') ? collect($request->input('os'))->implode(', ') : NULL,
+      'operating_system' => $request->input('operating_system') ? collect($request->input('operating_system'))->implode(',') : NULL,
       'email' => $request->input('email'),
       'password' => \Hash::make($request->input('password')),
       'uuid' => \Str::uuid(),
-      'gender_id' => $request->input('gender')
+      'gender_id' => $request->input('gender_id')
     ]);
 
     // Attach role

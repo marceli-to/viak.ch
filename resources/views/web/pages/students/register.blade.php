@@ -4,7 +4,7 @@
 @section('page_title', __('Registrieren'))
 @section('content')
 <section class="content" id="app-register">
-  <register-form />
+  <student-register />
 </section>
 <script src="{{ mix('assets/js/student/register.js') }}" type="text/javascript"></script>
 @endsection

@@ -1,9 +1,14 @@
 /**
  * -----------------------------------------------------------------------------
- * File: component/headings/global
+ * File: component/headings/h4
  * -----------------------------------------------------------------------------
  */
 
-h1, h2, h3, h4 {
-  color: $color-primary;
+h4 {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  @extend %mb-2x;
+  @extend %sm\:mb-3x;
+  @include font-italic();
 }

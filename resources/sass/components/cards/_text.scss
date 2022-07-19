@@ -10,7 +10,8 @@ article.text {
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
   color: $color-primary;
-
+  position: relative;
+  
   h1 {
     color: $color-secondary;
   }

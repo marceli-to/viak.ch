@@ -18,4 +18,15 @@ class StudentController extends BaseController
     return view($this->viewPath . 'register');
   }
 
+  /**
+   * Show the students profile
+   * @return \Illuminate\Http\Response
+   */
+
+  public function profile()
+  {
+    return view($this->viewPath . 'profile');
+  }
+
+
 }
