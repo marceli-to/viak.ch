@@ -1,6 +1,7 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
 @section('seo_title', __('E-Mail verifizieren'))
+@section('seo_title', __('E-Mail verifizieren'))
 @section('content')
 <section class="content">
   @if (session('resent'))

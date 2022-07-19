@@ -1,4 +1,6 @@
 @extends('web.layout.frontend')
+@section('seo_title', __('Experte'))
+@section('page_title', __('Experte'))
 @section('content')
 <section class="content">
   <x-article-text-media 

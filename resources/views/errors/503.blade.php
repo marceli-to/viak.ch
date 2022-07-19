@@ -1,5 +1,5 @@
 @extends('web.layout.frontend')
-@section('mobile_page_title', __('Fehler') . ' 503')
+@section('page_title', __('Fehler') . ' 503')
 @section('content')
 <x-error>
   <h1>{{ __('Fehler') }} 503</h1>

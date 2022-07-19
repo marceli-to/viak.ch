@@ -1,6 +1,7 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
-@section('seo_title', __('Password bestätigen'))
+@section('seo_title', __('Passwort bestätigen'))
+@section('page_title', __('Passwort bestätigen'))
 @section('content')
 <section class="content">
   @if ($errors->any())

@@ -36,6 +36,11 @@ input[type=checkbox] + label {
   @extend %ml-2x;
   @extend %sm\:ml-4x;
   margin-bottom: 0 !important;
+  padding-top: $space-tiny;
+
+  @include bp-md() {
+    padding-top: 0;
+  }
 
   &:hover {
     cursor: pointer;

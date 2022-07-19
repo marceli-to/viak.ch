@@ -1,6 +1,7 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
 @section('seo_title', __('Benutzerrolle wählen'))
+@section('page_title', __('Benutzerrollen'))
 @section('content')
 <section class="content">
   <x-article-text>

@@ -1,4 +1,6 @@
 @extends('web.layout.frontend')
+@section('seo_title', __('Experten'))
+@section('page_title', __('Experten'))
 @section('content')
 <section id="app-courses">
   <course-filter>
