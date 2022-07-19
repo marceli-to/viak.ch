@@ -3,7 +3,7 @@
   <template #aside>
     <h1 class="xs:hide">{{ __('Registrieren') }}</h1>
     <div class="sm:mt-10x md:mt-20x">
-      <a :href="routes.login" class="!block icon-arrow-right" :title="__('Login')">
+      <a :href="routes.login" class="icon-arrow-right:below" :title="__('Login')">
         <span>{{ __('Bereits registriert?') }}</span>
         <icon-arrow-right />
       </a>
@@ -161,11 +161,6 @@ export default {
   },
 
   mixins: [Settings],
-
-  data() {
-    return {
-    };
-  },
 
   methods: {
 

@@ -8,7 +8,7 @@
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Benutzerrolle wählen') }}</h1>
       <div class="sm:mt-10x md:mt-20x">
-        <a href="{{ route('logout') }}" class="!block icon-arrow-right" title="{{ __('Logout') }}">
+        <a href="{{ route('logout') }}" class="icon-arrow-right:below" title="{{ __('Logout') }}">
           <span>{{ __('Logout') }}</span>
           @include('web.partials.icons.arrow-right')
         </a>

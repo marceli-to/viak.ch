@@ -31,4 +31,5 @@ mix.js('resources/js/vue/modules/course/filter/Index.js', 'public/assets/js/filt
 // Frontend: register.js & profile.js
 mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();
 mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
+mix.js('resources/js/vue/modules/student/basket/Index.js', 'public/assets/js/student/basket.js').version();
 

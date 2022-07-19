@@ -1,0 +1,98 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+$after-offset: 14px;
+
+
+.icon-basket {
+
+  em {
+    @extend %fs-16x;
+    @extend %sm\:fs-12x;
+    @extend %md\:fs-13x;
+    @include font-regular();
+    align-items: center;
+    border-radius: 500px;
+    line-height: 1 !important;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+  }
+
+  &.has-items {
+    em {
+      opacity: 1;
+    }
+  }
+}
+
+@include bp-xs() {
+  .icon-basket {
+    em {
+      background-color: $color-white;
+      color: $color-primary;
+      display: none;
+      @include font-bold();
+      height: 26px;
+      margin-left: $space-3x;
+      opacity: 1;
+      width: 26px;
+    }
+
+    &.has-items {
+      em {
+        display: flex;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+
+@include bp-sm() {
+  .icon-basket {
+    display: block;
+    height: 16px;
+    line-height: 1 !important;
+    position: relative;
+    width: 19px;
+    
+    em {
+      background-color: $color-primary;
+      color: $color-white;
+      height: 16px;
+      right: -12px;
+      position: absolute;
+      text-align: center;
+      transition: opacity .12s ease-in;
+      top: -12px;
+      width: 16px;
+    }
+
+    svg {
+      display: block;
+      height: auto;
+      width: 100%;
+    }
+  }
+}
+
+@include bp-md() {
+  .icon-basket {
+    height: 22px;
+    width: 26px;
+
+    em {
+      height: 18px;
+      right: -14px;
+      top: -14px;
+      width: 18px;
+    }
+
+  }
+}
+

@@ -45,7 +45,6 @@
   a:not([class*="btn-"]) {
     text-decoration: underline;
     text-underline-offset: 1px;
-    text-underline-position: below;
 
     &:hover {
       text-decoration: none;

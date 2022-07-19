@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\TestController;
 
 /*
@@ -27,6 +28,9 @@ Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->n
 
 Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
 Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student', 'verified']);
+
+Route::get('/checkout/basket', [CheckoutController::class, 'basket'])->name('page.checkout.basket');
+Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('page.checkout.user')->middleware(['role:student']);
 
 
 /*

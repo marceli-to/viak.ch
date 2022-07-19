@@ -37,7 +37,7 @@
     </div>
   </x-collapsible>
   
-  <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
+  <x-collapsible title="{{ __('Kurse') }}" :expanded="true" id="app-events">
     @if ($course->upcomingEvents->count() > 0)
       @foreach($course->upcomingEvents as $event)
         <x-event-card :event="$event" />
@@ -75,4 +75,5 @@
     </div>
   @endif
 </section>
+<script src="{{ mix('assets/js/student/basket.js') }}" type="text/javascript"></script>
 @endsection

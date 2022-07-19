@@ -8,7 +8,7 @@
   <template #aside>
     <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
     <div class="sm:mt-10x md:mt-20x">
-      <a :href="routes.logout" class="!block icon-arrow-right" :title="__('Logout')">
+      <a :href="routes.logout" class="icon-arrow-right:below" :title="__('Logout')">
         <span>{{ __('Logout') }}</span>
         <icon-arrow-right />
       </a>
@@ -74,12 +74,10 @@
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'disabled' : '', 'btn-primary']">
           {{ __('Speichern') }}
         </a>
-        <div class="flex justify-center mt-2x sm:mt-4x">
-          <a href="" @click.prevent="toggleForm()" class="form-helper">
-            Abbrechen
-          </a>
-        </div>
       </form-group>
+      <a href="" @click.prevent="toggleForm()" class="form-helper">
+        {{ __('Abbrechen') }}
+      </a>
     </form>
   </template>
   <template #content v-else>

@@ -1,10 +1,10 @@
 <?php
 namespace App\View\Components;
 use Illuminate\View\Component;
+use App\Stores\BasketStore;
 
 class MenuItemBasket extends Component
 {
-
   /**
    * Create a new component instance.
    *
@@ -12,6 +12,7 @@ class MenuItemBasket extends Component
    */
   public function __construct()
   {
+    $this->count = (new BasketStore())->getItemsCount();
   }
 
   /**
@@ -21,6 +22,6 @@ class MenuItemBasket extends Component
    */
   public function render()
   {
-    return view('web.components.menu.basket');
+    return view('web.components.menu.basket', ['count' => $this->count]);
   }
 }

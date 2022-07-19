@@ -20,8 +20,8 @@
         </li>
       </ul>
       <ul>
-        <x-menu-item-profile />
         <x-menu-item-basket />
+        <x-menu-item-profile />
         <x-menu-item-language />
       </ul>
     </div>

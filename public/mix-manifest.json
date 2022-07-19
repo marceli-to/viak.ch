@@ -1,7 +1,8 @@
 {
     "/assets/js/app.js": "/assets/js/app.js?id=786f774e411be5f754f7",
-    "/assets/css/app.css": "/assets/css/app.css?id=0dbfc676e8f4eae30438",
+    "/assets/css/app.css": "/assets/css/app.css?id=20a0472d07a959eb9771",
     "/assets/js/filter.js": "/assets/js/filter.js?id=26366b07386b10f91070",
-    "/assets/js/student/profile.js": "/assets/js/student/profile.js?id=4bb586435744d0c51d02",
-    "/assets/js/student/register.js": "/assets/js/student/register.js?id=faef4d227dfee6f788fa"
+    "/assets/js/student/basket.js": "/assets/js/student/basket.js?id=e9f07e63409d91f650d3",
+    "/assets/js/student/profile.js": "/assets/js/student/profile.js?id=9a32fdf0b0e128d6e2ac",
+    "/assets/js/student/register.js": "/assets/js/student/register.js?id=c11b22eb0270207c9fb1"
 }

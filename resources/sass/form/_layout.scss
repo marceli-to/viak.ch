@@ -57,4 +57,9 @@
   display: inline-block;
   @include font-italic();
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 1px;
+  }
 }

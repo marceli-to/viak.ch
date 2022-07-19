@@ -6,13 +6,20 @@
 
 [class*="icon-arrow-right"],
 .icon-arrow-right {
-  align-items: center;
-  display: flex;
-  
+
+  &:hover {
+    color: $color-secondary;
+  }
+
   span {
     display: block;
   }
-  
+}
+
+.icon-arrow-right\:before,
+.icon-arrow-right\:after {
+  align-items: center;
+  display: flex;
 }
 
 .icon-arrow-right\:before {
@@ -32,4 +39,8 @@
 
 .icon-arrow-right\:after {
   justify-content: space-between;
+}
+
+.icon-arrow-right\:below {
+  display: inline-block;
 }

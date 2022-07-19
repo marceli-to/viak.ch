@@ -60,7 +60,7 @@
         @endif
       </div>
       <div class="card-event__action">
-        <a href="" class="btn-primary btn-auto-w">{{ __('Buchen') }}</a>
+        <basket-button uuid="{{ $event->uuid }}" :exists="{{ $exists }}" />
       </div>
     </div>
   </div>

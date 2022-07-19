@@ -7,6 +7,10 @@ use App\Http\Controllers\Api\TranslationController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\GenderController;
+use App\Http\Controllers\Api\BasketController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,6 +35,11 @@ Route::get('/student', [StudentController::class, 'find']);
 Route::put('/student', [StudentController::class, 'update']);
 Route::delete('/student', [StudentController::class, 'destroy']);
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
+
+// Basket
+Route::get('/basket', [BasketController::class, 'get']);
+Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
+Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 
 
 // Filter & Search

@@ -11,7 +11,7 @@
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Login') }}</h1>
       <div class="sm:mt-10x md:mt-20x">
-        <a href="{{ route('page.student.register') }}" class="!block icon-arrow-right" title="{{ __('Registrieren') }}">
+        <a href="{{ route('page.student.register') }}" class="icon-arrow-right:below" title="{{ __('Registrieren') }}">
           <span>{{ __('Nicht registriert?') }}</span>
           @include('web.partials.icons.arrow-right')
         </a>

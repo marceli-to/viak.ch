@@ -2,6 +2,7 @@
 namespace App\View\Components;
 use App\Models\Event;
 use Illuminate\View\Component;
+use App\Stores\BasketStore;
 
 class EventCard extends Component
 {
@@ -22,15 +23,23 @@ class EventCard extends Component
   public $state;
 
   /**
+   * Event exists in basket
+   * 
+   */
+
+  public $exists;
+
+  /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct(Event $event, $state = NULL)
+  public function __construct(Event $event, $state = NULL, $events = [])
   {
     $this->event   = $event;
     $this->experts = collect($event->experts->pluck('fullname')->all());
     $this->state   = $state;
+    $this->exists = (int) (new BasketStore())->getItem($this->event->uuid);
   }
 
   /**
