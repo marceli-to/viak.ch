@@ -1,10 +1,10 @@
 export default {
-  skin_url: '/assets/js/cms/tinymce/skins/custom',
+  skin_url: '/assets/js/vendor/tinymce/skins/custom',
   branding: false,
   menubar: false,
   statusbar: false,
   external_plugins: {
-    link: '/assets/js/cms/tinymce/plugins/link/plugin.min.js',
+    link: '/assets/js/vendor/tinymce/plugins/link/plugin.min.js',
   },
   plugins: ['lists', 'code', 'link'],
   toolbar: 'undo redo | bold | bullist | link | superscript | removeformat | styleselect',

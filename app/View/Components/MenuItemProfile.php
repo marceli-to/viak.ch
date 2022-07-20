@@ -7,7 +7,7 @@ class MenuItemProfile extends Component
 {
 
   /**
-   * Route per users role
+   * Set Profile/Dashboard route per users role
    * 
    * @param String $route
    */
@@ -25,31 +25,31 @@ class MenuItemProfile extends Component
     {
       if (auth()->user()->hasMultipleRoles())
       {
-        if (session('user-selected-role'))
+        if (session('selected-role'))
         {
-          switch(session('user-selected-role')->key)
+          switch(session('selected-role')->key)
           {
             case 'student':
               $route = 'page.student.profile';
             break;
             case 'expert':
-              $route = 'page.student.profile';
+              $route = 'page.expert.profile';
             break;
-            case 'student':
+            case 'admin':
               $route = 'page.student.profile';
             break;
           }
         }
       }
-      else if (auth()->user()->hasRole(Role::find(Role::STUDENT)))
+      else if (auth()->user()->isStudent())
       {
         $route = 'page.student.profile';
       }
-      else if (auth()->user()->hasRole(Role::find(Role::EXPERT)))
+      else if (auth()->user()->isExpert())
       {
-        $route = 'page.student.profile';
+        $route = 'page.expert.profile';
       }
-      else if (auth()->user()->hasRole(Role::find(Role::ADMIN)))
+      else if (auth()->user()->isAdmin())
       {
         $route = 'page.student.profile';
       }

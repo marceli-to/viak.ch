@@ -125,7 +125,7 @@
       </form-group>
       
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           {{ __('Anmelden') }}
         </a>
       </form-group>

@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
       if (auth()->user())
       {
-        if (auth()->user()->hasMultipleRoles() && !session('user-selected-role'))
+        if (auth()->user()->hasMultipleRoles() && !session('selected-role'))
         {
           return redirect(RouteServiceProvider::ROLES);
         }

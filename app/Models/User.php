@@ -126,7 +126,7 @@ class User extends Authenticatable implements MustVerifyEmail
 	}
 
   /**
-   * The scope for published users.
+   * The scope for visible users.
    * 
    */
   
@@ -144,7 +144,7 @@ class User extends Authenticatable implements MustVerifyEmail
   public function scopeAdmins($query)
   {
     return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', \App\Models\Role::ADMIN);
+      $q->where('role_id', Role::ADMIN);
     });
   }
 
@@ -157,7 +157,7 @@ class User extends Authenticatable implements MustVerifyEmail
   public function scopeExperts($query)
   {
     return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', \App\Models\Role::EXPERT);
+      $q->where('role_id', Role::EXPERT);
     });
   }
 
@@ -170,7 +170,7 @@ class User extends Authenticatable implements MustVerifyEmail
   public function scopeStudents($query)
   {
     return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', \App\Models\Role::STUDENT);
+      $q->where('role_id', Role::STUDENT);
     });
   }
 
@@ -225,6 +225,39 @@ class User extends Authenticatable implements MustVerifyEmail
       }
     }
     return FALSE;
+  }
+
+  /**
+   * Check for an admin
+   * 
+   * @return Boolean
+   */
+
+  public function isAdmin()
+  {
+    return $this->roles->contains(Role::ADMIN);
+  }
+
+  /**
+   * Check for an expert
+   * 
+   * @return Boolean
+   */
+
+  public function isExpert()
+  {
+    return $this->roles->contains(Role::EXPERT);
+  }
+
+  /**
+   * Check for a student
+   * 
+   * @return Boolean
+   */
+
+  public function isStudent()
+  {
+    return $this->roles->contains(Role::STUDENT);
   }
 
   /**

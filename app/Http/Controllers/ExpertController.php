@@ -32,4 +32,14 @@ class ExpertController extends BaseController
     $courses = collect($expert->getCourses($user)->pluck('course')->unique());
     return view($this->viewPath . 'show', ['expert' => $expert, 'courses' => $courses]);
   }
+
+  /**
+   * Show the expert's profile
+   * @return \Illuminate\Http\Response
+   */
+
+  public function profile()
+  {
+    return view($this->viewPath . 'profile');
+  }
 }

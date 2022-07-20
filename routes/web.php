@@ -25,12 +25,14 @@ Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->na
 
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
+Route::get('/experte/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert', 'verified']);
+
 
 Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
 Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student', 'verified']);
 
 Route::get('/checkout/basket', [CheckoutController::class, 'basket'])->name('page.checkout.basket');
-Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('page.checkout.user')->middleware(['role:student']);
+Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('page.checkout.user')->middleware(['role:student', 'verified']);
 
 
 /*

@@ -28,8 +28,10 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 // Frontend: filter.js
 mix.js('resources/js/vue/modules/course/filter/Index.js', 'public/assets/js/filter.js').version();
 
-// Frontend: register.js & profile.js
+// Student: register.js & profile.js
 mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();
 mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
 mix.js('resources/js/vue/modules/student/basket/Index.js', 'public/assets/js/student/basket.js').version();
 
+// Expert: profile.js
+mix.js('resources/js/vue/modules/expert/profile/Index.js', 'public/assets/js/expert/profile.js').version();

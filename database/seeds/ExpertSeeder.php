@@ -16,7 +16,24 @@ class ExpertSeeder extends Seeder
   {
     $faker = \Faker\Factory::create();
 
-    for($i = 0; $i<=10; $i++)
+    // Test expert
+    $user = User::create([
+      'firstname' => 'Peter',
+      'name' => 'Muster',
+      'email' => 'viak-experte@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'visible' => 1,
+    ]);
+
+    RoleUser::create([
+      'role_id' => 2,
+      'user_id' => $user->id
+    ]);
+
+    for($i = 0; $i<=9; $i++)
     {
       $user = User::create([
         'firstname' => $faker->firstName,

@@ -30,7 +30,7 @@ export default {
         invoice_address: null,
         accept_tos: null,
         subscribe_newsletter: false,
-        gender: null,
+        gender_id: null,
       },
 
       // Settings data

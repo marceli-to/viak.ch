@@ -28,5 +28,4 @@ class StudentController extends BaseController
     return view($this->viewPath . 'profile');
   }
 
-
 }
