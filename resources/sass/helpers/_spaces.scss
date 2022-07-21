@@ -44,6 +44,10 @@ $space-25x: 25 * $step;
 // Margin
 %mx-auto, .mx-auto { margin-left: auto; margin-right: auto; }
 
+@for $i from 1 through $max-step { %m-#{$i}x, .m-#{$i}x { margin: $i * $step; } }
+@for $i from 1 through $max-step { %sm\:m-#{$i}x, .sm\:m-#{$i}x { @include bp-sm() { margin: $i * $step; } } }
+@for $i from 1 through $max-step { %md\:m-#{$i}x, .md\:m-#{$i}x { @include bp-md() { margin: $i * $step; } } }
+
 @for $i from 1 through $max-step { %my-#{$i}x, .my-#{$i}x { margin: $i * $step 0; } }
 @for $i from 1 through $max-step { %sm\:my-#{$i}x, .sm\:my-#{$i}x { @include bp-sm() { margin: $i * $step 0; } } }
 @for $i from 1 through $max-step { %md\:my-#{$i}x, .md\:my-#{$i}x { @include bp-md() { margin: $i * $step 0; } } }

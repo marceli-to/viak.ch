@@ -9,7 +9,10 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ImageController;
+
 use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,8 @@ Route::get('/student/profile', [StudentController::class, 'profile'])->name('pag
 Route::get('/checkout/basket', [CheckoutController::class, 'basket'])->name('page.checkout.basket');
 Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('page.checkout.user')->middleware(['role:student', 'verified']);
 
+// Url based images
+Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
 
 /*
 |--------------------------------------------------------------------------

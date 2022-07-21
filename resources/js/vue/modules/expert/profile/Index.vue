@@ -70,6 +70,16 @@
         ></tinymce-editor>
       </form-group>
 
+      <form-group :label="__('Profilbild')" :error="errors.image">
+        <images 
+          :imageRatioW="16" 
+          :imageRatioH="9"
+          :type="'User'"
+          :typeId="form.id"
+          :images="form.images">
+        </images>
+      </form-group>
+      
       <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
         <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
       </form-group>
@@ -119,12 +129,14 @@ import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import Images from "@/shared/modules/images/Index.vue";
 
 export default {
 
   components: {
     NProgress,
     TinymceEditor,
+    Images,
     Grid,
     GridCol,
     ArticleText,
@@ -141,10 +153,8 @@ export default {
   data() {
     return {
       expert: { },
-
       tinyConfig: tinyConfig,
       tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
-
     };
   },
 

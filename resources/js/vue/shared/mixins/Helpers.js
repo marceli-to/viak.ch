@@ -13,14 +13,13 @@ export default {
     randomString() {
       return Math.random().toString(36).slice(2);
     },
-
-    validateRequired(str) {
-      return str != null && str.length > 0 ? true : false;
+    
+    getImageSrc(image, template, size = 1600) {
+      let coords = '0,0,0,0';
+      if (image.coords_w && image.coords_h) {
+        coords = `${image.coords_w},${image.coords_h},${image.coords_x},${image.coords_y}`;
+      }
+      return `/img/${template}/${image.name}/${size}/${coords}/3x2`;
     },
-
-    validateEmail(email) {
-      let filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      return email != null && email.length > 0 && filter.test(email) ? true : false;
-    }
   }
 };

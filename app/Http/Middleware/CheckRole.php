@@ -19,7 +19,7 @@ class CheckRole
 
   public function handle($request, Closure $next, ...$roles)
   {
-    if (!auth()->user()->hasAtLeastOneRole($roles))
+    if (auth()->user() && !auth()->user()->hasAtLeastOneRole($roles))
     {
       return abort(403);
     }

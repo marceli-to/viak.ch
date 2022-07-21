@@ -2,7 +2,6 @@ export default {
 
   data() {
     return {
-      hasOverlayCropper: false,
       coords: {},
       cropW: null,
       cropH: null,
@@ -15,6 +14,7 @@ export default {
         y: 0
       },
 
+      isCropping: false,
       isLoading: false,
     };
   },
@@ -48,8 +48,8 @@ export default {
     },
 
     defaultPosition() {
-      let x = this.overlayItem.coords_x || this.defaults.x;
-      let y = this.overlayItem.coords_y || this.defaults.y;
+      let x = this.currentImage.coords_x || this.defaults.x;
+      let y = this.currentImage.coords_y || this.defaults.y;
       return {
         left: x,
         top: y
@@ -57,8 +57,8 @@ export default {
     },
 
     defaultSize() {
-      let w = this.overlayItem.coords_w || this.defaults.w;
-      let h = this.overlayItem.coords_h || this.defaults.h;
+      let w = this.currentImage.coords_w || this.defaults.w;
+      let h = this.currentImage.coords_h || this.defaults.h;
       return {
         width: w,
         height: h
@@ -67,8 +67,8 @@ export default {
     
     showCropper(image) {
       this.isLoading = true;
-      this.hasOverlayCropper = true;
-      this.overlayItem = image;
+      this.isCropping = true;
+      this.currentImage = image;
       this.axios.get(this.getSource(image, "original")).then(response => {
         this.cropImage = response.config.url;
         this.isLoading = false;
@@ -76,8 +76,8 @@ export default {
     },
 
     hideCropper() {
-      this.hasOverlayCropper = false;
-      this.overlayItem = this.defaults.item;
+      this.isCropping = false;
+      this.currentImage = this.defaults.item;
       this.cropImage = null;
     }
   }

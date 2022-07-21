@@ -1,0 +1,124 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: vendor/media-upload
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+.media-upload {
+
+  img {
+    @extend %is-responsive;
+  }
+
+  .media-uploads {
+    position: relative;
+
+    .media-uploads-view-toggle {
+      @extend %fs-12x;
+      @extend %md\:fs-14x;
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        display: inline-block;
+        text-decoration: underline;
+        text-underline-offset: 1px;
+        width: auto;
+  
+        &:hover {
+          color: $color-secondary;
+          text-decoration: none;
+        }
+      }
+
+    }
+
+    .media-uploads-item__actions {
+      @extend %mt-2x;
+      @extend %sm\:mt-1x;
+
+      > div {
+        display: flex;
+
+        a {
+          @extend %mr-2x;
+          @extend %md\:mr-3x;
+          display: block;
+          transition: color .12s ease-in;
+
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+      }
+    }
+
+    .media-uploads-item {
+      img {
+        &.is-hidden {
+          opacity: .7;
+        }
+      }
+    }
+
+    &__listing {
+      @extend %mt-3x;
+
+      .media-uploads-item {
+        @extend %pt-2x;
+        @extend %md\:pt-4x;
+        @extend %md\:mb-3x;
+        border-top: 1px solid $color-primary;
+        display: flex;
+
+        &.is-draggable {
+          cursor: move;
+        }
+
+        .media-uploads-item__description {
+          @extend %pl-2x;
+          @extend %md\:pl-4x;
+
+          label {
+            @extend %fs-12x;
+            @extend %md\:fs-14x;
+
+            + div {
+              @extend %fs-14x;
+              @extend %md\:fs-16x;
+            }
+          }
+        }
+
+        img {
+          max-width: 100px;
+        }
+      }
+    }
+
+    &__grid {
+      @extend %grid-cols-12;
+      @extend %mt-3x;
+
+      @include bp-md() {
+        grid-gap: $space-6x !important;
+      }
+
+      .media-uploads-item {
+        @extend %span-6;
+        @extend %sm\:span-4;
+
+        figure {
+          @extend %p-2x;
+          border: 1px solid $color-primary;
+        }
+      }
+    }
+  }
+
+  .media-uploads-edit {
+    @extend %lightbox;
+  }
+
+}

@@ -58,6 +58,7 @@
 @import 'components/headings/h2';
 @import 'components/headings/h3';
 @import 'components/headings/h4';
+@import 'components/lightbox';
 @import 'components/links';
 @import 'components/list';
 @import 'components/images';
@@ -88,4 +89,9 @@
 @import 'views/debug';
 
 // Vendor
+@import 'vendor/cropper';
+@import 'vendor/dropzone';
+@import 'vendor/dropzone-custom';
+@import 'vendor/draggable';
 @import 'vendor/notification';
+@import 'vendor/media-upload';

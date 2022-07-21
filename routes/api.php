@@ -9,8 +9,7 @@ use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\BasketController;
-
-
+use App\Http\Controllers\Api\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +56,18 @@ Route::middleware(['auth:sanctum', 'verified', 'role:expert'])->group(function()
   Route::delete('/expert', [ExpertController::class, 'destroy']);
 });
 
+// Images
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,student,expert'])->group(function() {
+  Route::get('images', [ImageController::class, 'get']);
+  Route::post('images/order', [ImageController::class, 'order']);
+  Route::get('image/{image}', [ImageController::class, 'find']);
+  Route::post('image/upload', [ImageController::class, 'upload']);
+  Route::post('image', [ImageController::class, 'store']);
+  Route::put('image/coords/{image}', [ImageController::class, 'coords']);
+  Route::put('image/{image}', [ImageController::class, 'update']);
+  Route::get('image/state/{image}', [ImageController::class, 'toggle']);
+  Route::delete('image/{image}', [ImageController::class, 'destroy']);
+});
 
 
 

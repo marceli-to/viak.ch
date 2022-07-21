@@ -80,6 +80,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
   /**
+   * The image(s) that belong to this user.
+   */
+
+  public function image()
+  {
+    return $this->morphOne(Image::class, 'imageable'); // ->where('publish', 1);
+  }
+
+  public function images()
+  {
+    return $this->morphMany(Image::class, 'imageable');
+  }
+
+  /**
    * The roles that belong to this user.
    */
 
