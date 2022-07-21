@@ -16,7 +16,7 @@
           </a>
         </li>
         <li>
-          <a href="">{{ __('Kontakt') }}</a>
+          <a href="{{ route('page.contact') }}" class="{{ request()->routeIs('page.contact') ? 'is-active' : '' }}">{{ __('Kontakt') }}</a>
         </li>
       </ul>
       <ul>

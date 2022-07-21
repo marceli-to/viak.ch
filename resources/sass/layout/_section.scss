@@ -13,6 +13,32 @@ section.content {
     @extend %md\:mb-8x;
   }
 
+  &.content--contact {
+    a[href^="tel:"],
+    a[href^="mailto:"] {
+      color: $color-secondary;
+      text-decoration: none;
+      text-underline-offset: 2px;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &.content--about {
+    a:not([class*="btn-"]) {
+      color: $color-primary;
+      text-decoration: underline;
+      text-underline-offset: 1px;
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+
   &.content--error {
     color: $color-secondary;
     @include font-bold();

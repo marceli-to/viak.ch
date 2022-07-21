@@ -5,6 +5,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RolesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\TestController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
+Route::get('/kontakt', [ContactController::class, 'index'])->name('page.contact');
 
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');

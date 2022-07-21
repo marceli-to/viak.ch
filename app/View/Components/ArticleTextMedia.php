@@ -61,6 +61,6 @@ class ArticleTextMedia extends Component
    */
   public function render()
   {
-    return view('web.components.content.text-media');
+    return view('web.components.content.article-text-media');
   }
 }

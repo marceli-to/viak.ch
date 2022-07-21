@@ -1,10 +1,11 @@
 <?php
 namespace App\View\Components;
+use App\Models\Event;
 use Illuminate\View\Component;
+use App\Stores\BasketStore;
 
-class ArticleText extends Component
+class CardText extends Component
 {
-
   /**
    * Create a new component instance.
    *
@@ -12,7 +13,6 @@ class ArticleText extends Component
    */
   public function __construct()
   {
-
   }
 
   /**
@@ -22,6 +22,6 @@ class ArticleText extends Component
    */
   public function render()
   {
-    return view('web.components.content.article-text');
+    return view('web.components.content.card-text');
   }
 }

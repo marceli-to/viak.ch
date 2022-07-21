@@ -4,7 +4,7 @@
  * -----------------------------------------------------------------------------
  */
 
-%card-text,
+// Article
 article.text {
   @extend %fs-16x;
   @extend %sm\:fs-18x;
@@ -14,9 +14,6 @@ article.text {
   
   h1 {
     color: $color-secondary;
-  }
-
-  h1 {
     margin-bottom: 0;
   }
 
@@ -32,6 +29,37 @@ article.text {
       @extend %mt-6x;
       @extend %sm\:mt-0;
     }
+  }
+}
+
+// Card
+article.card-text {
+  @extend %mt-4x;
+  @extend %pt-2x;
+  @extend %sm\:mt-8x;
+  @extend %sm\:pt-4x;
+  border-top: 1px solid $color-primary;
+  line-height: 1.5;
+  position: relative;
+
+  @include bp-sm() {
+    line-height: 1.4;
+  }
+
+  > div {
+    @extend %sm\:grid-cols-12;
+
+    aside {
+      @extend %sm\:span-4;
+    }
+
+    > div {
+      @extend %sm\:span-8;
+    }
+  }
+
+  h2, h3 {
+    color: $color-primary;
   }
 
 }
