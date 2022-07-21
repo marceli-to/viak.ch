@@ -65,32 +65,29 @@
     <!-- // listing -->
 
     <!-- cropper -->
-    <!--
-    <div :class="[isCropping ? 'is-visible' : '', 'upload-overlay-cropper']">
-      <div class="upload-overlay__loader" v-if="isLoading">Bild wird geladen...</div>
-      <div class="upload-overlay__close" v-if="!isLoading">
+    <div :class="[isCropping ? 'is-visible' : '', 'media-uploads-cropper']">
+      <template v-if="!isLoading">
         <a
           href="javascript:;"
-          class="feather-icon icon-close-overlay"
+          class="feather-icon icon-lightbox-close"
           @click.prevent="hideCropper()"
         >
           <x-icon size="24"></x-icon>
         </a>
-      </div>
-      <div class="upload-overlay-cropper__wrapper" v-if="!isLoading">
-        <div :class="'is-' + currentImage.orientation">
-          <div class="cropper-formats">
-            <div>
-              <a href="javascript:;" @click.prevent="changeRatio(2.8,4)" class="btn-cropper-format is-3-4">Hoch 3x4</a>
-            </div>
-            <div>
-              <a href="javascript:;" @click.prevent="changeRatio(4,2.8)" class="btn-cropper-format is-4-3">Quer 4x3</a>
-            </div>
-            <div>
-              <a href="javascript:;" @click.prevent="changeRatio(3,2)" class="btn-cropper-format is-4-3">Quer 3x2</a>
-            </div>
+        <div :class="[currentImage && currentImage.orientation ? 'is-' + currentImage.orientation : '', '']">
+          <div class="media-uploads-cropper__formats">
+            <a href="javascript:;" 
+              @click.prevent="changeRatio(16,9)" 
+              class="btn-crop-format">
+              16:9
+            </a>
+            <a href="javascript:;" 
+              @click.prevent="changeRatio(3,2)" 
+              class="btn-crop-format">
+              3:2
+            </a>
           </div>
-          <div class="cropper-info">{{ cropW }} x {{ cropH }}px</div>
+          <div class="media-uploads-cropper__info">{{ cropW }} x {{ cropH }}px</div>
           <cropper
             :src="cropImage"
             :defaultPosition="defaultPosition"
@@ -106,27 +103,26 @@
             }"
             @change="change"
           ></cropper>
-          <div class="form-buttons flex justify-between">
-            <a
-              href="javascript:;"
-              class="btn-secondary has-icon"
-              @click.prevent="hideCropper()">
-              <x-icon size="18"></x-icon>
-              <span>Schliessen</span>
-            </a>
-            <a
-              href="javascript:;"
-              class="btn-primary has-icon"
-              @click.prevent="saveCoords(overlayItem)">
-              <download-icon size="18"></download-icon>
-              <span>Speichern</span>
-            </a>
-
+          <div class="mt-2x">
+            <div class="grid-cols-12">
+              <a
+                href="javascript:;"
+                class="btn-secondary span-6"
+                @click.prevent="hideCropper()">
+                <span>Schliessen</span>
+              </a>
+              <a
+                href="javascript:;"
+                class="btn-primary span-6"
+                @click.prevent="updateImage(currentImage)">
+                <span>Speichern</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
     </div>
-    -->
+
     <!-- // cropper -->
 
     <!-- edit -->
@@ -179,7 +175,6 @@ import { Cropper } from "vue-advanced-cropper";
 import { XIcon,DownloadIcon } from 'vue-feather-icons';
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import ImageActions from "@/shared/modules/images/components/Actions.vue";
-import ImageEdit from "@/shared/modules/images/mixins/edit";
 import ImageCrop from "@/shared/modules/images/mixins/crop";
 import ImageUtils from "@/shared/modules/images/mixins/utils";
 
@@ -194,7 +189,7 @@ export default {
     FormGroup
   },
 
-  mixins: [ImageUtils, ImageEdit, ImageCrop, i18n],
+  mixins: [ImageUtils, ImageCrop, i18n],
 
   props: {
 

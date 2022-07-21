@@ -8,8 +8,8 @@ export default {
       cropImage: null,
 
       defaults: {
-        w: 425,
-        h: 510,
+        w: 400,
+        h: 300,
         x: 0,
         y: 0
       },
@@ -17,14 +17,6 @@ export default {
       isCropping: false,
       isLoading: false,
     };
-  },
-
-  mounted() {
-    window.addEventListener("keyup", event => {
-      if (event.which === 27) {
-        this.hideCropper();
-      }
-    });
   },
 
   methods: {
@@ -38,12 +30,12 @@ export default {
       this.cropH = Math.floor(coordinates.height);
     },
 
-    saveCoords(image) {
+    updateImage(image) {
       image.coords_w = this.coords.w;
       image.coords_h = this.coords.h;
       image.coords_x = this.coords.x;
       image.coords_y = this.coords.y;
-      this.$parent.saveImageCoords(image);
+      this.$emit('updateImage', image);
       this.hideCropper();
     },
 
@@ -77,7 +69,11 @@ export default {
 
     hideCropper() {
       this.isCropping = false;
-      this.currentImage = this.defaults.item;
+      this.currentImage = {
+        caption: null,
+        description: null,
+        orientation: null
+      };
       this.cropImage = null;
     }
   }

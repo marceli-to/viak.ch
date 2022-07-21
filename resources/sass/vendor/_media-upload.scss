@@ -57,7 +57,7 @@
     .media-uploads-item {
       img {
         &.is-hidden {
-          opacity: .7;
+          opacity: .4;
         }
       }
     }
@@ -119,6 +119,52 @@
 
   .media-uploads-edit {
     @extend %lightbox;
+  }
+
+  .media-uploads-cropper {
+    @extend %lightbox;
+
+    > div {
+      position: relative;
+
+      &.is-l {
+        max-width: 900px !important;
+      }
+     
+      &.is-p {
+        max-width: 600px;
+      }
+    }
+
+    .media-uploads-cropper__info {
+      @extend %fs-12x;
+      @extend %sm\:fs-14x;
+      color: $color-primary;
+      position: absolute;
+      right: $space-6x;
+      top: $space-4x;
+      z-index: 100;
+    }
+    
+    .media-uploads-cropper__formats {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    
+    .btn-crop-format {
+      @extend %fs-12x;
+      @extend %sm\:fs-14x;
+      align-items: center;
+      background-color: $color-secondary;
+      color: $color-white;
+      display: flex;
+      justify-content: center;
+      margin-right: 10px;
+      text-decoration: none;
+      height: 30px;
+      width: 50px;
+    }
+
   }
 
 }

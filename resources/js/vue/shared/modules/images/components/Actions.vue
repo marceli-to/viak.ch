@@ -5,7 +5,7 @@
       href="javascript:;"
       class="feather-icon"
       @click.prevent="$emit('toggleImage', image)"
-        v-if="hasToggle">
+      v-if="hasToggle">
       <eye-icon size="18" v-if="publish"></eye-icon>
       <eye-off-icon size="18" v-if="!publish"></eye-off-icon>
     </a>

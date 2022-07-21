@@ -1,7 +1,7 @@
 <template>
 <div>
   <template v-if="isFetched">
-    <form-group>
+    <div class="mt-2x sm:mt-4x">
       <image-upload
         :restrictions="'jpg, png | max. 16 MB'"
         :maxFiles="99"
@@ -9,8 +9,8 @@
         :acceptedFiles="'.png,.jpg'"
         @store="storeImage($event)"
       ></image-upload>
-    </form-group >
-    <form-group :label="__('Bearbeiten')">
+    </div>
+    <div class="mt-2x sm:mt-4x">
       <image-edit 
         :images="data"
         :imagePreviewRoute="'cache'"
@@ -19,8 +19,9 @@
         :allowRatioSwitch="this.$props.allowRatioSwitch"
         @toggleImage="toggleImage($event)"
         @destroyImage="destroyImage($event)"
-      ></image-edit>
-    </form-group >
+        @updateImage="updateImage($event)">
+      </image-edit>
+    </div>
   </template>
 </div>
 </template>
@@ -28,7 +29,6 @@
 import NProgress from 'nprogress';
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
-import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import ImageUpload from "@/shared/modules/images/components/Upload.vue";
 import ImageEdit from "@/shared/modules/images/components/Edit.vue";
 
@@ -36,7 +36,6 @@ export default {
 
   components: {
     NProgress,
-    FormGroup,
     ImageUpload,
     ImageEdit
   },
@@ -158,7 +157,7 @@ export default {
       });
     },
 
-    saveImageCoords(image) {
+    updateImage(image) {
       NProgress.start();
       this.axios.put(`${this.routes.coords}/${image.id}`, image).then(response => {
         alert(this.__(this.notifications.updated));

@@ -10,11 +10,10 @@
   @extend %md\:fs-18x;
   align-items: center;
   background-color: transparent;
-  border: 1px dashed $color-primary;
+  border: 1px solid $color-primary;
   border-radius: 0;
   display: flex;
   justify-content: center;
-  padding: $space-2x;
   position: relative;
 
   &:hover {
