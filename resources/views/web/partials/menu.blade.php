@@ -11,7 +11,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('page.experts')}}" class="{{ request()->routeIs('page.expert*') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
+          <a href="{{ route('page.experts')}}" class="{{ request()->routeIs('page.experts') || request()->routeIs('page.expert') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
             {{ __('Experten') }}
           </a>
         </li>

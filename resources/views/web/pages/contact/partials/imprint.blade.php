@@ -1,6 +1,6 @@
 <x-card-text>
   <x-slot name="aside">
-    <h2>{{ __('Verantwortlich für den Inhalt der Seiten') }}
+    <h2>{{ __('Verantwortlich für den Inhalt') }}
   </x-slot>
   <x-slot name="content">
     {!! __('<p>Visualisierungs-Akademie Schweiz GmbH<br>Oliver Schmid<br>Limmatstrasse 291<br>8005 Zürich<br>Schweiz</p>') !!}
@@ -20,7 +20,7 @@
 
 <x-card-text>
   <x-slot name="aside">
-    <h2>{{ __('Gestaltung') }}
+    <h2>{{ __('Umsetzung') }}
   </x-slot>
   <x-slot name="content">
     <p>{!! __('Design und Branding:<br>WBG AG, Zürich, <a href="https://www.wbg.ch" target="_blank" title="WBG AG, Zürich">www.wbg.ch</a>') !!}</p>

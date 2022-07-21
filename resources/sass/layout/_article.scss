@@ -1,0 +1,105 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: layout/article
+ * -----------------------------------------------------------------------------
+ */
+
+// Article with text/media
+article.text-media {
+  @extend %fs-16x;
+  @extend %sm\:fs-18x;
+  @extend %md\:fs-24x;
+  color: $color-secondary;
+
+  h1, h2, p {
+    color: $color-secondary;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  figure {
+    @extend %xs\:mb-6x;
+    img {
+      @extend %is-responsive;
+    }
+  }
+
+  .text-media__content {
+    @extend %sm\:grid-cols-12;
+
+    > aside {
+      @extend %mb-3x;
+      @extend %sm\:span-4;
+    }
+      
+    > div {
+      @extend %sm\:span-8;
+      @include font-bold();
+    }
+  }
+
+  @include bp-sm() {
+    display: flex;
+    flex-direction: column;
+
+    .text-media__visual {
+      margin-bottom: $space-8x;
+      order: 1;
+    }
+  
+    .text-media__content {
+      order: 2;
+    }
+  }
+
+  &.is-reverse {
+
+    @include bp-sm() {
+      .text-media__visual {
+        margin-bottom: 0;
+        order: 2;
+      }
+    
+      .text-media__content {
+        margin-bottom: $space-12x;
+        order: 1;
+      }
+    }
+  
+    @include bp-md() {
+      .text-media__visual {
+        margin-bottom: 0;
+      }
+    }    
+  }
+}
+
+// Article with text only
+article.text {
+  @extend %fs-16x;
+  @extend %sm\:fs-18x;
+  @extend %md\:fs-24x;
+  color: $color-primary;
+  position: relative;
+  
+  h1 {
+    color: $color-secondary;
+    margin-bottom: 0;
+  }
+
+  .text__content {
+    @extend %sm\:grid-cols-12;
+
+    > aside {
+      @extend %sm\:span-4;
+    }
+      
+    > div {
+      @extend %sm\:span-8;
+      @extend %mt-6x;
+      @extend %sm\:mt-0;
+    }
+  }
+}

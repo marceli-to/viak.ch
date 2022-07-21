@@ -56,10 +56,13 @@
 
       <collabsible class="mt-6x">
         <template #title>
-          {{ __('Beschreibung') }}
+          {{ __('Über') }}
         </template>
         <template #content>
-          <form-group :required="true" :error="errors.expert_description">
+          <form-group :label="__('Titel')" class="mt-2x sm:mt-4x">
+            <input type="text" v-model="form.expert_title" />
+          </form-group>
+          <form-group :label="__('Beschreibung')">
             <tinymce-editor
               :api-key="tinyApiKey"
               :init="tinyConfig"
