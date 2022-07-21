@@ -39,6 +39,20 @@
   border-radius: 0;
 }
 
+.tox .tox-label {
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+}
+
+.tox .tox-button {
+  background-color: #50c8c8 !important;
+}
+
+.tox .tox-button .tox-button--secondary {
+  background-color: #969696 !important;
+}
+
+
 .tox .tox-selectfield select,
 .tox .tox-textarea,
 .tox .tox-textfield,

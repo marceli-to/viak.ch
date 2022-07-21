@@ -35,8 +35,8 @@
 
     <a
       href="javascript:;"
-      class="feather-icon"
-      @click.prevent="showCropper(image)"
+      class="feather-icon xs:hide"
+      @click.prevent="$emit('showCropper', image)"
       v-if="hasCrop">
       <crop-icon size="18"></crop-icon>
     </a>
@@ -89,20 +89,5 @@ export default {
   },
 
   mixins: [ImageUtils],
-
-  methods: {
-    
-    // toggle(image, $event) {
-    //   this.$parent.toggle(image,$event);
-    // },
-
-    // showEdit(image) {
-    //   this.$parent.showEdit(image);
-    // },
-
-    showCropper(image) {
-      this.$parent.showCropper(image);
-    },
-  }
 }
 </script>

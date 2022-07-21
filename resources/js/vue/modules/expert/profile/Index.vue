@@ -54,31 +54,50 @@
         </form-group>
       </grid>
 
-      <form-group :label="__('Beschreibung')" :required="true" :error="errors.expert_description">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="form.expert_description"
-        ></tinymce-editor>
-      </form-group>
+      <collabsible class="mt-6x">
+        <template #title>
+          {{ __('Beschreibung') }}
+        </template>
+        <template #content>
+          <form-group :required="true" :error="errors.expert_description">
+            <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="form.expert_description"
+            ></tinymce-editor>
+          </form-group>
+        </template>
+      </collabsible>
 
-      <form-group :label="__('Biographie')" :error="errors.expert_bio">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="form.expert_bio"
-        ></tinymce-editor>
-      </form-group>
+      <collabsible>
+        <template #title>
+          {{ __('Biographie') }}
+        </template>
+        <template #content>
+          <form-group :error="errors.expert_bio">
+            <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="form.expert_bio"
+            ></tinymce-editor>
+          </form-group>
+        </template>
+      </collabsible>
 
-      <form-group :label="__('Profilbild')" :error="errors.image">
-        <images 
-          :imageRatioW="16" 
-          :imageRatioH="9"
-          :type="'User'"
-          :typeId="form.id"
-          :images="form.images">
-        </images>
-      </form-group>
+      <collabsible>
+        <template #title>
+          {{ __('Profilbild') }}
+        </template>
+        <template #content>
+          <images 
+            :imageRatioW="16" 
+            :imageRatioH="9"
+            :type="'User'"
+            :typeId="form.id"
+            :images="form.images">
+          </images>
+        </template>
+      </collabsible>
       
       <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
         <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
@@ -126,6 +145,7 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
+import Collabsible from "@/shared/components/ui/layout/Collabsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
@@ -140,6 +160,7 @@ export default {
     Grid,
     GridCol,
     ArticleText,
+    Collabsible,
     FormGroup,
     FormGroupHeader,
     FormError,

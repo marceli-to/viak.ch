@@ -54,7 +54,8 @@
                   :imagePreviewRoute="'cache'"
                   @toggleEdit="toggleEdit(image)"
                   @toggleImage="toggleImage(image)"
-                  @destroyImage="destroyImage(image)">
+                  @destroyImage="destroyImage(image)"
+                  @showCropper="showCropper(image)">
                 </image-actions>
               </div>
             </figure>
@@ -69,12 +70,12 @@
       <template v-if="!isLoading">
         <a
           href="javascript:;"
-          class="feather-icon icon-lightbox-close"
+          class="icon-lightbox-close"
           @click.prevent="hideCropper()"
         >
-          <x-icon size="24"></x-icon>
+          <icon-cross />
         </a>
-        <div :class="[currentImage && currentImage.orientation ? 'is-' + currentImage.orientation : '', '']">
+        <div :class="[cropImage && cropImage.orientation ? 'is-' + cropImage.orientation : '', '']">
           <div class="media-uploads-cropper__formats">
             <a href="javascript:;" 
               @click.prevent="changeRatio(16,9)" 
@@ -122,7 +123,6 @@
         </div>
       </template>
     </div>
-
     <!-- // cropper -->
 
     <!-- edit -->
@@ -130,10 +130,10 @@
       <div>
         <a
           href="javascript:;"
-          class="feather-icon icon-lightbox-close"
+          class="icon-lightbox-close"
           @click.prevent="hideEdit()"
         >
-          <x-icon size="24"></x-icon>
+          <icon-cross />
         </a>
         <div class="sm:grid-cols-12">
           <figure class="sm:span-6">
@@ -172,17 +172,18 @@
 import i18n from "@/shared/mixins/i18n";
 import draggable from 'vuedraggable';
 import { Cropper } from "vue-advanced-cropper";
-import { XIcon,DownloadIcon } from 'vue-feather-icons';
+import { DownloadIcon } from 'vue-feather-icons';
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import ImageActions from "@/shared/modules/images/components/Actions.vue";
 import ImageCrop from "@/shared/modules/images/mixins/crop";
 import ImageUtils from "@/shared/modules/images/mixins/utils";
+import IconCross from "@/shared/components/ui/icons/Cross.vue";
 
 export default {
   
   components: {
     ImageActions,
-    XIcon,
+    IconCross,
     DownloadIcon,
     Cropper,
     draggable,
@@ -253,12 +254,6 @@ export default {
     this.imageData = this.$props.images;
     this.ratio.w = this.$props.ratioW;
     this.ratio.h = this.$props.ratioH;
-
-    window.addEventListener("keyup", event => {
-      if (event.which === 27) {
-        this.hideEdit();
-      }
-    });
   },
 
   methods: {

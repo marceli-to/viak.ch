@@ -36,6 +36,7 @@
 
     .media-uploads-item__actions {
       @extend %mt-2x;
+      @extend %md\:mt-3x;
       @extend %sm\:mt-1x;
 
       > div {
