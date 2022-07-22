@@ -20,6 +20,7 @@ class EventBooked
    */
   public function __construct(User $user, Event $event)
   {
+    $event = Event::with('course')->find($event->id);
     $this->user = $user;
     $this->event = $event;
   }

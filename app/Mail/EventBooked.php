@@ -30,7 +30,7 @@ class EventBooked extends Mailable
   public function build()
   {
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject('Event Booking Confirmation')
+                ->subject(__('Bestätigung Kurs ') . $this->data->course->title)
                 ->with(['data' => $this->data])
                 ->markdown('mail.booking.confirmation');
   }

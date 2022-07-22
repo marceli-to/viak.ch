@@ -47,6 +47,15 @@ Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview']
 Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
 Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');
 
+// Test routes
+Route::get('/notification', [TestController::class, 'notify']);
+Route::get('/notification/process', [TestController::class, 'process']);
+Route::get('/notification/booked', [TestController::class, 'booked']);
+
+Route::get('/mailable', function () {
+  $event = \App\Models\Event::with('course')->first();
+  return new App\Mail\EventBooked($event);
+});
 
 /*
 |--------------------------------------------------------------------------

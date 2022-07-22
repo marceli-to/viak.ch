@@ -7,20 +7,45 @@
 <meta name="supported-color-schemes" content="light">
 <style>
 @media only screen and (max-width: 660px) {
-.inner-body {
-width: 100% !important;
+
+  body {
+    font-size: 14px !important; 
+  }
+
+  p {
+    font-size: 14px !important; 
+    margin: 0 0 14px 0 !important;
+  }
+
+  .wrapper {
+    padding: 0 8px !important;
+  }
+
+  .header {
+    padding-bottom: 16px !important;
+  }
+  
+  .content-inner {
+    padding: 24px 0 !important;
+  }
+
+  .inner-body {
+    width: 100% !important;
+  }
+
+  .content-cell {
+    padding: 16px !important;
+  }
+
+  .content-table td:first-of-type {
+    width: 80px !important;
+  }
+
+  h1 {
+    font-size: 16px !important;
+  }
 }
 
-.footer {
-width: 100% !important;
-}
-}
-
-/* @media only screen and (max-width: 500px) {
-.button {
-width: 100% !important;
-}
-} */
 </style>
 </head>
 <body>
@@ -29,21 +54,23 @@ width: 100% !important;
 <tr>
 <td align="center">
 <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-
 <!-- Email Body -->
 <tr>
 <td class="body" width="100%" cellpadding="0" cellspacing="0">
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+<table class="inner-body" align="center" width="600" cellpadding="0" cellspacing="0" role="presentation">
 <!-- Body content -->
 <tr>
 <td class="content-cell">
+{{ $header ?? '' }}
+<div class="content-inner">
 {{ Illuminate\Mail\Markdown::parse($slot) }}
+</div>
+{{ $footer ?? '' }}
 </td>
 </tr>
 </table>
 </td>
 </tr>
-{{ $footer ?? '' }}
 </table>
 </td>
 </tr>

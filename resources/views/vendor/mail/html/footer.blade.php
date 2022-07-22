@@ -1,11 +1,4 @@
-<tr>
-<td>
-<table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
-<tr>
-<td class="content-cell" align="center">
-{{ Illuminate\Mail\Markdown::parse($slot) }}
-</td>
-</tr>
-</table>
-</td>
-</tr>
+<div class="footer">
+<p>Visualisierungs-Akademie<br>Limmatstrasse 29<br>CH-8005 Zürich</p>
+<p><a href="tel:+41435014040" target="_blank" title="Telefon">+41 43 501 40 40</a><br><a href="mailto:hallo@visualisierungs-akademie.ch" target="_blank" title="E-Mail">hallo@visualisierungs-akademie.ch</a></p>
+</div>
