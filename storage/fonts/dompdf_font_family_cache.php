@@ -82,11 +82,17 @@ return array (
     'normal' => $fontDir . '/ocrbregular-normal_52b74ff25e66b8272cd810f48714ec8a',
   ),
   'calibriregular' => array(
-    'normal' => $fontDir . '/calibriregular_normal_cde5c87a2de387372a5915a312070a0b',
+    'normal' => $fontDir . '/calibriregular_normal_d0c601ed89fe6fb1ddc7b680a26306f5',
   ),
   'calibribold' => array(
     'normal' => $fontDir . '/calibribold_normal_0ee0a87666611571ab0d1fa1298a0f5e',
-    'bold' => $fontDir . '/calibribold_bold_0ee0a87666611571ab0d1fa1298a0f5e',
+    'bold' => $fontDir . '/calibribold_bold_edd4e62e65ad1d10f9a6a1dd0521a923',
+  ),
+  'effraregular' => array(
+    'normal' => $fontDir . '/effraregular_normal_70b9da2dcc7f4d7ada5836f9559b9d64',
+  ),
+  'effrabold' => array(
+    'bold' => $fontDir . '/effrabold_bold_f077803178fd74236d4536c99aae9f54',
   ),
 );
 }; ?>

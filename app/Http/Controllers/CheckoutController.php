@@ -6,7 +6,7 @@ use App\Models\Event;
 use App\Stores\BasketStore;
 use Illuminate\Http\Request;
 
-class StudentController extends BaseController
+class CheckoutController extends BaseController
 {
   protected $viewPath = 'web.pages.checkout.';
 

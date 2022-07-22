@@ -83,9 +83,9 @@
               16:9
             </a>
             <a href="javascript:;" 
-              @click.prevent="changeRatio(3,2)" 
+              @click.prevent="changeRatio(1,1)" 
               class="btn-crop-format">
-              3:2
+              1:1
             </a>
           </div>
           <div class="media-uploads-cropper__info">{{ cropW }} x {{ cropH }}px</div>

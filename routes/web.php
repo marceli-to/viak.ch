@@ -11,9 +11,8 @@ use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ImageController;
-
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TestController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +40,13 @@ Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('p
 
 // Url based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
+
+// PDF Documents
+Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
+Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
+Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
+Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');
+
 
 /*
 |--------------------------------------------------------------------------
