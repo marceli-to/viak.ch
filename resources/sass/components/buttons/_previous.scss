@@ -6,6 +6,9 @@
 
 .btn-previous {
   @extend %link;
+  @extend %fs-16x;
+  @extend %sm\:fs-18x;
+  @extend %md\:fs-24x;
   align-items: center;
   color: $color-primary;
   display: flex;

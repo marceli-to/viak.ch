@@ -15,10 +15,10 @@
   @extend %sm\:pt-4x;
   @extend %mt-8x;
   @extend %sm\:mt-12x;
-  @extend %sm\:grid-cols-12;
+  @extend %grid-cols-12;
 
   > div {
-    @extend %sm\:span-6;
+    @extend %span-6;
     display: flex;
     justify-content: flex-end;
 
