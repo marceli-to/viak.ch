@@ -24,22 +24,22 @@
     @extend %sm\:grid-cols-12;
   }
 
-  .card-event__col {
+  .card__col {
     @extend %sm\:span-4;
 
-    &.card-event__col--action {
+    &.card__col--action {
       @extend %md\:flex;
       @extend %items-start;
       @extend %justify-between;
     }
   }
 
-  .card-event__icon {
+  .card__icon {
     @extend %sm\:pr-4x;
     @extend %sm\:pt-1x;
   }
 
-  .card-event__action {
+  .card__action {
     @extend %xs\:mt-6x;
     @extend %sm\:mt-4x;
     @extend %md\:mt-0;
@@ -61,7 +61,7 @@
 
 @include bp-xs() {
   .card-event {
-    .card-event__icon {
+    .card__icon {
       right: 0;
       position: absolute;
       top: $space-3x;
@@ -69,17 +69,17 @@
   }
 }
 
-.card-event-booking {
+.card-checkout {
   @extend %card-event;
 
-  .card-event__col {
+  .card__col {
 
-    &.card-event__col--action {
+    &.card__col--action {
       @include bp-sm() {
         display: flex;
         justify-content: flex-end;
 
-        .card-event__action {
+        .card__action {
           margin-top: 0;
           margin-left: $space-8x;
         }

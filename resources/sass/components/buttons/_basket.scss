@@ -1,30 +1,44 @@
 /**
  * -----------------------------------------------------------------------------
- * File: components/buttons/next
+ * File: components/buttons/basket
  * -----------------------------------------------------------------------------
  */
 
-.btn-next {
+.btn-next,
+.btn-previous {
   @extend %link;
   @extend %fs-16x;
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
+  @extend %py-3x;
+  @extend %sm\:py-4x;
   align-items: center;
   color: $color-primary;
   display: flex;
   @include font-bold();
+  line-height: 1 !important;
+  
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+.btn-next {
 
   span {
     @extend %mr-2x;
     @extend %sm\:mr-3x;
   }
 
-  &:hover {
-    color: $color-secondary;
-  }
-
   &.btn-next-wide {
     justify-content: space-between;
     width: 100%;
+  }
+}
+
+.btn-previous {
+  span {
+    @extend %ml-2x;
+    @extend %sm\:ml-3x;
   }
 }

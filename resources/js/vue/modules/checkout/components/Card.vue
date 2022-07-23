@@ -1,10 +1,9 @@
 <template>
-  <article class="card-event-booking" data-touch>
+  <article class="card-checkout" data-touch>
     <div>
-      <div class="card-event__col">
+      <div class="card__col">
         <div>
           <h2>{{ $props.event.course.title }}</h2>
-
           <template v-if="$props.event.dates">
             <template v-if="$props.event.dates.length == 1">
               {{ $props.event.dates[0].date }}<span class="sm:hide !md:inline-block">, {{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}</span>
@@ -20,7 +19,7 @@
           </template>
         </div>
       </div>
-      <div class="card-event__col">
+      <div class="card__col">
         <template v-if="$props.event.online">
           {{ __('Online') }}
         </template>
@@ -28,11 +27,11 @@
           {{ $props.event.location.description }}
         </template>
       </div>
-      <div class="card-event__col card-event__col--action">
+      <div class="card__col card__col--action">
         <div>
           CHF {{ $props.event.fee}}
         </div>
-        <div class="card-event__action">
+        <div class="card__action">
           <slot />
         </div>
       </div>

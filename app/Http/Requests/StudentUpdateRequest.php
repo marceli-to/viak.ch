@@ -27,7 +27,7 @@ class StudentUpdateRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
-      'invoice_address' => 'required_if:has_invoice_address,true',
+      'invoice_address' => 'required_if:has_invoice_address,1',
       'gender_id' =>  'required|exists:App\Models\Gender,id'
     ];
   }

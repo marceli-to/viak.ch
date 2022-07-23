@@ -8,6 +8,9 @@
 
   h2, a, select {
     @extend %fs-16x;
+  }
+
+  h2, a:not([class*="btn-"]), select {
     @include font-regular();
   }
   

@@ -1,4 +1,5 @@
 @extends('web.layout.frontend')
+@section('page_title', __('Kontakt'))
 @section('content')
 <section class="content content--contact">
   <x-article-text-media 

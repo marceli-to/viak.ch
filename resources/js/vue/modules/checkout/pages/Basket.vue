@@ -1,20 +1,33 @@
 <template>
   <div v-if="isLoaded">
     <template v-if="events.length > 0">
-      <event-card v-for="event in events" :key="event.uuid" :event="event">
+
+      <checkout-header>
+        <template #title>
+          {{ __('Bestellübersicht') }}
+        </template>
+        <template #step>
+          {{ __('Schritt') }} 1/4
+        </template>
+      </checkout-header>
+
+      <checkout-card v-for="event in events" :key="event.uuid" :event="event">
         <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove(event.uuid)">
           {{ __('Entfernen') }}
         </a>
-      </event-card>
-      <div class="checkout-buttons">
+      </checkout-card>
+
+      <checkout-footer>
         <router-link :to="{ name: 'checkout-user' }" class="btn-next btn-next-wide span-12">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
         </router-link>
-      </div>
+      </checkout-footer>
+
     </template>
+
     <template v-else>
-      <div class="checkout-basket-empty">
+      <div class="checkout__basket-empty">
         {{ __('Dein Warenkorb ist leer...') }}
       </div>
     </template>
@@ -25,18 +38,18 @@ import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import BasketCounter from "@/shared/mixins/BasketCounter";
 import i18n from "@/shared/mixins/i18n";
-import Grid from "@/shared/components/ui/layout/Grid.vue";
-import GridCol from "@/shared/components/ui/layout/GridCol.vue";
-import EventCard from "@/modules/checkout/components/EventCard.vue";
+import CheckoutCard from "@/modules/checkout/components/Card.vue";
+import CheckoutHeader from "@/modules/checkout/components/Header.vue";
+import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
 
   components: {
     NProgress,
-    Grid,
-    GridCol,
-    EventCard,
+    CheckoutCard,
+    CheckoutHeader,
+    CheckoutFooter,
     IconArrowRight
   },
 

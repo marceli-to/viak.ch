@@ -1,14 +1,14 @@
 <article class="card-event" data-touch>
   <div>
-    <div class="card-event__col">
+    <div class="card__col">
       <div class="{{ $state ? 'sm:flex' : '' }}">
         @if ($state == 'bookmark')
-          <div class="card-event__icon">
+          <div class="card__icon">
             @include('web.partials.icons.heart')
           </div>
         @endif
         @if ($state == 'booked')
-          <div class="card-event__icon">
+          <div class="card__icon">
             @include('web.partials.icons.checkmark')
           </div>
         @endif
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class="card-event__col">
+    <div class="card__col">
       @if ($event->online)
         {{ __('Online') }}
       @else
@@ -51,7 +51,7 @@
         @endif
       @endif
     </div>
-    <div class="card-event__col card-event__col--action">
+    <div class="card__col card__col--action">
       <div>
         @if ($event->fee)
           CHF {{ $event->fee }}
@@ -59,7 +59,7 @@
           CHF {{ $event->course->fee }}
         @endif
       </div>
-      <div class="card-event__action">
+      <div class="card__action">
         <basket-button uuid="{{ $event->uuid }}" :exists="{{ $exists }}" />
       </div>
     </div>

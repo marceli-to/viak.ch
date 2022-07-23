@@ -7,29 +7,35 @@
 .checkout {
   @extend %mt-12x;
   @extend %md\:mt-16x;
-}
 
-.checkout-buttons {
-  border-top: 2px solid $color-tertiary;
-  @extend %pt-2x;
-  @extend %sm\:pt-4x;
-  @extend %mt-8x;
-  @extend %sm\:mt-12x;
-  @extend %grid-cols-12;
-
-  > div {
-    @extend %span-6;
+  .checkout__header {
+    @extend %sm\:fs-16x;
+    @extend %md\:fs-18x;
+    @include font-bold();
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+  }
 
-    &:first-of-type {
-      justify-content: flex-start;
+  .checkout__buttons {
+    border-top: 2px solid $color-tertiary;
+    @extend %mt-8x;
+    @extend %sm\:mt-12x;
+    @extend %grid-cols-12;
+  
+    > div {
+      @extend %span-6;
+      display: flex;
+      justify-content: flex-end;
+  
+      &:first-of-type {
+        justify-content: flex-start;
+      }
     }
   }
-}
-
-.checkout-basket-empty {
-  @extend %mt-3x;
-  @extend %sm\:mt-6x;
-  @extend %md\:mt-9x;
+  
+  .checkout__basket-empty {
+    @extend %mt-3x;
+    @extend %sm\:mt-6x;
+    @extend %md\:mt-9x;
+  }
 }
