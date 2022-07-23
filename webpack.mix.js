@@ -35,3 +35,6 @@ mix.js('resources/js/vue/modules/student/basket/Index.js', 'public/assets/js/stu
 
 // Expert: profile.js
 mix.js('resources/js/vue/modules/expert/profile/Index.js', 'public/assets/js/expert/profile.js').version();
+
+// Checkout
+mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();

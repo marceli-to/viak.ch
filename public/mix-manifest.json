@@ -1,9 +1,10 @@
 {
     "/assets/js/app.js": "/assets/js/app.js?id=cd9cda4fe22115a8b4a2",
     "/assets/css/app.css": "/assets/css/app.css?id=d3aab9835e863e62b024",
-    "/assets/js/expert/profile.js": "/assets/js/expert/profile.js?id=35fd35ccd21b0378b5b8",
-    "/assets/js/filter.js": "/assets/js/filter.js?id=62e16585f5565faaae30",
-    "/assets/js/student/basket.js": "/assets/js/student/basket.js?id=e850abd8e63a0d09a0ba",
-    "/assets/js/student/profile.js": "/assets/js/student/profile.js?id=085e39a5a6998b48fcc4",
-    "/assets/js/student/register.js": "/assets/js/student/register.js?id=d8446889fedcacf4297f"
+    "/assets/js/expert/profile.js": "/assets/js/expert/profile.js?id=a1051ed9c472c6b6437f",
+    "/assets/js/filter.js": "/assets/js/filter.js?id=54d2d7c2f1a0d5556cb6",
+    "/assets/js/global/checkout.js": "/assets/js/global/checkout.js?id=cdefff271e810e7e8aef",
+    "/assets/js/student/basket.js": "/assets/js/student/basket.js?id=a4186374207162c589ca",
+    "/assets/js/student/profile.js": "/assets/js/student/profile.js?id=5a1dbcfa9b218207a78c",
+    "/assets/js/student/register.js": "/assets/js/student/register.js?id=5cc31aad7eea223b7e50"
 }

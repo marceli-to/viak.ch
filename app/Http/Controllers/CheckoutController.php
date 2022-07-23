@@ -15,9 +15,9 @@ class CheckoutController extends BaseController
    * @return \Illuminate\Http\Response
    */
 
-  public function basket()
+  public function index()
   {
-    return view($this->viewPath . 'basket');
+    return view($this->viewPath . 'index');
   }
 
 }

@@ -1,4 +1,4 @@
-require('@/modules/course/filter/bootstrap');
+require('@/shared/bootstrap');
 
 // Vue
 import Vue from 'vue';
