@@ -51,7 +51,7 @@
         @endif
       @endif
     </div>
-    <div class="card-event__col card-event__col--cta">
+    <div class="card-event__col card-event__col--action">
       <div>
         @if ($event->fee)
           CHF {{ $event->fee }}

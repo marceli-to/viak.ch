@@ -4,7 +4,10 @@
  * -----------------------------------------------------------------------------
  */
 
+%card-event,
 .card-event {
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
   @extend %mt-4x;
   @extend %pt-2x;
   @extend %sm\:mt-8x;
@@ -24,7 +27,7 @@
   .card-event__col {
     @extend %sm\:span-4;
 
-    &.card-event__col--cta {
+    &.card-event__col--action {
       @extend %md\:flex;
       @extend %items-start;
       @extend %justify-between;
@@ -40,6 +43,10 @@
     @extend %xs\:mt-6x;
     @extend %sm\:mt-4x;
     @extend %md\:mt-0;
+  }
+
+  h2 {
+    @include font-bold();
   }
 
   a:not([class*="btn-"]) {
@@ -61,3 +68,23 @@
     }
   }
 }
+
+.card-event-booking {
+  @extend %card-event;
+
+  .card-event__col {
+
+    &.card-event__col--action {
+      @include bp-sm() {
+        display: flex;
+        justify-content: flex-end;
+
+        .card-event__action {
+          margin-top: 0;
+          margin-left: $space-8x;
+        }
+      }
+    }
+  }
+}
+

@@ -5,5 +5,20 @@
  */
 
 .checkout {
-  
+  @extend %mt-12x;
+  @extend %md\:mt-16x;
+}
+
+.checkout-buttons {
+  border-top: 2px solid $color-tertiary;
+  @extend %pt-2x;
+  @extend %sm\:pt-4x;
+  @extend %mt-8x;
+  @extend %sm\:mt-12x;
+}
+
+.checkout-basket-empty {
+  @extend %mt-3x;
+  @extend %sm\:mt-6x;
+  @extend %md\:mt-9x;
 }

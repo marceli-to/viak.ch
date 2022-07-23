@@ -27,7 +27,14 @@ class BasketController extends Controller
 
   public function get()
   {
-    return response()->json($this->store->getItems());
+    $items = $this->store->getItems();
+    $events = [];
+    foreach($items as $item)
+    {
+      $events[] = Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item)->first();
+    }
+    
+    return response()->json($this->map($events));
   }
 
   /**
@@ -56,4 +63,38 @@ class BasketController extends Controller
     return response()->json($this->store->get());
   }
 
+  /**
+   * Map data for JSON output
+   * 
+   * @param Collection events
+   * @return Array
+   */
+  private function map($events)
+  {
+    $data = collect($events)->map(function($event) {
+      return [
+        'uuid' => $event->uuid,
+        'date' => $event->date,
+        'fee'  => $event->fee ? $event->fee : $event->course->fee,
+        'online' => $event->online ? TRUE : FALSE,
+        'location' => [
+          'description' => $event->location ? $event->location->description : NULL,
+          'address' => $event->location ? $event->location->address : NULL,
+        ],
+        'dates' => $event->dates->map(function($date) {
+          return [
+            'date' => $date->date,
+            'time_start' => $date->time_start,
+            'time_end' => $date->time_end,
+          ];
+        }),
+        'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
+        'course' => [
+          'title' => $event->course->title,
+        ],
+      ];
+    });
+
+    return $data;
+  }
 }

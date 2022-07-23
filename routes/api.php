@@ -23,7 +23,10 @@ use App\Http\Controllers\Api\ImageController;
 */
 
 // Basket
-Route::get('/basket', [BasketController::class, 'get']);
+Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
+  Route::get('/basket', [BasketController::class, 'get']);
+});
+
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
 Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 

@@ -7,7 +7,7 @@
       <h1 class="xs:hide">{{ __('Mein Warenkorb') }}</h1>
     </aside>
   </article>
-  <div id="app-checkout">
+  <div class="checkout" id="app-checkout">
     <checkout-component />
   </div>
 </section>

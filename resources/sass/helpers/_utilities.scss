@@ -31,6 +31,13 @@
   }
 }
 
+%\!md\:inline-block,
+.\!md\:inline-block {
+  @include bp-md() {
+    display: inline-block !important;
+  }
+}
+
 %\!hide,
 .\!hide {
   display: none !important;
