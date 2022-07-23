@@ -15,6 +15,17 @@
   @extend %sm\:pt-4x;
   @extend %mt-8x;
   @extend %sm\:mt-12x;
+  @extend %sm\:grid-cols-12;
+
+  > div {
+    @extend %sm\:span-6;
+    display: flex;
+    justify-content: flex-end;
+
+    &:first-of-type {
+      justify-content: flex-start;
+    }
+  }
 }
 
 .checkout-basket-empty {

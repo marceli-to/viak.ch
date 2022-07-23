@@ -5,10 +5,23 @@
  */
 
 .btn-next {
+  @extend %link;
+  align-items: center;
   color: $color-primary;
+  display: flex;
   @include font-bold();
+
+  span {
+    @extend %mr-2x;
+    @extend %sm\:mr-3x;
+  }
 
   &:hover {
     color: $color-secondary;
+  }
+
+  &.btn-next-wide {
+    justify-content: space-between;
+    width: 100%;
   }
 }

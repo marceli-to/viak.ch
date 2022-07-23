@@ -1,0 +1,22 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/buttons/previous
+ * -----------------------------------------------------------------------------
+ */
+
+.btn-previous {
+  @extend %link;
+  align-items: center;
+  color: $color-primary;
+  display: flex;
+  @include font-bold();
+
+  span {
+    @extend %ml-2x;
+    @extend %sm\:ml-3x;
+  }
+
+  &:hover {
+    color: $color-secondary;
+  }
+}

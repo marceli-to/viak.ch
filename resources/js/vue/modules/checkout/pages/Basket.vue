@@ -6,14 +6,12 @@
           {{ __('Entfernen') }}
         </a>
       </event-card>
-      <grid class="checkout-buttons sm:grid-cols-12">
-        <grid-col class="sm:span-12">
-          <router-link :to="{ name: 'checkout-user' }" class="btn-next icon-arrow-right:after span-12">
-            <span>{{ __('Weiter') }}</span>
-            <icon-arrow-right />
-          </router-link>
-        </grid-col>
-      </grid>
+      <div class="checkout-buttons">
+        <router-link :to="{ name: 'checkout-user' }" class="btn-next btn-next-wide span-12">
+          <span>{{ __('Weiter') }}</span>
+          <icon-arrow-right />
+        </router-link>
+      </div>
     </template>
     <template v-else>
       <div class="checkout-basket-empty">
@@ -86,5 +84,4 @@ export default {
     },
   },
 }
-
 </script>
