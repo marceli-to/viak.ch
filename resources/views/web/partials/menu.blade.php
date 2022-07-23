@@ -18,9 +18,9 @@
         <li>
           <a href="{{ route('page.contact') }}" class="{{ request()->routeIs('page.contact') ? 'is-active' : '' }}">{{ __('Kontakt') }}</a>
         </li>
-        <li>
-          <a href="{{route('pdf.invoice')}}?v={{time()}}">PDF</a>
-        </li>
+        {{-- <li>
+          <a href="{{route('pdf.student-attendance-confirmation')}}?v={{time()}}">PDF</a>
+        </li> --}}
       </ul>
       <ul>
         <x-menu-item-basket />

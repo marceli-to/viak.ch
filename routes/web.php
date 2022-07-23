@@ -36,7 +36,6 @@ Route::get('/student/register', [StudentController::class, 'register'])->name('p
 Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student', 'verified']);
 
 Route::get('/checkout/basket', [CheckoutController::class, 'basket'])->name('page.checkout.basket');
-Route::get('/checkout/address', [CheckoutController::class, 'address'])->name('page.checkout.user')->middleware(['role:student', 'verified']);
 
 // Url based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
@@ -46,16 +45,6 @@ Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConf
 Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
 Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
 Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');
-
-// Test routes
-Route::get('/notification', [TestController::class, 'notify']);
-Route::get('/notification/process', [TestController::class, 'process']);
-Route::get('/notification/booked', [TestController::class, 'booked']);
-
-Route::get('/mailable', function () {
-  $event = \App\Models\Event::with('course')->first();
-  return new App\Mail\EventBooked($event);
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -96,10 +85,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   // Routes for testing
   Route::get('/administration/test', [TestController::class, 'test'])->middleware(['role:admin,student,expert']);
-  Route::get('/administration/notify', [TestController::class, 'notify'])->middleware(['role:admin,student,expert']);
-  Route::get('/administration/notify/process', [TestController::class, 'process'])->middleware(['role:admin,student,expert']);
-  Route::get('/administration/booked', [TestController::class, 'booked'])->middleware(['role:admin,student,expert']);
-
   Route::get('/administration/models', [TestController::class, 'models'])->middleware(['role:admin,student,expert']);
   Route::get('/administration/search', [TestController::class, 'search'])->middleware(['role:admin,student,expert']);
 
@@ -109,3 +94,13 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 });
 
 
+
+// Test routes
+Route::get('/notification', [TestController::class, 'notify']);
+Route::get('/notification/process', [TestController::class, 'process']);
+Route::get('/notification/booked', [TestController::class, 'booked']);
+
+Route::get('/mailable', function () {
+  $event = \App\Models\Event::with('course')->first();
+  return new App\Mail\EventBooked($event);
+});

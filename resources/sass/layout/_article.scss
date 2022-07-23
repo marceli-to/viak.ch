@@ -4,19 +4,24 @@
  * -----------------------------------------------------------------------------
  */
 
-// Article with text/media
+// Articles' shared attributes
+article.text,
 article.text-media {
   @extend %fs-16x;
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
+
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+// Article with text/media
+article.text-media {
   color: $color-secondary;
 
   h1, h2, p {
     color: $color-secondary;
-  }
-
-  h1 {
-    margin-bottom: 0;
   }
 
   figure {
@@ -78,15 +83,11 @@ article.text-media {
 
 // Article with text only
 article.text {
-  @extend %fs-16x;
-  @extend %sm\:fs-18x;
-  @extend %md\:fs-24x;
   color: $color-primary;
   position: relative;
   
   h1 {
     color: $color-secondary;
-    margin-bottom: 0;
   }
 
   .text__content {

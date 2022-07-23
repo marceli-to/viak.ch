@@ -7,4 +7,5 @@
 h1 {
   @extend %mb-3x;
   @include font-bold();
+  color: $color-secondary;
 }

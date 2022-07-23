@@ -9,6 +9,16 @@ class Media
 { 
 
   /**
+   * The temp upload directory.
+   */
+  protected $temp_directory;
+
+  /**
+   * The upload directory.
+   */
+  protected $upload_directory;
+
+  /**
    * The upload path
    */
   protected $upload_path;
@@ -37,21 +47,25 @@ class Media
    */
   public function __construct($opts = array())
   {
-    $this->upload_path = storage_path('app/public/uploads');
+    $this->upload_path = storage_path('app/public/temp');
+    $this->temp_directory = 'public/temp';
+    $this->upload_directory = 'public/uploads';
+
+    if (!File::isDirectory($this->upload_path))
+    {
+      File::makeDirectory(
+        $this->upload_path, 0775, true, true
+      );
+    }
 
     if (isset($opts['force_lowercase']))
     {
       $this->force_lowercase = $opts['force_lowercase'];
     }
 
-    if (isset($opts['folder']))
+    if (isset($opts['directory']))
     {
-      $this->upload_path = storage_path('app/files/' . $opts['folder']);
-    }
-
-    if (!File::isDirectory($this->upload_path))
-    {
-      File::makeDirectory($this->upload_path, 0775, true, true);
+      $this->upload_path = storage_path('app/files/' . $opts['directory']);
     }
 
   }
@@ -60,10 +74,9 @@ class Media
    * Store a file to the storage
    * 
    * @param  \Illuminate\Http\Request $request
-   * @param  String $destinationFolder
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request, $destinationFolder = NULL)
+  public function store(Request $request)
   {
     $file = $request->file('file');
     $name = $this->sanitize(trim($file->getClientOriginalName()), $this->force_lowercase);
@@ -75,7 +88,9 @@ class Media
 
     if (in_array(strtolower($filetype), $this->image_types))
     {
-      $img = \Image::make($this->upload_path . DIRECTORY_SEPARATOR . $filename);
+      $img = \Image::make(
+        $this->upload_path . DIRECTORY_SEPARATOR . $filename
+      );
       $orientation = $img->width() >= $img->height() ? 'l' : 'p';
     }
 
@@ -95,7 +110,10 @@ class Media
    */
   public function copy($filename = NULL)
   {
-    return Storage::move('public/uploads/temp' . DIRECTORY_SEPARATOR . $filename, 'public/uploads' . DIRECTORY_SEPARATOR . $filename);
+    return Storage::move(
+      $this->temp_directory . DIRECTORY_SEPARATOR . $filename, 
+      $this->upload_directory . DIRECTORY_SEPARATOR . $filename
+    );
   }
 
   /**
@@ -108,9 +126,13 @@ class Media
     foreach($files as $file)
     {
       if ($temp) {
-        return Storage::delete('public/uploads/temp' . DIRECTORY_SEPARATOR . $file->name);
+        return Storage::delete(
+          $this->temp_directory . DIRECTORY_SEPARATOR . $file->name
+        );
       }
-      return Storage::delete('public/uploads' . DIRECTORY_SEPARATOR . $file->name);
+      return Storage::delete(
+        $this->upload_directory . DIRECTORY_SEPARATOR . $file->name
+      );
     }
   }
 
@@ -121,10 +143,16 @@ class Media
    */
   public function remove($filename = NULL, $temp = FALSE)
   {
-    if ($temp) {
-      return Storage::delete('public/uploads/temp' . DIRECTORY_SEPARATOR . $filename);
+    if ($temp)
+    {
+      return Storage::delete(
+        $this->temp_directory . DIRECTORY_SEPARATOR . $filename
+      );
     }
-    return Storage::delete('public/uploads' . DIRECTORY_SEPARATOR . $filename);
+
+    return Storage::delete(
+      $this->upload_directory . DIRECTORY_SEPARATOR . $filename
+    );
   }
 
   /**
@@ -135,7 +163,9 @@ class Media
    */
   public function download($folder = NULL, $filename = NULL)
   {
-    return Storage::download($this->download_path . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename);
+    return Storage::download(
+      $this->download_path . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $filename
+    );
   }
 
   /**

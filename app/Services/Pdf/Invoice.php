@@ -31,10 +31,10 @@ class Invoice extends PdfService
     // Load view and save file to disk
     $pdf = DomPDF::loadView('pdf.invoice.invoice', $this->viewData);
     $file = 'viak-rechnung-' . date('dmY', time()) . '-' . \Str::random(12) . '.pdf';
-    $pdf->save(public_path() . '/storage/temp/' . $file);
+    $pdf->save($this->storageFolder . $file);
     
     return [
-      'path' => public_path() . '/storage/temp/' . $file,
+      'path' => $this->storageFolder . $file,
       'name' => $file
     ];
   }

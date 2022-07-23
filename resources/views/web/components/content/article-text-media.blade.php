@@ -7,7 +7,7 @@
   <div class="text-media__content">
     <aside>
       @if ($title)
-        <h1>{{ $title }}
+        <h1>{{ $title }}</h1>
       @endif
       @if ($subtitle)
         <h2>{{ $subtitle }}</h2>

@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Storage;
 
 class Pdf
 {
+  protected $storageFolder;
+
   public function __construct()
   {
-    // Create storage folder if not already existing
-    if (!File::isDirectory(storage_path('app/public/temp')))
+    $this->storageFolder = public_path() . '/storage/files/';
+
+    if (!File::isDirectory(storage_path('app/public/files')))
     {
-      File::makeDirectory(storage_path('app/public/temp'), 0775, true, true);
+      File::makeDirectory(storage_path('app/public/files'), 0775, true, true);
     }
   }
   
@@ -30,10 +33,10 @@ class Pdf
     $this->viewData['data'] = $data;
     $pdf = DomPDF::loadView('pdf.' . $view, $this->viewData);
     $file = 'viak-'. $name .'-' . date('dmY', time()) . '-' . \Str::random(12) . '.pdf';
-    $pdf->save(public_path() . '/storage/temp/' . $file);
+    $pdf->save($this->storageFolder . $file);
 
     return [
-      'path' => public_path() . '/storage/temp/' . $file,
+      'path' => $this->storageFolder . $file,
       'name' => $file
     ];
   }

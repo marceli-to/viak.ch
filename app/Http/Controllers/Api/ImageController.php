@@ -53,6 +53,10 @@ class ImageController extends Controller
     // Create image
     $image = Image::create($data);
     $image->save();
+
+    // Move image from temp folder
+    (new Media())->copy($image->name);
+
     return response()->json(['imageId' => $image->id]);
   }
 

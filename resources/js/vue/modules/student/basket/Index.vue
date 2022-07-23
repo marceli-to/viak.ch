@@ -34,6 +34,12 @@ export default {
         put: '/api/basket',
         delete: '/api/basket'
       },
+
+      selectors: {
+        menu: '.js-basket',
+        icon: '.js-basket-counter',
+        counter: '.js-basket-counter > em'
+      }
     }
   },
 
@@ -76,17 +82,19 @@ export default {
     },
 
     counter(count) {
-      const icon    = document.querySelector('.js-basket-counter');
-      const counter = document.querySelector('.js-basket-counter > em');
+      const menu    = document.querySelector(this.selectors.menu)
+      const icon    = document.querySelector(this.selectors.icon);
+      const counter = document.querySelector(this.selectors.counter);
 
-      if (count > 0)
-      {
+      if (count > 0) {
         counter.innerHTML = count;
         icon.classList.add('has-items');
+        menu.classList.remove('!hide');
       }
       else {
-        counter.innerHTML = count;
+        counter.innerHTML = '';
         icon.classList.remove('has-items');
+        menu.classList.add('!hide')
       }
     },
 

@@ -248,11 +248,6 @@ class TestController extends BaseController
     return view($this->viewPath . 'courses.index', ['courses' => $courses]);
   }
 
-  public function course()
-  {
-    return view($this->viewPath . 'courses.show');
-  }
-
   public function search()
   {
     $courses = Course::with('events.location', 'events.dates', 'events.experts', 'categories')->get();
