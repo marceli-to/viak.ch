@@ -14,12 +14,12 @@
               </div>
             </template>
           </template>
-          <template v-if="$props.event.experts">
-            <div>{{ $props.event.experts }}</div>
-          </template>
         </div>
       </div>
       <div class="card__col">
+        <template v-if="$props.event.experts">
+          <div>{{ $props.event.experts }}</div>
+        </template>
         <template v-if="$props.event.online">
           {{ __('Online') }}
         </template>

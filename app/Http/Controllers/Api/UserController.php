@@ -11,6 +11,7 @@ class UserController extends Controller
   /**
    * Get users info by authenticated user
    */
+  
   public function find()
   {
     $user = User::findOrFail(auth()->user()->id);

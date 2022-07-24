@@ -12,13 +12,13 @@ class StudentController extends Controller
    * 
    * @return \Illuminate\Http\Response
    */
-  public function find()
+  public function find($map = FALSE)
   { 
     $user = User::findOrFail(auth()->user()->id);
-    return response()->json($user);
+    return response()->json($map ? $this->map($user) : $user);
   }
 
-/**
+  /**
    * Update a user
    * 
    * @param StudentUpdateRequest $request
@@ -32,6 +32,26 @@ class StudentController extends Controller
     ]));
     $user->save();
     return response()->json($user->uuid);
+  }
+
+  /**
+   * Map data for JSON output
+   * 
+   * @param User user
+   * @return Array
+   */
+  private function map(User $user)
+  {
+    return [
+      'uuid' => $user->uuid,
+      'name' => $user->name,
+      'firstname'  => $user->firstname,
+      'fullname'  => $user->fullname,
+      'address' => $user->address,
+      'invoice_address' => $user->invoice_address,
+      'email' => $user->email,
+      'phone' => $user->phone,
+    ];
   }
 
 }
