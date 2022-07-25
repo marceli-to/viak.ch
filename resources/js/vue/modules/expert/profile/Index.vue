@@ -54,7 +54,7 @@
         </form-group>
       </grid>
 
-      <collabsible class="mt-6x">
+      <collapsible class="mt-6x">
         <template #title>
           {{ __('Über') }}
         </template>
@@ -70,9 +70,9 @@
             ></tinymce-editor>
           </form-group>
         </template>
-      </collabsible>
+      </collapsible>
 
-      <collabsible>
+      <collapsible>
         <template #title>
           {{ __('Biographie') }}
         </template>
@@ -85,9 +85,9 @@
             ></tinymce-editor>
           </form-group>
         </template>
-      </collabsible>
+      </collapsible>
 
-      <collabsible>
+      <collapsible>
         <template #title>
           {{ __('Profilbild') }}
         </template>
@@ -100,7 +100,7 @@
             :images="form.images">
           </images>
         </template>
-      </collabsible>
+      </collapsible>
       
       <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
         <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
@@ -148,7 +148,7 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
-import Collabsible from "@/shared/components/ui/layout/Collabsible.vue";
+import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
@@ -163,7 +163,7 @@ export default {
     Grid,
     GridCol,
     ArticleText,
-    Collabsible,
+    Collapsible,
     FormGroup,
     FormGroupHeader,
     FormError,

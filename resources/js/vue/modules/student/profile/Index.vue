@@ -1,112 +1,143 @@
 <template>
-<article-text>
-  <template #icon>
-    <a href="" class="icon-edit" @click.prevent="toggleForm()">
-      <icon-edit />
-    </a>
-  </template>
-  <template #aside>
-    <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
-    <div class="sm:mt-10x md:mt-20x">
-      <a :href="routes.logout" class="icon-arrow-right:below" :title="__('Logout')">
-        <span>{{ __('Logout') }}</span>
-        <icon-arrow-right />
+<div>
+  <article-text>
+    <template #icon>
+      <a href="" class="icon-edit" @click.prevent="toggleForm()">
+        <icon-edit />
       </a>
-    </div>
-  </template>
-  <template #content v-if="isEdit">
-    <form method="POST">
-      <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender_id">
-        <div class="select-wrapper">
-          <select v-model="form.gender_id" @change="removeError('gender_id')">
-            <option 
-              v-for="(option) in settings.genders" 
-              :key="option.id" 
-              :value="option.id">
-              {{option.description[_getLocale()]}}
-            </option>
-          </select>
-        </div>
-      </form-group>
-      <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
-        <input type="text" v-model="form.firstname" required @focus="removeError('firstname')" />
-      </form-group>
-      <form-group :label="__('Name')" :required="true" :error="errors.name">
-        <input type="text" v-model="form.name" required @focus="removeError('name')" />
-      </form-group>
-      <form-group :label="__('Telefon')">
-        <input type="text" v-model="form.phone" maxlength="15" />
-      </form-group>
-      <grid class="sm:grid-cols-12">
-        <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">
-          <input type="text" v-model="form.street" required @focus="removeError('street')" />
-        </form-group>
-        <form-group :label="__('Nr.')" class="span-6">
-          <input type="text" v-model="form.street_no" maxlength="5" />
-        </form-group>
-      </grid>
-      <grid class="sm:grid-cols-12">
-        <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.zip">
-          <input type="text" v-model="form.zip" required maxlength="10" @focus="removeError('zip')" />
-        </form-group>
-        <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.city">
-          <input type="text" v-model="form.city" required @focus="removeError('city')" />
-        </form-group>
-      </grid>
-      <form-group class="has-underline" :error="errors.invoice_address">
-        <div class="flex items-center">
-          <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
-          <label for="has_invoice_address">
-            <em v-if="errors.invoice_address">{{__('Rechnungsadresse (abweichend) wird benötigt')}}</em>
-            <em v-else>{{__('Rechnungsadresse (abweichend)')}}</em>
-          </label>
-        </div>
-        <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x" v-if="form.has_invoice_address"></textarea>
-      </form-group>
-      <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-        <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
-      </form-group>
-      <form-group :label="__('Passwort')" :required="true" :error="errors.password">
-        <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
-        <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
-      </form-group> -->
-      <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
-          {{ __('Speichern') }}
+    </template>
+    <template #aside>
+      <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
+      <div class="sm:mt-10x md:mt-20x">
+        <a :href="routes.logout" class="icon-arrow-right:below" :title="__('Logout')">
+          <span>{{ __('Logout') }}</span>
+          <icon-arrow-right />
         </a>
-      </form-group>
-      <a href="" @click.prevent="toggleForm()" class="form-helper">
-        {{ __('Abbrechen') }}
-      </a>
-    </form>
-  </template>
-  <template #content v-else>
-    <div>
-      <p>
-        <template v-if="student.fullname">{{ student.fullname  }}</template><br>
-        <template v-if="student.street">{{ student.street }}</template>
-        <template v-if="student.street_no">{{ student.street_no }}</template><br>
-        <template v-if="student.zip">{{ student.zip }}</template>
-        <template v-if="student.city">{{ student.city }}</template>
-      </p>
-      <p>
-        <template v-if="student.phone">{{ student.phone  }}<br></template>
-        <template v-if="student.email">{{ student.email }}</template>
-      </p>
-      <template v-if="student.has_invoice_address && student.invoice_address">
-        <h4 class="mt-4x sm:mt-6x md:mt-8x">Rechnungsadresse</h4>
-        <pre>{{ student.invoice_address }}</pre>
-      </template>
-    </div>
-  </template>
-</article-text>
+      </div>
+    </template>
+    <template #content v-if="isEdit">
+      <form method="POST">
+        <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender_id">
+          <div class="select-wrapper">
+            <select v-model="form.gender_id" @change="removeError('gender_id')">
+              <option 
+                v-for="(option) in settings.genders" 
+                :key="option.id" 
+                :value="option.id">
+                {{option.description[_getLocale()]}}
+              </option>
+            </select>
+          </div>
+        </form-group>
+        <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
+          <input type="text" v-model="form.firstname" required @focus="removeError('firstname')" />
+        </form-group>
+        <form-group :label="__('Name')" :required="true" :error="errors.name">
+          <input type="text" v-model="form.name" required @focus="removeError('name')" />
+        </form-group>
+        <form-group :label="__('Telefon')">
+          <input type="text" v-model="form.phone" maxlength="15" />
+        </form-group>
+        <grid class="sm:grid-cols-12">
+          <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">
+            <input type="text" v-model="form.street" required @focus="removeError('street')" />
+          </form-group>
+          <form-group :label="__('Nr.')" class="span-6">
+            <input type="text" v-model="form.street_no" maxlength="5" />
+          </form-group>
+        </grid>
+        <grid class="sm:grid-cols-12">
+          <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.zip">
+            <input type="text" v-model="form.zip" required maxlength="10" @focus="removeError('zip')" />
+          </form-group>
+          <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.city">
+            <input type="text" v-model="form.city" required @focus="removeError('city')" />
+          </form-group>
+        </grid>
+        <form-group class="has-underline !pb-0" :error="errors.invoice_address">
+          <div class="flex items-center">
+            <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
+            <label for="has_invoice_address">
+              <em v-if="errors.invoice_address">{{__('Rechnungsadresse (abweichend) wird benötigt')}}</em>
+              <em v-else>{{__('Rechnungsadresse (abweichend)')}}</em>
+            </label>
+          </div>
+          <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x" v-if="form.has_invoice_address"></textarea>
+        </form-group>
+        <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
+          <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+        </form-group>
+        <form-group :label="__('Passwort')" :required="true" :error="errors.password">
+          <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
+          <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
+        </form-group> -->
+        <form-group>
+          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+            {{ __('Speichern') }}
+          </a>
+        </form-group>
+        <a href="" @click.prevent="toggleForm()" class="form-helper">
+          {{ __('Abbrechen') }}
+        </a>
+      </form>
+    </template>
+    <template #content v-else>
+      <div>
+        <p>
+          <template v-if="student.fullname">{{ student.fullname  }}</template><br>
+          <template v-if="student.street">{{ student.street }}</template>
+          <template v-if="student.street_no">{{ student.street_no }}</template><br>
+          <template v-if="student.zip">{{ student.zip }}</template>
+          <template v-if="student.city">{{ student.city }}</template>
+        </p>
+        <p>
+          <template v-if="student.phone">{{ student.phone  }}<br></template>
+          <template v-if="student.email">{{ student.email }}</template>
+        </p>
+        <template v-if="student.has_invoice_address && student.invoice_address">
+          <h4 class="mt-4x sm:mt-6x md:mt-8x">Rechnungsadresse</h4>
+          <pre>{{ student.invoice_address }}</pre>
+        </template>
+      </div>
+    </template>
+  </article-text>
+  <collapsible class="mt-12x md:mt-16x">
+    <template #title>
+      {{ __('Merkliste') }}
+    </template>
+    <template #content>
+
+    </template>
+  </collapsible>
+  
+  <collapsible>
+    <template #title>
+      {{ __('Gebuchte Kurse') }}
+    </template>
+    <template #content>
+      <div v-for="(booking, index) in student.bookings" :key="index">
+        <card-event :event="booking.event">
+          <template #action>
+            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(event.uuid)">
+              {{ __('Entfernen') }}
+            </a>
+          </template>
+        </card-event>
+      </div>
+    </template>
+  </collapsible>
+ 
+</div>
 </template>
 <script>
 import NProgress from 'nprogress';
 import Settings from "@/modules/student/mixins/Settings";
+import BasketCounter from "@/shared/mixins/BasketCounter";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
+import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
+import CardEvent from "@/shared/components/ui/layout/CardEvent.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
@@ -124,12 +155,14 @@ export default {
     FormGroup,
     FormGroupHeader,
     FormError,
+    Collapsible,
+    CardEvent,
     IconArrowRight,
     IconEdit,
     IconCross
   },
 
-  mixins: [Settings],
+  mixins: [Settings, BasketCounter],
 
   data() {
     return {
@@ -166,7 +199,18 @@ export default {
       if (this.isEdit) {
         this.form = this.student;
       }
-    }
+    },
+
+    cancelBooking(uuid) {
+      NProgress.start();
+      this.axios.delete(`/api/basket/${uuid}`).then(response => {
+        this.updateCounter(response.data.count);
+        alert('Der Kurs wurde aus dem Warenkorb gelöscht.');
+        this.find();
+      });
+    },
+
+
   },
 }
 </script>

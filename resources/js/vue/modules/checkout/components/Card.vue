@@ -1,5 +1,5 @@
 <template>
-  <article class="card-checkout" data-touch>
+  <article class="card-event" data-touch>
     <slot />
   </article>
 </template>

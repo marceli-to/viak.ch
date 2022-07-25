@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentResource;
 use App\Models\User;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentUpdateRequest;
 
@@ -14,9 +16,14 @@ class StudentController extends Controller
    */
   public function find($map = FALSE)
   { 
-    $user = User::findOrFail(auth()->user()->id);
-    return response()->json($map ? $this->map($user) : $user);
+    /**
+     * @todo: if admin get the full user
+     * $user = User::findOrFail(auth()->user()->id);
+     */
+
+    return response()->json(new StudentResource(User::findOrFail(auth()->user()->id)));
   }
+
 
   /**
    * Update a user
@@ -35,12 +42,12 @@ class StudentController extends Controller
   }
 
   /**
-   * Map data for JSON output
+   * Map user data for JSON output
    * 
    * @param User user
    * @return Array
    */
-  private function map(User $user)
+  private function mapUser(User $user)
   {
     return [
       'uuid' => $user->uuid,

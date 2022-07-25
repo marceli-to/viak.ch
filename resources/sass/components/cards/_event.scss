@@ -5,7 +5,7 @@
  */
 
 %card-event,
-.card-event {
+.card-course-event {
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
   @extend %mt-4x;
@@ -69,7 +69,7 @@
   }
 }
 
-.card-checkout {
+.card-event {
   @extend %card-event;
 
   .card__col {

@@ -23,7 +23,7 @@
         <template v-if="$props.event.online">
           {{ __('Online') }}
         </template>
-        <template v-else-if="$props.event.location.description">
+        <template v-else-if="$props.event.location && $props.event.location.description">
           {{ $props.event.location.description }}
         </template>
       </div>

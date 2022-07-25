@@ -1,5 +1,5 @@
 <template>
-  <div :class="[isOpen ? 'is-expanded' : '', 'collapsible mb-6x md:mb-6x']">
+  <div :class="[isOpen ? 'is-expanded' : '', 'collapsible']">
     <h2>
       <a href="" class="btn-collapsible" @click.prevent="toggle()">
         <slot name="title" />

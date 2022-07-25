@@ -69,7 +69,7 @@ export default {
         update: '/api/student',
         genders: '/api/genders',
         login: '/login',
-        logout: '/logout'
+        logout: '/logout',
       },
 
     };

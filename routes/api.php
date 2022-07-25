@@ -50,21 +50,21 @@ Route::get('/genders', [GenderController::class, 'fetch']);
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
 // Student (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:student,admin'])->group(function() {
   Route::get('/student/{map?}', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
   Route::delete('/student', [StudentController::class, 'destroy']);
 });
 
 // Expert (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:expert'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:expert,admin'])->group(function() {
   Route::get('/expert', [ExpertController::class, 'find']);
   Route::put('/expert', [ExpertController::class, 'update']);
   Route::delete('/expert', [ExpertController::class, 'destroy']);
 });
 
 // Images
-Route::middleware(['auth:sanctum', 'verified', 'role:admin,student,expert'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
   Route::get('images', [ImageController::class, 'get']);
   Route::post('images/order', [ImageController::class, 'order']);
   Route::get('image/{image}', [ImageController::class, 'find']);

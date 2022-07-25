@@ -37,6 +37,25 @@ class Booking extends Base
     'cancelled_at',
   ];
 
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+
+  protected $hidden = [
+    'cancelled_at', 
+  ];
+
+
+  /**
+   * The relationships that should always be loaded
+   *
+   * @var array
+   */
+
+  protected $with = ['event.course', 'event.location', 'event.experts', 'event.dates'];
+
 
   /*
   |--------------------------------------------------------------------------
@@ -51,9 +70,9 @@ class Booking extends Base
    * The event that belong to this course.
    */
   
-  public function events()
+  public function event()
   {
-    return $this->hasOne(Event::class);
+    return $this->hasOne(Event::class, 'id', 'event_id');
   }
 
   /**
@@ -62,7 +81,7 @@ class Booking extends Base
   
   public function user()
   {
-    return $this->hasOne(Event::class);
+    return $this->hasOne(User::class);
   }
 
 }

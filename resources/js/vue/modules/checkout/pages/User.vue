@@ -136,7 +136,7 @@ export default {
     get() {
       NProgress.start();
       this.isLoaded = false;
-      this.axios.get(`${this.routes.get}/true`).then(response => {
+      this.axios.get(`${this.routes.get}`).then(response => {
         this.user = response.data;
         this.form.invoice_address = this.user.invoice_address;
         this.form.update_profile = this.user.has_invoice_address;

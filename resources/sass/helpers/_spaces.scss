@@ -102,6 +102,12 @@ $space-25x: 25 * $step;
 // Padding
 .px-auto { padding-left: auto; padding-right: auto; }
 
+%pb-0, .pb-0 {     padding-bottom: 0; }
+%\!pb-0, .\!pb-0 { padding-bottom: 0 !important; }
+
+%sm\:pb-0, .sm\:pb-0 { @include bp-sm() { padding-bottom: 0; } }
+%md\:pb-0, .md\:pb-0 { @include bp-md() { padding-bottom: 0; } }
+
 %sm\:pl-0, .sm\:pl-0 { @include bp-sm() { padding-left: 0; } }
 %md\:pl-0, .md\:pl-0 { @include bp-md() { padding-left: 0; } }
 

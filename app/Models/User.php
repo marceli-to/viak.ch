@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
   protected $hidden = [
     'password', 
-    'remember_token'
+    'remember_token',
   ];
 
 
@@ -119,6 +119,15 @@ class User extends Authenticatable implements MustVerifyEmail
   public function gender()
   {
     return $this->hasOne(Gender::class, 'id', 'gender_id');
+  }
+
+  /**
+   * The gender that belongs to this user.
+   */
+
+  public function bookings()
+  {
+    return $this->hasMany(Booking::class);
   }
 
 
