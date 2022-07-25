@@ -2,10 +2,10 @@
   <div v-if="isLoaded">
     <checkout-header>
       <template #title>
-        {{ __('Kontakt') }}
+        <h2>{{ __('Kontakt') }}</h2>
       </template>
       <template #step>
-        {{ __('Schritt') }} 2/4
+        <strong>{{ __('Schritt') }} 2/4</strong>
       </template>
     </checkout-header>
 
@@ -33,19 +33,19 @@
             <span v-html="nl2br(form.invoice_address)"></span>
           </template>
           <template v-else>
-          <form-group :error="errors.invoice_address">
-            <textarea 
-              v-model="form.invoice_address" 
-              :placeholder="__('Rechnungsadresse')" 
-              class="is-plain mb-2x sm:mb-4x">
-            </textarea>
-            <div class="flex items-center">
-              <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
-              <label for="update_profile">
-                <em>{{ __('Änderungen im Profil speichern' )}}</em>
-              </label>
-            </div>
-          </form-group>
+            <form-group :error="errors.invoice_address">
+              <textarea 
+                v-model="form.invoice_address" 
+                :placeholder="__('Rechnungsadresse')" 
+                class="is-plain mb-2x sm:mb-4x">
+              </textarea>
+              <div class="flex items-center">
+                <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
+                <label for="update_profile">
+                  <em>{{ __('Änderungen im Profil speichern' )}}</em>
+                </label>
+              </div>
+            </form-group>
           </template>
         </div>
       </div>

@@ -2,10 +2,12 @@
 namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Base
 {
-  
+  use SoftDeletes;
+
   /**
    * The attributes that should be cast to native types.
    *

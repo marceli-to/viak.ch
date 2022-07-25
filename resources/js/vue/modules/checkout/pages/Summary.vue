@@ -3,10 +3,10 @@
     
     <checkout-header>
       <template #title>
-        {{ __('Zusammenfassung') }}
+        <h2>{{ __('Zusammenfassung') }}</h2>
       </template>
       <template #step>
-        {{ __('Schritt') }} 4/4
+        <strong>{{ __('Schritt') }} 4/4</strong>
       </template>
     </checkout-header>
 
@@ -105,7 +105,8 @@ export default {
       // Routes
       routes: {
         get: '/api/basket',
-        store: '/api/booking'
+        create: '/api/booking',
+        confirmation: '/checkout/confirmation'
       },
 
       // States
@@ -132,8 +133,9 @@ export default {
 
     submit() {
       NProgress.start();
-      this.axios.get(`${this.routes.store}`).then(response => {
+      this.axios.post(`${this.routes.create}`).then(response => {
         NProgress.done();
+        window.location.href = this.routes.confirmation;
       });
     }
   },

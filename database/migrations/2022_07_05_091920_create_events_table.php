@@ -26,6 +26,7 @@ class CreateEventsTable extends Migration
       $table->foreignId('course_id')->constrained();
       $table->foreignId('location_id')->nullable()->constrained();
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

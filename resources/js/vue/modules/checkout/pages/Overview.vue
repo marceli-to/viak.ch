@@ -4,10 +4,10 @@
 
       <checkout-header>
         <template #title>
-          {{ __('Übersicht') }}
+          <h2>{{ __('Übersicht') }}</h2>
         </template>
         <template #step>
-          {{ __('Schritt') }} 1/4
+          <strong>{{ __('Schritt') }} 1/4</strong>
         </template>
       </checkout-header>
 

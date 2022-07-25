@@ -2,10 +2,10 @@
   <div>
     <checkout-header>
       <template #title>
-        {{ __('Zahlung') }}
+        <h2>{{ __('Zahlung') }}</h2>
       </template>
       <template #step>
-        {{ __('Schritt') }} 3/4
+        <strong>{{ __('Schritt') }} 3/4</strong>
       </template>
     </checkout-header>
 

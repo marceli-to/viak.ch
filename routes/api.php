@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\BasketController;
+use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ImageController;
 
 /*
@@ -27,6 +28,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::get('/basket', [BasketController::class, 'get']);
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
   Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
+  Route::post('/booking', [BookingController::class, 'create']);
 });
 
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);

@@ -61,14 +61,14 @@ class BasketController extends Controller
     $user = User::find(auth()->user()->id);
     $data = [
       'id' => auth()->user()->id,
-      'address' => $request->input('invoice_address') ? $request->input('invoice_address') : $user->address,
+      'address' => $request->input('invoice_address') ? $request->input('invoice_address') : null,
       'update_profile' => $request->input('update_profile'),
     ];
 
-    if ($request->input('update_profile'))
+    if ($request->input('invoice_address'))
     {
       
-      $user->has_invoice_address = true;
+      $user->has_invoice_address = $request->input('update_profile');
       $user->invoice_address = $request->input('invoice_address');
       $user->save();
     }

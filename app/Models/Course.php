@@ -3,11 +3,12 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 
 class Course extends Base
 {
-  use HasTranslations, Searchable;
+  use HasTranslations, Searchable, SoftDeletes;
 
   /**
    * Get the name of the index associated with the model.

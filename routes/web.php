@@ -24,6 +24,8 @@ use App\Http\Controllers\TestController;
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 Route::get('/kontakt', [ContactController::class, 'index'])->name('page.contact');
 
+
+
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
 
@@ -56,8 +58,8 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
 
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
+  Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');
   Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
-
 
   // Routes for user with multiple roles
   Route::get('/administration/roles', [RolesController::class, 'index'])->name('page.role.select');

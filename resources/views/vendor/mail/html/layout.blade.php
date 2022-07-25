@@ -11,12 +11,12 @@
 @media only screen and (max-width: 660px) {
 
   body {
-    font-size: 14px !important; 
+    font-size: 16px !important; 
   }
 
   p {
-    font-size: 14px !important; 
-    margin: 0 0 14px 0 !important;
+    font-size: 16px !important; 
+    margin: 0 0 16px 0 !important;
   }
 
   .wrapper {
@@ -44,7 +44,7 @@
   }
 
   h1 {
-    font-size: 16px !important;
+    font-size: 18px !important;
   }
 }
 

@@ -1,5 +1,5 @@
 @component('mail::message')
-<h1>{{ __('Bestätigung Kurs ') . $data->course->title }}</h1>
+<h1>{{ __('Buchungsbestätigung') . ' – ' . $data->course->title }}</h1>
 <p>{{ __('Guten Tag') }} Marcel Stadelmann</p>
 <p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->course->title }}». {{ __('Dieser findet wie folgt statt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $data->course->fee }}</td>
+    <td>CHF {{ $data->fee ? $data->fee : $data->course->fee }}</td>
   </tr>
 </table>
 <p>{{ __('Die Rechnung sowie die definitive Einladung für den Kurs erhälst du in den nächsten Tagen.') }}</p>

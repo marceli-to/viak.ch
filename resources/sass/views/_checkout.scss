@@ -11,9 +11,12 @@
   .checkout__header {
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;
-    @include font-bold();
     display: flex;
     justify-content: space-between;
+
+    h2 {
+      @include font-bold();
+    }
   }
 
   .checkout__buttons {

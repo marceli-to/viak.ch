@@ -20,4 +20,14 @@ class CheckoutController extends BaseController
     return view($this->viewPath . 'index');
   }
 
+  /**
+   * Show the confirmation page
+   * @return \Illuminate\Http\Response
+   */
+
+  public function confirmation()
+  {
+    return view($this->viewPath . 'confirmation');
+  }
+
 }

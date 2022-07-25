@@ -2,7 +2,6 @@ import Basket from '@/modules/checkout/pages/Overview.vue';
 import User from '@/modules/checkout/pages/User.vue';
 import Payment from '@/modules/checkout/pages/Payment.vue';
 import Summary from '@/modules/checkout/pages/Summary.vue';
-import Confirmation from '@/modules/checkout/pages/Confirmation.vue';
 
 const routes = [
   {
@@ -24,11 +23,6 @@ const routes = [
     name: 'checkout-summary',
     path: '/checkout/summary',
     component: Summary,
-  },
-  {
-    name: 'checkout-confirmation',
-    path: '/checkout/confirmation',
-    component: Confirmation,
   },
 ];
 

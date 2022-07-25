@@ -26,6 +26,7 @@ class CreateCoursesTable extends Migration
       $table->tinyInteger('online')->default(0);
       $table->tinyInteger('publish')->default(1);
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
