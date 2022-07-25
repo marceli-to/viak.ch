@@ -20,7 +20,7 @@
 
 %content-list-item,
 %content-list-collapsible,
-.content-list-collapsible,
+.content-list-item,
 .content-list-collapsible {
   @extend %mb-16x;
   @extend %sm\:fs-16x;
@@ -31,7 +31,7 @@
     border-top-width: 2px;
   }
 
-  > h2 {
+  h2 {
     @extend %fs-14x;
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;
