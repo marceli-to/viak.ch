@@ -1,4 +1,4 @@
-import Basket from '@/modules/checkout/pages/Basket.vue';
+import Basket from '@/modules/checkout/pages/Overview.vue';
 import User from '@/modules/checkout/pages/User.vue';
 import Payment from '@/modules/checkout/pages/Payment.vue';
 import Summary from '@/modules/checkout/pages/Summary.vue';

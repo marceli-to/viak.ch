@@ -26,6 +26,9 @@ import store from '@/shared/config/store';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+// Filters
+require('@/shared/mixins/filters');
+
 // Routes
 import checkoutRoutes from '@/modules/checkout/config/routes';
 

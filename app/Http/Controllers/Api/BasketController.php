@@ -28,13 +28,12 @@ class BasketController extends Controller
   public function get()
   {
     $items = $this->store->getItems();
-    $events = [];
-    foreach($items as $item)
-    {
-      $events[] = Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item)->first();
-    }
-    
-    return response()->json($this->map($events));
+    return response()->json(
+      [
+        'events' => $this->getEvents($items),
+        'totals' => $this->getTotals($this->getEvents($items))
+      ]
+    );
   }
 
   /**
@@ -51,6 +50,49 @@ class BasketController extends Controller
   }
 
   /**
+   * Store user information in the basket
+   * 
+   * @param Request $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function addUser(Request $request)
+  {
+    $user = User::find(auth()->user()->id);
+    $data = [
+      'id' => auth()->user()->id,
+      'address' => $request->input('invoice_address') ? $request->input('invoice_address') : $user->address,
+      'update_profile' => $request->input('update_profile'),
+    ];
+
+    if ($request->input('update_profile'))
+    {
+      
+      $user->has_invoice_address = true;
+      $user->invoice_address = $request->input('invoice_address');
+      $user->save();
+    }
+    $this->store->addUser($data);
+    return response()->json($this->store->get());
+  }
+
+  /**
+   * Store payment information in the basket
+   * 
+   * @param Request $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function addPayment(Request $request)
+  {
+    if ($request->input('voucher'))
+    {
+     // $this->store->addVoucher($data);
+    }
+    return response()->json($this->store->get());
+  }
+
+  /**
    * Remove an item from the basket
    * 
    * @param Event $event
@@ -61,6 +103,42 @@ class BasketController extends Controller
   {
     $this->store->removeItem($event->uuid);
     return response()->json($this->store->get());
+  }
+
+  /**
+   * Get events based on store items
+   * 
+   * @param Array $items
+   * @return Array 
+   */
+
+  private function getEvents($items, $map = TRUE)
+  {
+    $events = [];
+    foreach($items as $item)
+    {
+      $events[] = Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item)->first();
+    }
+    
+    return $map ? $this->map($events) : $events;
+  }
+
+  /**
+   * Get totals based on store items
+   * 
+   * @param Array $items
+   * @return Array 
+   */
+
+  private function getTotals($events = [])
+  {
+    $total = collect($events)->sum('fee');
+    $vat   = round( ($total / 100 * 7.7) * 20 ) / 20;
+    return [
+      'total' => $total,
+      'vat' => $vat,
+      'grandTotal' => $total + $vat
+    ];
   }
 
   /**

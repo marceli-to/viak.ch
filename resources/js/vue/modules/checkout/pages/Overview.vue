@@ -1,21 +1,23 @@
 <template>
   <div v-if="isLoaded">
-    <template v-if="events.length > 0">
+    <template v-if="basket.events.length > 0">
 
       <checkout-header>
         <template #title>
-          {{ __('Bestellübersicht') }}
+          {{ __('Übersicht') }}
         </template>
         <template #step>
           {{ __('Schritt') }} 1/4
         </template>
       </checkout-header>
 
-      <checkout-card v-for="event in events" :key="event.uuid" :event="event">
-        <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove(event.uuid)">
-          {{ __('Entfernen') }}
-        </a>
-      </checkout-card>
+      <checkout-card-event v-for="event in basket.events" :key="event.uuid" :event="event">
+        <template #action>
+          <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove(event.uuid)">
+            {{ __('Entfernen') }}
+          </a>
+        </template>
+      </checkout-card-event>
 
       <checkout-footer>
         <router-link :to="{ name: 'checkout-user' }" class="btn-next btn-next-wide span-12">
@@ -38,7 +40,7 @@ import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import BasketCounter from "@/shared/mixins/BasketCounter";
 import i18n from "@/shared/mixins/i18n";
-import CheckoutCard from "@/modules/checkout/components/Card.vue";
+import CheckoutCardEvent from "@/modules/checkout/components/CardEvent.vue";
 import CheckoutHeader from "@/modules/checkout/components/Header.vue";
 import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -47,7 +49,7 @@ export default {
 
   components: {
     NProgress,
-    CheckoutCard,
+    CheckoutCardEvent,
     CheckoutHeader,
     CheckoutFooter,
     IconArrowRight
@@ -58,7 +60,10 @@ export default {
   data() {
     return {
 
-      events: [],
+      // Data
+      basket: {
+        events: [],
+      },
 
       // Routes
       routes: {
@@ -81,7 +86,7 @@ export default {
       NProgress.start();
       this.isLoaded = false;
       this.axios.get(`${this.routes.get}`).then(response => {
-        this.events = response.data;
+        this.basket = response.data;
         this.isLoaded = true;
         NProgress.done();
       });

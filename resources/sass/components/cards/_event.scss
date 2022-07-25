@@ -78,10 +78,15 @@
       @include bp-sm() {
         display: flex;
         justify-content: flex-end;
-
         .card__action {
           margin-top: 0;
           margin-left: $space-8x;
+        }
+      }
+
+      @include bp-md() {
+        .card__action {
+          margin-left: $space-16x;
         }
       }
     }

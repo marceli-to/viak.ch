@@ -21,5 +21,11 @@ export default {
       }
       return `/img/${template}/${image.name}/${size}/${coords}/3x2`;
     },
+
+    nl2br(str, replaceMode) {
+      var breakTag = '<br>';
+      var replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
+    }
   }
 };

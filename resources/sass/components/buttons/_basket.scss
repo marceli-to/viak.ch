@@ -15,7 +15,6 @@
   align-items: center;
   color: $color-primary;
   display: flex;
-  @include font-bold();
   line-height: 1 !important;
   
   &:hover {
@@ -24,6 +23,7 @@
 }
 
 .btn-next {
+  @include font-bold();
 
   span {
     @extend %mr-2x;

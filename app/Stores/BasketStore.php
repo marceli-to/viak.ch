@@ -33,6 +33,21 @@ class BasketStore extends Store
   }
 
   /**
+   * Add user data
+   * 
+   * @param Array $user_data
+   * @return Array $store
+   */
+
+  public function addUser($user_data)
+  { 
+    $store = $this->get();
+    $store['user'] = $user_data;
+    session([$this->key => $store]);
+    return $store;
+  }
+
+  /**
    * Remove an item
    * 
    * @param String $item

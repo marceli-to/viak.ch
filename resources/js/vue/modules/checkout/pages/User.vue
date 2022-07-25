@@ -2,42 +2,42 @@
   <div v-if="isLoaded">
     <checkout-header>
       <template #title>
-        {{ __('Kontaktangaben') }}
+        {{ __('Kontakt') }}
       </template>
       <template #step>
         {{ __('Schritt') }} 2/4
       </template>
     </checkout-header>
 
-    <article class="card-checkout" data-touch>
+    <checkout-card>
       <div>
         <div class="span-3">
-          <strong>Kursteilnehmer</strong>
+          <strong>{{ __('Kursteilnehmer') }}</strong>
         </div>
         <div class="span-9">
-          {{ user.fullname}}
+          <span v-html="user.address"></span>
         </div>
       </div>
-    </article>
-
-    <article class="card-checkout" data-touch>
+    </checkout-card>
+    
+    <checkout-card>
       <div class="relative">
         <a href="" class="icon-edit" @click.prevent="toggle()">
           <icon-edit />
         </a>
         <div class="span-3">
-          <strong>Rechnungsadresse</strong>
+          <strong>{{ __('Rechnungsadresse') }}</strong>
         </div>
         <div class="span-9">
           <template v-if="!isEdit">
-            <span v-html="user.address"></span>
+            <span v-html="nl2br(form.invoice_address)"></span>
           </template>
           <template v-else>
-          <form-group :error="errors.invoice_address" class="mb-0">
+          <form-group :error="errors.invoice_address">
             <textarea 
               v-model="form.invoice_address" 
               :placeholder="__('Rechnungsadresse')" 
-              class="is-plain mb-2x sm:mb-4x pt-0">
+              class="is-plain mb-2x sm:mb-4x">
             </textarea>
             <div class="flex items-center">
               <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
@@ -49,7 +49,7 @@
           </template>
         </div>
       </div>
-    </article>
+    </checkout-card>
 
     <checkout-footer>
       <div>
@@ -59,10 +59,10 @@
         </router-link>
       </div>
       <div>
-        <router-link :to="{ name: 'checkout-payment' }" class="btn-next">
+        <a href="javascript:;" class="btn-next" @click.prevent="submit()">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
-        </router-link>
+        </a>
       </div>
     </checkout-footer>
 
@@ -71,7 +71,10 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
+import CheckoutCard from "@/modules/checkout/components/Card.vue";
+import CheckoutCardEvent from "@/modules/checkout/components/CardEvent.vue";
 import CheckoutHeader from "@/modules/checkout/components/Header.vue";
 import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -83,6 +86,8 @@ export default {
 
   components: {
     NProgress,
+    CheckoutCard,
+    CheckoutCardEvent,
     CheckoutHeader,
     CheckoutFooter,
     IconArrowRight,
@@ -91,20 +96,21 @@ export default {
     FormGroup
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [ErrorHandling, i18n, Helpers],
 
   data() {
-    return {
+    return { 
 
-      user: {
+      // User data
+      user: {},
 
-      },
-
+      // Form data
       form: {
         update_profile: false,
         invoice_address: null,
       },
 
+      // Errors
       errors: {
         invoice_address: null
       },
@@ -112,7 +118,7 @@ export default {
       // Routes
       routes: {
         get: '/api/student',
-        update: '/api/basket'
+        addUser: '/api/basket/add/user'
       },
 
       // States
@@ -133,7 +139,16 @@ export default {
       this.axios.get(`${this.routes.get}/true`).then(response => {
         this.user = response.data;
         this.form.invoice_address = this.user.invoice_address;
+        this.form.update_profile = this.user.has_invoice_address;
         this.isLoaded = true;
+        NProgress.done();
+      });
+    },
+
+    submit() {
+      NProgress.start();
+      this.axios.put(`${this.routes.addUser}`, this.form).then((response) => {
+        this.$router.push({ name:'checkout-payment' });
         NProgress.done();
       });
     },

@@ -8,7 +8,7 @@ use App\Http\Requests\StudentUpdateRequest;
 class StudentController extends Controller
 {
   /**
-   * Find a user by the authenticated user
+   * Find a user
    * 
    * @return \Illuminate\Http\Response
    */
@@ -49,6 +49,7 @@ class StudentController extends Controller
       'fullname'  => $user->fullname,
       'address' => $user->address,
       'invoice_address' => $user->invoice_address,
+      'has_invoice_address' => $user->has_invoice_address,
       'email' => $user->email,
       'phone' => $user->phone,
     ];

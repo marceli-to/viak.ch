@@ -57,6 +57,11 @@ input[type=time],
 textarea,
 select {
 	transition: background-color .12s ease-out;
+
+  &.is-plain {
+    border-bottom: none;
+    padding-top: 0;
+  }
 }
 
 input:-webkit-autofill,
@@ -88,9 +93,6 @@ textarea {
     min-height: 150px;
   }
 
-  &.is-plain {
-    border-bottom: none;
-  }
 }
  
 select {

@@ -38,4 +38,8 @@
     @extend %sm\:mt-6x;
     @extend %md\:mt-9x;
   }
+
+  .form-group {
+    @extend %mb-0;
+  }
 }
