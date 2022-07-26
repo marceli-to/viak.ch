@@ -68,6 +68,20 @@ class Booking
   }
 
   /**
+   * Check whether or not a student has a booking
+   * for a specific event.
+   * 
+   * @param Event $event
+   * @param User $user
+   */
+
+  public function has(Event $event, User $user)
+  {
+    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
+    return $booking ? TRUE : FALSE;
+  }
+
+  /**
    * Get the next booking number
    * 
    * @return String number

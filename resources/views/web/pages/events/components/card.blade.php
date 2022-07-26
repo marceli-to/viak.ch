@@ -60,7 +60,13 @@
         @endif
       </div>
       <div class="card__action">
-        <basket-button uuid="{{ $event->uuid }}" :exists="{{ $exists }}" />
+        @if (!$isBooked)
+          <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
+        @else
+          <div class="mb-2x">
+            <em>{{ __('bereits gebucht')}}</em>
+          </div>
+        @endif
       </div>
     </div>
   </div>

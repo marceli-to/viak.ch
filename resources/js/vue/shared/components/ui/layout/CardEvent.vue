@@ -1,5 +1,8 @@
 <template>
   <article class="card-event" data-touch>
+    <template v-if="$props.event.isBooked">
+      <strong class="error-message">Du hast bereits eine Buchung für diesen Kurs!</strong>
+    </template>
     <div>
       <div class="card__col">
         <div :class="[$props.hasIcon ? 'sm:flex' : '']">

@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Event;
 use App\Stores\BasketStore;
+use App\Services\Booking as BookingService;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -159,6 +160,7 @@ class BasketController extends Controller
           'description' => $event->location ? $event->location->description : NULL,
           'address' => $event->location ? $event->location->address : NULL,
         ],
+        'isBooked' => (new BookingService())->has($event, auth()->user()),
         'dates' => $event->dates->map(function($date) {
           return [
             'date' => $date->date,

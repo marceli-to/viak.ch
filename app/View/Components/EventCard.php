@@ -2,7 +2,8 @@
 namespace App\View\Components;
 use App\Models\Event;
 use Illuminate\View\Component;
-use App\Stores\BasketStore;
+use App\Stores\BasketStore as BasketStore;
+use App\Services\Booking as BookingService;
 
 class EventCard extends Component
 {
@@ -27,7 +28,14 @@ class EventCard extends Component
    * 
    */
 
-  public $exists;
+  public $inBasket;
+
+  /**
+   * Event is already booked.
+   * 
+   */
+
+  public $isBooked;
 
   /**
    * Create a new component instance.
@@ -39,7 +47,13 @@ class EventCard extends Component
     $this->event   = $event;
     $this->experts = collect($event->experts->pluck('fullname')->all());
     $this->state   = $state;
-    $this->exists = (int) (new BasketStore())->getItem($this->event->uuid);
+    $this->inBasket = (int) (new BasketStore())->getItem($this->event->uuid);
+
+    if (auth()->user())
+    {
+      $this->isBooked = (new BookingService())->has($event, auth()->user());
+    }
+
   }
 
   /**
