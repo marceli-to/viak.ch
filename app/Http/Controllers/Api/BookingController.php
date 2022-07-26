@@ -43,7 +43,7 @@ class BookingController extends Controller
    */
 
   public function cancel(Booking $booking)
-  {
+  { 
     (new BookingService())->cancel($booking);
     return response()->json('successfully deleted');
   }

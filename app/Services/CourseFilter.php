@@ -336,6 +336,7 @@ class CourseFilter
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
           'fee' => $course->fee,
+          'course_fee' => $event->courseFee,
           'online' => $course->online ? TRUE : FALSE,
           'upcoming' => TRUE,
         ];

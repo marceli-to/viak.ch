@@ -1,13 +1,14 @@
 <?php
 namespace App\Services;
 use Illuminate\Http\Request;
+use App\Helpers\PenaltyHelper;
 use App\Models\Booking as BookingModel;
 use App\Services\Booking as BookingService;
 use App\Models\User;
 use App\Models\Event;
 use App\Events\EventBooked;
 use App\Events\EventCancelled;
-
+use App\Events\EventCancelledWithPenalty;
 
 class Booking
 {
@@ -62,8 +63,21 @@ class Booking
     $booking->save();
     $booking->delete();
 
-    // Fire event
-    event(new EventCancelled(User::find($booking->user_id), Event::find($booking->event_id)));
+    // Check for cancellation penalty and fire events
+    if (PenaltyHelper::has($booking->event->date))
+    {
+      event(new EventCancelledWithPenalty(
+        User::find($booking->user_id), 
+        Event::find($booking->event_id)
+      ));
+      return TRUE;
+    }
+
+    // No cancellation penalty
+    event(new EventCancelled(
+      User::find($booking->user_id), 
+      Event::find($booking->event_id)
+    ));
     return TRUE;
   }
 

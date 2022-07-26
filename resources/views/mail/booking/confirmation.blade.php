@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $data->fee ? $data->fee : $data->course->fee }}</td>
+    <td>CHF {{ $data->courseFee }}</td>
   </tr>
 </table>
 <p>{{ __('Die Rechnung sowie die definitive Einladung für den Kurs erhälst du in den nächsten Tagen.') }}</p>

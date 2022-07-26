@@ -120,7 +120,7 @@
       <div v-for="(booking, index) in student.bookings" :key="index">
         <card-event :event="booking.event" :hasIcon="true">
           <template #action>
-            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid)">
+            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
               {{ __('Annullieren') }}
             </a>
           </template>
@@ -203,8 +203,16 @@ export default {
       }
     },
 
-    cancelBooking(uuid) {
-      if (confirm('Sicher?')) {
+    cancelBooking(uuid, event) {
+
+      let message = 'Bitte Annullation bestätigen.';
+
+      // Check for penalty
+      if (event.cancellation.penalty) {
+        message = `Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ${event.cancellation.amount}.– (${event.cancellation.penalty}% der Kurskosten)\nBitte Annullation bestätigen.`;
+      }
+
+      if (confirm(message)) {
         NProgress.start();
         this.axios.put(`${this.routes.booking.cancel}/${uuid}`).then(response => {
           alert('Die Buchung wurde annulliert.');

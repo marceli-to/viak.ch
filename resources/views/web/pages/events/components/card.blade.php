@@ -53,17 +53,13 @@
     </div>
     <div class="card__col card__col--action">
       <div>
-        @if ($event->fee)
-          CHF {{ $event->fee }}
-        @else
-          CHF {{ $event->course->fee }}
-        @endif
+        {{ $event->courseFee }}
       </div>
       <div class="card__action">
         @if (!$isBooked)
           <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
         @else
-          <div class="mb-2x">
+          <div>
             <em>{{ __('bereits gebucht')}}</em>
           </div>
         @endif

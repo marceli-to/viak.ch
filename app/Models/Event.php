@@ -38,6 +38,16 @@ class Event extends Base
     'publish'
   ];
 
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'course_fee',
+  ];
+
 
   /*
   |--------------------------------------------------------------------------
@@ -153,5 +163,18 @@ class Event extends Base
   public function getDateAttribute($value)
   {   
     return date('d. F Y', strtotime($value));
+  }
+
+  /**
+   * Get the course fee attribute depending on whether the event 
+   * has a 'fee'. If not, take the 'fee' of the parent course 
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getCourseFeeAttribute($value)
+  {   
+    return $this->fee ? $this->fee : $this->course->fee;
   }
 }

@@ -154,7 +154,7 @@ class BasketController extends Controller
       return [
         'uuid' => $event->uuid,
         'date' => $event->date,
-        'fee'  => $event->fee ? $event->fee : $event->course->fee,
+        'fee'  => $event->courseFee,
         'online' => $event->online ? TRUE : FALSE,
         'location' => [
           'description' => $event->location ? $event->location->description : NULL,

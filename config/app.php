@@ -234,6 +234,7 @@ return [
         'AppHelper' => App\Helpers\AppHelper::class,
         'SlugHelper' => App\Helpers\SlugHelper::class,
         'FormatHelper' => App\Helpers\FormatHelper::class,
+        'PenaltyHelper' => App\Helpers\PenaltyHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
