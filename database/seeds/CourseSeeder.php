@@ -44,6 +44,7 @@ class CourseSeeder extends Seeder
     {
       $rand2 = mt_rand(0,3);
       $course = Course::create([
+        'number' => $i+1,
         'slug' => [
           'de' => \SlugHelper::make($courses[$i]),
           'en' => \SlugHelper::make($courses[$i]),

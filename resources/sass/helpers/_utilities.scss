@@ -59,3 +59,16 @@
 .fixed {
   position: fixed;
 }
+
+.max-w-25,
+.sm\:max-w-25,
+.md\:max-w-25 {
+  max-width: 25%;
+}
+
+.max-w-50,
+.sm\:max-w-50,
+.md\:max-w-50 {
+  max-width: 50%;
+}
+

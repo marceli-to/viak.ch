@@ -139,7 +139,7 @@ class Qr
 
   private function getClientNumberString()
   {
-    return str_pad($this->clientNumber,  5, "0");
+    return str_pad($this->clientNumber,  5, "0", STR_PAD_LEFT);
   }
 
   /**

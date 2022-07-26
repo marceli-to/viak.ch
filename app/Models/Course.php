@@ -56,10 +56,10 @@ class Course extends Base
       "de": "null", "en": "null"
     }',
     'seo_description' => '{
-      "de": "null", "en": "null"
+      "de": null, "en": null
     }',
     'seo_tags' => '{
-      "de": "null", "en": "null"
+      "de": null, "en": null
     }',
   ];
   
@@ -86,6 +86,8 @@ class Course extends Base
    
 	protected $fillable = [
     'uuid',
+    'number',
+    'course',
     'title',
     'subtitle',
     'text',
@@ -96,6 +98,26 @@ class Course extends Base
     'online',
     'publish'
   ];
+
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'course_number',
+  ];
+
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+
+  // protected $hidden = [
+  //   'number', 
+  // ];
 
 
   /*
@@ -220,5 +242,17 @@ class Course extends Base
   public function scopeOffline($query)
   {
     return $query->where('online', 0);
+  }
+
+  /**
+   * Get the courses number attribute as a padded string.
+   *
+   * @param  string  $value
+   * @return string
+   */
+
+  public function getCourseNumberAttribute($value)
+  {
+    return str_pad($this->number,  2, "0", STR_PAD_LEFT);
   }
 }

@@ -40,7 +40,14 @@ class LoginController extends BaseController
   {
     if (auth()->user()->hasMultipleRoles())
     {
-      return RouteServiceProvider::ROLES;
+      if (!session('selected-role'))
+      {
+        return RouteServiceProvider::ROLES;
+      }
+      if (auth()->user()->isAdmin())
+      {
+        return RouteServiceProvider::DASHBOARD;
+      }
     }
     
     return RouteServiceProvider::HOME;

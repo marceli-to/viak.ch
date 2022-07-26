@@ -1,4 +1,4 @@
-require('@/bootstrap');
+require('@/shared/bootstrap');
 
 // Vue
 window.Vue = require('vue');
@@ -31,18 +31,23 @@ Vue.use(VueRouter);
 
 // Routes
 import baseRoutes from '@/shared/config/routes';
+import dashboardRoutes from '@/modules/dashboard/config/routes';
+import courseRoutes from '@/modules/dashboard/views/course/config/routes';
 
 const router = new VueRouter(
   { 
     mode: 'history', 
     routes: [
       ...baseRoutes,
+      ...dashboardRoutes,
+      ...courseRoutes
     ]
   }
 );
 
+
 // App component
-import AppComponent from '@/App.vue';
+import AppComponent from '@/modules/dashboard/App.vue';
 
 // Mount App
 if (document.getElementById("app")) {

@@ -201,6 +201,7 @@ export default {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}`, this.form).then(response => {
         NProgress.done();
+        this.expert = this.form;
         this.isLoading = false;
         this.isEdit = false;
       });

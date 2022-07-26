@@ -20,21 +20,25 @@ mix.webpackConfig({
  |
  */
 
+// Frontend: CSS
 mix.sass('resources/sass/app.scss', 'public/assets/css/app.css').options({processCssUrls: false}).version();
-// mix.js('resources/js/vue/app.js', 'public/assets/js/bundle.vue.js').version();
-mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
+// Frontend: global.js
+mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 // Frontend: filter.js
 mix.js('resources/js/vue/modules/course/filter/Index.js', 'public/assets/js/filter.js').version();
 
-// Student: register.js & profile.js
+// Frontend: Student register.js & profile.js
 mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();
 mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
 mix.js('resources/js/vue/modules/student/basket/Index.js', 'public/assets/js/student/basket.js').version();
 
-// Expert: profile.js
+// Frontend: Expert profile.js
 mix.js('resources/js/vue/modules/expert/profile/Index.js', 'public/assets/js/expert/profile.js').version();
 
-// Checkout
+// Frontend: Checkout
 mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();
+
+// Backend
+mix.js('resources/js/vue/modules/dashboard/app.js', 'public/assets/js/dashboard/app.js').version();

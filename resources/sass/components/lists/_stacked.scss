@@ -99,20 +99,26 @@
 .stacked-list-event {
   @extend %stacked-list;
 
-  &__col--action {
+  .stacked-list__col--action {
     @include bp-sm() {
       display: flex;
       justify-content: flex-end;
 
-      .list__action {
+      > div:not(.stacked-list__action) {
+        margin-right: $space-8x;
+      }
+
+      > div:last-of-type {
+        margin-right: 0 !important;
+      }
+
+      .list_stacked-list__action_action {
         margin-top: 0;
-        margin-left: $space-8x;
       }
     }
-
     @include bp-md() {
-      .list__action {
-        margin-left: $space-16x;
+      > div:not(.stacked-list__action) {
+        margin-right: $space-12x;
       }
     }
   }
@@ -126,6 +132,11 @@
       top: $space-3x;
     }
   }
+}
+
+// Stacked list for various items
+.stacked-list-item {
+  @extend %stacked-list;
 }
 
 

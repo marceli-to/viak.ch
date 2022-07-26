@@ -46,3 +46,15 @@
   @extend %pt-2x;
   @extend %sm\:pt-4x;
 }
+
+.content-list-header {
+  @include bp-sm() {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  + .collapsible-container {
+    @extend %md\:mt-8x;
+  }
+}

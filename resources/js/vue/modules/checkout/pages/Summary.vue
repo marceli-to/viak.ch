@@ -14,10 +14,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-3">
           {{ __('Zwischentotal') }}
         </div>
-        <div class="span-9 align-right">
+        <div class="sm:span-9 sm:align-right">
           CHF {{ basket.totals.total | currency }}
         </div>
       </div>
@@ -25,10 +25,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-3">
           {{ __('MwSt 7.7%') }}
         </div>
-        <div class="span-9 align-right">
+        <div class="sm:span-9 sm:align-right">
           CHF {{ basket.totals.vat | currency }}
         </div>
       </div>
@@ -36,10 +36,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-3">
           <strong>{{ __('Total') }}</strong>
         </div>
-        <div class="span-9 align-right">
+        <div class="sm:span-9 sm:align-right">
           <strong>CHF {{ basket.totals.grandTotal | currency }}</strong>
         </div>
       </div>

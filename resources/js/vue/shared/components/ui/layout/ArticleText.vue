@@ -15,5 +15,10 @@
         </div>
       </template>
     </div>
+    <template v-if="$slots.contentWide">
+      <div class="text__body-full">
+        <slot name="contentWide" />
+      </div>
+    </template>
   </article>
 </template>

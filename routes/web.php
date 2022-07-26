@@ -26,25 +26,14 @@ use App\Http\Controllers\TestController;
 
 Route::get('/', [HomeController::class, 'index'])->name('page.home');
 Route::get('/kontakt', [ContactController::class, 'index'])->name('page.contact');
-
-
-
 Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
-
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
-
 Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
 
 // Url based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
-
-// PDF Documents
-Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
-Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
-Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
-Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');
 
 
 /*
@@ -65,13 +54,13 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
 
   // Routes for user with multiple roles
-  Route::get('/administration/roles', [RolesController::class, 'index'])->name('page.role.select');
-  Route::get('/administration/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set');
+  Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select');
+  Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set');
 
   // Routes for dashboard
-  Route::get('/administration/{any?}', function () {
+  Route::get('/dashboard/{any?}', function () {
     return view('web.layout.backend');
-  })->where('any', '.*')->middleware(['role:admin']);
+  })->where('any', '.*')->middleware(['role:admin'])->name('page.dashboard');
 });
 
 
@@ -113,3 +102,9 @@ Route::get('/mailable', function () {
   $event = \App\Models\Event::with('course')->first();
   return new App\Mail\EventBooked($event);
 });
+
+// PDF Documents
+Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
+Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
+Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
+Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');

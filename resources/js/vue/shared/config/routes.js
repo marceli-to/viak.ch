@@ -1,11 +1,7 @@
-import ErrorForbidden from '@/views/backend/errors/Forbidden.vue';
-import ErrorNotFound from '@/views/backend/errors/NotFound.vue';
+import ErrorForbidden from '@/shared/views/errors/Forbidden.vue';
+import ErrorNotFound from '@/shared/views/errors/NotFound.vue';
 
 const routes = [
-  // {
-  //   path:'*',
-  //   redirect:'/gesuche/aktuell',
-  // },
 
   // Authorization
   {

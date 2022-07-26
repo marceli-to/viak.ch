@@ -14,6 +14,11 @@
 .align-justify { text-align: justify; }
 .align-left { text-align: left; }
 .align-right { text-align: right; }
+.sm\:align-right {
+  @include bp-sm() {
+    text-align: right;
+  }
+}
 .nobr { white-space: nowrap; }
 
 /**

@@ -12,6 +12,8 @@ use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ImageController;
 
+use App\Http\Controllers\Api\Dashboard\CourseController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -56,14 +58,14 @@ Route::get('/genders', [GenderController::class, 'fetch']);
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
 // Student (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:student,admin'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,student'])->group(function() {
   Route::get('/student/{map?}', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
   Route::delete('/student', [StudentController::class, 'destroy']);
 });
 
 // Expert (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:expert,admin'])->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
   Route::get('/expert', [ExpertController::class, 'find']);
   Route::put('/expert', [ExpertController::class, 'update']);
   Route::delete('/expert', [ExpertController::class, 'destroy']);
@@ -83,10 +85,26 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(func
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Dashboard Routes
+|--------------------------------------------------------------------------
+|
+*/
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//   return $request->user();
-// });
+Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->get('/user', function (Request $request) {
+  return $request->user();
+});
+
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('dashboard')->group(function() {
+  // Courses
+  Route::get('courses/{constraint?}', [CourseController::class, 'get']);
+  Route::get('course/{course}', [CourseController::class, 'find']);
+  Route::post('course', [CourseController::class, 'store']);
+  Route::put('course/{course}', [CourseController::class, 'update']);
+  Route::get('course/state/{course}', [CourseController::class, 'toggle']);
+  Route::delete('course/{course}', [CourseController::class, 'destroy']);
+});
 
 // Route::middleware('auth:sanctum')->group(function() {
 //   Route::get('user', [UserController::class, 'find']);

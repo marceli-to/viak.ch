@@ -93,6 +93,11 @@ textarea {
     min-height: 150px;
   }
 
+  &.is-small {
+    @include bp-md() {
+      min-height: 100px;
+    }
+  }
 }
  
 select {

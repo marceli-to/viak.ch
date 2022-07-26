@@ -27,7 +27,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // Filters
-require('@/shared/mixins/filters');
+require('@/shared/mixins/Filters');
 
 // Routes
 import checkoutRoutes from '@/modules/checkout/config/routes';

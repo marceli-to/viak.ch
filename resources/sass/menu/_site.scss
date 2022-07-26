@@ -4,11 +4,11 @@
  * -----------------------------------------------------------------------------
  */
 
-nav.site-menu {
+nav.site-menu,
+nav.site-menu-dashboard {
 
   ul {
     li {
-
       a {
         transition: color .1s ease-in;
       }
@@ -139,6 +139,53 @@ nav.site-menu {
           &.is-active,
           &:hover {
             color: $color-secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include bp-sm() {
+  nav.site-menu-dashboard {
+
+    .site-menu__items {
+      display: flex;
+      justify-content: space-between;
+   
+      ul {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+
+        &:last-of-type {
+          justify-content: flex-end;
+
+          li {
+            margin-right: $space-6x;
+
+            a {
+              @include font-regular()
+            }
+          }
+        }
+
+        li {
+          align-items: center;
+          display: flex;
+          margin-right: $space-12x;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+
+          a {
+            &.router-link-exact-active,
+            &.is-touched,
+            &.is-active,
+            &:hover {
+              color: $color-secondary;
+            }
           }
         }
       }

@@ -1,0 +1,25 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: form/search
+ * -----------------------------------------------------------------------------
+ */
+
+.search-container {
+  @extend %mb-3x;
+  @extend %md\:mb-6x;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  > div {
+    @include bp-sm() {
+      max-width: 25%;
+    }
+  }
+
+  input[type=text] {
+    @extend %fs-16x;
+    @extend %md\:fs-20x;
+    border-bottom: 1px solid $color-tertiary;
+  }
+}
