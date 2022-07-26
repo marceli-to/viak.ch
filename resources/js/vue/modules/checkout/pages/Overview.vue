@@ -40,7 +40,7 @@ import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import BasketCounter from "@/shared/mixins/BasketCounter";
 import i18n from "@/shared/mixins/i18n";
-import CheckoutCardEvent from "@/modules/checkout/components/CardEvent.vue";
+import CheckoutCardEvent from "@/shared/components/ui/layout/CardEvent.vue";
 import CheckoutHeader from "@/modules/checkout/components/Header.vue";
 import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";

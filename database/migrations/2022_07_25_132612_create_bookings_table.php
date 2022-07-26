@@ -22,8 +22,8 @@ class CreateBookingsTable extends Migration
       $table->tinyInteger('cancelled')->default(0);
       $table->foreignId('event_id')->constrained();
       $table->foreignId('user_id')->constrained();
-      $table->date('booked_at');
-      $table->date('cancelled_at')->nullable();
+      $table->dateTime('booked_at');
+      $table->dateTime('cancelled_at')->nullable();
       $table->timestamps();
       $table->softDeletes();
     });

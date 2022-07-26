@@ -64,12 +64,19 @@ export default {
 
       // Routes
       routes: {
-        find: '/api/student',
-        register: '/api/student/register',
-        update: '/api/student',
         genders: '/api/genders',
         login: '/login',
         logout: '/logout',
+
+        student: {
+          find: '/api/student',
+          update: '/api/student',
+          register: '/api/student/register',
+        },
+
+        booking: {
+          cancel: '/api/booking/cancel'
+        }
       },
 
     };

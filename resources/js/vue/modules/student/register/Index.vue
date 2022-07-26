@@ -167,7 +167,7 @@ export default {
     submit() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.post(`${this.routes.register}`, this.form).then(response => {
+      this.axios.post(`${this.routes.student.register}`, this.form).then(response => {
         NProgress.done();
         this.isRegistered = true;
         this.isLoading = false;

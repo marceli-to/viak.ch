@@ -16,6 +16,7 @@ class EventResource extends JsonResource
   {
     return [
       'uuid' => $this->uuid,
+      'date' => $this->date,
       'online' => $this->online,
       'fee' => $this->fee ? $this->fee : $this->course->fee,
       'course' => CourseResource::make($this->course),

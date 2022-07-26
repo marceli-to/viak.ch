@@ -116,6 +116,6 @@ class BasketStore extends Store
     {
       return collect($store['items'])->count();
     }
-    return 0;
+    return NULL;
   }
 }

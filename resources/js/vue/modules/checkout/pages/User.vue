@@ -74,7 +74,7 @@ import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
 import CheckoutCard from "@/modules/checkout/components/Card.vue";
-import CheckoutCardEvent from "@/modules/checkout/components/CardEvent.vue";
+import CheckoutCardEvent from "@/shared/components/ui/layout/CardEvent.vue";
 import CheckoutHeader from "@/modules/checkout/components/Header.vue";
 import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -87,7 +87,7 @@ export default {
   components: {
     NProgress,
     CheckoutCard,
-    CheckoutCardEvent,
+    CheckoutCardEvent ,
     CheckoutHeader,
     CheckoutFooter,
     IconArrowRight,

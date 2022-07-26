@@ -54,7 +54,7 @@
             <input type="text" v-model="form.city" required @focus="removeError('city')" />
           </form-group>
         </grid>
-        <form-group class="has-underline !pb-0" :error="errors.invoice_address">
+        <form-group class="has-underline" :error="errors.invoice_address">
           <div class="flex items-center">
             <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
             <label for="has_invoice_address">
@@ -84,7 +84,9 @@
     <template #content v-else>
       <div>
         <p>
-          <template v-if="student.fullname">{{ student.fullname  }}</template><br>
+          <template v-if="student.firstname">{{ student.firstname  }}</template>
+          <template v-if="student.name">{{ student.name  }}</template>
+          <br>
           <template v-if="student.street">{{ student.street }}</template>
           <template v-if="student.street_no">{{ student.street_no }}</template><br>
           <template v-if="student.zip">{{ student.zip }}</template>
@@ -110,7 +112,7 @@
     </template>
   </collapsible>
   
-  <collapsible>
+  <collapsible :expanded="true">
     <template #title>
       {{ __('Gebuchte Kurse') }}
     </template>
@@ -118,8 +120,8 @@
       <div v-for="(booking, index) in student.bookings" :key="index">
         <card-event :event="booking.event">
           <template #action>
-            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(event.uuid)">
-              {{ __('Entfernen') }}
+            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid)">
+              {{ __('Annullieren') }}
             </a>
           </template>
         </card-event>
@@ -132,7 +134,6 @@
 <script>
 import NProgress from 'nprogress';
 import Settings from "@/modules/student/mixins/Settings";
-import BasketCounter from "@/shared/mixins/BasketCounter";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -162,7 +163,7 @@ export default {
     IconCross
   },
 
-  mixins: [Settings, BasketCounter],
+  mixins: [Settings],
 
   data() {
     return {
@@ -178,7 +179,7 @@ export default {
 
     find() {
       NProgress.start();
-      this.axios.get(`${this.routes.find}`).then(response => {
+      this.axios.get(`${this.routes.student.find}`).then(response => {
         this.student = response.data;
         NProgress.done();
       });
@@ -187,10 +188,11 @@ export default {
     submit() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.put(`${this.routes.update}`, this.form).then(response => {
-        NProgress.done();
+      this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
+        this.student = this.form;
         this.isLoading = false;
         this.isEdit = false;
+        NProgress.done();
       });
     },
 
@@ -202,15 +204,14 @@ export default {
     },
 
     cancelBooking(uuid) {
-      NProgress.start();
-      this.axios.delete(`/api/basket/${uuid}`).then(response => {
-        this.updateCounter(response.data.count);
-        alert('Der Kurs wurde aus dem Warenkorb gelöscht.');
-        this.find();
-      });
+      if (confirm('Sicher?')) {
+        NProgress.start();
+        this.axios.put(`${this.routes.booking.cancel}/${uuid}`).then(response => {
+          alert('Die Buchung wurde annulliert.');
+          this.find();
+        });
+      }
     },
-
-
   },
 }
 </script>

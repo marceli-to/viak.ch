@@ -1,4 +1,4 @@
-<article class="card-course-event" data-touch>
+<article class="card-event" data-touch>
   <div>
     <div class="card__col">
       <div class="{{ $state ? 'sm:flex' : '' }}">

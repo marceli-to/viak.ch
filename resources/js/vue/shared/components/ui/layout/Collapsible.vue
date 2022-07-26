@@ -18,6 +18,17 @@ export default {
     }
   },
 
+  props: {
+    expanded: {
+      type: [Boolean, Number],
+      default: false,
+    }
+  },
+
+  mounted() {
+    this.isOpen = this.$props.expanded ? true : false;
+  },
+
   created() {
     const onEscape = (e) => {
       if (this.isOpen && e.keyCode === 27) {

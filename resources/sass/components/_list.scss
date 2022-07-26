@@ -31,7 +31,7 @@
     border-top-width: 2px;
   }
 
-  h2 {
+  > h2 {
     @extend %fs-14x;
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;

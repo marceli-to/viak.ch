@@ -28,11 +28,17 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::get('/basket', [BasketController::class, 'get']);
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
   Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
-  Route::post('/booking', [BookingController::class, 'create']);
 });
 
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
 Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
+
+// Bookings
+Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
+  Route::post('/booking', [BookingController::class, 'store']);
+  Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel']);
+});
+
 
 // Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);
