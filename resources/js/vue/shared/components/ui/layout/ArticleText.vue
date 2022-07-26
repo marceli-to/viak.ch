@@ -1,9 +1,9 @@
 <template>
-  <article class="text">
+  <article class="content-text">
     <template v-if="$slots.icon">
       <slot name="icon" />
     </template>
-    <div class="text__content">
+    <div class="text__body">
       <template v-if="$slots.aside">
         <aside>
           <slot name="aside" />

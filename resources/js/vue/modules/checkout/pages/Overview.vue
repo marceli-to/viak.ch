@@ -1,57 +1,59 @@
 <template>
-  <div v-if="isLoaded">
+  <stacked-list-container v-if="isLoaded">
     <template v-if="basket.events.length > 0">
 
-      <checkout-header>
+      <stacked-list-header>
         <template #title>
           <h2>{{ __('Übersicht') }}</h2>
         </template>
         <template #step>
           <strong>{{ __('Schritt') }} 1/4</strong>
         </template>
-      </checkout-header>
+      </stacked-list-header>
 
-      <checkout-card-event v-for="event in basket.events" :key="event.uuid" :event="event">
+      <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event">
         <template #action>
           <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove(event.uuid)">
             {{ __('Entfernen') }}
           </a>
         </template>
-      </checkout-card-event>
+      </stacked-list-event>
 
-      <checkout-footer>
+      <stacked-list-footer>
         <router-link :to="{ name: 'checkout-user' }" class="btn-next btn-next-wide span-12">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
         </router-link>
-      </checkout-footer>
+      </stacked-list-footer>
 
     </template>
 
     <template v-else>
-      <div class="checkout__basket-empty">
+      <div class="checkout-basket-empty">
         {{ __('Dein Warenkorb ist leer...') }}
       </div>
     </template>
-  </div>
+  </stacked-list-container>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import BasketCounter from "@/shared/mixins/BasketCounter";
 import i18n from "@/shared/mixins/i18n";
-import CheckoutCardEvent from "@/shared/components/ui/layout/CardEvent.vue";
-import CheckoutHeader from "@/modules/checkout/components/Header.vue";
-import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
+import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
+import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
+import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
+import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
 
   components: {
     NProgress,
-    CheckoutCardEvent,
-    CheckoutHeader,
-    CheckoutFooter,
+    StackedListContainer,
+    StackedListEvent,
+    StackedListHeader,
+    StackedListFooter,
     IconArrowRight
   },
 

@@ -5,38 +5,8 @@
  */
 
 .checkout {
-  @extend %mt-12x;
-  @extend %md\:mt-16x;
 
-  .checkout__header {
-    @extend %sm\:fs-16x;
-    @extend %md\:fs-18x;
-    display: flex;
-    justify-content: space-between;
-
-    h2 {
-      @include font-bold();
-    }
-  }
-
-  .checkout__buttons {
-    border-top: 2px solid $color-tertiary;
-    @extend %mt-8x;
-    @extend %sm\:mt-12x;
-    @extend %grid-cols-12;
-  
-    > div {
-      @extend %span-6;
-      display: flex;
-      justify-content: flex-end;
-  
-      &:first-of-type {
-        justify-content: flex-start;
-      }
-    }
-  }
-  
-  .checkout__basket-empty {
+  .checkout-basket-empty {
     @extend %mt-3x;
     @extend %sm\:mt-6x;
     @extend %md\:mt-9x;

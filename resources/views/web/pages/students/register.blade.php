@@ -3,7 +3,7 @@
 @section('seo_title', __('Registrieren'))
 @section('page_title', __('Registrieren'))
 @section('content')
-<section class="content" id="app-register">
+<section class="container" id="app-register">
   <student-register />
 </section>
 <script src="{{ mix('assets/js/student/register.js') }}" type="text/javascript"></script>

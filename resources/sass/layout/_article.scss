@@ -5,8 +5,8 @@
  */
 
 // Articles' shared attributes
-article.text,
-article.text-media {
+article.content-text,
+article.content-text-media {
   @extend %fs-16x;
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
@@ -17,7 +17,7 @@ article.text-media {
 }
 
 // Article with text/media
-article.text-media {
+article.content-text-media {
   color: $color-secondary;
 
   h1, h2, p {
@@ -31,7 +31,7 @@ article.text-media {
     }
   }
 
-  .text-media__content {
+  .text-media__body {
     @extend %sm\:grid-cols-12;
 
     > aside {
@@ -54,7 +54,7 @@ article.text-media {
       order: 1;
     }
   
-    .text-media__content {
+    .text-media__body {
       order: 2;
     }
   }
@@ -67,7 +67,7 @@ article.text-media {
         order: 2;
       }
     
-      .text-media__content {
+      .text-media__body {
         margin-bottom: $space-12x;
         order: 1;
       }
@@ -82,7 +82,7 @@ article.text-media {
 }
 
 // Article with text only
-article.text {
+article.content-text {
   color: $color-primary;
   position: relative;
   
@@ -90,7 +90,7 @@ article.text {
     color: $color-secondary;
   }
 
-  .text__content {
+  .text__body {
     @extend %sm\:grid-cols-12;
 
     > aside {

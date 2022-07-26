@@ -2,7 +2,7 @@
 @section('seo_title', __('Experte'))
 @section('page_title', __('Experte'))
 @section('content')
-<section class="content">
+<section class="container">
   <x-article-text-media 
     image="viak-keyvisual-experten.jpg" 
     title="{{ $expert->fullname }}"
@@ -12,7 +12,7 @@
   />
 </section>
 @if ($courses)
-  <section class="content">
+  <section class="container">
     <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
       @foreach($courses as $course)
         <a href="{{ route('page.course', ['slug' => $course->slug, 'course' => $course->uuid]) }}" class="icon-arrow-right:before" title="{{ $course->title }}">

@@ -1,5 +1,5 @@
-<article class="text">
-  <div class="text__content">
+<article class="content-text">
+  <div class="text__body">
     <aside>
       {{ $aside }}
     </aside>

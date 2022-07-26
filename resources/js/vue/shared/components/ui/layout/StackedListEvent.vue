@@ -25,14 +25,14 @@
         </div>
       </div>
       <div class="stacked-list__col">
-        <template v-if="$props.event.experts">
-          <div>{{ $props.event.experts }}</div>
-        </template>
         <template v-if="$props.event.online">
           {{ __('Online') }}
         </template>
         <template v-else-if="$props.event.location && $props.event.location.description">
           {{ $props.event.location.description }}
+        </template>
+        <template v-if="$props.event.experts">
+          <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
       </div>
       <div class="stacked-list__col stacked-list__col--action">

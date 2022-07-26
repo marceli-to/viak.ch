@@ -3,7 +3,7 @@
 @section('seo_title', __('Profil'))
 @section('page_title', __('Profil'))
 @section('content')
-<section class="content" id="app-profile">
+<section class="container" id="app-profile">
   <expert-profile />
 </section>
 <script src="{{ mix('assets/js/expert/profile.js') }}" type="text/javascript"></script>

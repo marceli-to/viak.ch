@@ -1,3 +1,3 @@
-<section class="content content--error">
+<section class="container-error">
   {{ $slot }}
 </section>

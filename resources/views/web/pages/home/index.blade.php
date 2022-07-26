@@ -1,6 +1,6 @@
 @extends('web.layout.frontend')
 @section('content')
-<section class="content content--home">
+<section class="container-home">
   <x-article-text-media 
     image="viak-keyvisual-home.jpg" 
     title="Ihre Zukunft ist visuell" 

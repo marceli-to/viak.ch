@@ -103,33 +103,34 @@
       </div>
     </template>
   </article-text>
-  <collapsible class="mt-12x md:mt-16x">
-    <template #title>
-      {{ __('Merkliste') }}
-    </template>
-    <template #content>
 
-    </template>
-  </collapsible>
-  
-  <collapsible :expanded="true">
-    <template #title>
-      {{ __('Gebuchte Kurse') }}
-    </template>
-    <template #content>
-      <div v-for="(booking, index) in student.bookings" :key="index">
-        <card-event :event="booking.event" :hasIcon="true">
-          <template #action>
-            <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
-              {{ __('Annullieren') }}
-            </a>
-          </template>
-        </card-event>
-      </div>
-    </template>
-  </collapsible>
- 
-</div>
+  <collapsible-container>
+    <collapsible>
+      <template #title>
+        {{ __('Merkliste') }}
+      </template>
+      <template #content>
+      </template>
+    </collapsible>
+    
+    <collapsible :expanded="true">
+      <template #title>
+        {{ __('Gebuchte Kurse') }}
+      </template>
+      <template #content>
+        <div v-for="(booking, index) in student.bookings" :key="index">
+          <stacked-list-event :event="booking.event" :hasIcon="true">
+            <template #action>
+              <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
+                {{ __('Annullieren') }}
+              </a>
+            </template>
+          </stacked-list-event>
+        </div>
+      </template>
+    </collapsible>
+  </collapsible-container>
+ </div>
 </template>
 <script>
 import NProgress from 'nprogress';
@@ -137,8 +138,9 @@ import Settings from "@/modules/student/mixins/Settings";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
+import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-import CardEvent from "@/shared/components/ui/layout/CardEvent.vue";
+import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
@@ -156,8 +158,9 @@ export default {
     FormGroup,
     FormGroupHeader,
     FormError,
+    CollapsibleContainer,
     Collapsible,
-    CardEvent,
+    StackedListEvent,
     IconArrowRight,
     IconEdit,
     IconCross

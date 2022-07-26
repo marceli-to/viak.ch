@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <checkout-header>
+  <stacked-list-container>
+    <stacked-list-header>
       <template #title>
         <h2>{{ __('Zahlung') }}</h2>
       </template>
       <template #step>
         <strong>{{ __('Schritt') }} 3/4</strong>
       </template>
-    </checkout-header>
+    </stacked-list-header>
 
-    <checkout-card>
+    <stacked-list-item>
       <div>
         <div class="span-3">
           <strong>{{ __('Zahlungsoption') }}</strong>
@@ -18,9 +18,9 @@
           {{ __('per Rechnung') }}
         </div>
       </div>
-    </checkout-card>
+    </stacked-list-item>
 
-    <checkout-card>
+    <stacked-list-item>
       <div>
         <div class="span-3">
           <strong>{{ __('Gutschein-Code') }}</strong>
@@ -31,9 +31,9 @@
           </form-group>
         </div>
       </div>
-    </checkout-card>
+    </stacked-list-item>
 
-    <checkout-footer>
+    <stacked-list-footer>
       <div>
         <router-link :to="{ name: 'checkout-user' }" class="btn-previous">
           <icon-arrow-left />
@@ -46,17 +46,18 @@
           <icon-arrow-right />
         </a>
       </div>
-    </checkout-footer>
-  </div>
+    </stacked-list-footer>
+  </stacked-list-container>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
-import CheckoutCard from "@/modules/checkout/components/Card.vue";
-import CheckoutHeader from "@/modules/checkout/components/Header.vue";
-import CheckoutFooter from "@/modules/checkout/components/Footer.vue";
+import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
+import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
+import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
+import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
@@ -66,9 +67,10 @@ export default {
 
   components: {
     NProgress,
-    CheckoutCard,
-    CheckoutHeader,
-    CheckoutFooter,
+    StackedListContainer,
+    StackedListItem,
+    StackedListHeader,
+    StackedListFooter,
     IconArrowRight,
     IconArrowLeft,
     IconEdit,

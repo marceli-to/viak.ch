@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout__buttons">
+  <div class="stacked-list-container">
     <slot />
   </div>
 </template>

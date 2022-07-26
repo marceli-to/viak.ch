@@ -1,5 +1,5 @@
 <template>
-  <header class="checkout__header">
+  <header class="stacked-list-header">
     <div v-if="$slots.title">
       <slot name="title" />
     </div>

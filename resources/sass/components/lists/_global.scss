@@ -1,6 +1,6 @@
 /**
  * -----------------------------------------------------------------------------
- * File: components/list
+ * File: components/lists/global
  * -----------------------------------------------------------------------------
  */
 
@@ -39,18 +39,6 @@
     @include font-bold();
     line-height: 1 !important;
   }
-
-  // min-height: 80px;
-  // @include bp-sm() {
-  //   min-height: 96px;
-  // }
-
-  // &.is-slim {
-  //   min-height: 48px;
-  //   @include bp-sm() {
-  //     min-height: 64px;
-  //   }
-  // }
 }
 
 %content-list-item,

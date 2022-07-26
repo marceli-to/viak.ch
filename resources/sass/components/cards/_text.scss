@@ -29,6 +29,10 @@ article.card-text {
     }
   }
 
+  h2 {
+    @include font-bold();
+  }
+  
   h2, h3 {
     color: $color-primary;
   }

@@ -3,7 +3,7 @@
 @section('seo_title', __('E-Mail verifizieren'))
 @section('seo_title', __('E-Mail verifizieren'))
 @section('content')
-<section class="content">
+<section class="container">
   @if (session('resent'))
     <x-alert type="success" message="{{ __('Neuer Bestätigungslink gesendet. Bitte Posteingang prüfen.') }}" />
   @endif

@@ -22,7 +22,7 @@
     }
   }
 
-  .card-teaser__category {
+  &__category {
     @extend %fs-10x;
     @extend %sm\:fs-13x;
     @extend %md\:fs-16x;
@@ -31,7 +31,7 @@
     line-height: 1;
   }
 
-  .card-teaser__heading {
+  &__heading {
     @extend %fs-15x;
     @extend %sm\:fs-20x;
     @extend %md\:fs-28x;
@@ -41,7 +41,7 @@
     line-height: 1.2;
   }
 
-  .card-teaser__list {
+  &__list {
     @extend %mb-4x;
     @extend %sm\:mb-6x;
   }

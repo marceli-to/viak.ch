@@ -2,7 +2,7 @@
 @section('seo_title', __('Kurse'))
 @section('page_title', __('Kurse'))
 @section('content')
-<section class="content">
+<section class="container">
   <x-article-text-media 
     image="viak-keyvisual-home.jpg" 
     title="{{ $course->title }}"
@@ -11,7 +11,7 @@
     :reverse="false"
   />
 </section>
-<section class="content">
+<section class="container">
 
   <x-collapsible title="{{ __('Facts') }}">
     <div class="sm:grid-cols-12">

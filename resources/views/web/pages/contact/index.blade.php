@@ -1,7 +1,7 @@
 @extends('web.layout.frontend')
 @section('page_title', __('Kontakt'))
 @section('content')
-<section class="content content--contact">
+<section class="container-contact">
   <x-article-text-media 
     image="viak-keyvisual-map-preview.png" 
     title="{{ __('Get in touch') }}" 
@@ -10,25 +10,25 @@
   />
 </section>
 
-<section class="content content--about">
+<section class="container-about">
   <x-collapsible title="{{ __('Anreise') }}" :expanded="true">
     @include('web.pages.contact.partials.directions')
   </x-collapsible>
 </section>
 
-<section class="content content--about">
+<section class="container-about">
   <x-collapsible title="{{ __('Über uns') }}">
     @include('web.pages.contact.partials.about')
   </x-collapsible>
 </section>
 
-<section class="content content--team">
+<section class="container-team">
   <x-collapsible title="{{ __('Team') }}">
     @include('web.pages.contact.partials.team')
   </x-collapsible>
 </section>
 
-<section class="content content--about">
+<section class="container-about">
   <x-collapsible title="{{ __('Impressum') }}">
     @include('web.pages.contact.partials.imprint')
   </x-collapsible>

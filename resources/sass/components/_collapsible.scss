@@ -4,6 +4,11 @@
  * -----------------------------------------------------------------------------
  */
 
+.collapsible-container {
+  @extend %mt-12x;
+  @extend %md\:mt-16x;
+}
+
 .collapsible {
   @extend %content-list-collapsible;
 

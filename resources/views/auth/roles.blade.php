@@ -3,7 +3,7 @@
 @section('seo_title', __('Benutzerrolle wählen'))
 @section('page_title', __('Benutzerrollen'))
 @section('content')
-<section class="content">
+<section class="container">
   <x-article-text>
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Benutzerrolle wählen') }}</h1>

@@ -3,7 +3,7 @@
 @section('seo_title', __('Login'))
 @section('page_title', __('Login'))
 @section('content')
-<section class="content">
+<section class="container">
   @if ($errors->any())
     <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
   @endif
