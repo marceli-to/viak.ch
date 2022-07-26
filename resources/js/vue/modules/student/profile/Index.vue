@@ -118,7 +118,7 @@
     </template>
     <template #content>
       <div v-for="(booking, index) in student.bookings" :key="index">
-        <card-event :event="booking.event">
+        <card-event :event="booking.event" :hasIcon="true">
           <template #action>
             <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid)">
               {{ __('Annullieren') }}
