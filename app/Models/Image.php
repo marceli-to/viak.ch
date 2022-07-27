@@ -19,6 +19,7 @@ class Image extends Base
     'original_name',
     'extension',
     'size',
+    'type',
     'caption',
     'description',
     'orientation',
@@ -29,7 +30,6 @@ class Image extends Base
     'order',
     'publish',
     'locked',
-    'type',
     'imageable_id',
     'imageable_type'
   ];
@@ -38,6 +38,30 @@ class Image extends Base
   {
     return $this->morphTo();
   }
+
+
+  /**
+   * Check for teaser image
+   * 
+   * @return Boolean
+   */
+
+  public function isTeaser()
+  {
+    return $this->type = 'teaser';
+  }
+
+  /**
+   * Check for teaser image
+   * 
+   * @return Boolean
+   */
+
+  public function isVisual()
+  {
+    return $this->type = 'visual';
+  }
+
 
 	/**
    * Scope for published images

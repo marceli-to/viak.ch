@@ -45,6 +45,7 @@
             <figure>
               <a :href="getSource(image, 'cache')" target="_blank" class="media-uploads-item__preview">
                 <img :src="getSource(image, 'thumbnail')" :class="[image.publish == 0 ? 'is-hidden' : '', '']" height="300" width="300">
+                <figcaption v-if="image.type">{{image.type}}</figcaption>
               </a>
               <div class="media-uploads-item__actions">
                 <image-actions 
@@ -146,6 +147,14 @@
             <form-group :label="__('Bildbeschreibung')">
               <textarea v-model="currentImage.description"></textarea>
             </form-group>
+            <form-group :label="__('Typ')">
+              <div class="select-wrapper">
+                <select v-model="currentImage.type">
+                  <option value="teaser">{{ __('Vorschau') }}</option>
+                  <option value="visual">{{ __('Hauptbild') }}</option>
+                </select>
+              </div>
+            </form-group>
           </div>
         </div>
         <div class="mt-4x sm:mt-8x">
@@ -231,7 +240,9 @@ export default {
         h: null
       },
 
-      currentImage: { },
+      currentImage: {
+        type: 'teaser'
+      },
       
       // States
       isFetched: false,

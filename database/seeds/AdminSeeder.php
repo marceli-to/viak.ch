@@ -51,15 +51,15 @@ class AdminSeeder extends Seeder
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
       ],
-      [
-        'firstname' => 'Bettina',
-        'name'  => 'Puorger',
-        'email' => 'bp@wbg.ch',
-        'email_verified_at' => \Carbon\Carbon::now(),
-        'password' => \Hash::make('%B3tT1nA*2022'),
-        'uuid' => \Str::uuid(),
-        'gender_id' => 2,
-      ],
+      // [
+      //   'firstname' => 'Bettina',
+      //   'name'  => 'Puorger',
+      //   'email' => 'bp@wbg.ch',
+      //   'email_verified_at' => \Carbon\Carbon::now(),
+      //   'password' => \Hash::make('%B3tT1nA*2022'),
+      //   'uuid' => \Str::uuid(),
+      //   'gender_id' => 2,
+      // ],
     ];
 
     foreach($admins as $admin)

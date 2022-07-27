@@ -113,6 +113,23 @@
         figure {
           @extend %p-2x;
           border: 2px solid $color-tertiary;
+          position: relative;
+
+          figcaption {
+            @extend %pb-2x;
+            @extend %pl-3x;
+            @extend %pr-3x;
+            @extend %pt-2x;
+
+            @extend %fs-12x;
+            @extend %sm\:fs-14x;
+            background-color: $color-tertiary;
+            color: $color-white;
+            display: block;
+            right: $space-4x;
+            position: absolute;
+            top: $space-4x;
+          }
         }
       }
     }
