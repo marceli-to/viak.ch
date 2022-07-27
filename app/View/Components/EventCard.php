@@ -31,26 +31,35 @@ class EventCard extends Component
   public $inBasket;
 
   /**
-   * Event is already booked.
+   * Event is booked.
    * 
    */
 
   public $isBooked;
 
   /**
+   * Event is bookmarked.
+   * 
+   */
+
+  public $isBookmarked;
+
+
+  /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct(Event $event, $state = NULL, $events = [])
+  public function __construct(Event $event, $events = [])
   {
     $this->event   = $event;
     $this->experts = collect($event->experts->pluck('fullname')->all());
-    $this->state   = $state;
     $this->inBasket = (int) (new BasketStore())->getItem($this->event->uuid);
 
+    // check for booking && bookmark
     if (auth()->user())
     {
+      $this->isBookmarked = FALSE;
       $this->isBooked = (new BookingService())->has($event, auth()->user());
     }
 

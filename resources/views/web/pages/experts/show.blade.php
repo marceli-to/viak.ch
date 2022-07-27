@@ -13,14 +13,14 @@
 </section>
 @if ($courses)
   <section class="container">
-    <x-collapsible title="{{ __('Kurse') }}" :expanded="true">
+    <div class="content-list-item">
       @foreach($courses as $course)
         <a href="{{ route('page.course', ['slug' => $course->slug, 'course' => $course->uuid]) }}" class="icon-arrow-right:before" title="{{ $course->title }}">
           @include('web.partials.icons.arrow-right')
           <span>{{ $course->title }}</span>
         </a>
       @endforeach
-    </x-collapsible>
+    </div>
   </section>
 @endif
 @endsection

@@ -6,16 +6,25 @@
 
 %unordered-list,
 .unordered-list {
-  list-style-type: disc;
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
+
 %unordered-list-item,
 .unordered-list-item {
   display: list-item;
-  list-style-type: disc;
+  list-style-type: none;
   margin: 0 0 0 $space-5x;
+  position: relative;
+
+  &:before {
+    content: '\2013';
+    position: absolute;
+    top: 3px;
+    margin-left: -18px;
+  }
 }
 
 %content-list-item,

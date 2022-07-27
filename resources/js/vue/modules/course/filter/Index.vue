@@ -89,7 +89,7 @@
           <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
             {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
           </a>
-          <a href="" @click.prevent="resetFilter()" class="link-helper">
+          <a href="" @click.prevent="resetFilter()" class="btn-primary is-outline mt-4x" data-touch>
             {{ __('Zurücksetzen') }}
           </a>
         </div>

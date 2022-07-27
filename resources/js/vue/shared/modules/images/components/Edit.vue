@@ -45,7 +45,8 @@
             <figure>
               <a :href="getSource(image, 'cache')" target="_blank" class="media-uploads-item__preview">
                 <img :src="getSource(image, 'thumbnail')" :class="[image.publish == 0 ? 'is-hidden' : '', '']" height="300" width="300">
-                <figcaption v-if="image.type">{{image.type}}</figcaption>
+                <figcaption v-if="image.type == 'teaser'">Vorschau</figcaption>
+                <figcaption v-if="image.type == 'visual'">Hauptbild</figcaption>
               </a>
               <div class="media-uploads-item__actions">
                 <image-actions 

@@ -21,6 +21,7 @@ class MenuItemProfile extends Component
    */
   public function __construct($route = NULL)
   {
+    $route = 'login';
     if (auth()->user())
     {
       if (auth()->user()->hasMultipleRoles())
@@ -54,7 +55,6 @@ class MenuItemProfile extends Component
         $route = 'page.student.profile';
       }
     }
-
     $this->route = $route;
   }
 

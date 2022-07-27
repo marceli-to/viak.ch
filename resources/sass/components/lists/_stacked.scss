@@ -41,8 +41,7 @@
 
   &__action {
     @extend %xs\:mt-6x;
-    @extend %sm\:mt-4x;
-    @extend %md\:mt-0;
+    @extend %sm\:mt-0;
   }
 
   h2 {
@@ -50,11 +49,10 @@
   }
 
   a:not([class*="btn-"]) {
-    text-decoration: underline;
-    text-underline-offset: 1px;
+
 
     &:hover {
-      text-decoration: none;
+      color: $color-secondary;
     }
   }
 }
@@ -69,8 +67,11 @@
 .stacked-list-header {
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-  display: flex;
-  justify-content: space-between;
+  @extend %sm\:grid-cols-12;
+
+  > div {
+    @extend %mb-2x;
+  }
 
   h2 {
     @include font-bold();
@@ -99,10 +100,21 @@
 .stacked-list-event {
   @extend %stacked-list;
 
+  &.is-booked {
+    border-top-color: $color-secondary;
+    *:not([class*=btn-]) {
+      color: $color-secondary;
+    }
+  }
+
   .stacked-list__col--action {
     @include bp-sm() {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+
+      &.justify-end {
+        justify-content: flex-end;
+      }
 
       > div:not(.stacked-list__action) {
         margin-right: $space-8x;

@@ -9,17 +9,21 @@
   @extend %fs-14x;
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-  @extend %px-4x;
+  @extend %px-6x;
   align-items: center;
   display: flex;
   justify-content: center;
   @include font-bold();
   min-height: 30px;
-  transition: background-color .1s ease-in;
+  transition: background-color .1s ease-in, color .1s ease-in;
 
   &.is-disabled {
     pointer-events: none;
     opacity: .6;
+  }
+
+  @include bp-sm() {
+    min-width: 140px;
   }
 }
 

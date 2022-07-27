@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Models\Image;
-use App\Models\HeroImage;
 use App\Services\Media;
 use App\Http\Resources\DataCollection;
 use Illuminate\Support\Facades\Storage;
@@ -48,7 +47,7 @@ class ImageController extends Controller
 
     // Add imagable id & type
     $data['imageable_id']   = $request->input('imageable_id') ? $request->input('imageable_id') : NULL;
-    $data['imageable_type'] = $request->input('imageable_type') ? "App\Models\\" . $request->input('imageable_type') : NULL;
+    $data['imageable_type'] = $request->input('imageable_type') ? "App\\Models\\" . $request->input('imageable_type') : NULL;
 
     // Create image
     $image = Image::create($data);
@@ -70,7 +69,7 @@ class ImageController extends Controller
   public function update(Image $image, Request $request)
   {
     $image = Image::findOrFail($image->id);
-    $image->update($request->all());
+    $image->update($request->except(['imageable_type']));
     return response()->json('successfully updated');
   }
 

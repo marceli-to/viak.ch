@@ -35,7 +35,7 @@ class RolesController extends BaseController
     if (auth()->user()->hasRole($role))
     {
       session(['selected-role' => $role]);
-      if (auth()->user()->isAdmin())
+      if (auth()->user()->isAdmin() && $role->id == Role::ADMIN)
       {
         return redirect(RouteServiceProvider::DASHBOARD);
       }

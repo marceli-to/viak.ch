@@ -35,7 +35,7 @@
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
       </div>
-      <div class="stacked-list__col stacked-list__col--action">
+      <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
         <div>
           CHF {{ $props.event.fee}}
         </div>

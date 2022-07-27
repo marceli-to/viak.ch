@@ -11,10 +11,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-4">
           <strong>{{ __('Kursteilnehmer') }}</strong>
         </div>
-        <div class="span-9">
+        <div class="sm:span-8">
           <span v-html="user.address"></span>
         </div>
       </div>
@@ -25,10 +25,10 @@
         <a href="" class="icon-edit" @click.prevent="toggle()">
           <icon-edit />
         </a>
-        <div class="span-3">
+        <div class="sm:span-4">
           <strong>{{ __('Rechnungsadresse') }}</strong>
         </div>
-        <div class="span-9">
+        <div class="sm:span-8">
           <template v-if="!isEdit">
             <span v-html="nl2br(form.invoice_address)"></span>
           </template>

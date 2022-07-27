@@ -11,10 +11,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-4">
           <strong>{{ __('Zahlungsoption') }}</strong>
         </div>
-        <div class="span-9">
+        <div class="sm:span-8">
           {{ __('per Rechnung') }}
         </div>
       </div>
@@ -22,10 +22,10 @@
 
     <stacked-list-item>
       <div>
-        <div class="span-3">
+        <div class="sm:span-4">
           <strong>{{ __('Gutschein-Code') }}</strong>
         </div>
-        <div class="span-9">
+        <div class="sm:span-4">
           <form-group :error="errors.voucher" class="mb-0">
             <input type="text" name="voucher" v-model="form.voucher" class="is-plain" :placeholder="__('Code eingeben')">
           </form-group>

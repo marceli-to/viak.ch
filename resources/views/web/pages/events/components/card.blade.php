@@ -1,13 +1,13 @@
-<article class="stacked-list-event" data-touch>
+<article class="stacked-list-event {{ $isBooked ? 'is-booked' : ''}}" data-touch>
   <div>
     <div class="stacked-list__col">
-      <div class="{{ $state ? 'sm:flex' : '' }}">
-        @if ($state == 'bookmark')
+      <div class="{{ $isBooked ? 'sm:flex' : '' }}">
+        @if ($isBookmarked)
           <div class="stacked-list__icon">
             @include('web.partials.icons.heart')
           </div>
         @endif
-        @if ($state == 'booked')
+        @if ($isBooked)
           <div class="stacked-list__icon">
             @include('web.partials.icons.checkmark')
           </div>
@@ -17,11 +17,11 @@
             <div>
               @if ($event->dates->count() > 1)
                 @foreach($event->dates as $date)
-                  <strong>{{ $date->dateShort }}</strong>, {{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
+                  <strong>{{ $date->date }}</strong>, {{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
                 @endforeach
               @else
                 @foreach($event->dates as $date)
-                  <strong>{{ $date->dateShort }}</strong><br>
+                  <strong>{{ $date->date }}</strong><br>
                   {{ $date->time_start }} – {{ $date->time_end }} Uhr
                 @endforeach
               @endif
@@ -59,9 +59,9 @@
         @if (!$isBooked)
           <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
         @else
-          <div>
-            <em>{{ __('bereits gebucht')}}</em>
-          </div>
+          <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
+            {{ __('Verwalten')}}
+          </a>
         @endif
       </div>
     </div>

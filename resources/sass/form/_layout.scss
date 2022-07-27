@@ -5,8 +5,8 @@
  */
 
 .form-group {
-  @extend %mb-6x;
-  @extend %md\:mb-8x;
+  @extend %mb-4x;
+  @extend %md\:mb-6x;
   position: relative;
 
   &.has-underline {
@@ -42,6 +42,7 @@
       @extend %sm\:fs-14x;
       @extend %sm\:fs-16x;
       @extend %md\:fs-18x;
+      margin: 0 0 0 $space-12x;
 
       a {
         @extend %py-1x;
