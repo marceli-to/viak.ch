@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="submit" v-if="isLoaded">
+<form @submit.prevent="submit" v-if="isFetched">
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
@@ -18,20 +18,27 @@
           required 
           @focus="removeError('number')" />
       </form-group>
-      <form-group :label="'Titel'" :required="true" :error="errors.title.de">
+      <form-group :label="'Titel'" :required="true" :error="errors.title">
         <input 
           type="text" 
           v-model="data.title.de" 
           required 
           @focus="removeError('title.de')" />
       </form-group>
-      <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle.de">
+      <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
         <textarea 
           v-model="data.subtitle.de" 
           class="is-small" 
           required 
           @focus="removeError('subtitle.de')">
         </textarea>
+      </form-group>
+      <form-group :label="'Kosten'" :required="true" :error="errors.fee">
+        <input 
+          type="text" 
+          v-model="data.fee" 
+          required 
+          @focus="removeError('fee')" />
       </form-group>
       <form-group :label="'Beschreibung'">
         <tinymce-editor
@@ -40,10 +47,85 @@
           v-model="data.text.de"
         ></tinymce-editor>
       </form-group>
+
     </template>
     <template #contentWide>
       <collapsible-container>
-        <collapsible :expanded="true">
+        <collapsible :expanded="true" v-if="isFetchedSettings">
+          <template #title>Einstellungen</template>
+          <template #content>
+            <form-group class="has-underline flex mt-4x">
+              <div class="mr-16x md:mr-20x">
+                <div class="form-group__checkbox">
+                  <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
+                  <label for="online">Online</label>
+                </div>
+              </div>
+              <div>
+                <div class="form-group__checkbox">
+                  <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
+                  <label for="publish">Publizieren</label>
+                </div>
+              </div>
+            </form-group>
+            <form-group-header>
+              <h3>Kategorien *</h3>
+            </form-group-header>
+            <form-group class="has-underline" :required="true" :error="errors.category_ids">
+              <div class="form-group__checkbox" v-for="(category, index) in sorted(settings.categories, 'description.de', 'asc')" :key="index">
+                <input type="checkbox" :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.id" v-model="data.category_ids">
+                <label :for="`category-${category.id}`">
+                  {{category.description.de}}
+                </label>
+              </div>
+            </form-group>
+            <form-group-header>
+              <h3>Sprachen *</h3>
+            </form-group-header>
+            <form-group class="has-underline" :required="true" :error="errors.language_ids">
+              <div class="form-group__checkbox" v-for="(language, index) in sorted(settings.languages, 'description.de', 'asc')" :key="index">
+                <input type="checkbox" :id="`language-${language.id}`" :name="`language-${language.id}`" :value="language.id" v-model="data.language_ids">
+                <label :for="`language-${language.id}`">
+                  {{language.description.de}}
+                </label>
+              </div>
+            </form-group>
+            <form-group-header>
+              <h3>Levels *</h3>
+            </form-group-header>
+            <form-group class="has-underline" :required="true" :error="errors.level_ids">
+              <div class="form-group__checkbox" v-for="(level, index) in sorted(settings.levels, 'description.de', 'asc')" :key="index">
+                <input type="checkbox" :id="`level-${level.id}`" :name="`level-${level.id}`" :value="level.id" v-model="data.level_ids">
+                <label :for="`level-${level.id}`">
+                  {{level.description.de}}
+                </label>
+              </div>
+            </form-group>
+            <form-group-header>
+              <h3>Software</h3>
+            </form-group-header>
+            <form-group class="has-underline">
+              <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.softwares, 'description.de', 'asc')" :key="index">
+                <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
+                <label :for="`software-${software.id}`">
+                  {{software.description.de}}
+                </label>
+              </div>
+            </form-group>
+            <form-group-header>
+              <h3>Tags</h3>
+            </form-group-header>
+            <form-group class="has-underline">
+              <div class="form-group__checkbox" v-for="(tag, index) in sorted(settings.tags, 'description.de', 'asc')" :key="index">
+                <input type="checkbox" :id="`tag-${tag.id}`" :name="`tag-${tag.id}`" :value="tag.id" v-model="data.tag_ids">
+                <label :for="`tag-${tag.id}`">
+                  {{tag.description.de}}
+                </label>
+              </div>
+            </form-group>
+          </template>
+        </collapsible>
+        <collapsible>
           <template #title>Metatags + SEO</template>
           <template #content>
             <form-group :label="'Reviews'" class="md:mt-4x">
@@ -58,6 +140,11 @@
           </template>
         </collapsible>
       </collapsible-container>
+      <form-group>
+        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          Speichern
+        </a>
+      </form-group>
     </template>
   </article-text>
 </form>
@@ -118,17 +205,28 @@ export default {
           de: null,
           en: null,
         },
+        category_ids: [],
+        language_ids: [],
+        level_ids: [],
+        software_ids: [],
+        tag_ids: [],
+        fee: null,
+        online: 0,
+        publish: 0,
       },
 
       // Validation
       errors: {
-        number: false,
-        title: {
-          de: false
-        },
-        subtitle: {
-          de: false,
-        }
+        number: null,
+        title: null,
+        subtitle: null,
+        fee: null,
+        category_ids: null,
+      },
+
+      // Settings
+      settings: {
+
       },
 
       // Routes
@@ -136,10 +234,13 @@ export default {
         find: '/api/dashboard/course',
         store: '/api/dashboard/course',
         update: '/api/dashboard/course',
+        settings: '/api/dashboard/course-settings',
       },
 
       // States
-      isLoaded: false,
+      isFetched: false,
+      isFetchedSettings: false,
+      isLoading: false,
 
       // Messages
       messages: {
@@ -158,6 +259,7 @@ export default {
     if (this.$props.type == "edit") {
       this.fetch();
     }
+    this.fetchSettings();
   },
 
   methods: {
@@ -166,10 +268,19 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
         this.data = response.data;
-        this.isLoaded = true;
+        this.isFetched = true;
         NProgress.done();
       });
     },
+
+    fetchSettings() {
+      this.isFetchedSettings = false;
+      this.axios.get(`${this.routes.settings}`).then(response => {
+        this.settings = response.data;
+        this.isFetchedSettings = true;
+      });
+    },
+
 
     submit() {
       if (this.$props.type == "edit") {
@@ -182,8 +293,12 @@ export default {
     },
 
     store() {
+      NProgress.start();
+      this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: "courses"});
+        //this.$router.push({ name: "courses"});
+        NProgress.done();
+        this.isLoading = true;
       });
     },
 
@@ -192,14 +307,16 @@ export default {
         this.$router.push({ name: "courses"});
       });
     },
+
+    sorted(data, by, dir){
+      return _.orderBy(data, by, dir);
+    }
   },
 
   computed: {
     title() {
-      return this.$props.type == "edit" 
-        ? "Kurs bearbeiten" 
-        : "Kurs hinzufügen";
-    }
+      return this.$props.type == "edit" ? "Kurs bearbeiten" : "Kurs hinzufügen";
+    },
   }
 };
 </script>

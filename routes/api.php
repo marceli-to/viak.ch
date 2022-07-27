@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ImageController;
 
 use App\Http\Controllers\Api\Dashboard\CourseController;
+use App\Http\Controllers\Api\Dashboard\CourseSettingsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +99,10 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->get('/user', func
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('dashboard')->group(function() {
+
+  // Course settings
+  Route::get('course-settings', [CourseSettingsController::class, 'get']);
+
   // Courses
   Route::get('courses/{constraint?}', [CourseController::class, 'get']);
   Route::get('course/{course}', [CourseController::class, 'find']);

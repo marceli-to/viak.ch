@@ -10,9 +10,30 @@
   position: relative;
 
   &.has-underline {
-    @extend %pb-8x;
-    @extend %md\:pb-10x;
+    @extend %pb-3x;
+    @extend %md\:pb-4x;
     border-bottom: 1px solid $color-primary;
+  }
+
+  &.has-grid {
+    @extend %sm\:grid-cols-12;
+    grid-row-gap: 0;
+
+    > div {
+      @extend %sm\:span-3;
+    }
+  }
+
+  .form-group__radio,
+  .form-group__checkbox {
+    @extend %mb-2x;
+    @extend %sm\:mb-3x;
+    align-items: center;
+    display: flex;
+
+    &.is-last {
+      margin-bottom: 0 !important;
+    }
   }
 
   ul {
@@ -35,8 +56,8 @@
   @extend %fs-14x;
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-  @extend %mb-4x;
-  @extend %md\:mb-6x;
+  @extend %mb-3x;
+  @extend %md\:mb-4x;
   position: relative;
   display: block;
 

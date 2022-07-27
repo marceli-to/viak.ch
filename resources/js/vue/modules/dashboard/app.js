@@ -1,5 +1,7 @@
 require('@/shared/bootstrap');
 
+window._ = require('lodash');
+
 // Vue
 window.Vue = require('vue');
 

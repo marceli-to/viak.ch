@@ -52,6 +52,7 @@ export default {
       data.body.forEach(function(key) {
         errors[key.field] = key.error;
       });
+      console.log(errors);
       this.errors = errors;
       this.isLoading = false;
       NProgress.done();

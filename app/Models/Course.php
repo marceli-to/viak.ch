@@ -107,6 +107,11 @@ class Course extends Base
 
   protected $appends = [
     'course_number',
+    'category_ids',
+    'language_ids',
+    'level_ids',
+    'software_ids',
+    'tag_ids',
   ];
 
   /**
@@ -115,9 +120,7 @@ class Course extends Base
    * @var array
    */
 
-  // protected $hidden = [
-  //   'number', 
-  // ];
+  protected $hidden = [];
 
 
   /*
@@ -159,6 +162,24 @@ class Course extends Base
   }
 
   /**
+   * The languages that belong to this course.
+   */
+  
+  public function languages()
+  {
+    return $this->belongsToMany(Language::class);
+  }
+
+  /**
+   * The levels that belong to this course.
+   */
+  
+  public function levels()
+  {
+    return $this->belongsToMany(Level::class);
+  }
+
+  /**
    * The software that belong to this course.
    */
   
@@ -176,23 +197,6 @@ class Course extends Base
     return $this->belongsToMany(Tag::class);
   }
 
-  /**
-   * The languages that belong to this course.
-   */
-  
-  public function languages()
-  {
-    return $this->belongsToMany(Language::class);
-  }
-
-  /**
-   * The levels that belong to this course.
-   */
-  
-  public function levels()
-  {
-    return $this->belongsToMany(Level::class);
-  }
 
   /**
    * The events that belong to this course.
@@ -254,5 +258,35 @@ class Course extends Base
   public function getCourseNumberAttribute($value)
   {
     return str_pad($this->number,  2, "0", STR_PAD_LEFT);
+  }
+
+  /**
+   * Get array of ids from the m:n relationships
+   *
+   */
+
+  public function getCategoryIdsAttribute()
+  {
+    return $this->categories->pluck('id');
+  }
+
+  public function getLanguageIdsAttribute()
+  {
+    return $this->languages->pluck('id');
+  }
+
+  public function getLevelIdsAttribute()
+  {
+    return $this->levels->pluck('id');
+  }
+
+  public function getSoftwareIdsAttribute()
+  {
+    return $this->softwares->pluck('id');
+  }
+
+  public function getTagIdsAttribute()
+  {
+    return $this->tags->pluck('id');
   }
 }

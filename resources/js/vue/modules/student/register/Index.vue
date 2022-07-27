@@ -83,11 +83,11 @@
         <h3>{{__('Betriebssystem')}}</h3>
       </form-group-header>
       <form-group class="has-underline">
-        <div class="flex items-center mb-2x">
+        <div class="form-group__checkbox">
           <input type="checkbox" id="os_win" name="os_win" required value="Windows" v-model="form.operating_system">
           <label for="os_win">Windows</label>
         </div>
-        <div class="flex items-center mb-2x">
+        <div class="form-group__checkbox">
           <input type="checkbox" id="os_mac" name="os_mac" required value="macOS" v-model="form.operating_system">
           <label for="os_mac">macOS</label>
         </div>
@@ -98,7 +98,7 @@
       </form-group>
 
       <form-group class="has-underline" :error="errors.accept_tos">
-        <div class="flex items-center mb-2x md:mb-4x">
+        <div class="form-group__checkbox md:mb-4x">
           <input type="checkbox" id="accept_tos" name="accept_tos" required value="true" v-model="form.accept_tos" @change="removeError('accept_tos')">
           <label for="accept_tos" v-if="errors.accept_tos">{{ errors.accept_tos }}</label>
           <label for="accept_tos" v-else>{{ __('Ich akzeptiere die Allg. Geschäftsbedingungen') }}</label>

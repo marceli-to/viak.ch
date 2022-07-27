@@ -65,6 +65,10 @@ export default {
 
       data: [],
 
+      setttings: {
+
+      },
+
       searchQuery: null,
 
       // Routes
@@ -112,11 +116,6 @@ export default {
         });
       }
     },
-
-    edit() {
-
-    },
-
   },
   computed: {
     queryData() {

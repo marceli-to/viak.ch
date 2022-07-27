@@ -60,6 +60,11 @@ class CourseController extends Controller
   {
     $course = Course::findOrFail($course->id);
     $course->update($request->all());
+    $course->categories()->sync($request->input('category_ids'));
+    $course->languages()->sync($request->input('language_ids'));
+    $course->levels()->sync($request->input('level_ids'));
+    $course->softwares()->sync($request->input('software_ids'));
+    $course->tags()->sync($request->input('tag_ids'));
     $course->save();
     return response()->json('successfully updated');
   }
