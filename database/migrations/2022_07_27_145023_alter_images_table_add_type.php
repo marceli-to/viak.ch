@@ -14,7 +14,7 @@ class AlterImagesTableAddType extends Migration
   public function up()
   {
     Schema::table('images', function (Blueprint $table) {
-      $table->string('type', 20)->after('size');
+      $table->string('type', 20)->after('size')->default('visual');
     });
   }
 

@@ -26,6 +26,10 @@ export default {
       this.notAllowed(data);
     });
 
+    window.intercepted.$on('response:419', data => {
+      this.unauthorized(data);
+    });
+
     window.intercepted.$on('response:422', data => {
       this.validationError(data);
     });
@@ -41,6 +45,7 @@ export default {
     window.intercepted.$off('response:403', this.listener);
     window.intercepted.$off('response:404', this.listener);
     window.intercepted.$off('response:405', this.listener);
+    window.intercepted.$off('response:419', this.listener);
     window.intercepted.$off('response:422', this.listener);
     window.intercepted.$off('response:500', this.listener);
   },
@@ -52,7 +57,6 @@ export default {
       data.body.forEach(function(key) {
         errors[key.field] = key.error;
       });
-      console.log(errors);
       this.errors = errors;
       this.isLoading = false;
       NProgress.done();
