@@ -65,10 +65,6 @@ export default {
 
       data: [],
 
-      setttings: {
-
-      },
-
       searchQuery: null,
 
       // Routes

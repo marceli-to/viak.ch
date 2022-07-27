@@ -12,8 +12,9 @@ use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ImageController;
 
-use App\Http\Controllers\Api\Dashboard\CourseController;
-use App\Http\Controllers\Api\Dashboard\CourseSettingsController;
+use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
+use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
+use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
 
 
 /*
@@ -101,15 +102,24 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->get('/user', func
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('dashboard')->group(function() {
 
   // Course settings
-  Route::get('course-settings', [CourseSettingsController::class, 'get']);
+  Route::get('course-settings', [DashboardCourseSettingsController::class, 'get']);
 
   // Courses
-  Route::get('courses/{constraint?}', [CourseController::class, 'get']);
-  Route::get('course/{course}', [CourseController::class, 'find']);
-  Route::post('course', [CourseController::class, 'store']);
-  Route::put('course/{course}', [CourseController::class, 'update']);
-  Route::get('course/state/{course}', [CourseController::class, 'toggle']);
-  Route::delete('course/{course}', [CourseController::class, 'destroy']);
+  Route::get('courses/{constraint?}', [DashboardCourseController::class, 'get']);
+  Route::get('course/{course}', [DashboardCourseController::class, 'find']);
+  Route::post('course', [DashboardCourseController::class, 'store']);
+  Route::put('course/{course}', [DashboardCourseController::class, 'update']);
+  Route::get('course/state/{course}', [DashboardCourseController::class, 'toggle']);
+  Route::delete('course/{course}', [DashboardCourseController::class, 'destroy']);
+
+  // Students
+  Route::get('students/{constraint?}', [DashboardStudentController::class, 'get']);
+  Route::get('student/{user}', [DashboardStudentController::class, 'find']);
+  Route::post('student', [DashboardStudentController::class, 'store']);
+  Route::put('student/{user}', [DashboardStudentController::class, 'update']);
+  Route::get('student/state/{user}', [DashboardStudentController::class, 'toggle']);
+  Route::delete('student/{user}', [DashboardStudentController::class, 'destroy']);
+
 });
 
 // Route::middleware('auth:sanctum')->group(function() {

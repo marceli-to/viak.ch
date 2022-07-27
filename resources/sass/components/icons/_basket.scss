@@ -32,8 +32,8 @@ $after-offset: 14px;
 @include bp-xs() {
   .icon-basket {
     em {
-      background-color: $color-white;
-      color: $color-primary;
+      background-color: $color-primary;
+      color: $color-secondary;
       display: none;
       @include font-bold();
       height: 26px;

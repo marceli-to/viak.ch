@@ -36,7 +36,7 @@
             <form-group :error="errors.invoice_address">
               <textarea 
                 v-model="form.invoice_address" 
-                :placeholder="__('Rechnungsadresse')" 
+                :placeholder="__('Rechnungsadresse eingeben')" 
                 class="is-plain mb-2x sm:mb-4x autosize">
               </textarea>
               <div class="flex items-center">

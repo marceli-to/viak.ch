@@ -36,7 +36,7 @@
           <input type="text" v-model="form.name" required @focus="removeError('name')" />
         </form-group>
         <form-group :label="__('Telefon')">
-          <input type="text" v-model="form.phone" maxlength="15" />
+          <input type="text" v-model="form.phone" maxlength="30" />
         </form-group>
         <grid class="sm:grid-cols-12">
           <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">

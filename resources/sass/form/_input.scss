@@ -53,5 +53,6 @@ input[type=radio]:checked:hover ,
 input[type=checkbox]:checked, 
 input[type=checkbox]:checked:focus, 
 input[type=checkbox]:checked:hover {
-  background-color: $color-black;
+  background-color: $color-secondary;
+  border-color: $color-secondary;
 }

@@ -35,6 +35,7 @@ Vue.use(VueRouter);
 import baseRoutes from '@/shared/config/routes';
 import dashboardRoutes from '@/modules/dashboard/config/routes';
 import courseRoutes from '@/modules/dashboard/views/course/config/routes';
+import studentRoutes from '@/modules/dashboard/views/student/config/routes';
 
 const router = new VueRouter(
   { 
@@ -42,7 +43,8 @@ const router = new VueRouter(
     routes: [
       ...baseRoutes,
       ...dashboardRoutes,
-      ...courseRoutes
+      ...courseRoutes,
+      ...studentRoutes
     ]
   }
 );

@@ -311,7 +311,7 @@ export default {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        //this.$router.push({ name: "courses"});
+        this.$router.push({ name: "courses"});
         NProgress.done();
         this.isLoading = true;
       });

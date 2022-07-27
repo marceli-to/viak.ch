@@ -171,7 +171,6 @@ export default {
   },
 
   mounted() {
-    NProgress.configure({ showBar: false });
     this.settings();
   },
 

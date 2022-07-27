@@ -33,12 +33,12 @@ export default {
         gender_id: null,
       },
 
-      // Settings data
+      // Settings
       settings: {
         genders: [],
       },
 
-      // Errors
+      // Validation
       errors: {
         firstname: null,
         name: null,
@@ -83,7 +83,6 @@ export default {
   },
   
   mounted() {
-    NProgress.configure({ showBar: false });
     this.fetch();
   },
 

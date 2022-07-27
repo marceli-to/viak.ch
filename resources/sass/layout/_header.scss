@@ -27,19 +27,20 @@ header.site-header {
     min-height: inherit;
 
     @include bp-sm() {
-      border-bottom: 1px solid $color-black;
+      border-bottom: 1px solid $color-primary;
     }
   }
 
   .site-header__title {
     @extend %pb-3x;
     align-items: flex-end;
-    border-bottom: 1px solid $color-black;
+    border-bottom: 1px solid $color-primary;
     display: flex;
     min-height: 48px;
     
     h1 {
       @extend %fs-24x;
+      color: $color-primary;
       margin-bottom: 0;
       line-height: 1;
     }
