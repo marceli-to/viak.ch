@@ -37,7 +37,7 @@
               <textarea 
                 v-model="form.invoice_address" 
                 :placeholder="__('Rechnungsadresse')" 
-                class="is-plain mb-2x sm:mb-4x">
+                class="is-plain mb-2x sm:mb-4x autosize">
               </textarea>
               <div class="flex items-center">
                 <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">

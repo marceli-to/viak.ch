@@ -32,7 +32,7 @@ class CourseController extends Controller
    */
   public function find(Course $course)
   {
-    $course = Course::find($course->id);
+    $course = Course::with('images')->find($course->id);
     return response()->json($course);
   }
 

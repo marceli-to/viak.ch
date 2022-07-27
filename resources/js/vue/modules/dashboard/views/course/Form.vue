@@ -28,7 +28,7 @@
       <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
         <textarea 
           v-model="data.subtitle.de" 
-          class="is-small" 
+          class="is-small autosize" 
           required 
           @focus="removeError('subtitle.de')">
         </textarea>
@@ -126,16 +126,28 @@
           </template>
         </collapsible>
         <collapsible>
+          <template #title>Bilder</template>
+          <template #content>
+            <images 
+              :imageRatioW="16" 
+              :imageRatioH="9"
+              :type="'Course'"
+              :typeId="data.id"
+              :images="data.images">
+            </images>
+          </template>
+        </collapsible>
+        <collapsible>
           <template #title>Metatags + SEO</template>
           <template #content>
             <form-group :label="'Reviews'" class="md:mt-4x">
-              <textarea v-model="data.reviews"></textarea>
+              <textarea v-model="data.reviews" class="autosize"></textarea>
             </form-group>
             <form-group :label="'SEO - Beschreibung'">
-              <textarea v-model="data.seo_description.de"></textarea>
+              <textarea v-model="data.seo_description.de" class="autosize"></textarea>
             </form-group>
             <form-group :label="'SEO - Keywords'">
-              <textarea v-model="data.seo_tags.de"></textarea>
+              <textarea v-model="data.seo_tags.de" class="autosize"></textarea>
             </form-group>
           </template>
         </collapsible>
@@ -159,6 +171,7 @@ import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
+import Images from "@/shared/modules/images/Index.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
@@ -168,6 +181,7 @@ export default {
     FormGroup,
     FormGroupHeader,
     TinymceEditor,
+    Images,
     IconArrowRight,
     CollapsibleContainer,
     Collapsible
@@ -213,6 +227,7 @@ export default {
         fee: null,
         online: 0,
         publish: 0,
+        images: [],
       },
 
       // Validation

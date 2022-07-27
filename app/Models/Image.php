@@ -29,6 +29,7 @@ class Image extends Base
     'order',
     'publish',
     'locked',
+    'type',
     'imageable_id',
     'imageable_type'
   ];

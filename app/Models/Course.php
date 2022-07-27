@@ -197,7 +197,6 @@ class Course extends Base
     return $this->belongsToMany(Tag::class);
   }
 
-
   /**
    * The events that belong to this course.
    */
@@ -215,6 +214,20 @@ class Course extends Base
   {
     $constraint = date('Y-m-d', time());
     return $this->hasMany(Event::class)->where('date', '>', $constraint)->orderBy('date', 'ASC');
+  }
+
+  /**
+   * The image(s) that belong to this course.
+   */
+
+  public function image()
+  {
+    return $this->morphOne(Image::class, 'imageable');
+  }
+
+  public function images()
+  {
+    return $this->morphMany(Image::class, 'imageable');
   }
 
 

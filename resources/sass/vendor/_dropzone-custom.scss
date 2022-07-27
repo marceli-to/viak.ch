@@ -10,7 +10,7 @@
   @extend %md\:fs-18x;
   align-items: center;
   background-color: transparent;
-  border: 2px solid $color-tertiary;
+  border: 2px dashed $color-tertiary;
   border-radius: 0;
   display: flex;
   justify-content: center;
