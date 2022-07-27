@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Erstellungszeit: 27. Jul 2022 um 06:45
+-- Erstellungszeit: 27. Jul 2022 um 15:07
 -- Server-Version: 5.7.34
 -- PHP-Version: 7.4.21
 
@@ -61,9 +61,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"3D-Software\", \"en\": \"3D-Software (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"Bildgestaltung & Handwerk\", \"en\": \"Bildgestaltung & Handwerk (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, '{\"de\": \"Management & Kommunikation\", \"en\": \"Management & Kommunikation (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"3D-Software\", \"en\": \"3D-Software (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"Bildgestaltung & Handwerk\", \"en\": \"Bildgestaltung & Handwerk (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, '{\"de\": \"Management & Kommunikation\", \"en\": \"Management & Kommunikation (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -83,18 +83,18 @@ CREATE TABLE `category_course` (
 --
 
 INSERT INTO `category_course` (`category_id`, `course_id`, `created_at`, `updated_at`) VALUES
-(3, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(1, 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(1, 4, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 5, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 6, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 7, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 8, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 10, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 11, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(2, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 3, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 4, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(1, 5, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 6, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(1, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(1, 8, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(1, 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 10, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 11, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 12, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -126,18 +126,18 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`id`, `number`, `slug`, `title`, `subtitle`, `text`, `fee`, `reviews`, `seo_description`, `seo_tags`, `uuid`, `online`, `publish`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, '{\"de\": \"storytelling-workshop\", \"en\": \"storytelling-workshop\"}', '{\"de\": \"Storytelling – Workshop\", \"en\": \"Storytelling – Workshop\"}', '{\"de\": \"Adipisci possimus impedit explicabo saepe.\", \"en\": \"Natus vel sapiente sit deleniti voluptatibus.\"}', '{\"de\": \"Cupiditate qui optio fugit. Voluptas est possimus a veritatis dignissimos sit. Aut perferendis temporibus qui quisquam magni laudantium facere. Consectetur laboriosam molestiae ducimus quia quam aliquid. Temporibus facilis laboriosam omnis fuga qui quis totam. Recusandae mollitia quia esse animi similique. Et voluptatem impedit odio doloremque inventore recusandae voluptatem.\", \"en\": \"Et maiores consequatur quod velit. Nihil voluptate sed sunt sit numquam. Aut esse ipsa voluptatibus sit natus omnis. Ipsa et veniam quia perferendis libero quo. Rerum aliquid sed consectetur quo autem itaque. Ad dolorem corrupti dolores eos at doloremque itaque. Nihil voluptate porro et eligendi nihil optio quis et. Quis odit voluptate ea non eligendi.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'db446f5e-12cf-4083-861c-b65af0e452f6', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(2, 2, '{\"de\": \"blender-einfuehrungskurs\", \"en\": \"blender-einfuehrungskurs\"}', '{\"de\": \"Blender Einführungskurs\", \"en\": \"Blender Einführungskurs\"}', '{\"de\": \"Earum qui molestias mollitia perspiciatis provident.\", \"en\": \"Doloribus magnam sed eos esse.\"}', '{\"de\": \"Officiis ab eos non eius nihil rem et soluta. Fuga vitae dolores a. Amet minima exercitationem quos ut. Aut optio ut facilis. Esse dolores molestias accusamus quisquam cumque magni quia. Dolor nisi possimus saepe exercitationem et. Occaecati blanditiis eum quisquam incidunt libero ex. Ea eos ratione in fugit voluptatum.\", \"en\": \"Est cumque animi laborum quis non minima. Recusandae tenetur enim quo ea exercitationem natus molestias. Quaerat cum ex modi voluptates labore. Ut qui rerum saepe voluptate. Adipisci eius molestiae voluptatem rerum eum enim unde quod. Vitae pariatur temporibus mollitia culpa. Dolor est corporis fuga cumque et. Atque quod voluptas ab.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '07a83b98-b597-4f21-8b5b-536e6729b2b5', 0, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(3, 3, '{\"de\": \"blender-renderingkurs\", \"en\": \"blender-renderingkurs\"}', '{\"de\": \"Blender Renderingkurs\", \"en\": \"Blender Renderingkurs\"}', '{\"de\": \"Odio aut cum adipisci quia reprehenderit.\", \"en\": \"Et possimus fugiat aut odit unde.\"}', '{\"de\": \"Esse tempora quam magnam rerum ad. Nulla et ex sunt sed natus nesciunt ut. Placeat sint omnis minima debitis reprehenderit. Ut et consequatur excepturi velit. Saepe nihil facere voluptates repudiandae. Ad ea aut voluptatum sed quia. Ut velit sint officia qui. Dolorem ipsam qui assumenda voluptas.\", \"en\": \"Quia ut quod delectus necessitatibus sint sit. Labore facilis velit perspiciatis enim facilis asperiores. At ut numquam repellat ratione ut ipsum in. Quasi animi qui quia architecto. Ratione et fuga velit et. Quia debitis at error sunt officia sequi tempore amet. Quisquam nihil quidem inventore laudantium tempora ut voluptatem. Delectus amet ut et maiores debitis.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'd50dd5ba-4716-48fd-9a5a-7ae31d591ece', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(4, 4, '{\"de\": \"blender-animationskurs\", \"en\": \"blender-animationskurs\"}', '{\"de\": \"Blender Animationskurs\", \"en\": \"Blender Animationskurs\"}', '{\"de\": \"Et quo mollitia autem non dolore optio et.\", \"en\": \"Ducimus adipisci consequuntur ea iure libero beatae aliquam assumenda.\"}', '{\"de\": \"Natus eos ipsam rerum. Fugit tempora reiciendis consequuntur a in. Optio recusandae in consequatur. Magni dolor consectetur facere sunt neque dolores. Dolorem qui dolores tempore quis tenetur qui. Rerum quia quia voluptatem et illum et. Mollitia nulla ut ab autem qui omnis suscipit sunt. Est et quae placeat dolorem.\", \"en\": \"Voluptas nihil fugit ut earum enim et commodi. Nihil facere omnis sed quia ut nulla. Dolorem voluptas dignissimos nisi vel. Aliquid sed eum dolorum. Vel consequatur iure inventore animi nesciunt sequi harum numquam. Quam sapiente saepe eveniet soluta maxime sed.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '3f7b4365-204c-44f8-afc4-ee77b2054c88', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(5, 5, '{\"de\": \"visual-facilitator-basics\", \"en\": \"visual-facilitator-basics\"}', '{\"de\": \"Visual Facilitator Basics\", \"en\": \"Visual Facilitator Basics\"}', '{\"de\": \"Consequuntur qui numquam aut excepturi rerum.\", \"en\": \"Similique adipisci dolorum harum qui excepturi dolorem recusandae.\"}', '{\"de\": \"Facere aut quisquam hic expedita quo delectus itaque. Est qui non fugiat quia est sint. Et unde vel similique molestiae. In quidem quos necessitatibus quas praesentium sed et. Assumenda eum voluptatem atque dicta nihil distinctio sapiente eaque. Dolorum nam fugiat ducimus corporis incidunt corporis totam. Et nam quas et reprehenderit voluptatibus quo.\", \"en\": \"Animi assumenda sunt placeat. Natus eligendi excepturi commodi sit. Vel explicabo pariatur amet omnis voluptas aut animi. Aspernatur omnis rerum adipisci rerum incidunt. Est laboriosam impedit qui. Ut laborum distinctio sed et. Delectus ipsam cumque quia harum est quae. Voluptatibus illum aut omnis quam soluta ex eius.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '57094149-b0a2-4f66-8dab-48f20a6fecec', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(6, 6, '{\"de\": \"visual-facilitator-advanced\", \"en\": \"visual-facilitator-advanced\"}', '{\"de\": \"Visual Facilitator Advanced\", \"en\": \"Visual Facilitator Advanced\"}', '{\"de\": \"Officiis atque iste amet modi architecto blanditiis aspernatur necessitatibus.\", \"en\": \"Sint inventore omnis maiores non incidunt officia et aut.\"}', '{\"de\": \"Assumenda pariatur est voluptas alias quisquam nam. Natus ut qui fugit laboriosam. Occaecati eligendi veniam voluptatum veniam dolores blanditiis qui. Rerum excepturi ratione nam quae laborum nisi. Voluptas rem soluta animi sed tempore qui. Sed sit velit eos maiores.\", \"en\": \"Porro voluptates dolorem non inventore necessitatibus est suscipit ex. Rem sapiente et ratione ab asperiores libero optio. Illum non explicabo libero saepe dolor optio. Recusandae quis vero eos. Vitae veritatis nostrum quo nobis et doloremque et. Et iusto id dolores voluptatum et aut. Sit itaque ducimus excepturi unde officia at. Provident libero optio ut perspiciatis dolor.\"}', '1120.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '4290bf09-3292-46e7-9947-34cd708966f5', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(7, 7, '{\"de\": \"rhino-einstiegskurs\", \"en\": \"rhino-einstiegskurs\"}', '{\"de\": \"Rhino Einstiegskurs\", \"en\": \"Rhino Einstiegskurs\"}', '{\"de\": \"Aut est molestiae minima nostrum maxime corrupti.\", \"en\": \"Assumenda recusandae doloribus incidunt.\"}', '{\"de\": \"Nobis perferendis dignissimos eveniet eveniet temporibus. Eos ducimus est ullam in sit. Consequuntur eos aut delectus voluptate. Nihil voluptatem eius rem earum tenetur. Distinctio sint vero fugit aut aut cumque. Dolor soluta dolorem eius non expedita repellendus corrupti. Ad ab totam neque et doloribus eum saepe. Culpa sunt quo est quam fugit blanditiis ea ut.\", \"en\": \"Quia commodi beatae praesentium at qui velit rerum. Autem tempore rerum illo totam consequatur. Iusto odit recusandae est est. Sunt autem maxime praesentium. Adipisci fuga omnis molestias fugit quis sunt. Iure et fugiat nobis iste eos quo et sequi. In quia tempora rerum. Ipsum ut eligendi non assumenda quia et. Similique est aut architecto alias quis est ratione.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'fd965bb6-d0ab-4b73-862d-d9062898e169', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(8, 8, '{\"de\": \"zbrush-einfuehrungskurs\", \"en\": \"zbrush-einfuehrungskurs\"}', '{\"de\": \"ZBrush Einführungskurs\", \"en\": \"ZBrush Einführungskurs\"}', '{\"de\": \"Debitis voluptatibus harum omnis quas quo odio.\", \"en\": \"Sunt occaecati quas minima ipsam ut id.\"}', '{\"de\": \"Vero sunt odit aliquid suscipit veniam consectetur. Voluptatum mollitia excepturi ex nostrum. Quam aliquam blanditiis sit ducimus. Quo nemo aut dolor beatae omnis quisquam expedita odio. Totam illo maxime in at excepturi. Odio nam consectetur velit saepe. Eaque aut exercitationem cumque dolorem libero repellendus in. Odit id doloremque sint aspernatur.\", \"en\": \"Architecto doloremque accusamus quia id assumenda eum. Doloribus laboriosam est magnam tempora non nam quae. Et minima repellendus excepturi sed adipisci est. Et qui ullam inventore suscipit. Dignissimos et laudantium et minima tempora repudiandae. Magnam et modi esse delectus dolore. Aliquam cum facere eius labore et debitis.\"}', '840.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'dd9bb7c5-39ff-4315-ab2e-302964617b52', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(9, 9, '{\"de\": \"social-media-marketing\", \"en\": \"social-media-marketing\"}', '{\"de\": \"Social Media Marketing\", \"en\": \"Social Media Marketing\"}', '{\"de\": \"Aut itaque repellat sunt maxime consequuntur ut.\", \"en\": \"Dicta suscipit autem voluptates illo impedit magni dicta et.\"}', '{\"de\": \"Doloremque quaerat quia aliquid voluptates quos nisi nemo. Error quod libero sit labore. Consequuntur labore consequatur aperiam cumque corrupti. Qui id ut sit expedita distinctio. Perspiciatis in beatae quisquam rem dolores. Qui harum odit nemo iure ut. Ullam repellat voluptatibus quas iste.\", \"en\": \"Nihil quos perferendis et enim. Doloremque mollitia aut eaque nobis ea voluptate. Explicabo ducimus deserunt debitis. Sequi incidunt laudantium facilis quo unde. Ut pariatur asperiores omnis. Ullam sed ut cumque dolorem ea et dicta amet. Aut facilis qui omnis. Corporis perferendis exercitationem id ea. Aut delectus quos voluptatibus placeat culpa. Et quia et eos quis sunt.\"}', '840.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'e5d09e64-6f88-44f7-9987-de8ff513b0ae', 0, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(10, 10, '{\"de\": \"after-effects-ae-einstiegskurs\", \"en\": \"after-effects-ae-einstiegskurs\"}', '{\"de\": \"After Effects (AE) Einstiegskurs\", \"en\": \"After Effects (AE) Einstiegskurs\"}', '{\"de\": \"Est magnam in atque quis autem esse.\", \"en\": \"Ullam sed non similique dignissimos nihil.\"}', '{\"de\": \"Ex architecto quo soluta quos. Commodi eligendi voluptatem libero qui illum iure est. Quis reprehenderit dolorem rerum dolorem. Omnis cupiditate nobis est dolorem. Sequi sit et sunt odit eum quidem et. A repudiandae officiis dolores iure. Non veritatis est possimus quidem et quasi aliquid. Ullam cumque autem et possimus et ut temporibus est. Facilis quibusdam neque consequatur voluptates.\", \"en\": \"Et autem ducimus molestiae perspiciatis et ut quo voluptas. Deleniti nobis debitis omnis soluta nemo rerum et. Quidem quo iure iste earum. Voluptatem enim eveniet dolore commodi officia corrupti. Harum quae velit saepe consequatur quia libero aliquam. Consequuntur molestias sequi eos. Quas necessitatibus tenetur qui.\"}', '840.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '7d00bc61-c885-4133-8767-e35a4cf552c9', 0, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(11, 11, '{\"de\": \"rhino-grasshopper-kurs-fuer-einsteiger\", \"en\": \"rhino-grasshopper-kurs-fuer-einsteiger\"}', '{\"de\": \"Rhino Grasshopper Kurs für Einsteiger\", \"en\": \"Rhino Grasshopper Kurs für Einsteiger\"}', '{\"de\": \"Nihil laborum nam quaerat quo.\", \"en\": \"Ducimus dolore nemo quia numquam eos.\"}', '{\"de\": \"Repudiandae quia et eum omnis sit natus qui. Eligendi eius assumenda qui quia. Impedit eum quo non illo fuga tempora culpa. Quo quis iure dolore quia perspiciatis perspiciatis. Distinctio sunt harum et id ab sequi eaque. Autem voluptatem adipisci ex. Nihil sit et unde quod sit libero.\", \"en\": \"Vel nam deleniti consequatur est tempore. Ut soluta omnis atque consectetur qui non debitis. Minima sint quam id aliquam. Neque magnam consectetur dolorem iure recusandae assumenda minima. Nesciunt consectetur consequatur sapiente et sapiente quae. Ducimus voluptatum dolor rerum rerum officia tempore. Aut possimus cum aut omnis sed nulla at. Quod amet rerum dolorum ut sequi vel natus.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '033fce50-29fa-4348-861f-18d60ef9b8a3', 0, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(12, 12, '{\"de\": \"geheimnisse-der-architekturvisualisierung\", \"en\": \"geheimnisse-der-architekturvisualisierung\"}', '{\"de\": \"Geheimnisse der Architekturvisualisierung\", \"en\": \"Geheimnisse der Architekturvisualisierung\"}', '{\"de\": \"Eius minima magnam vel atque sed.\", \"en\": \"Esse voluptatibus eum labore cumque quis deserunt.\"}', '{\"de\": \"Quis eos et est cum. Suscipit corrupti aperiam et sed. Possimus molestiae consectetur suscipit nihil. Odio optio rerum qui et voluptatem quia. Eveniet vel recusandae sint iste vel sunt aut illum. Esse dolor velit fugit id velit commodi. Sunt esse nihil et neque ut et. Qui sit laudantium qui velit cupiditate. Possimus neque aliquam in cumque eveniet quam. Quia nisi ad porro ut.\", \"en\": \"Sunt ut quia ullam. Nihil tempora illo omnis et. Deleniti veritatis enim suscipit eos. Molestiae ullam magni aut. Cum libero eaque voluptas natus. Ab rerum voluptatum fugiat et soluta. Eveniet doloremque voluptas eos. Qui repellat incidunt vel saepe numquam. Doloremque incidunt ad aut.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'd8b8429f-c9c7-446b-ae69-71334b96a213', 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL);
+(1, 1, '{\"de\": \"storytelling-workshop\", \"en\": \"storytelling-workshop\"}', '{\"de\": \"Storytelling – Workshop\", \"en\": \"Storytelling – Workshop\"}', '{\"de\": \"Repellat voluptatem dolorem nam qui id.\", \"en\": \"Nesciunt exercitationem qui accusamus repellendus non explicabo officiis.\"}', '{\"de\": \"Fugiat quaerat ut architecto voluptatibus sed sint est voluptatem. Distinctio perferendis sit vel error pariatur asperiores reprehenderit. Sint autem culpa esse sit. Voluptas esse nostrum et voluptatum aliquam. Aut ad distinctio neque dolorum voluptate alias dolores. Eum facilis nihil nihil nobis.\", \"en\": \"Dolorum et officia id ea tenetur sed sapiente molestias. Accusantium nulla aut voluptatem. Voluptatem quisquam reiciendis quisquam aut labore perferendis in. Corporis est cum omnis dicta ipsam alias dolor.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '71e124c4-70d9-4eec-918f-41f9edc7f3eb', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(2, 2, '{\"de\": \"blender-einfuehrungskurs\", \"en\": \"blender-einfuehrungskurs\"}', '{\"de\": \"Blender Einführungskurs\", \"en\": \"Blender Einführungskurs\"}', '{\"de\": \"Et ullam aperiam accusantium velit quibusdam saepe.\", \"en\": \"Cupiditate qui quia quia.\"}', '{\"de\": \"Voluptatibus quis sint nemo ut. Magnam magni officia ipsa in quas facere minima. Rem sint velit sed repellat dolorem. Praesentium ut accusantium velit dolore. Iusto at nisi blanditiis non modi expedita consequatur. Et aut voluptate numquam numquam omnis ad eos. Aut velit atque perferendis sit. Dicta adipisci quis a aut.\", \"en\": \"Voluptate et et ipsa voluptatibus laborum omnis. Sunt ducimus et possimus non. Omnis neque optio quia. Aut dolores blanditiis voluptatem quia impedit qui temporibus sit. Est aut consequatur recusandae eos illo.\"}', '840.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'a21bf19c-7e79-4dba-ba62-34b39f026ac9', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(3, 3, '{\"de\": \"blender-renderingkurs\", \"en\": \"blender-renderingkurs\"}', '{\"de\": \"Blender Renderingkurs\", \"en\": \"Blender Renderingkurs\"}', '{\"de\": \"Et quibusdam vel enim commodi minus.\", \"en\": \"Id in architecto illo dolor mollitia aut facilis.\"}', '{\"de\": \"Culpa aut ratione id nam. Porro tempore autem nesciunt. Eum cumque et quisquam vitae molestiae. Earum cumque mollitia magnam dolores voluptas officiis maxime. Laboriosam nobis quas aliquam nisi. Provident eligendi aliquam inventore nihil sequi hic ipsum. Eius dignissimos ipsa enim eum rem.\", \"en\": \"Reiciendis adipisci dolorem soluta iusto. Molestiae omnis illum et. Laboriosam reprehenderit veniam incidunt sit non. Unde voluptas tenetur perferendis quia. Sequi qui a cum incidunt voluptatem aliquam. Sequi quibusdam consequatur voluptates quis. Laboriosam aut fuga qui voluptas nobis velit.\"}', '840.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '694e916a-33ac-4d65-be03-af45e47e1aaa', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(4, 4, '{\"de\": \"blender-animationskurs\", \"en\": \"blender-animationskurs\"}', '{\"de\": \"Blender Animationskurs\", \"en\": \"Blender Animationskurs\"}', '{\"de\": \"Voluptatum et accusamus molestiae soluta excepturi.\", \"en\": \"Ipsa corporis ex cupiditate mollitia numquam minima.\"}', '{\"de\": \"Id quae quidem voluptatem et. Unde amet perferendis aut qui voluptas ullam enim tempore. Ut nisi quo ab libero fugit iste qui numquam. A qui cumque modi asperiores. Quis consequuntur velit eum. Consequatur doloremque aut eum natus.\", \"en\": \"Enim sit enim inventore architecto ut nemo asperiores. Recusandae sed modi non voluptatem quas. Autem est velit dolorum quae maiores. Cupiditate non ullam et sunt. Atque maxime eius quisquam commodi ut modi totam. Aspernatur similique ea dolorem recusandae. Ea doloribus harum et doloribus.\"}', '1120.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '51424e47-3ff7-4824-8fe4-779b997873b5', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(5, 5, '{\"de\": \"visual-facilitator-basics\", \"en\": \"visual-facilitator-basics\"}', '{\"de\": \"Visual Facilitator Basics\", \"en\": \"Visual Facilitator Basics\"}', '{\"de\": \"Quibusdam amet a minima.\", \"en\": \"Officia non voluptatibus quis omnis.\"}', '{\"de\": \"Et ut aspernatur et cupiditate laboriosam. Libero officiis officia dignissimos laborum. Necessitatibus ut praesentium non quas distinctio voluptatem. Qui est temporibus laborum voluptatem. Beatae dolores in et. Perferendis accusamus dolore et facere pariatur impedit qui.\", \"en\": \"Alias et aut exercitationem quo totam quia ut. Vero et ut sed repellendus provident voluptas animi. Amet quod modi expedita laudantium maxime aut quo. Itaque consequatur necessitatibus aperiam quia. Explicabo ea qui aut omnis. Commodi illo voluptatibus id quia et. Possimus voluptatem unde qui exercitationem enim aliquam. Et necessitatibus ipsam corporis unde necessitatibus.\"}', '1120.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'd555e7fb-48a2-44e4-9637-ac3d4303a6e0', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(6, 6, '{\"de\": \"visual-facilitator-advanced\", \"en\": \"visual-facilitator-advanced\"}', '{\"de\": \"Visual Facilitator Advanced\", \"en\": \"Visual Facilitator Advanced\"}', '{\"de\": \"Eum quasi dolorum provident consectetur.\", \"en\": \"Corrupti non vel beatae et.\"}', '{\"de\": \"Reiciendis incidunt aspernatur minima consequatur minus. Illo sequi est enim culpa quia nostrum aut. Ducimus reiciendis aut perferendis hic. Qui dolor placeat velit voluptatem cum amet. Suscipit dolore dolore consectetur alias aut et dolor consectetur. Dolor dolorem voluptatem nemo. Reiciendis laborum rem architecto aut facilis.\", \"en\": \"Quo nihil et et blanditiis. Assumenda sit voluptatibus saepe quisquam quia est id. Et similique praesentium quas autem cumque ex iusto. Explicabo et natus sed et exercitationem in tempora. Est eos tempora aperiam eligendi quam iusto quibusdam. Rerum commodi quis iste amet. Reiciendis et beatae doloribus sit. Placeat doloremque officiis ut ut.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', 'f0fdd650-b4f1-4cbd-a2d4-8a46c8864524', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(7, 7, '{\"de\": \"rhino-einstiegskurs\", \"en\": \"rhino-einstiegskurs\"}', '{\"de\": \"Rhino Einstiegskurs\", \"en\": \"Rhino Einstiegskurs\"}', '{\"de\": \"Rem distinctio qui quaerat animi perspiciatis.\", \"en\": \"Amet aut et id amet saepe dolor.\"}', '{\"de\": \"Atque totam laborum aut nisi pariatur. Odio tempora modi atque odit adipisci nesciunt. Magnam fugit cupiditate voluptas nulla. Blanditiis ipsum sequi sed at quas sequi eius. Accusamus omnis et velit modi occaecati. Dolor itaque hic numquam ex molestias omnis deleniti. Non doloribus rerum fugit ipsum ut ipsam atque libero. Et cupiditate itaque odit sunt modi est vel qui.\", \"en\": \"Nemo magnam id aliquam. Omnis rerum sed dignissimos sapiente est. Eos fuga aut aliquam ullam itaque sint. Nihil quo aliquam placeat est ducimus. Consectetur totam unde aut rerum eaque voluptatem. Eos ea eaque eum laboriosam odio eum. Sit fuga et quo voluptas voluptas adipisci laboriosam beatae.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '6ddbea5b-5128-4dba-8923-45d4a17be9fb', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(8, 8, '{\"de\": \"zbrush-einfuehrungskurs\", \"en\": \"zbrush-einfuehrungskurs\"}', '{\"de\": \"ZBrush Einführungskurs\", \"en\": \"ZBrush Einführungskurs\"}', '{\"de\": \"Et magni reprehenderit ea nihil quisquam.\", \"en\": \"Ut esse odit corrupti cumque ullam ab et.\"}', '{\"de\": \"Aut nisi porro est nesciunt sint. Vel autem recusandae tempora. Ea officia non at nihil consequuntur numquam reprehenderit. Et eum ut sequi dolore. Magni qui provident quibusdam necessitatibus. Quae minus nisi occaecati mollitia et aut quas.\", \"en\": \"Aliquid velit corporis impedit eaque doloremque in porro. Quo molestiae quas cumque quidem. Molestiae quae saepe illum voluptatem corrupti in. Cupiditate omnis quae non. Est numquam sed accusantium doloremque. Excepturi rerum commodi repellat vel doloribus.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '56db99f4-ba04-491a-b93d-11b69ad2f01e', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(9, 9, '{\"de\": \"social-media-marketing\", \"en\": \"social-media-marketing\"}', '{\"de\": \"Social Media Marketing\", \"en\": \"Social Media Marketing\"}', '{\"de\": \"Eum voluptatem omnis autem soluta.\", \"en\": \"Animi eum aut non tempora itaque alias corporis quia.\"}', '{\"de\": \"Sed et dolor laborum. Nostrum illum minus dicta ad inventore accusantium. Saepe dolorem repellendus voluptatem error ut. Est vel earum officiis ad voluptatem. Aliquam enim quo aut corrupti ipsam explicabo repudiandae labore. Error ut tempora non. Rerum temporibus quia mollitia architecto dolorem quisquam ut. A aut quaerat sint fuga.\", \"en\": \"Est dolorem laborum distinctio suscipit iure quod quod voluptatem. Ut occaecati rerum quia. Aut pariatur nam nihil possimus dicta ut. Maxime dolorum et rem rerum. Ipsam est et quia nemo corrupti dolorem et. Consequuntur labore iste vitae nihil non. Quis aut sed ab et sed maiores dolores quisquam. Quas quaerat qui dolore suscipit qui adipisci.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '2b4c7339-a5de-4140-8ae9-6a53e2e238f2', 1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(10, 10, '{\"de\": \"after-effects-ae-einstiegskurs\", \"en\": \"after-effects-ae-einstiegskurs\"}', '{\"de\": \"After Effects (AE) Einstiegskurs\", \"en\": \"After Effects (AE) Einstiegskurs\"}', '{\"de\": \"Expedita tempore eius vel aliquid quam adipisci rerum.\", \"en\": \"In reprehenderit totam qui pariatur aliquid ipsum.\"}', '{\"de\": \"Minima non placeat pariatur quo. Consequuntur in et aut atque animi iusto deserunt. Non est voluptatum voluptas tempore asperiores. Aut ut accusamus sit quo aperiam illo. Qui dolore consequatur sint ab odit ducimus amet. Minima et eos sit non consequatur exercitationem asperiores. Ad voluptatem voluptatibus odit dolores dignissimos ratione eos.\", \"en\": \"Facere rerum est dicta vero. Necessitatibus iure excepturi et quos dolorem ut. Repudiandae exercitationem rerum quo. Doloremque non est corporis id sed ut. Veritatis aut et tenetur dolorem natus id. Perferendis id nam ipsa excepturi dolores aut. Delectus molestiae et consequatur iste et. Fuga praesentium magnam molestias ut qui quia iste sit.\"}', '960.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '7479fdcd-9bd4-4ddd-9296-97641326808e', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(11, 11, '{\"de\": \"rhino-grasshopper-kurs-fuer-einsteiger\", \"en\": \"rhino-grasshopper-kurs-fuer-einsteiger\"}', '{\"de\": \"Rhino Grasshopper Kurs für Einsteiger\", \"en\": \"Rhino Grasshopper Kurs für Einsteiger\"}', '{\"de\": \"Labore fugiat cupiditate quo qui tempore illo.\", \"en\": \"Quam perferendis nihil ut et autem nostrum reiciendis.\"}', '{\"de\": \"Dolor voluptatem incidunt cum cumque. Occaecati porro distinctio quia. Neque labore ut dolor est animi neque voluptate. Nisi repellat eligendi ea aut odio voluptatem. Repudiandae rerum ut possimus officia ut et sit. Expedita consectetur quas cupiditate et sed cumque quidem.\", \"en\": \"Voluptatibus a ut distinctio officia. Sit vel ut ut omnis qui. Neque error aut ad voluptatibus totam. Ab mollitia consequuntur illum rerum qui. Sint deleniti recusandae incidunt est aut. Et blanditiis ut aut eos minima consectetur. Deserunt velit dolorem provident inventore expedita sit. Sit qui quae reprehenderit.\"}', '1120.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '064e0237-c0d9-4c10-b565-a8335ca736b6', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(12, 12, '{\"de\": \"geheimnisse-der-architekturvisualisierung\", \"en\": \"geheimnisse-der-architekturvisualisierung\"}', '{\"de\": \"Geheimnisse der Architekturvisualisierung\", \"en\": \"Geheimnisse der Architekturvisualisierung\"}', '{\"de\": \"Non pariatur ut qui voluptas quia.\", \"en\": \"Aut omnis possimus ipsa eum ut.\"}', '{\"de\": \"Harum molestiae aut pariatur ratione. Qui quasi illo quia quo. Est qui explicabo dicta sunt iste maiores quo. Facere unde aspernatur laudantium eaque qui expedita. Et possimus consectetur blanditiis impedit consequatur voluptatem voluptate iste. Ea repudiandae aspernatur ipsam et quae aliquam corrupti. Tenetur ullam natus incidunt ipsam.\", \"en\": \"Molestias qui et magnam quis. Est ut quidem in ipsam unde odio fugit. Non at facere saepe. Voluptatum placeat sit unde quia ea nisi est delectus. Eius molestiae aperiam nihil dolorem voluptatem quaerat. Id dolor quia est accusamus rerum soluta.\"}', '720.00', NULL, '{\"de\": null, \"en\": null}', '{\"de\": null, \"en\": null}', '4b625753-a9d8-4f61-b697-e06a04d46e78', 0, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -157,18 +157,18 @@ CREATE TABLE `course_language` (
 --
 
 INSERT INTO `course_language` (`course_id`, `language_id`, `created_at`, `updated_at`) VALUES
-(1, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(9, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(10, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(11, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(12, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(9, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(10, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(11, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(12, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -188,18 +188,18 @@ CREATE TABLE `course_level` (
 --
 
 INSERT INTO `course_level` (`course_id`, `level_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(9, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(10, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(11, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(12, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(9, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(10, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(11, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(12, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -219,18 +219,18 @@ CREATE TABLE `course_software` (
 --
 
 INSERT INTO `course_software` (`course_id`, `software_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(9, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(10, 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(11, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(12, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 3, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, 3, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(9, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(10, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(11, 3, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(12, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -273,32 +273,32 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `date`, `registration_until`, `min_participants`, `max_participants`, `online`, `fee`, `uuid`, `publish`, `course_id`, `location_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '2022-10-20', '2022-10-06', 5, 11, 1, '1120.00', '4589e740-272f-4f03-9cb8-4bf7b706a525', 1, 4, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(2, '2022-09-12', '2022-08-29', 7, 13, 0, '720.00', '428d65a0-2638-4443-be1c-a02f80be6f18', 1, 6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(3, '2022-10-09', '2022-09-25', 6, 9, 0, '1120.00', '1fcc77cd-837e-4b4e-9497-f81ccc961350', 1, 11, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(4, '2022-09-25', '2022-09-11', 4, 10, 0, '960.00', '04982d7e-6902-4b1b-aaf3-0f4b30e2c524', 1, 1, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(5, '2022-08-18', '2022-08-04', 2, 15, 0, '720.00', '4345b2c9-b246-44e8-b722-9965d497be7b', 1, 6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(6, '2022-10-27', '2022-10-13', 2, 15, 1, '720.00', '394e3126-37de-4424-b653-f7e1e50fd0cc', 1, 8, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(7, '2022-07-24', '2022-07-10', 5, 8, 0, '960.00', '0307a8b7-5a17-4dc6-a1ac-41b0ca5e763c', 1, 2, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(8, '2022-08-24', '2022-08-10', 6, 13, 0, '840.00', '8ecb096c-f168-47b1-93be-fb3f7ab68c7d', 1, 3, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(9, '2022-09-12', '2022-08-29', 8, 12, 0, '720.00', '9fe05635-df33-4606-a96a-75e38fed6630', 1, 1, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(10, '2022-08-05', '2022-07-22', 7, 8, 0, '960.00', '168d15ea-3f4e-40ab-bdf8-70a02b8b8479', 1, 5, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(11, '2022-10-31', '2022-10-17', 7, 14, 1, '960.00', '32227f9d-26ba-4fa9-9c94-7387f8a5d7d1', 1, 11, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(12, '2022-09-06', '2022-08-23', 8, 12, 0, '960.00', '1ecbc667-0ee5-4db4-8bda-4e46d475e371', 1, 11, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(13, '2022-10-30', '2022-10-16', 6, 15, 0, '960.00', '4fd5bc7d-ef30-45f8-bfe3-1ac1f3a665ce', 1, 5, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(14, '2022-07-27', '2022-07-13', 5, 13, 0, '720.00', '14661ab3-f602-477c-93af-eca52b03e611', 1, 6, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(15, '2022-09-06', '2022-08-23', 7, 15, 0, '720.00', '9b5aa9f7-e6da-4dbd-817c-c837dc52b3aa', 1, 2, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(16, '2022-11-14', '2022-10-31', 7, 10, 1, '720.00', 'd1866621-1b5e-4a9d-b770-9f584a88d0c1', 1, 7, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(17, '2022-08-10', '2022-07-27', 7, 11, 0, '840.00', 'd61ab99c-9336-40bf-8ef9-9ef9d2b0ac83', 1, 6, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(18, '2022-07-05', '2022-06-21', 7, 16, 0, '1120.00', '52014343-84b9-4b29-a17b-b7941e87ee8b', 1, 8, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(19, '2022-07-09', '2022-06-25', 8, 13, 0, '840.00', 'a42c9acc-eeb8-4a06-a841-e20b34854057', 1, 3, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(20, '2022-10-20', '2022-10-06', 8, 14, 0, '1120.00', '2920738f-9053-4149-82ff-6dd5d732c008', 1, 1, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(21, '2022-07-17', '2022-07-03', 2, 10, 1, '1120.00', '7ae6bc78-a6bf-4aec-be42-614c56d09b30', 1, 12, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(22, '2022-07-11', '2022-06-27', 6, 11, 0, '1120.00', '5704af6d-3ff0-4a45-a9f5-451825aec51a', 1, 2, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(23, '2022-09-17', '2022-09-03', 8, 16, 0, '720.00', '5e5439fa-454c-47d9-98aa-c9ca240824e7', 1, 1, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(24, '2022-09-11', '2022-08-28', 4, 11, 0, '720.00', '45b02434-0c8b-406e-9c1f-a40d97c83590', 1, 10, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(25, '2022-08-31', '2022-08-17', 4, 13, 0, '960.00', '2e29809b-7e69-4cc0-ab6e-23a7786534cf', 1, 9, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(26, '2022-07-01', '2022-06-17', 6, 11, 1, '840.00', 'a4387165-3e70-45a7-a8fb-375557dd799a', 1, 5, NULL, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL);
+(1, '2022-08-21', '2022-08-07', 7, 10, 1, '840.00', '9a0b9b1c-ec6f-4b31-b200-b6f2b8aa1a51', 1, 5, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(2, '2022-09-02', '2022-08-19', 8, 13, 0, '720.00', '1777c014-cb5a-4647-94f5-85ceb42f4867', 1, 4, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(3, '2022-07-28', '2022-07-14', 4, 13, 0, '720.00', '1e5834e7-89fb-4f05-9a33-b8491b5c15cd', 1, 1, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(4, '2022-09-25', '2022-09-11', 3, 10, 0, '840.00', 'a37ec3a8-23ba-4abb-8dfb-0bd4d19e2499', 1, 8, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(5, '2022-10-19', '2022-10-05', 6, 13, 0, '720.00', '5d62168c-8fc1-4658-ba35-3afca7840cf4', 1, 9, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(6, '2022-10-26', '2022-10-12', 8, 13, 1, '960.00', 'b81c5180-7f2e-4123-83ef-c10628a732f9', 1, 12, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(7, '2022-09-30', '2022-09-16', 7, 11, 0, '960.00', 'f2212dd5-6d4c-452e-a373-5ee18f86e7ff', 1, 6, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(8, '2022-07-21', '2022-07-07', 5, 14, 0, '840.00', '364830ca-13d7-4daa-9b32-bcd7abcb6dd5', 1, 3, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(9, '2022-07-13', '2022-06-29', 2, 9, 0, '720.00', '47a9f1b9-6616-4d4f-a5cc-5995828b88be', 1, 4, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(10, '2022-10-01', '2022-09-17', 7, 10, 0, '840.00', 'aa7a64da-284c-45c2-b839-cde2db48db71', 1, 11, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(11, '2022-10-29', '2022-10-15', 2, 9, 1, '1120.00', 'dc003e82-bbb6-44c8-9b17-c7373206f808', 1, 9, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(12, '2022-07-03', '2022-06-19', 2, 11, 0, '720.00', 'b23c0289-2688-4809-8d1e-6198749f41ba', 1, 11, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(13, '2022-09-01', '2022-08-18', 4, 13, 0, '720.00', 'd7580dd1-ede6-4f5a-b9c7-3450b19798aa', 1, 4, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(14, '2022-07-28', '2022-07-14', 7, 13, 0, '840.00', '04807f43-3401-4822-add7-cd65721bdc46', 1, 12, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(15, '2022-10-02', '2022-09-18', 4, 8, 0, '720.00', 'acf91507-4df9-49c5-a328-e283ee101b00', 1, 10, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(16, '2022-09-10', '2022-08-27', 8, 15, 1, '840.00', '52eb8cf1-d553-4bb3-a7bb-07aaff56272f', 1, 5, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(17, '2022-09-13', '2022-08-30', 6, 9, 0, '720.00', '060b82d0-a507-4c1a-9fbf-d04acbf604a6', 1, 4, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(18, '2022-11-05', '2022-10-22', 4, 12, 0, '840.00', '0f86bc8e-ac8f-43b0-bc5d-4f0da9d1721a', 1, 6, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(19, '2022-08-31', '2022-08-17', 5, 12, 0, '960.00', '524adb8b-c8b9-44d2-8263-e4dfbeb4b9df', 1, 12, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(20, '2022-07-03', '2022-06-19', 4, 12, 0, '840.00', '39af3b8a-7d72-4df0-b241-61e874e38e25', 1, 8, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(21, '2022-07-10', '2022-06-26', 4, 11, 1, '960.00', '1e748ddb-9832-45d3-92ef-6f761089f745', 1, 5, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(22, '2022-07-08', '2022-06-24', 2, 8, 0, '1120.00', 'b48fa269-1d5a-4c3e-9de0-be80a8fcc268', 1, 10, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(23, '2022-10-03', '2022-09-19', 2, 12, 0, '720.00', '4f2ec24d-cac4-429d-8d1f-4a497880a468', 1, 6, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(24, '2022-08-14', '2022-07-31', 7, 16, 0, '720.00', 'aa8f2c0e-5aab-4fb9-a24c-fe633041798e', 1, 10, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(25, '2022-08-26', '2022-08-12', 8, 8, 0, '960.00', 'b5a17dee-37a5-4c4e-ad19-3f0812eadb77', 1, 5, 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(26, '2022-08-25', '2022-08-11', 3, 16, 1, '720.00', '88446b4d-4b0a-449c-8592-9e66c23ed824', 1, 9, NULL, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -321,39 +321,39 @@ CREATE TABLE `event_dates` (
 --
 
 INSERT INTO `event_dates` (`id`, `date`, `time_start`, `time_end`, `event_id`, `created_at`, `updated_at`) VALUES
-(1, '2022-10-20', '15:30:00', '21:15:00', 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '2022-10-21', '15:30:00', '21:15:00', 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, '2022-09-12', '14:00:00', '19:00:00', 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, '2022-10-09', '14:00:00', '19:00:00', 3, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, '2022-09-25', '14:00:00', '19:00:00', 4, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, '2022-08-18', '15:30:00', '21:15:00', 5, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, '2022-08-19', '15:30:00', '21:15:00', 5, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, '2022-10-27', '14:00:00', '19:00:00', 6, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(9, '2022-07-24', '14:00:00', '19:00:00', 7, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(10, '2022-08-24', '14:00:00', '19:00:00', 8, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(11, '2022-09-12', '15:30:00', '21:15:00', 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(12, '2022-09-13', '15:30:00', '21:15:00', 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(13, '2022-08-05', '14:00:00', '19:00:00', 10, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(14, '2022-10-31', '14:00:00', '19:00:00', 11, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(15, '2022-09-06', '14:00:00', '19:00:00', 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(16, '2022-10-30', '15:30:00', '21:15:00', 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(17, '2022-10-31', '15:30:00', '21:15:00', 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(18, '2022-07-27', '14:00:00', '19:00:00', 14, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(19, '2022-09-06', '14:00:00', '19:00:00', 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(20, '2022-11-14', '14:00:00', '19:00:00', 16, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(21, '2022-08-10', '15:30:00', '21:15:00', 17, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(22, '2022-08-11', '15:30:00', '21:15:00', 17, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(23, '2022-07-05', '14:00:00', '19:00:00', 18, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(24, '2022-07-09', '14:00:00', '19:00:00', 19, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(25, '2022-10-20', '14:00:00', '19:00:00', 20, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(26, '2022-07-17', '15:30:00', '21:15:00', 21, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(27, '2022-07-18', '15:30:00', '21:15:00', 21, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(28, '2022-07-11', '14:00:00', '19:00:00', 22, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(29, '2022-09-17', '14:00:00', '19:00:00', 23, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(30, '2022-09-11', '14:00:00', '19:00:00', 24, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(31, '2022-08-31', '15:30:00', '21:15:00', 25, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(32, '2022-09-01', '15:30:00', '21:15:00', 25, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(33, '2022-07-01', '14:00:00', '19:00:00', 26, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '2022-08-21', '15:30:00', '21:15:00', 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '2022-08-22', '15:30:00', '21:15:00', 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, '2022-09-02', '14:00:00', '19:00:00', 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, '2022-07-28', '14:00:00', '19:00:00', 3, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, '2022-09-25', '14:00:00', '19:00:00', 4, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, '2022-10-19', '15:30:00', '21:15:00', 5, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, '2022-10-20', '15:30:00', '21:15:00', 5, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, '2022-10-26', '14:00:00', '19:00:00', 6, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(9, '2022-09-30', '14:00:00', '19:00:00', 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(10, '2022-07-21', '14:00:00', '19:00:00', 8, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(11, '2022-07-13', '15:30:00', '21:15:00', 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(12, '2022-07-14', '15:30:00', '21:15:00', 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(13, '2022-10-01', '14:00:00', '19:00:00', 10, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(14, '2022-10-29', '14:00:00', '19:00:00', 11, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(15, '2022-07-03', '14:00:00', '19:00:00', 12, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(16, '2022-09-01', '15:30:00', '21:15:00', 13, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(17, '2022-09-02', '15:30:00', '21:15:00', 13, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(18, '2022-07-28', '14:00:00', '19:00:00', 14, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(19, '2022-10-02', '14:00:00', '19:00:00', 15, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(20, '2022-09-10', '14:00:00', '19:00:00', 16, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(21, '2022-09-13', '15:30:00', '21:15:00', 17, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(22, '2022-09-14', '15:30:00', '21:15:00', 17, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(23, '2022-11-05', '14:00:00', '19:00:00', 18, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(24, '2022-08-31', '14:00:00', '19:00:00', 19, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(25, '2022-07-03', '14:00:00', '19:00:00', 20, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(26, '2022-07-10', '15:30:00', '21:15:00', 21, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(27, '2022-07-11', '15:30:00', '21:15:00', 21, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(28, '2022-07-08', '14:00:00', '19:00:00', 22, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(29, '2022-10-03', '14:00:00', '19:00:00', 23, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(30, '2022-08-14', '14:00:00', '19:00:00', 24, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(31, '2022-08-26', '15:30:00', '21:15:00', 25, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(32, '2022-08-27', '15:30:00', '21:15:00', 25, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(33, '2022-08-25', '14:00:00', '19:00:00', 26, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -373,37 +373,37 @@ CREATE TABLE `event_user` (
 --
 
 INSERT INTO `event_user` (`event_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 11, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(1, 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 11, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, 11, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(9, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(10, 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(11, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(12, 8, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(13, 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(13, 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(14, 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(15, 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(16, 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(17, 6, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(18, 15, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(19, 10, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(19, 14, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(20, 2, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(21, 9, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(22, 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(23, 12, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(24, 7, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(25, 10, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(25, 14, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(26, 13, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, 2, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(1, 8, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 5, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, 10, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, 11, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, 8, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, 10, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, 15, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(9, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(10, 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(11, 5, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(12, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(13, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(13, 14, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(14, 12, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(15, 8, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(16, 7, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(17, 14, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(18, 13, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(19, 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(19, 10, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(20, 11, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(21, 15, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(22, 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(23, 11, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(24, 13, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(25, 9, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(25, 14, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(26, 13, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -438,9 +438,9 @@ CREATE TABLE `genders` (
 --
 
 INSERT INTO `genders` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"männlich\", \"en\": \"male\"}', '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, '{\"de\": \"weiblich\", \"en\": \"female\"}', '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(3, '{\"de\": \"andere\", \"en\": \"other\"}', '2022-07-26 19:48:51', '2022-07-26 19:48:51');
+(1, '{\"de\": \"männlich\", \"en\": \"male\"}', '2022-07-27 13:07:03', '2022-07-27 13:07:03'),
+(2, '{\"de\": \"weiblich\", \"en\": \"female\"}', '2022-07-27 13:07:03', '2022-07-27 13:07:03'),
+(3, '{\"de\": \"andere\", \"en\": \"other\"}', '2022-07-27 13:07:03', '2022-07-27 13:07:03');
 
 -- --------------------------------------------------------
 
@@ -455,6 +455,7 @@ CREATE TABLE `images` (
   `original_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `extension` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` double NOT NULL DEFAULT '0',
+  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `caption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `orientation` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -508,8 +509,8 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"deutsch\", \"en\": \"german\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"englisch\", \"en\": \"english\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"deutsch\", \"en\": \"german\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"englisch\", \"en\": \"english\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -529,8 +530,8 @@ CREATE TABLE `levels` (
 --
 
 INSERT INTO `levels` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"Einsteiger\", \"en\": \"beginner\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"Vertiefung\", \"en\": \"in depth\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"Einsteiger\", \"en\": \"beginner\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"Vertiefung\", \"en\": \"in depth\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -553,8 +554,8 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `description`, `address`, `map`, `publish`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"Visualisierungs-Akademie, Zürich\", \"en\": \"Visualisierungs-Akademie, Zurich\"}', '{\"de\": \"Förlibuckstrasse 240\\n8006 Zürich\", \"en\": \"Förlibuckstrasse 240\\n8006 Zurich\"}', 'https://goo.gl/maps/JJhSmLv5aKpPz2Pw5', 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"Visualisierungs-Akademie, Bern\", \"en\": \"Visualisierungs-Akademie, Bern\"}', '{\"de\": \"Bundesstrasse 4\\nBern\", \"en\": \"Bundesstrasse 4\\n3000 Bern\"}', 'https://goo.gl/maps/9JTRGV719VGY9BUA8', 1, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"Visualisierungs-Akademie, Zürich\", \"en\": \"Visualisierungs-Akademie, Zurich\"}', '{\"de\": \"Förlibuckstrasse 240\\n8006 Zürich\", \"en\": \"Förlibuckstrasse 240\\n8006 Zurich\"}', 'https://goo.gl/maps/JJhSmLv5aKpPz2Pw5', 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"Visualisierungs-Akademie, Bern\", \"en\": \"Visualisierungs-Akademie, Bern\"}', '{\"de\": \"Bundesstrasse 4\\nBern\", \"en\": \"Bundesstrasse 4\\n3000 Bern\"}', 'https://goo.gl/maps/9JTRGV719VGY9BUA8', 1, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -600,7 +601,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2022_07_14_210349_alter_users_table_add_publish_and_visible', 1),
 (26, '2022_07_17_210404_alter_users_table_add_fields', 1),
 (27, '2022_07_21_073837_create_images_table', 1),
-(28, '2022_07_25_132612_create_bookings_table', 1);
+(28, '2022_07_25_132612_create_bookings_table', 1),
+(29, '2022_07_27_145023_alter_images_table_add_type', 1);
 
 -- --------------------------------------------------------
 
@@ -652,9 +654,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `key`, `uuid`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', '3d017647-71e0-43b6-9c21-277939452383', '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 'Experte', 'expert', 'd3b09c6a-c5c3-492d-845e-3b434e3b080e', '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(3, 'Student', 'student', '5eba2185-e2fc-4a50-8a86-e63c9c7b65a7', '2022-07-26 19:48:51', '2022-07-26 19:48:51');
+(1, 'Admin', 'admin', '489de00c-ea81-4222-a05c-0e71de2f0926', '2022-07-27 13:07:03', '2022-07-27 13:07:03'),
+(2, 'Experte', 'expert', 'a5623142-5ef2-4c96-9b6a-c07b56bcfb40', '2022-07-27 13:07:03', '2022-07-27 13:07:03'),
+(3, 'Student', 'student', '82e26b5f-4e30-441c-8950-b064519fd04b', '2022-07-27 13:07:03', '2022-07-27 13:07:03');
 
 -- --------------------------------------------------------
 
@@ -674,48 +676,47 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`role_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(3, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(1, 2, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 2, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(3, 2, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(1, 3, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(1, 4, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(1, 5, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 6, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 7, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 8, '2022-07-26 19:48:51', '2022-07-26 19:48:51'),
-(2, 9, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 10, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 11, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 12, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 13, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 14, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 15, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(2, 16, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 17, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 18, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 19, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 20, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 21, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 22, '2022-07-26 19:48:52', '2022-07-26 19:48:52'),
-(3, 23, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 24, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 25, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 26, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 27, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 28, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 29, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 30, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 31, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 32, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 33, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 34, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 35, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 36, '2022-07-26 19:48:53', '2022-07-26 19:48:53'),
-(3, 37, '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, 38, '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(3, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(1, 2, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 2, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(3, 2, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(1, 3, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(1, 4, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 5, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 6, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 7, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 8, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 9, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 10, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 11, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 12, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 13, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 14, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(2, 15, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(3, 16, '2022-07-27 13:07:04', '2022-07-27 13:07:04'),
+(3, 17, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 18, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 19, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 20, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 21, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 22, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 23, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 24, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 25, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 26, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 27, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 28, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 29, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 30, '2022-07-27 13:07:05', '2022-07-27 13:07:05'),
+(3, 31, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 32, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 33, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 34, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 35, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 36, '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, 37, '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -731,13 +732,6 @@ CREATE TABLE `sessions` (
   `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Daten für Tabelle `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('WfoIpeGYsqMrqaMrZRCdsYDOhmEYWoP4HrRr9TZq', 1, '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiSktNbDFrZnhxQm83QVlGQnRjM2lzWmtsbkN5cWYya0tQM2IyVzFjYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly92aWFrLmNoLmxvY2FsL2Rhc2hib2FyZC9jb3Vyc2UvZWRpdC8xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE2NTg5MDQxMzg7fXM6MTM6InNlbGVjdGVkLXJvbGUiO086MTU6IkFwcFxNb2RlbHNcUm9sZSI6MzA6e3M6MTE6IgAqAGZpbGxhYmxlIjthOjM6e2k6MDtzOjQ6InV1aWQiO2k6MTtzOjQ6Im5hbWUiO2k6MjtzOjM6ImtleSI7fXM6ODoiACoAY2FzdHMiO2E6Mjp7czoxMDoiY3JlYXRlZF9hdCI7czoxMDoiZGF0ZTpkLm0uWSI7czoxMDoidXBkYXRlZF9hdCI7czoxMDoiZGF0ZTpkLm0uWSI7fXM6MTM6IgAqAGNvbm5lY3Rpb24iO3M6NToibXlzcWwiO3M6ODoiACoAdGFibGUiO3M6NToicm9sZXMiO3M6MTM6IgAqAHByaW1hcnlLZXkiO3M6MjoiaWQiO3M6MTA6IgAqAGtleVR5cGUiO3M6MzoiaW50IjtzOjEyOiJpbmNyZW1lbnRpbmciO2I6MTtzOjc6IgAqAHdpdGgiO2E6MDp7fXM6MTI6IgAqAHdpdGhDb3VudCI7YTowOnt9czoxOToicHJldmVudHNMYXp5TG9hZGluZyI7YjowO3M6MTA6IgAqAHBlclBhZ2UiO2k6MTU7czo2OiJleGlzdHMiO2I6MTtzOjE4OiJ3YXNSZWNlbnRseUNyZWF0ZWQiO2I6MDtzOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7czoxMzoiACoAYXR0cmlidXRlcyI7YTo2OntzOjI6ImlkIjtpOjE7czo0OiJuYW1lIjtzOjU6IkFkbWluIjtzOjM6ImtleSI7czo1OiJhZG1pbiI7czo0OiJ1dWlkIjtzOjM2OiIzZDAxNzY0Ny03MWUwLTQzYjYtOWMyMS0yNzc5Mzk0NTIzODMiO3M6MTA6ImNyZWF0ZWRfYXQiO3M6MTk6IjIwMjItMDctMjYgMjE6NDg6NTEiO3M6MTA6InVwZGF0ZWRfYXQiO3M6MTk6IjIwMjItMDctMjYgMjE6NDg6NTEiO31zOjExOiIAKgBvcmlnaW5hbCI7YTo2OntzOjI6ImlkIjtpOjE7czo0OiJuYW1lIjtzOjU6IkFkbWluIjtzOjM6ImtleSI7czo1OiJhZG1pbiI7czo0OiJ1dWlkIjtzOjM2OiIzZDAxNzY0Ny03MWUwLTQzYjYtOWMyMS0yNzc5Mzk0NTIzODMiO3M6MTA6ImNyZWF0ZWRfYXQiO3M6MTk6IjIwMjItMDctMjYgMjE6NDg6NTEiO3M6MTA6InVwZGF0ZWRfYXQiO3M6MTk6IjIwMjItMDctMjYgMjE6NDg6NTEiO31zOjEwOiIAKgBjaGFuZ2VzIjthOjA6e31zOjE3OiIAKgBjbGFzc0Nhc3RDYWNoZSI7YTowOnt9czoyMToiACoAYXR0cmlidXRlQ2FzdENhY2hlIjthOjA6e31zOjg6IgAqAGRhdGVzIjthOjA6e31zOjEzOiIAKgBkYXRlRm9ybWF0IjtOO3M6MTA6IgAqAGFwcGVuZHMiO2E6MDp7fXM6MTk6IgAqAGRpc3BhdGNoZXNFdmVudHMiO2E6MDp7fXM6MTQ6IgAqAG9ic2VydmFibGVzIjthOjA6e31zOjEyOiIAKgByZWxhdGlvbnMiO2E6MDp7fXM6MTA6IgAqAHRvdWNoZXMiO2E6MDp7fXM6MTA6InRpbWVzdGFtcHMiO2I6MTtzOjk6IgAqAGhpZGRlbiI7YTowOnt9czoxMDoiACoAdmlzaWJsZSI7YTowOnt9czoxMDoiACoAZ3VhcmRlZCI7YToxOntpOjA7czoxOiIqIjt9fX0=', 1658904242);
 
 -- --------------------------------------------------------
 
@@ -757,9 +751,9 @@ CREATE TABLE `software` (
 --
 
 INSERT INTO `software` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"Rhinoceros 7\", \"en\": \"Rhinoceros 7 (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"Blender 3\", \"en\": \"Blender 3 (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, '{\"de\": \"SketchUp 2022\", \"en\": \"SketchUp 2022 (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"Rhinoceros 7\", \"en\": \"Rhinoceros 7 (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"Blender 3\", \"en\": \"Blender 3 (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, '{\"de\": \"SketchUp 2022\", \"en\": \"SketchUp 2022 (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -779,14 +773,14 @@ CREATE TABLE `tags` (
 --
 
 INSERT INTO `tags` (`id`, `description`, `created_at`, `updated_at`) VALUES
-(1, '{\"de\": \"Modelling\", \"en\": \"Modelling (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(2, '{\"de\": \"Rendering\", \"en\": \"Rendering (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(3, '{\"de\": \"Visualisierung\", \"en\": \"Visualisierung (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(4, '{\"de\": \"Animation\", \"en\": \"Animation (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(5, '{\"de\": \"Konstruktion\", \"en\": \"Konstruktion (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(6, '{\"de\": \"Motion Graphics\", \"en\": \"Motion Graphics (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(7, '{\"de\": \"Architektur\", \"en\": \"Architektur (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54'),
-(8, '{\"de\": \"3D-Druck\", \"en\": \"3D-Druck (en)\"}', '2022-07-26 19:48:54', '2022-07-26 19:48:54');
+(1, '{\"de\": \"Modelling\", \"en\": \"Modelling (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(2, '{\"de\": \"Rendering\", \"en\": \"Rendering (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(3, '{\"de\": \"Visualisierung\", \"en\": \"Visualisierung (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(4, '{\"de\": \"Animation\", \"en\": \"Animation (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(5, '{\"de\": \"Konstruktion\", \"en\": \"Konstruktion (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(6, '{\"de\": \"Motion Graphics\", \"en\": \"Motion Graphics (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(7, '{\"de\": \"Architektur\", \"en\": \"Architektur (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06'),
+(8, '{\"de\": \"3D-Druck\", \"en\": \"3D-Druck (en)\"}', '2022-07-27 13:07:06', '2022-07-27 13:07:06');
 
 -- --------------------------------------------------------
 
@@ -827,44 +821,43 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `name`, `street`, `street_no`, `zip`, `city`, `phone`, `has_invoice_address`, `invoice_address`, `expert_title`, `expert_description`, `expert_bio`, `operating_system`, `email`, `email_verified_at`, `password`, `uuid`, `gender_id`, `remember_token`, `publish`, `visible`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Marcel', 'Stadelmann', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'm@marceli.to', '2022-07-26 19:48:51', '$2y$10$KrdnIKl3wW0GA8mIs66o4eeT/9WmVIwQQPbbCvUlOlTTYC4HKA4ba', '56c962c7-afbc-4ec9-9225-4140fc0d63bb', 1, NULL, 1, 0, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(2, 'Oliver', 'Schmid', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'oliver.schmid@visualisierungs-akademie.ch', '2022-07-26 19:48:51', '$2y$10$SL1PQ541/ecfVwXrBxOnS.6O7laCPOm12XIoFzp104omNMwmF0Jbm', '9d14478c-3688-4a2a-9488-061cf0c9d7bb', 1, NULL, 1, 0, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(3, 'Lutz', 'Kögler', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'koegler@nightnurse.ch', '2022-07-26 19:48:51', '$2y$10$84IIoDoqhIxV3q1NOeev4.iZaF0r0wacaye9kIRl5ezV2S5hDVYMS', '5cb3e340-c1e6-4983-aab1-eff515714219', 1, NULL, 1, 0, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(4, 'Benedikt', 'Flüeler', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bf@wbg.ch', '2022-07-26 19:48:51', '$2y$10$XfietGoSkqz.QjU7EPRUhuJPXOx.t14afB3CWm8VgWNCUfIykPlNu', '76753146-bb9e-41ec-b3c5-c347c4a1a2d5', 1, NULL, 1, 0, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(5, 'Bettina', 'Puorger', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bp@wbg.ch', '2022-07-26 19:48:51', '$2y$10$HaX3kKIDOij/hLxw6G.EgOfR6HdYCnmTAna/MIJRiB0UkZp1mMs1q', '53893f74-09dd-45a9-9543-48b20ffe856c', 2, NULL, 1, 0, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(6, 'Peter', 'Muster', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'viak-experte@0704.ch', '2022-07-26 19:48:51', '$2y$10$BQTlkRUasEDUR2koQM5jWORfUqZXph6dN35smYyX69URnfO6UNZte', 'dcb570a2-be36-4ed1-8119-3f8974e54080', 1, NULL, 1, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(7, 'Niko', 'Lynch', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'moshe.gorczany@jacobi.com', '2022-07-26 19:48:51', '$2y$10$8MBt7RBEMJWlPC6e97C2YuEwlkS.RX/RxTGqFpa4CZvYVVXBeza8C', '94fab4ba-7daf-475b-807b-315bd6129e49', 1, NULL, 1, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(8, 'Marcelina', 'Windler', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'ettie43@hotmail.com', '2022-07-26 19:48:51', '$2y$10$ZP./RC6r3e175ibqJtbMTuWELuXbqZN905jWhBQVmiDtJCBU7As7q', 'd6427928-b72e-4cf6-b69c-68267b86e743', 1, NULL, 1, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(9, 'Ernie', 'King', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'lind.verdie@gmail.com', '2022-07-26 19:48:51', '$2y$10$HERqbAmfqnBdkdejPJOtKerw939fg9W.ksirz07MBZ6m8PWlgY/vi', 'afc47c05-86ef-49a8-96ea-cec90d55fa94', 1, NULL, 1, 1, '2022-07-26 19:48:51', '2022-07-26 19:48:51', NULL),
-(10, 'Jude', 'Will', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'mikayla.runolfsdottir@gmail.com', '2022-07-26 19:48:52', '$2y$10$rUt53rlqZTgGhtQkEUEKg.UP.vXeLIorGix4KRe/JRJdZsU1DpiR2', 'f9c77dc7-805e-456e-a4db-dfa84c84ba6e', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(11, 'Elinor', 'Connelly', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'krystel96@gmail.com', '2022-07-26 19:48:52', '$2y$10$AQZL6ohQGi6HiNWeIs7vW.VM/T0SrAffFU42RDEOK6Y2yjeX7/0nW', 'a167874a-70c3-4750-9421-534b349f4d3c', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(12, 'Arnoldo', 'Runte', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'enrico.dach@yahoo.com', '2022-07-26 19:48:52', '$2y$10$rnRLppW07oFB/NaQVCmbvuLZsyXtC/NmKQhgUOFcXKSYkDZR5TxX2', 'c7e0365e-0ebd-417f-8ed6-7a59a935b037', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(13, 'Arno', 'Stark', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bauch.loy@strosin.net', '2022-07-26 19:48:52', '$2y$10$05Oo7Z.BHjC.nVSFkAyvhen4N7sN08lvnSnfHAGaw4F.Ddmw0cCOe', 'ebe83bc1-abe3-4367-818a-825806fb649e', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(14, 'Brody', 'Rath', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'micah98@mante.org', '2022-07-26 19:48:52', '$2y$10$YlETy/Xs2LR21VBE5aAMo.Vpt0SUYDepYruOH.olhqSmEP2d7xrge', '38c10ac8-8c1e-4004-a0f0-6cc9f9bf038f', 1, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(15, 'Joey', 'Ebert', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'cummings.xzavier@hotmail.com', '2022-07-26 19:48:52', '$2y$10$09I9gIRqkhB27qEKct.In.atiB.xb7s72akKj7jpNq0PYDdBKQFuC', 'ab71a16d-b772-44df-8918-279008576e2e', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(16, 'Jabari', 'Orn', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'merlin.schimmel@kuhn.com', '2022-07-26 19:48:52', '$2y$10$jqQWV89tHFEufIAc9OuwFeRWB7QzrOcIM6wy89DZvLzhBeVwXSbdu', '02c909ff-6eca-4445-bb13-08dbdff5b656', 2, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(17, 'Paul', 'Mosimann', 'Letzigraben', '149', '8047', 'Zürich', '078 749 74 09', 0, NULL, NULL, NULL, NULL, NULL, 'viak-student@0704.ch', '2022-07-26 19:48:52', '$2y$10$yeF1FBvs9knTKPzRNgbtjeLa5DQqb79wwN.DqhejqPs4viKOcTfM6', '37b5ddc6-a72b-41f0-86fa-cbe7e905e0ce', 1, NULL, 1, 1, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(18, 'Sigrid', 'Berge', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'stefan.hoeger@dach.com', '2022-07-26 19:48:52', '$2y$10$rpK5yL0anRVkan921yIVyuGpF7WgXr78.60g/NfmCKQGah.Xgatae', '36b58a32-262e-40e2-bc1d-cc004227e1f0', 1, NULL, 1, 0, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(19, 'Edison', 'Ruecker', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'fwiza@yahoo.com', '2022-07-26 19:48:52', '$2y$10$L1sou5SFtG5.Kfz2l7/s3et1f.XYMMMuVnkm4xeTZvhCnJuIKg8TO', 'dee0c130-6373-4550-9d6c-c38a572ac566', 2, NULL, 1, 0, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(20, 'Logan', 'Cartwright', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bernhard.georgiana@kreiger.com', '2022-07-26 19:48:52', '$2y$10$AkEvMVvlZTKA619gOVy0O.OhfGEM0G4eFZkWoVztN78q6KDiuOnbe', '6f9806ea-8a64-4451-9188-c3259e2cc406', 2, NULL, 1, 0, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(21, 'Stanford', 'Klein', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'zfay@herzog.info', '2022-07-26 19:48:52', '$2y$10$otsWCpbUXM0ZD.D24rYxKOCdH0L2q/CeGKggGm.iEtf0RHzReFuSC', '79d1f24e-bb0c-4160-897d-4c5d632b0f7b', 2, NULL, 1, 0, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(22, 'Jazmin', 'Mertz', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'koch.godfrey@bechtelar.net', '2022-07-26 19:48:52', '$2y$10$XTwktRlO0oVDpAhBXKsFvuKLhPNHKqxCEzV.QpH6cidLn7msbPmpa', 'f008433d-42e0-49d5-b698-df9b8b157b27', 2, NULL, 1, 0, '2022-07-26 19:48:52', '2022-07-26 19:48:52', NULL),
-(23, 'Natalie', 'Hagenes', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'shanie49@gmail.com', '2022-07-26 19:48:52', '$2y$10$P8xt9CgL9egCwcFjDMjYceIwtgwmvTy30M2zK5XhVYZPqLxd06eUS', '2195cf59-de18-4be3-ac73-168230117d3f', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(24, 'Jewell', 'Weissnat', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'twunsch@strosin.com', '2022-07-26 19:48:53', '$2y$10$sASljqZ2EFNANibDGpsJ.e91UWWyRPoQrUjzU3uUqU9v0JtwvbBty', 'c1a36e4c-2ece-4bab-a322-aae7f738fd0d', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(25, 'Rahul', 'Bernhard', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'albertha.powlowski@ryan.net', '2022-07-26 19:48:53', '$2y$10$kIqYcgD56OUBsj2GF2Pz5uuULQk0FeGTc20GyqLdpSgSNGEoyi/a6', '5e87b606-18d7-48e1-8602-742ab2d1dea9', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(26, 'Kellie', 'Beier', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'heloise.hudson@dooley.biz', '2022-07-26 19:48:53', '$2y$10$DhBi3wiSDkrrTfj1gaUewuLDziXEinHITpnlW59X.kb52anujxTaO', '1dde59fb-8075-4828-b97c-ec44f0d6dea5', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(27, 'Mustafa', 'Raynor', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'deshawn36@gmail.com', '2022-07-26 19:48:53', '$2y$10$TJdU9fVbtDwNL7q1vMw2OuND6Nthhg/7cYXmnzeDrun2krQnD8tcK', 'e6cf2be0-c2cb-4a46-803b-05034c1c985e', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(28, 'Arthur', 'Ward', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'dawn.kohler@yahoo.com', '2022-07-26 19:48:53', '$2y$10$7O3.eRXeiKbGwrNpCs8xeO4S0vmPlMW1gAvSiRLWzQ4cRUfGCat42', '5752d161-e3bb-4130-ad0a-9a811da40f4b', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(29, 'Orpha', 'Crona', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'baumbach.jaycee@gmail.com', '2022-07-26 19:48:53', '$2y$10$ab269zVesdz3GDz9yg8mzO4M2mBX9o0U9K3jjRwQ6WyC5RkKs/Psi', '8081dadd-3c8f-4e2b-b0fe-5312a0a20ea1', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(30, 'Jana', 'Kemmer', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'luisa.boehm@yahoo.com', '2022-07-26 19:48:53', '$2y$10$Mwr1lAH/7P0NY6lSPJmj7O1grt4wwssFGHLR7UuNArdqYs4rZottS', 'cd669bcc-7322-4479-83d3-868731d90b36', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(31, 'Bobbie', 'Zboncak', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'kaylee65@kshlerin.com', '2022-07-26 19:48:53', '$2y$10$VGa3kep9a0vB/FJpK.WXdeQdSJmc85yjVAbJhIA/94/nn/iG4oej6', '1fb60aa4-7db3-4555-bfef-adac25e595c1', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(32, 'Donato', 'Reinger', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'ernie81@frami.org', '2022-07-26 19:48:53', '$2y$10$wSTuA68z.hh26bQjcvHkguqZX6.bZmMpkbafpSr0q8Yr7EbGKPcDK', '7bc3dd4a-00d7-4a0b-bbe6-1f45824d279b', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(33, 'Deanna', 'Goyette', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'von.glenda@eichmann.com', '2022-07-26 19:48:53', '$2y$10$qMCBnOi18CY5d9Fd2nnsMOcos8bx0MEmQDv9pM5LgqiCW9n.2xA.e', 'b4717131-4261-44b4-bc58-d288b95eae97', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(34, 'Cecil', 'Bruen', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'annetta08@heathcote.org', '2022-07-26 19:48:53', '$2y$10$2gpBHcFy3N5/vwpvzkzriOqVZSwJs7gvARi4YRiI2ZDYHUvlCJYvq', '85fddead-a79a-489b-be6f-3711ce835d46', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(35, 'Kelsi', 'Funk', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'roselyn98@bogan.com', '2022-07-26 19:48:53', '$2y$10$ZNeuazCtXqh1wmkzemOQK.BvmpkcWtWWuv.Bd9rj3UGTRBTAbwjxa', '8e610935-c3ae-4b22-9f93-f5ee1e752c73', 2, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(36, 'Deshawn', 'Barton', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bwilkinson@dietrich.com', '2022-07-26 19:48:53', '$2y$10$IXIvzqtUxdqIRz9MPnDkA.Iah9AHoB9K/S4bw.8nnOsRrXeHw1tMu', 'e1afc66e-60aa-4ef4-9095-6d2a0617e41c', 1, NULL, 1, 0, '2022-07-26 19:48:53', '2022-07-26 19:48:53', NULL),
-(37, 'Austyn', 'Emard', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'robel.kathlyn@gmail.com', '2022-07-26 19:48:53', '$2y$10$oOxuPQO5IVxA00HaJmOzgu2xSQBpuidn5RP0CflKnHuTGQnEVGHf.', '046c77c2-8b31-44e1-a416-7fc99f1f4997', 1, NULL, 1, 0, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL),
-(38, 'Cheyenne', 'Stehr', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'dawn18@yahoo.com', '2022-07-26 19:48:54', '$2y$10$PA9XlybIEGsP/l3FE4txL.51ivb4IsIxWLC9ChWvioJnJmpn7kASC', '6d11f9a1-541e-4811-8d92-390626627703', 2, NULL, 1, 0, '2022-07-26 19:48:54', '2022-07-26 19:48:54', NULL);
+(1, 'Marcel', 'Stadelmann', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'm@marceli.to', '2022-07-27 13:07:03', '$2y$10$BJRNHZiajn1eeF53KbNyhe7i9ks0VTf5fV4oEEEBSI2WUGQiGyyjO', 'a4617ef8-2e30-418c-b1e5-18702f64ce17', 1, NULL, 1, 0, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(2, 'Oliver', 'Schmid', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'oliver.schmid@visualisierungs-akademie.ch', '2022-07-27 13:07:03', '$2y$10$syblAsNzasmURwJRK5.pPOwJodoG8aqr/9dMsn57xEf5gIZClygzW', 'b9854bb0-1582-47fa-859d-1c82980a22ff', 1, NULL, 1, 0, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(3, 'Lutz', 'Kögler', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'koegler@nightnurse.ch', '2022-07-27 13:07:03', '$2y$10$cQJL2YdVDl.USr3m3oW98eM5do7KrP/Tcl2zHuqthYtmeQ9w7LGYq', '4849e518-2945-46a5-a347-04ef38c01951', 1, NULL, 1, 0, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(4, 'Benedikt', 'Flüeler', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bf@wbg.ch', '2022-07-27 13:07:04', '$2y$10$BJQTp69PNeqlM8QgwAwIpO2f/k1zaSt6iz7XTjawT9pQ.MCDboPwO', 'e1ae77cc-870c-4f84-8364-0abf777ef496', 1, NULL, 1, 0, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(5, 'Peter', 'Muster', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'viak-experte@0704.ch', '2022-07-27 13:07:04', '$2y$10$7YojbnMg/TtoJRwR5NhvYOw0K2dz8fwit6meGUkLsQI/BfVnvdGLi', 'f9ab17b8-5d8a-4452-abbb-73cff44d2b7b', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(6, 'Travis', 'Wuckert', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'xkessler@gmail.com', '2022-07-27 13:07:04', '$2y$10$sxCf5ghhmlWeK652/0YAf.15m6PVLEztG0vU4ckqE0jh7FrTJU2PW', 'f3dd6adc-0e86-48bc-8ae7-e13e71b7a020', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(7, 'Amalia', 'Lowe', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'aliza.schultz@christiansen.com', '2022-07-27 13:07:04', '$2y$10$L8sFIjlHgQ5H5FVhxbfkTeZrWiurzjhgRS/LwIKmAQ4mnmdm/WMby', '4789d1f6-cf69-493c-bbb6-1aae23fe763f', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(8, 'Pascale', 'Ernser', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'mjones@muller.net', '2022-07-27 13:07:04', '$2y$10$h0PyfPcf8tnUrY8Z8VcceOwhh6A61tXUakG3.o/kIPArh1x1ymbzG', '7a4ab1c5-0366-4c39-886c-af2cc5cb54a3', 2, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(9, 'Marisa', 'Heidenreich', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'gherman@skiles.com', '2022-07-27 13:07:04', '$2y$10$Ih17jKwJYXcoGzzlsJYZrO.YG78/BvldXc0zvMw9Bh5Ll5ZQaDEzG', '5b5f4007-24f2-4efa-9a90-58e3d8132493', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(10, 'Berniece', 'Shanahan', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'gaylord.dovie@gmail.com', '2022-07-27 13:07:04', '$2y$10$92U0vA8wTnWSqa0VSbDFk.JMs1TMGQ9l7B2kphUq8EdsPgUOBiWJS', '7efb05b5-deb3-43fb-b1b8-0f2f0e7fc668', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(11, 'Filiberto', 'Bogan', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'kerluke.janice@yahoo.com', '2022-07-27 13:07:04', '$2y$10$FLDHscIkNHkKUYj.K4PzT.1j1ISytcyHV6zh5tsqT3Fbrcj60ND5i', '9c1eda0e-c690-4f23-b1c0-398965f59ded', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(12, 'Stephany', 'Brown', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'kurtis92@bartoletti.com', '2022-07-27 13:07:04', '$2y$10$c.cNMKHekTJnggnws6jgw..KBtNZ8bwncI7wpY8I9x1T2UXQBac5e', '6394f224-a4e8-4354-80aa-f12336853b67', 2, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(13, 'Lacy', 'Parker', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'lwillms@gmail.com', '2022-07-27 13:07:04', '$2y$10$DMc0BDt2teM6W1csMMjiY.eiHT6DIP1oelykygor.SFsTsoyk5tPC', '1f5d56b8-204d-4191-b636-311ea0900e03', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(14, 'Dolores', 'Halvorson', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'claude.zboncak@gmail.com', '2022-07-27 13:07:04', '$2y$10$xeaGULiHa34Dd1R6y2MIx.9k/R6OeP7.LVzZs6LTiIOmCZGJg2bP2', '4568c103-500e-405d-967b-f3618a5d4c59', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(15, 'Lempi', 'Carroll', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'hzulauf@yahoo.com', '2022-07-27 13:07:04', '$2y$10$tNrogAdoU5gQiJanUUdWhOYyRcMmpHhyXABQNBWGE1PG5yQxSGFTO', 'd60727c2-76d7-4a78-a945-05ebddfd6afb', 2, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(16, 'Paul', 'Mosimann', 'Letzigraben', '149', '8047', 'Zürich', '078 749 74 09', 0, NULL, NULL, NULL, NULL, NULL, 'viak-student@0704.ch', '2022-07-27 13:07:04', '$2y$10$QRV0FsIhzjqb2TPD40o/ouCYUw7MQGy1gdYDygd3JYctuiRCluWKO', '3f689358-5f69-469e-b0d8-ed4a668fc275', 1, NULL, 1, 1, '2022-07-27 13:07:04', '2022-07-27 13:07:04', NULL),
+(17, 'Weston', 'Kunde', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'mable.weber@hane.com', '2022-07-27 13:07:04', '$2y$10$8LP6Dwq0ZMlcEVykX0whnu4jxxSx6cGQfRvDFhbod.bL1E8xWzWSe', '8f48f47a-cfe9-43e6-b1a4-5a156e07b736', 2, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(18, 'Jarrell', 'Pagac', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'lauriane48@yahoo.com', '2022-07-27 13:07:05', '$2y$10$J5IcO20DZCZYTDj1Q0LZN.hkRqHyXwtLE8r/lzpxIxhfkmLRCrViW', '2060c1e0-e3dc-43a8-a98d-b040b13caf5e', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(19, 'Sheridan', 'Schimmel', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'claude73@hotmail.com', '2022-07-27 13:07:05', '$2y$10$mcmmlJhvkO/dpNct3Y53W.VR4C4LHt.9xFz3wNVgUs5iM2rCP/58e', 'fc7ead57-c1da-443c-b8f0-1e103113ac3b', 2, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(20, 'Otilia', 'Murphy', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'erdman.hailey@little.com', '2022-07-27 13:07:05', '$2y$10$B3fDoIZz4y3CGYrMr5DqZ.KiPm.BZSe7UYa4dv.6dPeQAtp56vDMK', '0d5894a2-ac19-497e-8b27-3fe5fc7e0708', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(21, 'Jordon', 'Hill', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'bhodkiewicz@gmail.com', '2022-07-27 13:07:05', '$2y$10$TOXOjq9GcerLgqUjJ2/bhuUxhq9hRKzfXv6F13bHX5bVJeNU/ecpC', 'be94d92f-4455-431b-8f92-2881893e6527', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(22, 'Tierra', 'Kling', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'vweissnat@hotmail.com', '2022-07-27 13:07:05', '$2y$10$cdY59VzNs1Eope6.jxb1feAjJtkTPy83oGvLln6aC40/B3PNjsJ9C', 'da448fbc-27e1-4dac-8bc8-76e1087d9074', 2, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(23, 'Gus', 'Gerhold', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'vnolan@yahoo.com', '2022-07-27 13:07:05', '$2y$10$a2EevsSw04RrDSkkjGRrsuhOeB16mGbA8QYG8L/olouLrCh/mMEdG', 'b8666bce-1c54-441e-9c0f-22a327a9d368', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(24, 'Orin', 'Becker', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'donna.jaskolski@dicki.com', '2022-07-27 13:07:05', '$2y$10$rgQa0H5g20QN8yJg1cV9buRAHaCkh1VFitmzvAHKHvbu.tn/QjKY6', 'c8d948fb-a90d-433c-b9bc-f51bfc8bb950', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(25, 'Danika', 'Stamm', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'alvina25@hackett.com', '2022-07-27 13:07:05', '$2y$10$nlyeKN1R.1nJ.eVBfSSZNexeTvre.WYxJ2XFpSAaH/Th.Hc//7upC', '694f946b-5e91-49e4-883e-58c4b5cfbcc8', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(26, 'Alia', 'Waters', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'jett05@kreiger.info', '2022-07-27 13:07:05', '$2y$10$H9rFme9lWe94qkr7E8lXxuPJLIa6SViYPqY6hqO82sUkN0kbVudYi', '936ee5b3-459c-476d-a24b-6564ae99ba2a', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(27, 'Tracy', 'Buckridge', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'brice.lehner@yahoo.com', '2022-07-27 13:07:05', '$2y$10$ITPIFx.syOFHmx7dBsznwOssjqa49SYjglGGoli6Squ180Vs65sYO', 'e8ec87e4-8e99-4bcb-b504-0b5f2b28ef96', 2, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(28, 'Victoria', 'Wilkinson', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'modesta11@herzog.com', '2022-07-27 13:07:05', '$2y$10$QVPt6CBorpaTtNRJ7F.KdO9FPlEgDpCmy09asPGCWRmPgDYPaJyeC', 'c3eb9135-4a57-4571-b974-ab8ab1145f2d', 2, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(29, 'Rogers', 'Simonis', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'koelpin.leatha@gmail.com', '2022-07-27 13:07:05', '$2y$10$w5a8lGlvUJjYnBMV.e/mqOrOfDzW2py7Xoy/rPivT2Bl/xfH1yiJO', '404dadae-055d-4dea-93ba-8092ee03e3d0', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(30, 'Hubert', 'Johnston', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'zgislason@okon.com', '2022-07-27 13:07:05', '$2y$10$xVmgBVCF6QKfcxgIpWKTJ.hXQcBPSzoMRCiR47jnamN/fKrCNqgS.', '288e1888-d8d4-41a2-b52f-3a534e731b92', 1, NULL, 1, 0, '2022-07-27 13:07:05', '2022-07-27 13:07:05', NULL),
+(31, 'Annalise', 'Ratke', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'luz25@jenkins.com', '2022-07-27 13:07:05', '$2y$10$FguUDJ/3xfROqnG2KzVqNeBYoj.ep5ylmMMNFsV3QzJYCLRhV6q06', '16fec774-fb68-4716-905b-a2c169dadb15', 1, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(32, 'Electa', 'Keeling', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'alva10@reichert.org', '2022-07-27 13:07:06', '$2y$10$vfaR.45XJ7j2gpH/62pgXuakG0tuTG8NRVbmR0crcYBiubzevG2tq', 'bb5656db-03c2-4968-96df-5e5e91faca7d', 2, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(33, 'Haleigh', 'Rodriguez', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'haley.lorena@gmail.com', '2022-07-27 13:07:06', '$2y$10$yGPjzNPemijyUQCTEiI9heck5pGN/fM77xkS14iwFbYKtBMzlaGZK', '0e0aad73-1992-4a1a-8072-a83832875fa1', 1, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(34, 'Graciela', 'Harris', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'will.javon@wilderman.org', '2022-07-27 13:07:06', '$2y$10$kKHW2LLmGrQlEHY9rHGSOON30/IeM9f.FRmGZStvLcpEgaA7dkmf.', '6508cbe6-278b-4ba1-9543-db7d1615d3c8', 2, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(35, 'Carleton', 'Swaniawski', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'jspencer@yahoo.com', '2022-07-27 13:07:06', '$2y$10$GmveObCTz7D6DwYNudazSOOgm0.v.rv8jqMH1mYj/mURPS6HajYeK', '1b162e2d-cb6a-461a-9d59-25dbe220e2cf', 2, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(36, 'Hanna', 'Rohan', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'keyon14@prosacco.com', '2022-07-27 13:07:06', '$2y$10$S0HnF/WuofMnFHtENF8thO0lCqzt.2IIL4gwobdIEkwEme/OI4K0a', '10e6ff52-3324-4b68-bab6-47e531a80270', 2, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL),
+(37, 'Abner', 'Lubowitz', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, 'qparker@ankunding.info', '2022-07-27 13:07:06', '$2y$10$oVhwE1krSkqD6rM5EniBa.9JOBjy.JRy0ddJKWWUdHBCcoUwbFCHO', '233a5ba0-545b-4f8d-a54d-81d0743bec58', 1, NULL, 1, 0, '2022-07-27 13:07:06', '2022-07-27 13:07:06', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -1132,7 +1125,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT für Tabelle `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT für Tabelle `personal_access_tokens`
@@ -1162,7 +1155,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints der exportierten Tabellen
