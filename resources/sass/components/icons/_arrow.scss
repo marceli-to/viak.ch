@@ -9,6 +9,12 @@
   span {
     display: block;
   }
+
+  &.is-small {
+    @extend %fs-14x;
+    @extend %sm\:fs-16x;
+    @extend %md\:fs-18x;
+  }
 }
 
 .icon-arrow-right\:before,

@@ -4,9 +4,9 @@
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
       <div class="sm:mt-6x">
-        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below">
+        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below is-small">
           <span>Zurück</span>
-          <icon-arrow-right />
+          <icon-arrow-right :size="'sm'" />
         </router-link>
       </div>
     </template>
@@ -47,22 +47,13 @@
           <template #title>Metatags + SEO</template>
           <template #content>
             <form-group :label="'Reviews'" class="md:mt-4x">
-              <textarea 
-                v-model="data.reviews" 
-                class="is-small">
-              </textarea>
+              <textarea v-model="data.reviews"></textarea>
             </form-group>
             <form-group :label="'SEO - Beschreibung'">
-              <textarea 
-                v-model="data.seo_description.de" 
-                class="is-small">
-              </textarea>
+              <textarea v-model="data.seo_description.de"></textarea>
             </form-group>
             <form-group :label="'SEO - Keywords'">
-              <textarea 
-                v-model="data.seo_tags.de" 
-                class="is-small">
-              </textarea>
+              <textarea v-model="data.seo_tags.de"></textarea>
             </form-group>
           </template>
         </collapsible>

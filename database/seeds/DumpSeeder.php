@@ -13,7 +13,7 @@ class DumpSeeder extends Seeder
   {
     \Artisan::call('db:wipe');
 
-    $sql = public_path('/dumps/dump.sql');
+    $sql = public_path('/dumps/viakch.sql');
     $db = [
         'username' => env('DB_USERNAME'),
         'password' => env('DB_PASSWORD'),
