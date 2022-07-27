@@ -3,11 +3,13 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Models\User;
-use App\Http\Requests\StudentStoreRequest;
-use App\Http\Requests\StudentUpdateRequest;
+use App\Models\Role;
+use App\Models\RoleUser;
+use App\Http\Requests\ExpertStoreRequest;
+use App\Http\Requests\ExpertUpdateRequest;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class ExpertController extends Controller
 {
   /**
    * Get a list of users
@@ -15,13 +17,12 @@ class StudentController extends Controller
    * @param String $constraint
    * @return \Illuminate\Http\Response
    */
-  public function get($constraint = NULL)
+  public function get()
   {
-    if ($constraint == 'publish')
-    {
-      return new DataCollection(User::published()->orderBy('name', 'ASC')->get());
-    }
-    return new DataCollection(User::students()->orderBy('name', 'ASC')->get());
+    return response()->json([
+      'active' =>  User::experts()->published()->orderBy('name', 'ASC')->get(),
+      'inactive' =>  User::experts()->unpublished()->orderBy('name', 'ASC')->get(),
+    ]);
   }
 
   /**
@@ -32,20 +33,34 @@ class StudentController extends Controller
    */
   public function find(User $user)
   {
-    $user = User::find($user->id);
+    $user = User::with('images')->find($user->id);
     return response()->json($user);
   }
 
   /**
    * Store a newly created user
    *
-   * @param  \Illuminate\Http\StudentStoreRequest $request
+   * @param  \Illuminate\Http\ExpertStoreRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function store(StudentStoreRequest $request)
-  {
-    $user = User::create($request->all());
+  public function store(ExpertStoreRequest $request)
+  { 
+    // Create password
+    $password = \Str::random(16);
+
+    // Create 'expert' and attach role
+    $user = User::create(
+      array_merge(
+        $request->all(), 
+        [
+          'uuid' => \Str::uuid(),
+          'password' => \Hash::make($password),
+        ]
+      )
+    );
+    $user->roles()->attach(Role::EXPERT);
     $user->save();
+
     return response()->json(['userId' => $user->id]);
   }
 
@@ -53,10 +68,10 @@ class StudentController extends Controller
    * Update a user for a given user
    *
    * @param User $user
-   * @param  \Illuminate\Http\StudentUpdateRequest $request
+   * @param  \Illuminate\Http\ExpertUpdateRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function update(User $user, StudentUpdateRequest $request)
+  public function update(User $user, ExpertUpdateRequest $request)
   {
     $user = User::findOrFail($user->id);
     $user->update($request->all());

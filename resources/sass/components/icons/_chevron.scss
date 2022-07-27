@@ -9,7 +9,7 @@
   background-color: $color-white;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 8px solid $color-tertiary;
+  border-top: 8px solid $color-quaternary;
   content: '';
   display: block;
   height: 0; 
@@ -22,7 +22,7 @@
   @include bp-sm() {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 9px solid $color-tertiary;
+    border-top: 9px solid $color-quaternary;
   }
 }
 
@@ -30,7 +30,7 @@
   background-color: $color-white;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 8px solid $color-tertiary;
+  border-bottom: 8px solid $color-quaternary;
   content: '';
   display: block;
   height: 0; 
@@ -43,6 +43,6 @@
   @include bp-sm() {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 9px solid $color-tertiary;
+    border-bottom: 9px solid $color-quaternary;
   }
 }

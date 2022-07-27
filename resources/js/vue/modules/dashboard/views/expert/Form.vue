@@ -4,7 +4,7 @@
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
       <div class="sm:mt-6x">
-        <router-link :to="{ name: 'students' }" class="icon-arrow-right:below is-small">
+        <router-link :to="{ name: 'experts' }" class="icon-arrow-right:below is-small">
           <span>Zurück</span>
           <icon-arrow-right :size="'sm'" />
         </router-link>
@@ -33,6 +33,9 @@
         <form-group :label="'Name'" :required="true" :error="errors.name">
           <input type="text" v-model="data.name" required @focus="removeError('name')" />
         </form-group>
+        <form-group :label="'E-Mail'" :required="true" :error="errors.email">
+          <input type="email" v-model="data.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+        </form-group>
         <form-group :label="'Telefon'">
           <input type="text" v-model="data.phone" maxlength="30" />
         </form-group>
@@ -52,21 +55,65 @@
             <input type="text" v-model="data.city" required @focus="removeError('city')" />
           </form-group>
         </grid>
-        <form-group class="has-underline" :error="errors.invoice_address">
-          <div class="flex items-center">
-            <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="data.has_invoice_address">
-            <label for="has_invoice_address">
-              <em v-if="errors.invoice_address">Rechnungsadresse (abweichend) wird benötigt</em>
-              <em v-else>Rechnungsadresse (abweichend)</em>
-            </label>
-          </div>
-          <textarea 
-            v-model="data.invoice_address" 
-            :placeholder="'Rechnungsadresse'" 
-            class="is-plain mt-2x sm:mt-4x autosize" 
-            v-if="data.has_invoice_address">
-          </textarea>
-        </form-group>
+        <grid class="sm:grid-cols-12">
+          <form-group :label="'Experte anzeigen?'" class="span-6">
+              <div class="form-group__checkbox mt-3x">
+                <input type="checkbox" id="visible" name="visible" :value="1" v-model="data.visible">
+                <label for="visible">Ja</label>
+              </div>
+          </form-group>
+          <form-group :label="'Experte aktiv?'" class="span-6">
+            <div class="form-group__checkbox mt-3x">
+              <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
+              <label for="publish">Ja</label>
+            </div>
+          </form-group>
+        </grid>
+        <collapsible class="mt-16x">
+          <template #title>Über</template>
+          <template #content>
+            <form-group :label="'Titel'" class="mt-2x sm:mt-4x">
+              <input type="text" v-model="data.expert_title" />
+            </form-group>
+            <form-group :label="'Beschreibung'">
+              <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.expert_description"
+              ></tinymce-editor>
+            </form-group>
+          </template>
+        </collapsible>
+
+        <collapsible>
+          <template #title>Biographie</template>
+          <template #content>
+            <form-group :error="errors.expert_bio">
+              <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.expert_bio"
+              ></tinymce-editor>
+            </form-group>
+          </template>
+        </collapsible>
+
+        <collapsible v-if="$props.type == 'edit'">
+          <template #title>Profilbild</template>
+          <template #content>
+            <images 
+              :imageRatioW="16" 
+              :imageRatioH="9"
+              :type="'User'"
+              :typeId="data.id"
+              :images="data.images">
+            </images>
+          </template>
+        </collapsible>
+        <div class="text-small text-danger mb-3x sm:mb-6x" v-else>
+          <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+        </div>
+
         <form-group>
           <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
             Speichern
@@ -118,6 +165,9 @@ export default {
       
       // Model
       data: {
+        gender_id: 2,
+        publish: 0,
+        visisble: 0,
       },
 
       // Validation
@@ -128,8 +178,6 @@ export default {
         zip: null,
         city: null,
         email: null,
-        password: null,
-        invoice_address: null,
         gender_id: null,
       },
 
@@ -140,9 +188,9 @@ export default {
 
       // Routes
       routes: {
-        find: '/api/dashboard/student',
-        store: '/api/dashboard/student',
-        update: '/api/dashboard/student',
+        find: '/api/dashboard/expert',
+        store: '/api/dashboard/expert',
+        update: '/api/dashboard/expert',
         settings: '/api/genders',
       },
 
@@ -167,6 +215,9 @@ export default {
   created() {
     if (this.$props.type == "edit") {
       this.fetch();
+    }
+    if (this.$props.type == "create") {
+      this.isFetched = true;
     }
     this.fetchSettings();
   },
@@ -206,7 +257,7 @@ export default {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: "students"});
+        this.$router.push({ name: "experts"});
         NProgress.done();
         this.isLoading = true;
       });
@@ -214,7 +265,7 @@ export default {
 
     update() {
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: "students"});
+        this.$router.push({ name: "experts"});
       });
     },
 
@@ -225,7 +276,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == "edit" ? "Student bearbeiten" : "Student hinzufügen";
+      return this.$props.type == "edit" ? "Experte bearbeiten" : "Experte hinzufügen";
     },
   }
 };

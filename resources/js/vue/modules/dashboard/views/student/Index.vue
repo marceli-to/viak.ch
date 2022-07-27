@@ -1,6 +1,6 @@
 <template>
 <div v-if="isLoaded">
-  <content-list-header>
+  <content-list-header class="flex">
     <h1>Studenten</h1>
     <search-container>
       <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
@@ -16,7 +16,7 @@
           </router-link>
           <div>
             <div class="span-4">
-              <h2>{{ student.fullname }}<span v-if="student.city">, {{ student.city }}</span></h2>
+              {{ student.fullname }}<span v-if="student.city">, {{ student.city }}</span>
             </div>
             <div class="span-8">
               <a :href="`mailto:${student.email}`" target="_blank">{{ student.email }}</a>

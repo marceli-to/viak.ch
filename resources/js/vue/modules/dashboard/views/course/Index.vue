@@ -1,6 +1,6 @@
 <template>
 <div v-if="isLoaded">
-  <content-list-header>
+  <content-list-header class="flex">
     <h1>Kurse</h1>
     <search-container>
       <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />

@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\ImageController;
 
+use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
@@ -119,6 +120,14 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('student/{user}', [DashboardStudentController::class, 'update']);
   Route::get('student/state/{user}', [DashboardStudentController::class, 'toggle']);
   Route::delete('student/{user}', [DashboardStudentController::class, 'destroy']);
+
+  // Experts
+  Route::get('experts', [DashboardExpertController::class, 'get']);
+  Route::get('expert/{user}', [DashboardExpertController::class, 'find']);
+  Route::post('expert', [DashboardExpertController::class, 'store']);
+  Route::put('expert/{user}', [DashboardExpertController::class, 'update']);
+  Route::get('expert/state/{user}', [DashboardExpertController::class, 'toggle']);
+  Route::delete('expert/{user}', [DashboardExpertController::class, 'destroy']);
 
 });
 

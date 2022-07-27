@@ -25,7 +25,6 @@
   @extend %mb-16x;
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-  border-top: 1px solid $color-tertiary;
 
   @include bp-sm() {
     border-top-width: 2px;
@@ -35,9 +34,32 @@
     @extend %fs-14x;
     @extend %sm\:fs-16x;
     @extend %md\:fs-18x;
-    color: $color-tertiary;
     @include font-bold();
     line-height: 1 !important;
+  }
+}
+
+%content-list-item,
+.content-list-item {
+  border-top: 1px solid $color-tertiary;
+  @include bp-sm() {
+    border-top-width: 2px;
+  }
+
+  > h2 {
+    color: $color-tertiary;
+  }
+}
+
+%content-list-collapsible,
+.content-list-collapsible {
+  border-top: 1px solid $color-quaternary;
+  @include bp-sm() {
+    border-top-width: 2px;
+  }
+
+  > h2 {
+    color: $color-quaternary;
   }
 }
 
@@ -49,9 +71,13 @@
 
 .content-list-header {
   @include bp-sm() {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+
+    &.flex {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
   }
 
   + .collapsible-container {

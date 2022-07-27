@@ -47,3 +47,29 @@ p {
 		margin-bottom: 0 !important;
 	}
 }
+
+.text-xsmall {
+  @extend %fs-12x;
+  @extend %sm\:fs-14x;
+  @extend %md\:fs-16x;
+}
+
+.text-small {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+}
+
+.text-success {
+  color: $color-success;
+}
+
+.text-info {
+  color: $color-info;
+}
+
+.text-danger {
+  color: $color-danger;
+}
+
+

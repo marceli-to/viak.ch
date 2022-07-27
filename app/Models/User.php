@@ -146,7 +146,17 @@ class User extends Authenticatable implements MustVerifyEmail
   
 	public function scopePublished($query)
 	{
-		return $query->where('publish', '1');
+		return $query->where('publish', 1);
+	}
+
+  /**
+   * The scope for not published users.
+   * 
+   */
+  
+	public function scopeUnpublished($query)
+	{
+		return $query->where('publish', 0);
 	}
 
   /**
@@ -156,7 +166,17 @@ class User extends Authenticatable implements MustVerifyEmail
   
 	public function scopeVisible($query)
 	{
-		return $query->where('visible', '1');
+		return $query->where('visible', 1);
+	}
+
+  /**
+   * The scope for hidden users.
+   * 
+   */
+  
+	public function scopeHidden($query)
+	{
+		return $query->where('visible', 0);
 	}
 
   /**

@@ -176,7 +176,9 @@ export default {
 
   data() {
     return {
-      expert: { },
+      expert: {
+        gender_id: 2,
+      },
       tinyConfig: tinyConfig,
       tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
     };

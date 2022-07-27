@@ -170,7 +170,9 @@ export default {
 
   data() {
     return {
-      student: {}
+      student: {
+        gender_id: 2,
+      }
     };
   },
 
