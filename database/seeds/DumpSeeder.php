@@ -11,8 +11,9 @@ class DumpSeeder extends Seeder
    */
   public function run()
   {
+    \Artisan::call('db:wipe');
+
     $sql = public_path('/dumps/dump.sql');
-          
     $db = [
         'username' => env('DB_USERNAME'),
         'password' => env('DB_PASSWORD'),
