@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
-    <td>{{ $data->date }}</td>
+    <td>{{ collect($data->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>
   <tr>
     <td>{{ __('Kosten') }}</td>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 <p>{{ __('Die Rechnung sowie die definitive Einladung für den Kurs erhälst du in den nächsten Tagen.') }}</p>
-<p>{{ __('Um diese Buchung zu annulieren, klicke bitte') }} <a href="" style="color: #000000; text-decoration: none;">{{ __('hier') }}</a>.</p>
-<p>{{ __('Möchtest du weitere Kurse besuchen? Verwalte deine Kurse und deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank">viak.ch/profil</a></p>
+<p>{{ __('Um diese Buchung zu annulieren, klicke bitte') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none;">{{ __('hier') }}</a>.</p>
+<p>{{ __('Möchtest du weitere Kurse besuchen? Verwalte deine Kurse und deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none;">viak.ch/profil</a></p>
 @include('mail.partials.signature')
 @endcomponent

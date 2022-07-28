@@ -20,7 +20,7 @@ Vue.axios.defaults.withCredentials = false;
 import store from '@/shared/config/store';
 
 // Component
-Vue.component('course-filter', require('@/modules/course/filter/Index.vue').default);
+Vue.component('course-filter', require('@/modules/filter/Index.vue').default);
 
 // Mount
 if (document.getElementById("app-courses")) {

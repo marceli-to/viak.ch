@@ -49,7 +49,7 @@ class CourseFilter
     $this->setExpert($request);
 
     // Start building a query
-    $query = Course::query()->with('upcomingEvents.experts', 'categories', 'softwares');
+    $query = Course::query()->published()->with('upcomingEvents.experts', 'categories', 'softwares');
 
     // Filter by 'category'
     if ($this->category)
@@ -154,7 +154,7 @@ class CourseFilter
   private function getExperts()
   {
     $userIds = EventUser::get(['user_id'])->unique('user_id')->pluck('user_id');
-    $users = User::whereIn('id', $userIds)->orderBy('name')->get();
+    $users = User::published()->visible()->whereIn('id', $userIds)->orderBy('firstname')->get();
     $data = $users->pluck('fullname', 'uuid');
     return $data->all();
   }

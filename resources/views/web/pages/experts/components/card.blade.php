@@ -23,7 +23,7 @@
         </div>
       </div>
       @if ($expert->image)
-        <x-image :maxSizes="[0 => 700, 1 => 1100]" width="600" height="600" :image="$expert->image" ratio="1x1" />
+        <x-image :maxSizes="[0 => 700, 1 => 1100]" width="600" height="600" :image="$expert->image" ratio="1x1" :caption="$expert->fullname" />
       @else
         <img src="/media/dummy-{{rand(1,5)}}.jpg" height="600" width="600" class="is-responsive" alt="{{ $expert->fullname }}">
       @endif

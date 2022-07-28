@@ -56,11 +56,18 @@ class Image extends Component
   public $height; 
 
   /**
+   * Caption
+   *
+   * @var String
+   */
+  public $caption; 
+
+  /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($image = NULL, $ratio = NULL, $wrapperClass = NULL, $showCaption = FALSE, $maxSizes = [], $width = NULL, $height = NULL)
+  public function __construct($image = NULL, $ratio = NULL, $wrapperClass = NULL, $showCaption = FALSE, $maxSizes = [], $width = NULL, $height = NULL, $caption = NULL)
   {
     $this->image = $image;
     $this->maxSizes = $maxSizes;
@@ -69,6 +76,7 @@ class Image extends Component
     $this->showCaption = $showCaption;
     $this->width = $width;
     $this->height = $height;
+    $this->caption = $caption;
   }
 
   /**

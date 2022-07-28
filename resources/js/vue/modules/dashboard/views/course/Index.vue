@@ -42,7 +42,7 @@
           </div>
         </template>
         <template v-else>
-          <em class="text-small text-danger block mt-3x">Keine Kurse vorhanden...</em>
+          <em class="text-small block mt-3x">Keine Kurse vorhanden...</em>
         </template>
       </template>
     </collapsible>

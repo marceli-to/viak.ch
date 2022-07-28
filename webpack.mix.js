@@ -27,7 +27,7 @@ mix.sass('resources/sass/app.scss', 'public/assets/css/app.css').options({proces
 mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 // Frontend: filter.js
-mix.js('resources/js/vue/modules/course/filter/Index.js', 'public/assets/js/filter.js').version();
+mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/filter.js').version();
 
 // Frontend: Student register.js & profile.js
 mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();

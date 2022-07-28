@@ -40,6 +40,21 @@
             </select>
           </div>
         </div>
+        <div :class="[filterItems.software != 'null' ? 'is-active' : '', 'filter__item']">
+          <div class="select-wrapper">
+            <select 
+              v-model="filterItems.software"
+              @change="filter()">
+              <option value="null">Software</option>
+              <option 
+                v-for="(option, id) in options.settings.software" 
+                :key="id" 
+                :value="id">
+                {{option}}
+              </option>
+            </select>
+          </div>
+        </div>
         <div :class="[filterItems.level != 'null' ? 'is-active' : '', 'filter__item']">
           <div class="select-wrapper">
             <select 
@@ -112,7 +127,7 @@ import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
-import Card from "@/modules/course/filter/components/Card.vue";
+import Card from "@/modules/filter/components/Card.vue";
 
 export default {
 
@@ -146,6 +161,7 @@ export default {
       filterItems: {
         keyword: null,
         category: null,
+        software: null,
         location: 'null',
         language: 'null',
         level: 'null',
@@ -233,6 +249,7 @@ export default {
         this.filterItems.language = 'null';
         this.filterItems.level = 'null';
         this.filterItems.expert = 'null';
+        this.filterItems.software = 'null';
         this.courses = [];
         this.$store.commit('filter', this.filterItems);
         this.filter();
@@ -244,6 +261,7 @@ export default {
     },
 
     markupFilters() {
+      this.filterItems.software = this.options.filter.items.software != null ? this.options.filter.items.software : 'null';
       this.filterItems.expert = this.options.filter.items.expert != null ? this.options.filter.items.expert : 'null';
       this.filterItems.location = this.options.filter.items.location != null ? this.options.filter.items.location : 'null';
       this.filterItems.language = this.options.filter.items.language != null ? this.options.filter.items.language : 'null';
