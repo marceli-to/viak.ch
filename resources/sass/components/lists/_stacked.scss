@@ -107,6 +107,13 @@
     }
   }
 
+  &.is-booked-error {
+    border-top-color: $color-danger;
+    *:not([class*=btn-]) {
+      color: $color-danger;
+    }
+  }
+
   .stacked-list__col--action {
     @include bp-sm() {
       display: flex;

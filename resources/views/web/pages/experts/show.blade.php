@@ -14,6 +14,7 @@
 @if ($courses)
   <section class="container">
     <div class="content-list-item">
+      <h2 class="mb-6x md:mb-8x">{{ __('Kurse') }}</h2>
       @foreach($courses as $course)
         <a href="{{ route('page.course', ['slug' => $course->slug, 'course' => $course->uuid]) }}" class="icon-arrow-right:before" title="{{ $course->title }}">
           @include('web.partials.icons.arrow-right')

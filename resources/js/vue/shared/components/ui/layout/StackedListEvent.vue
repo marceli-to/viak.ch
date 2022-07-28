@@ -1,7 +1,7 @@
 <template>
-  <article class="stacked-list-event" data-touch>
+  <article :class="[$props.event.isBooked ? 'is-booked-error' : '', 'stacked-list-event']" data-touch>
     <template v-if="$props.event.isBooked">
-      <strong class="error-message">Du hast bereits eine Buchung für diesen Kurs!</strong>
+      <strong class="error-message !block mb-3x">Du hast bereits eine Buchung für diesen Kurs!</strong>
     </template>
     <div>
       <div class="stacked-list__col">

@@ -22,7 +22,11 @@
           @include('web.partials.icons.arrow-right')
         </div>
       </div>
-      <img src="/media/dummy-{{rand(1,5)}}.jpg" height="600" width="600" class="is-responsive" alt="{{ $expert->fullname }}">
+      @if ($expert->image)
+        <x-image :maxSizes="[0 => 700, 1 => 1100]" width="600" height="600" :image="$expert->image" ratio="1x1" />
+      @else
+        <img src="/media/dummy-{{rand(1,5)}}.jpg" height="600" width="600" class="is-responsive" alt="{{ $expert->fullname }}">
+      @endif
     </figure>
   </a>
 </article>

@@ -7,4 +7,5 @@ require('./modules/validation.js');
 require('./modules/menu.js');
 require('./modules/touch.js');
 require('./modules/collapsible.js');
+require('./modules/lazy.js');
 require('./modules/vhcheck.js');
