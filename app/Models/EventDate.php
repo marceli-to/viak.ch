@@ -28,6 +28,17 @@ class EventDate extends Base
   ];
 
   /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'date_short',
+  ];
+
+
+  /**
    * The event for this event date.
    */
 

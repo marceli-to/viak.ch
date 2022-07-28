@@ -1,6 +1,5 @@
 <?php
-namespace App\Http\Resources;
-use App\Helpers\PenaltyHelper;
+namespace App\Http\Resources\Dashboard;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\LocationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,10 +15,15 @@ class EventResource extends JsonResource
   public function toArray($request)
   {
     return [
+      'id' => $this->id,
       'uuid' => $this->uuid,
       'date' => $this->date,
+      'registration_until' => $this->registration_until,
+      'min_participants' => $this->min_participants,
+      'max_participants' => $this->max_participants,
       'online' => $this->online,
-      'fee' => $this->courseFee,
+      'fee' => $this->fee,
+      'publish' => $this->publish,
       'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
       'dates' => $this->dates->map(function($date) {
@@ -31,7 +35,6 @@ class EventResource extends JsonResource
         ];
       }),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
-      'cancellation' => PenaltyHelper::get($this->date, $this->courseFee),
     ];
   }
 }

@@ -1,9 +1,8 @@
 <?php
-namespace App\Http\Resources;
-use App\Http\Resources\BookingResource;
-use Illuminate\Http\Resources\Json\JsonResource;
+namespace App\Http\Resources\Dashboard;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CourseResource extends JsonResource
+class CourseCollection extends ResourceCollection
 {
   /**
    * Transform the resource into an array.
@@ -14,9 +13,7 @@ class CourseResource extends JsonResource
   public function toArray($request)
   {
     return [
-      'uuid' => $this->uuid,
-      'title' => $this->title,
-      'online' => $this->online,
+      'data' => $this->collection,
     ];
   }
 }

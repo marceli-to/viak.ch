@@ -2,7 +2,7 @@
 <div v-if="isLoaded">
   <content-list-header class="flex">
     <h1>Studenten</h1>
-    <search-container>
+    <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
       <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
     </search-container>
   </content-list-header>

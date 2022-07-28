@@ -43,6 +43,11 @@
   display: none !important;
 }
 
+%block,
+.block {
+  display: block;
+}
+
 %\!block,
 .\!block {
   display: block !important;

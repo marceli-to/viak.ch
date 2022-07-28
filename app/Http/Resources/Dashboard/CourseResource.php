@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Resources;
-use App\Http\Resources\BookingResource;
+namespace App\Http\Resources\Dashboard;
+use App\Http\Resources\Dashboard\EventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CourseResource extends JsonResource
@@ -14,9 +14,15 @@ class CourseResource extends JsonResource
   public function toArray($request)
   {
     return [
+      'id' => $this->id,
       'uuid' => $this->uuid,
+      'number' => $this->number,
+      'course_number' => $this->course_number,
       'title' => $this->title,
+      'subtitle' => $this->subtitle,
+      'fee' => $this->fee,
       'online' => $this->online,
+      'events' => EventResource::collection($this->upcomingEvents)->sortByDesc('date'),
     ];
   }
 }

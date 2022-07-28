@@ -2,28 +2,35 @@
 <div v-if="isLoaded">
   <content-list-header class="flex">
     <h1>Kurse</h1>
-    <search-container>
+    <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
       <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
     </search-container>
   </content-list-header>
   <collapsible-container>
-    <collapsible :expanded="true">
-      <template #title>Aktive Kurse</template>
+    <collapsible v-for="course in queryData" :key="course.uuid">
+      <template #title>{{ course.course_number }} <span>{{ course.title }}</span></template>
+      <template #action>
+        <router-link 
+          :to="{ name: 'course-edit', params: { id: course.id } }" 
+          class="icon-edit icon-edit--course">
+          <icon-edit />
+        </router-link>
+      </template>
       <template #content>
-        <stacked-list-item v-for="course in queryData" :key="course.uuid" class="relative">
-
-          <router-link :to="{ name: 'course-edit', params: { id: course.id } }" class="icon-edit mt-3x">
-            <icon-edit />
-          </router-link>
-          <div>
-            <div class="span-1">
-              <h2>{{ course.course_number }}</h2>
-            </div>
-            <div class="span-10">
-              {{ course.title.de }}
-            </div>
+        <template v-if="course.events.length">
+          <div v-for="event in course.events" :key="event.uuid" class="relative">
+            <stacked-list-event :event="event" :dashboard="true">
+              <template #action>
+                <router-link :to="{ name: 'event-edit', params: { id: course.id, eventId: event.id } }" class="icon-edit mt-5x">
+                  <icon-edit />
+                </router-link>
+              </template>
+            </stacked-list-event>
           </div>
-        </stacked-list-item>
+        </template>
+        <template v-else>
+          <em class="text-small text-danger block mt-3x">Keine Kurse vorhanden...</em>
+        </template>
       </template>
     </collapsible>
   </collapsible-container>
@@ -38,6 +45,7 @@ import StackedListContainer from "@/shared/components/ui/layout/StackedListConta
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
 import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.vue";
+import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
@@ -53,6 +61,7 @@ export default {
     StackedListItem,
     StackedListHeader,
     StackedListFooter,
+    StackedListEvent,
     CollapsibleContainer,
     Collapsible,
     IconEdit
@@ -118,7 +127,7 @@ export default {
       if (this.searchQuery) {
         return this.data.filter((item) => {
           return this.searchQuery.toLowerCase().split(' ').every(
-            v => item.course_number.toLowerCase().includes(v) || item.title.de.toLowerCase().includes(v)
+            v => item.course_number.toLowerCase().includes(v) || item.title.toLowerCase().includes(v)
           )
         })
       }

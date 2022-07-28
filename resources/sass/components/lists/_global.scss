@@ -63,12 +63,21 @@
 %content-list-collapsible,
 .content-list-collapsible {
   border-top: 1px solid $color-quaternary;
+  
   @include bp-sm() {
     border-top-width: 2px;
   }
 
   > h2 {
     color: $color-quaternary;
+
+    a {
+      span {
+        @extend %ml-3x;
+        display: inline-block;
+        @include font-regular();
+      }
+    }
   }
 }
 

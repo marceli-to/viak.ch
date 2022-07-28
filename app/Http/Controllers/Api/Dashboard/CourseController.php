@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
+use App\Http\Resources\Dashboard\CourseCollection;
 use App\Models\Course;
 use App\Http\Requests\CourseStoreRequest;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class CourseController extends Controller
     {
       return new DataCollection(Course::published()->orderBy('number', 'ASC')->get());
     }
-    return new DataCollection(Course::orderBy('number', 'ASC')->get());
+    return new CourseCollection(Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'upcomingEvents.course', 'categories')->orderBy('number', 'ASC')->get());
 
   }
 

@@ -12,6 +12,7 @@
   width: 100%;
 
   > div {
+    position: relative;
     @include bp-sm() {
       max-width: 25%;
     }
@@ -21,5 +22,19 @@
     @extend %fs-16x;
     @extend %md\:fs-20x;
     border-bottom: 1px solid $color-tertiary;
+  }
+
+  a {
+    display: block;
+    height: 12px;
+    right: 0;
+    position: absolute;
+    top: 12px;
+    width: 12px;
+    z-index: 10;
+
+    svg {
+      @extend %is-responsive;
+    }
   }
 }

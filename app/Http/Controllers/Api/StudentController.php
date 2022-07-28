@@ -20,8 +20,8 @@ class StudentController extends Controller
      * @todo: if admin get the full user
      * $user = User::findOrFail(auth()->user()->id);
      */
-    $data = new StudentResource(User::findOrFail(auth()->user()->id));
-    //dd($data);
+    // $data = new StudentResource(User::findOrFail(auth()->user()->id));
+    // dd($data);
     return response()->json(new StudentResource(User::findOrFail(auth()->user()->id)));
   }
 

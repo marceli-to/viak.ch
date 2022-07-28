@@ -33,7 +33,7 @@
               </ul>
               <ul>
                 <li>
-                  <a href="" title="Profil" class="mt-1x">
+                  <a href="" title="Profil">
                     <icon-profile />
                   </a>
                 </li>

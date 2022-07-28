@@ -1,10 +1,13 @@
 <template>
-  <div :class="[isOpen ? 'is-expanded' : '', 'collapsible']">
+  <div :class="[isOpen ? 'is-expanded' : '', 'collapsible relative']">
     <h2>
       <a href="" class="btn-collapsible" @click.prevent="toggle()">
         <slot name="title" />
       </a>
     </h2>
+    <template v-if="$slots.action && !isOpen">
+      <slot name="action" />
+    </template>
     <div v-show="isOpen">
       <slot name="content" />
     </div>
