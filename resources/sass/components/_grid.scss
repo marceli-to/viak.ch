@@ -88,6 +88,12 @@
   grid-column-gap: 0;
 }
 
+%grid-row-gap-none,
+.grid-row-gap-none {
+  grid-row-gap: 0;
+}
+
+
 @for $i from 1 through 12 {
   %span-#{$i},
   .span-#{$i} {

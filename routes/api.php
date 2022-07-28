@@ -16,7 +16,8 @@ use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertContro
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
-
+use App\Http\Controllers\Api\Dashboard\EventController as DashboardEventController;
+use App\Http\Controllers\Api\Dashboard\EventSettingsController as DashboardEventSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,17 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('course/{course}', [DashboardCourseController::class, 'update']);
   Route::get('course/state/{course}', [DashboardCourseController::class, 'toggle']);
   Route::delete('course/{course}', [DashboardCourseController::class, 'destroy']);
+
+  // Event settings
+  Route::get('event-settings', [DashboardEventSettingsController::class, 'get']);
+
+  // Events
+  Route::get('events/{constraint?}', [DashboardEventController::class, 'get']);
+  Route::get('event/{event}', [DashboardEventController::class, 'find']);
+  Route::post('event', [DashboardEventController::class, 'store']);
+  Route::put('event/{event}', [DashboardEventController::class, 'update']);
+  Route::get('event/state/{event}', [DashboardEventController::class, 'toggle']);
+  Route::delete('event/{event}', [DashboardEventController::class, 'destroy']);
 
   // Students
   Route::get('students/{constraint?}', [DashboardStudentController::class, 'get']);

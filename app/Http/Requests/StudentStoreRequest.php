@@ -9,6 +9,7 @@ class StudentStoreRequest extends FormRequest
    *
    * @return bool
    */
+
   public function authorize()
   {
     return true;
@@ -19,6 +20,7 @@ class StudentStoreRequest extends FormRequest
    *
    * @return array
    */
+
   public function rules()
   {
     return [
@@ -41,7 +43,6 @@ class StudentStoreRequest extends FormRequest
    *
    * @return array
    */
-
 
   public function messages()
   {

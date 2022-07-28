@@ -9,6 +9,7 @@ class ExpertUpdateRequest extends FormRequest
    *
    * @return bool
    */
+
   public function authorize()
   {
     return true;
@@ -19,6 +20,7 @@ class ExpertUpdateRequest extends FormRequest
    *
    * @return array
    */
+
   public function rules()
   {
     return [
@@ -36,7 +38,6 @@ class ExpertUpdateRequest extends FormRequest
    *
    * @return array
    */
-
 
   public function messages()
   {

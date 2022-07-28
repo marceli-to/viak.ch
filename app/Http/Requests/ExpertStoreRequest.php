@@ -9,6 +9,7 @@ class ExpertStoreRequest extends FormRequest
    *
    * @return bool
    */
+
   public function authorize()
   {
     return true;
@@ -19,6 +20,7 @@ class ExpertStoreRequest extends FormRequest
    *
    * @return array
    */
+
   public function rules()
   {
     return [
@@ -37,7 +39,6 @@ class ExpertStoreRequest extends FormRequest
    *
    * @return array
    */
-
 
   public function messages()
   {

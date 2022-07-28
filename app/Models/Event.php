@@ -15,7 +15,7 @@ class Event extends Base
    */
 
   protected $casts = [
-    'registration_deadline' => 'date:d.m.Y',
+    'registration_until' => 'date:d.m.Y',
     'date' => 'date:d.m.Y',
   ];
 
@@ -28,7 +28,7 @@ class Event extends Base
 	protected $fillable = [
     'uuid',
     'date',
-    'registration_deadline',
+    'registration_until',
     'min_participants',
     'max_participants',
     'online',
@@ -46,6 +46,7 @@ class Event extends Base
 
   protected $appends = [
     'course_fee',
+    'expert_ids'
   ];
 
 
@@ -177,4 +178,15 @@ class Event extends Base
   {   
     return $this->fee ? $this->fee : $this->course->fee;
   }
+
+  /**
+   * Get array of ids from the m:n relationships
+   *
+   */
+
+  public function getExpertIdsAttribute()
+  {
+    return $this->experts->pluck('id');
+  }
+
 }
