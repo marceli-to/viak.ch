@@ -8,9 +8,9 @@
       <div>
         <div class="stacked-list__col">
           <div>
-            <h2>
+            <!-- <h2>
               <span>{{ $props.event.course.title }}</span>
-            </h2>
+            </h2> -->
             <template v-if="$props.event.dates">
               <template v-if="$props.event.dates.length == 1">
                 {{ $props.event.dates[0].date_short }}<span class="sm:hide !md:inline-block">, {{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}</span>

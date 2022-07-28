@@ -24,7 +24,7 @@ class CourseStoreRequest extends FormRequest
   public function rules()
   {
     return [
-      'number' => 'required',
+      'number' => 'required|gt:0',
       'title.de' => 'required',
       'subtitle.de' => 'required',
       'text.de' => 'required',
@@ -49,6 +49,12 @@ class CourseStoreRequest extends FormRequest
       'number.required' => [
         'field' => 'number',
         'error' => 'Nummer wird benötigt'
+      ],
+      'number.gt' => [
+        'string' => [
+          'field' => 'number',
+          'error' => 'Nummer muss grösser als 0 sein.'
+        ]
       ],
       'title.de.required' => [
         'field' => 'title',

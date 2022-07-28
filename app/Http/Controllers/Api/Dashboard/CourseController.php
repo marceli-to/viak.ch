@@ -44,8 +44,19 @@ class CourseController extends Controller
    */
   public function store(CourseStoreRequest $request)
   {
-    $course = Course::create($request->all());
+    // Create 'course'
+    $course = Course::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     $course->save();
+    $course->categories()->attach($request->input('category_ids'));
+    $course->languages()->attach($request->input('language_ids'));
+    $course->levels()->attach($request->input('level_ids'));
+    $course->softwares()->attach($request->input('software_ids'));
+    $course->tags()->attach($request->input('tag_ids'));
     return response()->json(['courseId' => $course->id]);
   }
 

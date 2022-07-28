@@ -88,6 +88,10 @@
 }
 
 .content-list-header {
+  h1 {
+    @extend %sm\:mb-0;
+  }
+  
   @include bp-sm() {
 
     &.flex {

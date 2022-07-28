@@ -22,6 +22,7 @@ class CourseResource extends JsonResource
       'subtitle' => $this->subtitle,
       'fee' => $this->fee,
       'online' => $this->online,
+      'count' => collect($this->upcomingEvents)->count(),
       'events' => EventResource::collection($this->upcomingEvents)->sortByDesc('date'),
     ];
   }

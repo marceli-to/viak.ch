@@ -46,6 +46,7 @@ class Event extends Base
 
   protected $appends = [
     'course_fee',
+    'course_online',
     'expert_ids'
   ];
 
@@ -102,7 +103,7 @@ class Event extends Base
   
   public function dates()
   {
-    return $this->hasMany(EventDate::class, 'event_id', 'id');
+    return $this->hasMany(EventDate::class, 'event_id', 'id')->orderBy('date');
   }
 
   /**
@@ -154,6 +155,31 @@ class Event extends Base
   |
   */
 
+
+  /**
+   * Set the date.
+   *
+   * @param  string $value
+   * @return void
+   */
+
+  public function setDateAttribute($value)
+  {
+    $this->attributes['date'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+  }
+
+  /**
+   * Set the registration_until date.
+   *
+   * @param  string $value
+   * @return void
+   */
+
+  public function setRegistrationUntilAttribute($value)
+  {
+    $this->attributes['registration_until'] = $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : NULL;
+  }
+
   /**
    * Get the date for an event_date.
    *
@@ -177,6 +203,19 @@ class Event extends Base
   public function getCourseFeeAttribute($value)
   {   
     return $this->fee ? $this->fee : $this->course->fee;
+  }
+
+  /**
+   * Get the course 'online' attribute depending on whether the event 
+   * has 'online' set. If not, take the 'fee' of the parent course 
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getCourseOnlineAttribute($value)
+  {   
+    return $this->online ? $this->online : $this->course->online;
   }
 
   /**

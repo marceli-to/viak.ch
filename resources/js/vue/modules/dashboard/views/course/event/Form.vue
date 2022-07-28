@@ -41,7 +41,7 @@
       </grid>
       <form-group :label="'Kosten'">
         <input 
-          type="text" 
+          type="number" 
           v-model="data.fee" />
       </form-group>
       <form-group class="has-underline flex mt-8x">
@@ -58,9 +58,26 @@
           </div>
         </div>
       </form-group>
+      <form-group 
+        :label="'Ort'" 
+        :required="true" 
+        :error="errors.location_id"
+        v-if="isFetchedSettings">
+        <div class="select-wrapper">
+          <select v-model="data.location_id" @change="removeError('location_id')">
+            <option 
+              v-for="(option) in settings.locations" 
+              :key="option.id" 
+              :value="option.id">
+              {{option.description.de}}
+            </option>
+          </select>
+        </div>
+      </form-group>
+
 
       <!-- Event dates -->
-      <form-group-header class="mt-8x">
+      <form-group-header class="mt-8x" :error="errors.dates">
         <div class="flex items-center justify-between">
           <h3><strong>Veranstaltungsdaten</strong></h3>
            <a href="" class="icon-plus" @click.prevent="addDate()">
@@ -109,7 +126,7 @@
       <form-group-header class="mt-8x">
         <h3><strong>Experten</strong></h3>
       </form-group-header>
-      <form-group class="has-underline grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings">
+      <form-group class="has-underline grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings" :error="errors.expert_ids">
         <div class="form-group__checkbox span-6" v-for="(expert, index) in sorted(settings.experts, 'firstname', 'asc')" :key="index">
           <input type="checkbox" :id="`expert-${expert.id}`" :name="`expert-${expert.id}`" :value="expert.id" v-model="data.expert_ids">
           <label :for="`expert-${expert.id}`">
@@ -175,19 +192,22 @@ export default {
         max_participants: null,
         fee: null,
         dates: [],
+        location_id: 1,
         expert_ids: [],
       },
 
       // Validation
       errors: {
-        registration_until: false,
         min_participants: null,
         max_participants: null,
+        expert_ids: null,
+        dates: null,
       },
 
       // Settings
       settings: {
         experts: [],
+        locations: [],
       },
 
       // Routes
@@ -215,6 +235,9 @@ export default {
   created() {
     if (this.$props.type == "edit") {
       this.fetch();
+    }
+    if (this.$props.type == "create") {
+      this.isFetched = true;
     }
     this.fetchSettings();
   },
@@ -259,13 +282,14 @@ export default {
     },
 
     update() {
-      this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
+      this.axios.put(`${this.routes.update}/${this.$route.params.eventId}`, this.data).then(response => {
         this.$router.push({ name: "courses"});
       });
     },
 
     addDate() {
       this.data.dates.push({
+        event_id: this.data.id,
         date_short: null,
         time_start: null,
         time_end: null

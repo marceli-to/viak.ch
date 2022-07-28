@@ -1,14 +1,27 @@
 <template>
 <div v-if="isLoaded">
-  <content-list-header class="flex">
-    <h1>Kurse</h1>
-    <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
-      <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
-    </search-container>
+  <content-list-header>
+    <grid class="grid-cols-12">
+      <grid-col class="span-4">
+        <h1>Kurse</h1>
+      </grid-col>
+      <grid-col class="span-4">
+        <router-link :to="{ name: 'course-create' }" class="icon-plus">
+          <icon-plus />
+        </router-link>
+      </grid-col>
+      <grid-col class="span-4">
+        <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
+          <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+        </search-container>
+      </grid-col>
+    </grid>
   </content-list-header>
   <collapsible-container>
-    <collapsible v-for="course in queryData" :key="course.uuid">
-      <template #title>{{ course.course_number }} <span>{{ course.title }}</span></template>
+    <collapsible v-for="course in queryData" :key="course.id">
+      <template #title>
+        {{ course.course_number }} <span>{{ course.title }}</span>
+      </template>
       <template #action>
         <router-link 
           :to="{ name: 'course-edit', params: { id: course.id } }" 
@@ -17,8 +30,8 @@
         </router-link>
       </template>
       <template #content>
-        <template v-if="course.events.length">
-          <div v-for="event in course.events" :key="event.uuid" class="relative">
+        <template v-if="course.count > 0">
+          <div v-for="event in course.events" :key="event.id" class="relative">
             <stacked-list-event :event="event" :dashboard="true">
               <template #action>
                 <router-link :to="{ name: 'event-edit', params: { id: course.id, eventId: event.id } }" class="icon-edit mt-5x">
@@ -41,6 +54,8 @@ import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
+import Grid from "@/shared/components/ui/layout/Grid.vue";
+import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
@@ -49,6 +64,7 @@ import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 
 export default {
 
@@ -64,7 +80,10 @@ export default {
     StackedListEvent,
     CollapsibleContainer,
     Collapsible,
-    IconEdit
+    IconEdit,
+    IconPlus,
+    Grid,
+    GridCol
   },
 
   mixins: [],

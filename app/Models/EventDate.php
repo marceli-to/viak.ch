@@ -48,6 +48,18 @@ class EventDate extends Base
   }
 
   /**
+   * Set the date for an event_date.
+   *
+   * @param  string $value
+   * @return void
+   */
+
+  public function setDateAttribute($value)
+  {
+    $this->attributes['date'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+  }
+
+  /**
    * Set the time_start for an event_date.
    *
    * @param  string $value
@@ -108,6 +120,7 @@ class EventDate extends Base
   {   
     return date('d. F Y', strtotime($value));
   }
+
 
   /**
    * Get the date for an event_date.

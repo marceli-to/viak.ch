@@ -1,6 +1,7 @@
 <template>
 <form @submit.prevent="submit" v-if="isFetched">
   <article-text>
+
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
       <div class="sm:mt-6x">
@@ -10,10 +11,11 @@
         </router-link>
       </div>
     </template>
+
     <template #content>
       <form-group :label="'Nummer'" :required="true" :error="errors.number">
         <input 
-          type="text" 
+          type="number" 
           v-model="data.number"
           required 
           @focus="removeError('number')" />
@@ -23,32 +25,28 @@
           type="text" 
           v-model="data.title.de" 
           required 
-          @focus="removeError('title.de')" />
+          @focus="removeError('title')" />
       </form-group>
       <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
         <textarea 
           v-model="data.subtitle.de" 
           class="is-small autosize" 
           required 
-          @focus="removeError('subtitle.de')">
+          @focus="removeError('subtitle')">
         </textarea>
       </form-group>
-      <form-group :label="'Kosten'" :required="true" :error="errors.fee">
-        <input 
-          type="text" 
-          v-model="data.fee" 
-          required 
-          @focus="removeError('fee')" />
+      <form-group :label="'Kosten'">
+        <input type="number" v-model="data.fee" />
       </form-group>
-      <form-group :label="'Beschreibung'">
+      <form-group :label="'Beschreibung'" :required="true" :error="errors.text">
         <tinymce-editor
           :api-key="tinyApiKey"
           :init="tinyConfig"
           v-model="data.text.de"
         ></tinymce-editor>
       </form-group>
-
     </template>
+
     <template #contentWide>
       <collapsible-container>
         <collapsible :expanded="true" v-if="isFetchedSettings">
@@ -133,8 +131,12 @@
               :imageRatioH="9"
               :type="'Course'"
               :typeId="data.id"
-              :images="data.images">
+              :images="data.images"
+              v-if="$props.type == 'edit'">
             </images>
+            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+              <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+            </div>
           </template>
         </collapsible>
         <collapsible>
@@ -158,6 +160,7 @@
         </a>
       </form-group>
     </template>
+
   </article-text>
 </form>
 </template>
@@ -210,6 +213,10 @@ export default {
         subtitle: {
           de: null,
           en: null,
+        },
+        text: {
+          de: null,
+          en: null
         },
         seo_description: {
           de: null,
@@ -273,6 +280,9 @@ export default {
   created() {
     if (this.$props.type == "edit") {
       this.fetch();
+    }
+    if (this.$props.type == "create") {
+      this.isFetched = true;
     }
     this.fetchSettings();
   },

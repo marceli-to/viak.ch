@@ -52,10 +52,7 @@ class ExpertController extends Controller
     $user = User::create(
       array_merge(
         $request->all(), 
-        [
-          'uuid' => \Str::uuid(),
-          'password' => \Hash::make($password),
-        ]
+        ['uuid' => \Str::uuid(), 'password' => \Hash::make($password)]
       )
     );
     $user->roles()->attach(Role::EXPERT);

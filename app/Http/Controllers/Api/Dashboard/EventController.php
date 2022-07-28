@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\EventDate;
 use App\Http\Requests\EventStoreRequest;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,27 @@ class EventController extends Controller
   public function update(Event $event, EventStoreRequest $request)
   {
     $event = Event::findOrFail($event->id);
-    $event->update($request->all());
+    $event->update($request->except(['date', 'dates']));
+    $event->experts()->sync($request->input('expert_ids'));
+
+    // Delete current dates
+    $event->dates()->delete();
+
+    // Set the new 'main' date from the dates array
+    $dates = collect($request->input('dates'));
+    $event->date = $dates->min('date_short');
+    $event->save();
+
+    foreach($request->input('dates') as $date)
+    {
+      EventDate::create([
+        'event_id' => $event->id,
+        'date' => $date['date_short'],
+        'time_start' => $date['time_start'],
+        'time_end' => $date['time_end'],
+      ]);
+    }
+   
     return response()->json('successfully updated');
   }
 

@@ -18,10 +18,13 @@ button {
   }
 }
 
+.form-group-header,
 .form-group {
   &.is-invalid {
     color: $color-danger;
-
+    h3 {
+      color: $color-danger !important;
+    }
     li {
       color: $color-danger;
     }

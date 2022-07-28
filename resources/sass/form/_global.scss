@@ -43,7 +43,6 @@ select {
   @extend %fs-14x;
   @extend %sm\:fs-16x;
   @extend %md\:fs-18x;
-
 }
 
 input[type=text],
@@ -60,8 +59,11 @@ textarea,
   color: $color-secondary;
 }
  
-.select-wrapper select {
-  color: $color-secondary;
+.select-wrapper {
+  @extend %py-2x;
+  select {
+    color: $color-secondary;
+  }
 }
 
 input[type=text],

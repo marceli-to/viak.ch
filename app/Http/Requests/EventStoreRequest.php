@@ -24,16 +24,13 @@ class EventStoreRequest extends FormRequest
   public function rules()
   {
     return [
-      'number' => 'required',
-      'title.de' => 'required',
-      'subtitle.de' => 'required',
-      'text.de' => 'required',
-      'category_ids' => 'required|array|min:1',
-      'category_ids.*'  => 'required|min:1',
-      'language_ids' => 'required|array|min:1',
-      'language_ids.*'  => 'required|min:1',
-      'level_ids' => 'required|array|min:1',
-      'level_ids.*'  => 'required|min:1',
+      'course_id' => 'required|exists:App\Models\Gender,id',
+      'min_participants' => 'required|gt:0',
+      'max_participants' => 'required|gt:0',
+      'dates' => 'required|array|min:1',
+      'dates.*'  => 'required|min:1',
+      'expert_ids' => 'required|array|min:1',
+      'expert_ids.*'  => 'required|min:1',
     ];
   }
 
@@ -46,50 +43,48 @@ class EventStoreRequest extends FormRequest
   public function messages()
   {
     return [
-      'number.required' => [
-        'field' => 'number',
-        'error' => 'Nummer wird benötigt'
+      'course_id.required' => [
+        'field' => 'course_id',
+        'error' => 'Kurs wird benötigt'
       ],
-      'title.de.required' => [
-        'field' => 'title',
-        'error' => 'Titel wird benötigt'
+      'course_id.exists' => [
+        'field' => 'course_id',
+        'error' => 'Kurs wird benötigt'
       ],
-      'subtitle.de.required' => [
-        'field' => 'subtitle',
-        'error' => 'Subtitel wird benötigt'
+      'min_participants.required' => [
+        'field' => 'min_participants',
+        'error' => 'min. Teilnehmer wird benötigt'
       ],
-      'text.de.required' => [
-        'field' => 'text',
-        'error' => 'Text wird benötigt'
+      'min_participants.gt' => [
+        'field' => 'min_participants',
+        'error' => 'min. Teilnehmer wird benötigt'
       ],
-      'category_ids.required' => [
-        'field' => 'category_ids',
-        'error' => 'Kategorie wird benötigt'
+      'max_participants.required' => [
+        'field' => 'max_participants',
+        'error' => 'max. Teilnehmer wird benötigt'
       ],
-      'category_ids.min' => [
+      'max_participants.gt' => [
+        'field' => 'max_participants',
+        'error' => 'max. Teilnehmer wird benötigt'
+      ],
+      'dates.required' => [
+        'field' => 'dates',
+        'error' => 'Datum wird benötigt'
+      ],
+      'dates.min' => [
         'string' => [
-          'field' => 'category_ids',
-          'error' => 'Kategorie muss mind. 1 Element enthalten'
+          'field' => 'dates',
+          'error' => 'Datum muss mind. 1 Element enthalten'
         ]
       ],
-      'language_ids.required' => [
-        'field' => 'language_ids',
-        'error' => 'Sprache wird benötigt'
+      'expert_ids.required' => [
+        'field' => 'expert_ids',
+        'error' => 'Experte wird benötigt'
       ],
-      'language_ids.min' => [
+      'expert_ids.min' => [
         'string' => [
-          'field' => 'language_ids',
-          'error' => 'Sprache muss mind. 1 Element enthalten'
-        ]
-      ],
-      'level_ids.required' => [
-        'field' => 'level_ids',
-        'error' => 'Level wird benötigt'
-      ],
-      'level_ids.min' => [
-        'string' => [
-          'field' => 'level_ids',
-          'error' => 'Level muss mind. 1 Element enthalten'
+          'field' => 'expert_ids',
+          'error' => 'Experten muss mind. 1 Element enthalten'
         ]
       ],
     ];
