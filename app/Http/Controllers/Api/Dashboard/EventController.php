@@ -44,8 +44,32 @@ class EventController extends Controller
    */
   public function store(EventStoreRequest $request)
   {
-    $event = Event::create($request->all());
+    // Create 'event'
+    $event = Event::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     $event->save();
+
+    // Add expers
+    $event->experts()->attach($request->input('expert_ids'));
+
+    // Set the 'main' date from the dates array
+    $dates = collect($request->input('dates'));
+    $event->date = $dates->min('date_short');
+    $event->save();
+
+    foreach($request->input('dates') as $date)
+    {
+      EventDate::create([
+        'event_id' => $event->id,
+        'date' => $date['date_short'],
+        'time_start' => $date['time_start'],
+        'time_end' => $date['time_end'],
+      ]);
+    }
     return response()->json(['eventId' => $event->id]);
   }
 
@@ -60,6 +84,8 @@ class EventController extends Controller
   {
     $event = Event::findOrFail($event->id);
     $event->update($request->except(['date', 'dates']));
+
+    // Sync experts
     $event->experts()->sync($request->input('expert_ids'));
 
     // Delete current dates

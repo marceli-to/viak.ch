@@ -18,7 +18,7 @@
     </grid>
   </content-list-header>
   <collapsible-container>
-    <collapsible v-for="course in queryData" :key="course.id">
+    <collapsible v-for="course in queryData" :key="course.id" :class="[!course.publish ? 'is-hidden' : '', '']">
       <template #title>
         {{ course.course_number }} <span>{{ course.title }}</span>
       </template>
@@ -34,7 +34,7 @@
           <div v-for="event in course.events" :key="event.id" class="relative">
             <stacked-list-event :event="event" :dashboard="true">
               <template #action>
-                <router-link :to="{ name: 'event-edit', params: { id: course.id, eventId: event.id } }" class="icon-edit mt-5x">
+                <router-link :to="{ name: 'event-edit', params: { courseId: course.id, eventId: event.id } }" class="icon-edit mt-5x">
                   <icon-edit />
                 </router-link>
               </template>
@@ -42,8 +42,15 @@
           </div>
         </template>
         <template v-else>
-          <em class="text-small block mt-3x">Keine Kurse vorhanden...</em>
+          <em class="text-small block mt-3x">
+            Es sind keine Veranstaltungen vorhanden...
+          </em>
         </template>
+        <div class="flex justify-start mt-6x">
+          <router-link :to="{ name: 'event-create', params: { courseId: course.id }  }" class="icon-plus">
+            <icon-plus />
+          </router-link>
+        </div>
       </template>
     </collapsible>
   </collapsible-container>

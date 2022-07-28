@@ -12,6 +12,12 @@
 .collapsible {
   @extend %content-list-collapsible;
 
+  &.is-hidden {
+    * {
+      opacity: .8;
+    }
+  }
+
   &.is-expanded {
 
     .btn-collapsible {

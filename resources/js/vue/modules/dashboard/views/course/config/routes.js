@@ -22,12 +22,12 @@ const routes = [
   },
   {
     name: 'event-create',
-    path: '/dashboard/course/create/:id',
+    path: '/dashboard/course/create/:courseId',
     component: EventCreate,
   },
   {
     name: 'event-edit',
-    path: '/dashboard/course/edit/:id/:eventId',
+    path: '/dashboard/course/edit/:courseId/:eventId',
     component: EventEdit,
   },
 

@@ -26,14 +26,14 @@
       <grid class="sm:grid-cols-12">
         <form-group :label="'min. Teilnehmer'" :required="true" :error="errors.min_participants" class="span-6">
           <input 
-            type="text" 
+            type="number" 
             v-model="data.min_participants"
             required 
             @focus="removeError('min_participants')" />
         </form-group>
         <form-group :label="'max. Teilnehmer'" :required="true" :error="errors.max_participants" class="span-6">
           <input 
-            type="text" 
+            type="number" 
             v-model="data.max_participants"
             required 
             @focus="removeError('max_participants')" />
@@ -78,12 +78,7 @@
 
       <!-- Event dates -->
       <form-group-header class="mt-8x" :error="errors.dates">
-        <div class="flex items-center justify-between">
-          <h3><strong>Veranstaltungsdaten</strong></h3>
-           <a href="" class="icon-plus" @click.prevent="addDate()">
-            <icon-plus />
-          </a>
-        </div>
+        <h3><strong>Veranstaltungsdaten</strong></h3>
       </form-group-header>
       <div v-for="(date, index) in data.dates" :key="date.id">
         <grid class="flex items-center justify-between">
@@ -121,7 +116,11 @@
           </div>
         </grid>
       </div>
-
+      <form-group class="flex justify-center has-underline">
+        <a href="" class="icon-plus" @click.prevent="addDate()">
+          <icon-plus :size="'lg'" />
+        </a>
+      </form-group>
       <!-- Event experts -->
       <form-group-header class="mt-8x">
         <h3><strong>Experten</strong></h3>
@@ -179,7 +178,16 @@ export default {
   mixins: [ErrorHandling],
 
   props: {
-    type: String
+
+    type: {
+      type: String,
+      default: 'create',
+    },
+
+    courseId: {
+      type: [Number, String],
+      default: null,
+    }
   },
 
   data() {
@@ -274,6 +282,7 @@ export default {
     store() {
       NProgress.start();
       this.isLoading = true;
+      this.data.course_id = this.$route.params.courseId;
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: "courses"});
         NProgress.done();

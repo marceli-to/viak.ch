@@ -31,6 +31,16 @@
   }
 }
 
+%inline-block,
+.inline-block {
+  display: inline-block;
+}
+
+%\!inline-block,
+.\!inline-block {
+  display: inline-block !important;
+}
+
 %\!md\:inline-block,
 .\!md\:inline-block {
   @include bp-md() {
