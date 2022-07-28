@@ -19,4 +19,9 @@
   @include bp-md() {
     height: 20px;
   }
+
+  &:hover,
+  svg.is-active {
+    color: $color-secondary;
+  }
 }
