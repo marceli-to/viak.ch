@@ -119,7 +119,7 @@
         {{ __('Gebuchte Kurse') }}
       </template>
       <template #content>
-        <div v-if="student.bookings.length">
+        <div v-if="student.bookings && student.bookings.length">
           <div v-for="(booking, index) in student.bookings" :key="index">
             <stacked-list-event :event="booking.event" :hasIcon="true">
               <template #action>

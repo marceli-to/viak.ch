@@ -25,7 +25,7 @@
 <script src="/assets/js/modernizr.js"></script>
 </head>
 <body>
-<div id="app" class="pb-6x md:pb-4x">
+<div id="app" class="pb-6x md:pb-12x">
   <app-component />
 </div>
 <script src="{{ mix('assets/js/dashboard/app.js') }}" type="text/javascript"></script>

@@ -1,0 +1,18 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/buttons/primary
+ * -----------------------------------------------------------------------------
+ */
+
+%btn-danger,
+.btn-danger {
+  @extend %btn;
+  @extend %btn-full-width;
+  background-color: $color-danger;
+  color: $color-white;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+
+}

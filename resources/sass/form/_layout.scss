@@ -70,6 +70,30 @@
   }
 }
 
+.form-danger-zone {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  @extend %p-2x;
+  @extend %sm\:p-3x;
+  @extend %sm\:pt-2x;  
+  @extend %mt-8x;
+  @extend %sm\:mt-16x;
+  border: 2px solid $color-danger;
+  color: $color-primary;
+
+  h2 {
+    @extend %mb-2x;
+    @extend %sm\:mb-4x;
+    @include font-bold();
+    color: $color-primary;
+  }
+
+  a[class*=btn] {
+    @extend %mt-3x;
+    @extend %sm\:mt-6x;
+  }
+}
 
 .form-helper {
   @extend %fs-14x;

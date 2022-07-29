@@ -165,7 +165,7 @@ export default {
   },
 
   created() {
-    if (this.$props.type == "edit") {
+    if (this.$props.type == 'edit') {
       this.fetch();
     }
     this.fetchSettings();
@@ -193,11 +193,11 @@ export default {
     },
 
     submit() {
-      if (this.$props.type == "edit") {
+      if (this.$props.type == 'edit') {
         this.update();
       }
 
-      if (this.$props.type == "create") {
+      if (this.$props.type == 'create') {
         this.store();
       }
     },
@@ -225,7 +225,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == "edit" ? "Student bearbeiten" : "Student hinzufügen";
+      return this.$props.type == 'edit' ? "Student bearbeiten" : "Student hinzufügen";
     },
   }
 };

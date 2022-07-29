@@ -75,7 +75,6 @@
         </div>
       </form-group>
 
-
       <!-- Event dates -->
       <form-group-header class="mt-8x" :error="errors.dates">
         <h3><strong>Veranstaltungsdaten</strong></h3>
@@ -121,6 +120,7 @@
           <icon-plus :size="'lg'" />
         </a>
       </form-group>
+
       <!-- Event experts -->
       <form-group-header class="mt-8x">
         <h3><strong>Experten</strong></h3>
@@ -133,13 +133,16 @@
           </label>
         </div>
       </form-group>
-
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
-
+      <div class="form-danger-zone" v-if="$props.type == 'edit'">
+        <h2>Veranstaltung löschen</h2>
+        <p>Mit dieser Aktion wird die Veranstaltung gelöscht. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
+        <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
+      </div>
     </template>
   </article-text>
 </form>
@@ -223,6 +226,7 @@ export default {
         find: '/api/dashboard/event',
         store: '/api/dashboard/event',
         update: '/api/dashboard/event',
+        delete: '/api/dashboard/event',
         settings: '/api/dashboard/event-settings',
       },
 
@@ -241,10 +245,10 @@ export default {
   },
 
   created() {
-    if (this.$props.type == "edit") {
+    if (this.$props.type == 'edit') {
       this.fetch();
     }
-    if (this.$props.type == "create") {
+    if (this.$props.type == 'create') {
       this.isFetched = true;
     }
     this.fetchSettings();
@@ -270,11 +274,11 @@ export default {
     },
 
     submit() {
-      if (this.$props.type == "edit") {
+      if (this.$props.type == 'edit') {
         this.update();
       }
 
-      if (this.$props.type == "create") {
+      if (this.$props.type == 'create') {
         this.store();
       }
     },
@@ -294,6 +298,18 @@ export default {
       this.axios.put(`${this.routes.update}/${this.$route.params.eventId}`, this.data).then(response => {
         this.$router.push({ name: "courses"});
       });
+    },
+
+    destroy() {
+      if (confirm('Sicher?')) {
+        this.isLoading = true;
+        NProgress.start();
+        this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
+          this.$router.push({ name: 'courses'});
+          this.isLoading = false;
+          NProgress.done();
+        });
+      }
     },
 
     addDate() {
@@ -316,7 +332,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == "edit" ? `Veranstaltung für<br>${this.data.course.title.de}` : "Veranstaltung hinzufügen";
+      return this.$props.type == 'edit' ? `Veranstaltung für<br>${this.data.course.title.de}` : "Veranstaltung hinzufügen";
     },
   }
 };

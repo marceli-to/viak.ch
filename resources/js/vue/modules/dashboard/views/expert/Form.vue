@@ -11,114 +11,127 @@
       </div>
     </template>
     <template #content>
-        <form-group 
-          :label="'Geschlecht'" 
-          :required="true" 
-          :error="errors.gender_id"
-          v-if="isFetchedSettings">
-          <div class="select-wrapper">
-            <select v-model="data.gender_id" @change="removeError('gender_id')">
-              <option 
-                v-for="(option) in settings.genders" 
-                :key="option.id" 
-                :value="option.id">
-                {{option.description.de}}
-              </option>
-            </select>
+      <form-group 
+        :label="'Geschlecht'" 
+        :required="true" 
+        :error="errors.gender_id"
+        v-if="isFetchedSettings">
+        <div class="select-wrapper">
+          <select v-model="data.gender_id" @change="removeError('gender_id')">
+            <option 
+              v-for="(option) in settings.genders" 
+              :key="option.id" 
+              :value="option.id">
+              {{option.description.de}}
+            </option>
+          </select>
+        </div>
+      </form-group>
+      <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
+        <input type="text" v-model="data.firstname" required @focus="removeError('firstname')" />
+      </form-group>
+      <form-group :label="'Name'" :required="true" :error="errors.name">
+        <input type="text" v-model="data.name" required @focus="removeError('name')" />
+      </form-group>
+      <form-group :label="'E-Mail'" :required="true" :error="errors.email">
+        <input type="email" v-model="data.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+      </form-group>
+      <form-group :label="'Telefon'">
+        <input type="text" v-model="data.phone" maxlength="30" />
+      </form-group>
+      <grid class="sm:grid-cols-12">
+        <form-group :label="'Strasse'" :required="true" class="span-6" :error="errors.street">
+          <input type="text" v-model="data.street" required @focus="removeError('street')" />
+        </form-group>
+        <form-group :label="'Nr.'" class="span-6">
+          <input type="text" v-model="data.street_no" maxlength="5" />
+        </form-group>
+      </grid>
+      <grid class="sm:grid-cols-12">
+        <form-group :label="'PLZ'" :required="true" class="span-6" :error="errors.zip">
+          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeError('zip')" />
+        </form-group>
+        <form-group :label="'Ort'" :required="true" class="span-6" :error="errors.city">
+          <input type="text" v-model="data.city" required @focus="removeError('city')" />
+        </form-group>
+      </grid>
+      <grid class="sm:grid-cols-12">
+        <form-group :label="'Experte anzeigen?'" class="span-6">
+            <div class="form-group__checkbox mt-3x">
+              <input type="checkbox" id="visible" name="visible" :value="1" v-model="data.visible">
+              <label for="visible">Ja</label>
+            </div>
+        </form-group>
+        <form-group :label="'Experte aktiv?'" class="span-6">
+          <div class="form-group__checkbox mt-3x">
+            <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
+            <label for="publish">Ja</label>
           </div>
         </form-group>
-        <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
-          <input type="text" v-model="data.firstname" required @focus="removeError('firstname')" />
-        </form-group>
-        <form-group :label="'Name'" :required="true" :error="errors.name">
-          <input type="text" v-model="data.name" required @focus="removeError('name')" />
-        </form-group>
-        <form-group :label="'E-Mail'" :required="true" :error="errors.email">
-          <input type="email" v-model="data.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
-        </form-group>
-        <form-group :label="'Telefon'">
-          <input type="text" v-model="data.phone" maxlength="30" />
-        </form-group>
-        <grid class="sm:grid-cols-12">
-          <form-group :label="'Strasse'" :required="true" class="span-6" :error="errors.street">
-            <input type="text" v-model="data.street" required @focus="removeError('street')" />
+      </grid>
+      <collapsible class="mt-16x">
+        <template #title>Über</template>
+        <template #content>
+          <form-group :label="'Titel'" class="mt-2x sm:mt-4x">
+            <input type="text" v-model="data.expert_title" />
           </form-group>
-          <form-group :label="'Nr.'" class="span-6">
-            <input type="text" v-model="data.street_no" maxlength="5" />
+          <form-group :label="'Beschreibung'">
+            <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="data.expert_description"
+            ></tinymce-editor>
           </form-group>
-        </grid>
-        <grid class="sm:grid-cols-12">
-          <form-group :label="'PLZ'" :required="true" class="span-6" :error="errors.zip">
-            <input type="text" v-model="data.zip" required maxlength="10" @focus="removeError('zip')" />
-          </form-group>
-          <form-group :label="'Ort'" :required="true" class="span-6" :error="errors.city">
-            <input type="text" v-model="data.city" required @focus="removeError('city')" />
-          </form-group>
-        </grid>
-        <grid class="sm:grid-cols-12">
-          <form-group :label="'Experte anzeigen?'" class="span-6">
-              <div class="form-group__checkbox mt-3x">
-                <input type="checkbox" id="visible" name="visible" :value="1" v-model="data.visible">
-                <label for="visible">Ja</label>
-              </div>
-          </form-group>
-          <form-group :label="'Experte aktiv?'" class="span-6">
-            <div class="form-group__checkbox mt-3x">
-              <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
-              <label for="publish">Ja</label>
-            </div>
-          </form-group>
-        </grid>
-        <collapsible class="mt-16x">
-          <template #title>Über</template>
-          <template #content>
-            <form-group :label="'Titel'" class="mt-2x sm:mt-4x">
-              <input type="text" v-model="data.expert_title" />
-            </form-group>
-            <form-group :label="'Beschreibung'">
-              <tinymce-editor
-                :api-key="tinyApiKey"
-                :init="tinyConfig"
-                v-model="data.expert_description"
-              ></tinymce-editor>
-            </form-group>
-          </template>
-        </collapsible>
+        </template>
+      </collapsible>
 
-        <collapsible>
-          <template #title>Biographie</template>
-          <template #content>
-            <form-group :error="errors.expert_bio">
-              <tinymce-editor
-                :api-key="tinyApiKey"
-                :init="tinyConfig"
-                v-model="data.expert_bio"
-              ></tinymce-editor>
-            </form-group>
-          </template>
-        </collapsible>
+      <collapsible>
+        <template #title>Biographie</template>
+        <template #content>
+          <form-group :error="errors.expert_bio">
+            <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="data.expert_bio"
+            ></tinymce-editor>
+          </form-group>
+        </template>
+      </collapsible>
 
-        <collapsible v-if="$props.type == 'edit'">
-          <template #title>Profilbild</template>
-          <template #content>
-            <images 
-              :imageRatioW="16" 
-              :imageRatioH="9"
-              :type="'User'"
-              :typeId="data.id"
-              :images="data.images">
-            </images>
-          </template>
-        </collapsible>
-        <div class="text-small text-danger mb-3x sm:mb-6x" v-else>
-          <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-        </div>
+      <collapsible v-if="$props.type == 'edit'">
+        <template #title>Profilbild</template>
+        <template #content>
+          <images 
+            :imageRatioW="16" 
+            :imageRatioH="9"
+            :type="'User'"
+            :typeId="data.id"
+            :images="data.images">
+          </images>
+        </template>
+      </collapsible>
+      <div class="text-small text-danger mb-3x sm:mb-6x" v-else>
+        <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+      </div>
 
-        <form-group>
-          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+      <form-group>
+        <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
+          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
+            Speichern und schliessen
+          </a>
+          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
             Speichern
           </a>
-        </form-group>
+        </grid>
+        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
+          Speichern
+        </a>
+      </form-group>
+      <div class="form-danger-zone" v-if="$props.type == 'edit'">
+        <h2>Experte löschen</h2>
+        <p>Mit dieser Aktion wird der Experte gelöscht und aus den Kursen entfernt.</p>
+        <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
+      </div>
     </template>
   </article-text>
 </form>
@@ -191,6 +204,7 @@ export default {
         find: '/api/dashboard/expert',
         store: '/api/dashboard/expert',
         update: '/api/dashboard/expert',
+        delete: '/api/dashboard/expert',
         settings: '/api/genders',
       },
 
@@ -213,10 +227,10 @@ export default {
   },
 
   created() {
-    if (this.$props.type == "edit") {
+    if (this.$props.type == 'edit') {
       this.fetch();
     }
-    if (this.$props.type == "create") {
+    if (this.$props.type == 'create') {
       this.isFetched = true;
     }
     this.fetchSettings();
@@ -243,30 +257,47 @@ export default {
       });
     },
 
-    submit() {
-      if (this.$props.type == "edit") {
+    submit(redirect) {
+      if (this.$props.type == 'edit') {
         this.update();
       }
 
-      if (this.$props.type == "create") {
-        this.store();
+      if (this.$props.type == 'create') {
+        this.store(redirect);
       }
     },
 
-    store() {
+    store(redirect) {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: "experts"});
         NProgress.done();
         this.isLoading = true;
+        if (redirect) {
+          this.$router.push({ name: 'experts'});
+        }
+        else {
+          this.$router.push({ name: 'expert-edit', params: { id: response.data.userId }});
+        }
       });
     },
 
     update() {
-      this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: "experts"});
+      this.axios.put(`${this.routes.update}/${this.data.id}`, this.data).then(response => {
+        this.$router.push({ name: 'experts'});
       });
+    },
+
+    destroy() {
+      if (confirm('Sicher?')) {
+        this.isLoading = true;
+        NProgress.start();
+        this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
+          this.$router.push({ name: 'experts'});
+          this.isLoading = false;
+          NProgress.done();
+        });
+      }
     },
 
     sorted(data, by, dir){
@@ -276,7 +307,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == "edit" ? "Experte bearbeiten" : "Experte hinzufügen";
+      return this.$props.type == 'edit' ? "Experte bearbeiten" : "Experte hinzufügen";
     },
   }
 };

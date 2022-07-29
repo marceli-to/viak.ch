@@ -66,7 +66,7 @@
                 </div>
               </div>
             </form-group>
-            <form-group-header>
+            <form-group-header :error="errors.category_ids">
               <h3>Kategorien *</h3>
             </form-group-header>
             <form-group class="has-underline" :required="true" :error="errors.category_ids">
@@ -77,7 +77,7 @@
                 </label>
               </div>
             </form-group>
-            <form-group-header>
+            <form-group-header :error="errors.language_ids">
               <h3>Sprachen *</h3>
             </form-group-header>
             <form-group class="has-underline" :required="true" :error="errors.language_ids">
@@ -88,7 +88,7 @@
                 </label>
               </div>
             </form-group>
-            <form-group-header>
+            <form-group-header :error="errors.level_ids">
               <h3>Levels *</h3>
             </form-group-header>
             <form-group class="has-underline" :required="true" :error="errors.level_ids">
@@ -155,12 +155,25 @@
         </collapsible>
       </collapsible-container>
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
-          Speichern
-        </a>
+        <grid class="sm:grid-cols-12">
+          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
+            Speichern und schliessen
+          </a>
+          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
+            Speichern
+          </a>
+        </grid>
       </form-group>
+      <grid class="sm:grid-cols-12" v-if="$props.type == 'edit'">
+        <grid-col class="sm:span-6">
+          <div class="form-danger-zone">
+            <h2>Kurs löschen</h2>
+            <p>Mit dieser Aktion wird der Kurs sowie die Veranstaltungen gelöscht.</p>
+            <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
+          </div>
+        </grid-col>
+      </grid>
     </template>
-
   </article-text>
 </form>
 </template>
@@ -170,6 +183,8 @@ import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
+import Grid from "@/shared/components/ui/layout/Grid.vue";
+import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
@@ -181,6 +196,8 @@ export default {
   components: {
     NProgress,
     ArticleText,
+    Grid,
+    GridCol,
     FormGroup,
     FormGroupHeader,
     TinymceEditor,
@@ -256,6 +273,7 @@ export default {
         find: '/api/dashboard/course',
         store: '/api/dashboard/course',
         update: '/api/dashboard/course',
+        delete: '/api/dashboard/course',
         settings: '/api/dashboard/course-settings',
       },
 
@@ -278,10 +296,10 @@ export default {
   },
 
   created() {
-    if (this.$props.type == "edit") {
+    if (this.$props.type == 'edit') {
       this.fetch();
     }
-    if (this.$props.type == "create") {
+    if (this.$props.type == 'create') {
       this.isFetched = true;
     }
     this.fetchSettings();
@@ -307,30 +325,47 @@ export default {
     },
 
 
-    submit() {
-      if (this.$props.type == "edit") {
+    submit(redirect) {
+      if (this.$props.type == 'edit') {
         this.update();
       }
 
-      if (this.$props.type == "create") {
-        this.store();
+      if (this.$props.type == 'create') {
+        this.store(redirect);
       }
     },
 
-    store() {
+    store(redirect) {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: "courses"});
         NProgress.done();
         this.isLoading = true;
+        if (redirect) {
+          this.$router.push({ name: 'courses'});
+        }
+        else {
+          this.$router.push({ name: 'course-edit', params: { id: response.data.courseId }});
+        }
       });
     },
 
     update() {
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: "courses"});
+        this.$router.push({ name: 'courses'});
       });
+    },
+
+    destroy() {
+      if (confirm('Sicher?')) {
+        this.isLoading = true;
+        NProgress.start();
+        this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
+          this.$router.push({ name: 'courses'});
+          this.isLoading = false;
+          NProgress.done();
+        });
+      }
     },
 
     sorted(data, by, dir){
@@ -340,7 +375,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == "edit" ? "Kurs bearbeiten" : "Kurs hinzufügen";
+      return this.$props.type == 'edit' ? "Kurs bearbeiten" : "Kurs hinzufügen";
     },
   }
 };

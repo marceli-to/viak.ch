@@ -24,7 +24,7 @@ class EventStoreRequest extends FormRequest
   public function rules()
   {
     return [
-      'course_id' => 'required|exists:App\Models\Gender,id',
+      'course_id' => 'required|exists:App\Models\Course,id',
       'min_participants' => 'required|gt:0',
       'max_participants' => 'required|gt:0',
       'dates' => 'required|array|min:1',
