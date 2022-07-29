@@ -4,12 +4,7 @@
 <section class="container">
   <article class="content-text-media is-reverse">
     <figure class="text-media__visual">
-      <img src="/media/viak-keyvisual-home.jpg" width="1600" height="1000" alt="Ihre Zukunft ist visuell">
-      {{-- @if ($expert->visualImage)
-        <x-image :maxSizes="[0 => 700, 700 => 1100]" width="600" height="600" image="viak-keyvisual-home.jpg" ratio="16x9" caption="Ihre Zukunft ist visuell" />
-      @else
-        <img src="/media/viak-keyvisual-home.jpg" width="1600" height="1000" alt="Ihre Zukunft ist visuell">
-      @endif --}}
+      <img src="/media/viak-keyvisual-home.jpg" width="1600" height="900" alt="Ihre Zukunft ist visuell">
     </figure>
     <div class="text-media__body">
       <aside>
