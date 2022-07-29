@@ -20,7 +20,7 @@ class EventCancelledWithPenalty
    */
   public function __construct(User $user, Booking $booking)
   {
-    $booking = Booking::withTrashed()->with('event.course')->find($booking->id);
+    $booking = Booking::with('event.course')->find($booking->id);
     $this->user = $user;
     $this->booking = $booking;
   }

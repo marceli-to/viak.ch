@@ -68,16 +68,15 @@ class Booking
     {
       event(new EventCancelledWithPenalty(
         User::find($booking->user_id), 
-        BookingModel::withTrashed()->find($booking->id)
+        BookingModel::find($booking->id)
       ));
       return TRUE;
     }
-
-    dd();
+    
     // No cancellation penalty
     event(new EventCancelled(
       User::find($booking->user_id), 
-      BookingModel::withTrashed()->find($booking->id)
+      BookingModel::find($booking->id)
     ));
     return TRUE;
   }
@@ -92,7 +91,7 @@ class Booking
 
   public function has(Event $event, User $user)
   {
-    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
+    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->whereNull('cancelled_at')->first();
     return $booking ? TRUE : FALSE;
   }
 
@@ -104,7 +103,7 @@ class Booking
 
   public function number()
   {
-    $bookings = BookingModel::withTrashed()->get();
+    $bookings = BookingModel::get();
        
     if ($bookings->count() == 0)
     {
