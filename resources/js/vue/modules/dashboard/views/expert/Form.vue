@@ -57,19 +57,19 @@
       </grid>
       <grid class="sm:grid-cols-12">
         <form-group :label="'Experte anzeigen?'" class="span-6">
-            <div class="form-group__checkbox mt-3x">
+            <div class="form-group__checkbox">
               <input type="checkbox" id="visible" name="visible" :value="1" v-model="data.visible">
               <label for="visible">Ja</label>
             </div>
         </form-group>
         <form-group :label="'Experte aktiv?'" class="span-6">
-          <div class="form-group__checkbox mt-3x">
+          <div class="form-group__checkbox">
             <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
             <label for="publish">Ja</label>
           </div>
         </form-group>
       </grid>
-      <collapsible class="mt-16x">
+      <collapsible class="">
         <template #title>Über</template>
         <template #content>
           <form-group :label="'Titel'" class="mt-2x sm:mt-4x">
@@ -98,7 +98,7 @@
         </template>
       </collapsible>
 
-      <collapsible v-if="$props.type == 'edit'">
+      <collapsible>
         <template #title>Profilbild</template>
         <template #content>
           <images 
@@ -106,13 +106,38 @@
             :imageRatioH="9"
             :type="'User'"
             :typeId="data.id"
-            :images="data.images">
+            :images="data.images"
+             v-if="$props.type == 'edit'">
           </images>
+          <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+            <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+          </div>
         </template>
       </collapsible>
-      <div class="text-small text-danger mb-3x sm:mb-6x" v-else>
-        <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-      </div>
+
+      <template  v-if="$props.type == 'create'">
+        <form-group-header>
+          <h3><strong>Accountinformationen senden an:</strong></h3>
+        </form-group-header>
+        <grid class="sm:grid-cols-12 mb-6x">
+          <grid-col class="sm:span-6">
+            <form-group>
+              <div class="form-group__checkbox">
+                <input type="checkbox" id="notify_admin" name="notify_admin" :value="1" v-model="data.notify_admin">
+                <label for="notify_admin">Administrator</label>
+              </div>
+            </form-group>
+          </grid-col>
+          <grid-col class="sm:span-6">
+            <form-group class="sm:span-6">
+              <div class="form-group__checkbox">
+                <input type="checkbox" id="notify_expert" name="notify_expert" :value="1" v-model="data.notify_expert">
+                <label for="notify_expert">Experte</label>
+              </div>
+            </form-group>
+          </grid-col>
+        </grid>
+      </template>
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
@@ -181,6 +206,8 @@ export default {
         gender_id: 2,
         publish: 0,
         visisble: 0,
+        notify_admin: 0,
+        notify_expert: 0,
       },
 
       // Validation

@@ -8,7 +8,7 @@ class Job
   {
     $jobs = JobModel::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
-    
+
     foreach($jobs->all() as $j)
     {
       $recipient = app()->environment(['production']) && $j->recipient ? $j->recipient : env('MAIL_TO');

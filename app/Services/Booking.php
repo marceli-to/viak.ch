@@ -40,7 +40,7 @@ class Booking
         ]);
   
         // Fire event
-        event(new EventBooked($user, $event));
+        event(new EventBooked($user, $booking));
       }
     }
 
@@ -61,22 +61,23 @@ class Booking
     $booking->cancelled = 1;
     $booking->cancelled_at = \Carbon\Carbon::now();
     $booking->save();
-    $booking->delete();
+    //$booking->delete();
 
     // Check for cancellation penalty and fire events
     if (PenaltyHelper::has($booking->event->date))
     {
       event(new EventCancelledWithPenalty(
         User::find($booking->user_id), 
-        Event::find($booking->event_id)
+        BookingModel::withTrashed()->find($booking->id)
       ));
       return TRUE;
     }
 
+    dd();
     // No cancellation penalty
     event(new EventCancelled(
       User::find($booking->user_id), 
-      Event::find($booking->event_id)
+      BookingModel::withTrashed()->find($booking->id)
     ));
     return TRUE;
   }

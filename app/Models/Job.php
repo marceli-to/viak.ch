@@ -12,6 +12,7 @@ class Job extends Model
    
 	protected $fillable = [
     'recipient',
+    'data',
     'processed',
     'error',
     'mailable_id',

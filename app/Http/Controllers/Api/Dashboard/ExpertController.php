@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\RoleUser;
 use App\Http\Requests\ExpertStoreRequest;
 use App\Http\Requests\ExpertUpdateRequest;
+use App\Events\ExpertCreated;
 use Illuminate\Http\Request;
 
 class ExpertController extends Controller
@@ -57,6 +58,17 @@ class ExpertController extends Controller
     );
     $user->roles()->attach(Role::EXPERT);
     $user->save();
+
+    // // Notify admin/expert
+    // if ($request->input('notify_expert') == 1)
+    // {
+    //   event(new ExpertCreated($user, ['password' => $password]));
+    // }
+    // if ($request->input('notify_admin') == 1)
+    // {
+    //   $admin = User::find(auth()->user()->id);
+    //   event(new ExpertCreated($admin, ['password' => $password]));
+    // }
 
     return response()->json(['userId' => $user->id]);
   }

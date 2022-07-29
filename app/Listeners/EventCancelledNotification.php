@@ -17,8 +17,8 @@ class EventCancelledNotification
   {
     Job::create([
       'recipient' => $eventCancelled->user->email,
-      'mailable_id' => $eventCancelled->event->id,
-      'mailable_type' => \App\Models\Event::class,
+      'mailable_id' => $eventCancelled->booking->id,
+      'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\EventCancelled::class
     ]);
   }

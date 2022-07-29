@@ -132,13 +132,23 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * The gender that belongs to this user.
+   * The bookings that belongs to this user.
    */
 
   public function bookings()
   {
     return $this->hasMany(Booking::class);
   }
+
+  /**
+   * The active bookings that belongs to this user.
+   */
+
+  public function activeBookings()
+  {
+    return $this->hasMany(Booking::class)->whereNull('cancelled_at');
+  }
+
 
 
   /*

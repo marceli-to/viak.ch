@@ -17,8 +17,8 @@ class EventCancelledWithPenaltyNotification
   {
     Job::create([
       'recipient' => $eventCancelledWithPenalty->user->email,
-      'mailable_id' => $eventCancelledWithPenalty->event->id,
-      'mailable_type' => \App\Models\Event::class,
+      'mailable_id' => $eventCancelledWithPenalty->booking->id,
+      'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\EventCancelledWithPenalty::class
     ]);
   }

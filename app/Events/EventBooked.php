@@ -4,24 +4,24 @@ namespace App\Events;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
-use App\Models\Event;
+use App\Models\Booking;
 
 class EventBooked
 {
   use Dispatchable, SerializesModels;
 
   public $user;
-  public $event;
+  public $booking;
 
   /**
    * Create a new event instance.
    *
    * @return void
    */
-  public function __construct(User $user, Event $event)
+  public function __construct(User $user, Booking $booking)
   {
-    $event = Event::with('course')->find($event->id);
+    $booking = Booking::with('event.course')->find($booking->id);
     $this->user = $user;
-    $this->event = $event;
+    $this->booking = $booking;
   }
 }

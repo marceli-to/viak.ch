@@ -10,15 +10,15 @@ class EventBookedNotification
   /**
    * Handle the event.
    *
-   * @param  EventBooked $eventBooked
+   * @param  EventBooked $event
    * @return void
    */
-  public function handle(EventBooked $eventBooked)
+  public function handle(EventBooked $event)
   {
     Job::create([
-      'recipient' => $eventBooked->user->email,
-      'mailable_id' => $eventBooked->event->id,
-      'mailable_type' => \App\Models\Event::class,
+      'recipient' => $event->user->email,
+      'mailable_id' => $event->booking->id,
+      'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\EventBooked::class
     ]);
   }

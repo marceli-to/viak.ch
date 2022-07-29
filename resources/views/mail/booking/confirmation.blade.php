@@ -1,19 +1,19 @@
 @component('mail::message')
-<h1>{{ __('Buchungsbestätigung') . ' – ' . $data->course->title }}</h1>
-<p>{{ __('Guten Tag') }} Marcel Stadelmann</p>
-<p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->course->title }}». {{ __('Dieser findet wie folgt statt:') }}</p>
+<h1>{{ __('Buchungsbestätigung') . ' – ' . $data->event->course->title }}</h1>
+<p>{{ __('Hallo') }} {{ $data->user->fullname }}</p>
+<p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->event->course->title }}». {{ __('Dieser findet wie folgt statt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="140">{{ __('Kurs') }}</td>
-    <td>{{ $data->course->title }}</td>
+    <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
-    <td>{{ collect($data->dates->pluck('date_short')->all())->implode(', ') }}</td>
+    <td>{{ collect($data->event->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $data->courseFee }}</td>
+    <td>CHF {{ $data->event->courseFee }}</td>
   </tr>
 </table>
 <p>{{ __('Die Rechnung sowie die definitive Einladung für den Kurs erhälst du in den nächsten Tagen.') }}</p>

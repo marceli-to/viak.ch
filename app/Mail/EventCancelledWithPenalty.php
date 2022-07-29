@@ -1,5 +1,6 @@
 <?php
 namespace App\Mail;
+use App\Models\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -30,11 +31,12 @@ class EventCancelledWithPenalty extends Mailable
    */
   public function build()
   {
+    $booking = Booking::with('user', 'event')->withTrashed()->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject(__('Annullationsbestätigung') . ' – ' . $this->data->course->title)
+                ->subject(__('Annullationsbestätigung') . ' – ' . $booking->event->course->title)
                 ->with([
-                  'data' => $this->data,
-                  'cancellation' => PenaltyHelper::get($this->data->date, $this->data->courseFee)
+                  'data' => $booking,
+                  'cancellation' => PenaltyHelper::get($booking->event->date, $booking->event->courseFee)
                 ])
                 ->markdown('mail.booking.cancellation-with-penalty');
   }
