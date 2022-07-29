@@ -46,10 +46,15 @@ class LoginController extends BaseController
       }
       if (auth()->user()->isAdmin())
       {
-        return RouteServiceProvider::DASHBOARD;
+        return RouteServiceProvider::DASHBOARD_COURSES;
       }
     }
     
+    if (auth()->user()->isAdmin())
+    {
+      return RouteServiceProvider::DASHBOARD_COURSES;
+    }
+
     return RouteServiceProvider::HOME;
   }
 }
