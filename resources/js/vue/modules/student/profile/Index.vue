@@ -167,7 +167,7 @@
               <div class="flex justify-between">
                 <div>CHF 960.00</div>
                 <div>
-                  <a href="" class="btn-primary is-outline">Download</a>
+                  <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@
               <div class="flex justify-between">
                 <div>CHF 700.00</div>
                 <div>
-                  <a href="" class="btn-primary is-outline">Download</a>
+                  <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
                 </div>
               </div>
             </div>
@@ -204,7 +204,7 @@
             <div class="sm:span-4">
               <div class="flex justify-end">
                 <div>
-                  <a href="" class="btn-primary is-outline">Download</a>
+                  <a href="/pdf/kurs-bestaetigung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
                 </div>
               </div>
             </div>
