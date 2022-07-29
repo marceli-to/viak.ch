@@ -19,6 +19,8 @@ php artisan db:seed --class=LocationSeeder
 
 php artisan migrate:fresh --seed
 
+php artisan db:seed --class=DumpSeeder
+
 - Expert IDs: 6 - 16
 - composer dump-autoload 
 
