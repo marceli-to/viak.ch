@@ -52,7 +52,7 @@ class MenuItemProfile extends Component
       }
       else if (auth()->user()->isAdmin())
       {
-        $route = 'page.student.profile';
+        $route = 'page.dashboard';
       }
     }
     $this->route = $route;
