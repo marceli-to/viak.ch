@@ -23,11 +23,18 @@ class RouteServiceProvider extends ServiceProvider
   public const HOME = '/';
 
   /**
-   * The path to the "administration dashboard" route for your application.
+   * The path to the "dashboard" route for your application.
    *
    * @var string
    */
   public const DASHBOARD = '/dashboard';
+
+  /**
+   * The path to the "dashboard/courses" route for your application.
+   *
+   * @var string
+   */
+  public const DASHBOARD_COURSES = '/dashboard/courses';
 
   /**
    * The path to the "roles" route for your application.

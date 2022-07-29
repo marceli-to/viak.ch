@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         {
           return redirect(RouteServiceProvider::ROLES);
         }
-        return redirect(RouteServiceProvider::DASHBOARD);
+        return redirect(RouteServiceProvider::DASHBOARD_COURSES);
       }
     }
     return $next($request);
