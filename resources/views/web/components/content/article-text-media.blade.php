@@ -1,7 +1,7 @@
 <article class="content-text-media {{ $reverse ? 'is-reverse' : '' }}">
   <figure class="text-media__visual">
     @if ($image)
-      <img src="/media/{{$image}}" height="1000" width="1600" alt="{{ $title }}">
+      <img src="/media/{{ $image }}" width="1600" height="1000" alt="{{ $title }}">
     @endif
   </figure>
   <div class="text-media__body">

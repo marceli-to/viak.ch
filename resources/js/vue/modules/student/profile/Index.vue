@@ -1,6 +1,6 @@
 <template>
 <div>
-  <article-text>
+  <article-text v-if="isFetched">
     <template #icon>
       <a href="" class="icon-edit" @click.prevent="toggleForm()">
         <icon-edit />
@@ -110,6 +110,7 @@
         {{ __('Merkliste') }}
       </template>
       <template #content>
+        <p class="no-results">Deine Merkliste ist leer.</p>
       </template>
     </collapsible>
     
@@ -118,18 +119,101 @@
         {{ __('Gebuchte Kurse') }}
       </template>
       <template #content>
-        <div v-for="(booking, index) in student.bookings" :key="index">
-          <stacked-list-event :event="booking.event" :hasIcon="true">
-            <template #action>
-              <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
-                {{ __('Annullieren') }}
-              </a>
-            </template>
-          </stacked-list-event>
+        <div v-if="student.bookings.length">
+          <div v-for="(booking, index) in student.bookings" :key="index">
+            <stacked-list-event :event="booking.event" :hasIcon="true">
+              <template #action>
+                <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
+                  {{ __('Annullieren') }}
+                </a>
+              </template>
+            </stacked-list-event>
+          </div>
+        </div>
+        <div v-else>
+          <p class="no-results">Du hast noch keine Kurse gebucht.</p>
         </div>
       </template>
     </collapsible>
   </collapsible-container>
+
+  <collapsible-container>
+    <collapsible>
+      <template #title>
+        {{ __('Besuchte Kurse') }}
+      </template>
+      <template #content>
+        <p class="no-results">Du hast noch keine Kurse besucht.</p>
+      </template>
+    </collapsible>
+  </collapsible-container>
+
+  <collapsible-container>
+    <collapsible>
+      <template #title>
+        {{ __('Dokumente') }}
+      </template>
+      <template #content>
+        <stacked-list-item>
+          <div>
+            <div class="sm:span-4">
+              <strong>Rechnung 0000094</strong><br>
+              06. Juni 2022
+            </div>
+            <div class="sm:span-4">
+              Blender Animationskurs
+            </div>
+            <div class="sm:span-4">
+              <div class="flex justify-between">
+                <div>CHF 960.00</div>
+                <div>
+                  <a href="" class="btn-primary is-outline">Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </stacked-list-item>
+        <stacked-list-item>
+          <div>
+            <div class="sm:span-4">
+              <strong>Rechnung 0000086</strong><br>
+              13. Mai 2022
+            </div>
+            <div class="sm:span-4">
+              Blender Einführungskurs
+            </div>
+            <div class="sm:span-4">
+              <div class="flex justify-between">
+                <div>CHF 700.00</div>
+                <div>
+                  <a href="" class="btn-primary is-outline">Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </stacked-list-item>
+        <stacked-list-item>
+          <div>
+            <div class="sm:span-4">
+              <strong>Kursbestätigung</strong><br>
+              25. Mai 2022
+            </div>
+            <div class="sm:span-4">
+              Blender Einführungskurs
+            </div>
+            <div class="sm:span-4">
+              <div class="flex justify-end">
+                <div>
+                  <a href="" class="btn-primary is-outline">Download</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </stacked-list-item>
+      </template>
+    </collapsible>
+  </collapsible-container>
+
  </div>
 </template>
 <script>
@@ -141,6 +225,7 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
+import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
@@ -161,6 +246,7 @@ export default {
     CollapsibleContainer,
     Collapsible,
     StackedListEvent,
+    StackedListItem,
     IconArrowRight,
     IconEdit,
     IconCross
@@ -172,7 +258,7 @@ export default {
     return {
       student: {
         gender_id: 2,
-      }
+      },
     };
   },
 
@@ -184,6 +270,7 @@ export default {
 
     find() {
       NProgress.start();
+      this
       this.axios.get(`${this.routes.student.find}`).then(response => {
         this.student = response.data;
         NProgress.done();
@@ -209,14 +296,10 @@ export default {
     },
 
     cancelBooking(uuid, event) {
-
       let message = 'Bitte Annullation bestätigen.';
-
-      // Check for penalty
       if (event.cancellation.penalty) {
         message = `Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ${event.cancellation.amount}.– (${event.cancellation.penalty}% der Kurskosten)\nBitte Annullation bestätigen.`;
       }
-
       if (confirm(message)) {
         NProgress.start();
         this.axios.put(`${this.routes.booking.cancel}/${uuid}`).then(response => {

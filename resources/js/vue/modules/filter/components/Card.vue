@@ -26,15 +26,21 @@
             {{ __('Weitere Informationen') }}
           </div>
         </div>
-        <img src="/media/dummy-1.jpg" height="600" width="600" class="is-responsive" :alt="data.title">
+        <teaser-image :image="data.teaserImage" v-if="data.teaserImage" />
+        <img src="/media/dummy-1.jpg" height="600" width="600" class="is-responsive" :alt="data.title" v-else>
       </figure>
     </a>
   </article>
 </template>
 <script>
 import i18n from "@/shared/mixins/i18n";
+import TeaserImage from "@/modules/filter/components/Image.vue";
 
 export default {
+
+  components: {
+    TeaserImage,
+  },
 
   mixins: [i18n],
 
@@ -44,5 +50,6 @@ export default {
       default: false,
     },
   },
+
 }
 </script>

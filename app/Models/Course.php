@@ -219,6 +219,16 @@ class Course extends Base
   /**
    * The image(s) that belong to this course.
    */
+  
+   public function teaserImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('type', 'teaser')->where('publish', 1);
+  }
+
+  public function visualImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
+  }
 
   public function image()
   {

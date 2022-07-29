@@ -9,9 +9,21 @@ class Image extends Base
 {
   use HasFactory, SoftDeletes;
 
+  /**
+   * The attributes that should be cast to native types.
+   *
+   * @var array
+   */
+  
   protected $casts = [
     'created_at' => "datetime:d.m.Y",
   ];
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
 
 	protected $fillable = [
     'uuid',
@@ -32,6 +44,16 @@ class Image extends Base
     'locked',
     'imageable_id',
     'imageable_type'
+  ];
+
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'coords',
   ];
 
   public function imageable()

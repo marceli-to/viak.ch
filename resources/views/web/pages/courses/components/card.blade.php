@@ -38,7 +38,11 @@
           @include('web.partials.icons.arrow-right')
         </div>
       </div>
-      <img src="/media/dummy-{{rand(1,5)}}.jpg" height="600" width="600" class="is-responsive" alt="{{ $course->title}}">
+      @if ($course->teaserImage)
+        <x-image :maxSizes="[0 => 700, 700 => 1100]" width="600" height="600" :image="$course->teaserImage" ratio="1x1" :caption="$course->title" />
+      @else
+        <img src="/media/viak-placeholder-teaser.png" height="600" width="600" class="is-responsive" alt="{{ $course->title }}">
+      @endif
     </figure>
   </a>
 </article>

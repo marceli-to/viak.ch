@@ -72,4 +72,12 @@ p {
   color: $color-danger;
 }
 
+.no-results {
+  @extend %mt-2x;
+  @extend %sm\:mt-4x;
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  @include font-italic();
+}
 

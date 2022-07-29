@@ -6,7 +6,7 @@
         :restrictions="'jpg, png | max. 16 MB'"
         :maxFiles="99"
         :maxFilesize="32"
-        :acceptedFiles="'.png,.jpg'"
+        :acceptedFiles="'.png, .PNG, .jpg, .jpeg, .JPG, .JPEG'"
         @store="storeImage($event)"
       ></image-upload>
     </div>

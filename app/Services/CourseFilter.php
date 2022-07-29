@@ -49,7 +49,7 @@ class CourseFilter
     $this->setExpert($request);
 
     // Start building a query
-    $query = Course::query()->published()->with('upcomingEvents.experts', 'categories', 'softwares');
+    $query = Course::query()->published()->with('upcomingEvents.experts', 'categories', 'softwares', 'teaserImage');
 
     // Filter by 'category'
     if ($this->category)
@@ -339,6 +339,7 @@ class CourseFilter
           'course_fee' => $event->courseFee,
           'online' => $course->online ? TRUE : FALSE,
           'upcoming' => TRUE,
+          'teaserImage' => $course->teaserImage
         ];
       }
       else
@@ -349,6 +350,7 @@ class CourseFilter
           'title' => $course->title,
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'upcoming' => FALSE,
+          'teaserImage' => $course->teaserImage
         ];
       }
     }

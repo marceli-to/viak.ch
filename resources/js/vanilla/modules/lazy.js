@@ -1,4 +1,8 @@
 import LazyLoad from '../vendor/lazyload';
 (function () {
-  var lazyLoadInstance = new LazyLoad();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    var lazyLoadInstance = new LazyLoad();
+  });
+
 })();

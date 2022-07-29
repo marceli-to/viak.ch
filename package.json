@@ -27,6 +27,7 @@
         "nprogress": "^0.2.0",
         "postcss-loader": "^3.0.0",
         "raw-loader": "^0.5.1",
+        "vanilla-lazyload": "^17.8.3",
         "vue-advanced-cropper": "^0.16.5",
         "vue-axios": "^2.1.5",
         "vue-axios-interceptors": "^0.3.1",

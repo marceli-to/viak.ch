@@ -15,7 +15,7 @@
       </div>
     </x-slot>
     <x-slot name="content">
-      <p>{!! __('Ihrem Profil sind mehrere Rollen zugewiesen:') !!}
+      <p>{!! __('Ihrem Profil sind mehrere Rollen zugewiesen:') !!}</p>
       @if ($roles)
         <div class="mt-8x">
           @foreach($roles as $role)

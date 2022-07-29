@@ -15,7 +15,7 @@ class ExpertController extends BaseController
 
   public function list()
   {
-    $experts = User::experts()->with('image')->published()->visible()->get();
+    $experts = User::experts()->with('teaserImage')->published()->visible()->orderBy('name')->get();
     return view($this->viewPath . 'list', ['experts' => $experts]);
   }
 
@@ -28,7 +28,7 @@ class ExpertController extends BaseController
 
   public function show($slug = NULL, User $user)
   {
-    $expert = User::experts()->published()->visible()->with('events.course')->findOrFail($user->id);
+    $expert = User::experts()->with('visualImage')->published()->visible()->with('events.course')->findOrFail($user->id);
     $courses = collect($expert->getCourses($user)->pluck('course')->unique());
     return view($this->viewPath . 'show', ['expert' => $expert, 'courses' => $courses]);
   }

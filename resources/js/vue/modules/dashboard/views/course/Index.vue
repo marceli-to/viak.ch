@@ -42,9 +42,7 @@
           </div>
         </template>
         <template v-else>
-          <em class="text-small block mt-3x">
-            Es sind keine Veranstaltungen vorhanden...
-          </em>
+          <p class="no-results">Es sind keine Veranstaltungen vorhanden.</p>
         </template>
         <div class="flex justify-start mt-6x">
           <router-link :to="{ name: 'event-create', params: { courseId: course.id }  }" class="icon-plus">

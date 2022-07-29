@@ -6,8 +6,8 @@
   <course-filter>
     @if ($experts)
       <div class="grid-cols-12">
-        @foreach($experts as $user)
-          <x-expert-card :user="$user" />
+        @foreach($experts as $expert)
+          <x-expert-card :user="$expert" />
         @endforeach
       </div>
     @endif
