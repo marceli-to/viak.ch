@@ -103,7 +103,10 @@ Route::get('/mailable', function () {
   return new App\Mail\EventBooked($event);
 });
 
+
 // PDF Documents
+Route::get('/dokumente', [DocumentController::class, 'index'])->name('documents.index');
+
 Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
 Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
 Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');

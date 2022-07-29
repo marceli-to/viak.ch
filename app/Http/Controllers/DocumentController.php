@@ -21,6 +21,11 @@ class DocumentController extends BaseController
     parent::__construct();
   }
 
+  public function index()
+  {
+    return view('web.pages.test.index');
+  }
+
   /**
    * Generate and download a pdf
    * 
