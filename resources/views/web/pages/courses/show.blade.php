@@ -6,7 +6,7 @@
   <article class="content-text-media">
     <figure class="text-media__visual">
       @if ($course->visualImage)
-        <x-image :maxSizes="[0 => 700, 700 => 1100, 1000 => 1600]" width="1600" height="900" :image="$course->visualImage" ratio="16x9" :caption="$course->title" />
+        <x-image :maxSizes="[0 => 700, 700 => 1000, 1000 => 1600]" width="1600" height="900" :image="$course->visualImage" ratio="16x9" :caption="$course->title" />
       @else
         <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="{{ $course->title }}">
       @endif
