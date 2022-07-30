@@ -107,6 +107,11 @@ class CourseController extends Controller
   public function destroy(Course $course)
   {
     $course->delete();
+    foreach($course->events as $event)
+    {
+      $event->experts()->detach();
+      $event->delete();
+    }
     return response()->json('successfully deleted');
   }
 }
