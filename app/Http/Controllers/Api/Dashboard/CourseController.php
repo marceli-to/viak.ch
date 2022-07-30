@@ -71,8 +71,8 @@ class CourseController extends Controller
   public function update(Course $course, CourseUpdateRequest $request)
   {
     $course = Course::findOrFail($course->id);
-    $product->setTranslation('slug', 'de', \Str::slug($request->input('title.de')));
-    $product->setTranslation('slug', 'en', \Str::slug($request->input('title.de')));
+    $course->setTranslation('slug', 'de', \Str::slug($request->input('title.de')));
+    $course->setTranslation('slug', 'en', \Str::slug($request->input('title.de')));
     $course->update($request->all());
     $course->categories()->sync($request->input('category_ids'));
     $course->languages()->sync($request->input('language_ids'));
