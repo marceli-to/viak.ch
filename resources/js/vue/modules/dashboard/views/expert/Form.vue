@@ -115,30 +115,6 @@
         </template>
       </collapsible>
 
-      <template  v-if="$props.type == 'create'">
-        <form-group-header>
-          <h3><strong>Accountinformationen senden an:</strong></h3>
-        </form-group-header>
-        <grid class="sm:grid-cols-12 mb-6x">
-          <grid-col class="sm:span-6">
-            <form-group>
-              <div class="form-group__checkbox">
-                <input type="checkbox" id="notify_admin" name="notify_admin" :value="1" v-model="data.notify_admin">
-                <label for="notify_admin">Administrator</label>
-              </div>
-            </form-group>
-          </grid-col>
-          <grid-col class="sm:span-6">
-            <form-group class="sm:span-6">
-              <div class="form-group__checkbox">
-                <input type="checkbox" id="notify_expert" name="notify_expert" :value="1" v-model="data.notify_expert">
-                <label for="notify_expert">Experte</label>
-              </div>
-            </form-group>
-          </grid-col>
-        </grid>
-      </template>
-
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
           <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
@@ -154,7 +130,7 @@
       </form-group>
       <div class="form-danger-zone" v-if="$props.type == 'edit'">
         <h2>Experte löschen</h2>
-        <p>Mit dieser Aktion wird der Experte gelöscht und aus den Kursen entfernt.</p>
+        <p>Mit dieser Aktion wird der Experte gelöscht und aus den Veranstaltungen entfernt.</p>
         <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
       </div>
     </template>
@@ -206,8 +182,6 @@ export default {
         gender_id: 2,
         publish: 0,
         visisble: 0,
-        notify_admin: 0,
-        notify_expert: 0,
       },
 
       // Validation
