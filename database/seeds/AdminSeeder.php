@@ -29,7 +29,7 @@ class AdminSeeder extends Seeder
         'name'  => 'Schmid',
         'email' => 'oliver.schmid@visualisierungs-akademie.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
-        'password' => \Hash::make('$LiV3r2022'),
+        'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
       ],
@@ -38,7 +38,7 @@ class AdminSeeder extends Seeder
         'name'  => 'Kögler',
         'email' => 'koegler@nightnurse.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
-        'password' => \Hash::make('#Lut3en*2022'),
+        'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
       ],
@@ -47,7 +47,7 @@ class AdminSeeder extends Seeder
         'name'  => 'Flüeler',
         'email' => 'bf@wbg.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
-        'password' => \Hash::make('!3n3d1kT2022*'),
+        'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
       ],
@@ -56,7 +56,7 @@ class AdminSeeder extends Seeder
         'name'  => 'Puorger',
         'email' => 'bp@wbg.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
-        'password' => \Hash::make('%B3tT1nA*2022'),
+        'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 2,
       ],
@@ -88,14 +88,14 @@ class AdminSeeder extends Seeder
       'role_id' => 3,
       'user_id' => 1
     ]);
-    RoleUser::create([
-      'role_id' => 2,
-      'user_id' => 2
-    ]);
-    RoleUser::create([
-      'role_id' => 3,
-      'user_id' => 2
-    ]);
+    // RoleUser::create([
+    //   'role_id' => 2,
+    //   'user_id' => 2
+    // ]);
+    // RoleUser::create([
+    //   'role_id' => 3,
+    //   'user_id' => 2
+    // ]);
 
   }
 }
