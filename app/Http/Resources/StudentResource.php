@@ -29,7 +29,7 @@ class StudentResource extends JsonResource
       'operating_system' => $this->operating_system,
       'email' => $this->email,
       'gender_id' => $this->gender_id,
-      'bookings' => BookingResource::collection($this->activeBookings),
+      'bookings' => BookingResource::collection($this->bookings),
     ];
   }
 }

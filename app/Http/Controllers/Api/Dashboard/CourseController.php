@@ -5,6 +5,7 @@ use App\Http\Resources\DataCollection;
 use App\Http\Resources\Dashboard\CourseCollection;
 use App\Models\Course;
 use App\Http\Requests\CourseStoreRequest;
+use App\Http\Requests\CourseUpdateRequest;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -64,10 +65,10 @@ class CourseController extends Controller
    * Update a course for a given course
    *
    * @param Course $course
-   * @param  \Illuminate\Http\CourseStoreRequest $request
+   * @param  \Illuminate\Http\CourseUpdateRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function update(Course $course, CourseStoreRequest $request)
+  public function update(Course $course, CourseUpdateRequest $request)
   {
     $course = Course::findOrFail($course->id);
     $course->update($request->all());

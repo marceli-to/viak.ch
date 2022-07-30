@@ -17,7 +17,7 @@
             <div>
               @if ($event->dates->count() > 1)
                 @foreach($event->dates as $date)
-                  <strong>{{ $date->date }}</strong>, {{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
+                  <strong>{{ $date->date }}</strong><br>{{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
                 @endforeach
               @else
                 @foreach($event->dates as $date)
@@ -25,14 +25,6 @@
                   {{ $date->time_start }} – {{ $date->time_end }} Uhr
                 @endforeach
               @endif
-            </div>
-          @endif
-          @if ($event->experts)
-            <div>
-              mit 
-              @foreach($event->experts as $expert)
-                <a href="{{ route('page.expert', ['slug' => SlugHelper::make($expert->fullname), 'user' => $expert->uuid]) }}" title="{{ $expert->fullname }}">{{ $expert->fullname }}</a>@if (!$loop->last), @endif
-              @endforeach
             </div>
           @endif
         </div>
@@ -49,6 +41,14 @@
         @else
           {{ $event->location->description }}
         @endif
+      @endif
+      @if ($event->experts)
+        <div>
+          mit 
+          @foreach($event->experts as $expert)
+            <a href="{{ route('page.expert', ['slug' => SlugHelper::make($expert->fullname), 'user' => $expert->uuid]) }}" title="{{ $expert->fullname }}">{{ $expert->fullname }}</a>@if (!$loop->last), @endif
+          @endforeach
+        </div>
       @endif
     </div>
     <div class="stacked-list__col stacked-list__col--action">
