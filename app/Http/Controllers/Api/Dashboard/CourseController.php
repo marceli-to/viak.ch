@@ -53,6 +53,8 @@ class CourseController extends Controller
       )
     );
     $course->save();
+    $course->setTranslation('slug', 'de', \Str::slug($request->input('title.de')));
+    $course->setTranslation('slug', 'en', \Str::slug($request->input('title.de')));
     $course->categories()->attach($request->input('category_ids'));
     $course->languages()->attach($request->input('language_ids'));
     $course->levels()->attach($request->input('level_ids'));
