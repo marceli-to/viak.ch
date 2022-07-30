@@ -130,7 +130,7 @@ class EventController extends Controller
    */
   public function destroy(Event $event)
   {
-    $user->users()->detach();
+    $event->experts()->detach();
     $event->delete();
     return response()->json('successfully deleted');
   }
