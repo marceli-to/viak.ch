@@ -2,8 +2,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RolesController;
+use App\Http\Controllers\Auth\ConfirmExpertController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
@@ -86,6 +88,12 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
   return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('/email/confirm/{id}/{token}', function (Request $request, $id, $token) {
+  return redirect()->route('auth.expert.confirm', ['token' => $token]);
+})->name('verification.confirm');
+
+Route::get('/email/bestaetigen/{token}', [ConfirmExpertController::class, 'confirm'])->name('auth.expert.confirm');
+Route::post('/expert/finish', [ConfirmExpertController::class, 'store'])->name('auth.expert.finish');
 
 
 /*

@@ -46,29 +46,23 @@ class ExpertController extends Controller
    */
   public function store(ExpertStoreRequest $request)
   { 
-    // Create password
-    $password = \Str::random(16);
-
     // Create 'expert' and attach role
     $user = User::create(
       array_merge(
         $request->all(), 
-        ['uuid' => \Str::uuid(), 'password' => \Hash::make($password)]
+        [
+          'uuid' => \Str::uuid(), 
+          'password' => \Hash::make(\Str::random(16)),
+          'confirm_token' => \Str::random(32),
+          'email_verified_at' => \Carbon\Carbon::now(),
+        ]
       )
     );
     $user->roles()->attach(Role::EXPERT);
     $user->save();
 
-    // // Notify admin/expert
-    // if ($request->input('notify_expert') == 1)
-    // {
-    //   event(new ExpertCreated($user, ['password' => $password]));
-    // }
-    // if ($request->input('notify_admin') == 1)
-    // {
-    //   $admin = User::find(auth()->user()->id);
-    //   event(new ExpertCreated($admin, ['password' => $password]));
-    // }
+    // Send notification email
+    event(new ExpertCreated($user));
 
     return response()->json(['userId' => $user->id]);
   }
