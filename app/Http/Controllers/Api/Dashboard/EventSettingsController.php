@@ -16,7 +16,7 @@ class EventSettingsController extends Controller
   public function get()
   {
     $settings = [
-      'experts' => User::experts()->orderBy('firstname')->get(),
+      'experts' => User::experts()->published()->orderBy('firstname')->get(),
       'locations' => Location::get(),
     ];
     return response()->json($settings);

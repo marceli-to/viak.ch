@@ -90,7 +90,7 @@
               v-model="data.dates[index].date_short">
             </the-mask>
           </form-group>
-          <form-group :label="'Von'" class="mr-8x">
+          <form-group :label="'von'" class="mr-8x">
             <the-mask
               type="text"
               mask="##.##"
@@ -99,7 +99,7 @@
               v-model="data.dates[index].time_start">
             </the-mask>
           </form-group>
-          <form-group :label="'Bis'" class="mr-8x">
+          <form-group :label="'bis'" class="mr-8x">
             <the-mask
               type="text"
               mask="##.##"
