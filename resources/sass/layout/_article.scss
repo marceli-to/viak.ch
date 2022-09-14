@@ -52,6 +52,9 @@ article.content-text-media {
     .text-media__visual {
       margin-bottom: $space-8x;
       order: 1;
+      img {
+        aspect-ratio: 16 / 9;
+      }
     }
   
     .text-media__body {
