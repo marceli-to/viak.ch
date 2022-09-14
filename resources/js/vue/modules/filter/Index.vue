@@ -22,99 +22,95 @@
     <div class="filter">
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
-      <div class="filter__items">
-        <div :class="[filterItems.category == id || options.filter.items.category == id ? 'is-active' : '', 'filter__item']"
-          v-for="(category, id) in options.settings.categories" :key="id">
-          <a href="" @click.prevent="updateFilter('category', id)">
-            {{ category }}
-          </a>
-        </div>
-        <div :class="[filterItems.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
-          <div class="select-wrapper">
-            <select 
-              v-model="filterItems.location"
-              @change="filter()">
-              <option value="null">Ort</option>
-              <option value="online">online</option>
-              <option value="offline">vor Ort</option>
-            </select>
+        <div class="filter__items">
+          <div 
+            :class="[filterAttributes.category == id ? 'is-active' : '', 'filter__item']"
+            v-for="(category, id) in options.settings.categories" 
+            :key="id">
+            <a href="" @click.prevent="setCategory('category', id, category)">
+              {{ category }}
+            </a>
+          </div>
+          <div :class="[filterAttributes.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.location"
+                @change="updateUrlParams()">
+                <option value="null">Ort</option>
+                <option value="online">online</option>
+                <option value="offline">vor Ort</option>
+              </select>
+            </div>
+          </div>
+          <div :class="[filterAttributes.software != 'null' ? 'is-active' : '', 'filter__item']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.software"
+                @change="updateUrlParams()">
+                <option value="null">Software</option>
+                <option 
+                  v-for="(option, id) in options.settings.software" 
+                  :key="id" 
+                  :value="id">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div :class="[filterAttributes.level != 'null' ? 'is-active' : '', 'filter__item']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.level"
+                @change="updateUrlParams()">
+                <option value="null">Level</option>
+                <option 
+                  v-for="(option, id) in options.settings.levels" 
+                  :key="id" 
+                  :value="id">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div :class="[filterAttributes.language != 'null' ? 'is-active' : '', 'filter__item']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.language"
+                @change="updateUrlParams()">
+                <option value="null">Sprache</option>
+                <option 
+                  v-for="(option, id) in options.settings.languages" 
+                  :key="id" 
+                  :value="id">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div :class="[filterAttributes.expert != 'null' ? 'is-active' : '', 'filter__item']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.expert"
+                @change="updateUrlParams()">
+                <option value="null">Experte</option>
+                <option 
+                  v-for="(option, id) in options.settings.experts" 
+                  :key="id" 
+                  :value="id">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="filter__buttons mt-10x sm:mt-4x">
+            <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
+              {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
+            </a>
+            <a href="" @click.prevent="resetFilter()" class="btn-primary is-outline mt-4x" data-touch>
+              {{ __('Zurücksetzen') }}
+            </a>
           </div>
         </div>
-        <div :class="[filterItems.software != 'null' ? 'is-active' : '', 'filter__item']">
-          <div class="select-wrapper">
-            <select 
-              v-model="filterItems.software"
-              @change="filter()">
-              <option value="null">Software</option>
-              <option 
-                v-for="(option, id) in options.settings.software" 
-                :key="id" 
-                :value="id">
-                {{option}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div :class="[filterItems.level != 'null' ? 'is-active' : '', 'filter__item']">
-          <div class="select-wrapper">
-            <select 
-              v-model="filterItems.level"
-              @change="filter()">
-              <option value="null">Level</option>
-              <option 
-                v-for="(option, id) in options.settings.levels" 
-                :key="id" 
-                :value="id">
-                {{option}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div :class="[filterItems.language != 'null' ? 'is-active' : '', 'filter__item']">
-          <div class="select-wrapper">
-            <select 
-              v-model="filterItems.language"
-              @change="filter()">
-              <option value="null">Sprache</option>
-              <option 
-                v-for="(option, id) in options.settings.languages" 
-                :key="id" 
-                :value="id">
-                {{option}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div :class="[filterItems.expert != 'null' ? 'is-active' : '', 'filter__item']">
-          <div class="select-wrapper">
-            <select 
-              v-model="filterItems.expert"
-              @change="filter()">
-              <option value="null">Experte</option>
-              <option 
-                v-for="(option, id) in options.settings.experts" 
-                :key="id" 
-                :value="id">
-                {{option}}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="filter__buttons mt-10x sm:mt-4x">
-          <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
-            {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
-          </a>
-          <a href="" @click.prevent="resetFilter()" class="btn-primary is-outline mt-4x" data-touch>
-            {{ __('Zurücksetzen') }}
-          </a>
-        </div>
-      </div>
-        <!--
-        <template v-if="hasSearch">
-          <h2 class="mb-8x mt-8x">Suche</h2>
-          <input type="text" name="keyword" v-model="filterItems.keyword" @blur="search()">
-        </template>
-        -->
       </form>
     </div> 
   </grid-col>
@@ -151,17 +147,17 @@ export default {
       options: {
         settings: [],
         filter: {
-          items: {
+          attributes: {
             category: null,
           }
         },
       },
 
       // Filter
-      filterItems: {
-        keyword: null,
+      filterAttributes: {
+        //keyword: null,
         category: null,
-        software: null,
+        software: 'null',
         location: 'null',
         language: 'null',
         level: 'null',
@@ -187,85 +183,94 @@ export default {
   },
 
   mounted() {
-    this.settings();
+    this.getSettings();
+    this.addEventListeners();
   },
 
   methods: {
 
-    filter() {
+    addEventListeners() {
+
+      // History changes
+      window.addEventListener('popstate', (event) => {
+        const url = new URL(window.location);
+        url.searchParams.forEach((value, key) => {
+          this.filterAttributes[key] = value;
+          this.getResults();
+        })
+      });
+
+      // Page load
+      window.addEventListener('load', (event) => {
+        const url = new URL(window.location);
+        url.searchParams.forEach((value, key) => {
+          this.filterAttributes[key] = value;
+        })
+      });
+
+    },
+    
+    getResults() {
       NProgress.start();
       this.isFetched = false;
-      this.axios.post(`${this.routes.filter}`, this.filterItems).then(response => {
+      this.axios.post(`${this.routes.filter}`, this.filterAttributes).then(response => {
         this.courses = response.data.courses;
-        this.options.filter = response.data.filter;
         this.isFetched = true;
         this.hasResults = true;
-        this.markupFilters();
         NProgress.done();
       });
     },
 
-    // search() {
-    //   NProgress.start();
-    //   this.isFetched = false;
-    //   this.axios.post(`${this.routes.search}`, {keyword: this.filterItems.keyword}).then(response => {
-    //     this.courses = response.data.courses;
-    //     this.isFetched = true;
-    //     this.hasResults = true;
-    //     NProgress.done();
-    //   });
-    // },
-
-    settings() {
+    getSettings() {
       this.isFetched = false;
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
         this.options.settings = response.data.settings;
-        if (response.data.filter != null) {
-          this.options.filter = response.data.filter;
-        }
         this.isFetched = true;
-        this.markupFilters();
         NProgress.done();
       });
     },
 
-    updateFilter(type, value) {
-      if (this.filterItems[type] == value) {
-        this.filterItems[type] = 'null';
+    setCategory(type, value) {
+      if (this.filterAttributes[type] == value) {
+        this.filterAttributes[type] = 'null';
       }
       else {
-        this.filterItems[type] = value;
+        this.filterAttributes[type] = value;
       }
-      this.$store.commit('filter', this.filterItems);
-      this.filter();
+      this.updateUrlParams();
+    },
+
+    updateUrlParams() {
+      const url = new URL(window.location);
+      Object.keys(this.filterAttributes).forEach(key => {
+        if (this.filterAttributes[key] != 'null' && this.filterAttributes[key] != null) {
+          url.searchParams.set(key, this.filterAttributes[key]);
+        }
+        else {
+          url.searchParams.delete(key);
+        }
+      });
+      window.history.pushState({}, '', url);
+      this.getResults();
     },
 
     resetFilter() {
       NProgress.start();
       this.axios.delete(`${this.routes.reset}`).then(response => {
-        this.filterItems.category = null;
-        this.filterItems.location = 'null';
-        this.filterItems.language = 'null';
-        this.filterItems.level = 'null';
-        this.filterItems.expert = 'null';
-        this.filterItems.software = 'null';
+        this.filterAttributes.category = null;
+        this.filterAttributes.location = 'null';
+        this.filterAttributes.language = 'null';
+        this.filterAttributes.level = 'null';
+        this.filterAttributes.expert = 'null';
+        this.filterAttributes.software = 'null';
         this.courses = [];
-        this.$store.commit('filter', this.filterItems);
-        this.filter();
+        this.updateUrlParams();
       });
     },
 
     toggleFilter() {
       this.hasFilter = this.hasFilter ? false : true;
-    },
-
-    markupFilters() {
-      this.filterItems.software = this.options.filter.items.software != null ? this.options.filter.items.software : 'null';
-      this.filterItems.expert = this.options.filter.items.expert != null ? this.options.filter.items.expert : 'null';
-      this.filterItems.location = this.options.filter.items.location != null ? this.options.filter.items.location : 'null';
-      this.filterItems.language = this.options.filter.items.language != null ? this.options.filter.items.language : 'null';
-      this.filterItems.level = this.options.filter.items.level != null ? this.options.filter.items.level : 'null';
     },
 
     showResults() {

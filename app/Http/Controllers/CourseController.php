@@ -27,7 +27,7 @@ class CourseController extends BaseController
    
   public function list(Request $request)
   {
-    $data = (new CourseFilter())->apply(null, true);
+    $data = (new CourseFilter())->apply($request, true);
     return view($this->viewPath . 'list', ['courses' => $data['courses']]);
   }
 

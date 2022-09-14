@@ -141,7 +141,8 @@ class CourseFilter
         'languages' => $this->getLanguages(),
         'levels' => $this->getLevels(),
       ],
-      'filter' => (!empty($this->store->get())) ? $this->store->get() : NULL,
+      // 'filter' => (!empty($this->store->get())) ? $this->store->get() : NULL,
+      'filter' => NULL,
     ];
   }
 
@@ -222,11 +223,11 @@ class CourseFilter
   
   private function setCategory($request)
   {
-    $this->category = $this->store->getAttribute('items.category');
+    // $this->category = $this->store->getAttribute('attributes.category');
     if ($request && $request->input('category'))
     {
       $this->category = $request->input('category') !== 'null' ? $request->input('category') : NULL;
-      $this->store->setAttribute('items.category', $this->category);
+      // $this->store->setAttribute('attributes.category', $this->category);
     }
   }
   
@@ -237,11 +238,11 @@ class CourseFilter
   
   private function setSoftware($request)
   {
-    $this->software = $this->store->getAttribute('items.software');
+    // $this->software = $this->store->getAttribute('attributes.software');
     if ($request && $request->input('software'))
     {
       $this->software = $request->input('software') !== 'null' ? $request->input('software') : NULL;
-      $this->store->setAttribute('items.software', $this->software);
+      // $this->store->setAttribute('attributes.software', $this->software);
     }
   }
 
@@ -252,11 +253,11 @@ class CourseFilter
   
   private function setLanguage($request)
   {
-    $this->language = $this->store->getAttribute('items.language');
+    // $this->language = $this->store->getAttribute('attributes.language');
     if ($request && $request->input('language'))
     {
       $this->language = $request->input('language') !== 'null' ? $request->input('language') : NULL;
-      $this->store->setAttribute('items.language', $this->language);
+      // $this->store->setAttribute('attributes.language', $this->language);
     }
   }
 
@@ -266,11 +267,11 @@ class CourseFilter
    */
   private function setLevel($request)
   {
-    $this->level = $this->store->getAttribute('items.level');
+    // $this->level = $this->store->getAttribute('attributes.level');
     if ($request && $request->input('level'))
     {
       $this->level = $request->input('level') !== 'null' ? $request->input('level') : NULL;
-      $this->store->setAttribute('items.level', $this->level);
+      // $this->store->setAttribute('attributes.level', $this->level);
     }
   }
 
@@ -280,11 +281,11 @@ class CourseFilter
    */
   private function setExpert($request)
   {
-    $this->expert = $this->store->getAttribute('items.expert');
+    // $this->expert = $this->store->getAttribute('attributes.expert');
     if ($request && $request->input('expert'))
     {
       $this->expert = $request->input('expert') !== 'null' ? $request->input('expert') : NULL;
-      $this->store->setAttribute('items.expert', $this->expert);
+      // $this->store->setAttribute('attributes.expert', $this->expert);
     }
   }
 
@@ -294,11 +295,11 @@ class CourseFilter
    */
   private function setLocation($request)
   {
-    $this->location = $this->store->getAttribute('items.location');
+    // $this->location = $this->store->getAttribute('attributes.location');
     if ($request && $request->input('location'))
     {
       $this->location = $request->input('location') !== 'null' ? $request->input('location') : NULL;
-      $this->store->setAttribute('items.location', $this->location);
+      // $this->store->setAttribute('attributes.location', $this->location);
     }
   }
 
@@ -354,7 +355,8 @@ class CourseFilter
         ];
       }
     }
-    return ['courses' => $data, 'filter' => $this->store->get()];
+    // return ['courses' => $data, 'filter' => $this->store->get()];
+    return ['courses' => $data, 'filter' => NULL];
   }
 
 }
