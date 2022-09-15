@@ -10,7 +10,7 @@ class CleanUpTempFolder
     $files = \Storage::listContents('public/temp');
     collect($files)->each(function($file)
     {
-      if($file['timestamp'] < now()->subMinutes(1)->getTimestamp())
+      if($file['timestamp'] < now()->subMinutes(120)->getTimestamp())
       {
         \Storage::delete($file['path']);
       }
