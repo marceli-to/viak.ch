@@ -8,12 +8,10 @@
       <div>
         <div class="stacked-list__col">
           <div>
-            <!-- <h2>
-              <span>{{ $props.event.course.title }}</span>
-            </h2> -->
             <template v-if="$props.event.dates">
               <template v-if="$props.event.dates.length == 1">
-                {{ $props.event.dates[0].date_short }}<span class="sm:hide !md:inline-block">, {{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}</span>
+                {{ $props.event.dates[0].date_short }}
+                <span class="sm:hide !md:inline-block">, {{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}</span>
               </template>
               <template v-else>
                 <div v-for="(date, index) in $props.event.dates" :key="index">
@@ -48,7 +46,7 @@
       data-touch 
       v-else>
       <template v-if="$props.event.isBooked">
-        <strong class="error-message !block mb-3x">Du hast bereits eine Buchung für diesen Kurs!</strong>
+        <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
       </template>
       <div>
         <div class="stacked-list__col">
@@ -60,11 +58,11 @@
               <h2>{{ $props.event.course.title }}</h2>
               <template v-if="$props.event.dates">
                 <template v-if="$props.event.dates.length == 1">
-                  {{ $props.event.dates[0].date_short }}<br>{{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
+                  {{ $props.event.dates[0].date_short }}, {{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
                 </template>
                 <template v-else>
                   <div v-for="(date, index) in $props.event.dates" :key="index">
-                    {{ date.date_short }}<br>{{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
+                    {{ date.date_short }}, {{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
                   </div>
                 </template>
               </template>
@@ -109,6 +107,11 @@ export default {
 
   props: {
     event: Object,
+
+    booking: {
+      type: Object,
+      default: null,
+    },
     
     hasIcon: {
       type: Boolean,
@@ -120,5 +123,9 @@ export default {
       default: false,
     }
   },
+
+  mounted() {
+    console.log(this.$props.booking);
+  }
 }
 </script>

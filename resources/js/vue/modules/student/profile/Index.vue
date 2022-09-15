@@ -121,7 +121,7 @@
       <template #content>
         <div v-if="student.bookings && student.bookings.length">
           <div v-for="(booking, index) in student.bookings" :key="index">
-            <stacked-list-event :event="booking.event" :hasIcon="true">
+            <stacked-list-event :event="booking.event" :booking="booking" :hasIcon="true">
               <template #action>
                 <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
                   {{ __('Annullieren') }}
@@ -270,10 +270,11 @@ export default {
 
     find() {
       NProgress.start();
-      this
+      this.isLoading = true;
       this.axios.get(`${this.routes.student.find}`).then(response => {
         this.student = response.data;
         NProgress.done();
+        this.isLoading = false;
       });
     },
 
