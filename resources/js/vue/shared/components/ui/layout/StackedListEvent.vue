@@ -123,9 +123,5 @@ export default {
       default: false,
     }
   },
-
-  mounted() {
-    console.log(this.$props.booking);
-  }
 }
 </script>

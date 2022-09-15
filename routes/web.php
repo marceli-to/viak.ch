@@ -59,7 +59,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select');
   Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set');
 
-  // Routes for dashboard
   Route::get('/dashboard/{any?}', function () {
     return view('web.layout.backend');
   })->where('any', '.*')->middleware(['role:admin'])->name('page.dashboard');

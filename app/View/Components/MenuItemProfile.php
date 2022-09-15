@@ -37,7 +37,7 @@ class MenuItemProfile extends Component
               $route = 'page.expert.profile';
             break;
             case 'admin':
-              $route = 'page.student.profile';
+              $route = 'page.admin.profile';
             break;
           }
         }
@@ -52,7 +52,7 @@ class MenuItemProfile extends Component
       }
       else if (auth()->user()->isAdmin())
       {
-        $route = 'page.dashboard';
+        $route = 'page.admin.profile';
       }
     }
     $this->route = $route;

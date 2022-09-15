@@ -3,7 +3,7 @@
   <header class="site-header">
     <div>
       <div class="sm:span-4">
-        <a href="/dashboard">
+        <a href="/">
           <icon-logo />
         </a>
         <div class="site-header__title sm:hide">
@@ -33,9 +33,9 @@
               </ul>
               <ul>
                 <li>
-                  <a href="" title="Profil">
+                  <router-link :to="{name: 'admin-profile'}">
                     <icon-profile />
-                  </a>
+                  </router-link>
                 </li>
                <li>
                   <a href="/logout">Logout</a>
