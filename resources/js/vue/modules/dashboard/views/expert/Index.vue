@@ -40,7 +40,7 @@
           </router-link>
           <div>
             <div class="span-4">
-              <h2>{{ expert.fullname }}<span v-if="expert.city">, {{ expert.city }}</span></h2>
+              {{ expert.fullname }}<span v-if="expert.city">, {{ expert.city }}</span>
             </div>
             <div class="span-8">
               <a :href="`mailto:${expert.email}`" target="_blank">{{ expert.email }}</a>
