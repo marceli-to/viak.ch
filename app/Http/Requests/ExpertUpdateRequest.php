@@ -29,7 +29,10 @@ class ExpertUpdateRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
-      'gender_id' =>  'required|exists:App\Models\Gender,id'
+      'gender_id' =>  'required|exists:App\Models\Gender,id',
+      'new_email' => 'nullable|email|max:255|unique:users,email',
+      'new_password' => 'nullable|required_with:new_password_confirmation|same:new_password_confirmation|min:8',
+      'new_password_confirmation' => 'nullable|min:8',
     ];
   }
 
@@ -69,6 +72,38 @@ class ExpertUpdateRequest extends FormRequest
       'gender_id.exists' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
+      ],
+      'new_email.email' => [
+        'field' => 'new_email',
+        'error' => 'E-Mail ist nicht gültig'
+      ],
+      'new_email.unique' => [
+        'field' => 'new_email',
+        'error' => 'E-Mail kann nicht verwendet werden'
+      ],
+      'new_email.max' => [
+        'field' => 'new_email',
+        'error' => 'E-Mail darf nicht länger als 255 Zeichen sein'
+      ],
+      'new_password.required_with' => [
+        'field' => 'new_password',
+        'error' => 'Passwort wird benötigt'
+      ],
+      'new_password.same' => [
+        'field' => 'new_password',
+        'error' => 'Passwort muss mit Bestätigung übereinstimmen'
+      ],
+      'new_password.min' => [
+        'string' => [
+          'field' => 'new_password',
+          'error' => 'Passwort muss mind. 8 Zeichen lang sein'
+        ]
+      ],
+      'new_password_confirmation.min' => [
+        'string' => [
+          'field' => 'new_password_confirmation',
+          'error' => 'Passwortbestätigung muss mind. 8 Zeichen lang sein'
+        ]
       ],
     ];
   }

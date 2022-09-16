@@ -1,11 +1,13 @@
 <template>
 <div>
   <article-text v-if="isFetched">
+    
     <template #icon>
       <a href="" class="icon-edit" @click.prevent="toggleForm()">
         <icon-edit />
       </a>
     </template>
+    
     <template #aside>
       <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
       <div class="sm:mt-10x md:mt-20x">
@@ -15,6 +17,7 @@
         </a>
       </div>
     </template>
+
     <template #content v-if="isEdit">
       <form method="POST">
         <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender_id">
@@ -64,13 +67,19 @@
           </div>
           <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x autosize" v-if="form.has_invoice_address"></textarea>
         </form-group>
-        <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-          <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+        
+        <h3 class="my-3x md:my-5x">Zugangsdaten</h3>
+        <form-group :label="__('E-Mail')" :error="errors.new_email">
+          <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="off" @focus="removeError('new_email')" />
         </form-group>
-        <form-group :label="__('Passwort')" :required="true" :error="errors.password">
-          <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
+        <form-group :label="__('Passwort')" :error="errors.new_password">
+          <input type="password" v-model="form.new_password" autocomplete="new-password" aria-autocomplete="off" @focus="removeError('new_password')" />
           <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
-        </form-group> -->
+        </form-group>
+        <form-group :label="__('Passwort wiederholen')" :error="errors.new_password_confirmation">
+          <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeError('new_password_confirmation')" />
+        </form-group>
+
         <form-group>
           <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
             {{ __('Speichern') }}
@@ -81,21 +90,10 @@
         </a>
       </form>
     </template>
+    
     <template #content v-else>
       <div>
-        <p>
-          <template v-if="user.firstname">{{ user.firstname  }}</template>
-          <template v-if="user.name">{{ user.name  }}</template>
-          <br>
-          <template v-if="user.street">{{ user.street }}</template>
-          <template v-if="user.street_no">{{ user.street_no }}</template><br>
-          <template v-if="user.zip">{{ user.zip }}</template>
-          <template v-if="user.city">{{ user.city }}</template>
-        </p>
-        <p>
-          <template v-if="user.phone">{{ user.phone  }}<br></template>
-          <template v-if="user.email">{{ user.email }}</template>
-        </p>
+        <user-address :user="user"></user-address>
         <template v-if="user.has_invoice_address && user.invoice_address">
           <h4 class="mt-4x sm:mt-6x md:mt-8x">Rechnungsadresse</h4>
           <pre>{{ user.invoice_address }}</pre>
@@ -135,6 +133,7 @@
         </div>
       </template>
     </collapsible>
+
   </collapsible-container>
 
   <collapsible-container>
@@ -232,6 +231,7 @@ import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
 export default {
 
@@ -249,7 +249,8 @@ export default {
     StackedListItem,
     IconArrowRight,
     IconEdit,
-    IconCross
+    IconCross,
+    UserAddress
   },
 
   mixins: [Settings],
@@ -283,6 +284,9 @@ export default {
       this.isLoading = true;
       this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
         this.user = this.form;
+        if (this.form.new_email) {
+          this.user.email = this.form.new_email;
+        }
         this.isLoading = false;
         this.isEdit = false;
         NProgress.done();
@@ -293,6 +297,7 @@ export default {
       this.isEdit = this.isEdit ? false : true;
       if (this.isEdit) {
         this.form = this.user;
+        this.form.new_email = null;
       }
     },
 

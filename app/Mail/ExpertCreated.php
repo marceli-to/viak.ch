@@ -29,7 +29,6 @@ class ExpertCreated extends Mailable
    */
   public function build()
   {
-
     // Create verification url
     $confirmUrl = \URL::temporarySignedRoute(
       'verification.confirm',

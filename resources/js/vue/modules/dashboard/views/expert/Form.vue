@@ -34,7 +34,7 @@
         <input type="text" v-model="data.name" required @focus="removeError('name')" />
       </form-group>
       <form-group :label="'E-Mail'" :required="true" :error="errors.email">
-        <input type="email" v-model="data.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+        <input type="email" v-model="data.email" required autocomplete="off" aria-autocomplete="off" @focus="removeError('email')" />
       </form-group>
       <form-group :label="'Telefon'">
         <input type="text" v-model="data.phone" maxlength="30" />

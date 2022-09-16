@@ -56,10 +56,10 @@
 
         
         <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-          <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
+          <input type="email" v-model="form.email" required autocomplete="off" aria-autocomplete="off" @focus="removeError('email')" />
         </form-group>
         <form-group :label="__('Passwort')" :required="true" :error="errors.password">
-          <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
+          <input type="password" v-model="form.password" required autocomplete="off" aria-autocomplete="off" @focus="removeError('password')" />
           <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
         </form-group> -->
   
@@ -75,14 +75,7 @@
     </template>
     <template #content v-else>
       <div>
-          <template v-if="user.fullname">{{ user.fullname  }}<br></template>
-          <template v-if="user.street">{{ user.street }}</template>
-          <template v-if="user.street_no">{{ user.street_no }}<br></template>
-          <template v-if="user.zip">{{ user.zip }}</template>
-          <template v-if="user.city">{{ user.city }}<br></template>
-          <br>
-          <template v-if="user.phone">{{ user.phone  }}<br></template>
-          <template v-if="user.email">{{ user.email }}</template>
+        <user-address :user="user"></user-address>
       </div>
     </template>
   </article-text>
@@ -103,7 +96,8 @@
   import IconEdit from "@/shared/components/ui/icons/Edit.vue";
   import IconCross from "@/shared/components/ui/icons/Cross.vue";
   import Images from "@/shared/modules/images/Index.vue";
-  
+  import UserAddress from "@/shared/components/ui/misc/Address.vue";
+
   export default {
   
     components: {
@@ -119,7 +113,8 @@
       FormError,
       IconArrowRight,
       IconEdit,
-      IconCross
+      IconCross,
+      UserAddress
     },
   
     mixins: [Settings],

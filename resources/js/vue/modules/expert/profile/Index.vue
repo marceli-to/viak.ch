@@ -55,6 +55,24 @@
       </grid>
 
       <collapsible class="mt-6x">
+        <template #title class="mb-3x">
+          <div class="mb-3x">{{ __('Zugangsdaten') }}</div>
+        </template>
+        <template #content>
+          <form-group :label="__('E-Mail')" :error="errors.new_email">
+            <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeError('new_email')" />
+          </form-group>
+          <form-group :label="__('Passwort')" :error="errors.new_password">
+            <input type="password" v-model="form.new_password" required autocomplete="new-password" aria-autocomplete="off" @focus="removeError('new_password')" />
+            <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
+          </form-group>
+          <form-group :label="__('Passwort wiederholen')" :error="errors.new_password_confirmation">
+            <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeError('new_password_confirmation')" />
+          </form-group>
+        </template>
+      </collapsible>
+
+      <collapsible>
         <template #title>
           {{ __('Über') }}
         </template>
@@ -101,14 +119,6 @@
           </images>
         </template>
       </collapsible>
-      
-      <!-- <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-        <input type="email" v-model="form.email" required autocomplete="false" aria-autocomplete="false" @focus="removeError('email')" />
-      </form-group>
-      <form-group :label="__('Passwort')" :required="true" :error="errors.password">
-        <input type="password" v-model="form.password" required autocomplete="false" aria-autocomplete="false" @focus="removeError('password')" />
-        <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
-      </form-group> -->
 
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
@@ -122,17 +132,7 @@
   </template>
   <template #content v-else>
     <div>
-      <p>
-        <template v-if="user.fullname">{{ user.fullname  }}</template><br>
-        <template v-if="user.street">{{ user.street }}</template>
-        <template v-if="user.street_no">{{ user.street_no }}</template><br>
-        <template v-if="user.zip">{{ user.zip }}</template>
-        <template v-if="user.city">{{ user.city }}</template>
-      </p>
-      <p>
-        <template v-if="user.phone">{{ user.phone  }}<br></template>
-        <template v-if="user.email">{{ user.email }}</template>
-      </p>
+      <user-address :user="user"></user-address>
     </div>
   </template>
 </article-text>
@@ -153,6 +153,7 @@ import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
 import Images from "@/shared/modules/images/Index.vue";
+import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
 export default {
 
@@ -169,7 +170,8 @@ export default {
     FormError,
     IconArrowRight,
     IconEdit,
-    IconCross
+    IconCross,
+    UserAddress
   },
 
   mixins: [Settings],
@@ -204,6 +206,9 @@ export default {
       this.axios.put(`${this.routes.update}`, this.form).then(response => {
         NProgress.done();
         this.user = this.form;
+        if (this.form.new_email) {
+          this.user.email = this.form.new_email;
+        }
         this.isLoading = false;
         this.isEdit = false;
       });
@@ -213,6 +218,7 @@ export default {
       this.isEdit = this.isEdit ? false : true;
       if (this.isEdit) {
         this.form = this.user;
+        this.form.new_email = null;
       }
     }
   },
