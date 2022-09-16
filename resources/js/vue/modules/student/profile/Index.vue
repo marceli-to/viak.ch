@@ -84,21 +84,21 @@
     <template #content v-else>
       <div>
         <p>
-          <template v-if="student.firstname">{{ student.firstname  }}</template>
-          <template v-if="student.name">{{ student.name  }}</template>
+          <template v-if="user.firstname">{{ user.firstname  }}</template>
+          <template v-if="user.name">{{ user.name  }}</template>
           <br>
-          <template v-if="student.street">{{ student.street }}</template>
-          <template v-if="student.street_no">{{ student.street_no }}</template><br>
-          <template v-if="student.zip">{{ student.zip }}</template>
-          <template v-if="student.city">{{ student.city }}</template>
+          <template v-if="user.street">{{ user.street }}</template>
+          <template v-if="user.street_no">{{ user.street_no }}</template><br>
+          <template v-if="user.zip">{{ user.zip }}</template>
+          <template v-if="user.city">{{ user.city }}</template>
         </p>
         <p>
-          <template v-if="student.phone">{{ student.phone  }}<br></template>
-          <template v-if="student.email">{{ student.email }}</template>
+          <template v-if="user.phone">{{ user.phone  }}<br></template>
+          <template v-if="user.email">{{ user.email }}</template>
         </p>
-        <template v-if="student.has_invoice_address && student.invoice_address">
+        <template v-if="user.has_invoice_address && user.invoice_address">
           <h4 class="mt-4x sm:mt-6x md:mt-8x">Rechnungsadresse</h4>
-          <pre>{{ student.invoice_address }}</pre>
+          <pre>{{ user.invoice_address }}</pre>
         </template>
       </div>
     </template>
@@ -119,8 +119,8 @@
         {{ __('Gebuchte Kurse') }}
       </template>
       <template #content>
-        <div v-if="student.bookings && student.bookings.length">
-          <div v-for="(booking, index) in student.bookings" :key="index">
+        <div v-if="user.bookings && user.bookings.length">
+          <div v-for="(booking, index) in user.bookings" :key="index">
             <stacked-list-event :event="booking.event" :booking="booking" :hasIcon="true">
               <template #action>
                 <a href="" class="btn-secondary btn-auto-w" @click.prevent="cancelBooking(booking.uuid, booking.event)">
@@ -256,7 +256,7 @@ export default {
 
   data() {
     return {
-      student: {
+      user: {
         gender_id: 2,
       },
     };
@@ -271,8 +271,8 @@ export default {
     find() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.get(`${this.routes.student.find}`).then(response => {
-        this.student = response.data;
+      this.axios.get(`${this.routes.user.find}`).then(response => {
+        this.user = response.data;
         NProgress.done();
         this.isLoading = false;
       });
@@ -281,8 +281,8 @@ export default {
     submit() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
-        this.student = this.form;
+      this.axios.put(`${this.routes.user.update}`, this.form).then(response => {
+        this.user = this.form;
         this.isLoading = false;
         this.isEdit = false;
         NProgress.done();
@@ -292,7 +292,7 @@ export default {
     toggleForm() {
       this.isEdit = this.isEdit ? false : true;
       if (this.isEdit) {
-        this.form = this.student;
+        this.form = this.user;
       }
     },
 

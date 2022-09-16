@@ -123,15 +123,15 @@
   <template #content v-else>
     <div>
       <p>
-        <template v-if="expert.fullname">{{ expert.fullname  }}</template><br>
-        <template v-if="expert.street">{{ expert.street }}</template>
-        <template v-if="expert.street_no">{{ expert.street_no }}</template><br>
-        <template v-if="expert.zip">{{ expert.zip }}</template>
-        <template v-if="expert.city">{{ expert.city }}</template>
+        <template v-if="user.fullname">{{ user.fullname  }}</template><br>
+        <template v-if="user.street">{{ user.street }}</template>
+        <template v-if="user.street_no">{{ user.street_no }}</template><br>
+        <template v-if="user.zip">{{ user.zip }}</template>
+        <template v-if="user.city">{{ user.city }}</template>
       </p>
       <p>
-        <template v-if="expert.phone">{{ expert.phone  }}<br></template>
-        <template v-if="expert.email">{{ expert.email }}</template>
+        <template v-if="user.phone">{{ user.phone  }}<br></template>
+        <template v-if="user.email">{{ user.email }}</template>
       </p>
     </div>
   </template>
@@ -176,7 +176,7 @@ export default {
 
   data() {
     return {
-      expert: {
+      user: {
         gender_id: 2,
       },
       tinyConfig: tinyConfig,
@@ -193,7 +193,7 @@ export default {
     find() {
       NProgress.start();
       this.axios.get(`${this.routes.find}`).then(response => {
-        this.expert = response.data;
+        this.user = response.data;
         NProgress.done();
       });
     },
@@ -203,7 +203,7 @@ export default {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}`, this.form).then(response => {
         NProgress.done();
-        this.expert = this.form;
+        this.user = this.form;
         this.isLoading = false;
         this.isEdit = false;
       });
@@ -212,7 +212,7 @@ export default {
     toggleForm() {
       this.isEdit = this.isEdit ? false : true;
       if (this.isEdit) {
-        this.form = this.expert;
+        this.form = this.user;
       }
     }
   },

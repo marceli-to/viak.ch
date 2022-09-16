@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\TranslationController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\StudentRegisterController;
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\BasketController;
@@ -76,6 +77,13 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(func
   Route::delete('/expert', [ExpertController::class, 'destroy']);
 });
 
+// Admin (authorized)
+Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() {
+  Route::get('/admin', [AdminController::class, 'find']);
+  Route::put('/admin', [AdminController::class, 'update']);
+});
+
+
 // Images
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
   Route::get('images', [ImageController::class, 'get']);
@@ -143,6 +151,3 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
 
 });
 
-// Route::middleware('auth:sanctum')->group(function() {
-//   Route::get('user', [UserController::class, 'find']);
-// });

@@ -1,4 +1,4 @@
-import AdminEdit from '@/modules/dashboard/views/admin/partials/Edit.vue';
+import AdminEdit from '@/modules/dashboard/views/admin/Index.vue';
 
 const routes = [
   {
