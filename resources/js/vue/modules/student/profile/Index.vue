@@ -271,7 +271,7 @@ export default {
     find() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.get(`${this.routes.user.find}`).then(response => {
+      this.axios.get(`${this.routes.student.find}`).then(response => {
         this.user = response.data;
         NProgress.done();
         this.isLoading = false;
@@ -281,7 +281,7 @@ export default {
     submit() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.put(`${this.routes.user.update}`, this.form).then(response => {
+      this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
         this.user = this.form;
         this.isLoading = false;
         this.isEdit = false;

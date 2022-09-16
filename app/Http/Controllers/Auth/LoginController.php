@@ -42,7 +42,7 @@ class LoginController extends BaseController
     {
       if (!session('selected-role'))
       {
-        return RouteServiceProvider::ROLES;
+        return RouteServiceProvider::DASHBOARD_ROLES;
       }
       if (auth()->user()->isAdmin())
       {
@@ -53,6 +53,10 @@ class LoginController extends BaseController
     if (auth()->user()->isAdmin())
     {
       return RouteServiceProvider::DASHBOARD_COURSES;
+    }
+    else if (auth()->user()->isExpert())
+    {
+      return RouteServiceProvider::EXPERT_PROFILE;
     }
 
     return RouteServiceProvider::HOME;

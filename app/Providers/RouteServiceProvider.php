@@ -35,13 +35,20 @@ class RouteServiceProvider extends ServiceProvider
    * @var string
    */
   public const DASHBOARD_COURSES = '/dashboard/courses';
-
+  
   /**
    * The path to the "roles" route for your application.
    *
    * @var string
    */
-  public const ROLES = '/roles';
+  public const DASHBOARD_ROLES = '/roles';
+  
+  /**
+   * The path to the "dashboard/courses" route for your application.
+   *
+   * @var string
+   */
+  public const EXPERT_PROFILE = '/expert/profile';
 
   /**
    * Define your route model bindings, pattern filters, etc.

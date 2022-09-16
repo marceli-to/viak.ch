@@ -39,6 +39,10 @@ class RolesController extends BaseController
       {
         return redirect(RouteServiceProvider::DASHBOARD_COURSES);
       }
+      else if (auth()->user()->isAdmin() && $role->id == Role::EXPERT)
+      {
+        return redirect(RouteServiceProvider::EXPERT_PROFILE);
+      }
     }
     return redirect(RouteServiceProvider::HOME);
   }

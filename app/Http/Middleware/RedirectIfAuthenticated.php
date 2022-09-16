@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
       {
         if (auth()->user()->hasMultipleRoles() && !session('selected-role'))
         {
-          return redirect(RouteServiceProvider::ROLES);
+          return redirect(RouteServiceProvider::DASHBOARD_ROLES);
         }
         return redirect(RouteServiceProvider::DASHBOARD_COURSES);
       }

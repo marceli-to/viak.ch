@@ -48,7 +48,7 @@ Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageCon
 // Protected routes
 Route::middleware('auth:sanctum', 'verified')->group(function() {
 
-  Route::get('/experte/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert']);
+  Route::get('/expert/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert']);
   Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
 
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
