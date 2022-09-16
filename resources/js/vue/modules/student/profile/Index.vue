@@ -68,17 +68,23 @@
           <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x autosize" v-if="form.has_invoice_address"></textarea>
         </form-group>
         
-        <h3 class="my-3x md:my-5x">Zugangsdaten</h3>
-        <form-group :label="__('E-Mail')" :error="errors.new_email">
-          <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="off" @focus="removeError('new_email')" />
-        </form-group>
-        <form-group :label="__('Passwort')" :error="errors.new_password">
-          <input type="password" v-model="form.new_password" autocomplete="new-password" aria-autocomplete="off" @focus="removeError('new_password')" />
-          <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
-        </form-group>
-        <form-group :label="__('Passwort wiederholen')" :error="errors.new_password_confirmation">
-          <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeError('new_password_confirmation')" />
-        </form-group>
+        <collapsible class="mt-12x">
+          <template #title class="mb-3x">
+            <div class="mb-3x">{{ __('Zugangsdaten') }}</div>
+          </template>
+          <template #content>
+            <form-group :label="__('E-Mail')" :error="errors.new_email">
+              <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeError('new_email')" />
+            </form-group>
+            <form-group :label="__('Passwort')" :error="errors.new_password">
+              <input type="password" v-model="form.new_password" required autocomplete="new-password" aria-autocomplete="off" @focus="removeError('new_password')" />
+              <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
+            </form-group>
+            <form-group :label="__('Passwort wiederholen')" :error="errors.new_password_confirmation">
+              <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeError('new_password_confirmation')" />
+            </form-group>
+          </template>
+        </collapsible>
 
         <form-group>
           <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
@@ -298,6 +304,9 @@ export default {
       if (this.isEdit) {
         this.form = this.user;
         this.form.new_email = null;
+        this.form.new_email = null;
+        this.form.new_password = null;
+        this.form.new_password_confirmation = null;
       }
     },
 

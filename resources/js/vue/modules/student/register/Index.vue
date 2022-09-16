@@ -67,16 +67,16 @@
       </form-group>
 
       <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-        <input type="email" v-model="form.email" required autocomplete="off" aria-autocomplete="off" @focus="removeError('email')" />
+        <input type="email" v-model="form.email" required autocomplete="new-email" aria-autocomplete="new-email" @focus="removeError('email')" />
       </form-group>
 
       <form-group :label="__('Passwort')" :required="true" :error="errors.password">
-        <input type="password" v-model="form.password" required autocomplete="off" aria-autocomplete="off" @focus="removeError('password')" />
+        <input type="password" v-model="form.password" required autocomplete="new-password" aria-autocomplete="new-password" @focus="removeError('password')" />
         <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
       </form-group>
 
       <form-group :label="__('Passwort wiederholen')" :required="true" :error="errors.password_confirmation">
-        <input type="password" v-model="form.password_confirmation" required autocomplete="off" aria-autocomplete="off" @focus="removeError('password_confirmation')" />
+        <input type="password" v-model="form.password_confirmation" required autocomplete="new-password-confirmation" aria-autocomplete="new-password-confirmation" @focus="removeError('password_confirmation')" />
       </form-group>
 
       <form-group-header>
