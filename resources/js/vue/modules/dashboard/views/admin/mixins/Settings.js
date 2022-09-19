@@ -23,8 +23,9 @@ export default {
         street_no: null,
         zip: null,
         city: null,
-        email: null,
-        password: null,
+        new_email: null,
+        new_password: null,
+        new_password_confirmation: null,
         gender_id: null,
       },
 
@@ -38,6 +39,9 @@ export default {
         firstname: null,
         name: null,
         gender_id: null,
+        new_email: null,
+        new_password: null,
+        new_password_confirmation: null,
       },
 
       // Store

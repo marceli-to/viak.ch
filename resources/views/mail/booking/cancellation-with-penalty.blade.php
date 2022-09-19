@@ -10,6 +10,10 @@
     <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>
+    <td>{{ __('Buchungs-Nr.') }}</td>
+    <td>{{ $data->number }}</td>
+  </tr>
+  <tr>
     <td>{{ __('Datum') }}</td>
     <td>{{ collect($data->event->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>

@@ -304,7 +304,6 @@ export default {
       if (this.isEdit) {
         this.form = this.user;
         this.form.new_email = null;
-        this.form.new_email = null;
         this.form.new_password = null;
         this.form.new_password_confirmation = null;
       }
