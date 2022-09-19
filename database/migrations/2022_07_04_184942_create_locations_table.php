@@ -19,6 +19,7 @@ class CreateLocationsTable extends Migration
       $table->json('address');
       $table->text('map')->nullable();
       $table->tinyInteger('publish')->default(1);
+      $table->softDeletes();
       $table->timestamps();
     });
   }

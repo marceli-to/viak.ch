@@ -19,6 +19,13 @@ use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseContro
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
 use App\Http\Controllers\Api\Dashboard\EventController as DashboardEventController;
 use App\Http\Controllers\Api\Dashboard\EventSettingsController as DashboardEventSettingsController;
+use App\Http\Controllers\Api\Dashboard\Settings\CategoryController as DashboardCategoryController;
+use App\Http\Controllers\Api\Dashboard\Settings\LanguageController as DashboardLanguageController;
+use App\Http\Controllers\Api\Dashboard\Settings\LevelController as DashboardLevelController;
+use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardSoftwareController;
+use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -148,6 +155,45 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('expert/{user}', [DashboardExpertController::class, 'update']);
   Route::get('expert/state/{user}', [DashboardExpertController::class, 'toggle']);
   Route::delete('expert/{user}', [DashboardExpertController::class, 'destroy']);
+
+  // Settings
+  Route::prefix('settings')->group(function() {
+
+    // Categories
+    Route::get('categories', [DashboardCategoryController::class, 'get']);
+    Route::get('category/{category}', [DashboardCategoryController::class, 'find']);
+    Route::post('category', [DashboardCategoryController::class, 'store']);
+    Route::put('category/{category}', [DashboardCategoryController::class, 'update']);
+    Route::delete('category/{category}', [DashboardCategoryController::class, 'destroy']);
+
+    // Languages
+    Route::get('languages', [DashboardLanguageController::class, 'get']);
+    Route::get('language/{language}', [DashboardLanguageController::class, 'find']);
+    Route::post('language', [DashboardLanguageController::class, 'store']);
+    Route::put('language/{language}', [DashboardLanguageController::class, 'update']);
+    Route::delete('language/{language}', [DashboardLanguageController::class, 'destroy']);
+
+    // Level
+    Route::get('levels', [DashboardLevelController::class, 'get']);
+    Route::get('level/{level}', [DashboardLevelController::class, 'find']);
+    Route::post('level', [DashboardLevelController::class, 'store']);
+    Route::put('level/{level}', [DashboardLevelController::class, 'update']);
+    Route::delete('level/{level}', [DashboardLevelController::class, 'destroy']);
+
+    // Software
+    Route::get('softwares', [DashboardSoftwareController::class, 'get']);
+    Route::get('software/{software}', [DashboardSoftwareController::class, 'find']);
+    Route::post('software', [DashboardSoftwareController::class, 'store']);
+    Route::put('software/{software}', [DashboardSoftwareController::class, 'update']);
+    Route::delete('software/{software}', [DashboardSoftwareController::class, 'destroy']);
+
+    // Tag
+    Route::get('tags', [DashboardTagController::class, 'get']);
+    Route::get('tag/{tag}', [DashboardTagController::class, 'find']);
+    Route::post('tag', [DashboardTagController::class, 'store']);
+    Route::put('tag/{tag}', [DashboardTagController::class, 'update']);
+    Route::delete('tag/{tag}', [DashboardTagController::class, 'destroy']);
+  });
 
 });
 

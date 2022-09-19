@@ -100,7 +100,7 @@
               <h3>Software</h3>
             </form-group-header>
             <form-group class="has-underline">
-              <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.softwares, 'description.de', 'asc')" :key="index">
+              <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.software, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
                 <label :for="`software-${software.id}`">
                   {{software.description.de}}
@@ -167,134 +167,6 @@
         <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
       </div>
     </template>
-
-    <!-- <template #contentWide>
-      <collapsible-container>
-        <collapsible :expanded="true" v-if="isFetchedSettings">
-          <template #title>Einstellungen</template>
-          <template #content>
-            <form-group class="has-underline flex mt-4x">
-              <div class="mr-16x md:mr-20x">
-                <div class="form-group__checkbox">
-                  <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
-                  <label for="online">Online</label>
-                </div>
-              </div>
-              <div>
-                <div class="form-group__checkbox">
-                  <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
-                  <label for="publish">Publizieren</label>
-                </div>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.category_ids">
-              <h3>Kategorien *</h3>
-            </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.category_ids">
-              <div class="form-group__checkbox" v-for="(category, index) in sorted(settings.categories, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.id" v-model="data.category_ids">
-                <label :for="`category-${category.id}`">
-                  {{category.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.language_ids">
-              <h3>Sprachen *</h3>
-            </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.language_ids">
-              <div class="form-group__checkbox" v-for="(language, index) in sorted(settings.languages, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`language-${language.id}`" :name="`language-${language.id}`" :value="language.id" v-model="data.language_ids">
-                <label :for="`language-${language.id}`">
-                  {{language.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.level_ids">
-              <h3>Levels *</h3>
-            </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.level_ids">
-              <div class="form-group__checkbox" v-for="(level, index) in sorted(settings.levels, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`level-${level.id}`" :name="`level-${level.id}`" :value="level.id" v-model="data.level_ids">
-                <label :for="`level-${level.id}`">
-                  {{level.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header>
-              <h3>Software</h3>
-            </form-group-header>
-            <form-group class="has-underline">
-              <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.softwares, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
-                <label :for="`software-${software.id}`">
-                  {{software.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header>
-              <h3>Tags</h3>
-            </form-group-header>
-            <form-group class="has-underline">
-              <div class="form-group__checkbox" v-for="(tag, index) in sorted(settings.tags, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`tag-${tag.id}`" :name="`tag-${tag.id}`" :value="tag.id" v-model="data.tag_ids">
-                <label :for="`tag-${tag.id}`">
-                  {{tag.description.de}}
-                </label>
-              </div>
-            </form-group>
-          </template>
-        </collapsible>
-        <collapsible>
-          <template #title>Bilder</template>
-          <template #content>
-            <images 
-              :imageRatioW="16" 
-              :imageRatioH="9"
-              :type="'Course'"
-              :typeId="data.id"
-              :images="data.images"
-              v-if="$props.type == 'edit'">
-            </images>
-            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
-              <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-            </div>
-          </template>
-        </collapsible>
-        <collapsible>
-          <template #title>Metatags + SEO</template>
-          <template #content>
-            <form-group :label="'Reviews'" class="md:mt-4x">
-              <textarea v-model="data.reviews" class="autosize"></textarea>
-            </form-group>
-            <form-group :label="'SEO - Beschreibung'">
-              <textarea v-model="data.seo_description.de" class="autosize"></textarea>
-            </form-group>
-            <form-group :label="'SEO - Keywords'">
-              <textarea v-model="data.seo_tags.de" class="autosize"></textarea>
-            </form-group>
-          </template>
-        </collapsible>
-      </collapsible-container>
-      <form-group>
-        <grid class="sm:grid-cols-12">
-          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
-            Speichern und schliessen
-          </a>
-          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
-            Speichern
-          </a>
-        </grid>
-      </form-group>
-      <grid class="sm:grid-cols-12" v-if="$props.type == 'edit'">
-        <grid-col class="sm:span-6">
-          <div class="form-danger-zone">
-            <h2>Kurs löschen</h2>
-            <p>Mit dieser Aktion wird der Kurs sowie die Veranstaltungen gelöscht.</p>
-            <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
-          </div>
-        </grid-col>
-      </grid>
-    </template> -->
 
   </article-text>
 </form>

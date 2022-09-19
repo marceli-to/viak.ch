@@ -288,7 +288,7 @@ export default {
       this.isLoading = true;
       this.data.course_id = this.$route.params.courseId;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: "courses"});
+        this.$router.push({ name: 'courses' });
         NProgress.done();
         this.isLoading = true;
       });
@@ -296,7 +296,7 @@ export default {
 
     update() {
       this.axios.put(`${this.routes.update}/${this.$route.params.eventId}`, this.data).then(response => {
-        this.$router.push({ name: "courses"});
+        this.$router.push({ name: 'courses' });
       });
     },
 
@@ -305,7 +305,7 @@ export default {
         this.isLoading = true;
         NProgress.start();
         this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-          this.$router.push({ name: 'courses'});
+          this.$router.push({ name: 'courses' });
           this.isLoading = false;
           NProgress.done();
         });

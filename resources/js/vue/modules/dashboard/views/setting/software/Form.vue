@@ -1,0 +1,155 @@
+<template>
+<form @submit.prevent="submit" v-if="isFetched">
+  <article-text>
+    <template #aside>
+      <h1 class="xs:hide">{{ title }}</h1>
+      <div class="sm:mt-6x">
+        <router-link :to="{ name: 'settings' }" class="icon-arrow-right:below is-small">
+          <span>Zurück</span>
+          <icon-arrow-right :size="'sm'" />
+        </router-link>
+      </div>
+    </template>
+    <template #content>
+      <form-group :label="'Beschreibung'" :required="true" :error="errors.description">
+        <input type="text" v-model="data.description.de" required @focus="removeError('description')" />
+      </form-group>
+      <form-group :label="'Beschreibung (en)'">
+        <input type="text" v-model="data.description.en" />
+      </form-group>
+      <form-group>
+        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          Speichern
+        </a>
+      </form-group>
+      <div class="form-danger-zone" v-if="$props.type == 'edit'">
+        <h2>Software löschen</h2>
+        <p>Mit dieser Aktion wird das Software gelöscht.</p>
+        <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
+      </div>
+    </template>
+  </article-text>
+</form>
+</template>
+<script>
+import NProgress from 'nprogress';
+import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
+import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
+import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+
+export default {
+
+  components: {
+    NProgress,
+    ArticleText,
+    FormGroup,
+    IconArrowRight,
+  },
+
+  mixins: [ErrorHandling],
+
+  props: {
+    type: String
+  },
+
+  data() {
+    return {
+      
+      // Model
+      data: {
+        description: {
+          de: null,
+          en: null,
+        }
+      },
+
+      // Validation
+      errors: {
+        description: false,
+      },
+
+      // Routes
+      routes: {
+        find: '/api/dashboard/settings/software',
+        store: '/api/dashboard/settings/software',
+        update: '/api/dashboard/settings/software',
+        delete: '/api/dashboard/settings/software',
+      },
+
+      // States
+      isFetched: true,
+      isLoading: false,
+
+      // Messages
+      messages: {
+        stored: 'Daten erfasst!',
+        updated: 'Daten aktualisiert!',
+      },
+    };
+  },
+
+  created() {
+    if (this.$props.type == 'edit') {
+      this.fetch();
+    }
+  },
+
+  methods: {
+
+    fetch() {
+      NProgress.start();
+      this.isFetched = false;
+      this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
+        this.data = response.data;
+        this.isFetched = true;
+        NProgress.done();
+      });
+    },
+
+    submit() {
+      if (this.$props.type == 'edit') {
+        this.update();
+      }
+
+      if (this.$props.type == 'create') {
+        this.store();
+      }
+    },
+
+    store() {
+      NProgress.start();
+      this.isLoading = true;
+      this.axios.post(this.routes.store, this.data).then(response => {
+        this.$router.push({ name: 'settings', params: { type: 'software' } });
+        NProgress.done();
+        this.isLoading = true;
+      });
+    },
+
+    update() {
+      this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
+        this.$router.push({ name: 'settings', params: { type: 'software' } });
+      });
+    },
+
+    destroy() {
+      if (confirm('Sicher?')) {
+        this.isLoading = true;
+        NProgress.start();
+        this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
+          this.$router.push({ name: 'settings', params: { type: 'software' } });
+          this.isLoading = false;
+          NProgress.done();
+        });
+      }
+    },
+  },
+
+  computed: {
+    title() {
+      return this.$props.type == 'edit' ? "Software bearbeiten" : "Software hinzufügen";
+    },
+  }
+};
+</script>

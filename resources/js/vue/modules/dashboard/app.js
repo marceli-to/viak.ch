@@ -38,6 +38,7 @@ import courseRoutes from '@/modules/dashboard/views/course/config/routes';
 import studentRoutes from '@/modules/dashboard/views/student/config/routes';
 import expertRoutes from '@/modules/dashboard/views/expert/config/routes';
 import adminRoutes from '@/modules/dashboard/views/admin/config/routes';
+import settingRoutes from '@/modules/dashboard/views/setting/config/routes';
 
 const router = new VueRouter(
   { 
@@ -48,7 +49,8 @@ const router = new VueRouter(
       ...courseRoutes,
       ...studentRoutes,
       ...expertRoutes,
-      ...adminRoutes
+      ...adminRoutes,
+      ...settingRoutes
     ]
   }
 );

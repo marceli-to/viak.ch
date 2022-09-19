@@ -2,12 +2,12 @@
 namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
-use Laravel\Scout\Searchable;
 
 class Category extends Base
 {
-  use HasTranslations, Searchable;
+  use HasTranslations, SoftDeletes;
 
   /**
    * Get the name of the index associated with the model.

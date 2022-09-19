@@ -148,41 +148,86 @@ nav.site-menu-dashboard {
 
 @include bp-sm() {
   nav.site-menu-dashboard {
+    position: relative;
+    overflow-x: hidden;
+
+    ul {
+      display: flex;
+      justify-content: flex-start;
+
+      &:last-of-type {
+        justify-content: flex-end;
+
+        li {
+          margin-right: $space-6x;
+
+          a {
+            @include font-regular()
+          }
+        }
+      }
+
+      li {
+        display: flex;
+        margin-right: $space-12x;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+
+        a {
+          &.router-link-exact-active,
+          &.is-touched,
+          &.is-active,
+          &:hover {
+            color: $color-secondary;
+          }
+        }
+      }
+    }
 
     .site-menu__items {
       display: flex;
       justify-content: space-between;
-   
+    }
+
+    .site-menu__overflow-items {
+      background-color: $color-white;
+      border-left: 1px solid $color-primary;
+      height: 100%;
+      opacity: 0;
+      padding-top: $space-5x;
+      position: fixed;
+      right: calc((100% - #{$site-max-width-md})/2);
+      transition: all .0s ease-in;
+      top: 0;
+      width: 240px;
+      z-index: -1;
+
+      &.is-open {
+        opacity: 1;
+        transition: all .08s ease-in;
+        z-index: 501;
+      }
+
       ul {
-        display: flex;
-        justify-content: flex-start;
-
-        &:last-of-type {
-          justify-content: flex-end;
-
-          li {
-            margin-right: $space-6x;
-
-            a {
-              @include font-regular()
-            }
-          }
-        }
+        align-items: flex-end;
+        flex-direction: column;
+        margin-right: $space-4x;
 
         li {
-          display: flex;
-          margin-right: $space-12x;
+          margin-right: 0;
 
-          &:last-of-type {
-            margin-right: 0;
+          &:first-child {
+            margin-bottom: $space-2x;
           }
 
           a {
-            &.router-link-exact-active,
-            &.is-touched,
-            &.is-active,
-            &:hover {
-              color: $color-secondary;
+            @include font-bold();
+            padding: $space-2x 0;
+
+            &.logout {
+              @include font-regular();
             }
           }
         }

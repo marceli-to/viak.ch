@@ -2,11 +2,12 @@
 namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
 class Tag extends Base
 {
-  use HasTranslations;
+  use HasTranslations, SoftDeletes;
 
   /**
    * The attributes that should be cast to native types.
