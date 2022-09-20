@@ -5,15 +5,15 @@
  */
 
 .icon-profile {
-  @extend %sm\:mx-4x;
-  @extend %md\:mx-8x;
   display: block;
   height: 16px;
   width: auto;
-  
+  transition: color .1 ease-in;
+
   svg {
     height: inherit;
     width: inherit;
+    transition: color .1 ease-in;
   }
 
   @include bp-md() {

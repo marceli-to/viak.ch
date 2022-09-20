@@ -145,10 +145,10 @@
   <collapsible-container>
     <collapsible>
       <template #title>
-        {{ __('Besuchte Kurse') }}
+        {{ __('Absolvierte Kurse') }}
       </template>
       <template #content>
-        <p class="no-results">Du hast noch keine Kurse besucht.</p>
+        <p class="no-results">Du hast noch keine Kurse absolviert.</p>
       </template>
     </collapsible>
   </collapsible-container>

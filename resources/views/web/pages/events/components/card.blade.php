@@ -1,17 +1,16 @@
 <article class="stacked-list-event {{ $isBooked ? 'is-booked' : ''}}" data-touch>
   <div>
     <div class="stacked-list__col">
-      <div class="{{ $isBooked ? 'sm:flex' : '' }}">
+      <div class="sm:flex">
+        <div class="stacked-list__icon">
         @if ($isBookmarked)
-          <div class="stacked-list__icon">
-            @include('web.partials.icons.heart')
-          </div>
+          @include('web.partials.icons.heart', ['active' => $isBookmarked])
+        @elseif ($isBooked)
+          @include('web.partials.icons.checkmark')
+        @else
+          @include('web.partials.icons.heart', ['active' => $isBookmarked])
         @endif
-        @if ($isBooked)
-          <div class="stacked-list__icon">
-            @include('web.partials.icons.checkmark')
-          </div>
-        @endif
+        </div>
         <div>
           @if ($event->dates)
             <div>

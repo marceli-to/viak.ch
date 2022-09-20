@@ -33,8 +33,8 @@
               </ul>
               <ul>
                 <li>
-                  <router-link :to="{name: 'admin-profile'}">
-                    <icon-profile />
+                  <router-link :to="{name: 'admin-profile'}" class="icon-profile">
+                    <icon-profile class="is-active" />
                   </router-link>
                 </li>
                 <li>

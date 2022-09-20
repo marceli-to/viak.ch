@@ -133,6 +133,7 @@
             update: '/api/admin',
           },
           genders: '/api/genders',
+          logout: '/logout'
         },
       };
     },
