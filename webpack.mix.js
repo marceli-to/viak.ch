@@ -27,16 +27,24 @@ mix.sass('resources/sass/app.scss', 'public/assets/css/app.css').options({proces
 mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 
 // Frontend: filter.js
-mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/global/filter.js').version();
+//mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/global/filter.js').version();
 
 // Frontend: checkout.js
-mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();
+// mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();
 
 // Frontend: basket.js
-mix.js('resources/js/vue/modules/basket/Index.js', 'public/assets/js/global/basket.js').version();
+mix.js(
+  [
+    'resources/js/vue/modules/basket/Index.js', 
+    'resources/js/vue/modules/bookmark/Index.js',
+    'resources/js/vue/modules/filter/Index.js',
+    'resources/js/vue/modules/checkout/Index.js'
+  ],
+  'public/assets/js/global/app.js')
+.version();
 
 // Frontend: bookmarks.js
-mix.js('resources/js/vue/modules/bookmark/Index.js', 'public/assets/js/global/bookmark.js').version();
+// mix.js('resources/js/vue/modules/bookmark/Index.js', 'public/assets/js/global/bookmark.js').version();
 
 // Frontend: register.js
 mix.js('resources/js/vue/modules/register/Index.js', 'public/assets/js/global/register.js').version();
