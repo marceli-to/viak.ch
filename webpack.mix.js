@@ -39,10 +39,13 @@ mix.js('resources/js/vue/modules/basket/Index.js', 'public/assets/js/global/bask
 mix.js('resources/js/vue/modules/register/Index.js', 'public/assets/js/global/register.js').version();
 
 // Frontend: Student profile.js
-mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
+// mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
 
 // Frontend: Expert profile.js
 mix.js('resources/js/vue/modules/expert/profile/Index.js', 'public/assets/js/expert/profile.js').version();
 
-// Backend
-mix.js('resources/js/vue/modules/dashboard/app.js', 'public/assets/js/dashboard/app.js').version();
+// Backend: Administrator
+mix.js('resources/js/vue/modules/dashboard/App.js', 'public/assets/js/dashboard/app.js').version();
+
+// Backend: Student
+mix.js('resources/js/vue/modules/student/App.js', 'public/assets/js/student/app.js').version();

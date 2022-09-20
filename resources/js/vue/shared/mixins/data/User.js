@@ -80,8 +80,10 @@ export default {
 
     find() {
       NProgress.start();
+      this.isFetched = false;
       this.axios.get(`${this.routes.user.find}`).then(response => {
         this.user = response.data;
+        this.isFetched = true;
         NProgress.done();
       });
     },

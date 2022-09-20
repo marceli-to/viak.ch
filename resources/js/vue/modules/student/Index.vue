@@ -1,6 +1,6 @@
 <template>
-<div>
-  <article-text v-if="isFetched">
+<div v-if="isFetched">
+  <article-text>
     
     <template #icon>
       <a href="" class="icon-edit" @click.prevent="toggleForm()">
@@ -215,6 +215,12 @@
             </div>
           </div>
         </stacked-list-item>
+        <div class="mt-4x">
+          <router-link :to="{name: 'student-documents'}" class="link-helper">
+            <span>{{ __('Alle Dokumente anzeigen') }}</span>
+            <icon-arrow-right />
+          </router-link>
+        </div>
       </template>
     </collapsible>
   </collapsible-container>
