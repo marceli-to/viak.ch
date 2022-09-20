@@ -24,7 +24,7 @@ Vue.use(Notifications);
 import store from '@/shared/config/store';
 
 // Component
-Vue.component('basket-button', require('@/modules/student/basket/Index.vue').default);
+Vue.component('basket-button', require('@/modules/basket/Index.vue').default);
 
 // Mount
 if (document.getElementById("app-events")) {

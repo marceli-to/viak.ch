@@ -29,16 +29,18 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 // Frontend: filter.js
 mix.js('resources/js/vue/modules/filter/Index.js', 'public/assets/js/filter.js').version();
 
+// Frontend: checkout.js
+mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();
+
+// Frontend: basket.js
+mix.js('resources/js/vue/modules/basket/Index.js', 'public/assets/js/global/basket.js').version();
+
 // Frontend: Student register.js & profile.js
 mix.js('resources/js/vue/modules/student/register/Index.js', 'public/assets/js/student/register.js').version();
 mix.js('resources/js/vue/modules/student/profile/Index.js', 'public/assets/js/student/profile.js').version();
-mix.js('resources/js/vue/modules/student/basket/Index.js', 'public/assets/js/student/basket.js').version();
 
 // Frontend: Expert profile.js
 mix.js('resources/js/vue/modules/expert/profile/Index.js', 'public/assets/js/expert/profile.js').version();
-
-// Frontend: Checkout
-mix.js('resources/js/vue/modules/checkout/Index.js', 'public/assets/js/global/checkout.js').version();
 
 // Backend
 mix.js('resources/js/vue/modules/dashboard/app.js', 'public/assets/js/dashboard/app.js').version();
