@@ -121,11 +121,11 @@
       </collapsible>
 
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="update()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           {{ __('Speichern') }}
         </a>
       </form-group>
-      <a href="" @click.prevent="toggleForm()" class="form-helper">
+      <a href="" @click.prevent="hideForm()" class="form-helper">
         {{ __('Abbrechen') }}
       </a>
     </form>
@@ -141,7 +141,6 @@
 import NProgress from 'nprogress';
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
-import Settings from "@/modules/expert/mixins/Settings";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -153,6 +152,7 @@ import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
 import Images from "@/shared/modules/images/Index.vue";
+import UserData from "@/shared/mixins/data/User";
 import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
 export default {
@@ -174,13 +174,24 @@ export default {
     UserAddress
   },
 
-  mixins: [Settings],
+  mixins: [UserData],
 
   data() {
     return {
-      user: {
-        gender_id: 2,
+
+      // Routes
+      routes: {
+        user: {
+          find: '/api/expert',
+          register: '/api/expert/register',
+          update: '/api/expert',
+        },
+        genders: '/api/genders',
+        login: '/login',
+        logout: '/logout'
       },
+
+      // TinyMCE
       tinyConfig: tinyConfig,
       tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
     };
@@ -192,37 +203,6 @@ export default {
 
   methods: {
 
-    find() {
-      NProgress.start();
-      this.axios.get(`${this.routes.find}`).then(response => {
-        this.user = response.data;
-        NProgress.done();
-      });
-    },
-
-    submit() {
-      NProgress.start();
-      this.isLoading = true;
-      this.axios.put(`${this.routes.update}`, this.form).then(response => {
-        NProgress.done();
-        this.user = this.form;
-        if (this.form.new_email) {
-          this.user.email = this.form.new_email;
-        }
-        this.isLoading = false;
-        this.isEdit = false;
-      });
-    },
-
-    toggleForm() {
-      this.isEdit = this.isEdit ? false : true;
-      if (this.isEdit) {
-        this.form = this.user;
-        this.form.new_email = null;
-        this.form.new_password = null;
-        this.form.new_password_confirmation = null;
-      }
-    }
   },
 }
 </script>

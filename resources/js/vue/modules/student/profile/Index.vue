@@ -87,11 +87,11 @@
         </collapsible>
 
         <form-group>
-          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          <a href="" @click.prevent="update()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
             {{ __('Speichern') }}
           </a>
         </form-group>
-        <a href="" @click.prevent="toggleForm()" class="form-helper">
+        <a href="" @click.prevent="hideForm()" class="form-helper">
           {{ __('Abbrechen') }}
         </a>
       </form>
@@ -223,7 +223,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import Settings from "@/modules/student/mixins/Settings";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -237,6 +236,7 @@ import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import UserData from "@/shared/mixins/data/User";
 import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
 export default {
@@ -259,12 +259,25 @@ export default {
     UserAddress
   },
 
-  mixins: [Settings],
+  mixins: [UserData],
 
   data() {
     return {
-      user: {
-        gender_id: 2,
+
+      routes: {
+
+        user: {
+          find: '/api/student',
+          update: '/api/student',
+        },
+
+        genders: '/api/genders',
+        login: '/login',
+        logout: '/logout',
+
+        booking: {
+          cancel: '/api/booking/cancel'
+        }
       },
     };
   },
@@ -274,40 +287,6 @@ export default {
   },
 
   methods: {
-
-    find() {
-      NProgress.start();
-      this.isLoading = true;
-      this.axios.get(`${this.routes.student.find}`).then(response => {
-        this.user = response.data;
-        NProgress.done();
-        this.isLoading = false;
-      });
-    },
-
-    submit() {
-      NProgress.start();
-      this.isLoading = true;
-      this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
-        this.user = this.form;
-        if (this.form.new_email) {
-          this.user.email = this.form.new_email;
-        }
-        this.isLoading = false;
-        this.isEdit = false;
-        NProgress.done();
-      });
-    },
-
-    toggleForm() {
-      this.isEdit = this.isEdit ? false : true;
-      if (this.isEdit) {
-        this.form = this.user;
-        this.form.new_email = null;
-        this.form.new_password = null;
-        this.form.new_password_confirmation = null;
-      }
-    },
 
     cancelBooking(uuid, event) {
       let message = 'Bitte Annullation bestätigen.';

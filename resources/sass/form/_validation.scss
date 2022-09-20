@@ -22,12 +22,11 @@ button {
 .form-group {
   &.is-invalid {
     color: $color-danger;
-    h3 {
+
+    a, li, h3 {
       color: $color-danger !important;
     }
-    li {
-      color: $color-danger;
-    }
+
   }
 }
 

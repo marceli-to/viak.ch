@@ -10,12 +10,16 @@ export default {
 
   mixins: [ErrorHandling, i18n],
 
-
   data() {
     return { 
 
+      user: {
+
+      },
+
       // Form
       form: {
+        gender_id: 2,
         firstname: null,
         name: null,
         phone: null,
@@ -26,7 +30,9 @@ export default {
         new_email: null,
         new_password: null,
         new_password_confirmation: null,
-        gender_id: null,
+        operating_system: [],
+        accept_tos: null,
+        subscribe_newsletter: false,
       },
 
       // Settings
@@ -38,10 +44,10 @@ export default {
       errors: {
         firstname: null,
         name: null,
+        gender_id: null,
         new_email: null,
         new_password: null,
         new_password_confirmation: null,
-        gender_id: null,
       },
 
       // Store
@@ -53,17 +59,6 @@ export default {
       isRegistered: false,
       isLoading: false,
       isEdit: false,
-
-      // Routes
-      routes: {
-        find: '/api/expert',
-        register: '/api/expert/register',
-        update: '/api/expert',
-        genders: '/api/genders',
-        login: '/login',
-        logout: '/logout'
-      },
-
     };
   },
   
@@ -81,6 +76,46 @@ export default {
         this.isFetched = true;
         NProgress.done();
       });
+    },
+
+    find() {
+      NProgress.start();
+      this.axios.get(`${this.routes.user.find}`).then(response => {
+        this.user = response.data;
+        NProgress.done();
+      });
+    },
+
+    update() {
+      NProgress.start();
+      this.isLoading = true;
+      this.axios.put(`${this.routes.user.update}`, this.form).then(response => {
+        this.hideForm();
+        this.isLoading = false;
+        this.find();
+      });
+    },
+
+    showForm() {
+      this.isEdit = true;
+      this.form = this.user;
+      this.form.new_email = null;
+      this.form.new_password = null;
+      this.form.new_password_confirmation = null;
+    },
+
+    hideForm() {
+      this.isEdit = false;
+    },
+    
+    toggleForm() {
+      this.isEdit = this.isEdit ? false : true;
+      if (this.isEdit) {
+        this.form = this.user;
+        this.form.new_email = null;
+        this.form.new_password = null;
+        this.form.new_password_confirmation = null;
+      }
     },
   },
 

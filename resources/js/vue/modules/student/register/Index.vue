@@ -125,7 +125,7 @@
       </form-group>
       
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="register()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           {{ __('Registrieren') }}
         </a>
       </form-group>
@@ -138,7 +138,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import Settings from "@/modules/student/mixins/Settings";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -146,6 +145,7 @@ import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import UserData from "@/shared/mixins/data/User";
 
 export default {
 
@@ -160,14 +160,30 @@ export default {
     IconArrowRight,
   },
 
-  mixins: [Settings],
+  mixins: [UserData],
+
+  data() {
+    return { 
+
+      // Routes
+      routes: {
+        user: {
+          register: '/api/student/register',
+        },
+        genders: '/api/genders',
+        login: '/login',
+        logout: '/logout',
+      },
+
+    };
+  },
 
   methods: {
 
-    submit() {
+    register() {
       NProgress.start();
       this.isLoading = true;
-      this.axios.post(`${this.routes.student.register}`, this.form).then(response => {
+      this.axios.post(`${this.routes.user.register}`, this.form).then(response => {
         NProgress.done();
         this.isRegistered = true;
         this.isLoading = false;
