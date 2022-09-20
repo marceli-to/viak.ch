@@ -1,13 +1,10 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Base
+class Bookmark extends Base
 {
-  use SoftDeletes;
-
   /**
    * The attributes that should be cast to native types.
    *
@@ -15,8 +12,7 @@ class Booking extends Base
    */
 
   protected $casts = [
-    'cancelled_at' => 'date:d.m.Y',
-    'booked_at' => 'date:d.m.Y',
+    'bookmarked_at' => 'date:d.m.Y',
   ];
   
   /**
@@ -27,14 +23,9 @@ class Booking extends Base
    
 	protected $fillable = [
     'uuid',
-    'number',
-    'address',
-    'billed',
-    'cancelled',
     'event_id',
     'user_id',
-    'booked_at',
-    'cancelled_at',
+    'bookmarked_at',
   ];
 
   /**
@@ -44,21 +35,7 @@ class Booking extends Base
    */
 
   protected $hidden = [
-    'cancelled_at', 
-  ];
-
-
-  /**
-   * The relationships that should always be loaded
-   *
-   * @var array
-   */
-
-  protected $with = [
-    'event.course', 
-    'event.location', 
-    'event.experts', 
-    'event.dates'
+    'user_id', 
   ];
 
 

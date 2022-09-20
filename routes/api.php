@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
+use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\ImageController;
 
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
@@ -38,20 +39,23 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 |
 */
 
-// Basket
+// Basket (authorized)
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/basket', [BasketController::class, 'get']);
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
   Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
 });
 
+// Basket (public)
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
 Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 
-// Bookings
+// Bookings, Bookmarks
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::post('/booking', [BookingController::class, 'store']);
   Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel']);
+  Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store']);
+  Route::delete('/bookmark/{event:uuid}', [BookmarkController::class, 'destroy']);
 });
 
 
@@ -89,7 +93,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() 
   Route::get('/admin', [AdminController::class, 'find']);
   Route::put('/admin', [AdminController::class, 'update']);
 });
-
 
 // Images
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {

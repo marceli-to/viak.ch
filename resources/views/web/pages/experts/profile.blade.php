@@ -6,5 +6,5 @@
 <section class="container" id="app-profile">
   <expert-profile />
 </section>
-<script src="{{ mix('assets/js/expert/profile.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/expert/app.js') }}" type="text/javascript"></script>
 @endsection

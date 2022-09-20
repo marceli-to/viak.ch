@@ -29,8 +29,7 @@ mix.js('resources/js/vanilla/app.js', 'public/assets/js/app.js');
 // Frontend: /vue/app.js
 mix.js(
   [
-    'resources/js/vue/modules/basket/Index.js', 
-    'resources/js/vue/modules/bookmark/Index.js',
+    'resources/js/vue/modules/event/Index.js',
     'resources/js/vue/modules/filter/Index.js',
     'resources/js/vue/modules/checkout/Index.js'
   ],

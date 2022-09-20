@@ -1,10 +1,10 @@
 <template>
 <div>
-  <a href="" class="btn-primary btn-auto-w" @click.prevent="add()" v-if="!inBookmarks">
-
+  <a href="" class="icon-bookmark" @click.prevent="add()" v-if="!inBookmarks">
+    <icon-heart />
   </a>
-  <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove()" v-else>
-
+  <a href="" :class="[inBookmarks ? 'is-active' : '', 'icon-bookmark']" @click.prevent="remove()" v-else>
+    <icon-heart :active="inBookmarks"  />
   </a>
 </div>
 </template>
@@ -12,11 +12,13 @@
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
+import IconHeart from "@/shared/components/ui/icons/Heart.vue";
 
 export default {
 
   components: {
     NProgress,
+    IconHeart
   },
 
   mixins: [ErrorHandling, i18n],
@@ -26,7 +28,7 @@ export default {
     return {
 
       // Item state
-      isBookmarks: false,
+      inBookmarks: 0,
 
       // Routes
       routes: {
@@ -43,8 +45,8 @@ export default {
     },
 
     exists: {
-      type: [Number, Boolean],
-      default: false,
+      type: [Number, Boolean, String],
+      default: 0,
     }
   },
 

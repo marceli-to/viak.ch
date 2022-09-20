@@ -4,6 +4,7 @@ use App\Models\Event;
 use Illuminate\View\Component;
 use App\Stores\BasketStore as BasketStore;
 use App\Services\Booking as BookingService;
+use App\Services\Bookmark as BookmarkService;
 
 class EventCard extends Component
 {
@@ -57,10 +58,11 @@ class EventCard extends Component
     $this->inBasket = (int) (new BasketStore())->getItem($this->event->uuid);
     $this->isBookmarked = 0;
 
-    // check for booking
+    // check for booking and bookmarks
     if (auth()->user())
     {
       $this->isBooked = (new BookingService())->has($event, auth()->user());
+      $this->isBookmarked = (int) (new BookmarkService())->has($event, auth()->user());
     }
 
   }

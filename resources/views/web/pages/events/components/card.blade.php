@@ -6,7 +6,9 @@
           @if ($isBooked)
             @include('web.partials.icons.checkmark')
           @else
-            <bookmark-button uuid="{{ $event->uuid }}" :exists="{{ $isBookmarked }}" />
+            @auth
+              <bookmark-button uuid="{{ $event->uuid }}" :exists="{{ $isBookmarked }}" />
+            @endauth
           @endif
         </div>
         <div>
