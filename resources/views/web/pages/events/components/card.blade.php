@@ -3,13 +3,11 @@
     <div class="stacked-list__col">
       <div class="sm:flex">
         <div class="stacked-list__icon">
-        @if ($isBookmarked)
-          @include('web.partials.icons.heart', ['active' => $isBookmarked])
-        @elseif ($isBooked)
-          @include('web.partials.icons.checkmark')
-        @else
-          @include('web.partials.icons.heart', ['active' => $isBookmarked])
-        @endif
+          @if ($isBooked)
+            @include('web.partials.icons.checkmark')
+          @else
+            <bookmark-button uuid="{{ $event->uuid }}" :exists="{{ $isBookmarked }}" />
+          @endif
         </div>
         <div>
           @if ($event->dates)

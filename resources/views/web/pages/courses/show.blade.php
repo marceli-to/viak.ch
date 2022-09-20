@@ -94,4 +94,5 @@
   @endif
 </section>
 <script src="{{ mix('assets/js/global/basket.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/global/bookmark.js') }}" type="text/javascript"></script>
 @endsection
