@@ -24,7 +24,7 @@ Vue.use(Notifications);
 import store from '@/shared/config/store';
 
 // Component
-Vue.component('student-register', require('@/modules/student/register/Index.vue').default);
+Vue.component('user-register', require('@/modules/register/Index.vue').default);
 
 // Mount
 if (document.getElementById("app-register")) {
