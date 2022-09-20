@@ -12,5 +12,5 @@
     <checkout-component />
   </div>
 </section>
-<script src="{{ mix('assets/js/global/checkout.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/global/app.js') }}" type="text/javascript"></script>
 @endsection
