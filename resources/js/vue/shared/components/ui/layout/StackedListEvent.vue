@@ -33,7 +33,7 @@
           </template>
         </div>
         <div class="stacked-list__col stacked-list__col--action">
-          <div>CHF {{ $props.event.fee }}</div>
+          <div>CHF {{ $props.event.fee ? $props.event.fee : $props.event.course.fee }}</div>
           <div class="stacked-list__action">
             <slot name="action" />
           </div>
@@ -123,5 +123,9 @@ export default {
       default: false,
     }
   },
+
+  mounted() {
+    console.log(this.$props.event);
+  }
 }
 </script>

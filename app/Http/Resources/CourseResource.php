@@ -17,6 +17,7 @@ class CourseResource extends JsonResource
       'uuid' => $this->uuid,
       'title' => $this->title,
       'online' => $this->online,
+      'fee' => $this->fee
     ];
   }
 }
