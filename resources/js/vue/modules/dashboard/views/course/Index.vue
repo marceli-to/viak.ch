@@ -18,45 +18,53 @@
     </grid>
   </content-list-header>
   <collapsible-container>
-    <collapsible v-for="course in queryData" :key="course.id" :class="[!course.publish ? 'is-hidden' : '', '']">
-      <template #title>
-        {{ course.course_number }} <span>{{ course.title }}</span>
-      </template>
-      <template #action>
-        <router-link 
-          :to="{ name: 'course-edit', params: { id: course.id } }" 
-          class="icon-edit icon-edit--course">
-          <icon-edit />
-        </router-link>
-      </template>
-      <template #content>
-        <template v-if="course.count > 0">
-          <div v-for="event in course.events" :key="event.id" class="relative">
-            <stacked-list-event :event="event" :dashboard="true">
-              <template #action>
-                <router-link :to="{ name: 'event-edit', params: { courseId: course.id, eventId: event.id } }" class="icon-edit mt-5x">
-                  <icon-edit />
-                </router-link>
-              </template>
-            </stacked-list-event>
+    <draggable 
+      :disabled="false"
+      v-model="data" 
+      @end="order"
+      ghost-class="draggable-ghost"
+      draggable=".is-draggable">
+      <collapsible v-for="course in queryData" :key="course.id" :class="[!course.publish ? 'is-hidden' : '', 'is-draggable']">
+        <template #title>
+          {{ course.course_number }} <span>{{ course.title }}</span>
+        </template>
+        <template #action>
+          <router-link 
+            :to="{ name: 'course-edit', params: { id: course.id } }" 
+            class="icon-edit icon-edit--course">
+            <icon-edit />
+          </router-link>
+        </template>
+        <template #content>
+          <template v-if="course.count > 0">
+            <div v-for="event in course.events" :key="event.id" class="relative">
+              <stacked-list-event :event="event" :dashboard="true">
+                <template #action>
+                  <router-link :to="{ name: 'event-edit', params: { courseId: course.id, eventId: event.id } }" class="icon-edit mt-5x">
+                    <icon-edit />
+                  </router-link>
+                </template>
+              </stacked-list-event>
+            </div>
+          </template>
+          <template v-else>
+            <p class="no-results">Es sind keine Veranstaltungen vorhanden.</p>
+          </template>
+          <div class="flex justify-start mt-6x">
+            <router-link :to="{ name: 'event-create', params: { courseId: course.id }  }" class="icon-plus">
+              <icon-plus />
+            </router-link>
           </div>
         </template>
-        <template v-else>
-          <p class="no-results">Es sind keine Veranstaltungen vorhanden.</p>
-        </template>
-        <div class="flex justify-start mt-6x">
-          <router-link :to="{ name: 'event-create', params: { courseId: course.id }  }" class="icon-plus">
-            <icon-plus />
-          </router-link>
-        </div>
-      </template>
-    </collapsible>
+      </collapsible>
+    </draggable>
   </collapsible-container>
 </div>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import draggable from 'vuedraggable';
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
@@ -76,6 +84,7 @@ export default {
   components: {
     NProgress,
     ErrorHandling,
+    draggable,
     ContentListHeader,
     SearchContainer,
     StackedListContainer,
@@ -106,6 +115,7 @@ export default {
         store: '/api/dashboard/course',
         delete: '/api/dashboard/course',
         toggle: '/api/dashboard/course/state',
+        order: '/api/dashboard/course/order'
       },
 
       // States
@@ -145,6 +155,21 @@ export default {
         });
       }
     },
+
+    order() {
+      let courses = this.queryData.map(function(course, index) {
+        course.order = index;
+        return course;
+      });
+      if (this.debounce) return;
+      this.debounce = setTimeout(function(courses) {
+        this.debounce = false;
+        this.axios.post(this.routes.order, {courses: courses}).then((response) => {
+          alert('Reihenfolge angepasst');
+        });
+      }.bind(this, courses), 1000);
+    },
+
   },
   computed: {
     queryData() {

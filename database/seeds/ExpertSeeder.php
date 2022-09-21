@@ -20,6 +20,7 @@ class ExpertSeeder extends Seeder
     $user = User::create([
       'firstname' => 'Peter',
       'name' => 'Muster',
+      'company' => 'Muster AG',
       'email' => 'viak-experte@0704.ch',
       'email_verified_at' => \Carbon\Carbon::now(),
       'password' => \Hash::make('7aq31rr23'),
@@ -38,6 +39,7 @@ class ExpertSeeder extends Seeder
       $user = User::create([
         'firstname' => $faker->firstName,
         'name' => $faker->lastName,
+        'company' => $faker->company,
         'email' => $faker->unique()->email(),
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('*poLksmBv$!)('),

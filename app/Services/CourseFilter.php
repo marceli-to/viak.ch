@@ -107,7 +107,7 @@ class CourseFilter
     if ($map)
     {
       return $this->map(
-        $query->get(),
+        $query->orderBy('order', 'ASC')->get(),
         $this->expert
       );
     }

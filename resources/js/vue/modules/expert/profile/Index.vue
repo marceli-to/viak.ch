@@ -34,6 +34,9 @@
       <form-group :label="__('Name')" :required="true" :error="errors.name">
         <input type="text" v-model="form.name" required @focus="removeError('name')" />
       </form-group>
+      <form-group :label="__('Firma')">
+        <input type="text" v-model="form.company" />
+      </form-group>
       <form-group :label="__('Telefon')">
         <input type="text" v-model="form.phone" maxlength="30" />
       </form-group>
@@ -72,7 +75,7 @@
         </template>
       </collapsible>
 
-      <collapsible>
+      <!-- <collapsible>
         <template #title>
           {{ __('Über') }}
         </template>
@@ -118,7 +121,7 @@
             :images="form.images">
           </images>
         </template>
-      </collapsible>
+      </collapsible> -->
 
       <form-group>
         <a href="" @click.prevent="update()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">

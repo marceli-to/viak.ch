@@ -20,6 +20,7 @@ class StudentSeeder extends Seeder
     $user = User::create([
       'firstname' => 'Paul',
       'name' => 'Mosimann',
+      'company' => 'Acme Inc',
       'street' => 'Letzigraben',
       'street_no' => '149',
       'zip' => '8047',
@@ -43,6 +44,7 @@ class StudentSeeder extends Seeder
       $user = User::create([
         'firstname' => $faker->firstName,
         'name' => $faker->lastName,
+        'company' => $faker->company,
         'email' => $faker->unique()->email(),
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('*poLksmBv$!)('),

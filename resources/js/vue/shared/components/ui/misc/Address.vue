@@ -1,6 +1,7 @@
 <template>
   <div>
-    <template v-if="$props.user.fullname">{{ $props.user.fullname  }}<br></template>
+    <template v-if="$props.user.company">{{ $props.user.company }}<br></template>
+    <template v-if="$props.user.fullname">{{ $props.user.fullname }}<br></template>
     <template v-if="$props.user.street">{{ $props.user.street }}</template>
     <template v-if="$props.user.street_no">{{ $props.user.street_no }}<br></template>
     <template v-if="$props.user.zip">{{ $props.user.zip }}</template>

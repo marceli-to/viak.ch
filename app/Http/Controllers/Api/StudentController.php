@@ -56,25 +56,4 @@ class StudentController extends Controller
     return response()->json($user->uuid);
   }
 
-  /**
-   * Map user data for JSON output
-   * 
-   * @param User user
-   * @return Array
-   */
-  private function mapUser(User $user)
-  {
-    return [
-      'uuid' => $user->uuid,
-      'name' => $user->name,
-      'firstname'  => $user->firstname,
-      'fullname'  => $user->fullname,
-      'address' => $user->address,
-      'invoice_address' => $user->invoice_address,
-      'has_invoice_address' => $user->has_invoice_address,
-      'email' => $user->email,
-      'phone' => $user->phone,
-    ];
-  }
-
 }

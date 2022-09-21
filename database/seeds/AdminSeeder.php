@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
       [
         'firstname' => 'Marcel',
         'name'  => 'Stadelmann',
+        'company' => 'marceli.to',
         'email' => 'm@marceli.to',
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('7aq31rr'),
@@ -27,6 +28,7 @@ class AdminSeeder extends Seeder
       [
         'firstname' => 'Oliver',
         'name'  => 'Schmid',
+        'company' => 'VIAK GmbH',
         'email' => 'oliver.schmid@visualisierungs-akademie.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('viak2022*'),
@@ -36,6 +38,7 @@ class AdminSeeder extends Seeder
       [
         'firstname' => 'Lutz',
         'name'  => 'Kögler',
+        'company' => 'Nightnurse AG',
         'email' => 'koegler@nightnurse.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('viak2022*'),
@@ -45,6 +48,7 @@ class AdminSeeder extends Seeder
       [
         'firstname' => 'Benedikt',
         'name'  => 'Flüeler',
+        'company' => 'WBG AG',
         'email' => 'bf@wbg.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('viak2022*'),
@@ -54,6 +58,7 @@ class AdminSeeder extends Seeder
       [
         'firstname' => 'Bettina',
         'name'  => 'Puorger',
+        'company' => 'WBG AG',
         'email' => 'bp@wbg.ch',
         'email_verified_at' => \Carbon\Carbon::now(),
         'password' => \Hash::make('viak2022*'),

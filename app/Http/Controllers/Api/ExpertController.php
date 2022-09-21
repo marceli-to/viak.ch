@@ -14,7 +14,7 @@ class ExpertController extends Controller
    */
   public function find()
   { 
-    $user = User::with('images')->findOrFail(auth()->user()->id);
+    $user = User::findOrFail(auth()->user()->id);
     return response()->json($user);
   }
 

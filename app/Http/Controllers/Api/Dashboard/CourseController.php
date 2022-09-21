@@ -22,7 +22,11 @@ class CourseController extends Controller
     {
       return new DataCollection(Course::published()->orderBy('number', 'ASC')->get());
     }
-    return new CourseCollection(Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'upcomingEvents.course', 'categories')->orderBy('number', 'ASC')->get());
+    return new CourseCollection(
+      Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'upcomingEvents.course', 'categories')
+        ->orderBy('order', 'ASC')
+        ->get()
+    );
   }
 
   /**
@@ -96,6 +100,25 @@ class CourseController extends Controller
     $course->publish = $course->publish == 0 ? 1 : 0;
     $course->save();
     return response()->json($course->publish);
+  }
+
+  /**
+   * Update the order the courses
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function order(Request $request)
+  {
+    $courses = $request->get('courses');
+    foreach($courses as $course)
+    {
+      $i = Course::find($course['id']);
+      $i->order = $course['order'];
+      $i->save(); 
+    }
+    return response()->json('successfully updated');
   }
 
   /**

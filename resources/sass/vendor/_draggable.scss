@@ -6,5 +6,9 @@
 
 .draggable-ghost {
   opacity: .6;
-  background-color:$color-tertiary;
+  background-color: $color-tertiary;
+}
+
+.is-draggable {
+  cursor: move;
 }

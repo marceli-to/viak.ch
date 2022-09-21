@@ -130,6 +130,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::post('course', [DashboardCourseController::class, 'store']);
   Route::put('course/{course}', [DashboardCourseController::class, 'update']);
   Route::get('course/state/{course}', [DashboardCourseController::class, 'toggle']);
+  Route::post('course/order', [DashboardCourseController::class, 'order']);
   Route::delete('course/{course}', [DashboardCourseController::class, 'destroy']);
 
   // Event settings

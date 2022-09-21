@@ -22,6 +22,7 @@ export default {
         gender_id: 2,
         firstname: null,
         name: null,
+        company: null,
         phone: null,
         street: null,
         street_no: null,

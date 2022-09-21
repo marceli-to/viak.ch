@@ -95,6 +95,7 @@ class Course extends Base
     'reviews',
     'seo_description',
     'seo_tags',
+    'order',
     'online',
     'publish'
   ];
