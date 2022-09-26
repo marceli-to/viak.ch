@@ -32,15 +32,6 @@ export default {
     this.isOpen = this.$props.expanded ? true : false;
   },
 
-  created() {
-    const onEscape = (e) => {
-      if (this.isOpen && e.keyCode === 27) {
-        this.hide();
-      }
-    }
-    document.addEventListener('keydown', onEscape);
-  },
-
   methods: {
 
     toggle() {

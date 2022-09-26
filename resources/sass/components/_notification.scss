@@ -20,14 +20,43 @@
       max-width: 360px
     }
 
-    .message {
-      @include font-bold();
+    @include bp-md() {
+      max-width: 480px
+    }
+
+    .icon {
+      @extend %mb-4x;
     }
 
     .actions {
-      @extend %mt-4x;
+      @extend %mt-8x;
 
-      a {
+      .btn-primary,
+      .btn-secondary {
+        @extend %mx-auto;
+        align-items: center;
+        display: flex;
+        max-width: 200px;
+      }
+
+      .btn-primary {
+        background-color: $color-quaternary;
+        border: 1px solid $color-quaternary;
+        color: $color-white;
+      }
+
+      .btn-secondary {
+        background-color: $color-white;
+        border: 1px solid $color-quaternary;
+        color: $color-quaternary;
+      }
+
+      .btn-primary + .btn-secondary {
+        @extend %mt-3x;
+      }
+
+      a:not(.btn-primary):not(.btn-secondary) {
+        display: block;
         text-decoration: underline;
         text-underline-offset: 2px;
         text-decoration-thickness: 1px;
@@ -42,6 +71,11 @@
 
   &.is-error {
     color: $color-danger;
+
+    .icon {
+      color: $color-danger !important;
+    }
+    
     > div {
       border-color: $color-danger;
       a {
@@ -52,6 +86,11 @@
 
   &.is-success {
     color: $color-success;
+
+    .icon {
+      color: $color-success !important;
+    }
+
     > div {
       border-color: $color-success;
     }
@@ -81,16 +120,20 @@
     @extend %pr-4x;
     @extend %pb-6x;
     @extend %pt-6x;
-  }
-  
-  .message {
-    @extend %mt-4x;
-  }
+    @extend %md\:pl-6x;
+    @extend %md\:pr-6x;
+    @extend %md\:pb-8x;
+    @extend %md\:pt-8x;
 
+    .message {
+      @include font-bold();
+    }
+  }
 }
 
 // Toast styled notification
 .notification.is-toast {
+  @extend %md\:fs-18x;
   position: fixed;
   right: calc((100% - #{$site-max-width-md})/2 + #{$space-4x});
   top: $space-4x;
@@ -103,8 +146,13 @@
     @extend %pt-2x;
     align-items: center;
     display: flex;
+
     @include bp-sm() {
       max-width: none
+    }
+
+    .message {
+      @include font-bold();
     }
   }
 }

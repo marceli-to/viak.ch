@@ -22,7 +22,7 @@ class CourseSettingsController extends Controller
       'categories' => Category::get(),
       'languages' => Language::get(),
       'levels' => Level::get(),
-      'softwares' => Software::get(),
+      'software' => Software::get(),
       'tags' => Tag::get(),
     ];
     return response()->json($settings);

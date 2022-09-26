@@ -20,6 +20,8 @@ require('@/shared/mixins/Filters');
 // Vue-Axios defaults
 Vue.axios.defaults.withCredentials = true;
 
+import Notification from "@/shared/components/ui/misc/Notification.vue";
+Vue.component('notification', Notification);
 
 // Store
 import store from '@/shared/config/store';

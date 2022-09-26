@@ -141,15 +141,22 @@
       <div class="form-danger-zone" v-if="$props.type == 'edit'">
         <h2>Veranstaltung löschen</h2>
         <p>Mit dieser Aktion wird die Veranstaltung gelöscht. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
-        <a href="" class="btn-danger" @click.prevent="destroy()">Löschen</a>
+        <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
     </template>
   </article-text>
+  <notification ref="notification">
+    <template #actions>
+      <a href="javascript:;" @click="destroy()" class="btn-primary">Bestätigen</a>
+      <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">Abbrechen</a>
+    </template>
+  </notification>
 </form>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Helpers from "@/shared/mixins/Helpers";
 import { TheMask } from "vue-the-mask";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
@@ -178,7 +185,7 @@ export default {
     TheMask
   },
 
-  mixins: [ErrorHandling],
+  mixins: [ErrorHandling, Helpers],
 
   props: {
 
@@ -301,15 +308,13 @@ export default {
     },
 
     destroy() {
-      if (confirm('Sicher?')) {
-        this.isLoading = true;
-        NProgress.start();
-        this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-          this.$router.push({ name: 'courses' });
-          this.isLoading = false;
-          NProgress.done();
-        });
-      }
+    this.isLoading = true;
+      NProgress.start();
+      this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
+        this.$router.push({ name: 'courses' });
+        this.isLoading = false;
+        NProgress.done();
+      });
     },
 
     addDate() {

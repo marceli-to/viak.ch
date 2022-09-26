@@ -1,33 +1,37 @@
 <template>
-  <div :class="[type == 'toast' ? 'is-toast' : 'is-modal', style]" v-if="isOpen" @click="hide()">
+  <div 
+    :class="[type == 'toast' ? 'is-toast' : 'is-modal', style]" 
+    v-show="isOpen" 
+    @click="hide()">
     <div>
-      
+
+      <template v-if="type == 'toast'">
+        <div class="message" v-html="message"></div>
+      </template>
+
       <template v-if="type == 'alert'">
-        <icon-cross />
+        <div class="icon">
+          <icon-cross />
+        </div>
         <div class="message" v-html="message"></div>
         <div class="actions">
           <a href="javascript:;" @click="hide()">Schliessen</a>
         </div>
       </template>
 
-      <template v-if="type == 'toast'">
+      <template v-if="type == 'dialog'">
         <div class="message" v-html="message"></div>
-      </template>
-
-      <!-- 
-      <template v-else>
-        <template v-if="$slots.message">
-          <div class="message">
-            <slot name="message" />
-          </div>
-        </template>
         <template v-if="$slots.actions">
           <div class="actions">
             <slot name="actions" />
           </div>
         </template>
+        <template v-else>
+          <div class="actions">
+            <a href="javascript:;" @click="hide()">Schliessen</a>
+          </div>
+        </template>
       </template>
-      -->
 
     </div>
   </div>
@@ -92,8 +96,8 @@ export default {
         this.setStyle(opts.style);
       }
 
-      if (opts.autohide) {
-        this.setAutoHide(opts.autohide);
+      if (opts.autohide !== undefined) {
+        this.setAutoHide(opts.autohide)
       }
 
       this.show();

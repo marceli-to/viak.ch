@@ -1,4 +1,5 @@
 <template>
+<div>
   <article-text>
     <template #icon>
       <a href="" class="icon-edit" @click.prevent="toggleForm()">
@@ -90,60 +91,67 @@
       </div>
     </template>
   </article-text>
-  </template>
-  <script>
-  import NProgress from 'nprogress';
-  import Grid from "@/shared/components/ui/layout/Grid.vue";
-  import GridCol from "@/shared/components/ui/layout/GridCol.vue";
-  import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
-  import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
-  import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
-  import FormError from "@/shared/components/ui/form/FormError.vue";
-  import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-  import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
-  import IconEdit from "@/shared/components/ui/icons/Edit.vue";
-  import IconCross from "@/shared/components/ui/icons/Cross.vue";
-  import UserData from "@/shared/mixins/data/User";
-  import UserAddress from "@/shared/components/ui/misc/Address.vue";
+  <notification ref="notification">
+    <template #actions>
+      <a href="javascript:;" @click="cancel()" class="btn-primary">{{ __('Bestätigen') }}</a>
+      <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">{{ __('Abbrechen') }}</a>
+    </template>
+  </notification>
+</div>
+</template>
+<script>
+import NProgress from 'nprogress';
+import Grid from "@/shared/components/ui/layout/Grid.vue";
+import GridCol from "@/shared/components/ui/layout/GridCol.vue";
+import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
+import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
+import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
+import FormError from "@/shared/components/ui/form/FormError.vue";
+import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
+import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import UserData from "@/shared/mixins/data/User";
+import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
-  export default {
-  
-    components: {
-      NProgress,
-      Grid,
-      GridCol,
-      ArticleText,
-      Collapsible,
-      FormGroup,
-      FormGroupHeader,
-      FormError,
-      IconArrowRight,
-      IconEdit,
-      IconCross,
-      UserAddress
-    },
-  
-    mixins: [UserData],
-  
-    data() {
-      return {
+export default {
 
-        // Routes
-        routes: {
-          user: {
-            find: '/api/admin',
-            register: '/api/admin/register',
-            update: '/api/admin',
-          },
-          genders: '/api/genders',
-          logout: '/logout'
+  components: {
+    NProgress,
+    Grid,
+    GridCol,
+    ArticleText,
+    Collapsible,
+    FormGroup,
+    FormGroupHeader,
+    FormError,
+    IconArrowRight,
+    IconEdit,
+    IconCross,
+    UserAddress
+  },
+
+  mixins: [UserData],
+
+  data() {
+    return {
+
+      // Routes
+      routes: {
+        user: {
+          find: '/api/admin',
+          register: '/api/admin/register',
+          update: '/api/admin',
         },
-      };
-    },
-  
-    mounted() {
-      this.find();
-    },
-  }
-  </script>
+        genders: '/api/genders',
+        logout: '/logout'
+      },
+    };
+  },
+
+  mounted() {
+    this.find();
+  },
+}
+</script>
   

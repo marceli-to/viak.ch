@@ -47,7 +47,7 @@ class Event extends Base
   protected $appends = [
     'course_fee',
     'course_online',
-    'expert_ids'
+    'expert_ids',
   ];
 
 
@@ -187,7 +187,7 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateAttribute($value)
+  public function getDateStrAttribute($value)
   {   
     return date('d. F Y', strtotime($value));
   }

@@ -1,0 +1,16 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/buttons/secondary
+ * -----------------------------------------------------------------------------
+ */
+
+%btn-quaternary,
+.btn-quaternary {
+  @extend %btn;
+  background-color: $color-white;
+  color: $color-quaternary;
+
+  &.is-outline {
+    border: 1px solid $color-quaternary;
+  }
+}
