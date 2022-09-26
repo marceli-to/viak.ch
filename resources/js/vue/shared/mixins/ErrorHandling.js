@@ -26,6 +26,10 @@ export default {
       this.notAllowed(data);
     });
 
+    window.intercepted.$on('response:413', data => {
+      this.contentTooLarge(data);
+    });
+
     window.intercepted.$on('response:419', data => {
       this.unauthorized(data);
     });
@@ -69,6 +73,16 @@ export default {
     },
 
     serverError(data) {
+      this.isLoading = false;
+      NProgress.done();
+      this.$refs.notification.init({
+        message: `${data.status} ${data.code}<br>${data.body.message}`,
+        type: 'alert',
+        style: 'error',
+      });
+    },
+
+    contentTooLarge(data) {
       this.isLoading = false;
       NProgress.done();
       this.$refs.notification.init({

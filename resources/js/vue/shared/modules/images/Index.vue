@@ -130,7 +130,11 @@ export default {
 
       NProgress.start();
       this.axios.post(`${this.routes.store}`, img).then(response => {
-        alert(this.__(this.notifications.saved));
+        this.$refs.notification.init({
+          message: this.notifications.saved,
+          type: 'toast',
+          style: 'success',
+        });
         img.id = response.data.imageId;
         this.data.push(img);
         NProgress.done();
@@ -160,7 +164,11 @@ export default {
     updateImage(image) {
       NProgress.start();
       this.axios.put(`${this.routes.coords}/${image.id}`, image).then(response => {
-        alert(this.__(this.notifications.updated));
+        this.$refs.notification.init({
+          message: this.notifications.updated,
+          type: 'toast',
+          style: 'success',
+        });
         NProgress.done();
       });
     },

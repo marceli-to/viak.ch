@@ -45,7 +45,11 @@ export default {
 
     complete(image) {
       if (image.status == "error" && image.accepted == false) {
-        alert(this.messages.uploadError);
+        this.$refs.notification.init({
+          message: `${this.messages.uploadError}`,
+          type: 'alert',
+          style: 'error',
+        });
       } 
       else {
         let response = JSON.parse(image.xhr.response);

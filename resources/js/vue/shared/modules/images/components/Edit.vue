@@ -284,7 +284,11 @@ export default {
 
     update() {
       this.axios.put(`${this.routes.update}/${this.currentImage.id}`, this.currentImage).then((response) => {
-        this.$notify({type: 'success', text: this.messages.updated});
+        this.$refs.notification.init({
+          message: `${this.messages.updated}`,
+          type: 'toast',
+          style: 'success',
+        });
         this.hideEdit();
       });
     },
@@ -300,7 +304,11 @@ export default {
         this.debounce = false;
         let uri = `/api/images/order`;
         this.axios.post(uri, {images: images}).then((response) => {
-          this.$notify({type: 'success', text: 'Reihenfolge angepasst'});
+          this.$refs.notification.init({
+            message: 'Reihenfolge angepasst',
+            type: 'toast',
+            style: 'success',
+          });
         });
       }.bind(this, images), 1000);
     },

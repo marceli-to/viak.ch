@@ -135,16 +135,6 @@ export default {
         NProgress.done();
       });
     },
-
-    destroy(id) {
-      if (confirm(this.messages.confirm)) {
-        this.isLoaded = true;
-        this.axios.delete(`${this.routes.delete}/${id}`).then(response => {
-          this.fetch();
-          this.isLoaded = false;
-        });
-      }
-    },
   },
 
 }

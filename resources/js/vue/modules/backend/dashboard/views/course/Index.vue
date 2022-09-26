@@ -146,16 +146,6 @@ export default {
       });
     },
 
-    destroy(id) {
-      if (confirm(this.messages.confirm)) {
-        this.isLoaded = true;
-        this.axios.delete(`${this.routes.delete}/${id}`).then(response => {
-          this.fetch();
-          this.isLoaded = false;
-        });
-      }
-    },
-
     order() {
       let courses = this.queryData.map(function(course, index) {
         course.order = index;
