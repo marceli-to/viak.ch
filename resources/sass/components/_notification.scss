@@ -8,6 +8,7 @@
 .notification {
   @extend %fs-16x;
   @extend %md\:fs-20x;
+  z-index: 1001;
 
   > div {
     background-color: $color-white;
@@ -113,7 +114,6 @@
   text-align: center;
   top: 0;
   width: 100%;
-  z-index: 1001;
 
   > div {
     @extend %pl-4x;

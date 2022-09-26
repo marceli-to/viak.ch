@@ -6,7 +6,9 @@
     <div class="text__body">
       <template v-if="$slots.aside">
         <aside>
-          <slot name="aside" />
+          <div>
+            <slot name="aside" />
+          </div>
         </aside>
       </template>
       <template v-if="$slots.content">

@@ -2,26 +2,8 @@ require('@/shared/bootstrap');
 
 window._ = require('lodash');
 
-// Vue
-window.Vue = require('vue');
-
-// Axios Interceptors
-require('vue-axios-interceptors');
-
-// Axios, Vue-Axios
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-window.axios = require('axios');
-Vue.use(VueAxios, axios);
-
 // Filters
 require('@/shared/mixins/Filters');
-
-// Vue-Axios defaults
-Vue.axios.defaults.withCredentials = true;
-
-import Notification from "@/shared/components/ui/misc/Notification.vue";
-Vue.component('notification', Notification);
 
 // Store
 import store from '@/shared/config/store';
@@ -53,7 +35,6 @@ const router = new VueRouter(
     ]
   }
 );
-
 
 // App component
 import AppComponent from '@/modules/backend/dashboard/App.vue';

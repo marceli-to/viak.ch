@@ -98,6 +98,9 @@ article.content-text {
 
     > aside {
       @extend %sm\:span-4;
+      > div {
+        @extend %sm\:sticky-t-20;
+      }
     }
       
     > div {

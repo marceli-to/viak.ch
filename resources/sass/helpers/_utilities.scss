@@ -87,3 +87,11 @@
   max-width: 50%;
 }
 
+
+%sm\:sticky-t-20,
+.sm\:sticky-t-20 {
+  @include bp-sm() {
+    position: sticky;
+    top: 20px;
+  }
+}

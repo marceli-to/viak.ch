@@ -62,7 +62,7 @@ export default {
       NProgress.done();
       this.$refs.notification.init({
         message: 'Bitte alle mit * markierten Felder prüfen!',
-        type: 'alert',
+        type: 'toast',
         style: 'error',
       });
 

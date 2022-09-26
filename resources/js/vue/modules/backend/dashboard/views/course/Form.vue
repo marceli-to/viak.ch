@@ -152,7 +152,7 @@
         </collapsible>
       </collapsible-container>
       <form-group>
-        <grid class="sm:grid-cols-12">
+        <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
           <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
             Speichern und schliessen
           </a>
@@ -160,6 +160,9 @@
             Speichern
           </a>
         </grid>
+        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
+          Speichern
+        </a>
       </form-group>
       <div class="form-danger-zone" v-if="$props.type == 'edit'">
         <h2>Kurs löschen</h2>
@@ -340,7 +343,7 @@ export default {
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
-        this.isLoading = true;
+        this.isLoading = false;
         if (redirect) {
           this.$router.push({ name: 'courses'});
         }
@@ -351,6 +354,7 @@ export default {
     },
 
     update() {
+      this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'courses'});
       });

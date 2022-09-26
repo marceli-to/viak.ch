@@ -1,5 +1,5 @@
-import StudentIndex from '@//modules/backend/student/Index.vue';
-import StudentDocuments from '@//modules/backend/student/Documents.vue';
+import StudentIndex from '@//modules/backend/student/views/Index.vue';
+import StudentDocuments from '@//modules/backend/student/views/Documents.vue';
 
 const routes = [
   {
