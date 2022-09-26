@@ -5,10 +5,10 @@
 @section('content')
 <section class="container">
   @if ($errors->any())
-    <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
+    <x-notification style="error" message="{{ __('Bitte überprüf deine Eingaben.') }}" />
   @endif
   @if (session('status'))
-    <x-alert type="success" message="{{ session('status') }}" />
+    <x-notification style="success" message="{{ session('status') }}" />
   @endif
   <x-article-text>
     <x-slot name="aside">

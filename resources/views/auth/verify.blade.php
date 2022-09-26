@@ -5,7 +5,7 @@
 @section('content')
 <section class="container">
   @if (session('resent'))
-    <x-alert type="success" message="{{ __('Neuer Bestätigungslink gesendet. Bitte Posteingang prüfen.') }}" />
+    <x-notification style="success" message="{{ __('Neuer Bestätigungslink gesendet. Bitte Posteingang prüfen.') }}" />
   @endif
   <x-article-text>
     <x-slot name="aside">

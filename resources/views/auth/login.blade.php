@@ -5,7 +5,7 @@
 @section('content')
 <section class="container">
   @if ($errors->any())
-    <x-alert type="danger" message="{{ __('Hoppla, da ist etwas schiefgelaufen. Bitte überprüf deine Eingaben.') }}" />
+    <x-notification style="error" message="{{ __('Bitte überprüf deine Eingaben.') }}" />
   @endif
   <x-article-text>
     <x-slot name="aside">

@@ -2,15 +2,15 @@
 namespace App\View\Components;
 use Illuminate\View\Component;
 
-class Alert extends Component
+class Notification extends Component
 {
 
   /**
-   * Type
+   * Style
    *
    * @var string
    */
-  public $type;
+  public $style;
 
   /**
    * Message
@@ -24,9 +24,9 @@ class Alert extends Component
    *
    * @return void
    */
-  public function __construct($type = NULL, $message = NULL)
+  public function __construct($style = NULL, $message = NULL)
   {
-    $this->type = $type;
+    $this->style = $style;
     $this->message = $message;
   }
 
@@ -37,6 +37,6 @@ class Alert extends Component
    */
   public function render()
   {
-    return view('web.components.alert');
+    return view('web.components.notification');
   }
 }
