@@ -1,5 +1,6 @@
 <template>
 <div>
+  <notification ref="notification" />
   <a href="" class="btn-primary btn-auto-w" @click.prevent="add()" v-if="!inBasket">
     {{ __('Buchen') }}
   </a>
@@ -60,7 +61,11 @@ export default {
       this.axios.put(`${this.routes.put}/${this.$props.uuid}`).then(response => {
         this.updateCounter(response.data.count);
         this.inBasket = true;
-        alert('Der Kurs wurde im Warenkorb abgelegt.');
+        this.$refs.notification.init({
+          message: 'Der Kurs wurde im Warenkorb abgelegt.',
+          type: 'toast',
+          style: 'success',
+        });
         NProgress.done();
       });
     },
@@ -70,7 +75,11 @@ export default {
       this.axios.delete(`${this.routes.delete}/${this.$props.uuid}`).then(response => {
         this.updateCounter(response.data.count);
         this.inBasket = false;
-        alert('Der Kurs wurde aus dem Warenkorb gelöscht.');
+        this.$refs.notification.init({
+          message: 'Der Kurs wurde aus dem Warenkorb gelöscht.',
+          type: 'toast',
+          style: 'success',
+        });
         NProgress.done();
       });
     },

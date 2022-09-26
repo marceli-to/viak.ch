@@ -14,20 +14,21 @@
         <div class="message" v-html="message"></div>
       </template>
 
-<!-- 
-<template v-else>
-  <template v-if="$slots.message">
-    <div class="message">
-      <slot name="message" />
-    </div>
-  </template>
-  <template v-if="$slots.actions">
-    <div class="actions">
-      <slot name="actions" />
-    </div>
-  </template>
-</template>
--->
+      <!-- 
+      <template v-else>
+        <template v-if="$slots.message">
+          <div class="message">
+            <slot name="message" />
+          </div>
+        </template>
+        <template v-if="$slots.actions">
+          <div class="actions">
+            <slot name="actions" />
+          </div>
+        </template>
+      </template>
+      -->
+
     </div>
   </div>
 </template>
@@ -57,6 +58,8 @@ export default {
 
       // Autohide [Boolean]
       autohide: true,
+      
+      autohideDelay: 3000,
 
       // State [Boolean]
       isOpen: false,
@@ -71,13 +74,6 @@ export default {
       }
     }
     document.addEventListener('keydown', onEscape);
-
-    if (this.autohide) {
-      setTimeout(() => {
-        this.hide();
-      }, 2000);
-    }
-
   },
 
   methods: {
@@ -105,6 +101,11 @@ export default {
 
     show() {
       this.isOpen = true;
+      if (this.autohide) {
+        setTimeout(() => {
+          this.hide();
+        }, this.autohideDelay);
+      }
     },
 
     hide() {

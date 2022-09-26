@@ -103,6 +103,8 @@
     @extend %pt-2x;
     align-items: center;
     display: flex;
-
+    @include bp-sm() {
+      max-width: none
+    }
   }
 }

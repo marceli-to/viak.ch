@@ -1,7 +1,7 @@
 <template>
+<div>
   <stacked-list-container v-if="isLoaded">
     <template v-if="basket.events.length > 0">
-
       <stacked-list-header>
         <template #title>
           <h2>{{ __('Übersicht') }}</h2>
@@ -10,7 +10,6 @@
           <strong>{{ __('Schritt') }} 1/4</strong>
         </template>
       </stacked-list-header>
-
       <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event">
         <template #action>
           <a href="" class="btn-secondary btn-auto-w" @click.prevent="remove(event.uuid)">
@@ -18,22 +17,21 @@
           </a>
         </template>
       </stacked-list-event>
-
       <stacked-list-footer>
         <router-link :to="{ name: 'checkout-user' }" class="btn-next btn-next-wide span-12">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
         </router-link>
       </stacked-list-footer>
-
     </template>
-
     <template v-else>
       <div class="checkout-basket-empty">
         {{ __('Dein Warenkorb ist leer...') }}
       </div>
     </template>
   </stacked-list-container>
+  <notification ref="notification" />
+</div>
 </template>
 <script>
 import NProgress from 'nprogress';
@@ -98,7 +96,11 @@ export default {
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${uuid}`).then(response => {
         this.updateCounter(response.data.count);
-        alert('Der Kurs wurde aus dem Warenkorb gelöscht.');
+        this.$refs.notification.init({
+          message: 'Der Kurs wurde aus dem Warenkorb gelöscht.',
+          type: 'toast',
+          style: 'success',
+        });
         this.get();
       });
     },

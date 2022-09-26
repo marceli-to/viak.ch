@@ -1,5 +1,6 @@
 <template>
 <div>
+  <notification ref="notification" />
   <a href="" class="icon-bookmark" @click.prevent="add()" v-if="!inBookmarks">
     <icon-heart />
   </a>
@@ -60,7 +61,11 @@ export default {
       NProgress.start();
       this.axios.put(`${this.routes.put}/${this.$props.uuid}`).then(response => {
         this.inBookmarks = true;
-        alert('Der Kurs wurde in der Merkliste gespeichert.');
+        this.$refs.notification.init({
+          message: 'Der Kurs wurde in der Merkliste gespeichert.',
+          type: 'toast',
+          style: 'success',
+        });
         NProgress.done();
       });
     },
@@ -69,7 +74,11 @@ export default {
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.$props.uuid}`).then(response => {
         this.inBookmarks = false;
-        alert('Der Kurs wurde aus der Merkliste gelöscht.');
+        this.$refs.notification.init({
+          message: 'Der Kurs wurde aus der Merkliste gelöscht.',
+          type: 'toast',
+          style: 'success',
+        });
         NProgress.done();
       });
     },
