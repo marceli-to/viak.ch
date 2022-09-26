@@ -40,12 +40,12 @@
 @import 'components/cards/teaser';
 @import 'components/cards/text';
 @import 'components/collapsible';
-@import 'components/dialog';
 @import 'components/filter';
 @import 'components/grid';
 @import 'components/icons/global';
 @import 'components/icons/arrow';
 @import 'components/icons/basket';
+@import 'components/icons/bookmark';
 @import 'components/icons/chevron';
 @import 'components/icons/edit';
 @import 'components/icons/filter';
@@ -67,6 +67,8 @@
 @import 'components/lists/stacked';
 @import 'components/images';
 @import 'components/progress';
+@import 'components/notification';
+
 
 // Forms
 @import 'form/global';
@@ -99,5 +101,5 @@
 @import 'vendor/dropzone';
 @import 'vendor/dropzone-custom';
 @import 'vendor/draggable';
-@import 'vendor/notification';
+//@import 'vendor/notification';
 @import 'vendor/media-upload';

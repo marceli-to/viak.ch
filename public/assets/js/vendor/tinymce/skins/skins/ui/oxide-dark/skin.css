@@ -1921,25 +1921,25 @@ body.tox-dialog__disable-scroll {
 .tox .tox-notification--in {
   opacity: 1;
 }
-.tox .tox-notification--success {
+.tox .tox-is-success {
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
-.tox .tox-notification--success a {
+.tox .tox-is-success a {
   color: #486d2a;
 }
-.tox .tox-notification--error {
+.tox .tox-is-error {
   background-color: #f2dede;
   border-color: #ebccd1;
 }
-.tox .tox-notification--error a {
+.tox .tox-is-error a {
   color: #843441;
 }
 .tox .tox-notification--warn {
   background-color: #fcf8e3;
   border-color: #faebcc;
 }
-.tox .tox-notification--info {
+.tox .tox-is-info {
   background-color: #d9edf7;
   border-color: #779ecb;
 }

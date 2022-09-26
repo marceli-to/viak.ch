@@ -60,30 +60,43 @@ export default {
       this.errors = errors;
       this.isLoading = false;
       NProgress.done();
-      alert('Bitte alle mit * markierten Felder prüfen!');
+      this.$refs.notification.init({
+        message: 'Bitte alle mit * markierten Felder prüfen!',
+        type: 'alert',
+        style: 'error',
+      });
+
     },
 
     serverError(data) {
       this.isLoading = false;
       NProgress.done();
-      alert(`${data.status} ${data.code}<br>${data.body.message}`);
+      this.$refs.notification.init({
+        message: `${data.status} ${data.code}<br>${data.body.message}`,
+        type: 'alert',
+        style: 'error',
+      });
     },
 
     notFoundError(data) {
-      this.$notify({ type: "error", text: `${data.status} ${data.code}`});
+      this.isLoading = false;
+      NProgress.done();
       this.$router.push({ name: 'not-found' });
     },
 
     notAllowed(data) {
       this.isLoading = false;
       NProgress.done();
-      alert(`${data.status} ${data.code}<br>${data.body.message}`);
+      this.$refs.notification.init({
+        message: `${data.status} ${data.code}<br>${data.body.message}`,
+        type: 'alert',
+        style: 'error',
+      });
     },
 
     forbiddenError(data) {
       this.isLoading = false;
       NProgress.done();
-      alert(`${data.status} - Zugriff verweigert!`);
       this.$router.push({ name: 'forbidden' });
     },
 

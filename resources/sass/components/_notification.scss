@@ -1,0 +1,108 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: component/notification
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+.notification {
+  @extend %fs-16x;
+  @extend %md\:fs-20x;
+
+  > div {
+    background-color: $color-white;
+    border: 2px solid $color-quaternary;
+    cursor: pointer;
+    max-width: 80%;
+    width: 100%;
+
+    @include bp-sm() {
+      max-width: 360px
+    }
+
+    .message {
+      @include font-bold();
+    }
+
+    .actions {
+      @extend %mt-4x;
+
+      a {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        text-decoration-thickness: 1px;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+  }
+
+  &.is-error {
+    color: $color-danger;
+    > div {
+      border-color: $color-danger;
+      a {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &.is-success {
+    color: $color-success;
+    > div {
+      border-color: $color-success;
+    }
+  }
+
+  &.is-info {
+    color: $color-info;
+  }
+}
+
+// Modal styled notification
+.notification.is-modal {
+  align-items: center;
+  background-color: rgba(255, 255, 255, .8);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+
+  > div {
+    @extend %pl-4x;
+    @extend %pr-4x;
+    @extend %pb-6x;
+    @extend %pt-6x;
+  }
+  
+  .message {
+    @extend %mt-4x;
+  }
+
+}
+
+// Toast styled notification
+.notification.is-toast {
+  position: fixed;
+  right: calc((100% - #{$site-max-width-md})/2 + #{$space-4x});
+  top: $space-4x;
+  width: auto;
+
+  > div {
+    @extend %pl-4x;
+    @extend %pr-4x;
+    @extend %pb-2x;
+    @extend %pt-2x;
+    align-items: center;
+    display: flex;
+
+  }
+}
