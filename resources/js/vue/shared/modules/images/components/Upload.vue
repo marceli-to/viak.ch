@@ -7,6 +7,7 @@
       @vdropzone-complete="complete"
     ></vue-dropzone-image>
     <span class="requirements">{{restrictions}}</span>
+    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -30,7 +31,7 @@ export default {
     return {
       dropzoneConfig: dropzoneConfig,
       messages: {
-        uploadError: 'Invalid format or file to big!'
+        uploadError: 'Ungültiges Format oder Datei zu gross. Erlaubt sind die Formate "JPG" und "PNG", bis max. 16 MB'
       }
     };
   },
@@ -44,11 +45,12 @@ export default {
   methods: {
 
     complete(image) {
-      if (image.status == "error" && image.accepted == false) {
+      if (image.status == "error" || image.accepted == false) {
         this.$refs.notification.init({
-          message: `${this.messages.uploadError}`,
+          message: this.messages.uploadError,
           type: 'alert',
           style: 'error',
+          autohide: false
         });
       } 
       else {
