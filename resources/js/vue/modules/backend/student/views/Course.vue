@@ -119,8 +119,8 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
-        this.isFetched = true;
         this.setTitle(this.data.event.course.title);
+        this.isFetched = true;
         NProgress.done();
       });
     },

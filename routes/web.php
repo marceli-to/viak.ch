@@ -61,8 +61,8 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
 
   // Routes for user with multiple roles
-  Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select');
-  Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set');
+  Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select')->middleware(['role:admin']);
+  Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set')->middleware(['role:admin']);
 
   Route::get('/dashboard/{any?}', function () {
     return view('web.layout.backend');

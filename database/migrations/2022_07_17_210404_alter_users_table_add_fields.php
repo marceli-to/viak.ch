@@ -19,7 +19,7 @@ class AlterUsersTableAddFields extends Migration
         $table->string('zip', 15)->nullable()->after('street_no');
         $table->string('city', 255)->nullable()->after('zip');
         $table->string('phone', 45)->nullable()->after('city');
-        $table->tinyInteger('has_invoice_address')->default(0)->after('phone');
+        $table->tinyInteger('has_invoice_address')->nullable()->default(0)->after('phone');
         $table->text('invoice_address')->nullable()->after('has_invoice_address');
         $table->text('expert_title')->nullable()->after('invoice_address');
         $table->text('expert_description')->nullable()->after('expert_title');
