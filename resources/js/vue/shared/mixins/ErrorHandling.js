@@ -68,6 +68,7 @@ export default {
         message: 'Bitte alle mit * markierten Felder prüfen!',
         type: 'toast',
         style: 'error',
+        autohide: true,
       });
 
     },

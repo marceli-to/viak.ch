@@ -49,8 +49,8 @@ Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageCon
 Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   Route::get('/expert/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert']);
-  //Route::get('/student/profile', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
-  Route::get('/student/{any?}', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
+  Route::get('/student', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
+  Route::get('/student/course/event/{any?}', [StudentController::class, 'event'])->name('page.student.event')->where('any', '.*')->middleware(['role:student']);
 
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
   Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');

@@ -8,7 +8,7 @@
     </template>
     <template #aside>
       <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
-      <div class="sm:mt-10x md:mt-20x">
+      <div class="sm:mt-5x md:mt-10x">
         <a :href="routes.logout" class="icon-arrow-right:below" :title="__('Logout')">
           <span>{{ __('Logout') }}</span>
           <icon-arrow-right />

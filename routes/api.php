@@ -58,7 +58,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::delete('/bookmark/{event:uuid}', [BookmarkController::class, 'destroy']);
 });
 
-
 // Filter & Search
 Route::get('/course/filters', [FilterController::class, 'settings']);
 Route::post('/course/filter', [FilterController::class, 'filter']);
@@ -76,9 +75,9 @@ Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
 // Student (authorized)
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,student'])->group(function() {
-  Route::get('/student/{map?}', [StudentController::class, 'find']);
+  Route::get('/student', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
-  Route::delete('/student', [StudentController::class, 'destroy']);
+  Route::get('/student/course/event/{booking:uuid}', [StudentController::class, 'showEvent']);
 });
 
 // Expert (authorized)

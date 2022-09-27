@@ -3,7 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ __('Registrieren') }}</h1>
-      <div class="sm:mt-10x md:mt-20x">
+      <div class="sm:mt-5x md:mt-10x">
         <a :href="routes.login" class="icon-arrow-right:below" :title="__('Login')">
           <span>{{ __('Bereits registriert?') }}</span>
           <icon-arrow-right />

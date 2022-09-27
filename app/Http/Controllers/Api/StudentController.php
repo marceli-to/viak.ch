@@ -2,7 +2,10 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentEventResource;
+use App\Http\Resources\BookingResource;
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentUpdateRequest;
@@ -10,17 +13,16 @@ use App\Http\Requests\StudentUpdateRequest;
 class StudentController extends Controller
 {
   /**
-   * Find a user
+   * Get a user with:
+   * 
+   * - Bookings
+   * - Bookmarks
+   * - Documents
    * 
    * @return \Illuminate\Http\Response
    */
-  public function find($map = FALSE)
+  public function find()
   { 
-    /**
-     * @todo: if admin get the full user
-     * $user = User::findOrFail(auth()->user()->id);
-     */
-
     $data = new StudentResource(User::findOrFail(auth()->user()->id));
     return response()->json($data);
   }
@@ -56,6 +58,21 @@ class StudentController extends Controller
     }
 
     return response()->json($user->uuid);
+  }
+
+  /**
+   * Show an event for a given booking
+   * 
+   * @param String $bookingUuid
+   * @return \Illuminate\Http\Response
+   */
+
+  public function showEvent(Booking $booking)
+  {
+    $this->authorize('viewEvent', $booking);
+    //dd(new BookingResource($booking));
+    // $data = new StudentEventResource(Event::find($booking->event->id));
+    return response()->json(new BookingResource($booking));
   }
 
 }

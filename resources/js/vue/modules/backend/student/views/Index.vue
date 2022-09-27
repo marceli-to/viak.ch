@@ -11,7 +11,7 @@
       
       <template #aside>
         <h1 class="xs:hide">{{ __('Mein Profil') }}</h1>
-        <div class="sm:mt-10x md:mt-20x">
+        <div class="sm:mt-5x md:mt-10x">
           <a :href="routes.logout" class="icon-arrow-right:below" :title="__('Logout')">
             <span>{{ __('Logout') }}</span>
             <icon-arrow-right />
@@ -130,6 +130,9 @@
             <div v-for="(booking, index) in sortedData" :key="index">
               <stacked-list-event :event="booking.event" :booking="booking" :hasIcon="true">
                 <template #action>
+                  <router-link :to="{ name: 'student-course-event', params: { uuid: booking.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
+                    {{ __('Detail')}}
+                  </router-link>
                   <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(booking.uuid, booking.event)">
                     {{ __('Annullieren') }}
                   </a>
@@ -234,8 +237,10 @@
   </notification>
  </div>
 </template>
+
 <script>
 import NProgress from 'nprogress';
+import Booking from "@/shared/mixins/Booking";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -272,12 +277,10 @@ export default {
     UserAddress
   },
 
-  mixins: [UserData],
+  mixins: [UserData, Booking],
 
   data() {
     return {
-
-      uuid: null,
 
       routes: {
 
@@ -303,34 +306,6 @@ export default {
 
   methods: {
 
-    confirm(uuid, event) {
-      let message = `Bitte Annullation bestätigen.`;
-      if (event.cancellation.penalty) {
-        message = `Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ${event.cancellation.amount}.– (${event.cancellation.penalty}% der Kurskosten)\nBitte Annullation bestätigen.`;
-      }
-      this.uuid = uuid;
-      this.$refs.notification.init({
-        message: message,
-        type: 'dialog',
-        style: 'info',
-        autohide: false,
-      });
-    },
-
-    cancel() {
-      this.$refs.notification.hide();
-      NProgress.start();
-      this.axios.put(`${this.routes.booking.cancel}/${this.uuid}`).then(response => {
-        this.uuid = null;
-        this.$refs.notification.init({
-          message: 'Die Buchung wurde annulliert.',
-          type: 'toast',
-          style: 'success',
-          autohide: true,
-        });
-        this.find();
-      });
-    }
   },
 
   computed: {

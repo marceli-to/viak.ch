@@ -110,4 +110,11 @@ article.content-text {
     }
   }
 
+  // Event detail page
+  &.content-text--event {
+    h1 {
+      color: $color-primary;
+    }
+  }
+
 }

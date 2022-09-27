@@ -16,6 +16,8 @@ class CourseResource extends JsonResource
     return [
       'uuid' => $this->uuid,
       'title' => $this->title,
+      'subtitle' => $this->subtitle,
+      'text' => $this->text,
       'online' => $this->online,
       'fee' => $this->fee
     ];

@@ -38,7 +38,7 @@
         <template #content>
           <template v-if="course.count > 0">
             <div v-for="event in course.events" :key="event.id" class="relative">
-              <stacked-list-event :event="event" :dashboard="true">
+              <stacked-list-event :event="event" :isAdmin="true">
                 <template #action>
                   <router-link :to="{ name: 'event-edit', params: { courseId: course.id, eventId: event.id } }" class="icon-edit mt-5x">
                     <icon-edit />

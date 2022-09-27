@@ -136,9 +136,19 @@
   @extend %md\:fs-18x;
   position: fixed;
   right: calc((100% - #{$site-max-width-md})/2 + #{$space-4x});
-  top: $space-4x;
-  width: auto;
+  right: 50%;
+  top: $space-7x;
+  transform: translateX(50%);
 
+  @include bp-sm() {
+    max-width: 360px;
+    width: auto;
+  }
+
+  @include bp-md() {
+    max-width: 480px
+  }
+  
   > div {
     @extend %pl-4x;
     @extend %pr-4x;
@@ -146,10 +156,9 @@
     @extend %pt-2x;
     align-items: center;
     display: flex;
+    max-width: none;
 
-    @include bp-sm() {
-      max-width: none
-    }
+
 
     .message {
       @include font-bold();
