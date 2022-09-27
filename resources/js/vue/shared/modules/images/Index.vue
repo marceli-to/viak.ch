@@ -18,11 +18,18 @@
         :ratioH="this.$props.imageRatioH"
         :allowRatioSwitch="this.$props.allowRatioSwitch"
         @toggleImage="toggleImage($event)"
-        @destroyImage="destroyImage($event)"
+        @destroyImage="confirmDestroyImage($event)"
         @updateImage="updateImage($event)">
       </image-edit>
     </div>
   </template>
+  <notification ref="notification">
+    <template #actions>
+      <a href="javascript:;" @click="destroyImage()" class="btn-primary">{{ __('Bestätigen') }}</a>
+      <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">{{ __('Abbrechen') }}</a>
+    </template>
+  </notification>
+
 </div>
 </template>
 <script>
@@ -69,6 +76,9 @@ export default {
 
       // Data
       data: null,
+
+      // Current image (for deletion)
+      currentImage: null,
 
       // Routes
       routes: {
@@ -141,15 +151,24 @@ export default {
       });
     },
 
-    destroyImage(image) {
-      if (confirm(this.__(this.notifications.confirmDelete))) {
-        NProgress.start();
-        this.axios.delete(`${this.routes.delete}/${image}`).then(response => {
-          const index = this.data.findIndex(x => x.name === image);
-          this.data.splice(index, 1);
-          NProgress.done();
-        });
-      }
+    confirmDestroyImage(image) {
+      this.currentImage = image;
+      this.$refs.notification.init({
+        message: 'Bitte Löschen bestätigen!',
+        type: 'dialog',
+        style: 'info',
+        autohide: false,
+      });
+    },
+
+    destroyImage() {
+      NProgress.start();
+      this.axios.delete(`${this.routes.delete}/${this.currentImage}`).then(response => {
+        const index = this.data.findIndex(x => x.name === this.currentImage);
+        this.data.splice(index, 1);
+        this.currentImage = null;
+        NProgress.done();
+      });
     },
 
     toggleImage(image) {
