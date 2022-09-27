@@ -241,6 +241,7 @@
 <script>
 import NProgress from 'nprogress';
 import Booking from "@/shared/mixins/Booking";
+import Meta from "@/shared/mixins/Meta";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -277,7 +278,7 @@ export default {
     UserAddress
   },
 
-  mixins: [UserData, Booking],
+  mixins: [UserData, Booking, Meta],
 
   data() {
     return {
@@ -302,6 +303,7 @@ export default {
 
   mounted() {
     this.find();
+    this.setTitle(this.__('Profil'));
   },
 
   methods: {

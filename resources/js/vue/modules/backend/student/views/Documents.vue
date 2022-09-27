@@ -82,6 +82,7 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
@@ -100,7 +101,7 @@ export default {
     IconArrowRight,
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [ErrorHandling, i18n, Meta],
 
   data() {
     return {
@@ -112,7 +113,7 @@ export default {
   },
 
   mounted() {
-
+    this.setTitle(this.__('Dokumente'));
   },
 
   methods: {

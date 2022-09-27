@@ -68,6 +68,7 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import Booking from "@/shared/mixins/Booking";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -89,7 +90,7 @@ export default {
     IconCheckmark,
   },
 
-  mixins: [ErrorHandling, i18n, Booking],
+  mixins: [ErrorHandling, i18n, Booking, Meta],
 
   data() {
     return {
@@ -119,6 +120,7 @@ export default {
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
         this.isFetched = true;
+        this.setTitle(this.data.event.course.title);
         NProgress.done();
       });
     },
