@@ -44,6 +44,7 @@ class BookingController extends Controller
 
   public function cancel(Booking $booking)
   { 
+    $this->authorize('cancel', $booking);
     (new BookingService())->cancel($booking);
     return response()->json('successfully deleted');
   }

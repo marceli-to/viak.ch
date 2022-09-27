@@ -16,7 +16,7 @@ class PenaltyHelper
       'half'  => '50'
     ];
 
-    // Diff between the now and the event
+    // Diff between today and the event date
     $days = Carbon::parse($eventData)->diffInDays(Carbon::now());
 
     switch($days)
@@ -42,7 +42,7 @@ class PenaltyHelper
 
   public static function has($eventData)
   {
-    // Diff between the now and the event
+    // Diff between today and the event date
     $days = Carbon::parse($eventData)->diffInDays(Carbon::now());
     return $days < self::RANGE_MIN ? TRUE : FALSE;
   }

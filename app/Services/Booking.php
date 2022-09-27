@@ -32,14 +32,13 @@ class Booking
 
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
-          'number' => (new BookingService())->number(),
+          'number' => (new BookingService())->getNumber(),
           'address' => $basket['user']['address'] ? $basket['user']['address'] : null,
           'event_id' => $event->id,
           'user_id' => $user->id,
           'booked_at' => \Carbon\Carbon::now(),
         ]);
   
-        // Fire event
         event(new EventBooked($user, $booking));
       }
     }
@@ -61,7 +60,6 @@ class Booking
     $booking->cancelled = 1;
     $booking->cancelled_at = \Carbon\Carbon::now();
     $booking->save();
-    //$booking->delete();
 
     // Check for cancellation penalty and fire events
     if (PenaltyHelper::has($booking->event->date))
@@ -78,6 +76,7 @@ class Booking
       User::find($booking->user_id), 
       BookingModel::find($booking->id)
     ));
+    
     return TRUE;
   }
 
@@ -101,19 +100,14 @@ class Booking
    * @return String number
    */
 
-  public function number()
+  public function getNumber()
   {
     $bookings = BookingModel::get();
-       
-    if ($bookings->count() == 0)
+    $number = 1;
+    if ($bookings->count() >= 1)
     {
-      $number = 1;
+      $number = (int) $bookings->last()->number + 1;
     }
-    else
-    {
-      $number = $bookings->last()->id + 1;
-    }
-
     return $this->pad($number);
   }
 
