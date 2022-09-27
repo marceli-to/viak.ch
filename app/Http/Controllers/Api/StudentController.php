@@ -70,8 +70,6 @@ class StudentController extends Controller
   public function showEvent(Booking $booking)
   {
     $this->authorize('viewEvent', $booking);
-    //dd(new BookingResource($booking));
-    // $data = new StudentEventResource(Event::find($booking->event->id));
     return response()->json(new BookingResource($booking));
   }
 

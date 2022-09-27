@@ -29,13 +29,23 @@ class StudentController extends BaseController
   }
 
   /**
-   * Show the students profile
+   * Show the students events
    * @return \Illuminate\Http\Response
    */
 
   public function event()
   {
     return view($this->viewPath . 'event');
+  }
+
+  /**
+   * Show the students documents
+   * @return \Illuminate\Http\Response
+   */
+
+  public function documents()
+  {
+    return view($this->viewPath . 'documents');
   }
 
 }
