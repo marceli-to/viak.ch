@@ -63,7 +63,7 @@ export default {
       // Autohide [Boolean]
       autohide: true,
       
-      autohideDelay: 3000,
+      autohideDelay: 2000,
 
       // State [Boolean]
       isOpen: false,

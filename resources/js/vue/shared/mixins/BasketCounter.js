@@ -25,7 +25,7 @@ export default {
 
   methods: {
 
-    updateCounter(count) {
+    updateBasketCounter(count) {
 
       if (count > 0) {
         this.counter.innerHTML = count;

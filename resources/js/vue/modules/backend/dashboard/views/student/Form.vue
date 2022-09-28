@@ -240,10 +240,6 @@ export default {
         NProgress.done();
       });
     },
-
-    sorted(data, by, dir){
-      return _.orderBy(data, by, dir);
-    }
   },
 
   computed: {

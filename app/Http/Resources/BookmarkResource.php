@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Resources;
-use App\Http\Resources\BookingResource;
+use App\Http\Resources\EventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CourseResource extends JsonResource
+class BookmarkResource extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -15,12 +15,7 @@ class CourseResource extends JsonResource
   {
     return [
       'uuid' => $this->uuid,
-      'title' => $this->title,
-      'subtitle' => $this->subtitle,
-      'text' => $this->text,
-      'online' => $this->online,
-      'fee' => $this->fee,
-      'slug' => $this->slug
+      'event' => EventResource::make($this->event),
     ];
   }
 }

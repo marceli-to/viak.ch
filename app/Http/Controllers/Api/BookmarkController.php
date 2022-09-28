@@ -26,9 +26,10 @@ class BookmarkController extends Controller
    * @param  Bookmark $bookmark
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Event $event)
+  public function destroy(Bookmark $bookmark)
   {
-    (new BookmarkService())->destroy($event);
+    $this->authorize('destroy', $bookmark);
+    (new BookmarkService())->destroy($bookmark);
     return response()->json('successfully deleted');
   }
 

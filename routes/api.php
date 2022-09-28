@@ -55,7 +55,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::post('/booking', [BookingController::class, 'store']);
   Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel']);
   Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store']);
-  Route::delete('/bookmark/{event:uuid}', [BookmarkController::class, 'destroy']);
+  Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy']);
 });
 
 // Filter & Search

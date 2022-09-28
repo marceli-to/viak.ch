@@ -8,7 +8,7 @@
     <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>
-    <td>{{ __('Buchungs-Nr.') }}</td>
+    <td>{{ __('Buchung') }}</td>
     <td>{{ $data->number }}</td>
   </tr>
   <tr>

@@ -120,6 +120,7 @@ export default {
         this.form.new_password_confirmation = null;
       }
     },
+  
   },
 
 };

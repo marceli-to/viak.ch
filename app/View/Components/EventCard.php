@@ -39,11 +39,11 @@ class EventCard extends Component
   public $isBooked;
 
   /**
-   * Event is bookmarked.
+   * Event with a bookmark.
    * 
    */
 
-  public $isBookmarked;
+  public $bookmark;
 
 
   /**
@@ -53,19 +53,17 @@ class EventCard extends Component
    */
   public function __construct(Event $event, $events = [])
   {
-    $this->event   = $event;
-    $this->experts = collect($event->experts->pluck('fullname')->all());
-    
+    $this->event    = $event;
+    $this->bookmark = NULL;
+    $this->experts  = collect($event->experts->pluck('fullname')->all());
     $this->inBasket = (int) (new BasketStore())->getItem($this->event->uuid);
-    $this->isBookmarked = 0;
 
     // check for booking and bookmarks
     if (auth()->user())
     {
       $this->isBooked = (new BookingService())->has($event, auth()->user());
-      $this->isBookmarked = (int) (new BookmarkService())->has($event, auth()->user());
+      $this->bookmark = (new BookmarkService())->find($event, auth()->user());
     }
-
   }
 
   /**

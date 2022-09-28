@@ -2,17 +2,17 @@
   <div>
     <div class="stacked-list__col">
       <div class="sm:flex">
-        @if ($isBooked || $isBookmarked)
+        @if ($isBooked || $bookmark)
           <div class="stacked-list__icon">
             @if ($isBooked)
               @include('web.partials.icons.checkmark')
             @else
-              <bookmark-button uuid="{{ $event->uuid }}" :exists="{{ $isBookmarked }}" />
+              <bookmark-button event="{{ $event->uuid }}" bookmark="{{ $bookmark->uuid }}" />
             @endif
           </div>
         @else
           <div class="stacked-list__icon">
-            <bookmark-button uuid="{{ $event->uuid }}" />
+            <bookmark-button event="{{ $event->uuid }}" />
           </div>
         @endif
         <div>

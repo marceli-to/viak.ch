@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Policies;
-
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

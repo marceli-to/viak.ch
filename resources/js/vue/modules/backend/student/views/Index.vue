@@ -105,19 +105,41 @@
         <div>
           <user-address :user="user"></user-address>
           <template v-if="user.has_invoice_address && user.invoice_address">
-            <h4 class="mt-4x sm:mt-6x md:mt-8x">Rechnungsadresse</h4>
+            <h4 class="mt-4x sm:mt-6x md:mt-8x">{{ __('Rechnungsadresse') }}</h4>
             <pre>{{ user.invoice_address }}</pre>
           </template>
         </div>
       </template>
     </article-text>
+
     <collapsible-container>
       <collapsible>
         <template #title>
           {{ __('Merkliste') }}
         </template>
         <template #content>
-          <p class="no-results">Deine Merkliste ist leer.</p>
+          <div v-if="user.bookmarks && user.bookmarks.length">
+            <div v-for="(bookmark, index) in sorted(user.bookmarks, 'event.date', 'asc')" :key="index">
+
+              <stacked-list-event :event="bookmark.event" :bookmark="bookmark">
+                <template #icon>
+                  <bookmark-icons 
+                    :bookmark="bookmark.uuid" 
+                    :event="bookmark.event.uuid"
+                    :callback="'deleted'"
+                    @deleted="find()"
+                  />
+                </template>
+                <template #action>
+                  <basket-buttons :uuid="bookmark.event.uuid" />
+                </template>
+              </stacked-list-event>
+
+            </div>
+          </div>
+          <div v-else>
+            <p class="no-results">{{ __('Deine Merkliste ist leer.') }}</p>
+          </div>
         </template>
       </collapsible>
       
@@ -127,8 +149,12 @@
         </template>
         <template #content>
           <div v-if="user.bookings && user.bookings.length">
-            <div v-for="(booking, index) in sortedData" :key="index">
-              <stacked-list-event :event="booking.event" :booking="booking" :hasIcon="true">
+            <div v-for="(booking, index) in sorted(user.bookings, 'event.date', 'asc')" :key="index">
+
+              <stacked-list-event :event="booking.event" :booking="booking">
+                <template #icon>
+                  <icon-checkmark />
+                </template>
                 <template #action>
                   <router-link :to="{ name: 'student-course-event', params: { uuid: booking.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
                     {{ __('Detail')}}
@@ -138,25 +164,27 @@
                   </a>
                 </template>
               </stacked-list-event>
+
             </div>
           </div>
           <div v-else>
-            <p class="no-results">Du hast noch keine Kurse gebucht.</p>
+            <p class="no-results">{{ __('Du hast noch keine Kurse gebucht.') }}</p>
           </div>
         </template>
       </collapsible>
-
     </collapsible-container>
+
     <collapsible-container>
       <collapsible>
         <template #title>
           {{ __('Absolvierte Kurse') }}
         </template>
         <template #content>
-          <p class="no-results">Du hast noch keine Kurse absolviert.</p>
+          <p class="no-results">{{ __('Du hast noch keine Kurse absolviert.') }}</p>
         </template>
       </collapsible>
     </collapsible-container>
+
     <collapsible-container>
       <collapsible>
         <template #title>
@@ -241,6 +269,9 @@
 <script>
 import NProgress from 'nprogress';
 import Booking from "@/shared/mixins/Booking";
+import Basket from "@/shared/mixins/Basket";
+import BasketButtons from "@/modules/frontend/event/Basket.vue";
+import BookmarkIcons from "@/modules/frontend/event/Bookmark.vue";
 import Meta from "@/shared/mixins/Meta";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
@@ -255,6 +286,7 @@ import FormError from "@/shared/components/ui/form/FormError.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import UserData from "@/shared/mixins/data/User";
 import UserAddress from "@/shared/components/ui/misc/Address.vue";
 
@@ -275,10 +307,13 @@ export default {
     IconArrowRight,
     IconEdit,
     IconCross,
-    UserAddress
+    IconCheckmark,
+    UserAddress,
+    BasketButtons,
+    BookmarkIcons
   },
 
-  mixins: [UserData, Booking, Meta],
+  mixins: [UserData, Booking, Basket, Meta],
 
   data() {
     return {
@@ -296,7 +331,7 @@ export default {
 
         booking: {
           cancel: '/api/booking/cancel'
-        }
+        },
       },
     };
   },
@@ -307,13 +342,10 @@ export default {
   },
 
   methods: {
-
-  },
-
-  computed: {
-    sortedData(){
-      return _.orderBy(this.user.bookings, 'event.date', 'asc');
+    sorted(data, by, dir){
+      return _.orderBy(data, by, dir);
     }
   },
+
 }
 </script>

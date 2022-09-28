@@ -5,13 +5,13 @@
   </svg>  
 </template>
 <script>
-  export default {
-    props: {
-      active: {
-        type: [Boolean, Number],
-        default: false,
-      }
-    },
-  }
-  </script>
+export default {
+  props: {
+    active: {
+      type: [Boolean, Number],
+      default: false,
+    }
+  },
+}
+</script>
   

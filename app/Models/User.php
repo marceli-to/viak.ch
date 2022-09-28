@@ -146,12 +146,21 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * The active bookings that belongs to this user.
+   * The cancelled bookings that belongs to this user.
    */
 
   public function cancelledBookings()
   {
     return $this->hasMany(Booking::class)->whereNotNull('cancelled_at');
+  }
+
+  /**
+   * The bookmarks that belongs to this user.
+   */
+
+  public function bookmarks()
+  {
+    return $this->hasMany(Bookmark::class);
   }
 
 

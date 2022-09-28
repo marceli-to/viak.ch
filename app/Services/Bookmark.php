@@ -7,6 +7,32 @@ use App\Models\Event;
 
 class Bookmark
 {
+  /**
+   * Find a bookmark by an event and a user
+   * 
+   * @param Event $event
+   * @param User $user
+   * @return \Illuminate\Http\Response
+   */
+
+  public function find(Event $event, User $user)
+  {
+    return BookmarkModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
+  }
+
+  /**
+   * Check whether or not a user has a bookmark for a specific event.
+   * 
+   * @param Event $event
+   * @param User $user
+   * @return Boolean
+   */
+
+  public function has(Event $event, User $user)
+  {
+    $bookmark = BookmarkModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
+    return $bookmark ? TRUE : FALSE;
+  }
 
   /**
    * Store a bookmark
@@ -29,27 +55,12 @@ class Bookmark
   /**
    * Remove a bookmark
    *
-   * @param  Bookmark $bookmark
+   * @param  BookmarkModel $bookmark
    * @return Boolean
    */
-  public function destroy(Event $event)
+  public function destroy(BookmarkModel $bookmark)
   {
-    $bookmark = BookmarkModel::where('event_id', $event->id)->where('user_id', auth()->user()->id)->first();
-    $bookmark->delete();
     return $bookmark->delete();
-  }
-
-  /**
-   * Check whether or not a user has a bookmark for a specific event.
-   * 
-   * @param Event $event
-   * @return Boolean
-   */
-
-  public function has(Event $event)
-  {
-    $bookmark = BookmarkModel::where('event_id', $event->id)->where('user_id', auth()->user()->id)->first();
-    return $bookmark ? TRUE : FALSE;
   }
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Resources;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\BookmarkResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudentResource extends JsonResource
@@ -31,6 +32,7 @@ class StudentResource extends JsonResource
       'email' => $this->email,
       'gender_id' => $this->gender_id,
       'bookings' => BookingResource::collection($this->bookings),
+      'bookmarks' => BookmarkResource::collection($this->bookmarks),
     ];
   }
 }
