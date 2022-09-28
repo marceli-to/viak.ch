@@ -11,12 +11,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TestController;
-
-
 
 
 /*
@@ -32,11 +31,10 @@ Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
 Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
 Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
-Route::get('/student/register', [StudentController::class, 'register'])->name('page.student.register');
+Route::get('/student/register', [RegisterController::class, 'register'])->name('page.register.form');
 
-// Url based images
+// URL based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
-
 
 /*
 |--------------------------------------------------------------------------
@@ -52,9 +50,9 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/expert/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert']);
 
   // Student
-  Route::get('/student', [StudentController::class, 'profile'])->name('page.student.profile')->middleware(['role:student']);
-  Route::get('/student/documents', [StudentController::class, 'documents'])->name('page.student.documents')->middleware(['role:student']);
-  Route::get('/student/course/event/{any?}', [StudentController::class, 'event'])->name('page.student.event')->middleware(['role:student']);
+  Route::get('/student/{any?}', [StudentController::class, 'index'])->name('page.student.profile')->where('any', '.*')->middleware(['role:student']);
+  // Route::get('/student/documents', [StudentController::class, 'documents'])->name('page.student.documents')->middleware(['role:student']);
+  // Route::get('/student/course/event/{any?}', [StudentController::class, 'event'])->name('page.student.event')->middleware(['role:student']);
   
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
   Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');
@@ -79,7 +77,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
 Auth::routes(['verify' => true, 'register' => true]);
 Route::match(['get', 'post'], 'register', function(){
-  return redirect()->route('page.student.register');
+  return redirect()->route('page.register.form');
 });
 Route::get('/logout', [LoginController::class, 'logout']);
 

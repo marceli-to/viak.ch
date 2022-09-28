@@ -1,4 +1,5 @@
 @extends('web.layout.frontend')
+@section('html_class', 'is-auth')
 @section('page_title', __('Buchung abgeschlossen'))
 @section('content')
 <section class="container">

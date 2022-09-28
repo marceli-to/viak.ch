@@ -148,7 +148,7 @@ export default {
     submit() {
       NProgress.start();
       this.axios.put(`${this.routes.addUser}`, this.form).then((response) => {
-        this.$router.push({ name:'checkout-payment' });
+        this.$router.push({ name: 'checkout-payment' });
         NProgress.done();
       });
     },

@@ -23,7 +23,7 @@
       </div>
     </stacked-list-item>
 
-    <stacked-list-item>
+    <stacked-list-item v-if="basket.totals.vat > 0">
       <div>
         <div class="sm:span-4">
           {{ __('MwSt') }}

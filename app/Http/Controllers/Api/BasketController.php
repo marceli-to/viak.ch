@@ -134,7 +134,9 @@ class BasketController extends Controller
   private function getTotals($events = [])
   {
     $total = collect($events)->sum('fee');
-    $vat   = round( ($total / 100 * 7.7) * 20 ) / 20;
+    // @todo: fix vat on event
+    $vat = round( ($total / 100 * 7.7) * 20 ) / 20;
+    $vat = 0;
     return [
       'total' => $total,
       'vat' => $vat,
