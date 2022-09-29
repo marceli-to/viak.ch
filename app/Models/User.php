@@ -339,8 +339,9 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * Get all courses for a user. This is only
-   * applicable for users with the role 'expert'
+   * Get all courses for a user. This is only applicable for users with
+   * the role 'expert' as 'students' are not listed in 'events_users'
+   * but in 'bookings'
    * 
    * @param  User $user
    * @return Event $event

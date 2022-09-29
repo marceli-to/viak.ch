@@ -19,7 +19,8 @@ class EventBooked
    * @return void
    */
   public function __construct(User $user, Booking $booking)
-  {
+  { 
+    // Get booking
     $booking = Booking::with('event.course')->find($booking->id);
     $this->user = $user;
     $this->booking = $booking;

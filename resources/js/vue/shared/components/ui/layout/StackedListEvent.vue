@@ -1,5 +1,6 @@
 <template>
 <div>
+  
   <article v-if="$props.isAdmin"
     class="stacked-list-event" 
     data-touch>
@@ -87,7 +88,9 @@
       </div>
     </div>
   </article>
+
   <notification ref="notification" />
+  
 </div>
 </template>
 <script>

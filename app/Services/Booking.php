@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Helpers\PenaltyHelper;
 use App\Models\Booking as BookingModel;
 use App\Services\Booking as BookingService;
+use App\Services\Bookmark as BookmarkService;
 use App\Models\User;
 use App\Models\Event;
 use App\Events\EventBooked;
@@ -38,8 +39,12 @@ class Booking
           'user_id' => $user->id,
           'booked_at' => \Carbon\Carbon::now(),
         ]);
-  
+        
+        // Fire Event
         event(new EventBooked($user, $booking));
+        
+        // Clean up bookmarks
+        (new BookmarkService())->findAndDestroy($event, $user);
       }
     }
 

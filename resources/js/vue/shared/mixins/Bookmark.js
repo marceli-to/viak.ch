@@ -72,7 +72,7 @@ export default {
       });
     },
 
-    removeBookmark(callback = null) {
+    removeBookmark() {
       NProgress.start();
       this.axios.delete(`${this.routes.bookmark.delete}/${this.bookmarkUuid}`).then(response => {
         this.bookmarked = false;

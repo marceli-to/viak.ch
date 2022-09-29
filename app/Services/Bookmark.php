@@ -21,6 +21,21 @@ class Bookmark
   }
 
   /**
+   * Find a bookmark by an event and a user and destroy it
+   * 
+   * @param Event $event
+   * @param User $user
+   * @return \Illuminate\Http\Response
+   */
+
+  public function findAndDestroy(Event $event, User $user)
+  {
+    return $this->destroy(
+      $this->find($event, $user)
+    );
+  }
+
+  /**
    * Check whether or not a user has a bookmark for a specific event.
    * 
    * @param Event $event

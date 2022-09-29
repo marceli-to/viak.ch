@@ -86,6 +86,7 @@ export default {
           this.getBasket();
           return;
         }
+        
         NProgress.done();
       });
     },
