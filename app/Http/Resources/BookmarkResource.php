@@ -15,7 +15,7 @@ class BookmarkResource extends JsonResource
   {
     return [
       'uuid' => $this->uuid,
-      'event' => EventResource::make($this->event),
+      'event' => StudentEventResource::make($this->event),
     ];
   }
 }

@@ -39,7 +39,9 @@
           {{ __('Teilnehmer') }}
         </template>
         <template #content>
-
+          <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
+            {{ participant.firstname }} {{ participant.name }}, {{ participant.city }}
+          </stacked-list-item>
         </template>
       </collapsible>
     </collapsible-container>
@@ -74,6 +76,7 @@ import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
+import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -85,6 +88,7 @@ export default {
     NProgress,
     ArticleText,
     StackedListEvent,
+    StackedListItem,
     CollapsibleContainer,
     Collapsible,
     IconArrowRight,

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Resources;
+use App\Helpers\PenaltyHelper;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\LocationResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -30,6 +31,7 @@ class StudentEventResource extends JsonResource
         ];
       }),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
+      'cancellation' => PenaltyHelper::get($this->date, $this->courseFee),
     ];
   }
 }

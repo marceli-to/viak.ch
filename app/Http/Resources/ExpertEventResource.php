@@ -21,6 +21,7 @@ class ExpertEventResource extends JsonResource
       'fee' => $this->courseFee,
       'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
+      'bookings' => collect($this->bookings)->count(),
       'dates' => $this->dates->map(function($date) {
         return [
           'date' => $date->date,

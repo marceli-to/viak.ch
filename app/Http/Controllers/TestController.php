@@ -5,6 +5,9 @@ use App\Models\Job;
 use App\Models\Event;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Booking;
+use App\Http\Resources\EventParticipantsResource;
+
 use App\Events\EventBooked;
 use Illuminate\Http\Request;
 
@@ -15,6 +18,19 @@ class TestController extends BaseController
   public function __construct()
   {
     parent::__construct();
+  }
+
+  public function index()
+  {
+    $bookings = Booking::with('user')->where('event_id', 22)->get();
+    //dd();
+
+    $event = Event::with('bookings.user')->find(22);
+
+    $u = $event->bookings->pluck('user')->all();
+    $users = EventParticipantsResource::collection($u);
+
+    dd($users);
   }
 
   public function booked()
