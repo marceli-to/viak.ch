@@ -144,6 +144,7 @@ export default {
           message: this.notifications.saved,
           type: 'toast',
           style: 'success',
+          autohide: true,
         });
         img.id = response.data.imageId;
         this.data.push(img);
@@ -187,6 +188,7 @@ export default {
           message: this.notifications.updated,
           type: 'toast',
           style: 'success',
+          autohide: true,
         });
         NProgress.done();
       });

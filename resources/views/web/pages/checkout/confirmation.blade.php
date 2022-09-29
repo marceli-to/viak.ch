@@ -9,6 +9,11 @@
     </x-slot>
     <x-slot name="content">
       <p>{{ __('Vielen Dank für Deine Buchung. Du erhältst in den nächsten Minuten eine Bestätigung per E-Mail.') }}</p>
+      <p>
+        <a href="{{ route('page.courses') }}" title="{{ __('Weitere Kurse anzeigen') }}">
+          {{ __('Weitere Kurse anzeigen') }}
+        </a>
+      </p>
     </x-slot>
   </x-article-text>
 </section>

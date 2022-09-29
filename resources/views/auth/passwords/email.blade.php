@@ -5,7 +5,7 @@
 @section('content')
 <section class="container">
   @if ($errors->any())
-    <x-notification style="error" message="{{ __('Bitte überprüf deine Eingaben.') }}" />
+    <x-notification style="error" message="{{ __('Es ist ein Fehler aufgetreten.') }}" />
   @endif
   @if (session('status'))
     <x-notification style="success" message="{{ session('status') }}" />

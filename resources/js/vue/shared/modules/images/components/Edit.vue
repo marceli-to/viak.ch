@@ -176,6 +176,7 @@
       </div>
     </div>
     <!-- // edit -->
+    <notification ref="notification" />
   </div>
 </template>
 <script>

@@ -89,6 +89,7 @@
 </template>
 <script>
 import { EyeIcon, EyeOffIcon, EditIcon, Trash2Icon, CropIcon, ImageIcon} from 'vue-feather-icons';
+import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
@@ -143,7 +144,7 @@ export default {
       mode: 'create',
 
       // States
-      isFetched: true,
+      isFetched: false,
       isLoading: false,
       hasForm: false,
 
@@ -163,9 +164,11 @@ export default {
   methods: {
 
     fetch() {
+      NProgress.start();
       this.axios.get(`${this.routes.get}/${this.$props.courseId}`).then(response => {
         this.data = response.data.data;
         this.isFetched = true;
+        NProgress.done();
       });
     },
 
@@ -186,20 +189,24 @@ export default {
         publish: 1,
       };
 
+      NProgress.start();
       this.axios.post(`${this.routes.store}`, video).then(response => {
         video.id = response.data.videoId;
         this.data.push(video);
         this.reset();
         this.hideForm();
+        NProgress.done();
       });
     },
 
     update() {
+      NProgress.start();
       this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.video.id}`, this.video).then(response => {
         this.reset();
         this.isLoading = false;
         this.hideForm();
+        NProgress.done();
       });
     },
 
@@ -220,6 +227,7 @@ export default {
     },
 
     destroy() {
+      NProgress.start();
       this.isLoading = true;
       this.axios.delete(`${this.routes.delete}/${this.videoToDelete.id}`).then(response => {
         const index = this.data.findIndex(x => x.id === this.videoToDelete.id);
@@ -228,10 +236,12 @@ export default {
         }
         this.videoToDelete = null;
         this.isLoading = false;
+        NProgress.done();
       });
     },
 
     toggle(video) {
+      NProgress.start();
       this.isLoading = true;
       this.axios.get(`${this.routes.toggle}/${video.id}`).then(response => {
         const index = this.data.findIndex(x => x.id === video.id);
@@ -239,6 +249,7 @@ export default {
           this.data[index].publish = response.data;
         }
         this.isLoading = false;
+        NProgress.done();
       });
     },
 

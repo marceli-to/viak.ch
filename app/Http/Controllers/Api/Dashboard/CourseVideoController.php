@@ -61,6 +61,7 @@ class CourseVideoController extends Controller
   public function update(CourseVideo $courseVideo, CourseVideoStoreRequest $request)
   {
     $courseVideo = CourseVideo::findOrFail($courseVideo->id);
+    $courseVideo->update($request->all());
     return response()->json('successfully updated');
   }
 

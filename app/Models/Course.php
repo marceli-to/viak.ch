@@ -231,6 +231,12 @@ class Course extends Base
     return $this->morphOne(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
   }
 
+  public function visualImages()
+  {
+    return $this->morphMany(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
+  }
+
+
   public function image()
   {
     return $this->morphOne(Image::class, 'imageable');
@@ -248,6 +254,11 @@ class Course extends Base
   public function videos()
   {
     return $this->hasMany(CourseVideo::class);
+  }
+
+  public function publishedVideos()
+  {
+    return $this->hasMany(CourseVideo::class)->where('publish', 1);
   }
 
 

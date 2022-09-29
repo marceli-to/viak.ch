@@ -11,7 +11,6 @@
   overflow: hidden; 
   width: 100%;
   height: auto;
-  margin-bottom: $space-3x;
 }
 
 .ratio-container iframe,
@@ -28,7 +27,7 @@
   padding-bottom: 75%;
 }
 
-/* ratio 4x3 */
+/* ratio 16x9 */
 .ratio-container--16x9 {
   padding-bottom: 56.25%;
 }

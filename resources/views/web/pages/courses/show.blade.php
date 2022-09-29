@@ -4,13 +4,33 @@
 @section('content')
 <section class="container">
   <article class="content-text-media">
-    <figure class="text-media__visual">
-      @if ($course->visualImage)
-        <x-image :maxSizes="[1000 => 1600, 700 => 1200, 0 => 900]" width="1600" height="900" :image="$course->visualImage" ratio="16x9" :caption="$course->title" />
-      @else
-        <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="{{ $course->title }}">
-      @endif
-    </figure>
+
+    @if ($course->visualImages->count() > 1)
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          @foreach($course->visualImages as $image)
+            <figure class="swiper-slide text-media__visual">
+              @if ($image)
+                <x-image :maxSizes="[1000 => 1600, 700 => 1200, 0 => 900]" width="1600" height="900" :image="$image" ratio="16x9" :caption="$course->title" />
+              @else
+                <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="{{ $course->title }}">
+              @endif
+            </figure>
+          @endforeach
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    @else
+      <figure class="text-media__visual">
+        @if ($course->visualImage)
+          <x-image :maxSizes="[1000 => 1600, 700 => 1200, 0 => 900]" width="1600" height="900" :image="$course->visualImage" ratio="16x9" :caption="$course->title" />
+        @else
+          <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="{{ $course->title }}">
+        @endif
+      </figure>
+    @endif
+
     <div class="text-media__body">
       <aside>
         @if ($course->title)
@@ -23,6 +43,16 @@
       <div>
         @if ($course->text)
           {!! $course->text !!}
+        @endif
+        @if ($course->publishedVideos)
+          <div class="mt-8x mt-12x">
+            @foreach($course->publishedVideos as $video)
+              <p>{{ $video->title }}</p>
+              <div class="ratio-container mb-8x md:mb-12x">
+                {!! $video->code !!}
+              </div>
+            @endforeach
+          </div>
         @endif
       </div>
     </div>
