@@ -6,5 +6,5 @@
 <section class="container" id="app-user">
   <app-component />
 </section>
-<script src="{{ mix('assets/js/student/app.js') }}" type="text/javascript"></script>
+<script src="{{ mix('assets/js/expert/app.js') }}" type="text/javascript"></script>
 @endsection

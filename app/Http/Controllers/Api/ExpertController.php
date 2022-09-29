@@ -1,25 +1,28 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ExpertResource;
+// use App\Http\Resources\ExpertEventResource;
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExpertUpdateRequest;
 
 class ExpertController extends Controller
 {
   /**
-   * Find a user by the authenticated user
+   * Find an expert by the authenticated user
    * 
    * @return \Illuminate\Http\Response
    */
   public function find()
   { 
-    $user = User::findOrFail(auth()->user()->id);
-    return response()->json($user);
+    $data = new ExpertResource(User::findOrFail(auth()->user()->id));
+    return response()->json($data);
   }
 
-/**
-   * Update a user
+  /**
+   * Update an exper
    * 
    * @param ExpertUpdateRequest $request
    * @return \Illuminate\Http\Response

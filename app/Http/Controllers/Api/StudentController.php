@@ -13,7 +13,7 @@ use App\Http\Requests\StudentUpdateRequest;
 class StudentController extends Controller
 {
   /**
-   * Get a user with:
+   * Get a student with:
    * 
    * - Bookings
    * - Bookmarks
@@ -28,7 +28,7 @@ class StudentController extends Controller
   }
 
   /**
-   * Update a user
+   * Update a student
    * 
    * @param StudentUpdateRequest $request
    * @return \Illuminate\Http\Response

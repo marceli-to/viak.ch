@@ -14,20 +14,20 @@ Vue.use(VueRouter);
 
 // Routes
 import baseRoutes from '@/shared/config/routes';
-import studentRoutes from '@/backend/student/config/routes';
+import expertRoutes from '@/backend/expert/config/routes';
 
 const router = new VueRouter(
   { 
     mode: 'history', 
     routes: [
       ...baseRoutes,
-      ...studentRoutes,
+      ...expertRoutes,
     ]
   }
 );
 
 // App component
-import AppComponent from '@/backend/student/App.vue';
+import AppComponent from '@/backend/expert/App.vue';
 
 // Mount App
 if (document.getElementById("app-user")) {

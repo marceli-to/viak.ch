@@ -5,17 +5,17 @@ import StudentCourse from '@/backend/student/views/Course.vue';
 const routes = [
   {
     name: 'student-profile',
-    path: '/student',
+    path: '/student/profile',
     component: StudentIndex,
   },
   {
     name: 'student-documents',
-    path: '/student/documents',
+    path: '/student/profile/documents',
     component: StudentDocuments,
   },
   {
     name: 'student-course-event',
-    path: '/student/course/event/:uuid',
+    path: '/student/profile/course/event/:uuid',
     component: StudentCourse,
   },
 ];

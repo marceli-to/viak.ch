@@ -42,8 +42,8 @@ mix.js('resources/js/vue/frontend/register/Index.js', 'public/assets/js/global/r
 // Backend: Administrator
 mix.js('resources/js/vue/backend/dashboard/App.js', 'public/assets/js/dashboard/app.js').version();
 
-// Frontend: Expert
-mix.js('resources/js/vue/backend/expert/profile/Index.js', 'public/assets/js/expert/app.js').version();
+// Backend: Expert
+mix.js('resources/js/vue/backend/expert/App.js', 'public/assets/js/expert/app.js').version();
 
 // Backend: Student
 mix.js('resources/js/vue/backend/student/App.js', 'public/assets/js/student/app.js').version();
