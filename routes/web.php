@@ -48,11 +48,11 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   // Expert
   // Route::get('/expert/profile', [ExpertController::class, 'profile'])->name('page.expert.profile')->middleware(['role:expert']);
-  Route::view('/expert/profile/{any?}', 'web.pages.user.expert.index')->name('page.expert.profile')->middleware(['role:expert']);
+  Route::view('/expert/profile/{any?}', 'web.pages.user.expert.index')->name('page.expert.profile')->where('any', '.*')->middleware(['role:expert']);
 
   // Student
   // Route::get('/student/{any?}', [StudentController::class, 'index'])->name('page.student.profile')->where('any', '.*')->middleware(['role:student']);
-  Route::view('/student/profile/{any?}', 'web.pages.user.student.index')->name('page.student.profile')->middleware(['role:student']);
+  Route::view('/student/profile/{any?}', 'web.pages.user.student.index')->name('page.student.profile')->where('any', '.*')->middleware(['role:student']);
 
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
   Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');

@@ -60,17 +60,4 @@ class StudentController extends Controller
     return response()->json($user->uuid);
   }
 
-  /**
-   * Show an event for a given booking
-   * 
-   * @param String $bookingUuid
-   * @return \Illuminate\Http\Response
-   */
-
-  public function showEvent(Booking $booking)
-  {
-    $this->authorize('viewEvent', $booking);
-    return response()->json(new BookingResource($booking));
-  }
-
 }

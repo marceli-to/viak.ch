@@ -1,0 +1,19 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-bubble {
+  @extend %ml-1x;
+  background-color: $color-secondary;
+  border-radius: 100%;
+  display: inline-block;
+  height: 5px;
+  width: 5px;
+
+  @include bp-sm() {
+    height: 7px;
+    width: 7px;
+  }
+}

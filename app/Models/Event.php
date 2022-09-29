@@ -45,6 +45,7 @@ class Event extends Base
    */
 
   protected $appends = [
+    'date_str',
     'course_fee',
     'course_online',
     'expert_ids',
@@ -113,6 +114,15 @@ class Event extends Base
   public function experts()
   {
     return $this->belongsToMany(User::class);
+  }
+
+  /**
+   * The bookings that belong to this event.
+   */
+  
+  public function bookings()
+  {
+    return $this->hasMany(Booking::class, 'event_id', 'id');
   }
 
 
@@ -187,9 +197,9 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateStrAttribute($value)
+  public function getDateStrAttribute()
   {   
-    return date('d. F Y', strtotime($value));
+    return date('d. F Y', strtotime($this->date));
   }
 
   /**

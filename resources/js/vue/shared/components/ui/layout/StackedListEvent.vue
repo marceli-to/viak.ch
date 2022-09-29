@@ -47,6 +47,7 @@
       <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
     </template>
     <div>
+
       <div class="stacked-list__col">
         <div :class="[$slots.icon ? 'sm:flex' : '']">
           <div class="stacked-list__icon" v-if="$slots.icon">
@@ -67,6 +68,7 @@
           </div>
         </div>
       </div>
+      
       <div class="stacked-list__col">
         <template v-if="$props.event.online">
           {{ __('Online') }}
@@ -74,14 +76,22 @@
         <template v-else-if="$props.event.location && $props.event.location.description">
           {{ $props.event.location.description }}
         </template>
-        <template v-if="$props.event.experts">
+        <template v-if="$props.event.experts && $props.showExperts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
       </div>
+
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
-        <div>
+        
+        <div v-if="$props.showFee">
           CHF {{ $props.event.fee}}
         </div>
+        
+        <div v-if="$props.showBookingCount">
+          Buchungen<br>
+          <strong>{{ $props.event.bookings}}</strong>
+        </div>
+
         <div class="stacked-list__action" v-if="$slots.action">
           <slot name="action" />
         </div>
@@ -124,6 +134,21 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    showExperts: {
+      type: Boolean,
+      default: true,
+    },
+    
+    showFee: {
+      type: Boolean,
+      default: true,
+    },
+    
+    showBookingCount: {
+      type: Boolean,
+      default: false
+    }
   },
 }
 </script>

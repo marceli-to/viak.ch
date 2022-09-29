@@ -20,7 +20,7 @@
                 {{ __('Experte') }}: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
               </li>
               <li>
-                {{ __('ab') }} {{ date('d. F Y', strtotime($course->upcomingEvents()->first()->date)) }}
+                {{ __('ab') }} {{ $course->upcomingEvents()->first()->date_str }}
               </li>
               @if ($course->online)
                 <li>

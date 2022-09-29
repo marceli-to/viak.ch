@@ -115,7 +115,12 @@
     <collapsible-container>
       <collapsible>
         <template #title>
-          {{ __('Merkliste') }}
+          <div class="flex">
+            {{ __('Merkliste') }}
+            <em class="icon-bubble" 
+              v-if="user.bookmarks && user.bookmarks.length">
+            </em>
+          </div>
         </template>
         <template #content>
           <div v-if="user.bookmarks && user.bookmarks.length">

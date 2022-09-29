@@ -1,6 +1,7 @@
 <template>
 <div v-if="isFetched">
   <article-text>
+    <!-- user data -->
     <template #icon>
       <a href="" class="icon-edit" @click.prevent="toggleForm()">
         <icon-edit />
@@ -91,12 +92,43 @@
         <user-address :user="user"></user-address>
       </div>
     </template>
+    <!-- // user data -->
   </article-text>
+
+  <collapsible-container>
+    <collapsible :expanded="true">
+      <template #title>
+        {{ __('Bevorstehende Kurse') }}
+      </template>
+      <template #content>
+        <div v-if="user.upcoming_events && user.upcoming_events.length">
+          <div v-for="(event, index) in sorted(user.upcoming_events, 'event.date', 'asc')" :key="index">
+            <stacked-list-event 
+              :event="event" 
+              :showExperts="false"
+              :showFee="false" 
+              :showBookingCount="true">
+              <template #action>
+                <router-link :to="{ name: 'expert-course-event', params: { uuid: event.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
+                  {{ __('Detail')}}
+                </router-link>
+              </template>
+            </stacked-list-event>
+          </div>
+        </div>
+        <div v-else>
+          <p class="no-results">{{ __('Du hast keine bevorstehenden Kurse.') }}</p>
+        </div>
+      </template>
+    </collapsible>
+  </collapsible-container>
+  
   <notification ref="notification" />
 </div>
 </template>
 <script>
 import NProgress from 'nprogress';
+import Meta from "@/shared/mixins/Meta";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
@@ -105,7 +137,9 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import FormError from "@/shared/components/ui/form/FormError.vue";
+import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
+import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
@@ -122,7 +156,9 @@ export default {
     Grid,
     GridCol,
     ArticleText,
+    CollapsibleContainer,
     Collapsible,
+    StackedListEvent,
     FormGroup,
     FormGroupHeader,
     FormError,
@@ -132,7 +168,7 @@ export default {
     UserAddress
   },
 
-  mixins: [UserData],
+  mixins: [UserData, Meta],
 
   data() {
     return {
@@ -157,7 +193,14 @@ export default {
 
   mounted() {
     this.find();
+    this.setTitle(this.__('Profil'));
   },
+
+  methods: {
+    sorted(data, by, dir){
+      return _.orderBy(data, by, dir);
+    }
+  }
 
 }
 </script>

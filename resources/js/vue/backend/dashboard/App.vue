@@ -99,7 +99,7 @@ export default {
 
   data() {
     return {
-      isLoaded: false,
+      isLoaded: true,
       isActive: false,
       hasMenu: false,
     }
@@ -110,15 +110,15 @@ export default {
   },
 
   methods: {
-    fetchUser() {
-      if (!this.$store.state.user) {
-        this.isLoaded = false;
-        this.axios.get(`/api/user`).then(response => {
-          this.$store.commit('user', response.data);
-          this.isLoaded = true;
-        });
-      }
-    },
+    // fetchUser() {
+    //   if (!this.$store.state.user) {
+    //     this.isLoaded = false;
+    //     this.axios.get(`/api/user`).then(response => {
+    //       this.$store.commit('user', response.data);
+    //       this.isLoaded = true;
+    //     });
+    //   }
+    // },
 
     toggleMenu() {
       this.hasMenu = this.hasMenu ? false : true;

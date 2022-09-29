@@ -128,6 +128,15 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
+   * The upcoming events that belong to this user.
+   */
+
+  public function upcomingEvents()
+  {
+		return $this->belongsToMany(Event::class)->orderBy('date')->where('date', '>=', date('Y-m-d', time()));
+  }
+
+  /**
    * The gender that belongs to this user.
    */
 

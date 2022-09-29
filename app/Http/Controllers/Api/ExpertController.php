@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExpertResource;
-// use App\Http\Resources\ExpertEventResource;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -22,7 +21,7 @@ class ExpertController extends Controller
   }
 
   /**
-   * Update an exper
+   * Update an expert
    * 
    * @param ExpertUpdateRequest $request
    * @return \Illuminate\Http\Response

@@ -333,7 +333,7 @@ class CourseFilter
           'uuid' => $course->uuid,
           'slug' => $course->slug,
           'title' => $course->title,
-          'date' => $event->date,
+          'date' => $event->date_str,
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
           'fee' => $course->fee,

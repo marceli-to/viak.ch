@@ -30,9 +30,12 @@ class Bookmark
 
   public function findAndDestroy(Event $event, User $user)
   {
-    return $this->destroy(
-      $this->find($event, $user)
-    );
+    $bookmark = $this->find($event, $user);
+    if ($bookmark)
+    {
+      return $this->destroy($bookmark);
+    }
+    return FALSE;
   }
 
   /**

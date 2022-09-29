@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\ImageController;
+use App\Http\Controllers\Api\EventController;
 
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
@@ -27,7 +28,6 @@ use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardS
 use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,18 +39,29 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 |
 */
 
-// Basket (authorized)
+
+/*
+|--------------------------------------------------------------------------
+| Basket
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/basket', [BasketController::class, 'get']);
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
   Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
 });
 
-// Basket (public)
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
 Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 
-// Bookings, Bookmarks
+
+/*
+|--------------------------------------------------------------------------
+| Bookings, Bookmarks
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::post('/booking', [BookingController::class, 'store']);
   Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel']);
@@ -58,42 +69,77 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy']);
 });
 
-// Filter & Search
+
+/*
+|--------------------------------------------------------------------------
+| Filter, Search, Translation, Genders
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/course/filters', [FilterController::class, 'settings']);
 Route::post('/course/filter', [FilterController::class, 'filter']);
 Route::post('/course/search', [FilterController::class, 'search']);
 Route::delete('/course/filter', [FilterController::class, 'reset']);
-
-// Translations
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
-
-// Genders
 Route::get('/genders', [GenderController::class, 'fetch']);
 
-// Student (public)
-Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
-// Student (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:admin,student'])->group(function() {
+/*
+|--------------------------------------------------------------------------
+| Student
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/student', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
-  Route::get('/student/course/event/{booking:uuid}', [StudentController::class, 'showEvent']);
 });
 
-// Expert (authorized)
-Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
+Route::post('/student/register', [StudentRegisterController::class, 'create']);
+
+
+/*
+|--------------------------------------------------------------------------
+| Expert
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth:sanctum', 'verified', 'role:expert'])->group(function() {
   Route::get('/expert', [ExpertController::class, 'find']);
   Route::put('/expert', [ExpertController::class, 'update']);
-  Route::delete('/expert', [ExpertController::class, 'destroy']);
 });
 
-// Admin (authorized)
+
+/*
+|--------------------------------------------------------------------------
+| Administrator
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() {
   Route::get('/admin', [AdminController::class, 'find']);
   Route::put('/admin', [AdminController::class, 'update']);
 });
 
-// Images
+/*
+|--------------------------------------------------------------------------
+| Courses, Events
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
+  Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'find'])->middleware(['role:admin,expert']);
+  Route::get('/student/course/event/{booking:uuid}', [EventController::class, 'findByBooking'])->middleware(['role:admin,student']);
+});
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Images  
+|--------------------------------------------------------------------------
+*/
+
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
   Route::get('images', [ImageController::class, 'get']);
   Route::post('images/order', [ImageController::class, 'order']);
@@ -114,9 +160,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(func
 |
 */
 
-Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->get('/user', function (Request $request) {
-  return $request->user();
-});
+// Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->get('/user', function (Request $request) {
+//   return $request->user()->uuid;
+// });
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('dashboard')->group(function() {
 
