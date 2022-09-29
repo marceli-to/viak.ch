@@ -56,11 +56,16 @@
     }
 
     .media-uploads-item {
+      iframe,
       img {
         &.is-hidden {
           opacity: .4;
         }
       }
+    }
+
+    .media-uploads-item.is-hidden iframe {
+      opacity: .4;
     }
 
     &__listing {
@@ -110,17 +115,24 @@
         @extend %span-6;
         @extend %sm\:span-4;
 
-        figure {
+        > div, 
+        > figure {
           @extend %p-2x;
           border: 2px solid $color-tertiary;
           position: relative;
+        }
+
+        &--video {
+          @extend %sm\:span-6;
+        }
+
+        figure {
 
           figcaption {
             @extend %pb-2x;
             @extend %pl-3x;
             @extend %pr-3x;
             @extend %pt-2x;
-
             @extend %fs-12x;
             @extend %sm\:fs-14x;
             background-color: $color-tertiary;
@@ -132,6 +144,22 @@
           }
         }
       }
+    }
+
+    .media-uploads-button {
+      @extend %p-8x;
+      @extend %mb-8x;
+      align-items: center;
+      color: $color-primary;
+      border: 2px dashed $color-tertiary;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      &:hover {
+        border-color: $color-secondary;
+      } 
     }
   }
 

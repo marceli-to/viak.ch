@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
+use App\Http\Controllers\Api\Dashboard\CourseVideoController as DashboardCourseVideoController;
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
 use App\Http\Controllers\Api\Dashboard\EventController as DashboardEventController;
 use App\Http\Controllers\Api\Dashboard\EventSettingsController as DashboardEventSettingsController;
@@ -177,6 +178,15 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::get('course/state/{course}', [DashboardCourseController::class, 'toggle']);
   Route::post('course/order', [DashboardCourseController::class, 'order']);
   Route::delete('course/{course}', [DashboardCourseController::class, 'destroy']);
+
+  // Course videos
+  Route::get('course/videos/{course}', [DashboardCourseVideoController::class, 'get']);
+  Route::get('course/video/{courseVideo}', [DashboardCourseVideoController::class, 'find']);
+  Route::post('course/video/', [DashboardCourseVideoController::class, 'store']);
+  Route::put('course/video/{courseVideo}', [DashboardCourseVideoController::class, 'update']);
+  Route::get('course/video/state/{courseVideo}', [DashboardCourseVideoController::class, 'toggle']);
+  Route::post('course/video/order', [DashboardCourseVideoController::class, 'order']);
+  Route::delete('course/video/{courseVideo}', [DashboardCourseVideoController::class, 'destroy']);
 
   // Event settings
   Route::get('event-settings', [DashboardEventSettingsController::class, 'get']);

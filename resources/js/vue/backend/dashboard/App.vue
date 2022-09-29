@@ -106,7 +106,7 @@ export default {
   },
 
   mounted() {
-    this.fetchUser();
+    //this.fetchUser();
   },
 
   methods: {

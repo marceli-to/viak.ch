@@ -21,6 +21,7 @@ class EventController extends Controller
 
   public function find(Event $event)
   {
+    $this->authorize('containsEvent', $event);
     $event = Event::with('bookings.user')->find($event->id);
     $data = [
       'event' => new ExpertEventResource($event),

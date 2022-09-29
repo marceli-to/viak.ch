@@ -111,6 +111,15 @@ textarea {
 	height: auto;
   min-height: auto;
 
+  &.code {
+    font-family: 'Menlo', 'Courier New', Courier, monospace;
+    font-size: 16px !important;
+    font-weight: 400;
+    color: $color-quaternary;
+    min-height: 140px;
+
+  }
+
   &.autosize {
     &:focus {
       @include bp-sm() {

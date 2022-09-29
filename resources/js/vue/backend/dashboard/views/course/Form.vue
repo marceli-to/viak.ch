@@ -120,6 +120,7 @@
             </form-group>
           </template>
         </collapsible>
+
         <collapsible>
           <template #title>Bilder</template>
           <template #content>
@@ -136,6 +137,21 @@
             </div>
           </template>
         </collapsible>
+
+        <collapsible>
+          <template #title>Videos</template>
+          <template #content>
+            <videos 
+            :courseId="data.id"
+            :videos="data.videos"
+            v-if="$props.type == 'edit'">
+          </videos>
+          <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+            <em>Videos können erst nach dem Speichern hinzugefügt werden...</em>
+          </div>
+          </template>
+        </collapsible>
+
         <collapsible>
           <template #title>Metatags + SEO</template>
           <template #content>
@@ -150,6 +166,7 @@
             </form-group>
           </template>
         </collapsible>
+
       </collapsible-container>
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
@@ -171,6 +188,7 @@
       </div>
     </template>
   </article-text>
+
   <notification ref="notification">
     <template #actions>
       <a href="javascript:;" @click="destroy()" class="btn-primary">Bestätigen</a>
@@ -193,6 +211,7 @@ import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import Images from "@/shared/modules/images/Index.vue";
+import Videos from "@/backend/dashboard/views/course/videos/Index.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
@@ -205,6 +224,7 @@ export default {
     FormGroupHeader,
     TinymceEditor,
     Images,
+    Videos,
     IconArrowRight,
     CollapsibleContainer,
     Collapsible
@@ -326,7 +346,6 @@ export default {
         this.isFetchedSettings = true;
       });
     },
-
 
     submit(redirect) {
       if (this.$props.type == 'edit') {

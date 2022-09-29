@@ -241,6 +241,15 @@ class Course extends Base
     return $this->morphMany(Image::class, 'imageable');
   }
 
+  /**
+   * The videos that belong to this course.
+   */
+  
+  public function videos()
+  {
+    return $this->hasMany(CourseVideo::class);
+  }
+
 
   /*
   |--------------------------------------------------------------------------
