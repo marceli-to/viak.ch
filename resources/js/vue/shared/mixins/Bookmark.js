@@ -76,16 +76,15 @@ export default {
       NProgress.start();
       this.axios.delete(`${this.routes.bookmark.delete}/${this.bookmarkUuid}`).then(response => {
         this.bookmarked = false;
-        
         this.$refs.notification.init({
           message: 'Der Kurs wurde aus der Merkliste gelöscht.',
           type: 'toast',
           style: 'success',
         });
 
-        if (this.$props.callback) {
-          this.$emit(this.$props.callback);
-          return;
+        if (this.$props.callback && this.$props.callback == 'hideAfter') {
+          const el = document.querySelector(`[data-bookmark="${this.bookmarkUuid}"]`);
+          el.remove();
         }
         NProgress.done();
       });

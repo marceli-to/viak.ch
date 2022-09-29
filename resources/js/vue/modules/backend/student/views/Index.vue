@@ -121,13 +121,12 @@
           <div v-if="user.bookmarks && user.bookmarks.length">
             <div v-for="(bookmark, index) in sorted(user.bookmarks, 'event.date', 'asc')" :key="index">
 
-              <stacked-list-event :event="bookmark.event" :bookmark="bookmark">
+              <stacked-list-event :event="bookmark.event" :bookmark="bookmark" :data-bookmark="bookmark.uuid">
                 <template #icon>
                   <bookmark-icons 
                     :bookmark="bookmark.uuid" 
                     :event="bookmark.event.uuid"
-                    :callback="'deleted'"
-                    @deleted="find()"
+                    :callback="'hideAfter'"
                   />
                 </template>
                 <template #action>
