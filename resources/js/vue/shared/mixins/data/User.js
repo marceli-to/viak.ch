@@ -14,7 +14,7 @@ export default {
     return { 
 
       user: {
-
+        gender_id: null,
       },
 
       // Form

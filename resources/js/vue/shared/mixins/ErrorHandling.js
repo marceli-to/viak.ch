@@ -4,7 +4,7 @@ export default {
 
   data() {
     return { 
-      errors: null,
+      //errors: null,
     };
   },
   
