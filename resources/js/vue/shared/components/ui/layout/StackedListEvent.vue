@@ -88,8 +88,7 @@
         </div>
         
         <div v-if="$props.showBookingCount">
-          Buchungen<br>
-          <strong>{{ $props.event.bookings}}</strong>
+          <strong>{{ $props.event.bookings}}</strong> Teilnehmer
         </div>
 
         <div class="stacked-list__action" v-if="$slots.action">

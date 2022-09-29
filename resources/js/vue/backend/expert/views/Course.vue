@@ -36,7 +36,7 @@
     <collapsible-container>
       <collapsible>
         <template #title>
-          {{ __('Teilnehmer') }}
+          {{ __('Teilnehmer') }} (<strong>{{ data.participants.length }}</strong>)
         </template>
         <template #content>
           <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
