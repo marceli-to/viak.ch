@@ -63,7 +63,7 @@
         <textarea 
           v-model="data.invoice_address" 
           :placeholder="'Rechnungsadresse'" 
-          class="is-plain mt-2x sm:mt-4x autosize" 
+          class="is-plain mt-2x sm:mt-4x has-autosize" 
           v-if="data.has_invoice_address">
         </textarea>
       </form-group>

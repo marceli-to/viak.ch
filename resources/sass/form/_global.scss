@@ -111,16 +111,19 @@ textarea {
 	height: auto;
   min-height: auto;
 
-  &.code {
+  &.is-code {
     font-family: 'Menlo', 'Courier New', Courier, monospace;
     font-size: 16px !important;
     font-weight: 400;
     color: $color-quaternary;
     min-height: 140px;
-
   }
 
-  &.autosize {
+  &.is-large {
+    min-height: 175px;
+  }
+
+  &.has-autosize {
     &:focus {
       @include bp-sm() {
         min-height: 75px;

@@ -69,7 +69,7 @@
                 <em v-else>{{__('Rechnungsadresse (abweichend)')}}</em>
               </label>
             </div>
-            <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x autosize" v-if="form.has_invoice_address"></textarea>
+            <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x has-autosize" v-if="form.has_invoice_address"></textarea>
           </form-group>
           
           <collapsible class="mt-12x">

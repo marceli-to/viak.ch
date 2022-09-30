@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExpertEventResource;
 use App\Http\Resources\EventParticipantsResource;
+use App\Http\Resources\EventMessageResource;
 use App\Http\Resources\BookingResource;
 use App\Models\User;
 use App\Models\Event;
@@ -22,12 +23,15 @@ class EventController extends Controller
   public function find(Event $event)
   {
     $this->authorize('containsEvent', $event);
-    $event = Event::with('bookings.user')->find($event->id);
+    $event = Event::with('bookings.user', 'messages.user')->find($event->id);
     $data = [
       'event' => new ExpertEventResource($event),
       'participants' => EventParticipantsResource::collection(
         $event->bookings->pluck('user')->all()
-      )
+      ),
+      'messages' => EventMessageResource::collection(
+        $event->messages
+      ),
     ];
     return response()->json($data);
   }

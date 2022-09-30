@@ -9,7 +9,7 @@
     <form-group :label="'Code'" :required="true" :error="errors.code">
       <textarea 
         v-model="video.code" 
-        class="code" 
+        class="is-code" 
         required 
         @focus="removeError('code')">
       </textarea>

@@ -5,11 +5,14 @@
  */
 
 html {
-  //min-height: 100vh;
 	overflow-y: scroll;
 
   &.is-auth {
     background-color: $color-secondary;
+  }
+
+  &.is-dashboard {
+    min-width: 768px;
   }
 }
 

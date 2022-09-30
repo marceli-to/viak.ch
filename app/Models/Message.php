@@ -16,7 +16,6 @@ class Message extends Base
   
   protected $casts = [
     'created_at' => 'datetime:d.m.Y',
-    'date' => 'datetime:d.m.Y',
   ];
 
   /**
@@ -26,7 +25,6 @@ class Message extends Base
    */
 
 	protected $fillable = [
-    'date',
     'subject',
     'body',
     'user_id',

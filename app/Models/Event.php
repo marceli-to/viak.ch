@@ -131,7 +131,7 @@ class Event extends Base
 
   public function messages()
   {
-    return $this->morphOne(Message::class, 'messageable');
+    return $this->morphMany(Message::class, 'messageable')->orderBy('created_at', 'DESC');
   }
 
 

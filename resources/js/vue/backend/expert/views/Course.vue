@@ -58,12 +58,15 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="data.messages">
         <template #title>
           {{ __('Nachrichten') }}
         </template>
         <template #content>
-          <messages :eventUuid="data.event.uuid" />
+          <messages 
+            :messages="data.messages" 
+            :eventUuid="data.event.uuid">
+          </messages>
         </template>
       </collapsible>
     </collapsible-container>

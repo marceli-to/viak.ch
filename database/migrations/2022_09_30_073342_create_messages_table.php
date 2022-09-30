@@ -15,7 +15,6 @@ class CreateMessagesTable extends Migration
   {
     Schema::create('messages', function (Blueprint $table) {
       $table->id();
-      $table->date('date');
       $table->string('subject', 255);
       $table->text('body')->nullable();
       $table->string('uuid', 36);

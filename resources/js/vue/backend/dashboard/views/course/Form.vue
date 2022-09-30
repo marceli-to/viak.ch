@@ -30,7 +30,7 @@
       <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
         <textarea 
           v-model="data.subtitle.de" 
-          class="is-small autosize" 
+          class="is-small has-autosize" 
           required 
           @focus="removeError('subtitle')">
         </textarea>
@@ -156,13 +156,13 @@
           <template #title>Metatags + SEO</template>
           <template #content>
             <form-group :label="'Reviews'" class="md:mt-4x">
-              <textarea v-model="data.reviews" class="autosize"></textarea>
+              <textarea v-model="data.reviews" class="has-autosize"></textarea>
             </form-group>
             <form-group :label="'SEO - Beschreibung'">
-              <textarea v-model="data.seo_description.de" class="autosize"></textarea>
+              <textarea v-model="data.seo_description.de" class="has-autosize"></textarea>
             </form-group>
             <form-group :label="'SEO - Keywords'">
-              <textarea v-model="data.seo_tags.de" class="autosize"></textarea>
+              <textarea v-model="data.seo_tags.de" class="has-autosize"></textarea>
             </form-group>
           </template>
         </collapsible>
