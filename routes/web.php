@@ -105,7 +105,7 @@ Route::post('/expert/finish', [ConfirmExpertController::class, 'store'])->name('
 |
 */
 
-Route::get('/dump', [TestController::class, 'index']);
+Route::get('/message', [TestController::class, 'index']);
 
 Route::get('/notification', [TestController::class, 'notify']);
 Route::get('/notification/process', [TestController::class, 'process']);

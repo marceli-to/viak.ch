@@ -6,8 +6,8 @@ use App\Models\Event;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\Booking;
+use App\Models\Message;
 use App\Http\Resources\EventParticipantsResource;
-
 use App\Events\EventBooked;
 use Illuminate\Http\Request;
 
@@ -22,15 +22,18 @@ class TestController extends BaseController
 
   public function index()
   {
-    $bookings = Booking::with('user')->where('event_id', 22)->get();
-    //dd();
 
-    $event = Event::with('bookings.user')->find(22);
+    $event = Event::find(22);
 
-    $u = $event->bookings->pluck('user')->all();
-    $users = EventParticipantsResource::collection($u);
-
-    dd($users);
+    Message::create([
+      'date' => \Carbon\Carbon::now(),
+      'subject' => 'Test',
+      'body' => 'Ich bin der Nachrichten-Inhalt',
+      'user_id' => auth()->user()->id,
+      'uuid' => \Str::uuid(),
+      'messageable_id' => $event->id,
+      'messageable_type' => \App\Models\Event::class,
+    ]);
   }
 
   public function booked()

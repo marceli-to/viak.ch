@@ -1,13 +1,12 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Base
 {
-  use HasFactory, SoftDeletes;
+  use SoftDeletes;
 
   /**
    * The attributes that should be cast to native types.
@@ -16,7 +15,7 @@ class Image extends Base
    */
   
   protected $casts = [
-    'created_at' => "datetime:d.m.Y",
+    'created_at' => 'datetime:d.m.Y',
   ];
 
   /**

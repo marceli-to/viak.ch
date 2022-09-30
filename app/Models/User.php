@@ -173,7 +173,6 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
 
-
   /*
   |--------------------------------------------------------------------------
   | Local scopes

@@ -125,6 +125,15 @@ class Event extends Base
     return $this->hasMany(Booking::class, 'event_id', 'id');
   }
 
+  /**
+   * The messages that belongs to this user.
+   */
+
+  public function messages()
+  {
+    return $this->morphOne(Message::class, 'messageable');
+  }
+
 
   /*
   |--------------------------------------------------------------------------
