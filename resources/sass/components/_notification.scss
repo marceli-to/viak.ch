@@ -11,8 +11,8 @@
   z-index: 1001;
 
   > div {
-    background-color: $color-white;
-    border: 2px solid $color-quaternary;
+    background-color: transparent;
+    border: 1px solid $color-quaternary;
     cursor: pointer;
     max-width: 80%;
     width: 100%;
@@ -71,29 +71,33 @@
   }
 
   &.is-error {
-    color: $color-danger;
-
+    background-color: $color-danger;
+    color: $color-white;
     .icon {
-      color: $color-danger !important;
+      color: $color-white !important;
     }
     
     > div {
       border-color: $color-danger;
       a {
-        color: $color-danger;
+        color: $color-white;
       }
     }
   }
 
   &.is-success {
-    color: $color-success;
+    background-color: $color-success;
+    color: $color-white;
 
     .icon {
-      color: $color-success !important;
+      color: $color-white !important;
     }
-
+    
     > div {
       border-color: $color-success;
+      a {
+        color: $color-white;
+      }
     }
   }
 

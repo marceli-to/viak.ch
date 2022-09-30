@@ -63,7 +63,7 @@
           {{ __('Nachrichten') }}
         </template>
         <template #content>
-
+          <messages :eventUuid="data.event.uuid" />
         </template>
       </collapsible>
     </collapsible-container>
@@ -81,6 +81,7 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
+import Messages from "@/shared/modules/messages/Index.vue";
 
 export default {
 
@@ -93,6 +94,7 @@ export default {
     Collapsible,
     IconArrowRight,
     IconCheckmark,
+    Messages
   },
 
   mixins: [ErrorHandling, i18n, Meta],

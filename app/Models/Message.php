@@ -49,12 +49,12 @@ class Message extends Base
   }
 
   /**
-   * The gender that belongs to this user.
+   * The user that belongs to this message.
    */
 
-  public function gender()
+  public function user()
   {
-    return $this->hasOne(Gender::class, 'id', 'gender_id');
+    return $this->hasOne(User::class, 'id', 'user_id');
   }
 
 }

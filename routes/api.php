@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\MessageController;
 
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
@@ -124,11 +125,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() 
 
 /*
 |--------------------------------------------------------------------------
-| Courses, Events
+| Courses, Events, Messages etc.
 |--------------------------------------------------------------------------
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
+  Route::get('/messages/{event:uuid}', [MessageController::class, 'get']);
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'find'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{booking:uuid}', [EventController::class, 'findByBooking'])->middleware(['role:admin,student']);
 });

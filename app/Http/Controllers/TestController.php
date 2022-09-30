@@ -25,7 +25,7 @@ class TestController extends BaseController
 
     $event = Event::find(22);
 
-    Message::create([
+    $message = Message::create([
       'date' => \Carbon\Carbon::now(),
       'subject' => 'Test',
       'body' => 'Ich bin der Nachrichten-Inhalt',
@@ -34,6 +34,15 @@ class TestController extends BaseController
       'messageable_id' => $event->id,
       'messageable_type' => \App\Models\Event::class,
     ]);
+    
+    // do this in a loop
+    Job::create([
+      'recipient' => 'm@marceli.to', // students email
+      'mailable_id' => $message->id,
+      'mailable_type' => \App\Models\Message::class,
+      'mailable_class' => \App\Mail\EventMessage::class
+    ]);
+
   }
 
   public function booked()
@@ -45,13 +54,13 @@ class TestController extends BaseController
 
   public function notify()
   {
-    $event = Event::first();
-    $job = Job::create([
-      'recipient' => 'a@hundekot.ch',
-      'mailable_id' => $event->id,
-      'mailable_type' => Event::class,
-      'mailable_class' => \App\Mail\EventReminder::class
-    ]);
+    // $event = Event::first();
+    // $job = Job::create([
+    //   'recipient' => 'a@hundekot.ch',
+    //   'mailable_id' => $event->id,
+    //   'mailable_type' => Event::class,
+    //   'mailable_class' => \App\Mail\EventReminder::class
+    // ]);
   }
 
   public function process()
