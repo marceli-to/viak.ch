@@ -3,6 +3,7 @@
     <h2>
       <a href="" class="btn-collapsible" @click.prevent="toggle()">
         <slot name="title" />
+        <count :count="$props.items.length" v-if="$props.items" />
       </a>
     </h2>
     <template v-if="$slots.action && !isOpen">
@@ -14,7 +15,14 @@
   </div>
 </template>
 <script>
+import Count from "@/shared/components/ui/misc/Count.vue";
+
 export default {
+
+  components: {
+    Count
+  },
+
   data() {
     return {
       isOpen: false,
@@ -25,6 +33,11 @@ export default {
     expanded: {
       type: [Boolean, Number],
       default: false,
+    },
+
+    items: {
+      type: [Array, Object],
+      default: null,
     }
   },
 

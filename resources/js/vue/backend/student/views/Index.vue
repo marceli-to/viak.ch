@@ -113,14 +113,9 @@
     </article-text>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="user.bookmarks">
         <template #title>
-          <div class="flex">
-            {{ __('Merkliste') }}
-            <em class="icon-bubble" 
-              v-if="user.bookmarks && user.bookmarks.length">
-            </em>
-          </div>
+          {{ __('Merkliste') }}
         </template>
         <template #content>
           <div v-if="user.bookmarks && user.bookmarks.length">
@@ -314,7 +309,7 @@ export default {
     IconCheckmark,
     UserAddress,
     BasketButtons,
-    BookmarkIcons
+    BookmarkIcons,
   },
 
   mixins: [UserData, Booking, Basket, Meta],

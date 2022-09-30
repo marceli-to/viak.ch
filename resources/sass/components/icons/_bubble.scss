@@ -5,11 +5,11 @@
  */
 
 .icon-bubble {
-  @extend %ml-1x;
   background-color: $color-secondary;
   border-radius: 100%;
   display: inline-block;
   height: 5px;
+  margin-left: 2px;
   width: 5px;
 
   @include bp-sm() {

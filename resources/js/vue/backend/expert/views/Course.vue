@@ -34,9 +34,9 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="data.participants">
         <template #title>
-          {{ __('Teilnehmer') }} (<strong>{{ data.participants.length }}</strong>)
+          {{ __('Teilnehmer') }}
         </template>
         <template #content>
           <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
@@ -126,8 +126,13 @@ export default {
         NProgress.done();
       });
     },
-
   },
+
+  computed: {
+    count() {
+      return this.data.participants && this.data.participants.length ? this.data.participants.length : 0
+    },
+  }
 }
 </script>
   
