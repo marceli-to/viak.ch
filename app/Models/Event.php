@@ -247,4 +247,18 @@ class Event extends Base
     return $this->experts->pluck('id');
   }
 
+  /**
+   * Get all users for an event. Users do not have a direct
+   * relationship with events, they are related via the
+   * booking.
+   * 
+   * @param  User $user
+   * @return Event $event
+   */
+
+  public function getStudents()
+  {
+    return $this->bookings->pluck('user')->all();
+  }
+
 }

@@ -4,7 +4,7 @@
 <p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->event->course->title }}». {{ __('Dieser findet wie folgt statt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="140">{{ __('Kurs') }}</td>
+    <td width="120">{{ __('Kurs') }}</td>
     <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>

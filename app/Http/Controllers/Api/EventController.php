@@ -27,7 +27,7 @@ class EventController extends Controller
     $data = [
       'event' => new ExpertEventResource($event),
       'participants' => EventParticipantsResource::collection(
-        $event->bookings->pluck('user')->all()
+        $event->getStudents()
       ),
       'messages' => EventMessageResource::collection(
         $event->messages
@@ -43,8 +43,9 @@ class EventController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function findByBooking(Booking $booking)
+  public function findByBooking(Event $event)
   {
+    $booking = Booking::where('event_id', $event->id)->where('user_id', auth()->user()->id)->first();
     $this->authorize('viewEvent', $booking);
     return response()->json(new BookingResource($booking));
   }

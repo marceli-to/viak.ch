@@ -72,6 +72,14 @@ img {
   max-width: 100%;
 }
 
+small {
+  font-size: 14px;
+}
+
+em {
+  font-style: italic;
+}
+
 /* Layout */
 
 .wrapper {
@@ -188,7 +196,7 @@ img {
 /* Content elements */
 
 .content-inner {
-  padding: 48px 0;
+  padding: 48px 0 24px 0;
 }
 
 .content-inner a {
@@ -196,10 +204,6 @@ img {
   font-weight: bold;
   text-decoration: none !important;
 }
-
-.content-inner em {
-  font-style: italic;
-} 
 
 .content-table {
   -premailer-cellpadding: 0;
@@ -217,5 +221,5 @@ img {
 }
 
 .content-table td:first-of-type {
-  width: 140px;
+  width: 120px;
 }

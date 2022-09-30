@@ -6,7 +6,7 @@
 <p>{{ __('Die entsprechende Rechnung liegt diesem Mail bei.') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="140">{{ __('Kurs') }}</td>
+    <td width="120">{{ __('Kurs') }}</td>
     <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>

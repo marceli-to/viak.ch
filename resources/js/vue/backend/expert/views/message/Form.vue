@@ -21,12 +21,12 @@
           @focus="removeError('subject')" />
       </form-group>
       
-      <form-group :label="'Nachricht'" :required="true" :error="errors.message">
+      <form-group :label="'Nachricht'" :required="true" :error="errors.body">
         <textarea 
-          v-model="data.message" 
+          v-model="data.body" 
           required 
           class="is-large"
-          @focus="removeError('message')">
+          @focus="removeError('body')">
         </textarea>
       </form-group>
 
@@ -79,6 +79,9 @@ export default {
       // Model
       data: {
         subject: null,
+        body: null,
+        event_uuid: this.$route.params.uuid,
+        selfcopy: false,
       },
 
       // Validation
@@ -112,14 +115,7 @@ export default {
     submit() {
       NProgress.start();
       this.isLoading = true;
-
-      let data = {
-        subject: this.data.subject,
-        message: this.data.message,
-        uuid: this.$route.params.uuid,
-      }
-
-      this.axios.post(this.routes.store, data).then(response => {
+      this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'expert-course-event', params: { uuid: this.$route.params.uuid } });
         NProgress.done();
         this.isLoading = true;
