@@ -3,7 +3,7 @@
     <h2>
       <a href="" class="btn-collapsible" @click.prevent="toggle()">
         <slot name="title" />
-        <count :count="$props.items.length" v-if="$props.items" />
+        <count :count="$props.items.length" v-if="$props.items && !isOpen" />
       </a>
     </h2>
     <template v-if="$slots.action && !isOpen">

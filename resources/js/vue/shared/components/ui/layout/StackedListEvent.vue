@@ -80,22 +80,21 @@
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
         <template v-if="$props.showBookingCount">
-          <strong>{{ $props.event.bookings}}</strong> Teilnehmer
+          <div>
+            <strong>{{ $props.event.bookings}}</strong> Teilnehmer
+          </div>
         </template>
       </div>
 
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
-        
-        <div v-if="$props.showFee">
-          CHF {{ $props.event.fee}}
+        <div>
+          <div v-if="$props.showFee">CHF {{ $props.event.fee}}</div>
         </div>
-        
-
-
         <div class="stacked-list__action" v-if="$slots.action">
           <slot name="action" />
         </div>
       </div>
+      
     </div>
   </article>
 

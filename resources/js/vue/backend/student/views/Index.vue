@@ -142,7 +142,7 @@
         </template>
       </collapsible>
       
-      <collapsible :expanded="true">
+      <collapsible :expanded="true" :items="user.bookings">
         <template #title>
           {{ __('Gebuchte Kurse') }}
         </template>
