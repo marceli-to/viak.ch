@@ -28,15 +28,15 @@ export default {
 
   methods: {
     toggle(image, $event) {
-      this.$parent.toggleImage(image, $event)
+      this.$parent.toggleFile(image, $event)
     },
 
     destroy(image, $event) {
-      this.$parent.destroyImage(image, $event)
+      this.$parent.destroyFile(image, $event)
     },
 
     update(image, $event) {
-      this.$parent.updateImage(image, $event)
+      this.$parent.updateFile(image, $event)
       this.hideEdit();
     },
 

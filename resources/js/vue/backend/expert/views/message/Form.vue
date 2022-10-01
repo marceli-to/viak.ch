@@ -37,6 +37,10 @@
         </div>
       </form-group>
 
+      <form-group :label="'Dateien'" class="has-underline mt-3x sm:mt-6x">
+        <files />
+      </form-group>
+
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           Senden
@@ -57,6 +61,7 @@ import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import Files from "@/shared/modules/files/Index.vue";
 
 export default {
 
@@ -65,6 +70,7 @@ export default {
     ArticleText,
     FormGroup,
     IconArrowRight,
+    Files,
   },
 
   mixins: [ErrorHandling, Helpers, i18n, Meta],

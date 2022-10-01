@@ -29,7 +29,6 @@
       <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">{{ __('Abbrechen') }}</a>
     </template>
   </notification>
-
 </div>
 </template>
 <script>

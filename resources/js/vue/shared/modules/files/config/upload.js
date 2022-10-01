@@ -1,10 +1,10 @@
 export default {
   url: "/api/file/upload",
   method: 'post',
-  maxFilesize: 8,
+  maxFilesize: 24,
   maxFiles: 1,
   createImageThumbnails: false,
-  acceptedFiles: '.pdf, .doc, .docx, .zip, .xls, .xlsx',
+  acceptedFiles: '.pdf, .txt, .zip, .doc',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem('token')
   }

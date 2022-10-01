@@ -55,6 +55,11 @@ class Image extends Base
     'coords',
   ];
 
+  /**
+   * Relationships
+   * 
+   */
+
   public function imageable()
   {
     return $this->morphTo();
