@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExpertEventResource;
+use App\Http\Resources\EventResource;
 use App\Http\Resources\EventParticipantsResource;
 use App\Http\Resources\EventMessageResource;
 use App\Http\Resources\BookingResource;
@@ -20,12 +21,12 @@ class EventController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function find(Event $event)
+  public function findExpertEvent(Event $event)
   {
     $this->authorize('containsEvent', $event);
     $event = Event::with('bookings.user', 'messages.user')->find($event->id);
     $data = [
-      'event' => new ExpertEventResource($event),
+      'event' => new EventResource($event),
       'participants' => EventParticipantsResource::collection(
         $event->getStudents()
       ),
@@ -39,15 +40,19 @@ class EventController extends Controller
   /**
    * Find an event by a given booking
    * 
-   * @param Booking $booking
+   * @param Event $event
    * @return \Illuminate\Http\Response
    */
 
-  public function findByBooking(Event $event)
+  public function findStudentEvent(Event $event)
   {
     $booking = Booking::where('event_id', $event->id)->where('user_id', auth()->user()->id)->first();
     $this->authorize('viewEvent', $booking);
-    return response()->json(new BookingResource($booking));
+    $data = [
+      'event' => new EventResource($event),
+      'booking' => new BookingResource($booking),
+    ];
+    return response()->json($data);
   }
 
 }

@@ -21,11 +21,20 @@
   &.is-expanded {
 
     .btn-collapsible {
+
       &:before {
         @extend %icon-chevron-up;
       }
+
       &:after {
         display: none;
+      }
+
+      &:hover {
+        
+        &:before {
+          border-bottom-color: $color-tertiary;
+        }
       }
     }
   }
@@ -43,12 +52,22 @@
     @include font-bold();
     line-height: 1 !important;
     position: relative;
-    
+    transition: color .1s ease-in;
+
     &:after {
       @extend %icon-chevron-down;
     }
+
     &:before {
       display: none;
+    }
+
+    &:hover {
+      color: $color-tertiary;
+      
+      &:after {
+        border-top-color: $color-tertiary;
+      }
     }
   }
 }

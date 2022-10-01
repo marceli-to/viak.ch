@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Resources;
-use App\Http\Resources\StudentEventResource;
+use App\Helpers\PenaltyHelper;
+use App\Http\Resources\EventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookingResource extends JsonResource
@@ -17,7 +18,8 @@ class BookingResource extends JsonResource
       'uuid' => $this->uuid,
       'number' => $this->number,
       'booked_at' => $this->booked_at,
-      'event' => StudentEventResource::make($this->event),
+      'event' => EventResource::make($this->event),
+      'cancellation' => PenaltyHelper::get($this->event->date, $this->event->courseFee),
     ];
   }
 }

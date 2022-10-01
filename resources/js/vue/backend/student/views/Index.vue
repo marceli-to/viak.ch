@@ -158,7 +158,7 @@
                   <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
                     {{ __('Detail')}}
                   </router-link>
-                  <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(booking.uuid, booking.event)">
+                  <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(booking.uuid, booking)">
                     {{ __('Annullieren') }}
                   </a>
                 </template>

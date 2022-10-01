@@ -2,11 +2,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentResource;
-use App\Http\Resources\StudentEventResource;
-use App\Http\Resources\BookingResource;
 use App\Models\User;
-use App\Models\Event;
-use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentUpdateRequest;
 

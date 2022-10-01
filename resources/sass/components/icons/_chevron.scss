@@ -38,6 +38,7 @@
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  transition: border-color .1s ease-in;
   width: 0; 
 
   @include bp-sm() {
