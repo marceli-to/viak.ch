@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ExpertEventResource;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventParticipantsResource;
 use App\Http\Resources\EventMessageResource;
