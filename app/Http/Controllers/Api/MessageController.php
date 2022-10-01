@@ -47,6 +47,7 @@ class MessageController extends Controller
     // Get the event
     $event = Event::where('uuid', $request->input('event_uuid'))->first();
 
+
     // Create message
     $message = Message::create([
       'subject' => $request->input('subject'),

@@ -131,7 +131,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() 
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
   Route::get('/messages/{event:uuid}', [MessageController::class, 'get']);
-  Route::post('/message/{message:uuid}', [MessageController::class, 'find']);
+  Route::post('/message', [MessageController::class, 'store']);
+  Route::get('/message/{message:uuid}', [MessageController::class, 'find']);
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'findExpertEvent'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{event:uuid}', [EventController::class, 'findStudentEvent'])->middleware(['role:admin,student']);
 });

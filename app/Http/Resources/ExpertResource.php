@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Resources;
-use App\Http\Resources\ExpertEventResource;
+use App\Http\Resources\EventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ExpertResource extends JsonResource
@@ -27,7 +27,7 @@ class ExpertResource extends JsonResource
       'phone' => $this->phone,
       'email' => $this->email,
       'gender_id' => $this->gender_id,
-      'upcoming_events' => ExpertEventResource::collection($this->upcomingEvents)
+      'upcoming_events' => EventResource::collection($this->upcomingEvents)
     ];
   }
 }
