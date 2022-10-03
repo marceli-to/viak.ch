@@ -1,0 +1,38 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/message
+ * -----------------------------------------------------------------------------
+ */
+
+.message {
+  @extend %lightbox;
+
+  .message__inner {
+    @extend %p-2x;
+    @extend %sm\:p-4x;
+    max-width: 700px;
+    width: 90%;
+
+    @include bp-sm() {
+      min-width: 480px;
+      width: auto;
+    }
+
+    header {
+      border-bottom: 1px solid $color-quaternary;
+      @extend %mb-2x;
+      @extend %pb-2x;
+      @extend %sm\:mb-4x;
+      @extend %sm\:pb-4x;
+      width: auto;
+
+      > div {
+        @extend %grid-cols-12;
+
+        &:first-of-type {
+          @extend %pr-3x;
+        }
+      }
+    }
+  }
+}

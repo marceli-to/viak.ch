@@ -1,6 +1,6 @@
 <div class="notification is-toast js-toast {{ $style == 'success' ? 'is-success' : 'is-error' }}">
   <div>
-    <div class="message">
+    <div class="notification-message">
       {{$message}}
     </div>
   </div>

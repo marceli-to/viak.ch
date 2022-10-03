@@ -1,15 +1,7 @@
 <template>
   <div v-if="isFetched">
     <div v-if="$props.messages.length">
-      <stacked-list-item 
-        v-for="(message, index) in $props.messages" 
-        :key="index">
-        <div>
-          <div class="span-2">{{ message.date }}</div>
-          <div class="span-2">{{ message.user }}</div>
-          <div class="span-6">{{ message.subject }}</div>
-        </div>
-      </stacked-list-item>
+      <message-list-item v-for="(message, index) in $props.messages" :key="index" :message="message"></message-list-item>
     </div>
     <div v-else>
       <p class="no-results">Es sind keine Nachrichten vorhanden.</p>
@@ -25,14 +17,14 @@
 import NProgress from 'nprogress';
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
-import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
+import MessageListItem from "@/shared/modules/messages/components/List.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 
 export default {
 
   components: {
     NProgress,
-    StackedListItem,
+    MessageListItem,
     IconPlus
   },
 
@@ -68,18 +60,6 @@ export default {
     };
   },
 
-  // mounted() {
-  //   this.fetch();
-  // },
-
-  // methods: {
-  //   fetch() {
-  //     this.axios.get(`${this.routes.get}/${this.$props.eventUuid}`).then(response => {
-  //       this.data = response.data.data;
-  //       this.isFetched = true;
-  //     });
-  //   },
-  // }
 }
 
 </script>

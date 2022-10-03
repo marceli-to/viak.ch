@@ -10,7 +10,6 @@ export default {
 
   methods: {
     confirm(uuid, booking) {
-      console.log(booking);
       let message = `Bitte Annullation bestätigen. Die Annullation wird Dir per E-Mail bestätigt.`;
       if (booking.cancellation.penalty) {
         message = `Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ${booking.cancellation.amount}.– (${booking.cancellation.penalty}% der Kurskosten)<br><br>Bitte Annullation bestätigen. Die Annullation wird Dir per E-Mail bestätigt.`;

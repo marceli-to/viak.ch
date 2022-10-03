@@ -3,31 +3,31 @@
     :class="[type == 'toast' ? 'is-toast' : 'is-modal', style]" 
     v-show="isOpen" 
     @click="hide()">
-    <div>
+    <div class="notification__inner">
 
       <template v-if="type == 'toast'">
-        <div class="message" v-html="message"></div>
+        <div class="notification-message" v-html="message"></div>
       </template>
 
       <template v-if="type == 'alert'">
-        <div class="icon">
+        <div class="notification-icon">
           <icon-cross />
         </div>
-        <div class="message" v-html="message"></div>
-        <div class="actions">
+        <div class="notification-message" v-html="message"></div>
+        <div class="notification-actions">
           <a href="javascript:;" @click="hide()">Schliessen</a>
         </div>
       </template>
 
       <template v-if="type == 'dialog'">
-        <div class="message" v-html="message"></div>
+        <div class="notification-message" v-html="message"></div>
         <template v-if="$slots.actions">
-          <div class="actions">
+          <div class="notification-actions">
             <slot name="actions" />
           </div>
         </template>
         <template v-else>
-          <div class="actions">
+          <div class="notification--actions">
             <a href="javascript:;" @click="hide()">Schliessen</a>
           </div>
         </template>

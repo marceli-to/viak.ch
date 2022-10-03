@@ -20,3 +20,10 @@ Vue.filter('currency', function(value) {
 Vue.filter('padStart', function(value) {
   return String(value).padStart(2, '0');
 });
+
+Vue.filter('nl2br', function(str, replaceMode) {
+  if (str == null) return;
+  var breakTag = '<br>';
+  var replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
+});

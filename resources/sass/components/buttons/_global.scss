@@ -32,6 +32,13 @@
   width: 100%;
 }
 
+%sm\:btn-full-width,
+.sm\:btn-full-w {
+  @include bp-sm() {
+    width: 100%
+  }
+}
+
 %btn-half-width,
 .btn-half-w {
   width: 50%;
@@ -41,6 +48,8 @@
 .btn-auto-w {
   width: auto;
 }
+
+
 
 .\!xs\:btn-full-w {
   @include bp-xs() {

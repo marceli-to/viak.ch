@@ -127,9 +127,9 @@ export default {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: 'expert-course-event', params: { uuid: this.$route.params.uuid } });
         NProgress.done();
         this.isLoading = true;
+        this.$router.push({ name: 'expert-course-event', params: { uuid: this.$route.params.uuid } });
       });
     },
 
@@ -138,7 +138,6 @@ export default {
     },
 
     removeFile(uuid) {
-      console.log(uuid);
     }
   },
 };
