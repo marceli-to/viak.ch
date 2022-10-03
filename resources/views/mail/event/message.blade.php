@@ -9,7 +9,6 @@
     <div>
       <a href="{{ asset('storage/uploads/' . $file->name) }}" target="_blank">
         {{ $file->name }} 
-        {{-- ({{ $file->extension }}) --}}
       </a>
     </div>
   @endforeach

@@ -39,7 +39,7 @@
           <p v-if="$props.message.subject">
             {{ $props.message.subject }}
           </p>
-          <p>{{ $props.message.body | nl2br() }}</p>
+          <p v-html="nl2br($props.message.body)"></p>
           <footer v-if="$props.message.files && $props.message.files.length > 0">
             <div class="text-xsmall mb-1x">
               {{ __('Anhänge') }}
@@ -61,6 +61,7 @@
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
 import i18n from "@/shared/mixins/i18n";
+import Helpers from "@/shared/mixins/Helpers";
 
 export default {
   
@@ -69,7 +70,7 @@ export default {
     IconCross
   },
   
-  mixins: [i18n],
+  mixins: [i18n, Helpers],
 
   data() {
     return {
