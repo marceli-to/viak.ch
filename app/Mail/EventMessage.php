@@ -33,7 +33,6 @@ class EventMessage extends Mailable
   {
     $event   = $this->message->messageable->with('course')->find($this->message->messageable->id);
     $message = $this->message->with('user')->find($this->message->id);
-
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject($this->message->subject)
                 ->with(

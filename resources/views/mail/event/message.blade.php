@@ -1,16 +1,8 @@
 @component('mail::message')
 <p><small><em>{{ $message->user->fullname }} ({{ $message->user->email }}) {{ __('hat folgende Nachricht gesendet:') }}</em></small></p>
 {!! nl2br($message->body) !!}
-
 <br>
-<p>
-  <small>
-    <a href="{{ route('page.student.profile.course.event') }}" target="_blank">
-      {{ __('Diese und weitere Nachrichten findest auf deinem Profil') }}
-    </a>
-  </small>
-</p>
-
+<br>
 @if ($message->files)
   <h2>Anhänge</h2>
   @foreach($message->files as $file)
