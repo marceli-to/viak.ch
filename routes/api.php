@@ -172,9 +172,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
   Route::get('file/{file}', [FileController::class, 'find']);
   Route::post('file/upload', [FileController::class, 'upload']);
   Route::post('file', [FileController::class, 'store']);
-  Route::put('file/{file}', [FileController::class, 'update']);
+  Route::put('file/{file:uuid}', [FileController::class, 'update']);
   Route::get('file/state/{file}', [FileController::class, 'toggle']);
-  Route::delete('file/{file}', [FileController::class, 'destroy']);
+  Route::delete('file/{file:uuid}', [FileController::class, 'destroy']);
 });
 
 

@@ -47,7 +47,16 @@ class Message extends Base
   }
 
   /**
-   * The user that belongs to this message.
+   * Get all of the files for the message.
+   */
+
+  public function files()
+  {
+    return $this->morphToMany(File::class, 'fileable');
+  }
+
+  /**
+   * Get the user that belongs to the message.
    */
 
   public function user()

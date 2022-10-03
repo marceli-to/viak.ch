@@ -41,18 +41,12 @@ class FileController extends Controller
   public function store(Request $request)
   {
     $data = $request->all();
-
-    // Generate UUID
     $data['uuid'] = \Str::uuid();
-
-    // Add imagable id & type
-    $data['fileable_id']   = $request->input('fileable_id') ? $request->input('fileable_id') : NULL;
-    $data['fileable_type'] = $request->input('fileable_type') ? "App\Models\\" . $request->input('fileable_type') : NULL;
 
     // Create file
     $file = File::create($data);
     $file->save();
-    return response()->json(['fileId' => $file->id]);
+    return response()->json(['file' => $file]);
   }
 
   /**
@@ -106,14 +100,14 @@ class FileController extends Controller
   /**
    * Remove the specified file from storage
    *
-   * @param  string $file
+   * @param  File $file
    * @return \Illuminate\Http\Response
    */
   
-  public function destroy($file)
+  public function destroy(File $file)
   {
     // Delete from database
-    $record = File::where('name', '=', $file)->first();
+    $record = File::findOrFail($file->id);
     
     if ($record)
     {
@@ -124,7 +118,7 @@ class FileController extends Controller
     $directories = Storage::allDirectories('public');
     foreach($directories as $d)
     {
-      Storage::delete($d . '/'. $file);
+      Storage::delete($d . '/'. $file->name);
     }
     
     return response()->json('successfully deleted');

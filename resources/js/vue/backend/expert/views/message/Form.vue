@@ -30,15 +30,19 @@
         </textarea>
       </form-group>
 
-      <form-group class="has-underline flex mt-4x">
-        <div class="form-group__checkbox">
-          <input type="checkbox" id="selfcopy" name="selfcopy" :value="1" v-model="data.selfcopy">
-          <label for="selfcopy">{{ __('Kopie an mich') }}</label>
-        </div>
+      <form-group :label="'Anhänge'">
+        <files 
+          class="form-group__upload"
+          :fetchFiles="false" 
+          @fileStored="addFile($event)">
+        </files>
       </form-group>
 
-      <form-group :label="'Dateien'" class="has-underline mt-3x sm:mt-6x">
-        <files />
+      <form-group class="has-underline flex">
+        <div class="form-group__checkbox">
+          <input type="checkbox" id="selfcopy" name="selfcopy" :value="1" v-model="data.selfcopy">
+          <label for="selfcopy">{{ __('Kopie der Nachricht an mich') }}</label>
+        </div>
       </form-group>
 
       <form-group>
@@ -70,7 +74,7 @@ export default {
     ArticleText,
     FormGroup,
     IconArrowRight,
-    Files,
+    Files
   },
 
   mixins: [ErrorHandling, Helpers, i18n, Meta],
@@ -88,6 +92,7 @@ export default {
         body: null,
         event_uuid: this.$route.params.uuid,
         selfcopy: false,
+        files: []
       },
 
       // Validation
@@ -127,6 +132,14 @@ export default {
         this.isLoading = true;
       });
     },
+
+    addFile(uuid) {
+      this.data.files.push(uuid);
+    },
+
+    removeFile(uuid) {
+      console.log(uuid);
+    }
   },
 };
 </script>

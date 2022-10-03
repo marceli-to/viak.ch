@@ -1,26 +1,31 @@
 <template>
-  <div>
-    <div v-if="$props.hasDownload">
+  <div class="flex justify-end">
+
+    <template v-if="$slots.buttons">
+      <slot name="buttons" />
+    </template>
+
+    <div class="ml-2x sm:ml-3x" v-if="$props.hasDownload">
       <a
-        :href="`/storage/uploads/${file.name}`"
+        :href="`/storage/temp/${file.name}`"
         class="feather-icon"
         target="_blank">
         <download-cloud-icon size="18"></download-cloud-icon>
       </a>
     </div>
-    <div v-if="$props.hasEdit">
+    <div class="ml-2x sm:ml-3x" v-if="$props.hasEdit">
       <a
         href="javascript:;"
         class="feather-icon"
-        @click.prevent="showEdit(file)">
+        @click.prevent="edit(file)">
         <edit-icon size="18"></edit-icon>
       </a>
     </div>
-    <div v-if="$props.hasDestroy">
+    <div class="ml-2x sm:ml-3x" v-if="$props.hasDestroy">
       <a
         href="javascript:;"
         class="feather-icon"
-        @click.prevent="destroy(file,$event)">
+        @click.prevent="destroy(file)">
         <trash-2-icon size="18"></trash-2-icon>
       </a>
     </div>
@@ -59,16 +64,16 @@ export default {
 
   methods: {
 
-    toggle(file, $event) {
-      this.$parent.toggle(file,$event);
+    toggle(file) {
+      this.$emit('toggle', file);
     },
 
-    destroy(file, $event) {
-      this.$parent.destroy(file.name,$event);
+    destroy(file) {
+      this.$emit('destroy', file);
     },
 
-    showEdit(file) {
-      this.$parent.showEdit(file);
+    edit(file) {
+      this.$emit('edit', file);
     },
   }
 }

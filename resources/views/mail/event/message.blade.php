@@ -2,7 +2,25 @@
 <p><small><em>{{ $message->user->fullname }} ({{ $message->user->email }}) {{ __('hat folgende Nachricht gesendet:') }}</em></small></p>
 {!! nl2br($message->body) !!}
 
-<p><small>{{ __('Um diese Buchung zu annullieren, klicke bitte') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none;">{{ __('hier') }}</a>.<small></p>
+<br>
+<p>
+  <small>
+    <a href="{{ route('page.student.profile.course.event') }}" target="_blank">
+      {{ __('Diese und weitere Nachrichten findest auf deinem Profil') }}
+    </a>
+  </small>
+</p>
+
+@if ($message->files)
+  <h2>Anhänge</h2>
+  @foreach($message->files as $file)
+    <div>
+      <a href="{{ asset('storage/uploads/' . $file->name) }}" target="_blank">
+        {{ $file->name }} ({{ $file->extension }})
+      </a>
+    </div>
+  @endforeach
+@endif
 
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>

@@ -62,6 +62,30 @@
           opacity: .4;
         }
       }
+
+      &--file {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      input[type=text],
+      input[type=text]::placeholder {
+        @extend %fs-16x;
+        @extend %sm\:fs-16x;
+        @extend %md\:fs-16x;
+        @extend %mr-8x;
+        @extend %p-1x;
+        background-color: $color-light;
+        border: none;
+        color: $color-primary;
+        @include font-regular();
+      }
+
+      input[type=text]::placeholder {
+        color: $color-tertiary;
+        padding: 0 !important;
+      }
+
     }
 
     .media-uploads-item.is-hidden iframe {
@@ -80,6 +104,14 @@
 
         &.is-draggable {
           cursor: move;
+        }
+
+        &--file {
+          @extend %\!sm\:grid;
+          @extend %sm\:grid-cols-12;
+          @extend %mb-3x;
+          @extend %sm\:mb-6x;
+          @extend %md\:mb-6x;
         }
 
         .media-uploads-item__description {

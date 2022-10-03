@@ -69,41 +69,6 @@
     }
 
   }
-
-  &.is-error {
-    background-color: $color-danger;
-    color: $color-white;
-    .icon {
-      color: $color-white !important;
-    }
-    
-    > div {
-      border-color: $color-danger;
-      a {
-        color: $color-white;
-      }
-    }
-  }
-
-  &.is-success {
-    background-color: $color-success;
-    color: $color-white;
-
-    .icon {
-      color: $color-white !important;
-    }
-    
-    > div {
-      border-color: $color-success;
-      a {
-        color: $color-white;
-      }
-    }
-  }
-
-  &.is-info {
-    color: $color-info;
-  }
 }
 
 // Modal styled notification
@@ -135,6 +100,56 @@
       @include font-bold();
     }
   }
+
+  &.is-error {
+    color: $color-danger;
+
+    .icon {
+      color: $color-danger;
+    }
+    
+    > div {
+      border-color: $color-danger;
+      a:not(.btn-primary) {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &.is-success {
+    color: $color-success;
+
+    .icon {
+      color: $color-success;
+    }
+    
+    > div {
+      border-color: $color-success;
+      a:not(.btn-primary) {
+        color: $color-success;
+      }
+    }
+  }
+
+  &.is-info {
+    color: $color-info;
+
+    .icon {
+      color: $color-info;
+    }
+    
+    > div {
+      border-color: $color-info;
+      a:not(.btn-primary) {
+        color: $color-info;
+      }
+    }
+  }
+
+  .btn-primary {
+    color: $color-white;
+  }
+
 }
 
 // Toast styled notification
@@ -167,6 +182,54 @@
 
     .message {
       @include font-bold();
+    }
+  }
+
+  &.is-error {
+    background-color: $color-danger;
+    color: $color-white;
+
+    .icon {
+      color: $color-white !important;
+    }
+    
+    > div {
+      border-color: $color-danger;
+      a {
+        color: $color-white;
+      }
+    }
+  }
+
+  &.is-success {
+    background-color: $color-success;
+    color: $color-white;
+
+    .icon {
+      color: $color-white !important;
+    }
+    
+    > div {
+      border-color: $color-success;
+      a {
+        color: $color-white;
+      }
+    }
+  }
+
+  &.is-info {
+    background-color: $color-info;
+    color: $color-white;
+
+    .icon {
+      color: $color-white !important;
+    }
+    
+    > div {
+      border-color: $color-info;
+      a {
+        color: $color-white;
+      }
     }
   }
 }

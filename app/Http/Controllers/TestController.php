@@ -22,26 +22,27 @@ class TestController extends BaseController
 
   public function index()
   {
+    $message = Message::find(12);
+    dd($message->files);
+    // $event = Event::find(22);
 
-    $event = Event::find(22);
-
-    $message = Message::create([
-      'date' => \Carbon\Carbon::now(),
-      'subject' => 'Test',
-      'body' => 'Ich bin der Nachrichten-Inhalt',
-      'user_id' => auth()->user()->id,
-      'uuid' => \Str::uuid(),
-      'messageable_id' => $event->id,
-      'messageable_type' => \App\Models\Event::class,
-    ]);
+    // $message = Message::create([
+    //   'date' => \Carbon\Carbon::now(),
+    //   'subject' => 'Test',
+    //   'body' => 'Ich bin der Nachrichten-Inhalt',
+    //   'user_id' => auth()->user()->id,
+    //   'uuid' => \Str::uuid(),
+    //   'messageable_id' => $event->id,
+    //   'messageable_type' => \App\Models\Event::class,
+    // ]);
     
-    // do this in a loop
-    Job::create([
-      'recipient' => 'm@marceli.to', // students email
-      'mailable_id' => $message->id,
-      'mailable_type' => \App\Models\Message::class,
-      'mailable_class' => \App\Mail\EventMessage::class
-    ]);
+    // // do this in a loop
+    // Job::create([
+    //   'recipient' => 'm@marceli.to', // students email
+    //   'mailable_id' => $message->id,
+    //   'mailable_type' => \App\Models\Message::class,
+    //   'mailable_class' => \App\Mail\EventMessage::class
+    // ]);
 
   }
 

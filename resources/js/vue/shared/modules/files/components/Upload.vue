@@ -45,8 +45,13 @@ export default {
   methods: {
 
     complete(file) {
-      if (file.status == "error" && file.accepted == false) {
-        this.$notify({ type: "error", text: this.messages.uploadError });
+      if (file.status == "error" || file.accepted == false) {
+        this.$refs.notification.init({
+          message: this.messages.uploadError,
+          type: 'alert',
+          style: 'error',
+          autohide: false
+        });
       } 
       else {
         let response = JSON.parse(file.xhr.response);

@@ -7,10 +7,15 @@
         :maxFiles="99"
         :maxFilesize="32"
         :acceptedFiles="'.pdf,.zip,.txt,.doc'"
+        @uploadCompleted="storeFile($event)"
       ></file-upload>
     </div>
-    <div class="mt-2x sm:mt-4x">
-      <file-edit :files="data"></file-edit>
+    <div class="mt-4x sm:mt-8x">
+      <file-edit 
+        :files="data" 
+        @updateFile="updateFile($event)"
+        @destroyFile="confirmDestroyFile($event)">
+      </file-edit>
     </div>
   </template>
   <notification ref="notification">
@@ -41,6 +46,10 @@ export default {
     typeId: null,
     type: null,
     files: null,
+    fetchFiles: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data() {
@@ -50,13 +59,14 @@ export default {
       currentFile: null,
 
       // Data
-      data: null,
+      data: [],
 
       // Routes
       routes: {
         get: '/api/files',
         store: '/api/file',
         delete: '/api/file',
+        update: '/api/file',
         toggle: '/api/file/state',
       },
 
@@ -74,11 +84,11 @@ export default {
   },
 
   created() {
+    this.isFetched = true;
     if (this.$props.files) {
       this.data = this.$props.files;
-      this.isFetched = true;
     }
-    else {
+    else if (this.$props.fetchFiles) {
       this.fetch();
     }
   },
@@ -86,6 +96,7 @@ export default {
   methods: {
 
     fetch() {
+      this.isFetched = false;
       NProgress.start();
       this.axios.get(`${this.routes.get}`).then(response => {
         this.data = response.data.data;
@@ -94,13 +105,14 @@ export default {
       });
     },
 
-    storeFile(media) {
-      let file = {
+    storeFile(file) {
+      let f = {
         id: null,
-        name: media.name,
-        original_name: media.original_name,
-        size: media.size,
-        extension: media.extension,
+        uuid: null,
+        name: file.name,
+        original_name: file.original_name,
+        size: file.size,
+        extension: file.extension,
         publish: 1,
         fileable_id: this.$props.typeId,
         fileable_type: this.$props.type,
@@ -108,14 +120,16 @@ export default {
 
       NProgress.start();
       this.axios.post(`${this.routes.store}`, file).then(response => {
-        file.id = response.data.fileId;
+        file.id = response.data.file.id;
+        file.uuid = response.data.file.uuid;
         this.data.push(file);
+        this.$emit('fileStored', response.data.file.uuid);
         NProgress.done();
       });
     },
 
-    confirmDestroyFile(image) {
-      this.currentFile = image;
+    confirmDestroyFile(file) {
+      this.currentFile = file;
       this.$refs.notification.init({
         message: 'Bitte Löschen bestätigen!',
         type: 'dialog',
@@ -124,29 +138,31 @@ export default {
       });
     },
 
-    // destroyFile(file) {
-    //   NProgress.start();
-    //   this.axios.delete(`${this.routes.delete}/${file}`).then(response => {
-    //     const index = this.data.findIndex(x => x.name === file);
-    //     this.data.splice(index, 1);
-    //     NProgress.done();
-    //   });
-    // },
-
-    destroyFile(file) {
+    destroyFile() {
       NProgress.start();
-      this.axios.delete(`${this.routes.delete}/${this.currentFile}`).then(response => {
-        const index = this.data.findIndex(x => x.name === this.currentFile);
+      this.axios.delete(`${this.routes.delete}/${this.currentFile.uuid}`).then(response => {
+        const index = this.data.findIndex(x => x.uuid === this.currentFile.uuid);
         this.data.splice(index, 1);
         this.currentFile = null;
         NProgress.done();
       });
     },
 
+    updateFile(file) {
+      this.axios.put(`${this.routes.update}/${file.uuid}`, file).then((response) => {
+        this.$refs.notification.init({
+          message: this.messages.updated,
+          type: 'toast',
+          style: 'success',
+          autohide: true
+        });
+      });
+    },
+
     toggleFile(file) {
       NProgress.start();
       this.axios.get(`${this.routes.toggle}/${file.id}`).then(response => {
-        const index = this.data.findIndex(x => x.id === file.id);
+        const index = this.data.findIndex(x => x.uuid === file.uuid);
         this.data[index].publish = response.data;
         NProgress.done();
       });

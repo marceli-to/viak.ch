@@ -21,7 +21,7 @@ export default {
   mounted() {
     window.addEventListener("keyup", event => {
       if (event.which === 27) {
-        this.hideEdit();
+        // this.hideEdit();
       }
     });
   },

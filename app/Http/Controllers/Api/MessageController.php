@@ -4,7 +4,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Message;
 use App\Models\MessageUser;
+use App\Models\File;
+use App\Models\Fileable;
 use App\Models\Job;
+use App\Services\Media;
 use App\Http\Requests\MessageStoreRequest;
 use App\Http\Resources\DataCollection;
 use Illuminate\Http\Request;
@@ -43,10 +46,8 @@ class MessageController extends Controller
    */
   public function store(MessageStoreRequest $request)
   {
-
     // Get the event
     $event = Event::where('uuid', $request->input('event_uuid'))->first();
-
 
     // Create message
     $message = Message::create([
@@ -57,6 +58,23 @@ class MessageController extends Controller
       'messageable_id' => $event->id,
       'messageable_type' => \App\Models\Event::class,
     ]);
+
+    // Add files to message
+    if ($request->input('files'))
+    { 
+      foreach($request->input('files') as $file)
+      {
+        $file = File::where('uuid', $file)->get()->first();
+
+        Fileable::create([
+          'file_id' => $file->id,
+          'fileable_type' => "App\Models\Message",
+          'fileable_id' => $message->id
+        ]);
+
+        (new Media())->copy($file->name);
+      }
+    }
 
     // Create job and add students
     foreach($event->getStudents() as $student)

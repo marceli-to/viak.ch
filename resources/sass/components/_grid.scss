@@ -56,6 +56,17 @@
   }
 }
 
+%grid,
+.grid {
+  display: grid;
+}
+
+%\!sm\:grid,
+.\!sm\:grid {
+  @include bp-sm() {
+    display: grid !important;
+  }
+}
 
 %grid-cols-none,
 .grid-cols-none {

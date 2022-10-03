@@ -1,13 +1,10 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class File extends Base
 {
-  use HasFactory, SoftDeletes;
 
   /**
    * The attributes that should be cast to native types.
@@ -33,12 +30,11 @@ class File extends Base
     'size',
     'caption',
     'description',
-    'orientation',
     'order',
     'publish',
     'locked',
-    'fileable_id',
-    'fileable_type'
+    // 'fileable_id',
+    // 'fileable_type'
   ];
 
   /**
@@ -46,9 +42,18 @@ class File extends Base
    * 
    */
 
-  public function fileable()
+  // public function fileable()
+  // {
+  //   return $this->morphTo();
+  // }
+
+  /**
+   * Get all of the messages that are assigned this file.
+   */
+  
+  public function messages()
   {
-    return $this->morphTo();
+    return $this->morphedByMany(Message::class, 'fileable');
   }
 
 	/**
