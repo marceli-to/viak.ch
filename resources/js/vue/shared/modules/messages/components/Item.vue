@@ -36,10 +36,21 @@
               <div class="span-10 text-xsmall">{{ $props.message.user }}</div>
             </div>
           </header>
-          <p><strong>{{ __('Betreff') }}</strong></p>
+          <p v-if="$props.message.subject">
+            {{ $props.message.subject }}
+          </p>
           <p>{{ $props.message.body | nl2br() }}</p>
-          <footer>
-            {{ message }}
+          <footer v-if="$props.message.files && $props.message.files.length > 0">
+            <div class="text-xsmall mb-1x">
+              {{ __('Anhänge') }}
+            </div>
+            <a :href="`/storage/uploads/${file.name}`" 
+              v-for="(file, index) in $props.message.files" 
+              :key="index"
+              target="_blank">
+              {{ file.name }}
+              <!--, {{ file.size | fileSize() }} -->
+            </a>
           </footer>
         </div>
       </div>
@@ -77,7 +88,7 @@ export default {
 
   props: {
     message: {
-      type: [Object],
+      type: Object,
       default: null
     },
   },

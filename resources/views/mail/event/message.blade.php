@@ -8,12 +8,13 @@
   @foreach($message->files as $file)
     <div>
       <a href="{{ asset('storage/uploads/' . $file->name) }}" target="_blank">
-        {{ $file->name }} ({{ $file->extension }})
+        {{ $file->name }} 
+        {{-- ({{ $file->extension }}) --}}
       </a>
     </div>
   @endforeach
 @endif
-
+<h2>Kursinformationen</h2>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Kurs') }}</td>

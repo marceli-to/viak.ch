@@ -47,6 +47,21 @@
     </collapsible-container>
 
     <collapsible-container>
+      <collapsible :items="data.messages">
+        <template #title>
+          {{ __('Nachrichten') }}
+        </template>
+        <template #content>
+          <messages 
+            :messages="data.messages" 
+            :eventUuid="data.event.uuid"
+            :canCreate="true">
+          </messages>
+        </template>
+      </collapsible>
+    </collapsible-container>
+
+    <collapsible-container>
       <collapsible>
         <template #title>
           {{ __('Unterlagen') }}
@@ -57,19 +72,6 @@
       </collapsible>
     </collapsible-container>
 
-    <collapsible-container>
-      <collapsible :items="data.messages">
-        <template #title>
-          {{ __('Nachrichten') }}
-        </template>
-        <template #content>
-          <messages 
-            :messages="data.messages" 
-            :eventUuid="data.event.uuid">
-          </messages>
-        </template>
-      </collapsible>
-    </collapsible-container>
   </div>
 </template>
 <script>

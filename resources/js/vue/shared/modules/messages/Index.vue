@@ -1,12 +1,15 @@
 <template>
   <div v-if="isFetched">
     <div v-if="$props.messages.length">
-      <message-list-item v-for="(message, index) in $props.messages" :key="index" :message="message"></message-list-item>
+      <message-item 
+        v-for="(message, index) in $props.messages" 
+        :key="index" 
+        :message="message" />
     </div>
     <div v-else>
       <p class="no-results">Es sind keine Nachrichten vorhanden.</p>
     </div>
-    <div class="flex justify-start mt-6x">
+    <div class="flex justify-start mt-6x" v-if="$props.canCreate">
       <router-link :to="{ name: 'expert-course-event-message' }" class="icon-plus">
         <icon-plus />
       </router-link>
@@ -17,14 +20,14 @@
 import NProgress from 'nprogress';
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
-import MessageListItem from "@/shared/modules/messages/components/List.vue";
+import MessageItem from "@/shared/modules/messages/components/Item.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 
 export default {
 
   components: {
     NProgress,
-    MessageListItem,
+    MessageItem,
     IconPlus
   },
 
@@ -40,6 +43,11 @@ export default {
     eventUuid: {
       type: String,
       default: null,
+    },
+
+    canCreate: {
+      type: Boolean,
+      default: false
     }
   },
 

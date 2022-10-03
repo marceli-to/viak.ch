@@ -36,12 +36,15 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="data.messages">
         <template #title>
-          {{ __('Unterlagen') }}
+          {{ __('Nachrichten') }}
         </template>
         <template #content>
-
+          <messages 
+            :messages="data.messages" 
+            :eventUuid="data.event.uuid">
+          </messages>
         </template>
       </collapsible>
     </collapsible-container>
@@ -49,7 +52,7 @@
     <collapsible-container>
       <collapsible>
         <template #title>
-          {{ __('Nachrichten') }}
+          {{ __('Unterlagen') }}
         </template>
         <template #content>
 
@@ -77,6 +80,7 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
+import Messages from "@/shared/modules/messages/Index.vue";
 
 export default {
 
@@ -88,6 +92,7 @@ export default {
     Collapsible,
     IconArrowRight,
     IconCheckmark,
+    Messages
   },
 
   mixins: [ErrorHandling, i18n, Booking, Meta],

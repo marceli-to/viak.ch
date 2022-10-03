@@ -50,6 +50,9 @@ class EventController extends Controller
     $data = [
       'event' => new EventResource($event),
       'booking' => new BookingResource($booking),
+      'messages' => EventMessageResource::collection(
+        $event->messages
+      ),
     ];
     return response()->json($data);
   }

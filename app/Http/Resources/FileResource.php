@@ -1,9 +1,8 @@
 <?php
 namespace App\Http\Resources;
-use App\Http\Resources\FileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EventMessageResource extends JsonResource
+class FileResource extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -15,11 +14,10 @@ class EventMessageResource extends JsonResource
   {
     return [
       'uuid' => $this->uuid,
-      'date' => date('d.m.Y', strtotime($this->created_at)),
-      'subject' => $this->subject,
-      'body' => $this->body,
-      'user' => $this->user->fullname,
-      'files' => FileResource::collection($this->files)
+      'name' => $this->name,
+      'description' => $this->description,
+      'extension' => $this->extension,
+      'size' => $this->size
     ];
   }
 }

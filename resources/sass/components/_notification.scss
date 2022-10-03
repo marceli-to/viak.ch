@@ -17,14 +17,6 @@
     max-width: 80%;
     width: 100%;
 
-    @include bp-sm() {
-      max-width: 360px
-    }
-
-    @include bp-md() {
-      max-width: 480px;
-    }
-
     .notification-icon {
       @extend %mb-4x;
     }
@@ -92,9 +84,19 @@
     border: 2px solid $color-quaternary;
     display: flex;
     flex-direction: column;
+    max-width: 80%;
 
+    @include bp-sm() {
+      max-width: 360px
+    }
+
+    @include bp-md() {
+      max-width: 480px !important;
+    }
+    
     .notification-message {
       @include font-bold();
+      text-align: center;
     }
   }
 
