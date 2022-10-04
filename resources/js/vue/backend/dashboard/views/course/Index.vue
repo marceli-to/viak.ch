@@ -59,6 +59,7 @@
       </collapsible>
     </draggable>
   </collapsible-container>
+  <notification ref="notification" />
 </div>
 </template>
 <script>
@@ -155,7 +156,11 @@ export default {
       this.debounce = setTimeout(function(courses) {
         this.debounce = false;
         this.axios.post(this.routes.order, {courses: courses}).then((response) => {
-          alert('Reihenfolge angepasst');
+          this.$refs.notification.init({
+            message: 'Reihenfolge angepasst',
+            type: 'toast',
+            style: 'success',
+          });
         });
       }.bind(this, courses), 1000);
     },
