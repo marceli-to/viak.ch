@@ -86,7 +86,6 @@ export default {
     });
   },
 
-
   props: {
     message: {
       type: Object,
@@ -97,10 +96,24 @@ export default {
   methods: {
     show() {
       this.isOpen = true;
+      setTimeout(() => {
+        this.addListener();
+      }, 50)
     },
 
     hide() {
       this.isOpen = false;
+    },
+
+    addListener() {
+      const message = document.querySelector('.message.is-visible');
+      message.addEventListener('click', ($event) => { 
+        const message_inner = document.querySelector('.message.is-visible > div');
+        if ($event.target.contains(message_inner) && event.target !== message_inner) {
+          this.hide();
+        }
+      }, false);
+
     }
   }
 }

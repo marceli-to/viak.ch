@@ -7,6 +7,13 @@
 .message {
   @extend %lightbox;
 
+  &.is-visible {
+    cursor: pointer;
+    .message__inner {
+      cursor: default;
+    }
+  }
+
   .message__inner {
     @extend %p-2x;
     @extend %sm\:p-4x;
