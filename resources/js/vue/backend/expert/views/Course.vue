@@ -74,32 +74,14 @@
         </template>
         <template #content>
           <stacked-list-item v-for="(file, index) in data.files" :key="index">
-            <div>
-              <div class="sm:span-4">
-                <span v-if="file.description">
-                  <!-- {{ file.description }} ({{ file.original_name | truncate(25, '...') }}) -->
-                  {{ file.description + ' (' + file.original_name + ')' | truncate(35, '...') }} 
-                </span>
-                <span v-else>{{ file.original_name | truncate(35, '...') }}</span>
-              </div>
-              <div class="sm:span-3">
-                {{ file.uploaded_at }}
-              </div>
-              <div class="sm:span-2">
-                {{ file.size | fileSize() }}
-              </div>
-              <div class="sm:span-3 flex justify-end">
-                <div>
-                  <a :href="`/storage/uploads/${file.name}`" target="_blank" class="btn-primary btn-auto-w mb-3x">
-                    {{ __('Download') }}
-                  </a>
-                  <button-file-delete 
-                    :file="file"
-                    @fileDeleted="fileDeleted($event)"
-                    v-if="file.belongs_to_message == false" />
-                </div>
-              </div>
-            </div>
+            <list-item-file :file="file">
+              <template #action>
+                <button-file-delete 
+                  :file="file"
+                  @fileDeleted="fileDeleted($event)"
+                  v-if="file.belongs_to_message == false" />
+              </template>
+            </list-item-file>
           </stacked-list-item>
           <div class="mt-6x">
             <router-link :to="{ name: 'expert-course-event-file' }" class="icon-plus">
@@ -121,6 +103,7 @@ import i18n from "@/shared/mixins/i18n";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
+import ListItemFile from "@/shared/modules/files/components/ListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -136,6 +119,7 @@ export default {
     ArticleText,
     StackedListEvent,
     StackedListItem,
+    ListItemFile,
     CollapsibleContainer,
     Collapsible,
     IconArrowRight,

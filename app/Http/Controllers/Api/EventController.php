@@ -58,6 +58,9 @@ class EventController extends Controller
       'messages' => EventMessageResource::collection(
         $event->messages
       ),
+      'files' => FileResource::collection(
+        $event->files
+      ),
     ];
     return response()->json($data);
   }

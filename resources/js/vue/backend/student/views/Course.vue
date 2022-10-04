@@ -50,12 +50,14 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="data.files">
         <template #title>
           {{ __('Dokumente') }}
         </template>
         <template #content>
-
+          <stacked-list-item v-for="(file, index) in data.files" :key="index">
+            <list-item-file :file="file" />
+          </stacked-list-item>
         </template>
       </collapsible>
     </collapsible-container>
@@ -76,6 +78,8 @@ import i18n from "@/shared/mixins/i18n";
 import Booking from "@/shared/mixins/Booking";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
+import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
+import ListItemFile from "@/shared/modules/files/components/ListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -88,10 +92,12 @@ export default {
     NProgress,
     ArticleText,
     StackedListEvent,
+    StackedListItem,
     CollapsibleContainer,
     Collapsible,
     IconArrowRight,
     IconCheckmark,
+    ListItemFile,
     Messages
   },
 

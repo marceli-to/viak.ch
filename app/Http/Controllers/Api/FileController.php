@@ -108,7 +108,6 @@ class FileController extends Controller
     $fileable_record = Fileable::with('file.messages')->where('file_id', $file->id)->first();
     if ($fileable_record)
     {
-
       if ($fileable_record->file->messages->count() == 0)
       {
         if ($fileable_record->delete())

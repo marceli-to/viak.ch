@@ -16,28 +16,28 @@ class PenaltyHelper
       'half'  => '50'
     ];
 
+    $penalty = NULL;
+    $amount = 0;
+
     // Diff between today and the event date
     $days = Carbon::parse($eventData)->diffInDays(Carbon::now());
 
-    switch($days)
+    if ($days == 0 || $days < self::RANGE_MAX)
     {
-      case $days < self::RANGE_MAX:
-        $penalty = $penalties['full'];
-      break;
-
-      case $days < self::RANGE_MIN:
-        $penalty = $penalties['half'];
-      break;
-
-      default:
-        $penalty = NULL;
-      break;
+      $penalty = $penalties['full'];
+      $amount  = $eventFee / 100 * $penalties['full'];
+    }
+    else if ($days < self::RANGE_MIN)
+    {
+      $penalty = $penalties['half'];
+      $amount  = $eventFee / 100 * $penalties['half'];
     }
 
     return [
       'penalty' => $penalty,
-      'amount'  => $penalty ? $eventFee / 100 * $penalty : 0,
+      'amount'  => $amount
     ];
+
   }
 
   public static function has($eventData)
