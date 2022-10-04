@@ -4,7 +4,7 @@
 <br>
 <br>
 @if ($message->files)
-  <h2>Anhänge</h2>
+  <div>Anhänge</div>
   @foreach($message->files as $file)
     <div>
       <a href="{{ asset('storage/uploads/' . $file->name) }}" target="_blank">
@@ -13,7 +13,6 @@
     </div>
   @endforeach
 @endif
-<h2>Kursinformationen</h2>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Kurs') }}</td>
