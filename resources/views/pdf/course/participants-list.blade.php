@@ -3,18 +3,18 @@
   <table class="page__info">
     <tr> 
       <td>{{ __('Kurs') }}</td>
-      <td>Blender Einführungskurs</td>
+      <td>{{ $data['event']->course->title }}</td>
     </tr>
     <tr> 
       <td>{{ __('Experte') }}</td>
-      <td>Helge Maus</td>
+      <td>{{ collect($data['event']->experts->pluck('fullname')->all())->implode(', ') }}</td>
     </tr>
     <tr> 
       <td>{{ __('Kurs-Nr.') }}</td>
-      <td>02-280422</td>
+      <td>{{ $data['event']->number }}</td>
     </tr>
   </table>
-  <h1 class="page__title">{{ __('Teilnehmer:innen-Liste') }}<br>Blender Einführungskurs</h1>
+  <h1 class="page__title">{{ __('Teilnehmer:innen-Liste') }}<br>{{ $data['event']->course->title }}</h1>
   <div class="page__date">Zürich, {{date('d.m.Y', time())}}</div>
   <div class="page__content">
     <table class="content-table">
@@ -23,62 +23,16 @@
         <th>{{ __('Unterschrift') }}</th>
       </thead>
       <tbody>
-        <tr>
-          <td><strong>Marcel Stadelmann, Winterthur</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Benedikt Flüeler, Zürich</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Petra Mustermann, Uster</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Marcel Stadelmann, Winterthur</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Benedikt Flüeler, Zürich</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Petra Mustermann, Uster</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Marcel Stadelmann, Winterthur</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Benedikt Flüeler, Zürich</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Petra Mustermann, Uster</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Marcel Stadelmann, Winterthur</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Benedikt Flüeler, Zürich</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Petra Mustermann, Uster</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Marcel Stadelmann, Winterthur</strong></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><strong>Benedikt Flüeler, Zürich</strong></td>
-          <td></td>
-        </tr>
+        @foreach($data['students'] as $student)
+          <tr>
+            <td>
+              <strong>
+                {{ $student->fullname }}, {{ $student->city }}
+              </strong>
+            </td>
+            <td></td>
+          </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

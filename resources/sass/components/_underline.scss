@@ -1,0 +1,20 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: component/underline
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+%line-after,
+.line-after {
+  @extend %pb-3x;
+  @extend %md\:pb-6x;
+  border-bottom: 1px solid $color-primary;
+}
+
+%line-before,
+.line-before {
+  @extend %pt-3x;
+  @extend %md\:pt-6x;
+  border-top: 1px solid $color-primary;
+}

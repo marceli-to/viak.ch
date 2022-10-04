@@ -9,12 +9,6 @@
   @extend %md\:mb-6x;
   position: relative;
 
-  &.has-underline {
-    @extend %pb-3x;
-    @extend %md\:pb-6x;
-    border-bottom: 1px solid $color-primary;
-  }
-
   &.has-grid {
     @extend %sm\:grid-cols-12;
     grid-row-gap: 0;

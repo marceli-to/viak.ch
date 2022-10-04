@@ -42,6 +42,12 @@
           <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
             {{ participant.firstname }} {{ participant.name }}, {{ participant.city }}
           </stacked-list-item>
+          <div class="mt-5x sm:mt-10x">
+            <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
+              <span>{{ __('Teilnehmerliste (PDF)') }}</span>
+              <icon-arrow-right />
+            </a>
+          </div>
         </template>
       </collapsible>
     </collapsible-container>

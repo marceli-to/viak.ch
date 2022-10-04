@@ -49,7 +49,7 @@
         <collapsible :expanded="true" v-if="isFetchedSettings">
           <template #title>Einstellungen</template>
           <template #content>
-            <form-group class="has-underline flex mt-4x">
+            <form-group class="line-after flex mt-4x">
               <div class="mr-16x md:mr-20x">
                 <div class="form-group__checkbox">
                   <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
@@ -66,7 +66,7 @@
             <form-group-header :error="errors.category_ids">
               <h3>Kategorien *</h3>
             </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.category_ids">
+            <form-group class="line-after" :required="true" :error="errors.category_ids">
               <div class="form-group__checkbox" v-for="(category, index) in sorted(settings.categories, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.id" v-model="data.category_ids">
                 <label :for="`category-${category.id}`">
@@ -77,7 +77,7 @@
             <form-group-header :error="errors.language_ids">
               <h3>Sprachen *</h3>
             </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.language_ids">
+            <form-group class="line-after" :required="true" :error="errors.language_ids">
               <div class="form-group__checkbox" v-for="(language, index) in sorted(settings.languages, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`language-${language.id}`" :name="`language-${language.id}`" :value="language.id" v-model="data.language_ids">
                 <label :for="`language-${language.id}`">
@@ -88,7 +88,7 @@
             <form-group-header :error="errors.level_ids">
               <h3>Levels *</h3>
             </form-group-header>
-            <form-group class="has-underline" :required="true" :error="errors.level_ids">
+            <form-group class="line-after" :required="true" :error="errors.level_ids">
               <div class="form-group__checkbox" v-for="(level, index) in sorted(settings.levels, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`level-${level.id}`" :name="`level-${level.id}`" :value="level.id" v-model="data.level_ids">
                 <label :for="`level-${level.id}`">
@@ -99,7 +99,7 @@
             <form-group-header>
               <h3>Software</h3>
             </form-group-header>
-            <form-group class="has-underline">
+            <form-group class="line-after">
               <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.software, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
                 <label :for="`software-${software.id}`">
@@ -110,7 +110,7 @@
             <form-group-header>
               <h3>Tags</h3>
             </form-group-header>
-            <form-group class="has-underline grid-cols-12 grid-row-gap-none">
+            <form-group class="line-after grid-cols-12 grid-row-gap-none">
               <div class="form-group__checkbox span-6" v-for="(tag, index) in sorted(settings.tags, 'description.de', 'asc')" :key="index">
                 <input type="checkbox" :id="`tag-${tag.id}`" :name="`tag-${tag.id}`" :value="tag.id" v-model="data.tag_ids">
                 <label :for="`tag-${tag.id}`">

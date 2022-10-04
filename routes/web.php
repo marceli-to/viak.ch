@@ -75,10 +75,15 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   // Routes for user with multiple roles
   Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select')->middleware(['role:admin']);
   Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set')->middleware(['role:admin']);
-
+  
+  // Dashboard routes
   Route::get('/dashboard/{any?}', function () {
     return view('web.layout.backend');
   })->where('any', '.*')->middleware(['role:admin'])->name('page.dashboard');
+
+  // Documents
+  Route::get('/pdf/teilnehmer-liste/{event:uuid}', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list')->middleware(['role:admin,expert']);
+
 });
 
 
@@ -112,6 +117,8 @@ Route::get('/email/bestaetigen/{token}', [ConfirmExpertController::class, 'confi
 Route::post('/expert/finish', [ConfirmExpertController::class, 'store'])->name('auth.expert.finish');
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Test routes
@@ -135,5 +142,4 @@ Route::get('/dokumente', [DocumentController::class, 'index'])->name('documents.
 
 Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
 Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
-Route::get('/pdf/teilnehmer-liste', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list');
 Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');

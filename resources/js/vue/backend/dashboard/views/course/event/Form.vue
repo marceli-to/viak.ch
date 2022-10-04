@@ -44,7 +44,7 @@
           type="number" 
           v-model="data.fee" />
       </form-group>
-      <form-group class="has-underline flex mt-8x">
+      <form-group class="line-after flex mt-8x">
         <div class="mr-16x md:mr-20x">
           <div class="form-group__checkbox">
             <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
@@ -115,7 +115,7 @@
           </div>
         </grid>
       </div>
-      <form-group class="flex justify-center has-underline">
+      <form-group class="flex justify-center line-after">
         <a href="" class="icon-plus" @click.prevent="addDate()">
           <icon-plus :size="'lg'" />
         </a>
@@ -125,7 +125,7 @@
       <form-group-header class="mt-8x">
         <h3><strong>Experten</strong></h3>
       </form-group-header>
-      <form-group class="has-underline grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings" :error="errors.expert_ids">
+      <form-group class="line-after grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings" :error="errors.expert_ids">
         <div class="form-group__checkbox span-6" v-for="(expert, index) in sorted(settings.experts, 'firstname', 'asc')" :key="index">
           <input type="checkbox" :id="`expert-${expert.id}`" :name="`expert-${expert.id}`" :value="expert.id" v-model="data.expert_ids">
           <label :for="`expert-${expert.id}`">

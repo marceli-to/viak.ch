@@ -38,7 +38,7 @@
         </files>
       </form-group>
 
-      <form-group class="has-underline flex">
+      <form-group class="line-after flex">
         <div class="form-group__checkbox">
           <input type="checkbox" id="selfcopy" name="selfcopy" :value="1" v-model="data.selfcopy">
           <label for="selfcopy">{{ __('Kopie der Nachricht an mich') }}</label>

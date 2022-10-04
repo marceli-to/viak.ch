@@ -55,7 +55,7 @@
           </form-group>
         </grid>
 
-        <form-group class="has-underline" :error="errors.invoice_address">
+        <form-group class="line-after" :error="errors.invoice_address">
           <div class="flex items-center">
             <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
             <label for="has_invoice_address">
@@ -82,7 +82,7 @@
         <form-group-header>
           <h3>{{__('Betriebssystem')}}</h3>
         </form-group-header>
-        <form-group class="has-underline">
+        <form-group class="line-after">
           <div class="form-group__checkbox">
             <input type="checkbox" id="os_win" name="os_win" required value="Windows" v-model="form.operating_system">
             <label for="os_win">Windows</label>
@@ -97,7 +97,7 @@
           </div>
         </form-group>
 
-        <form-group class="has-underline" :error="errors.accept_tos">
+        <form-group class="line-after" :error="errors.accept_tos">
           <div class="form-group__checkbox md:mb-4x">
             <input type="checkbox" id="accept_tos" name="accept_tos" required value="true" v-model="form.accept_tos" @change="removeError('accept_tos')">
             <label for="accept_tos" v-if="errors.accept_tos">{{ errors.accept_tos }}</label>
@@ -117,7 +117,7 @@
           </ul>
         </form-group>
 
-        <form-group class="has-underline">
+        <form-group class="line-after">
           <div class="flex items-center">
             <input type="checkbox" id="subscribe_newsletter" name="subscribe_newsletter" required value="1" v-model="form.subscribe_newsletter">
             <label for="subscribe_newsletter">{{ __('Ich möchte den Newsletter abonnieren.') }}</label>

@@ -52,7 +52,7 @@
           <input type="text" v-model="data.city" required @focus="removeError('city')" />
         </form-group>
       </grid>
-      <form-group class="has-underline" :error="errors.invoice_address">
+      <form-group class="line-after" :error="errors.invoice_address">
         <div class="flex items-center">
           <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="data.has_invoice_address">
           <label for="has_invoice_address">

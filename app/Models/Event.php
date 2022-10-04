@@ -45,6 +45,7 @@ class Event extends Base
    */
 
   protected $appends = [
+    'number',
     'date_str',
     'course_fee',
     'course_online',
@@ -252,13 +253,25 @@ class Event extends Base
    * relationship with events, they are related via the
    * booking.
    * 
-   * @param  User $user
-   * @return Event $event
+   * 
+   * @return Array $users
    */
 
   public function getStudents()
   {
     return $this->bookings->pluck('user')->all();
+  }
+
+  /**
+   * Get the event number attribute. The event number is a combination
+   * of the events course and the first date of the event.
+   *
+   * @return String $number
+   */
+
+  public function getNumberAttribute()
+  {
+    return str_pad($this->course->number,  2, "0", STR_PAD_LEFT) . '-' . date('dmy', strtotime($this->date));
   }
 
 }

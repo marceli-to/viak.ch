@@ -56,16 +56,20 @@ class DocumentController extends BaseController
     return response()->download($pdf['path'], $pdf['name'], $this->headers);
   }
 
-
   /**
    * Generate and download a pdf
    * 
+   * @param Event $event
    * @return \Illuminate\Http\Response
    */
-  public function participantsList()
+  public function participantsList(Event $event)
   { 
+    $event = $event->with('course', 'experts')->findOrFail($event->id);
     $pdf = (new Pdf())->create([
-      'data' => '',
+      'data' => [
+        'event' => $event,
+        'students' => $event->getStudents()
+      ],
       'view' => 'course.participants-list',
       'name' => 'teilnehmerliste'
     ]);
