@@ -66,10 +66,18 @@ class MessageController extends Controller
       {
         $file = File::where('uuid', $file)->get()->first();
 
+        // Attach file to message
         Fileable::create([
           'file_id' => $file->id,
           'fileable_type' => "App\Models\Message",
           'fileable_id' => $message->id
+        ]);
+
+        // Attach file to event
+        Fileable::create([
+          'file_id' => $file->id,
+          'fileable_type' => "App\Models\Event",
+          'fileable_id' => $event->id
         ]);
 
         (new Media())->copy($file->name);
@@ -92,7 +100,7 @@ class MessageController extends Controller
       ]);
     }
 
-    // Selfcopy needed?
+    // Create additional job for the current user if selfcopy is required
     if ($request->input('selfcopy'))
     {
       Job::create([
