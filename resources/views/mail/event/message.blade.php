@@ -8,7 +8,7 @@
   @foreach($message->files as $file)
     <div>
       <a href="{{ asset('storage/uploads/' . $file->name) }}" target="_blank">
-        {{ $file->name }} 
+        – {{ $file->description ? $file->description . ' ('. $file->name .')' : $file->name }} 
       </a>
     </div>
   @endforeach
