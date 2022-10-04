@@ -47,7 +47,6 @@ class CourseVideoController extends Controller
         ['uuid' => \Str::uuid()]
       )
     );
-    $courseVideo->save();
     return response()->json(['courseVideoId' => $courseVideo->id]);
   }
 

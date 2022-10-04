@@ -40,7 +40,6 @@ class CategoryController extends Controller
   public function store(CategoryStoreRequest $request)
   {
     $category = Category::create($request->all());
-    $category->save();
     return response()->json(['categoryId' => $category->id]);
   }
 

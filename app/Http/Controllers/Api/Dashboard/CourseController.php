@@ -56,7 +56,6 @@ class CourseController extends Controller
         ['uuid' => \Str::uuid()]
       )
     );
-    $course->save();
     $course->setTranslation('slug', 'de', \Str::slug($request->input('title.de')));
     $course->setTranslation('slug', 'en', \Str::slug($request->input('title.de')));
     $course->categories()->attach($request->input('category_ids'));
@@ -64,6 +63,7 @@ class CourseController extends Controller
     $course->levels()->attach($request->input('level_ids'));
     $course->softwares()->attach($request->input('software_ids'));
     $course->tags()->attach($request->input('tag_ids'));
+    $course->save();
     return response()->json(['courseId' => $course->id]);
   }
 

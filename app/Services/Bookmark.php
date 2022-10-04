@@ -66,7 +66,6 @@ class Bookmark
       'user_id' => auth()->user()->id,
       'bookmarked_at' => \Carbon\Carbon::now()
     ]);
-    $bookmark->save();
     return $bookmark;
   }  
 

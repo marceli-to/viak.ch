@@ -40,7 +40,6 @@ class LevelController extends Controller
   public function store(LevelStoreRequest $request)
   {
     $level = Level::create($request->all());
-    $level->save();
     return response()->json(['levelId' => $level->id]);
   }
 

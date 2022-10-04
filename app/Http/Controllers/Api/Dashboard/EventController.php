@@ -51,7 +51,6 @@ class EventController extends Controller
         ['uuid' => \Str::uuid()]
       )
     );
-    $event->save();
 
     // Add expers
     $event->experts()->attach($request->input('expert_ids'));

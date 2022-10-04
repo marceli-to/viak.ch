@@ -45,7 +45,6 @@ class StudentController extends Controller
   public function store(StudentStoreRequest $request)
   {
     $user = User::create($request->all());
-    $user->save();
     return response()->json(['userId' => $user->id]);
   }
 
