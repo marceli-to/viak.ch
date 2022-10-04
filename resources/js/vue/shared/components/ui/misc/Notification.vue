@@ -105,10 +105,10 @@ export default {
 
     show() {
       // @todo: hide previous items
-      const items = document.querySelectorAll('.notification');
-      if (items.length > 0) {
-        items.forEach( el => el.style.top = items.length * 70 + 'px' );
-      }
+      // const items = document.querySelectorAll('.notification');
+      // if (items.length > 0) {
+      //   items.forEach( el => el.style.top = items.length * 70 + 'px' );
+      // }
       
       this.isOpen = true;
       if (this.autohide) {
