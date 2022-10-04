@@ -21,7 +21,6 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
-    dd(app()->environment());
     return view($this->viewPath . 'index');
   }
 }
