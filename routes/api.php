@@ -15,7 +15,8 @@ use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\EventController;
-use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\EventMessageController;
+use App\Http\Controllers\Api\EventFileController;
 
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
@@ -131,9 +132,10 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() 
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
-  Route::get('/messages/{event:uuid}', [MessageController::class, 'get']);
-  Route::post('/message', [MessageController::class, 'store']);
-  Route::get('/message/{message:uuid}', [MessageController::class, 'find']);
+  Route::get('/event/messages/{event:uuid}', [EventMessageController::class, 'get']);
+  Route::post('/event/message', [EventMessageController::class, 'store']);
+  Route::post('/event/file', [EventFileController::class, 'store']);
+  Route::get('/message/{message:uuid}', [EventMessageController::class, 'find']);
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'findExpertEvent'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{event:uuid}', [EventController::class, 'findStudentEvent'])->middleware(['role:admin,student']);
 });

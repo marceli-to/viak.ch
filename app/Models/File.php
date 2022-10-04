@@ -33,19 +33,24 @@ class File extends Base
     'order',
     'publish',
     'locked',
-    // 'fileable_id',
-    // 'fileable_type'
   ];
+
+
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'uploaded_at',
+  ];
+
 
   /**
    * Relationships
    * 
    */
-
-  // public function fileable()
-  // {
-  //   return $this->morphTo();
-  // }
 
   /**
    * Get all of the messages that are assigned this file.
@@ -54,6 +59,15 @@ class File extends Base
   public function messages()
   {
     return $this->morphedByMany(Message::class, 'fileable');
+  }
+
+  /**
+   * Get all of the events that are assigned this file.
+   */
+  
+  public function files()
+  {
+    return $this->morphedByMany(Event::class, 'fileable');
   }
 
 	/**
@@ -73,4 +87,16 @@ class File extends Base
 	{
 		return $query->where('locked', 1);
 	}
+
+  /**
+   * Get created_at date for a file.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getUploadedAtAttribute()
+  {   
+    return date('d.m.Y, H:i', strtotime($this->created_at));
+  }
 }

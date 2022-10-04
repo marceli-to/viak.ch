@@ -18,4 +18,14 @@ class Fileable extends Base
     'fileable_id'
   ];
 
+  /**
+   * Get all of the events that are assigned this file.
+   */
+  
+  public function file()
+  {
+    return $this->belongsTo(File::class);
+  }
+
+
 }

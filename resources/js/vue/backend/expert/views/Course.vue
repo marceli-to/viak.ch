@@ -68,16 +68,49 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :items="data.files">
         <template #title>
-          {{ __('Unterlagen') }}
+          {{ __('Dokumente') }}
         </template>
         <template #content>
-
+          <stacked-list-item v-for="(file, index) in data.files" :key="index">
+            <div>
+              <div class="sm:span-4">
+                <span v-if="file.description">
+                  <!-- {{ file.description }} ({{ file.original_name | truncate(25, '...') }}) -->
+                  {{ file.description + ' (' + file.original_name + ')' | truncate(35, '...') }} 
+                </span>
+                <span v-else>{{ file.original_name | truncate(35, '...') }}</span>
+              </div>
+              <div class="sm:span-3">
+                {{ file.uploaded_at }}
+              </div>
+              <div class="sm:span-2">
+                {{ file.size | fileSize() }}
+              </div>
+              <div class="sm:span-3 flex justify-end">
+                <div>
+                  <a :href="`/storage/uploads/${file.name}`" target="_blank" class="btn-primary btn-auto-w mb-3x">
+                    {{ __('Download') }}
+                  </a>
+                  <button-file-delete 
+                    :file="file"
+                    @fileDeleted="fileDeleted($event)"
+                    v-if="file.belongs_to_message == false" />
+                </div>
+              </div>
+            </div>
+          </stacked-list-item>
+          <div class="mt-6x">
+            <router-link :to="{ name: 'expert-course-event-file' }" class="icon-plus">
+              <icon-plus />
+            </router-link>
+          </div>
         </template>
       </collapsible>
     </collapsible-container>
-
+    
+    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -92,7 +125,9 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
+import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
+import ButtonFileDelete from "@/shared/modules/files/components/ButtonDelete.vue";
 
 export default {
 
@@ -105,7 +140,9 @@ export default {
     Collapsible,
     IconArrowRight,
     IconCheckmark,
-    Messages
+    IconPlus,
+    Messages,
+    ButtonFileDelete
   },
 
   mixins: [ErrorHandling, i18n, Meta],
@@ -139,6 +176,19 @@ export default {
         NProgress.done();
       });
     },
+
+    fileDeleted(file) {
+      const index = this.data.files.findIndex(x => x.uuid === file.uuid);
+      if (index > -1) {
+        this.data.files.splice(index, 1);
+      }
+
+      this.$refs.notification.init({
+        message: 'Datei entfernt',
+        type: 'toast',
+        style: 'success',
+      });
+    }
   },
 
   computed: {

@@ -3,10 +3,10 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ __('Nachricht erstellen') }}</h1>
-      <p class="text-small sm:mt-3x">Sende eine Nachricht an alle Studenten dieses Kurses.</p>
+      <p class="text-small sm:mt-3x">{{ __('Sende eine Nachricht an alle Studenten dieses Kurses.') }}</p>
       <div class="sm:mt-5x md:mt-10x">
         <router-link :to="{ name: 'expert-course-event' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
+          <span>{{ __('Zurück') }}</span>
           <icon-arrow-right :size="'sm'" />
         </router-link>
       </div>
@@ -47,7 +47,7 @@
 
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
-          Senden
+          {{ __('Senden') }}
         </a>
       </form-group>
 
@@ -102,8 +102,8 @@ export default {
 
       // Routes
       routes: {
-        find: '/api/message',
-        store: '/api/message',
+        find: '/api/event/message',
+        store: '/api/event/message',
       },
 
       // States
@@ -136,9 +136,6 @@ export default {
     addFile(uuid) {
       this.data.files.push(uuid);
     },
-
-    removeFile(uuid) {
-    }
   },
 };
 </script>

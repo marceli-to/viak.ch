@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Models\File;
+use App\Models\Fileable;
 use App\Services\Media;
 use App\Http\Resources\DataCollection;
 use Illuminate\Support\Facades\Storage;
@@ -42,10 +43,7 @@ class FileController extends Controller
   {
     $data = $request->all();
     $data['uuid'] = \Str::uuid();
-
-    // Create file
     $file = File::create($data);
-    $file->save();
     return response()->json(['file' => $file]);
   }
 
@@ -106,14 +104,24 @@ class FileController extends Controller
   
   public function destroy(File $file)
   {
-    // Delete from database
-    $record = File::findOrFail($file->id);
-    
-    if ($record)
+    // Remove from fileable relationship
+    $fileable_record = Fileable::with('file.messages')->where('file_id', $file->id)->first();
+    if ($fileable_record)
     {
-      $record->delete();
-    }
 
+      if ($fileable_record->file->messages->count() == 0)
+      {
+        if ($fileable_record->delete())
+        {
+          $file_record = File::findOrFail($file->id);
+          if ($file_record)
+          {
+            $file_record->delete();
+          }
+        }
+      }
+    }
+    
     // Delete from storage
     $directories = Storage::allDirectories('public');
     foreach($directories as $d)

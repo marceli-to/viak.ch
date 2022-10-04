@@ -52,7 +52,7 @@
     <collapsible-container>
       <collapsible>
         <template #title>
-          {{ __('Unterlagen') }}
+          {{ __('Dokumente') }}
         </template>
         <template #content>
 

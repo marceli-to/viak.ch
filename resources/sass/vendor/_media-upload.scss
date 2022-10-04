@@ -75,7 +75,7 @@
         @extend %md\:fs-16x;
         @extend %mr-8x;
         @extend %p-1x;
-        background-color: $color-light;
+        background-color: #f9f9f9;
         border: none;
         color: $color-primary;
         @include font-regular();
@@ -112,6 +112,7 @@
           @extend %mb-3x;
           @extend %sm\:mb-6x;
           @extend %md\:mb-6x;
+          grid-row-gap: 0 !important;
         }
 
         .media-uploads-item__description {

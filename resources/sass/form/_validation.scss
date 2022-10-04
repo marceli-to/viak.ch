@@ -45,10 +45,8 @@ button {
 .requirements {
   @extend %fs-12x;
   @extend %md\:fs-14x;
-  @extend %p-1x;
   @extend %mt-1x;
-  background-color: $color-tertiary;
-  color: $color-white;
+  color: $color-tertiary;
   display: inline-block;
   text-transform: uppercase;
 }

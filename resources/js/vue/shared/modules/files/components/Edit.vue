@@ -8,15 +8,9 @@
         :key="file.uuid"
       >
         <div class="sm:span-9">
-          <div class="text-xsmall mb-1x sm:mb-2x">
-            {{ file.name | truncate(50, '...') }}
+          <div class="text-xsmall">
+            {{ file.original_name | truncate(50, '...') }}
           </div>
-          <input 
-            type="text" 
-            v-model="file.description" 
-            placeholder="Bezeichnung..."
-            @blur="update(file)"
-          />
         </div>
         <file-actions 
           class="sm:span-3"
@@ -27,6 +21,14 @@
           @toggle="toggle($event)"
           @destroy="destroy($event)">
         </file-actions>
+        <div class="sm:span-12">
+          <input 
+              type="text" 
+              v-model="file.description" 
+              placeholder="Bezeichnung..."
+              @blur="update(file)"
+            />
+        </div>
       </div>
     </div>
   </div>

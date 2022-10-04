@@ -5,6 +5,7 @@ use App\Http\Resources\EventResource;
 use App\Http\Resources\EventParticipantsResource;
 use App\Http\Resources\EventMessageResource;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\FileResource;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Booking;
@@ -23,7 +24,8 @@ class EventController extends Controller
   public function findExpertEvent(Event $event)
   {
     $this->authorize('containsEvent', $event);
-    $event = Event::with('bookings.user', 'messages.user')->find($event->id);
+    $event = Event::with('bookings.user', 'messages.user', 'files.messages')->find($event->id);
+
     $data = [
       'event' => new EventResource($event),
       'participants' => EventParticipantsResource::collection(
@@ -31,6 +33,9 @@ class EventController extends Controller
       ),
       'messages' => EventMessageResource::collection(
         $event->messages
+      ),
+      'files' => FileResource::collection(
+        $event->files
       ),
     ];
     return response()->json($data);

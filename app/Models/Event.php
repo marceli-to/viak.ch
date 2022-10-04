@@ -127,7 +127,7 @@ class Event extends Base
   }
 
   /**
-   * The messages that belongs to this user.
+   * The messages that belongs to this event.
    */
 
   public function messages()
@@ -135,6 +135,14 @@ class Event extends Base
     return $this->morphMany(Message::class, 'messageable')->orderBy('created_at', 'DESC');
   }
 
+  /**
+   * The files that belongs to this event.
+   */
+
+  public function files()
+  {
+    return $this->morphToMany(File::class, 'fileable')->orderBy('created_at', 'DESC');
+  }
 
   /*
   |--------------------------------------------------------------------------

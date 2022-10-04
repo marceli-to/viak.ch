@@ -50,6 +50,15 @@
 }
 
 
+.btn-auto-w {
+  width: auto;
+}
+
+.\!btn-auto-w {
+  width: auto !important;
+}
+
+
 
 .\!xs\:btn-full-w {
   @include bp-xs() {
