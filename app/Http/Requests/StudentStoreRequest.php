@@ -32,9 +32,9 @@ class StudentStoreRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
-      'invoice_address' => 'required_if:has_invoice_address,true',
       'accept_tos' => 'required|boolean',
-      'gender_id' =>  'required|exists:App\Models\Gender,id'
+      'gender_id' => 'required|exists:App\Models\Gender,id',
+      'country_id' => 'required|exists:App\Models\Country,id'
     ];
   }
 
@@ -130,6 +130,14 @@ class StudentStoreRequest extends FormRequest
       'gender_id.exists' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
+      ],
+      'country_id.required' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
+      ],
+      'country_id.exists' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
       ],
     ];
   }

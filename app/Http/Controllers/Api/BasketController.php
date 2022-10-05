@@ -68,7 +68,6 @@ class BasketController extends Controller
 
     if ($request->input('invoice_address'))
     {
-      
       $user->has_invoice_address = $request->input('update_profile');
       $user->invoice_address = $request->input('invoice_address');
       $user->save();

@@ -61,9 +61,9 @@
               <input type="text" v-model="form.city" required @focus="removeError('city')" />
             </form-group>
           </grid>
-          <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
+          <form-group :label="__('Land')" :required="true" :error="errors.country_id">
             <div class="select-wrapper">
-              <select v-model="form.country_id" @change="removeError('gender_id')">
+              <select v-model="form.country_id" @change="removeError('country_id')">
                 <option 
                   v-for="(option) in settings.countries" 
                   :key="option.id" 
@@ -73,18 +73,58 @@
               </select>
             </div>
           </form-group>
-
-          <form-group class="line-after" :error="errors.invoice_address">
+          <form-group class="mt-4x sm:mt-8x" :error="errors.has_invoice_address">
             <div class="flex items-center">
               <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
               <label for="has_invoice_address">
-                <em v-if="errors.invoice_address">{{__('Rechnungsadresse (abweichend) wird benötigt')}}</em>
+                <em v-if="errors.has_invoice_address">{{__('Rechnungsadresse (abweichend) wird benötigt')}}</em>
                 <em v-else>{{__('Rechnungsadresse (abweichend)')}}</em>
               </label>
             </div>
-            <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x has-autosize" v-if="form.has_invoice_address"></textarea>
           </form-group>
           
+          <div class="mb-6x sm:mb-10x" v-if="form.has_invoice_address">
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.invoice_address_firstname">
+                <input type="text" v-model="form.invoice_address.firstname" @focus="removeError('invoice_address_firstname')" />
+              </form-group>
+              <form-group :label="__('Name')" class="sm:span-6" :error="errors.invoice_address_name">
+                <input type="text" v-model="form.invoice_address.name" @focus="removeError('invoice_address_name')" />
+              </form-group>
+            </grid>
+            <form-group :label="__('Firma')" :error="errors.invoice_address_company">
+              <input type="text" v-model="form.invoice_address.company" @focus="removeError('invoice_address_company')" />
+            </form-group>
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.invoice_address_street">
+                <input type="text" v-model="form.invoice_address.street" required @focus="removeError('invoice_address_street')" />
+              </form-group>
+              <form-group :label="__('Nr.')" class="span-6">
+                <input type="text" v-model="form.invoice_address.street_no" maxlength="5" />
+              </form-group>
+            </grid>
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.invoice_address_zip">
+                <input type="text" v-model="form.invoice_address.zip" required maxlength="10" @focus="removeError('invoice_address.zip')" />
+              </form-group>
+              <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.invoice_address_city">
+                <input type="text" v-model="form.invoice_address.city" required @focus="removeError('invoice_address_city')" />
+              </form-group>
+            </grid>
+            <form-group :label="__('Land')" :required="true">
+              <div class="select-wrapper">
+                <select v-model="form.invoice_address.country_id">
+                  <option 
+                    v-for="(option) in settings.countries" 
+                    :key="option.id" 
+                    :value="option.id">
+                    {{option.name[_getLocale()]}}
+                  </option>
+                </select>
+              </div>
+            </form-group>
+          </div>
+
           <collapsible class="mt-12x">
             <template #title class="mb-3x">
               <div class="mb-3x">{{ __('Zugangsdaten') }}</div>
@@ -116,10 +156,10 @@
       
       <template #content v-else>
         <div>
-          <user-address :user="user"></user-address>
+          <pre v-html="user.address"></pre>
           <template v-if="user.has_invoice_address && user.invoice_address">
             <h4 class="mt-4x sm:mt-6x md:mt-8x">{{ __('Rechnungsadresse') }}</h4>
-            <pre>{{ user.invoice_address }}</pre>
+            <pre v-html="user.invoice_address.address"></pre>
           </template>
         </div>
       </template>
@@ -286,7 +326,6 @@ import BasketButtons from "@/frontend/event/Basket.vue";
 import BookmarkIcons from "@/frontend/event/Bookmark.vue";
 import Meta from "@/shared/mixins/Meta";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
-import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
@@ -300,7 +339,7 @@ import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import UserData from "@/shared/mixins/data/User";
-import UserAddress from "@/shared/components/ui/misc/Address.vue";
+import UserAddress from "@/shared/components/ui/user/Address.vue";
 
 export default {
 

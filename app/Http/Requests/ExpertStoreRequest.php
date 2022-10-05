@@ -30,7 +30,8 @@ class ExpertStoreRequest extends FormRequest
       'zip' => 'required',
       'city' => 'required',
       'email' => 'required|email|max:255|unique:users',
-      'gender_id' =>  'required|exists:App\Models\Gender,id'
+      'gender_id' =>  'required|exists:App\Models\Gender,id',
+      'country_id' => 'required|exists:App\Models\Country,id',
     ];
   }
 
@@ -70,6 +71,14 @@ class ExpertStoreRequest extends FormRequest
       'gender_id.exists' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
+      ],
+      'country_id.required' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
+      ],
+      'country_id.exists' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
       ],
     ];
   }

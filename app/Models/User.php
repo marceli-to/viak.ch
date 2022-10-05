@@ -37,7 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
     'city',
     'phone',
     'has_invoice_address',
-    'invoice_address',
     'expert_title',
     'expert_description',
     'expert_bio',
@@ -135,6 +134,15 @@ class User extends Authenticatable implements MustVerifyEmail
   public function upcomingEvents()
   {
 		return $this->belongsToMany(Event::class)->orderBy('date')->where('date', '>=', date('Y-m-d', time()));
+  }
+
+  /**
+   * The address that belongs to this user.
+   */
+
+  public function invoiceAddress()
+  {
+    return $this->hasMany(UserAddress::class);
   }
 
   /**
@@ -379,7 +387,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
   public function getFullnameAttribute($value)
   {
-    return "{$this->firstname} {$this->name}";
+    return trim("{$this->firstname} {$this->name}");
   }
   
   /**
@@ -391,7 +399,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
   public function getAddressAttribute($value)
   {
-    $address  = "{$this->firstname} {$this->name}<br>";
+    $address  = '';
+    if ($this->company)
+    {
+      $address .= "{$this->company}<br>";
+    }
+    $address .= "{$this->firstname} {$this->name}<br>";
     $address .= "{$this->street} {$this->street_no}<br>";
     $address .= "{$this->zip} {$this->city}";
     return $address;

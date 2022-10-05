@@ -14,6 +14,7 @@ export default {
     return { 
 
       user: {
+        company: null,
         gender_id: null,
         country_id: null,
       },
@@ -52,6 +53,13 @@ export default {
         new_email: null,
         new_password: null,
         new_password_confirmation: null,
+        has_invoice_address: null,
+        invoice_address_firstname: null,
+        invoice_address_name: null,
+        invoice_address_company: null,
+        invoice_address_street: null,
+        invoice_address_zip: null,
+        invoice_address_city: null,
       },
 
       // Store

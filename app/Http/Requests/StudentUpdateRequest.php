@@ -29,11 +29,19 @@ class StudentUpdateRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
-      'invoice_address' => 'required_if:has_invoice_address,1',
-      'gender_id' =>  'required|exists:App\Models\Gender,id',
+      'gender_id' => 'required|exists:App\Models\Gender,id',
+      'country_id' => 'required|exists:App\Models\Country,id',
       'new_email' => 'nullable|email|max:255|unique:users,email',
       'new_password' => 'nullable|required_with:new_password_confirmation|same:new_password_confirmation|min:8',
       'new_password_confirmation' => 'nullable|min:8',
+
+      'invoice_address.name' => 'required_without:invoice_address.company',
+      'invoice_address.company' => 'required_without:invoice_address.name',
+      'invoice_address.street' => 'required_if:has_invoice_address,1',
+      'invoice_address.city' => 'required_if:has_invoice_address,1',
+      'invoice_address.zip' => 'required_if:has_invoice_address,1',
+
+
     ];
   }
 
@@ -66,10 +74,6 @@ class StudentUpdateRequest extends FormRequest
         'field' => 'city',
         'error' => 'Ort wird benötigt'
       ],
-      'invoice_address.required_if' => [
-        'field' => 'invoice_address',
-        'error' => 'Rechnungsadresse wird benötigt'
-      ],
       'gender_id.required' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
@@ -77,6 +81,14 @@ class StudentUpdateRequest extends FormRequest
       'gender_id.exists' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
+      ],
+      'country_id.required' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
+      ],
+      'country_id.exists' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
       ],
       'new_email.email' => [
         'field' => 'new_email',
@@ -110,6 +122,31 @@ class StudentUpdateRequest extends FormRequest
           'error' => 'Passwortbestätigung muss mind. 8 Zeichen lang sein'
         ]
       ],
+
+      'invoice_address.name.required_without' => [
+        'field' => 'invoice_address_name',
+        'error' => 'Name oder Firma wird benötigt'
+      ],
+
+      'invoice_address.company.required_without' => [
+        'field' => 'invoice_address_company',
+        'error' => 'Name oder Firma wird benötigt'
+      ],
+
+      'invoice_address.zip.required_if' => [
+        'field' => 'invoice_address_zip',
+        'error' => 'PLZ wird benötigt'
+      ],
+      'invoice_address.street.required_if' => [
+        'field' => 'invoice_address_street',
+        'error' => 'Strasse wird benötigt'
+      ],
+      'invoice_address.city.required_if' => [
+        'field' => 'invoice_address_city',
+        'error' => 'Ort wird benötigt'
+      ],
+
+
     ];
   }
 }

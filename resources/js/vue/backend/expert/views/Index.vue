@@ -157,7 +157,7 @@ import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
 import Images from "@/shared/modules/images/Index.vue";
 import UserData from "@/shared/mixins/data/User";
-import UserAddress from "@/shared/components/ui/misc/Address.vue";
+import UserAddress from "@/shared/components/ui/user/Address.vue";
 
 export default {
 

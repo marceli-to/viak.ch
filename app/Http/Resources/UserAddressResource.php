@@ -1,11 +1,8 @@
 <?php
 namespace App\Http\Resources;
-use App\Http\Resources\BookingResource;
-use App\Http\Resources\BookmarkResource;
-use App\Http\Resources\UserAddressResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StudentResource extends JsonResource
+class UserAddressResource extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -26,15 +23,7 @@ class StudentResource extends JsonResource
       'street_no' => $this->street_no,
       'zip' => $this->zip,
       'city' => $this->city,
-      'phone' => $this->phone,
-      'has_invoice_address' => $this->has_invoice_address,
-      'invoice_address' => UserAddressResource::make($this->invoiceAddress->first()),
-      'operating_system' => $this->operating_system,
-      'email' => $this->email,
-      'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
-      'bookings' => BookingResource::collection($this->bookings),
-      'bookmarks' => BookmarkResource::collection($this->bookmarks),
     ];
   }
 }

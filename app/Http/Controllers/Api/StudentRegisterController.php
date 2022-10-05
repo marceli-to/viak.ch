@@ -40,13 +40,14 @@ class StudentRegisterController extends Controller
       'zip' => $request->input('zip'),
       'city' => $request->input('city'),
       'phone' => $request->input('phone') ? $request->input('phone') : NULL,
-      'has_invoice_address' => $request->input('has_invoice_address'),
-      'invoice_address' => $request->input('alt_invoice_address'),
+      // 'has_invoice_address' => $request->input('has_invoice_address'),
+      // 'invoice_address' => $request->input('alt_invoice_address'),
       'operating_system' => $request->input('operating_system') ? collect($request->input('operating_system'))->implode(',') : NULL,
       'email' => $request->input('email'),
       'password' => \Hash::make($request->input('password')),
       'uuid' => \Str::uuid(),
-      'gender_id' => $request->input('gender_id')
+      'gender_id' => $request->input('gender_id'),
+      'country_id' => $request->input('country_id')
     ]);
 
     // Attach role

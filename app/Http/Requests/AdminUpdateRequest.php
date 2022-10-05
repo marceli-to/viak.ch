@@ -27,6 +27,7 @@ class AdminUpdateRequest extends FormRequest
       'name' => 'required',
       'firstname' => 'required',
       'gender_id' =>  'required|exists:App\Models\Gender,id',
+      'country_id' => 'required|exists:App\Models\Country,id',
       'new_email' => 'nullable|email|max:255|unique:users,email',
       'new_password' => 'nullable|required_with:new_password_confirmation|same:new_password_confirmation|min:8',
       'new_password_confirmation' => 'nullable|min:8',
@@ -57,6 +58,14 @@ class AdminUpdateRequest extends FormRequest
       'gender_id.exists' => [
         'field' => 'gender_id',
         'error' => 'Geschlecht wird benötigt'
+      ],
+      'country_id.required' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
+      ],
+      'country_id.exists' => [
+        'field' => 'country_id',
+        'error' => 'Land wird benötigt'
       ],
       'new_email.email' => [
         'field' => 'new_email',

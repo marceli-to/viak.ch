@@ -68,7 +68,7 @@
           </div>
         </form-group>
 
-        <form-group class="line-after" :error="errors.invoice_address">
+        <!-- <form-group class="line-after" :error="errors.invoice_address">
           <div class="flex items-center">
             <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
             <label for="has_invoice_address">
@@ -77,7 +77,7 @@
             </label>
           </div>
           <textarea v-model="form.invoice_address" :placeholder="__('Rechnungsadresse')" class="is-plain mt-2x sm:mt-4x has-autosize" v-if="form.has_invoice_address"></textarea>
-        </form-group>
+        </form-group> -->
 
         <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
           <input type="email" v-model="form.email" required autocomplete="new-email" aria-autocomplete="new-email" @focus="removeError('email')" />

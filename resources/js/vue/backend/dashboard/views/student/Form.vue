@@ -68,7 +68,8 @@
           </select>
         </div>
       </form-group>
-      <form-group class="line-after" :error="errors.invoice_address">
+      
+      <!-- <form-group class="line-after" :error="errors.invoice_address">
         <div class="flex items-center">
           <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="data.has_invoice_address">
           <label for="has_invoice_address">
@@ -82,7 +83,8 @@
           class="is-plain mt-2x sm:mt-4x has-autosize" 
           v-if="data.has_invoice_address">
         </textarea>
-      </form-group>
+      </form-group> -->
+
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern

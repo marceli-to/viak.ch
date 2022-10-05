@@ -30,22 +30,42 @@
         </div>
         <div class="sm:span-8">
           <template v-if="!isEdit">
-            <span v-html="nl2br(form.invoice_address)"></span>
+            <span v-html="nl2br(form.invoice_address.address)"></span>
           </template>
           <template v-else>
-            <form-group :error="errors.invoice_address">
-              <textarea 
-                v-model="form.invoice_address" 
-                :placeholder="__('Rechnungsadresse eingeben')" 
-                class="is-plain mb-2x sm:mb-4x has-autosize">
-              </textarea>
-              <div class="flex items-center">
-                <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
-                <label for="update_profile">
-                  <em>{{ __('Änderungen im Profil speichern' )}}</em>
-                </label>
-              </div>
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.invoice_address_firstname">
+                <input type="text" v-model="form.invoice_address.firstname" @focus="removeError('invoice_address_firstname')" />
+              </form-group>
+              <form-group :label="__('Name')" class="sm:span-6" :error="errors.invoice_address_name">
+                <input type="text" v-model="form.invoice_address.name" @focus="removeError('invoice_address_name')" />
+              </form-group>
+            </grid>
+            <form-group :label="__('Firma')" :error="errors.invoice_address_company">
+              <input type="text" v-model="form.invoice_address.company" @focus="removeError('invoice_address_company')" />
             </form-group>
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.invoice_address_street">
+                <input type="text" v-model="form.invoice_address.street" required @focus="removeError('invoice_address_street')" />
+              </form-group>
+              <form-group :label="__('Nr.')" class="span-6">
+                <input type="text" v-model="form.invoice_address.street_no" maxlength="5" />
+              </form-group>
+            </grid>
+            <grid class="sm:grid-cols-12">
+              <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.invoice_address_zip">
+                <input type="text" v-model="form.invoice_address.zip" required maxlength="10" @focus="removeError('invoice_address.zip')" />
+              </form-group>
+              <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.invoice_address_city">
+                <input type="text" v-model="form.invoice_address.city" required @focus="removeError('invoice_address_city')" />
+              </form-group>
+            </grid>
+            <div class="flex items-center">
+              <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
+              <label for="update_profile">
+                <em>{{ __('Änderungen im Profil speichern' )}}</em>
+              </label>
+            </div>
           </template>
         </div>
       </div>
@@ -73,6 +93,7 @@ import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
+import Grid from "@/shared/components/ui/layout/Grid.vue";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
@@ -86,6 +107,7 @@ export default {
 
   components: {
     NProgress,
+    Grid,
     StackedListContainer,
     StackedListItem,
     StackedListHeader,
@@ -107,7 +129,9 @@ export default {
       // Form data
       form: {
         update_profile: false,
-        invoice_address: null,
+        invoice_address: {
+          address: null,
+        },
       },
 
       // Errors
