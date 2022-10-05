@@ -34,14 +34,11 @@ class StudentUpdateRequest extends FormRequest
       'new_email' => 'nullable|email|max:255|unique:users,email',
       'new_password' => 'nullable|required_with:new_password_confirmation|same:new_password_confirmation|min:8',
       'new_password_confirmation' => 'nullable|min:8',
-
       'invoice_address.name' => 'required_without:invoice_address.company',
       'invoice_address.company' => 'required_without:invoice_address.name',
       'invoice_address.street' => 'required_if:has_invoice_address,1',
       'invoice_address.city' => 'required_if:has_invoice_address,1',
       'invoice_address.zip' => 'required_if:has_invoice_address,1',
-
-
     ];
   }
 
@@ -122,7 +119,6 @@ class StudentUpdateRequest extends FormRequest
           'error' => 'Passwortbestätigung muss mind. 8 Zeichen lang sein'
         ]
       ],
-
       'invoice_address.name.required_without' => [
         'field' => 'invoice_address_name',
         'error' => 'Name oder Firma wird benötigt'
@@ -132,7 +128,6 @@ class StudentUpdateRequest extends FormRequest
         'field' => 'invoice_address_company',
         'error' => 'Name oder Firma wird benötigt'
       ],
-
       'invoice_address.zip.required_if' => [
         'field' => 'invoice_address_zip',
         'error' => 'PLZ wird benötigt'
@@ -145,8 +140,6 @@ class StudentUpdateRequest extends FormRequest
         'field' => 'invoice_address_city',
         'error' => 'Ort wird benötigt'
       ],
-
-
     ];
   }
 }

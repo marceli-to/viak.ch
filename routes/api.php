@@ -5,10 +5,12 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\FilterController;
 use App\Http\Controllers\Api\TranslationController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\StudentAddressController;
 use App\Http\Controllers\Api\StudentRegisterController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
+use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\BasketController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\BookmarkController;
@@ -85,7 +87,8 @@ Route::post('/course/filter', [FilterController::class, 'filter']);
 Route::post('/course/search', [FilterController::class, 'search']);
 Route::delete('/course/filter', [FilterController::class, 'reset']);
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
-Route::get('/genders', [GenderController::class, 'fetch']);
+Route::get('/genders', [GenderController::class, 'get']);
+Route::get('/countries', [CountryController::class, 'get']);
 Route::get('/user/settings', [UserController::class, 'settings']);
 
 
@@ -96,6 +99,7 @@ Route::get('/user/settings', [UserController::class, 'settings']);
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
+  Route::put('/student/address', [StudentAddressController::class, 'update']);
   Route::get('/student', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
 });

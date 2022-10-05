@@ -346,7 +346,6 @@ export default {
   components: {
     NProgress,
     Grid,
-    GridCol,
     ArticleText,
     FormGroup,
     FormGroupHeader,

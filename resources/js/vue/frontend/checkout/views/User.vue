@@ -29,44 +29,69 @@
           <strong>{{ __('Rechnungsadresse') }}</strong>
         </div>
         <div class="sm:span-8">
-          <template v-if="!isEdit">
-            <span v-html="nl2br(form.invoice_address.address)"></span>
+           
+          <template v-if="user.has_invoice_address && !isEdit">
+            <span 
+              v-html="nl2br(user.invoice_address.address)" 
+              v-if="user.invoice_address">
+            </span>
           </template>
-          <template v-else>
-            <grid class="sm:grid-cols-12">
-              <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.invoice_address_firstname">
-                <input type="text" v-model="form.invoice_address.firstname" @focus="removeError('invoice_address_firstname')" />
+
+          <template v-else-if="user.has_invoice_adress || isEdit">
+            <span v-html="nl2br(user.invoice_address.address)" v-if="isEdit == false"></span>
+            <div v-else>
+              <form-group :label="__('Firma')" :error="errors.invoice_address_company">
+                <input type="text" v-model="form.invoice_address.company" @focus="removeError('invoice_address_company')" />
               </form-group>
-              <form-group :label="__('Name')" class="sm:span-6" :error="errors.invoice_address_name">
-                <input type="text" v-model="form.invoice_address.name" @focus="removeError('invoice_address_name')" />
+              <grid class="sm:grid-cols-12">
+                <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.invoice_address_firstname">
+                  <input type="text" v-model="form.invoice_address.firstname" @focus="removeError('invoice_address_firstname')" />
+                </form-group>
+                <form-group :label="__('Name')" class="sm:span-6" :error="errors.invoice_address_name">
+                  <input type="text" v-model="form.invoice_address.name" @focus="removeError('invoice_address_name')" />
+                </form-group>
+              </grid>
+              <grid class="sm:grid-cols-12">
+                <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.invoice_address_street">
+                  <input type="text" v-model="form.invoice_address.street" required @focus="removeError('invoice_address_street')" />
+                </form-group>
+                <form-group :label="__('Nr.')" class="span-6">
+                  <input type="text" v-model="form.invoice_address.street_no" maxlength="5" />
+                </form-group>
+              </grid>
+              <grid class="sm:grid-cols-12">
+                <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.invoice_address_zip">
+                  <input type="text" v-model="form.invoice_address.zip" required maxlength="10" @focus="removeError('invoice_address.zip')" />
+                </form-group>
+                <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.invoice_address_city">
+                  <input type="text" v-model="form.invoice_address.city" required @focus="removeError('invoice_address_city')" />
+                </form-group>
+              </grid>
+              <form-group :label="__('Land')" :required="true">
+                <div class="select-wrapper" v-if="isFetchedSettings">
+                  <select v-model="form.invoice_address.country_id">
+                    <option 
+                      v-for="(option) in settings.countries" 
+                      :key="option.id" 
+                      :value="option.id">
+                      {{option.name[_getLocale()]}}
+                    </option>
+                  </select>
+                </div>
               </form-group>
-            </grid>
-            <form-group :label="__('Firma')" :error="errors.invoice_address_company">
-              <input type="text" v-model="form.invoice_address.company" @focus="removeError('invoice_address_company')" />
-            </form-group>
-            <grid class="sm:grid-cols-12">
-              <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.invoice_address_street">
-                <input type="text" v-model="form.invoice_address.street" required @focus="removeError('invoice_address_street')" />
-              </form-group>
-              <form-group :label="__('Nr.')" class="span-6">
-                <input type="text" v-model="form.invoice_address.street_no" maxlength="5" />
-              </form-group>
-            </grid>
-            <grid class="sm:grid-cols-12">
-              <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.invoice_address_zip">
-                <input type="text" v-model="form.invoice_address.zip" required maxlength="10" @focus="removeError('invoice_address.zip')" />
-              </form-group>
-              <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.invoice_address_city">
-                <input type="text" v-model="form.invoice_address.city" required @focus="removeError('invoice_address_city')" />
-              </form-group>
-            </grid>
-            <div class="flex items-center">
-              <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
-              <label for="update_profile">
-                <em>{{ __('Änderungen im Profil speichern' )}}</em>
-              </label>
+              <div class="flex items-center">
+                <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="hasProfileUpdate">
+                <label for="update_profile">
+                  <em>{{ __('Änderungen im Profil speichern' )}}</em>
+                </label>
+              </div>
             </div>
           </template>
+
+          <template v-else>
+            <em>Stimmt mit Teilnehmer-Adresse überein.</em>
+          </template>
+
         </div>
       </div>
     </stacked-list-item>
@@ -124,14 +149,22 @@ export default {
     return { 
 
       // User data
-      user: {},
+      user: {
+        invoice_address: {
+          address: null
+        }
+      },
+
+      settings: {
+        countries: null
+      },
 
       // Form data
       form: {
         update_profile: false,
         invoice_address: {
-          address: null,
-        },
+          country_id: 1,
+        }
       },
 
       // Errors
@@ -142,17 +175,22 @@ export default {
       // Routes
       routes: {
         get: '/api/student',
+        getCountries: '/api/countries',
+        update: '/api/student/address',
         addUser: '/api/basket/add/user'
       },
 
       // States
       isLoaded: true,
       isEdit: false,
+      isFetchedSettings: false,
+      hasProfileUpdate: false,
     }
   },
 
   mounted() {
     this.get();
+    this.fetchCountries();
   },
 
   methods: {
@@ -160,21 +198,45 @@ export default {
     get() {
       NProgress.start();
       this.isLoaded = false;
+      this.isEdit = false;
       this.axios.get(`${this.routes.get}`).then(response => {
         this.user = response.data;
-        this.form.invoice_address = this.user.invoice_address;
+        this.form.invoice_address = this.user.invoice_address ? this.user.invoice_address : {};
         this.form.update_profile = this.user.has_invoice_address;
         this.isLoaded = true;
         NProgress.done();
       });
     },
 
-    submit() {
+    fetchCountries() {
+      this.isFetchedSettings = false;
       NProgress.start();
-      this.axios.put(`${this.routes.addUser}`, this.form).then((response) => {
-        this.$router.push({ name: 'checkout-payment' });
+      this.axios.get(`${this.routes.getCountries}`).then(response => {
+        this.settings.countries = response.data;
+        this.isFetchedSettings = true;
         NProgress.done();
       });
+    },
+
+
+    submit() {
+
+      if (this.isEdit) {
+        if (this.hasProfileUpdate) {
+          NProgress.start();
+          this.axios.put(`${this.routes.update}`, this.form).then(response => {
+            NProgress.done();
+            this.get();
+          });
+        }
+        else {
+          NProgress.start();
+          this.axios.put(`${this.routes.addUser}`, this.form).then((response) => {
+            this.$router.push({ name: 'checkout-payment' });
+            NProgress.done();
+          });
+        }
+      }
     },
 
     toggle() {

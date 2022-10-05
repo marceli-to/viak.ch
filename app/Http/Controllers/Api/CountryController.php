@@ -1,19 +1,19 @@
 <?php
 namespace App\Http\Controllers\Api;
-use App\Models\Gender;
+use App\Models\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GenderController extends Controller
+class CountryController extends Controller
 {
   /**
-   * Get all the genders
+   * Get all the countries
    * 
    * @return \Illuminate\Http\Response
    */
   public function get()
   { 
-    return response()->json(Gender::all());
+    return response()->json(Country::orderBy('order')->get());
   }
 
 }

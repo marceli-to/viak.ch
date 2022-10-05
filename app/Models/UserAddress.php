@@ -24,6 +24,7 @@ class UserAddress extends Base
     'zip',
     'city',
     'country_id',
+    'user_id'
   ];
 
 
