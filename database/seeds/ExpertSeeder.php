@@ -26,6 +26,7 @@ class ExpertSeeder extends Seeder
       'password' => \Hash::make('7aq31rr23'),
       'uuid' => \Str::uuid(),
       'gender_id' => 1,
+      'country_id' => 1,
       'visible' => 1,
     ]);
 
@@ -45,6 +46,7 @@ class ExpertSeeder extends Seeder
         'password' => \Hash::make('*poLksmBv$!)('),
         'uuid' => \Str::uuid(),
         'gender_id' => rand(1,2),
+        'country_id' => 1,
         'visible' => 1,
       ]);
 

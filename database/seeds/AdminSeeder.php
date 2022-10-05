@@ -13,7 +13,6 @@ class AdminSeeder extends Seeder
    */
   public function run()
   {
-
     $admins = [
       [
         'firstname' => 'Marcel',
@@ -24,6 +23,7 @@ class AdminSeeder extends Seeder
         'password' => \Hash::make('7aq31rr'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
+        'country_id' => 1,
       ],
       [
         'firstname' => 'Oliver',
@@ -34,6 +34,7 @@ class AdminSeeder extends Seeder
         'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
+        'country_id' => 1,
       ],
       [
         'firstname' => 'Lutz',
@@ -44,6 +45,7 @@ class AdminSeeder extends Seeder
         'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
+        'country_id' => 1,
       ],
       [
         'firstname' => 'Benedikt',
@@ -54,6 +56,7 @@ class AdminSeeder extends Seeder
         'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 1,
+        'country_id' => 1,
       ],
       [
         'firstname' => 'Bettina',
@@ -64,6 +67,7 @@ class AdminSeeder extends Seeder
         'password' => \Hash::make('viak2022*'),
         'uuid' => \Str::uuid(),
         'gender_id' => 2,
+        'country_id' => 1,
       ],
     ];
 
@@ -77,6 +81,7 @@ class AdminSeeder extends Seeder
         'password' => $admin['password'],
         'uuid' => $admin['uuid'],
         'gender_id' => $admin['gender_id'],
+        'country_id' => $admin['country_id']
       ]);
 
       RoleUser::create([
@@ -89,10 +94,12 @@ class AdminSeeder extends Seeder
       'role_id' => 2,
       'user_id' => 1
     ]);
+
     RoleUser::create([
       'role_id' => 3,
       'user_id' => 1
     ]);
+    
     // RoleUser::create([
     //   'role_id' => 2,
     //   'user_id' => 2
