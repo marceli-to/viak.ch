@@ -14,10 +14,11 @@
          <files 
           class="form-group__upload"
           :fetchFiles="false"
+          @fileDestroyed="removeFile($event)" 
           @fileStored="addFile($event)">
         </files>
         <form-group class="line-before">
-          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          <a href="" @click.prevent="submit()" :class="[isLoading || data.files.length == 0 ? 'is-disabled' : '', 'btn-primary']">
             {{ __('Speichern') }}
           </a>
         </form-group>
@@ -91,6 +92,11 @@
   
       addFile(uuid) {
         this.data.files.push(uuid);
+      },
+
+      removeFile(uuid) {
+        const index = this.data.files.findIndex(x => x.uuid === uuid);
+        this.data.files.splice(index, 1);
       },
     },
   };

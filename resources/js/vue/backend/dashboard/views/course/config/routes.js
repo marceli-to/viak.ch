@@ -5,6 +5,7 @@ import EventCreate from '@/backend/dashboard/views/course/event/partials/Create.
 import EventEdit from '@/backend/dashboard/views/course/event/partials/Edit.vue';
 import EventShow from '@/backend/dashboard/views/course/event/Show.vue';
 import EventMessageCreate from '@/backend/dashboard/views/course/event/partials/message/Create.vue';
+import EventFileCreate from '@/backend/dashboard/views/course/event/partials/file/Create.vue';
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     name: 'event-message-create',
     path: '/dashboard/course/event/:uuid/message',
     component: EventMessageCreate,
+  },
+  {
+    name: 'event-file-create',
+    path: '/dashboard/course/event/:uuid/file',
+    component: EventFileCreate,
   },
 
 ];

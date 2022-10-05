@@ -3,10 +3,10 @@
   <template v-if="isFetched">
     <div class="mt-2x sm:mt-4x">
       <file-upload
-        :restrictions="'pdf, zip, txt, doc | max. 32 MB'"
+        :restrictions="'pdf, zip, txt, doc, ppt, xls | max. 32 MB'"
         :maxFiles="99"
         :maxFilesize="32"
-        :acceptedFiles="'.pdf,.zip,.txt,.doc'"
+        :acceptedFiles="'.pdf,.zip,.txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx'"
         @uploadCompleted="storeFile($event)"
       ></file-upload>
     </div>

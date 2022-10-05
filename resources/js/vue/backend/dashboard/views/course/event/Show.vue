@@ -83,7 +83,7 @@
             </list-item-file>
           </stacked-list-item>
           <div class="mt-6x">
-            <router-link :to="{ name: 'expert-course-event-file' }" class="icon-plus">
+            <router-link :to="{ name: 'event-file-create' }" class="icon-plus">
               <icon-plus />
             </router-link>
           </div>
