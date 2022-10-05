@@ -265,7 +265,7 @@ export default {
 
     fetch() {
       NProgress.start();
-      this.axios.get(`${this.routes.find}/${this.$route.params.eventId}`).then(response => {
+      this.axios.get(`${this.routes.find}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
         this.isFetched = true;
         NProgress.done();
@@ -302,13 +302,13 @@ export default {
     },
 
     update() {
-      this.axios.put(`${this.routes.update}/${this.$route.params.eventId}`, this.data).then(response => {
+      this.axios.put(`${this.routes.update}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$router.push({ name: 'courses' });
       });
     },
 
     destroy() {
-    this.isLoading = true;
+      this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'courses' });

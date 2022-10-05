@@ -3,6 +3,8 @@ import CourseCreate from '@/backend/dashboard/views/course/partials/Create.vue';
 import CourseEdit from '@/backend/dashboard/views/course/partials/Edit.vue';
 import EventCreate from '@/backend/dashboard/views/course/event/partials/Create.vue';
 import EventEdit from '@/backend/dashboard/views/course/event/partials/Edit.vue';
+import EventShow from '@/backend/dashboard/views/course/event/Show.vue';
+import MessageForm from '@/shared/modules/messages/Form.vue';
 
 const routes = [
   {
@@ -22,13 +24,23 @@ const routes = [
   },
   {
     name: 'event-create',
-    path: '/dashboard/course/create/:courseId',
+    path: '/dashboard/course/event/create/:courseId',
     component: EventCreate,
   },
   {
     name: 'event-edit',
-    path: '/dashboard/course/edit/:courseId/:eventId',
+    path: '/dashboard/course/event/edit/:uuid',
     component: EventEdit,
+  },
+  {
+    name: 'event-show',
+    path: '/dashboard/course/event/show/:uuid',
+    component: EventShow,
+  },
+  {
+    name: 'event-message',
+    path: '/dashboard/course/event/:uuid/message',
+    component: MessageForm,
   },
 
 ];

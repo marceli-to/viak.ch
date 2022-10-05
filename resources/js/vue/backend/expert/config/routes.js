@@ -1,6 +1,6 @@
 import ExpertIndex from '@/backend/expert/views/Index.vue';
 import ExpertCourse from '@/backend/expert/views/Course.vue';
-import MessageForm from '@/backend/expert/views/message/Form.vue';
+import MessageForm from '@/shared/modules/messages/Form.vue';
 import Fileform from '@/backend/expert/views/file/Form.vue';
 
 const routes = [

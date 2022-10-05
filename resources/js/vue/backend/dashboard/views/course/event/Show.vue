@@ -2,18 +2,16 @@
   <div v-if="isFetched">
     <article-text class="content-text--event">
       <template #aside>
-        <h1 class="xs:hide">{{ data.event.course.title }}</h1>
-        <h2 class="xs:hide">{{ data.event.course.subtitle }}</h2>
+        <h1>{{ data.event.course.title }}</h1>
+        <h2>{{ data.event.course.subtitle }}</h2>
         <div class="sm:mt-5x md:mt-10x">
-          <router-link :to="{ name: 'expert-profile' }" class="icon-arrow-right:below" :title="__('Zurück')">
+          <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below" :title="__('Zurück')">
             <span>{{ __('Zurück') }}</span>
             <icon-arrow-right />
           </router-link>
         </div>
       </template>
       <template #content>
-        <h1 class="sm:hide">{{ data.event.course.title }}</h1>
-        <h2 class="sm:hide">{{ data.event.course.subtitle }}</h2>
         <div class="mt-4x sm:mt-0" v-html="data.event.course.text"></div>
       </template>
     </article-text>
@@ -98,7 +96,6 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
-import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
@@ -129,7 +126,7 @@ export default {
     ButtonFileDelete
   },
 
-  mixins: [ErrorHandling, i18n, Meta],
+  mixins: [ErrorHandling, i18n],
 
   data() {
     return {
@@ -155,7 +152,6 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
-        this.setTitle(this.data.event.course.title);
         this.isFetched = true;
         NProgress.done();
       });

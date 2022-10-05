@@ -220,9 +220,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
 
   // Events
   Route::get('events/{constraint?}', [DashboardEventController::class, 'get']);
-  Route::get('event/{event}', [DashboardEventController::class, 'find']);
+  Route::get('event/{event:uuid}', [DashboardEventController::class, 'find']);
   Route::post('event', [DashboardEventController::class, 'store']);
-  Route::put('event/{event}', [DashboardEventController::class, 'update']);
+  Route::put('event/{event:uuid}', [DashboardEventController::class, 'update']);
   Route::get('event/state/{event}', [DashboardEventController::class, 'toggle']);
   Route::delete('event/{event}', [DashboardEventController::class, 'destroy']);
 

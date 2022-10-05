@@ -17,7 +17,7 @@ class EventPolicy
    */
   public function containsEvent(User $user, Event $event)
   {
-    return $user->events->contains($event->id);
+    return $user->events->contains($event->id) || auth()->user()->isAdmin();
   }
 
 }

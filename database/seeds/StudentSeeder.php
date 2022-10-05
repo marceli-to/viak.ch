@@ -31,6 +31,7 @@ class StudentSeeder extends Seeder
       'password' => \Hash::make('7aq31rr23'),
       'uuid' => \Str::uuid(),
       'gender_id' => 1,
+      'country_id' => 1,
       'visible' => 1,
     ]);
 
