@@ -30,7 +30,7 @@ class EventSeeder extends Seeder
     for($i = 0; $i <= 25; $i++)
     { 
       $course = $courses->random();
-      $date_event = $faker->dateTimeBetween('-4 week', '+16 week');
+      $date_event = $faker->dateTimeBetween('-16 week', '+32 week');
       $date_event_2 = (new \Carbon\Carbon($date_event))->addDays(1);
       $date_deadline = (new \Carbon\Carbon($date_event))->subDays(14);
       $event = Event::create([

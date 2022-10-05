@@ -516,7 +516,6 @@ class CountrySeeder extends Seeder
       716 => array('id' => 716, 'alpha2' => 'zw', 'alpha3' => 'zwe', 'name' => 'Zimbabwe'),
     );
 
-    //dd($german, $english);
     $data = [];
     foreach($german as $g)
     {
@@ -528,17 +527,45 @@ class CountrySeeder extends Seeder
       $data[trim($e['alpha2'])][] = $e['name'];
     }
 
+    Country::create([
+      'iso' => 'ch',
+      'name' => [
+        'de' => 'Schweiz',
+        'en' => 'Switzerland'
+      ],
+      'order' => 1
+    ]);
+
+
     foreach($data as $k => $a)
     {
       if ($k != 'ch')
       {
         Country::create([
+          'iso' => $k,
           'name' => [
             'de' => $a[0],
             'en' => $a[1],
-          ]
+          ],
+          'order' => 99
         ]);
       }
     }
+
+    // Update 'Germany', 'Austria' and 'Liechtenstein'
+    $dach = Country::where('iso', 'de')->first();
+    $dach->order = 2;
+    $dach->save();
+
+    $dach = Country::where('iso', 'at')->first();
+    $dach->order = 3;
+    $dach->save();
+
+    $dach = Country::where('iso', 'li')->first();
+    $dach->order = 4;
+    $dach->save();
+
+
+
   }
 }
