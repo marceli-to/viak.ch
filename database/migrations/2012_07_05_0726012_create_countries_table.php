@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTableAddCountryId extends Migration
-  {
+class CreateCountriesTable extends Migration
+{
   /**
    * Run the migrations.
    *
@@ -13,8 +13,12 @@ class AlterUsersTableAddCountryId extends Migration
    */
   public function up()
   {
-    Schema::table('users', function (Blueprint $table) {
-      $table->foreignId('country_id')->nullable()->after('gender_id')->constrained();
+    Schema::create('countries', function (Blueprint $table) {
+      $table->id();
+      $table->json('name');
+      $table->tinyInteger('order')->default(-1);
+      $table->softDeletes();
+      $table->timestamps();
     });
   }
 
@@ -25,9 +29,6 @@ class AlterUsersTableAddCountryId extends Migration
    */
   public function down()
   {
-    Schema::table('users', function (Blueprint $table) {
-      $table->dropColumn('country_id');
-    });
-
+    Schema::dropIfExists('countries');
   }
 }

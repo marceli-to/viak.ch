@@ -61,7 +61,8 @@
           <messages 
             :messages="data.messages" 
             :eventUuid="data.event.uuid"
-            :canCreate="true">
+            :canCreate="true"
+            :isExpert="true">
           </messages>
         </template>
       </collapsible>

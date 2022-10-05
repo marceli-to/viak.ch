@@ -59,7 +59,8 @@
           <messages 
             :messages="data.messages" 
             :eventUuid="data.event.uuid"
-            :canCreate="true">
+            :canCreate="true"
+            :isAdmin="true">
           </messages>
         </template>
       </collapsible>
