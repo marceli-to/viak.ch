@@ -86,6 +86,7 @@ Route::post('/course/search', [FilterController::class, 'search']);
 Route::delete('/course/filter', [FilterController::class, 'reset']);
 Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
 Route::get('/genders', [GenderController::class, 'fetch']);
+Route::get('/user/settings', [UserController::class, 'settings']);
 
 
 /*

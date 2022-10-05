@@ -213,6 +213,16 @@ em {
   text-decoration: none !important;
 }
 
+.content-inner a strong {
+  font-weight: bold !important;
+}
+
+.content-inner a.button {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+
 .content-table {
   -premailer-cellpadding: 0;
   -premailer-cellspacing: 0;

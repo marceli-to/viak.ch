@@ -1,5 +1,5 @@
 <div class="notification is-toast js-toast {{ $style == 'success' ? 'is-success' : 'is-error' }}">
-  <div>
+  <div class="notification__inner">
     <div class="notification-message">
       {{$message}}
     </div>

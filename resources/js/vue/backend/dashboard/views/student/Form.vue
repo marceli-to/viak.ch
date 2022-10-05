@@ -52,6 +52,22 @@
           <input type="text" v-model="data.city" required @focus="removeError('city')" />
         </form-group>
       </grid>
+      <form-group 
+        :label="'Land'" 
+        :required="true" 
+        :error="errors.country_id" 
+        v-if="isFetchedSettings">
+        <div class="select-wrapper">
+          <select v-model="data.country_id" @change="removeError('country_id')">
+            <option 
+              v-for="(option) in settings.countries" 
+              :key="option.id" 
+              :value="option.id">
+              {{option.name.de}}
+            </option>
+          </select>
+        </div>
+      </form-group>
       <form-group class="line-after" :error="errors.invoice_address">
         <div class="flex items-center">
           <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="data.has_invoice_address">
@@ -148,6 +164,7 @@ export default {
       // Settings
       settings: {
         genders: [],
+        countries: [],
       },
 
       // Routes
@@ -156,7 +173,7 @@ export default {
         store: '/api/dashboard/student',
         update: '/api/dashboard/student',
         delete: '/api/dashboard/student',
-        settings: '/api/genders',
+        settings: '/api/user/settings/',
       },
 
       // States
@@ -199,7 +216,8 @@ export default {
       this.isFetchedSettings = false;
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
-        this.settings.genders = response.data;
+        this.settings.genders = response.data.genders;
+        this.settings.countries = response.data.countries;
         this.isFetchedSettings = true;
         NProgress.done();
       });

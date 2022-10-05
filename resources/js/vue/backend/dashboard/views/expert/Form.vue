@@ -55,6 +55,18 @@
           <input type="text" v-model="data.city" required @focus="removeError('city')" />
         </form-group>
       </grid>
+      <form-group :label="'Land'" :required="true" :error="errors.country_id">
+        <div class="select-wrapper">
+          <select v-model="data.country_id" @change="removeError('country_id')">
+            <option 
+              v-for="(option) in settings.countries" 
+              :key="option.id" 
+              :value="option.id">
+              {{option.name['de']}}
+            </option>
+          </select>
+        </div>
+      </form-group>
       <grid class="sm:grid-cols-12">
         <form-group :label="'Experte anzeigen?'" class="span-6">
             <div class="form-group__checkbox">
@@ -205,6 +217,7 @@ export default {
       // Settings
       settings: {
         genders: [],
+        countries: [],
       },
 
       // Routes
@@ -213,7 +226,7 @@ export default {
         store: '/api/dashboard/expert',
         update: '/api/dashboard/expert',
         delete: '/api/dashboard/expert',
-        settings: '/api/genders',
+        settings: '/api/user/settings/',
       },
 
       // States
@@ -259,7 +272,8 @@ export default {
       this.isFetchedSettings = false;
       NProgress.start();
       this.axios.get(`${this.routes.settings}`).then(response => {
-        this.settings.genders = response.data;
+        this.settings.genders = response.data.genders;
+        this.settings.countries = response.data.countries;
         this.isFetchedSettings = true;
         NProgress.done();
       });

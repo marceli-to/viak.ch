@@ -31,6 +31,7 @@ class StudentResource extends JsonResource
       'operating_system' => $this->operating_system,
       'email' => $this->email,
       'gender_id' => $this->gender_id,
+      'country_id' => $this->country_id,
       'bookings' => BookingResource::collection($this->bookings),
       'bookmarks' => BookmarkResource::collection($this->bookmarks),
     ];

@@ -55,6 +55,19 @@
           </form-group>
         </grid>
 
+        <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
+          <div class="select-wrapper">
+            <select v-model="form.country_id" @change="removeError('gender_id')">
+              <option 
+                v-for="(option) in settings.countries" 
+                :key="option.id" 
+                :value="option.id">
+                {{option.name[_getLocale()]}}
+              </option>
+            </select>
+          </div>
+        </form-group>
+
         <form-group class="line-after" :error="errors.invoice_address">
           <div class="flex items-center">
             <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="form.has_invoice_address">
@@ -172,7 +185,7 @@ export default {
         user: {
           register: '/api/student/register',
         },
-        genders: '/api/genders',
+        settings: '/api/user/settings/',
         login: '/login',
         logout: '/logout',
       },

@@ -57,6 +57,18 @@
             <input type="text" v-model="form.city" required @focus="removeError('city')" />
           </form-group>
         </grid>
+        <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
+          <div class="select-wrapper">
+            <select v-model="form.country_id" @change="removeError('gender_id')">
+              <option 
+                v-for="(option) in settings.countries" 
+                :key="option.id" 
+                :value="option.id">
+                {{option.name[_getLocale()]}}
+              </option>
+            </select>
+          </div>
+        </form-group>
 
         <collapsible class="mt-12x">
           <template #title class="mb-3x">
@@ -143,7 +155,7 @@ export default {
           register: '/api/admin/register',
           update: '/api/admin',
         },
-        genders: '/api/genders',
+        settings: '/api/user/settings',
         logout: '/logout'
       },
     };

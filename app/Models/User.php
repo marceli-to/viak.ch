@@ -47,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
     'temp_password',
     'confirm_token',
     'gender_id',
+    'country_id',
     'publish',
     'visible',
   ];
@@ -143,6 +144,15 @@ class User extends Authenticatable implements MustVerifyEmail
   public function gender()
   {
     return $this->hasOne(Gender::class, 'id', 'gender_id');
+  }
+
+  /**
+   * The country that belongs to this user.
+   */
+
+  public function country()
+  {
+    return $this->hasOne(Country::class, 'id', 'country_id');
   }
 
   /**

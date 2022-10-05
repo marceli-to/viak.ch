@@ -15,11 +15,13 @@ export default {
 
       user: {
         gender_id: null,
+        country_id: null,
       },
 
       // Form
       form: {
         gender_id: 2,
+        country_id: 1,
         firstname: null,
         name: null,
         company: null,
@@ -39,6 +41,7 @@ export default {
       // Settings
       settings: {
         genders: [],
+        countries: [],
       },
 
       // Validation
@@ -69,11 +72,16 @@ export default {
 
   methods: {
 
+    /*
+    this.axios.all([])
+    */ 
+
     fetch() {
       this.isFetched = false;
       NProgress.start();
-      this.axios.get(`${this.routes.genders}`).then(response => {
-        this.settings.genders = response.data;
+      this.axios.get(`${this.routes.settings}`).then(response => {
+        this.settings.genders = response.data.genders;
+        this.settings.countries = response.data.countries;
         this.isFetched = true;
         NProgress.done();
       });
