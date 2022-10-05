@@ -60,7 +60,7 @@
             :messages="data.messages" 
             :eventUuid="data.event.uuid"
             :canCreate="true"
-            :isAdmin="true">
+            :routeCreate="'event-message-create'">
           </messages>
         </template>
       </collapsible>

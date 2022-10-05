@@ -62,7 +62,7 @@
             :messages="data.messages" 
             :eventUuid="data.event.uuid"
             :canCreate="true"
-            :isExpert="true">
+            :routeCreate="'expert-course-event-message'">
           </messages>
         </template>
       </collapsible>

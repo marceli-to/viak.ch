@@ -10,10 +10,7 @@
       <p class="no-results">Es sind keine Nachrichten vorhanden.</p>
     </div>
     <div class="flex justify-start mt-6x" v-if="$props.canCreate">
-      <router-link :to="{ name: 'event-message' }" class="icon-plus" v-if="$props.isAdmin">
-        <icon-plus />
-      </router-link>
-      <router-link :to="{ name: 'expert-course-event-message' }" class="icon-plus" v-if="$props.isExpert">
+      <router-link :to="{ name: $props.routeCreate }" class="icon-plus">
         <icon-plus />
       </router-link>
     </div>
@@ -53,14 +50,9 @@ export default {
       default: false
     },
 
-    isExpert: {
-      type: Boolean,
-      default: false,
-    },
-
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    routeCreate: {
+      type: String,
+      default: null,
     },
 
   },

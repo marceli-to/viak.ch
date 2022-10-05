@@ -141,6 +141,7 @@ export default {
     destroyFile() {
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.currentFile.uuid}`).then(response => {
+        this.$emit('fileDestroyed', this.currentFile.uuid);
         const index = this.data.findIndex(x => x.uuid === this.currentFile.uuid);
         this.data.splice(index, 1);
         this.currentFile = null;

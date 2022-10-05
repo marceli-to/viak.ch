@@ -4,7 +4,7 @@ import CourseEdit from '@/backend/dashboard/views/course/partials/Edit.vue';
 import EventCreate from '@/backend/dashboard/views/course/event/partials/Create.vue';
 import EventEdit from '@/backend/dashboard/views/course/event/partials/Edit.vue';
 import EventShow from '@/backend/dashboard/views/course/event/Show.vue';
-import MessageForm from '@/shared/modules/messages/Form.vue';
+import EventMessageCreate from '@/backend/dashboard/views/course/event/partials/message/Create.vue';
 
 const routes = [
   {
@@ -38,9 +38,9 @@ const routes = [
     component: EventShow,
   },
   {
-    name: 'event-message',
+    name: 'event-message-create',
     path: '/dashboard/course/event/:uuid/message',
-    component: MessageForm,
+    component: EventMessageCreate,
   },
 
 ];
