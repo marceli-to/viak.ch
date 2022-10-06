@@ -18,7 +18,10 @@ class DiscountCodeController extends Controller
    */
   public function get()
   {
-    return new DataCollection(DiscountCode::get());
+    return response()->json([
+      'unused' => DiscountCode::unused()->get(),
+      'used' => DiscountCode::used()->get(),
+    ]);
   }
 
   /**

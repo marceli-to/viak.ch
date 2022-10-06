@@ -19,18 +19,56 @@
     </grid>
   </content-list-header>
 
-
   <collapsible-container>
     <collapsible :expanded="true">
-      <template #title>Gültige Rabatt-Codes</template>
+      <template #title>Gültige Codes</template>
       <template #content>
-        <stacked-list-item v-for="discountCode in queryData" :key="discountCode.id" class="relative">
-          <router-link :to="{ name: 'discount-code-edit', params: { id: discountCode.id } }" class="icon-edit mt-3x">
+        <stacked-list-item v-for="code in query('unused')" :key="code.id" class="relative">
+          <router-link :to="{ name: 'discount-code-edit', params: { id: code.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>
           <div>
-            <div class="span-4">
-              {{ discountCode.code }}
+            <div class="span-3">
+              {{ code.code }}
+            </div>
+            <div class="span-2">
+              <template v-if="code.fix">
+                CHF {{ code.amount | moneyFormat() }}
+              </template>
+              <template v-if="code.percent">
+                {{ code.amount }}%
+              </template>
+            </div>
+            <div class="span-5">
+              <template v-if="code.valid_from && code.valid_to">
+                Gültig: {{ code.valid_from }} – {{ code.valid_to }}
+              </template>
+            </div>
+          </div>
+        </stacked-list-item>
+      </template>
+    </collapsible>
+  </collapsible-container>
+
+  <collapsible-container>
+    <collapsible>
+      <template #title>Verwendete oder abgelaufene Codes</template>
+      <template #content>
+        <stacked-list-item v-for="code in query('used')" :key="code.id" class="relative">
+          <!-- <router-link :to="{ name: 'discount-code-edit', params: { id: code.id } }" class="icon-edit mt-3x">
+            <icon-edit />
+          </router-link> -->
+          <div>
+            <div class="span-3">
+              {{ code.code }}
+            </div>
+            <div class="span-2">
+              <template v-if="code.fix">
+                CHF {{ code.amount | moneyFormat() }}
+              </template>
+              <template v-if="code.percent">
+                {{ code.amount }}%
+              </template>
             </div>
           </div>
         </stacked-list-item>
@@ -79,7 +117,9 @@ export default {
   data() {
     return {
 
-      data: [],
+      data: {
+
+      },
 
       searchQuery: null,
 
@@ -104,26 +144,28 @@ export default {
       NProgress.start();
       this.isLoaded = false;
       this.axios.get(`${this.routes.get}`).then(response => {
-        this.data = response.data.data;
+        this.data.unused = response.data.unused;
+        this.data.used = response.data.used;
         this.isLoaded = true;
         NProgress.done();
       });
     },
-  },
 
-  computed: {
-    queryData() {
+    query(type) {
       if (this.searchQuery) {
-        return this.data.filter((item) => {
+        return this.data[type].filter((item) => {
           return this.searchQuery.toLowerCase().split(' ').every(
-            v => item.code.toLowerCase().includes(v)
+            v => 
+            item.code.toLowerCase().includes(v) || 
+            item.amount.toLowerCase().includes(v)
           )
         })
       }
       else {
-        return this.data;
+        return this.data[type];
       }
-    }
-  }
+    },
+  },
+
 }
 </script>

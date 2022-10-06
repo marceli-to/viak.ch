@@ -14,31 +14,33 @@
       <form-group :label="'Code'" :required="true" :error="errors.code">
         <input type="text" v-model="data.code" disabled required @focus="removeError('firstname')" />
       </form-group>
-      <form-group :label="'Höhe (CHF oder Prozent)'" :required="true" :error="errors.amount">
+      <form-group :label="'Betrag oder Prozentsatz'" :required="true" :error="errors.amount">
         <input type="number" min="0" v-model="data.amount" required @focus="removeError('amount')" />
       </form-group>
 
       <grid class="grid-cols-12">
         <grid-col class="span-6">
-          <form-group :label="'Gültig ab'">
+          <form-group :label="'Gültig ab'" :error="errors.valid_from">
             <the-mask
               type="text"
               mask="##.##.####"
               :masked="true"
               name="valid_from"
               placeholder="dd.mm.YYYY"
+              @focus="removeError('valid_from')"
               v-model="data.valid_from">
             </the-mask>
           </form-group>
         </grid-col>
         <grid-col class="span-6">
-          <form-group :label="'Gültig bis'">
+          <form-group :label="'Gültig bis'" :error="errors.valid_to">
             <the-mask
               type="text"
               mask="##.##.####"
               :masked="true"
               name="valid_to"
               placeholder="dd.mm.YYYY"
+              @focus="removeError('valid_to')"
               v-model="data.valid_to">
             </the-mask>
           </form-group>
@@ -122,8 +124,8 @@ export default {
         amount: null,
         valid_from: null,
         valid_to: null,
-        percent: null,
-        fix: null,
+        percent: 0,
+        fix: 1,
       },
 
       // Validation
@@ -216,7 +218,6 @@ export default {
       this.data.fix = 0;
       this.data.percent = 0;
       this.data[type] = 1;
-      console.log(this.data);
     }
   },
 

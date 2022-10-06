@@ -36,6 +36,51 @@ class DiscountCode extends Base
     'uuid',
   ];
 
+  /*
+  |--------------------------------------------------------------------------
+  | Local scopes
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+	/**
+   * Unused discount codes
+   */
+
+	public function scopeUnused($query)
+	{
+    //return $query->where('used', 0);
+    $constraint = date('Y-m-d', time());
+
+    return $query->where('used', 0)->orWhere(function($query) use ($constraint) {
+      $query->where('valid_to', '>', $constraint)->whereNotNull('valid_to');
+    });
+
+
+    // $from = date('Y-m-d', strtotime($this->valid_from));
+    // $to = date('Y-m-d', strtotime($this->valid_to));
+
+		// return $query->where('used', 0)->orWhere(function($query) use ($from, $to) {
+    //   dd($from);
+    //   $query->where(function($q) use ($from) {
+    //     $q->where('valid_from', '>=', $from)->orWhere('valid_from', NULL);
+    //   });
+    //   $query->where(function($q) use ($to) {
+    //     $q->where('valid_to', '>=', $to)->orWhere('valid_to', NULL);
+    //   });
+    // });
+
+	}
+
+	/**
+   * Used discount codes
+   */
+
+	public function scopeUsed($query)
+	{
+		return $query->where('used', 1);
+	}
 
   /*
   |--------------------------------------------------------------------------
@@ -67,6 +112,30 @@ class DiscountCode extends Base
     }
 
     return TRUE;
+  }
+
+  /**
+   * Set the valid_from date
+   *
+   * @param  string $value
+   * @return void
+   */
+
+  public function setValidFromAttribute($value)
+  {
+    $this->attributes['valid_from'] = $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : NULL;
+  }
+
+  /**
+   * Set the valid_to date
+   *
+   * @param  string $value
+   * @return void
+   */
+
+  public function setValidToAttribute($value)
+  {
+    $this->attributes['valid_to'] = $value ? \Carbon\Carbon::parse($value)->format('Y-m-d') : NULL;
   }
 
 }
