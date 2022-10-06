@@ -15,7 +15,16 @@ class AddressHelper
 
     if ($data['firstname'] || $data['name'])
     {
-      $address .= "{$data['fullname']}<br>";
+      $name = '';
+      if ($data['firstname'])
+      {
+        $name .= "{$data['firstname']} ";
+      }
+      if ($data['name'])
+      {
+        $name .= "{$data['name']}";
+      }
+      $address .= "{$name}<br>";
     }
     $address .= "{$data['street']} {$data['street_no']}<br>";
     $address .= "{$data['zip']} {$data['city']}";

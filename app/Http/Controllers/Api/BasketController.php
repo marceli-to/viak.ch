@@ -60,7 +60,7 @@ class BasketController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function storeCustomer(Request $request)
+  public function storeUser(Request $request)
   {
     $user = User::find(auth()->user()->id);
     $data = [
@@ -78,7 +78,7 @@ class BasketController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function storeCustomerWithInvoiceAdress(InvoiceAddressUpdateRequest $request)
+  public function storeUserAndAdress(InvoiceAddressUpdateRequest $request)
   {
     // Get the authenticated user
     $user = User::find(auth()->user()->id);
@@ -107,7 +107,8 @@ class BasketController extends Controller
       $user->has_invoice_address = 1;
       $user->save();
     }
-    
+
+    $data['update_profile'] = $request->input('update_profile');
     $data['invoice_address'] = \AddressHelper::get($address);
     $this->store->addUser($data);
     return response()->json($this->store->get());

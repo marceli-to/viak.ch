@@ -29,9 +29,21 @@
           </div>
           <div class="sm:span-8">
 
+            <div class="select-wrapper">
+              <select v-model="user.invoice_address">
+                <option 
+                  v-for="(address) in user.invoice_addresses" 
+                  :key="address.id" 
+                  :value="address.id">
+                  {{ address.address_str }}
+                </option>
+              </select>
+            </div>
+
+
             <!-- non edit mode -->
             <template v-if="!isEdit">
-              <template v-if="user.has_invoice_address">
+              <template v-if="user.has_invoice_address && user.invoice_address">
                 <div v-html="user.invoice_address.address"></div>
               </template>
               <template v-else>
@@ -179,8 +191,12 @@ export default {
         },
         
         basket: {
-          customer: '/api/basket/customer',
-          customerAddress: '/api/basket/customer/address'
+          update: {
+            user: '/api/basket/store/user',
+          },
+          create: {
+            user_address: '/api/basket/store/user-address'
+          }
         }
       },
 
@@ -222,17 +238,16 @@ export default {
     },
 
     next() {
-      if (!this.user.has_invoice_address && !this.isEdit) {
+      if (!this.isEdit) {
         NProgress.start();
-        this.axios.put(`${this.routes.basket.customer}`).then(response => {
+        this.axios.put(`${this.routes.basket.update.user}`).then(response => {
           this.$router.push({ name: 'checkout-payment' });
           NProgress.done();
         });
       }
-
-      if (this.isEdit) {
+      else if (this.isEdit) {
         NProgress.start();
-        this.axios.put(`${this.routes.basket.customerAddress}`, this.form).then(response => {
+        this.axios.put(`${this.routes.basket.create.user_address}`, this.form).then(response => {
           this.$router.push({ name: 'checkout-payment' });
           NProgress.done();
         });

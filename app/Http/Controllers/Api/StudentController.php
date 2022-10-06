@@ -20,7 +20,7 @@ class StudentController extends Controller
    */
   public function find()
   { 
-    $data = new StudentResource(User::with('invoiceAddress')->findOrFail(auth()->user()->id));
+    $data = new StudentResource(User::with('invoiceAddresses')->findOrFail(auth()->user()->id));
     return response()->json($data);
   }
 

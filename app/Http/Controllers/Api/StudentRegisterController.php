@@ -40,8 +40,6 @@ class StudentRegisterController extends Controller
       'zip' => $request->input('zip'),
       'city' => $request->input('city'),
       'phone' => $request->input('phone') ? $request->input('phone') : NULL,
-      // 'has_invoice_address' => $request->input('has_invoice_address'),
-      // 'invoice_address' => $request->input('alt_invoice_address'),
       'operating_system' => $request->input('operating_system') ? collect($request->input('operating_system'))->implode(',') : NULL,
       'email' => $request->input('email'),
       'password' => \Hash::make($request->input('password')),

@@ -38,6 +38,7 @@ class UserAddress extends Base
   protected $appends = [
     'fullname',
     'address', 
+    'address_str',
   ];
 
 
@@ -104,6 +105,37 @@ class UserAddress extends Base
     if ($this->country_id !== Country::HOME)
     {
       $address .= "<br>";
+      $address .= Country::find($this->country_id)->name;
+    }
+
+    return $address;
+  }
+
+  /**
+   * Get the user's address as html-string
+   *
+   * @param  string  $value
+   * @return string
+   */
+
+  public function getAddressStrAttribute($value)
+  {
+    $address  = '';
+    if ($this->company)
+    {
+      $address .= "{$this->company}, ";
+    }
+
+    if ($this->firstname || $this->name)
+    {
+      $address .= "{$this->fullname}, ";
+    }
+    $address .= "{$this->street} {$this->street_no}, ";
+    $address .= "{$this->zip} {$this->city}";
+
+    if ($this->country_id !== Country::HOME)
+    {
+      $address .= ", ";
       $address .= Country::find($this->country_id)->name;
     }
 

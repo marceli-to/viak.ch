@@ -68,22 +68,6 @@
           </select>
         </div>
       </form-group>
-      
-      <!-- <form-group class="line-after" :error="errors.invoice_address">
-        <div class="flex items-center">
-          <input type="checkbox" id="has_invoice_address" name="has_invoice_address" required value="1" v-model="data.has_invoice_address">
-          <label for="has_invoice_address">
-            <em v-if="errors.invoice_address">Rechnungsadresse (abweichend) wird benötigt</em>
-            <em v-else>Rechnungsadresse (abweichend)</em>
-          </label>
-        </div>
-        <textarea 
-          v-model="data.invoice_address" 
-          :placeholder="'Rechnungsadresse'" 
-          class="is-plain mt-2x sm:mt-4x has-autosize" 
-          v-if="data.has_invoice_address">
-        </textarea>
-      </form-group> -->
 
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
@@ -159,7 +143,6 @@ export default {
         city: null,
         email: null,
         password: null,
-        invoice_address: null,
         gender_id: null,
       },
 

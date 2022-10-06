@@ -37,17 +37,6 @@ export default {
         operating_system: [],
         accept_tos: null,
         subscribe_newsletter: false,
-
-        invoice_address: {
-          firstname: null,
-          name: null,
-          company: null,
-          street: null,
-          street_no: null,
-          zip: null,
-          city: null,
-          country_id: null,
-        }
       },
 
       // Settings
@@ -65,12 +54,6 @@ export default {
         new_password: null,
         new_password_confirmation: null,
         has_invoice_address: null,
-        invoice_address_firstname: null,
-        invoice_address_name: null,
-        invoice_address_company: null,
-        invoice_address_street: null,
-        invoice_address_zip: null,
-        invoice_address_city: null,
       },
 
       // Store
@@ -129,16 +112,6 @@ export default {
     showForm() {
       this.isEdit = true;
       this.form = this.user;
-      this.form.invoice_address = {
-        firstname: null,
-        name: null,
-        company: null,
-        street: null,
-        street_no: null,
-        zip: null,
-        city: null,
-        country_id: null,
-      };
       this.form.new_email = null;
       this.form.new_password = null;
       this.form.new_password_confirmation = null;
@@ -152,20 +125,6 @@ export default {
       this.isEdit = this.isEdit ? false : true;
       if (this.isEdit) {
         this.form = this.user;
-
-        if (!this.user.invoice_address) {
-          this.form.invoice_address = {
-            firstname: null,
-            name: null,
-            company: null,
-            street: null,
-            street_no: null,
-            zip: null,
-            city: null,
-            country_id: null,
-          };
-        }
-
         this.form.new_email = null;
         this.form.new_password = null;
         this.form.new_password_confirmation = null;

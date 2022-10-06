@@ -55,8 +55,8 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/basket', [BasketController::class, 'get']);
-  Route::put('/basket/customer/address', [BasketController::class, 'storeCustomerWithInvoiceAdress']);
-  Route::put('/basket/customer', [BasketController::class, 'storeCustomer']);
+  Route::put('/basket/store/user-address', [BasketController::class, 'storeUserAndAdress']);
+  Route::put('/basket/store/user', [BasketController::class, 'storeUser']);
   Route::put('/basket/payment', [BasketController::class, 'addPayment']);
 });
 
@@ -101,12 +101,14 @@ Route::get('/user/settings', [UserController::class, 'settings']);
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
-  Route::put('/student/address', [StudentAddressController::class, 'update']);
+  Route::get('/student/address/{userAddress:uuid}', [StudentAddressController::class, 'find']);
+  Route::post('/student/address', [StudentAddressController::class, 'store']);
+  Route::put('/student/address/{userAddress:uuid}', [StudentAddressController::class, 'update']);
+  Route::delete('student/address/{userAddress:uuid}', [StudentAddressController::class, 'destroy']);
   Route::get('/student', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
 });
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
-
 
 /*
 |--------------------------------------------------------------------------

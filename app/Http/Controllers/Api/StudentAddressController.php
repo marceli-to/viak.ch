@@ -5,39 +5,65 @@ use App\Http\Resources\StudentResource;
 use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
-use App\Http\Requests\StudentAddressUpdateRequest;
+use App\Http\Requests\StudentAddressRequest;
 
 class StudentAddressController extends Controller
 {
   /**
-   * Update a student
+   * Get a single userAddress
    * 
-   * @param StudentUpdateRequest $request
+   * @param UserAddress $userAddress
    * @return \Illuminate\Http\Response
    */
-  public function update(StudentAddressUpdateRequest $request)
-  { 
-    $user = User::findOrFail(auth()->user()->id);
-    $user->has_invoice_address = 1;
-    $user->save();
-
-    $uuid = $request->input('invoice_address.uuid') ? $request->input('invoice_address.uuid') : \Str::uuid();
-    $address = UserAddress::updateOrCreate(
-      ['uuid' =>$uuid],
-      [
-        'firstname' => $request->input('invoice_address.firstname'),
-        'name' =>$request->input('invoice_address.name'),
-        'company' => $request->input('invoice_address.company'),
-        'street' => $request->input('invoice_address.street'),
-        'street_no' => $request->input('invoice_address.street_no'),
-        'zip' => $request->input('invoice_address.zip'),
-        'city' => $request->input('invoice_address.city'),
-        'country_id' => $request->input('invoice_address.country_id'),
-        'user_id' => $user->id
-      ] 
-    );
-
-    return response()->json($address->uuid);
+  public function find(UserAddress $userAddress)
+  {
+    $userAddress = UserAddress::find($userAddress->id);
+    return response()->json($userAddress);
   }
 
+  /**
+   * Store a newly created userAddress
+   *
+   * @param  \Illuminate\Http\StudentAddressRequest $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(StudentAddressRequest $request)
+  {
+    $userAddress = UserAddress::create(
+      array_merge(
+        $request->all(), 
+        [
+          'uuid' => \Str::uuid(),
+          'user_id' => auth()->user()->id,
+        ]
+      )
+    );
+    return response()->json(['userAddress' => $userAddress->uuid]);
+  }
+
+  /**
+   * Update a userAddress for a given userAddress
+   *
+   * @param UserAddress $userAddress
+   * @param  \Illuminate\Http\StudentAddressRequest $request
+   * @return \Illuminate\Http\Response
+   */
+  public function update(UserAddress $userAddress, StudentAddressRequest $request)
+  {
+    $userAddress = UserAddress::findOrFail($userAddress->id);
+    $userAddress->update($request->all());
+    return response()->json('successfully updated');
+  }
+
+  /**
+   * Remove a userAddress
+   *
+   * @param  UserAddress $userAddress
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy(UserAddress $userAddress)
+  {
+    $userAddress->delete();
+    return response()->json('successfully deleted');
+  }
 }

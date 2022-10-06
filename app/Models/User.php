@@ -140,7 +140,7 @@ class User extends Authenticatable implements MustVerifyEmail
    * The address that belongs to this user.
    */
 
-  public function invoiceAddress()
+  public function invoiceAddresses()
   {
     return $this->hasMany(UserAddress::class);
   }

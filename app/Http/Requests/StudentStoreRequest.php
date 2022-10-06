@@ -111,10 +111,6 @@ class StudentStoreRequest extends FormRequest
         'field' => 'city',
         'error' => 'Ort wird benötigt'
       ],
-      'invoice_address.required_if' => [
-        'field' => 'invoice_address',
-        'error' => 'Rechnungsadresse wird benötigt'
-      ],
       'accept_tos.required' => [
         'field' => 'accept_tos',
         'error' => 'AGB müssen akzeptiert werden'
