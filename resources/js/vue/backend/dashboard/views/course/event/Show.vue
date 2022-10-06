@@ -37,20 +37,27 @@
           {{ __('Teilnehmer') }}
         </template>
         <template #content>
-          <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
-            {{ participant.firstname }} {{ participant.name }}, {{ participant.city }}
-          </stacked-list-item>
-          <div class="mt-5x sm:mt-10x">
-            <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
-              <span>{{ __('Teilnehmerliste (PDF)') }}</span>
-              <icon-arrow-right />
-            </a>
-          </div>
+          <template v-if="data.participants.length">
+            <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
+              {{ participant.firstname }} {{ participant.name }}, {{ participant.city }}
+            </stacked-list-item>
+            <div class="mt-5x sm:mt-10x">
+              <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
+                <span>{{ __('Teilnehmerliste (PDF)') }}</span>
+                <icon-arrow-right />
+              </a>
+            </div>
+          </template>
+          <template v-else>
+            <p class="no-results">
+              {{ __('Es sind keine Anmeldungen für diesen Kurs vorhanden.') }}
+            </p>
+          </template>
         </template>
       </collapsible>
     </collapsible-container>
 
-    <collapsible-container>
+    <collapsible-container v-if="data.participants.length">
       <collapsible :items="data.messages">
         <template #title>
           {{ __('Nachrichten') }}
@@ -72,21 +79,28 @@
           {{ __('Dokumente') }}
         </template>
         <template #content>
-          <stacked-list-item v-for="(file, index) in data.files" :key="index">
-            <list-item-file :file="file">
-              <template #action>
-                <button-file-delete 
-                  :file="file"
-                  @fileDeleted="fileDeleted($event)"
-                  v-if="file.belongs_to_message == false" />
-              </template>
-            </list-item-file>
-          </stacked-list-item>
-          <div class="mt-6x">
-            <router-link :to="{ name: 'event-file-create' }" class="icon-plus">
-              <icon-plus />
-            </router-link>
-          </div>
+          <template v-if="data.files.length">
+            <stacked-list-item v-for="(file, index) in data.files" :key="index">
+              <list-item-file :file="file">
+                <template #action>
+                  <button-file-delete 
+                    :file="file"
+                    @fileDeleted="fileDeleted($event)"
+                    v-if="file.belongs_to_message == false" />
+                </template>
+              </list-item-file>
+            </stacked-list-item>
+            <div class="mt-6x">
+              <router-link :to="{ name: 'event-file-create' }" class="icon-plus">
+                <icon-plus />
+              </router-link>
+            </div>
+          </template>
+          <template v-else>
+            <p class="no-results">
+              {{ __('Es sind keine Dokumente vorhanden.') }}
+            </p>
+          </template>
         </template>
       </collapsible>
     </collapsible-container>

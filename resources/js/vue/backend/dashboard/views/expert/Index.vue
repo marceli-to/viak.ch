@@ -21,7 +21,7 @@
     <collapsible :expanded="true">
       <template #title>Aktive Experten</template>
       <template #content>
-        <stacked-list-item v-for="expert in query(this.data.active)" :key="expert.uuid" class="relative">
+        <stacked-list-item v-for="expert in query('active')" :key="expert.uuid" class="relative">
           <router-link :to="{ name: 'expert-edit', params: { id: expert.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>
@@ -39,7 +39,7 @@
     <collapsible>
       <template #title>Inaktive Experten</template>
       <template #content>
-        <stacked-list-item v-for="expert in  query(this.data.inactive)" :key="expert.uuid" class="relative">
+        <stacked-list-item v-for="expert in query('inactive')" :key="expert.uuid" class="relative">
           <router-link :to="{ name: 'expert-edit', params: { id: expert.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>

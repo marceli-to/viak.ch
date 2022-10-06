@@ -1,14 +1,16 @@
 <template>
   <div v-if="isFetched">
-    <div v-if="$props.messages.length">
+    <template v-if="$props.messages.length">
       <message-item 
         v-for="(message, index) in $props.messages" 
         :key="index" 
         :message="message" />
-    </div>
-    <div v-else>
-      <p class="no-results">Es sind keine Nachrichten vorhanden.</p>
-    </div>
+    </template>
+    <template v-else>
+      <p class="no-results">
+        {{ __('Es sind keine Nachrichten vorhanden.') }}
+      </p>
+    </template>
     <div class="flex justify-start mt-6x" v-if="$props.canCreate">
       <router-link :to="{ name: $props.routeCreate }" class="icon-plus">
         <icon-plus />
