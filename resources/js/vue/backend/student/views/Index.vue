@@ -369,7 +369,6 @@ export default {
     return {
 
       routes: {
-
         user: {
           find: '/api/student',
           update: '/api/student',
@@ -377,7 +376,6 @@ export default {
         settings: '/api/user/settings',
         login: '/login',
         logout: '/logout',
-
         booking: {
           cancel: '/api/booking/cancel'
         },

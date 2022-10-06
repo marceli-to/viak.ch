@@ -9,6 +9,8 @@ class Country extends Base
 {
   use HasTranslations, SoftDeletes;
 
+  public const HOME = 1;
+
   /**
    * The attributes that should be cast to native types.
    *

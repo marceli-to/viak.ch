@@ -28,7 +28,7 @@ class Booking extends Base
 	protected $fillable = [
     'uuid',
     'number',
-    'address',
+    'invoice_address',
     'billed',
     'cancelled',
     'event_id',

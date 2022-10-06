@@ -1,5 +1,5 @@
 <template>
-  <stacked-list-container>
+  <stacked-list-container v-if="isFetched">
     <stacked-list-header>
       <template #title>
         <h2>{{ __('Zahlung') }}</h2>
@@ -41,7 +41,7 @@
         </router-link>
       </div>
       <div>
-        <a href="javascript:;" :to="{ name: 'checkout-summary' }" class="btn-next" @click.prevent="submit()">
+        <a href="javascript:;" class="btn-next" @click.prevent="submit()">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
         </a>
@@ -93,22 +93,21 @@ export default {
 
       // Routes
       routes: {
-        addPayment: '/api/basket/add/payment'
+        basket: {
+          payment: '/api/basket/payment'
+        }
       },
 
       // States
-      isLoaded: true,
+      isFetched: true,
     }
-  },
-
-  mounted() {
   },
 
   methods: {
 
     submit() {
       NProgress.start();
-      this.axios.put(`${this.routes.addPayment}`, this.form).then((response) => {
+      this.axios.put(`${this.routes.basket.payment}`, this.form).then((response) => {
         this.$router.push({ name:'checkout-summary' });
         NProgress.done();
       });

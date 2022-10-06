@@ -1,13 +1,14 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserAddress extends Base
 {
   use SoftDeletes;
-  
+
   /**
    * The attributes that are mass assignable.
    *
@@ -99,6 +100,13 @@ class UserAddress extends Base
     }
     $address .= "{$this->street} {$this->street_no}<br>";
     $address .= "{$this->zip} {$this->city}";
+
+    if ($this->country_id !== Country::HOME)
+    {
+      $address .= "<br>";
+      $address .= Country::find($this->country_id)->name;
+    }
+
     return $address;
   }
 

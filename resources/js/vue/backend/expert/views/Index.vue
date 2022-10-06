@@ -70,8 +70,7 @@
             </select>
           </div>
         </form-group>
-
-        <collapsible class="mt-6x">
+        <collapsible class="mt-6x sm:mt-9x md:mt-12x">
           <template #title class="mb-3x">
             <div class="mb-3x">{{ __('Zugangsdaten') }}</div>
           </template>
@@ -88,7 +87,6 @@
             </form-group>
           </template>
         </collapsible>
-
         <form-group>
           <a href="" @click.prevent="update()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
             {{ __('Speichern') }}

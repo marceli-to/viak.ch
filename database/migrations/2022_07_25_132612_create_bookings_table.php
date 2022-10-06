@@ -17,7 +17,7 @@ class CreateBookingsTable extends Migration
       $table->id();
       $table->string('uuid', 36);
       $table->string('number', 6);
-      $table->text('address')->nullable();
+      $table->text('invoice_address')->nullable();
       $table->tinyInteger('billed')->default(0);
       $table->tinyInteger('cancelled')->default(0);
       $table->foreignId('event_id')->constrained();

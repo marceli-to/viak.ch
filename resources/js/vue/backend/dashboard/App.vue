@@ -59,9 +59,6 @@
                   <a href="">Backoffice</a>
                 </li>
                 <li>
-                  <a href="">Benutzer</a>
-                </li>
-                <li>
                   <router-link :to="{name: 'settings'}">
                     Einstellungen
                   </router-link>

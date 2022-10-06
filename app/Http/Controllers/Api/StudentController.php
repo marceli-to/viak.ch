@@ -55,8 +55,12 @@ class StudentController extends Controller
           'zip' => $request->input('invoice_address.zip'),
           'city' => $request->input('invoice_address.city'),
           'country_id' => $request->input('invoice_address.country_id'),
+          'user_id' => $user->id,
         ] 
       );
+
+      $user->has_invoice_address = TRUE;
+      $user->save();
     }
 
     // Update password (if set)

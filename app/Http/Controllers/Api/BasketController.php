@@ -2,9 +2,12 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserAddress;
 use App\Models\Event;
+use App\Models\Country;
 use App\Stores\BasketStore;
 use App\Services\Booking as BookingService;
+use App\Http\Requests\InvoiceAddressUpdateRequest;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
@@ -51,27 +54,61 @@ class BasketController extends Controller
   }
 
   /**
-   * Store user information in the basket
+   * Store the customer WITHOUT an invoice address
    * 
    * @param Request $request
    * @return \Illuminate\Http\Response
    */
 
-  public function addAddress(Request $request)
+  public function storeCustomer(Request $request)
   {
     $user = User::find(auth()->user()->id);
     $data = [
-      'id' => auth()->user()->id,
-      'address' => $request->input('invoice_address') ? $request->input('invoice_address') : null,
-      'update_profile' => $request->input('update_profile'),
+      'id' => $user->id,
+      'invoice_address' => NULL
+    ];
+    $this->store->addUser($data);
+    return response()->json($this->store->get());
+  }
+
+  /**
+   * Store the customer WITH an invoice address
+   * 
+   * @param InvoiceAddressUpdateRequest $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function storeCustomerWithInvoiceAdress(InvoiceAddressUpdateRequest $request)
+  {
+    // Get the authenticated user
+    $user = User::find(auth()->user()->id);
+
+    // Set user_id
+    $data['id'] = $user->id;
+
+    // Handle the address
+    $address = [
+      'firstname' => $request->input('invoice_address.firstname') ? $request->input('invoice_address.firstname') : NULL,
+      'name' =>$request->input('invoice_address.name') ? $request->input('invoice_address.name') : NULL,
+      'company' => $request->input('invoice_address.company') ? $request->input('invoice_address.company') : NULL,
+      'street' => $request->input('invoice_address.street'),
+      'street_no' => $request->input('invoice_address.street_no') ? $request->input('invoice_address.street_no') : NULL,
+      'zip' => $request->input('invoice_address.zip'),
+      'city' => $request->input('invoice_address.city'),
+      'country_id' => $request->input('invoice_address.country_id'),
+      'user_id' => $user->id,
     ];
 
-    if ($request->input('invoice_address'))
+    // Update student profile if necessary
+    if ($request->input('update_profile'))
     {
-      $user->has_invoice_address = $request->input('update_profile');
-      $user->invoice_address = $request->input('invoice_address');
+      $uuid = $request->input('invoice_address.uuid') ? $request->input('invoice_address.uuid') : \Str::uuid();
+      UserAddress::updateOrCreate(['uuid' => $uuid], $address);
+      $user->has_invoice_address = 1;
       $user->save();
     }
+    
+    $data['invoice_address'] = \AddressHelper::get($address);
     $this->store->addUser($data);
     return response()->json($this->store->get());
   }
