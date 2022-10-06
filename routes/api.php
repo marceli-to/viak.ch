@@ -27,6 +27,7 @@ use App\Http\Controllers\Api\Dashboard\CourseVideoController as DashboardCourseV
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
 use App\Http\Controllers\Api\Dashboard\EventController as DashboardEventController;
 use App\Http\Controllers\Api\Dashboard\EventSettingsController as DashboardEventSettingsController;
+use App\Http\Controllers\Api\Dashboard\DiscountCodeController as DashboardDiscountCodeController;
 use App\Http\Controllers\Api\Dashboard\Settings\CategoryController as DashboardCategoryController;
 use App\Http\Controllers\Api\Dashboard\Settings\LanguageController as DashboardLanguageController;
 use App\Http\Controllers\Api\Dashboard\Settings\LevelController as DashboardLevelController;
@@ -245,6 +246,14 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('expert/{user}', [DashboardExpertController::class, 'update']);
   Route::get('expert/state/{user}', [DashboardExpertController::class, 'toggle']);
   Route::delete('expert/{user}', [DashboardExpertController::class, 'destroy']);
+
+  // DiscountCodes
+  Route::get('discount-codes', [DashboardDiscountCodeController::class, 'get']);
+  Route::get('discount-code/create', [DashboardDiscountCodeController::class, 'create']);
+  Route::get('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'find']);
+  Route::post('discount-code', [DashboardDiscountCodeController::class, 'store']);
+  Route::put('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'update']);
+  Route::delete('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'destroy']);
 
   // Settings
   Route::prefix('settings')->group(function() {

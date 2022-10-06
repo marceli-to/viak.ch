@@ -29,12 +29,20 @@ input[type=checkbox] {
     height: 14px;
     width: 14px;
   }
-}   
+}
+
+input[type=radio] {
+  border-radius: 100%;
+  @include bp-sm() {
+    height: 16px;
+    width: 16px;
+  }
+}
 
 input[type=radio] + label,
 input[type=checkbox] + label {
   @extend %ml-2x;
-  @extend %sm\:ml-4x;
+  @extend %sm\:ml-3x;
   margin-bottom: 0 !important;
   padding-top: $space-tiny;
 

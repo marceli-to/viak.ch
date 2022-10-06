@@ -25,7 +25,6 @@ class CreateFilesTable extends Migration
       $table->tinyInteger('order')->default(-1);
       $table->tinyInteger('publish')->default(0);
       $table->tinyInteger('locked')->default(0);
-      // $table->nullableMorphs('fileable');
       $table->softDeletes();
       $table->timestamps();
     });

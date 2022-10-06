@@ -172,6 +172,7 @@ export default {
     },
 
   },
+  
   computed: {
     queryData() {
       if (this.searchQuery) {

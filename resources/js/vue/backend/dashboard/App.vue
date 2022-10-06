@@ -59,6 +59,11 @@
                   <a href="">Backoffice</a>
                 </li>
                 <li>
+                  <router-link :to="{name: 'discount-codes'}">
+                    Rabatt-Codes
+                  </router-link>
+                </li>
+                <li>
                   <router-link :to="{name: 'settings'}">
                     Einstellungen
                   </router-link>
@@ -102,21 +107,7 @@ export default {
     }
   },
 
-  mounted() {
-    //this.fetchUser();
-  },
-
   methods: {
-    // fetchUser() {
-    //   if (!this.$store.state.user) {
-    //     this.isLoaded = false;
-    //     this.axios.get(`/api/user`).then(response => {
-    //       this.$store.commit('user', response.data);
-    //       this.isLoaded = true;
-    //     });
-    //   }
-    // },
-
     toggleMenu() {
       this.hasMenu = this.hasMenu ? false : true;
     },

@@ -1,10 +1,16 @@
 <template>
 <div v-if="isLoaded">
-  <content-list-header class="flex">
-    <h1>Studenten</h1>
-    <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
-      <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
-    </search-container>
+  <content-list-header>
+    <grid class="grid-cols-12">
+      <grid-col class="span-4">
+        <h1>Studenten</h1>
+      </grid-col>
+      <grid-col class="span-8">
+        <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
+          <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+        </search-container>
+      </grid-col>
+    </grid>
   </content-list-header>
   <collapsible-container>
     <collapsible :expanded="true">
@@ -32,6 +38,8 @@
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
+import Grid from "@/shared/components/ui/layout/Grid.vue";
+import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
@@ -46,6 +54,8 @@ export default {
   components: {
     NProgress,
     ErrorHandling,
+    Grid,
+    GridCol,
     ContentListHeader,
     SearchContainer,
     StackedListContainer,
