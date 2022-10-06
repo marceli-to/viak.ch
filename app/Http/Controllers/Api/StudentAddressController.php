@@ -17,6 +17,7 @@ class StudentAddressController extends Controller
    */
   public function find(UserAddress $userAddress)
   {
+    $this->authorize('view', $userAddress);
     $userAddress = UserAddress::find($userAddress->id);
     return response()->json($userAddress);
   }
@@ -50,6 +51,7 @@ class StudentAddressController extends Controller
    */
   public function update(UserAddress $userAddress, StudentAddressRequest $request)
   {
+    $this->authorize('update', $userAddress);
     $userAddress = UserAddress::findOrFail($userAddress->id);
     $userAddress->update($request->all());
     return response()->json('successfully updated');
@@ -63,6 +65,7 @@ class StudentAddressController extends Controller
    */
   public function destroy(UserAddress $userAddress)
   {
+    $this->authorize('delete', $userAddress);
     $userAddress->delete();
     return response()->json('successfully deleted');
   }

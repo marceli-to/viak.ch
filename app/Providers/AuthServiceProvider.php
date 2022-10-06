@@ -3,6 +3,7 @@ namespace App\Providers;
 use App\Policies\BookingPolicy;
 use App\Policies\BookmarkPolicy;
 use App\Policies\EventPolicy;
+use App\Policies\UserAddressPolicy;
 use App\Models\Booking;
 use App\Models\Bookmark;
 use App\Models\Event;
@@ -20,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     Booking::class => BookingPolicy::class,
     Bookmark::class => BookmarkPolicy::class,
     Event::class => EventPolicy::class,
+    UserAddress::class => UserAddressPolicy::class,
   ];
 
   /**
