@@ -70,6 +70,11 @@
                 {{ code.amount }}%
               </template>
             </div>
+            <div class="span-5">
+              <template v-if="code.valid_from && code.valid_to">
+                Gültig: {{ code.valid_from }} – {{ code.valid_to }}
+              </template>
+            </div>
           </div>
         </stacked-list-item>
       </template>

@@ -50,27 +50,10 @@ class DiscountCode extends Base
 
 	public function scopeUnused($query)
 	{
-    //return $query->where('used', 0);
     $constraint = date('Y-m-d', time());
-
-    return $query->where('used', 0)->orWhere(function($query) use ($constraint) {
-      $query->where('valid_to', '>', $constraint)->whereNotNull('valid_to');
+    return $query->where('used', 0)->where(function($query) use ($constraint) {
+      $query->where('valid_to', '>', $constraint)->OrWhereNull('valid_to');
     });
-
-
-    // $from = date('Y-m-d', strtotime($this->valid_from));
-    // $to = date('Y-m-d', strtotime($this->valid_to));
-
-		// return $query->where('used', 0)->orWhere(function($query) use ($from, $to) {
-    //   dd($from);
-    //   $query->where(function($q) use ($from) {
-    //     $q->where('valid_from', '>=', $from)->orWhere('valid_from', NULL);
-    //   });
-    //   $query->where(function($q) use ($to) {
-    //     $q->where('valid_to', '>=', $to)->orWhere('valid_to', NULL);
-    //   });
-    // });
-
 	}
 
 	/**
@@ -79,7 +62,12 @@ class DiscountCode extends Base
 
 	public function scopeUsed($query)
 	{
-		return $query->where('used', 1);
+		//return $query->where('used', 1);
+
+    $constraint = date('Y-m-d', time());
+    return $query->where('used', 1)->OrWhere(function($query) use ($constraint) {
+      $query->where('valid_to', '<', $constraint)->whereNotNull('valid_to');
+    });
 	}
 
   /*
