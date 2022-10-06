@@ -57,7 +57,7 @@ class BasketController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function addUser(Request $request)
+  public function addAddress(Request $request)
   {
     $user = User::find(auth()->user()->id);
     $data = [

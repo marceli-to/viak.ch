@@ -62,7 +62,7 @@
               v-for="(option) in settings.countries" 
               :key="option.id" 
               :value="option.id">
-              {{option.name['de']}}
+              {{option.name}}
             </option>
           </select>
         </div>

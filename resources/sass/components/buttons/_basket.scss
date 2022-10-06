@@ -20,6 +20,12 @@
   &:hover {
     color: $color-secondary;
   }
+  
+  &.is-disabled {
+    pointer-events: none;
+    opacity: .6;
+  }
+
 }
 
 .btn-next {

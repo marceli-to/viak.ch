@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\Gender;
+use App\Http\Resources\CountryResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -35,7 +36,9 @@ class UserController extends Controller
   {
     $data = [
       'genders' => Gender::get(),
-      'countries' => Country::orderBy('order')->get(),
+      'countries' => CountryResource::collection(
+        Country::orderBy('order')->get()
+      )
     ];
     return response()->json($data);
   }

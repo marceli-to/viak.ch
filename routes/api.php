@@ -54,8 +54,8 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/basket', [BasketController::class, 'get']);
-  Route::put('/basket/add/user', [BasketController::class, 'addUser']);
-  Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
+  Route::put('/basket/address', [BasketController::class, 'addAddress']);
+  Route::put('/basket/payment', [BasketController::class, 'addPayment']);
 });
 
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
@@ -103,7 +103,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::get('/student', [StudentController::class, 'find']);
   Route::put('/student', [StudentController::class, 'update']);
 });
-
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
 

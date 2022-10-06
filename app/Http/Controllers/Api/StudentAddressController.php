@@ -22,7 +22,7 @@ class StudentAddressController extends Controller
     $user->save();
 
     $uuid = $request->input('invoice_address.uuid') ? $request->input('invoice_address.uuid') : \Str::uuid();
-    $invoice_address = UserAddress::updateOrCreate(
+    $address = UserAddress::updateOrCreate(
       ['uuid' =>$uuid],
       [
         'firstname' => $request->input('invoice_address.firstname'),
@@ -37,7 +37,7 @@ class StudentAddressController extends Controller
       ] 
     );
 
-    return response()->json($invoice_address->uuid);
+    return response()->json($address->uuid);
   }
 
 }

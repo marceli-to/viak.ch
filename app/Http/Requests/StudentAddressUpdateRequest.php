@@ -61,8 +61,6 @@ class StudentAddressUpdateRequest extends FormRequest
         'field' => 'invoice_address_city',
         'error' => 'Ort wird benötigt'
       ],
-
-
     ];
   }
 }
