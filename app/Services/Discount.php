@@ -14,9 +14,71 @@ class Discount
    *
    * @return String $code
    */
+
   public function create()
   {
     return $this->generate();
+  }
+
+  /**
+   * Get a discount code by its uuid
+   *
+   * @return String $discountCodeUuid
+   */
+
+  public function getByUuid($discountCodeUuid)
+  {
+    return DiscountCode::where('uuid', $discountCodeUuid)->first();
+  }
+
+  /**
+   * Get a discount code by its code
+   *
+   * @return String $discountCode
+   */
+
+  public function getByCode($discountCode)
+  {
+    return DiscountCode::where('code', $discountCode)->first();
+  }
+
+  /**
+   * Apply a discount code
+   *
+   * @param String $discountCodeUuid
+   * @param Integer $total
+   */
+
+  public function apply($discountCodeUuid, $total = NULL)
+  {
+    if ($this->validate($discountCodeUuid))
+    {
+      $discountCode = $this->getByUuid($discountCodeUuid);
+      if ($discountCode->percent)
+      {
+        return ($total / 100 * (int) $discountCode->amount);
+      }
+
+      return $discountCode->amount;
+    }
+
+    return $discountCode->amount;
+  }
+
+  /**
+   * Validate a discount code
+   *
+   * @return String $discountCodeUuid
+   */
+  
+  public function validate($discountCodeUuid)
+  {
+    $discountCode = $this->getByUuid($discountCodeUuid);
+    if ($discountCode && $discountCode->isValid())
+    {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**

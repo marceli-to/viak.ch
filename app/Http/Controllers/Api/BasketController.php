@@ -5,8 +5,10 @@ use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Event;
 use App\Models\Country;
+use App\Models\DiscountCode;
 use App\Stores\BasketStore;
 use App\Services\Booking as BookingService;
+use App\Services\Discount as DiscountService;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\InvoiceAddressUpdateRequest;
 use Illuminate\Http\Request;
@@ -32,15 +34,34 @@ class BasketController extends Controller
 
   public function get()
   {
-    $items = $this->store->getItems();
-    return response()->json(
-      [
-        'events' => $this->getEvents($items),
-        'totals' => $this->getTotals($this->getEvents($items)),
-        'user' => $this->store->getUser(),
-      ]
+    $store = $this->store->get();
+
+    $data = [
+      'user_uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
+      'discount_code_uuid' => isset($store['discount_code_uuid']) ? $store['discount_code_uuid'] : NULL,
+      'discount_code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
+      'invoice_address_uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
+    ];
+
+    // Events
+    $data['events'] = $this->getEvents($store['items']);
+
+    // Totals without discount_code
+    $data['totals'] = $this->getTotals(
+      $this->getEvents($store['items'])
     );
+
+    // Overwrite totals in case there is a discount_code
+    if (isset($store['discount_code_uuid']))
+    {
+      $data['totals'] = $this->getTotals(
+        $this->getEvents($store['items']), 
+        $store['discount_code_uuid']
+      );
+    }
+    return response()->json($data);
   }
+
 
   /**
    * Store an item in the basket
@@ -89,9 +110,16 @@ class BasketController extends Controller
 
   public function addPayment(Request $request)
   {
-    if ($request->input('voucher'))
+    if ($request->input('discount_code'))
     {
-     // $this->store->addVoucher($data);
+      $discountCode = (new DiscountService())->getByCode($request->input('discount_code'));
+      if ((new DiscountService())->validate($discountCode->uuid))
+      {
+        $this->store->addPayment([
+          'discount_code_uuid' => $discountCode->uuid,
+          'discount_code' => $discountCode->code
+        ]);
+      }
     }
     return response()->json($this->store->get());
   }
@@ -134,16 +162,23 @@ class BasketController extends Controller
    * @return Array 
    */
 
-  private function getTotals($events = [])
+  private function getTotals($events, $discountCode = NULL)
   {
     $total = collect($events)->sum('fee');
+    $discount = 0;
+    if ($discountCode)
+    {
+      $discount = (new DiscountService())->apply($discountCode, $total);
+    }
+
     // @todo: fix vat on event
-    $vat = round( ($total / 100 * 7.7) * 20 ) / 20;
+    $vat = round( ( ( $total - $discount ) / 100 * 7.7 ) * 20 ) / 20;
     $vat = 0;
     return [
+      'discount' => $discount,
       'total' => $total,
       'vat' => $vat,
-      'grandTotal' => $total + $vat
+      'grandTotal' => ($total - $discount) + $vat
     ];
   }
 

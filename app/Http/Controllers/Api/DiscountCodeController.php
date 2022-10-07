@@ -16,10 +16,10 @@ class DiscountCodeController extends Controller
 
   public function check($code = NULL)
   {
-    $discountCode = DiscountCode::where('code', $code)->first();
-    if ($discountCode && $discountCode->isValid())
+    $discountCode = (new DiscountService())->getByCode($code);
+    if ((new DiscountService())->validate($discountCode->uuid))
     {
-      return response()->json(200);
+      return response()->json('code valid', 200);
     }
     return response()->json('code invalid', 422);
   }

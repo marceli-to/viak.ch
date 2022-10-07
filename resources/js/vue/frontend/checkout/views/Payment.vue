@@ -37,7 +37,7 @@
               <input 
                 type="text"
                 name="discount_code" 
-                v-model="form.discount_code" 
+                v-model="code" 
                 class="is-plain" 
                 :placeholder="__('Code eingeben')"
                 @blur="validate()">
@@ -97,6 +97,8 @@ export default {
     return {
 
       // Data
+      code: null,
+
       form: {
         discount_code: '',
       },
@@ -123,17 +125,18 @@ export default {
     submit() {
       NProgress.start();
       this.axios.put(`${this.routes.basket.payment}`, this.form).then((response) => {
-        this.$router.push({ name:'checkout-summary' });
+        this.$router.push({ name: 'checkout-summary' });
         NProgress.done();
       });
     },
 
     validate() {
-      if (this.form.discount_code.length > 3) {
+      if (this.code.length > 3) {
         NProgress.start();
-        this.axios.get(`${this.routes.discount.check}/${this.form.discount_code}`).then(response => {
+        this.axios.get(`${this.routes.discount.check}/${this.code}`).then(response => {
           this.isValid = true;
           this.isValidated = true;
+          this.form.discount_code = this.code;
           NProgress.done();
         }).catch((errors) => {
           this.isValid = false;

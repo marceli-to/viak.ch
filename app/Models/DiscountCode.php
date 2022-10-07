@@ -62,8 +62,6 @@ class DiscountCode extends Base
 
 	public function scopeUsed($query)
 	{
-		//return $query->where('used', 1);
-
     $constraint = date('Y-m-d', time());
     return $query->where('used', 1)->OrWhere(function($query) use ($constraint) {
       $query->where('valid_to', '<', $constraint)->whereNotNull('valid_to');
@@ -91,13 +89,13 @@ class DiscountCode extends Base
       return FALSE;
     }
 
-    if ($this->valid_from && $this->valid_to)
-    {
-      return \Carbon\Carbon::now()->between(
-        \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_from), 
-        \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_to)
-      );
-    }
+    // if ($this->valid_from && $this->valid_to)
+    // {
+    //   return \Carbon\Carbon::now()->between(
+    //     \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_from), 
+    //     \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_to)
+    //   );
+    // }
 
     return TRUE;
   }

@@ -23,13 +23,26 @@
       </div>
     </stacked-list-item>
 
-    <stacked-list-item v-if="basket.totals.vat > 0">
+    <stacked-list-item v-if="basket.totals.discount > 0">
+      <div>
+        <div class="sm:span-4">
+          {{ __('Rabatt') }} <strong>{{ basket.discount_code }}</strong>
+        </div>
+        <div class="sm:span-8 sm:align-right">
+          CHF {{ basket.totals.discount | currency }}
+        </div>
+      </div>
+    </stacked-list-item>
+
+    <stacked-list-item>
       <div>
         <div class="sm:span-4">
           {{ __('MwSt') }}
         </div>
         <div class="sm:span-8 sm:align-right">
-          CHF {{ basket.totals.vat | currency }}
+          CHF
+          <template v-if="basket.totals.vat">{{ basket.totals.vat | currency }}</template>
+          <template v-else>0.00</template>
         </div>
       </div>
     </stacked-list-item>

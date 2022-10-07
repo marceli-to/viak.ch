@@ -43,11 +43,24 @@ class BasketStore extends Store
   public function addUser($data)
   { 
     $store = $this->get();
-    
-    $store['user'] = [
-      'uuid' => $data['user_uuid'],
-      'invoice_address_uuid' => $data['invoice_address_uuid']
-    ];
+    $store['user_uuid'] = $data['user_uuid'];
+    $store['invoice_address_uuid'] = $data['invoice_address_uuid'];
+    session([$this->key => $store]);
+    return $store;
+  }
+
+  /**
+   * Add payment data
+   * 
+   * @param Array $user_data
+   * @return Array $store
+   */
+
+  public function addPayment($data)
+  { 
+    $store = $this->get();
+    $store['discount_code_uuid'] = $data['discount_code_uuid'];
+    $store['discount_code'] = $data['discount_code'];
     session([$this->key => $store]);
     return $store;
   }

@@ -164,9 +164,9 @@ export default {
         this.user = response.data;
         this.axios.get(`${this.routes.basket.get}`).then(response => {
           this.basket = response.data;
-          if (this.basket.user.invoice_address_uuid) {
+          if (this.basket.invoice_address_uuid) {
             this.hasAdresses = true;
-            this.form.address_uuid = this.basket.user.invoice_address_uuid;
+            this.form.address_uuid = this.basket.invoice_address_uuid;
           }
           this.isFetched = true;
           NProgress.done();
