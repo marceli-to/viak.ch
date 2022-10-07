@@ -130,8 +130,7 @@ class UserAddress extends Base
     {
       $address .= "{$this->fullname}, ";
     }
-    $address .= "{$this->street} {$this->street_no}, ";
-    $address .= "{$this->zip} {$this->city}";
+    $address .= "{$this->city}";
 
     if ($this->country_id !== Country::HOME)
     {

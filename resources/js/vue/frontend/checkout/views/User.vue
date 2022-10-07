@@ -1,6 +1,7 @@
 <template>
   <div>
     <stacked-list-container v-if="isFetched">
+      
       <stacked-list-header>
         <template #title>
           <h2>{{ __('Kontakt') }}</h2>
@@ -9,6 +10,7 @@
           <strong>{{ __('Schritt') }} 2/4</strong>
         </template>
       </stacked-list-header>
+
       <stacked-list-item>
         <div>
           <div class="sm:span-4">
@@ -19,88 +21,39 @@
           </div>
         </div>
       </stacked-list-item>
+
       <stacked-list-item>
         <div class="relative">
-          <a href="" class="icon-edit" @click.prevent="toggleForm()">
-            <icon-edit />
-          </a>
           <div class="sm:span-4">
             <strong>{{ __('Rechnungsadresse') }}</strong>
           </div>
           <div class="sm:span-8">
-
-            <div class="select-wrapper">
-              <select v-model="user.invoice_address">
-                <option 
-                  v-for="(address) in user.invoice_addresses" 
-                  :key="address.id" 
-                  :value="address.id">
-                  {{ address.address_str }}
-                </option>
-              </select>
-            </div>
-
-
-            <!-- non edit mode -->
-            <template v-if="!isEdit">
-              <template v-if="user.has_invoice_address && user.invoice_address">
-                <div v-html="user.invoice_address.address"></div>
-              </template>
-              <template v-else>
-                <em>
-                  {{ __('Rechnungsadresse entspricht der Kursteilnehmer-Adresse') }}
-                </em>
-              </template>
-            </template>
-
-            <!-- edit mode -->
-            <template v-if="isEdit">
-              <form-group :label="__('Firma')" :error="errors.invoice_address_company">
-                <input type="text" v-model="form.invoice_address.company" @focus="removeError('invoice_address_company')" />
-              </form-group>
-              <grid class="sm:grid-cols-12">
-                <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.invoice_address_firstname">
-                  <input type="text" v-model="form.invoice_address.firstname" @focus="removeError('invoice_address_firstname')" />
-                </form-group>
-                <form-group :label="__('Name')" class="sm:span-6" :error="errors.invoice_address_name">
-                  <input type="text" v-model="form.invoice_address.name" @focus="removeError('invoice_address_name')" />
-                </form-group>
-              </grid>
-              <grid class="sm:grid-cols-12">
-                <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.invoice_address_street">
-                  <input type="text" v-model="form.invoice_address.street" required @focus="removeError('invoice_address_street')" />
-                </form-group>
-                <form-group :label="__('Nr.')" class="span-6">
-                  <input type="text" v-model="form.invoice_address.street_no" maxlength="5" />
-                </form-group>
-              </grid>
-              <grid class="sm:grid-cols-12">
-                <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.invoice_address_zip">
-                  <input type="text" v-model="form.invoice_address.zip" required maxlength="10" @focus="removeError('invoice_address.zip')" />
-                </form-group>
-                <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.invoice_address_city">
-                  <input type="text" v-model="form.invoice_address.city" required @focus="removeError('invoice_address_city')" />
-                </form-group>
-              </grid>
-              <form-group :label="__('Land')" :required="true">
-                <div class="select-wrapper" v-if="isFetchedSettings">
-                  <select v-model="form.invoice_address.country_id">
+            <form-group>
+              <div class="flex items-center xs:mt-2x md:mb-3x">
+                <input type="checkbox" id="toggle_addresses" name="toggle_addresses" :checked="hasAdresses ? false : true" @change="toggle()">
+                <label for="toggle_addresses">
+                  <em>{{ __('entspricht Teilnehmer-Adresse' )}}</em>
+                </label>
+              </div>
+              <template v-if="hasAdresses">
+                <div class="select-wrapper text-large">
+                  <select v-model="form.address_uuid">
+                    <option :value="null">Bitte wählen...</option>
                     <option 
-                      v-for="(option) in settings.countries" 
-                      :key="option.id" 
-                      :value="option.id">
-                      {{ option.name }}
+                      v-for="(address) in user.invoice_addresses" 
+                      :key="address.uuid" 
+                      :value="address.uuid">
+                      {{ address.address_str }}
                     </option>
                   </select>
                 </div>
-              </form-group>
-              <form-group class="flex items-center">
-                <input type="checkbox" id="update_profile" name="update_profile" required value="1" v-model="form.update_profile">
-                <label for="update_profile">
-                  <em>{{ __('Änderungen im Profil speichern' )}}</em>
-                </label>
-              </form-group>
-            </template>
+                <div class="mt-1x sm:mt-2x align-right">
+                  <a href="/student/profile" class="text-xsmall link-underline">
+                    Adressen verwalten
+                  </a>
+                </div>
+              </template>
+            </form-group>
           </div>
         </div>
       </stacked-list-item>
@@ -113,7 +66,7 @@
           </router-link>
         </div>
         <div>
-          <a href="" @click.prevent="next()" class="btn-next">
+          <a href="" @click.prevent="submit()" class="btn-next">
             <span>{{ __('Weiter') }}</span>
             <icon-arrow-right />
           </a>
@@ -121,6 +74,7 @@
       </stacked-list-footer>
       
     </stacked-list-container>
+
     <notification ref="notification" />
   </div>
 </template>
@@ -165,8 +119,7 @@ export default {
 
       // Form data
       form: {
-        invoice_address: false,
-        update_profile: true,
+        address_uuid: null,
       },
 
       // Settings
@@ -183,34 +136,23 @@ export default {
 
         student: {
           get: '/api/student',
-          update: '/api/student/address',
-        },
-
-        countries: {
-          get: '/api/countries',
         },
         
         basket: {
-          update: {
-            user: '/api/basket/store/user',
-          },
-          create: {
-            user_address: '/api/basket/store/user-address'
-          }
+          get: '/api/basket',
+          update: '/api/basket/add/user',
         }
       },
 
       // States
       isFetched: true,
       isLoading: false,
-      isEdit: false,
-      isFetchedSettings: false,
+      hasAdresses: false,
     }
   },
 
   mounted() {
     this.fetch();
-    this.fetchSettings();
   },
 
   methods: {
@@ -218,70 +160,44 @@ export default {
     fetch() {
       NProgress.start();
       this.isFetched = false;
-      this.isEdit = false;
       this.axios.get(`${this.routes.student.get}`).then(response => {
         this.user = response.data;
-        this.form.invoice_address = this.user.invoice_address ? this.user.invoice_address : {};
-        this.isFetched = true;
-        NProgress.done();
+        this.axios.get(`${this.routes.basket.get}`).then(response => {
+          this.basket = response.data;
+          if (this.basket.user.invoice_address_uuid) {
+            this.hasAdresses = true;
+            this.form.address_uuid = this.basket.user.invoice_address_uuid;
+          }
+          this.isFetched = true;
+          NProgress.done();
+        });
       });
     },
 
-    fetchSettings() {
-      this.isFetchedSettings = false;
+    submit() {
+
+      if (this.hasAdresses && this.form.address_uuid == null) {
+        this.$refs.notification.init({
+          message: 'Bitte Adresse auswählen',
+          type: 'toast',
+          style: 'error',
+          autohide: false,
+        });
+        return;
+      }
+
       NProgress.start();
-      this.axios.get(`${this.routes.countries.get}`).then(response => {
-        this.settings.countries = response.data;
-        this.isFetchedSettings = true;
+      this.axios.put(`${this.routes.basket.update}`, this.form).then(response => {
+        this.$router.push({ name: 'checkout-payment' });
         NProgress.done();
       });
     },
 
-    next() {
-      if (!this.isEdit) {
-        NProgress.start();
-        this.axios.put(`${this.routes.basket.update.user}`).then(response => {
-          this.$router.push({ name: 'checkout-payment' });
-          NProgress.done();
-        });
+    toggle() {
+      this.hasAdresses = this.hasAdresses ? false : true;
+      if (!this.hasAdresses) {
+        this.form.address_uuid = null;
       }
-      else if (this.isEdit) {
-        NProgress.start();
-        this.axios.put(`${this.routes.basket.create.user_address}`, this.form).then(response => {
-          this.$router.push({ name: 'checkout-payment' });
-          NProgress.done();
-        });
-      }
-    },
-    
-    update() {
-
-      if (this.form.update_profile) {
-        NProgress.start();
-        this.axios.put(`${this.routes.student.update}`, this.form).then(response => {
-          NProgress.done();
-        });
-      }
-    },
-
-
-    cancel() {
-      this.hideForm();
-    },
-
-    showForm() {
-      this.isEdit = true;
-      this.errors = {};
-    },
-
-    hideForm() {
-      this.isEdit = false;
-      this.errors = {};
-    },
-
-    toggleForm() {
-      this.isEdit = this.isEdit ? false : true;
-      this.errors = {};
     },
 
   },

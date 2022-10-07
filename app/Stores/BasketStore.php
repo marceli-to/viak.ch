@@ -1,5 +1,6 @@
 <?php
 namespace App\Stores;
+use App\Models\User;
 use App\Stores\Store;
 use Illuminate\Http\Request;
 
@@ -39,10 +40,14 @@ class BasketStore extends Store
    * @return Array $store
    */
 
-  public function addUser($user_data)
+  public function addUser($data)
   { 
     $store = $this->get();
-    $store['user'] = $user_data;
+    
+    $store['user'] = [
+      'uuid' => $data['user_uuid'],
+      'invoice_address_uuid' => $data['invoice_address_uuid']
+    ];
     session([$this->key => $store]);
     return $store;
   }
@@ -99,6 +104,23 @@ class BasketStore extends Store
     if (isset($store['items']))
     {
       return collect($store['items'])->search($item) !== FALSE ? TRUE : FALSE;
+    }
+    return FALSE;
+  }
+
+  /**
+   * Get the basket user
+   * 
+   * @param String $item
+   * @return Boolean 
+   */
+
+  public function getUser($item = NULL)
+  { 
+    $store = $this->get();
+    if (isset($store['user']))
+    {
+      return $store['user'];
     }
     return FALSE;
   }

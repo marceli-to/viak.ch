@@ -45,6 +45,14 @@ select {
   @extend %md\:fs-18x;
 }
 
+.select-wrapper.text-large {
+  select {
+    @extend %fs-16x;
+    @extend %sm\:fs-18x;
+    @extend %md\:fs-24x;
+  }
+}
+
 input[type=text],
 input[type=email],
 input[type=number],

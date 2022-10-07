@@ -25,6 +25,12 @@ a.link-sm {
   @extend %md\:fs-18x;
 }
 
+a.link-underline {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
 a.link-helper {
   @extend %link;
   &:hover {

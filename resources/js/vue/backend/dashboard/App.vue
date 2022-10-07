@@ -70,7 +70,7 @@
                 </li>
                 <li>
                   <router-link :to="{name: 'admin-profile'}">
-                    Profil
+                    Mein Profil
                   </router-link>
                 </li>
                 <li>
