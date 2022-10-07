@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ExpertController;
 use App\Http\Controllers\Api\GenderController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\BasketController;
+use App\Http\Controllers\Api\DiscountCodeController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\BookmarkController;
 use App\Http\Controllers\Api\ImageController;
@@ -49,14 +50,16 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 
 /*
 |--------------------------------------------------------------------------
-| Basket
+| Basket, Discount
 |--------------------------------------------------------------------------
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
   Route::get('/basket', [BasketController::class, 'get']);
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
-  Route::put('/basket/add/payment', [BasketController::class, 'addPayment']);
+  Route::put('/basket/add/payment-info', [BasketController::class, 'addPayment']);
+  Route::get('/discount-code/check/{code}', [DiscountCodeController::class, 'check']);
+
 });
 
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);

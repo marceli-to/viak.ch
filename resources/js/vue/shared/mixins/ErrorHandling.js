@@ -70,7 +70,6 @@ export default {
         style: 'error',
         autohide: true,
       });
-
     },
 
     serverError(data) {
