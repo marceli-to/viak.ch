@@ -182,6 +182,8 @@ return [
         App\Providers\DiscountServiceProvider::class,
         App\Providers\BookmarkServiceProvider::class,
         App\Providers\BookingServiceProvider::class,
+        App\Providers\EventParticipantLimitServiceProvider::class,
+
 
     ],
 
@@ -243,7 +245,8 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Discount' =>  App\Facades\DiscountFacade::class,
         'Bookmark' =>  App\Facades\BookmarkFacade::class,
-        'Booking' =>  App\Facades\BookingFacade::class
+        'Booking' =>  App\Facades\BookingFacade::class,
+        'EventParticipantLimit' =>  App\Facades\EventParticipantLimitFacade::class
     ],
 
 ];
