@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Stores\BasketStore;
-use App\Services\Booking as BookingService;
+use App\Facades\Booking as BookingFacade;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -29,7 +29,7 @@ class BookingController extends Controller
   {
     if ($this->store->itemsCount())
     {
-      (new BookingService())->create($this->store->get());
+      BookingFacade::create($this->store->get());
       $this->store->clear();
     }
     return response()->json(true);
@@ -45,7 +45,7 @@ class BookingController extends Controller
   public function cancel(Booking $booking)
   { 
     $this->authorize('cancel', $booking);
-    (new BookingService())->cancel($booking);
+    BookingFacade::cancel($booking);
     return response()->json('successfully deleted');
   }
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
-use App\Services\Bookmark as BookmarkService;
+use App\Facades\Bookmark as BookmarkFacade;
 use App\Models\Bookmark;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class BookmarkController extends Controller
    */
   public function store(Request $request, Event $event)
   {
-    $bookmark = (new BookmarkService())->store($event);
+    $bookmark = BookmarkFacade::store($event);
     return response()->json(['uuid' => $bookmark->uuid]);
   }
 
@@ -29,7 +29,7 @@ class BookmarkController extends Controller
   public function destroy(Bookmark $bookmark)
   {
     $this->authorize('destroy', $bookmark);
-    (new BookmarkService())->destroy($bookmark);
+    BookmarkFacade::destroy($bookmark);
     return response()->json('successfully deleted');
   }
 

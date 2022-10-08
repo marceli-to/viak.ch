@@ -3,8 +3,8 @@ namespace App\View\Components;
 use App\Models\Event;
 use Illuminate\View\Component;
 use App\Stores\BasketStore as BasketStore;
-use App\Services\Booking as BookingService;
-use App\Services\Bookmark as BookmarkService;
+use App\Facades\Booking as BookingFacade;
+use App\Facades\Bookmark as BookmarkFacade;
 
 class EventCard extends Component
 {
@@ -61,8 +61,8 @@ class EventCard extends Component
     // check for booking and bookmarks
     if (auth()->user())
     {
-      $this->isBooked = (new BookingService())->has($event, auth()->user());
-      $this->bookmark = (new BookmarkService())->find($event, auth()->user());
+      $this->isBooked = BookingFacade::has($event, auth()->user());
+      $this->bookmark = BookmarkFacade::find($event, auth()->user());
     }
   }
 

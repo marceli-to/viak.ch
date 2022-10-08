@@ -162,7 +162,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        App\Providers\DiscountServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -179,6 +178,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        App\Providers\DiscountServiceProvider::class,
+        App\Providers\BookmarkServiceProvider::class,
+        App\Providers\BookingServiceProvider::class,
 
     ],
 
@@ -238,7 +241,9 @@ return [
         'PenaltyHelper' => App\Helpers\PenaltyHelper::class,
         'AddressHelper' => App\Helpers\AddressHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Discount' =>  App\Facades\DiscountFacade::class
+        'Discount' =>  App\Facades\DiscountFacade::class,
+        'Bookmark' =>  App\Facades\BookmarkFacade::class,
+        'Booking' =>  App\Facades\BookingFacade::class
     ],
 
 ];

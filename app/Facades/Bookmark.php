@@ -1,5 +1,5 @@
 <?php
-namespace App\Services;
+namespace App\Facades;
 use Illuminate\Http\Request;
 use App\Models\Bookmark as BookmarkModel;
 use App\Models\User;
@@ -30,10 +30,10 @@ class Bookmark
 
   public function findAndDestroy(Event $event, User $user)
   {
-    $bookmark = $this->find($event, $user);
+    $bookmark = self::find($event, $user);
     if ($bookmark)
     {
-      return $this->destroy($bookmark);
+      return self::destroy($bookmark);
     }
     return FALSE;
   }

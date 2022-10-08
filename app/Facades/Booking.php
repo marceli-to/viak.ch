@@ -1,10 +1,9 @@
 <?php
-namespace App\Services;
+namespace App\Facades;
 use Illuminate\Http\Request;
 use App\Helpers\PenaltyHelper;
 use App\Models\Booking as BookingModel;
-use App\Services\Booking as BookingService;
-use App\Services\Bookmark as BookmarkService;
+use App\Facades\Bookmark as BookmarkFacade;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Event;
@@ -38,7 +37,7 @@ class Booking
 
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
-          'number' => (new BookingService())->getNumber(),
+          'number' => self::getNumber(),
           'invoice_address' => $address ? $address->address : NULL,
           'discount_code' => $discountCode ? $discountCode->code : NULL,
           'discount_amount' => $discountCode ? Discount::apply($discountCode->uuid, $event->courseFee) : NULL,
@@ -47,17 +46,17 @@ class Booking
           'booked_at' => \Carbon\Carbon::now(),
         ]);
         
-        // Fire Event
-        event(new EventBooked($user, $booking));
-        
         // Clean up bookmarks
-        (new BookmarkService())->findAndDestroy($event, $user);
+        BookmarkFacade::findAndDestroy($event, $user);
 
         // Update discount
         if ($discountCode)
         {
           Discount::update($discountCode);
         }
+
+        // Fire Event
+        event(new EventBooked($user, $booking));
       }
     }
 
@@ -126,7 +125,7 @@ class Booking
     {
       $number = (int) $bookings->last()->number + 1;
     }
-    return $this->pad($number);
+    return self::pad($number);
   }
 
   /**

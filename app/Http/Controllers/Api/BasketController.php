@@ -7,7 +7,7 @@ use App\Models\Event;
 use App\Models\Country;
 use App\Models\DiscountCode;
 use App\Stores\BasketStore;
-use App\Services\Booking as BookingService;
+use App\Facades\Booking as BookingFacade;
 use App\Facades\Discount;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\InvoiceAddressUpdateRequest;
@@ -208,7 +208,7 @@ class BasketController extends Controller
           'description' => $event->location ? $event->location->description : NULL,
           'address' => $event->location ? $event->location->address : NULL,
         ],
-        'isBooked' => (new BookingService())->has($event, auth()->user()),
+        'isBooked' => BookingFacade::has($event, auth()->user()),
         'dates' => $event->dates->map(function($date) {
           return [
             'date' => $date->date,
