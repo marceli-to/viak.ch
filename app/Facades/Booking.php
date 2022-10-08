@@ -15,7 +15,6 @@ use App\Events\EventCancelledWithPenalty;
 
 class Booking
 {
-
   /**
    * Turn a basket into bookings
    * 
@@ -32,27 +31,27 @@ class Booking
       {
         $event    = Event::where('uuid', $item)->first();
         $user     = User::find(auth()->user()->id);
-        $address  = UserAddress::where('uuid', $basket['user']['invoice_address']['uuid'])->first();
-        $discountCode = isset($basket['discount']['uuid']) ? DiscountCode::where('uuid', $basket['discount']['uuid'])->first() : NULL;
+        $address  = isset($basket['user']['invoice_address']['uuid']) ? UserAddress::where('uuid', $basket['user']['invoice_address']['uuid'])->first() : NULL;
+        $discount = isset($basket['discount']['uuid']) ? DiscountCode::where('uuid', $basket['discount']['uuid'])->first() : NULL;
 
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
           'number' => self::getNumber(),
           'invoice_address' => $address ? $address->address : NULL,
-          'discount_code' => $discountCode ? $discountCode->code : NULL,
-          'discount_amount' => $discountCode ? Discount::apply($discountCode->uuid, $event->courseFee) : NULL,
+          'discount_code' => $discount ? $discount->code : NULL,
+          'discount_amount' => $discount ? Discount::apply($discount->uuid, $event->courseFee) : NULL,
           'event_id' => $event->id,
           'user_id' => $user->id,
           'booked_at' => \Carbon\Carbon::now(),
         ]);
         
-        // Clean up bookmarks
+        // Update bookmarks
         BookmarkFacade::findAndDestroy($event, $user);
 
         // Update discount
-        if ($discountCode)
+        if ($discount)
         {
-          Discount::update($discountCode);
+          Discount::update($discount);
         }
 
         // Fire Event
@@ -135,7 +134,7 @@ class Booking
    * @return String padded input
    */
 
-  private function pad($number, $length = 6)
+  public function pad($number, $length = 6)
   {
     return str_pad($number, $length, "0", STR_PAD_LEFT);
   }
