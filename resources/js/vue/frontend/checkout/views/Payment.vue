@@ -24,7 +24,12 @@
       <stacked-list-item>
         <div>
           <div class="sm:span-4">
-            <strong>{{ __('Gutschein-Code') }}</strong>
+            <strong v-if="!isValid" class="text-danger">
+              {{ __('Gutschein-Code ist ungültig!') }}
+            </strong>
+            <strong v-else>
+              {{ __('Gutschein-Code') }}
+            </strong>
           </div>
           <div class="sm:span-4">
             <form-group class="mb-0">
@@ -35,9 +40,6 @@
                 class="is-plain" 
                 :placeholder="__('Code eingeben')"
                 @focus="isValid = true">
-                <span class="text-danger" v-if="!isValid">
-                  {{ __('Code ist ungültig!') }}
-                </span>
             </form-group>
           </div>
         </div>

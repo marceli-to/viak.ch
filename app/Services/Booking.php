@@ -6,7 +6,10 @@ use App\Models\Booking as BookingModel;
 use App\Services\Booking as BookingService;
 use App\Services\Bookmark as BookmarkService;
 use App\Models\User;
+use App\Models\UserAddress;
 use App\Models\Event;
+use App\Facades\Discount;
+use App\Models\DiscountCode;
 use App\Events\EventBooked;
 use App\Events\EventCancelled;
 use App\Events\EventCancelledWithPenalty;
@@ -15,7 +18,7 @@ class Booking
 {
 
   /**
-   * Turn basket into bookings
+   * Turn a basket into bookings
    * 
    * @param Array $basket
    * @return Boolean
@@ -28,13 +31,17 @@ class Booking
     {
       foreach($basket['items'] as $item)
       {
-        $event = Event::where('uuid', $item)->first();
-        $user  = User::find(auth()->user()->id);
+        $event    = Event::where('uuid', $item)->first();
+        $user     = User::find(auth()->user()->id);
+        $address  = UserAddress::where('uuid', $basket['user']['invoice_address']['uuid'])->first();
+        $discountCode = isset($basket['discount']['uuid']) ? DiscountCode::where('uuid', $basket['discount']['uuid'])->first() : NULL;
 
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
           'number' => (new BookingService())->getNumber(),
-          //'invoice_address' => $basket['user']['invoice_address'] ? $basket['user']['invoice_address'] : null,
+          'invoice_address' => $address ? $address->address : NULL,
+          'discount_code' => $discountCode ? $discountCode->code : NULL,
+          'discount_amount' => $discountCode ? Discount::apply($discountCode->uuid, $event->courseFee) : NULL,
           'event_id' => $event->id,
           'user_id' => $user->id,
           'booked_at' => \Carbon\Carbon::now(),
@@ -45,6 +52,12 @@ class Booking
         
         // Clean up bookmarks
         (new BookmarkService())->findAndDestroy($event, $user);
+
+        // Update discount
+        if ($discountCode)
+        {
+          Discount::update($discountCode);
+        }
       }
     }
 

@@ -38,33 +38,25 @@ class BasketController extends Controller
 
     $data = [
       'user' => [
-        'uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
+        'uuid' => isset($store['user']['uuid']) ? $store['user']['uuid'] : NULL,
         'invoice_address' => [
-          'uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
+          'uuid' => isset($store['user']['invoice_address']['uuid']) ? $store['user']['invoice_address']['uuid'] : NULL,
         ]
       ],
       'discount' => [
-        'code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
-        'uuid' => isset($store['discount_code_uuid']) ? $store['discount_code_uuid'] : NULL
+        'code' => isset($store['discount']['code']) ? $store['discount']['code'] : NULL,
+        'uuid' => isset($store['discount']['uuid']) ? $store['discount']['uuid'] : NULL
       ]
     ];
 
     // Events
     $data['events'] = $this->getEvents($store['items']);
 
-    // Totals without discount_code
+    // Totals
     $data['totals'] = $this->getTotals(
-      $this->getEvents($store['items'])
+      $this->getEvents($store['items']), 
+      $data['discount']['uuid']
     );
-
-    // Overwrite totals in case there is a discount_code
-    if (isset($store['discount_code_uuid']))
-    {
-      $data['totals'] = $this->getTotals(
-        $this->getEvents($store['items']), 
-        $store['discount_code_uuid']
-      );
-    }
     return response()->json($data);
   }
 
@@ -93,17 +85,18 @@ class BasketController extends Controller
   {
     $user = User::findOrFail(auth()->user()->id);
 
-    $data = [
-      'user_uuid' => $user->uuid,
-      'invoice_address_uuid' => null
-    ];
+    $this->store->removeAttribute('user');
+    $this->store->addAttribute('user', ['uuid' => $user->uuid]);
 
     if ($request->input('address_uuid'))
     {
-      $data['invoice_address_uuid'] = $request->input('address_uuid');
+      $this->store->addAttribute('user', [
+        'uuid' => $user->uuid,
+        'invoice_address' => [
+          'uuid' => $request->input('address_uuid'),
+        ]
+      ]);
     }
- 
-    $this->store->addUser($data);
     return response()->json($this->store->get());
   }
 
@@ -116,17 +109,26 @@ class BasketController extends Controller
 
   public function addPayment(Request $request)
   {
+    $this->store->removeAttribute('discount');
+
     if ($request->input('discount_code'))
     {
-      $discountCode = Discount::getByCode($request->input('discount_code'));
+      $discountCode = Discount::getByCode(
+        $request->input('discount_code')
+      );
+
       if (Discount::validate($discountCode->uuid))
       {
-        $this->store->addPayment([
-          'discount_code_uuid' => $discountCode->uuid,
-          'discount_code' => $discountCode->code
-        ]);
+        $this->store->addAttribute(
+          'discount',
+          [
+            'uuid' => $discountCode->uuid,
+            'code' => $discountCode->code
+          ]
+        );
       }
     }
+    
     return response()->json($this->store->get());
   }
 

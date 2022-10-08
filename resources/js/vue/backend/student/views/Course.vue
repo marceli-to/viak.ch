@@ -26,7 +26,7 @@
         <template #content>
           <stacked-list-event :event="data.event" :booking="data.booking">
             <template #action>
-              <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(data.uuid, data.booking)">
+              <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(data.booking.uuid, data.booking)">
                 {{ __('Annullieren') }}
               </a>
             </template>

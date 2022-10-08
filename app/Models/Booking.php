@@ -29,6 +29,8 @@ class Booking extends Base
     'uuid',
     'number',
     'invoice_address',
+    'discount_code',
+    'discount_amount',
     'billed',
     'cancelled',
     'event_id',

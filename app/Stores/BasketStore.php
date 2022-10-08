@@ -35,38 +35,6 @@ class BasketStore extends Store
   }
 
   /**
-   * Add user data
-   * 
-   * @param Array $user_data
-   * @return Array $store
-   */
-
-  public function addUser($data)
-  { 
-    $store = $this->get();
-    $store['user_uuid'] = $data['user_uuid'];
-    $store['invoice_address_uuid'] = $data['invoice_address_uuid'];
-    session([$this->key => $store]);
-    return $store;
-  }
-
-  /**
-   * Add payment data
-   * 
-   * @param Array $user_data
-   * @return Array $store
-   */
-
-  public function addPayment($data)
-  { 
-    $store = $this->get();
-    $store['discount_code_uuid'] = $data['discount_code_uuid'];
-    $store['discount_code'] = $data['discount_code'];
-    session([$this->key => $store]);
-    return $store;
-  }
-
-  /**
    * Remove an item
    * 
    * @param String $item
@@ -125,7 +93,7 @@ class BasketStore extends Store
   /**
    * Get the items count
    * 
-   * @return Number $items
+   * @return Integer $items
    */
  
   public function itemsCount()
@@ -136,5 +104,37 @@ class BasketStore extends Store
       return collect($store['items'])->count();
     }
     return 0;
+  }
+
+  /**
+   * Add an attribute to the store
+   * 
+   * @param String $attribute
+   * @param Mixed $data
+   */
+ 
+  public function addAttribute($attribute, $data)
+  { 
+    $store = $this->get();
+    $store[$attribute] = $data;
+    session([$this->key => $store]);
+    return $store;
+  }
+
+  /**
+   * Remove an attribute from the store
+   * 
+   * @param String $attribute
+   */
+ 
+  public function removeAttribute($attribute)
+  { 
+    $store = $this->get();
+    if (isset($store[$attribute]))
+    {
+      unset($store[$attribute]);
+      session([$this->key => $store]);
+    }
+    return $store;
   }
 }

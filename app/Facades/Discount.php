@@ -21,9 +21,24 @@ class Discount
   }
 
   /**
-   * Get a discount code by its uuid
+   * Update a discount
    * 
    * @param DiscountCode $discountCode
+   */
+
+  public function update(DiscountCodeModel $discountCode)
+  {
+    if ($discountCode->isSingle())
+    {
+      $discountCode->used = 1;
+      $discountCode->save();
+    }
+  }
+
+  /**
+   * Get a discount code by its uuid
+   * 
+   * @param String $discountCodeUuids
    * @return String $discountCodeUuid
    */
 
@@ -61,11 +76,10 @@ class Discount
       {
         return ($total / 100 * (int) $discountCode->amount);
       }
-
       return $discountCode->amount;
     }
 
-    return $discountCode->amount;
+    return FALSE;
   }
 
   /**

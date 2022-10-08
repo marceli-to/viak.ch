@@ -89,15 +89,51 @@ class DiscountCode extends Base
       return FALSE;
     }
 
-    // if ($this->valid_from && $this->valid_to)
-    // {
-    //   return \Carbon\Carbon::now()->between(
-    //     \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_from), 
-    //     \Carbon\Carbon::createFromFormat('d.m.Y', $this->valid_to)
-    //   );
-    // }
+    if ($this->valid_from && $this->valid_to)
+    {
+      $valid_from = strtotime($this->valid_from);
+      $valid_to = strtotime($this->valid_to);
+      $now = time();
+
+      if ($now >= $valid_from && $now <= $valid_to)
+      {
+        return TRUE;
+      }
+
+      return FALSE;
+    }
 
     return TRUE;
+  }
+
+  /**
+   * Check if the code is for single time use only
+   * 
+   * @return Boolean
+   */
+
+  public function isSingle()
+  {
+    if ($this->valid_from && $this->valid_to)
+    {
+      return FALSE;
+    }
+    return TRUE;
+  }
+
+  /**
+   * Check if the code can be used multiple times
+   * 
+   * @return Boolean
+   */
+
+  public function isMulti()
+  {
+    if ($this->valid_from && $this->valid_to)
+    {
+      return TRUE;
+    }
+    return FALSE;
   }
 
   /**
