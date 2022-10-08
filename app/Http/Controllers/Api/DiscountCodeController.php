@@ -1,8 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
+use App\Facades\Discount;
 use App\Http\Controllers\Controller;
-use App\Models\DiscountCode;
-use App\Services\Discount as DiscountService;
 use Illuminate\Http\Request;
 
 class DiscountCodeController extends Controller
@@ -16,12 +15,12 @@ class DiscountCodeController extends Controller
 
   public function check($code = NULL)
   {
-    $discountCode = (new DiscountService())->getByCode($code);
-    if ((new DiscountService())->validate($discountCode->uuid))
+    $discountCode = Discount::getByCode($code);
+    if ($discountCode && Discount::validate($discountCode->uuid))
     {
       return response()->json('code valid', 200);
     }
-    return response()->json('code invalid', 422);
+    return response()->json('code invalid', 418);
   }
 
 }

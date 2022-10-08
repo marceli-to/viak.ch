@@ -1,7 +1,7 @@
 <?php
-namespace App\Services;
+namespace App\Facades;
 use Illuminate\Http\Request;
-use App\Models\DiscountCode;
+use App\Models\DiscountCode as DiscountCodeModel;
 
 class Discount
 {
@@ -12,34 +12,36 @@ class Discount
   /**
    * Generate a discount code
    *
-   * @return String $code
+   * @return String $discountCode
    */
 
   public function create()
   {
-    return $this->generate();
+    return self::generate();
   }
 
   /**
    * Get a discount code by its uuid
-   *
+   * 
+   * @param DiscountCode $discountCode
    * @return String $discountCodeUuid
    */
 
   public function getByUuid($discountCodeUuid)
   {
-    return DiscountCode::where('uuid', $discountCodeUuid)->first();
+    return DiscountCodeModel::where('uuid', $discountCodeUuid)->first();
   }
 
   /**
    * Get a discount code by its code
    *
-   * @return String $discountCode
+   * @param String $discountCode
+   * @return DiscountCode $discountCode
    */
 
   public function getByCode($discountCode)
   {
-    return DiscountCode::where('code', $discountCode)->first();
+    return DiscountCodeModel::where('code', $discountCode)->first();
   }
 
   /**
@@ -47,13 +49,14 @@ class Discount
    *
    * @param String $discountCodeUuid
    * @param Integer $total
+   * @return Mixed $amount
    */
 
   public function apply($discountCodeUuid, $total = NULL)
   {
-    if ($this->validate($discountCodeUuid))
+    if (self::validate($discountCodeUuid))
     {
-      $discountCode = $this->getByUuid($discountCodeUuid);
+      $discountCode = self::getByUuid($discountCodeUuid);
       if ($discountCode->percent)
       {
         return ($total / 100 * (int) $discountCode->amount);
@@ -67,13 +70,14 @@ class Discount
 
   /**
    * Validate a discount code
-   *
-   * @return String $discountCodeUuid
+   * 
+   * @param String $discountCodeUuid
+   * @return Boolean
    */
   
   public function validate($discountCodeUuid)
   {
-    $discountCode = $this->getByUuid($discountCodeUuid);
+    $discountCode = self::getByUuid($discountCodeUuid);
     if ($discountCode && $discountCode->isValid())
     {
       return TRUE;
@@ -87,7 +91,7 @@ class Discount
    * @return String $code
    */
 
-  private function generate()
+  public function generate()
   {
     $chars  = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
     $string = self::PREFIX . self::SEPARATOR;
@@ -107,9 +111,9 @@ class Discount
       }
     }
 
-    while($this->exists($string) == FALSE)
+    while(self::exists($string) == FALSE)
     {
-      $this->generate();
+      self::generate();
     }
 
     return $string;
@@ -122,9 +126,8 @@ class Discount
    * @return Boolean
    */
 
-  private function exists($code)
+  public function exists($code)
   {
-    return DiscountCode::where('code', $code)->first() == NULL ? TRUE : FALSE;
+    return DiscountCodeModel::where('code', $code)->first() == NULL ? TRUE : FALSE;
   }
-
 }

@@ -2,8 +2,7 @@
 namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
-use App\Models\DiscountCode;
-use App\Services\Discount as DiscountService;
+use App\Models\DiscountCode as DiscountCodeModel;
 use App\Http\Requests\DiscountCodeStoreRequest;
 use App\Http\Requests\DiscountCodeUpdateRequest;
 use Illuminate\Http\Request;
@@ -19,8 +18,8 @@ class DiscountCodeController extends Controller
   public function get()
   {
     return response()->json([
-      'unused' => DiscountCode::unused()->get(),
-      'used' => DiscountCode::used()->get(),
+      'unused' => DiscountCodeModel::unused()->get(),
+      'used' => DiscountCodeModel::used()->get(),
     ]);
   }
 
@@ -30,9 +29,9 @@ class DiscountCodeController extends Controller
    * @param DiscountCode $discountCode
    * @return \Illuminate\Http\Response
    */
-  public function find(DiscountCode $discountCode)
+  public function find(DiscountCodeModel $discountCode)
   {
-    $discountCode = DiscountCode::find($discountCode->id);
+    $discountCode = DiscountCodeModel::find($discountCode->id);
     return response()->json($discountCode);
   }
 
@@ -44,7 +43,7 @@ class DiscountCodeController extends Controller
   public function create()
   {
     return response()->json(
-      (new DiscountService())->create()
+      Discount::create()
     );
   }
 
@@ -56,7 +55,7 @@ class DiscountCodeController extends Controller
    */
   public function store(DiscountCodeStoreRequest $request)
   {
-    $discountCode = DiscountCode::create(
+    $discountCode = DiscountCodeModel::create(
       array_merge(
         $request->all(), 
         ['uuid' => \Str::uuid()]
@@ -73,9 +72,9 @@ class DiscountCodeController extends Controller
    * @param  \Illuminate\Http\DiscountCodeUpdateRequest $request
    * @return \Illuminate\Http\Response
    */
-  public function update(DiscountCode $discountCode, DiscountCodeUpdateRequest $request)
+  public function update(DiscountCodeModel $discountCode, DiscountCodeUpdateRequest $request)
   {
-    $discountCode = DiscountCode::findOrFail($discountCode->id);
+    $discountCode = DiscountCodeModel::findOrFail($discountCode->id);
     $discountCode->update($request->all());
     return response()->json('successfully updated');
   }
@@ -86,7 +85,7 @@ class DiscountCodeController extends Controller
    * @param  DiscountCode $discountCode
    * @return \Illuminate\Http\Response
    */
-  public function destroy(DiscountCode $discountCode)
+  public function destroy(DiscountCodeModel $discountCode)
   {
     $discountCode->delete();
     return response()->json('successfully deleted');

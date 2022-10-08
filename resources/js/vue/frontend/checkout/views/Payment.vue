@@ -24,23 +24,20 @@
       <stacked-list-item>
         <div>
           <div class="sm:span-4">
-            <div v-if="isValidated">
-              <strong v-if="isValid">{{ __('Gutschein-Code ist gültig') }}</strong>
-              <strong v-else-if="!isValid" class="text-danger">{{ __('Gutschein-Code is ungültig') }}</strong>            
-            </div>
-            <div v-else>
-              <strong>{{ __('Gutschein-Code') }}</strong>
-            </div>
+            <strong>{{ __('Gutschein-Code') }}</strong>
           </div>
           <div class="sm:span-4">
             <form-group class="mb-0">
               <input 
                 type="text"
                 name="discount_code" 
-                v-model="code" 
+                v-model="discount_code" 
                 class="is-plain" 
                 :placeholder="__('Code eingeben')"
-                @blur="validate()">
+                @focus="isValid = true">
+                <span class="text-danger" v-if="!isValid">
+                  {{ __('Code ist ungültig!') }}
+                </span>
             </form-group>
           </div>
         </div>
@@ -68,6 +65,7 @@
 import NProgress from 'nprogress';
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
+import Basket from "@/shared/mixins/Basket";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import StackedListHeader from "@/shared/components/ui/layout/StackedListHeader.vue";
@@ -91,17 +89,16 @@ export default {
     FormGroup
   },
 
-  mixins: [i18n, Helpers],
+  mixins: [i18n, Helpers, Basket],
 
   data() {
     return {
 
-      // Data
-      code: null,
-
-      form: {
-        discount_code: '',
+      basket: {
       },
+
+      // Data
+      discount_code: null,
 
       // Routes
       routes: {
@@ -115,35 +112,59 @@ export default {
 
       // States
       isFetched: true,
-      isValidated: false,
       isValid: true,
     }
   },
 
+  mounted() {
+    this.getBasket();
+  },
+
   methods: {
 
-    submit() {
+    getBasket() {
       NProgress.start();
-      this.axios.put(`${this.routes.basket.payment}`, this.form).then((response) => {
-        this.$router.push({ name: 'checkout-summary' });
+      this.isFetched = false;
+      this.axios.get(`${this.routes.basket.get}`).then(response => {
+        this.basket = response.data;
+        if (this.basket.discount.code) {
+          this.discount_code = this.basket.discount.code;
+        }
+        this.isFetched = true;
         NProgress.done();
       });
     },
 
-    validate() {
-      if (this.code.length > 3) {
-        NProgress.start();
-        this.axios.get(`${this.routes.discount.check}/${this.code}`).then(response => {
-          this.isValid = true;
-          this.isValidated = true;
-          this.form.discount_code = this.code;
-          NProgress.done();
-        }).catch((errors) => {
-          this.isValid = false;
-          this.isValidated = true;
-          NProgress.done();
-        });
+    submit() {
+      if (this.discount_code && !this.validateCode()) {
+        return false;
       }
+      this.store();
+    },
+
+    store() {
+      NProgress.start();
+      this.axios.put(`${this.routes.basket.payment}`, {'discount_code': this.discount_code}).then((response) => {
+        this.$router.push({ name: 'checkout-summary' });
+        NProgress.done();
+      });  
+    },
+
+    validateCode() {
+      if (this.discount_code.length < 12) {
+        this.isValid = false;
+        return false;
+      }
+
+      NProgress.start();
+      this.axios.get(`${this.routes.discount.check}/${this.discount_code}`).then(response => {
+        this.isValid = true;
+        this.store();
+      }).catch((errors) => {
+        this.isValid = false;
+        NProgress.done();
+        return false;
+      });
     },
   },
 }

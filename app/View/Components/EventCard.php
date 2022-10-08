@@ -56,7 +56,7 @@ class EventCard extends Component
     $this->event    = $event;
     $this->bookmark = NULL;
     $this->experts  = collect($event->experts->pluck('fullname')->all());
-    $this->inBasket = (int) (new BasketStore())->getItem($this->event->uuid);
+    $this->inBasket = (int) (new BasketStore())->hasItem($this->event->uuid);
 
     // check for booking and bookmarks
     if (auth()->user())

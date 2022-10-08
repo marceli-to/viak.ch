@@ -10,8 +10,8 @@
     <x-slot name="content">
       <p>{{ __('Vielen Dank für Deine Buchung. Du erhältst in den nächsten Minuten eine Bestätigung per E-Mail.') }}</p>
       <p>
-        <a href="{{ route('page.courses') }}" title="{{ __('Weitere Kurse anzeigen') }}">
-          {{ __('Weitere Kurse anzeigen') }}
+        <a href="{{ route('page.courses') }}" title="{{ __('Zum Kursangebot') }}" class="link-underline">
+          {{ __('Zum Kursangebot') }}
         </a>
       </p>
     </x-slot>

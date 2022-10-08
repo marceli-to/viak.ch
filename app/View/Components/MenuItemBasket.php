@@ -12,7 +12,7 @@ class MenuItemBasket extends Component
    */
   public function __construct()
   {
-    $this->count = (new BasketStore())->getItemsCount();
+    $this->count = (new BasketStore())->itemsCount();
   }
 
   /**

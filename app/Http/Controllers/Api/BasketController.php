@@ -8,7 +8,7 @@ use App\Models\Country;
 use App\Models\DiscountCode;
 use App\Stores\BasketStore;
 use App\Services\Booking as BookingService;
-use App\Services\Discount as DiscountService;
+use App\Facades\Discount;
 use App\Http\Resources\StudentResource;
 use App\Http\Requests\InvoiceAddressUpdateRequest;
 use Illuminate\Http\Request;
@@ -37,10 +37,16 @@ class BasketController extends Controller
     $store = $this->store->get();
 
     $data = [
-      'user_uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
-      'discount_code_uuid' => isset($store['discount_code_uuid']) ? $store['discount_code_uuid'] : NULL,
-      'discount_code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
-      'invoice_address_uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
+      'user' => [
+        'uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
+        'invoice_address' => [
+          'uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
+        ]
+      ],
+      'discount' => [
+        'code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
+        'uuid' => isset($store['discount_code_uuid']) ? $store['discount_code_uuid'] : NULL
+      ]
     ];
 
     // Events
@@ -96,7 +102,7 @@ class BasketController extends Controller
     {
       $data['invoice_address_uuid'] = $request->input('address_uuid');
     }
-  
+ 
     $this->store->addUser($data);
     return response()->json($this->store->get());
   }
@@ -112,8 +118,8 @@ class BasketController extends Controller
   {
     if ($request->input('discount_code'))
     {
-      $discountCode = (new DiscountService())->getByCode($request->input('discount_code'));
-      if ((new DiscountService())->validate($discountCode->uuid))
+      $discountCode = Discount::getByCode($request->input('discount_code'));
+      if (Discount::validate($discountCode->uuid))
       {
         $this->store->addPayment([
           'discount_code_uuid' => $discountCode->uuid,
@@ -168,7 +174,7 @@ class BasketController extends Controller
     $discount = 0;
     if ($discountCode)
     {
-      $discount = (new DiscountService())->apply($discountCode, $total);
+      $discount = Discount::apply($discountCode, $total);
     }
 
     // @todo: fix vat on event

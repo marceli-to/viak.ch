@@ -36,7 +36,7 @@
                 </label>
               </div>
               <template v-if="hasAdresses">
-                <div class="select-wrapper text-large">
+                <div class="select-wrapper">
                   <select v-model="form.address_uuid">
                     <option :value="null">Bitte wählen...</option>
                     <option 
@@ -122,11 +122,6 @@ export default {
         address_uuid: null,
       },
 
-      // Settings
-      settings: {
-        countries: null
-      },
-
       // Errors
       errors: {
       },
@@ -160,14 +155,21 @@ export default {
     fetch() {
       NProgress.start();
       this.isFetched = false;
+
+      // get user
       this.axios.get(`${this.routes.student.get}`).then(response => {
         this.user = response.data;
+
+        // get basket
         this.axios.get(`${this.routes.basket.get}`).then(response => {
           this.basket = response.data;
-          if (this.basket.invoice_address_uuid) {
+
+          // check for recently set invoice addresses
+          if (this.basket.user.invoice_address.uuid) {
             this.hasAdresses = true;
-            this.form.address_uuid = this.basket.invoice_address_uuid;
+            this.form.address_uuid = this.basket.user.invoice_address.uuid;
           }
+
           this.isFetched = true;
           NProgress.done();
         });
@@ -176,6 +178,7 @@ export default {
 
     submit() {
 
+      // Validate address selection
       if (this.hasAdresses && this.form.address_uuid == null) {
         this.$refs.notification.init({
           message: 'Bitte Adresse auswählen',

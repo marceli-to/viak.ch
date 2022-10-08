@@ -27,7 +27,7 @@ class BookingController extends Controller
 
   public function store()
   {
-    if ($this->store->getItemsCount())
+    if ($this->store->itemsCount())
     {
       (new BookingService())->create($this->store->get());
       $this->store->clear();

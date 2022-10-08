@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     user: false,
     i18n: false,
+    discount_code: false,
     filter: {
       category: null,
       expert: null,
@@ -24,5 +25,8 @@ export default new Vuex.Store({
     i18n(state, i18n) {
       state.i18n = i18n;
     },
+    discount_code(state, discount_code) {
+      state.discount_code = discount_code;
+    }
   }
 });

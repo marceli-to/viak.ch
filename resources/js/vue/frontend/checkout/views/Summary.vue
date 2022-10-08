@@ -29,7 +29,7 @@
           {{ __('Rabatt') }} <strong>{{ basket.discount_code }}</strong>
         </div>
         <div class="sm:span-8 sm:align-right">
-          CHF {{ basket.totals.discount | currency }}
+          – CHF {{ basket.totals.discount | currency }}
         </div>
       </div>
     </stacked-list-item>
@@ -37,7 +37,7 @@
     <stacked-list-item>
       <div>
         <div class="sm:span-4">
-          {{ __('MwSt') }}
+          {{ __('Mehrwertsteuer') }} 0%
         </div>
         <div class="sm:span-8 sm:align-right">
           CHF

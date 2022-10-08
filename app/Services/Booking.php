@@ -34,7 +34,7 @@ class Booking
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
           'number' => (new BookingService())->getNumber(),
-          'invoice_address' => $basket['user']['invoice_address'] ? $basket['user']['invoice_address'] : null,
+          //'invoice_address' => $basket['user']['invoice_address'] ? $basket['user']['invoice_address'] : null,
           'event_id' => $event->id,
           'user_id' => $user->id,
           'booked_at' => \Carbon\Carbon::now(),

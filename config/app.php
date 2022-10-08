@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\DiscountServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -237,6 +238,7 @@ return [
         'PenaltyHelper' => App\Helpers\PenaltyHelper::class,
         'AddressHelper' => App\Helpers\AddressHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Discount' =>  App\Facades\DiscountFacade::class
     ],
 
 ];

@@ -29,6 +29,7 @@ class BasketStore extends Store
       $store['items'][] = $item;
       $store['count'] = collect($store['items'])->count();
     }
+
     session([$this->key => $store]);
     return $store;
   }
@@ -105,13 +106,13 @@ class BasketStore extends Store
   }
 
   /**
-   * Get a single basket item
+   * Check existence of a single item
    * 
    * @param String $item
    * @return Boolean 
    */
 
-  public function getItem($item = NULL)
+  public function hasItem($item = NULL)
   { 
     $store = $this->get();
     if (isset($store['items']))
@@ -122,35 +123,18 @@ class BasketStore extends Store
   }
 
   /**
-   * Get the basket user
-   * 
-   * @param String $item
-   * @return Boolean 
-   */
-
-  public function getUser($item = NULL)
-  { 
-    $store = $this->get();
-    if (isset($store['user']))
-    {
-      return $store['user'];
-    }
-    return FALSE;
-  }
-
-  /**
    * Get the items count
    * 
    * @return Number $items
    */
  
-  public function getItemsCount()
+  public function itemsCount()
   { 
     $store = $this->get();
     if (isset($store['items']))
     {
       return collect($store['items'])->count();
     }
-    return NULL;
+    return 0;
   }
 }
