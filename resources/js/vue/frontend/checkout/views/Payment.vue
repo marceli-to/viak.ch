@@ -129,8 +129,8 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.basket.get}`).then(response => {
         this.basket = response.data;
-        if (this.basket.discount.code) {
-          this.discount_code = this.basket.discount.code;
+        if (this.basket.discount_code) {
+          this.discount_code = this.basket.discount_code;
         }
         this.isFetched = true;
         NProgress.done();

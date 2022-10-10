@@ -26,7 +26,7 @@
     <stacked-list-item v-if="basket.totals.discount > 0">
       <div>
         <div class="sm:span-4">
-          {{ __('Rabatt') }} <strong>{{ basket.discount.code }}</strong>
+          {{ __('Rabatt') }} <strong>{{ basket.discount_code }}</strong>
         </div>
         <div class="sm:span-8 sm:align-right">
           – CHF {{ basket.totals.discount | currency }}

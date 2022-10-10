@@ -75,9 +75,11 @@
   @extend %p-2x;
   @extend %sm\:p-3x;
   @extend %sm\:pt-2x;  
-  @extend %mt-8x;
-  @extend %sm\:mt-16x;
-  border: 2px solid $color-danger;
+  @extend %md\:p-4x;
+  @extend %md\:pt-3x;  
+  @extend %mt-6x;
+  @extend %sm\:mt-12x;
+  border: 2px solid $color-primary;
   color: $color-primary;
 
   h2 {
@@ -90,6 +92,27 @@
   a[class*=btn] {
     @extend %mt-3x;
     @extend %sm\:mt-6x;
+  }
+
+  &.is-danger {
+    border-color: $color-danger;
+    h2 {
+      color: $color-danger;
+    }
+  }
+
+  &.is-success {
+    border-color: $color-success;
+    h2 {
+      color: $color-success;
+    }
+  }
+
+  &.is-info {
+    border-color: $color-primary;
+    h2 {
+      color: $color-primary;
+    }
   }
 }
 

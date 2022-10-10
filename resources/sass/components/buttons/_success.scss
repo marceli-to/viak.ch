@@ -1,18 +1,18 @@
 /**
  * -----------------------------------------------------------------------------
- * File: components/buttons/danger
+ * File: components/buttons/success
  * -----------------------------------------------------------------------------
  */
 
-%btn-danger,
-.btn-danger {
+%btn-success,
+.btn-success {
   @extend %btn;
   @extend %btn-full-width;
-  background-color: $color-danger;
+  background-color: $color-success;
   color: $color-white;
 
   &:hover {
-    background-color: darken($color-danger, 15);
+    background-color: darken($color-success, 15);
   }
 
 }

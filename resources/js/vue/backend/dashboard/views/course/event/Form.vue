@@ -138,11 +138,25 @@
           Speichern
         </a>
       </form-group>
-      <div class="form-danger-zone" v-if="$props.type == 'edit'">
+
+      <div class="form-danger-zone is-success" v-if="$props.type == 'edit'">
+        <h2>Veranstaltung bestätigen</h2>
+        <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
+        <a href="" class="btn-success" @click.prevent="confirmDestroy()">Bestätigen</a>
+      </div>
+
+      <div class="form-danger-zone is-info" v-if="$props.type == 'edit'">
+        <h2>Veranstaltung absagen</h2>
+        <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
+        <a href="" class="btn-info" @click.prevent="confirmDestroy()">Absagen</a>
+      </div>
+
+      <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>Veranstaltung löschen</h2>
         <p>Mit dieser Aktion wird die Veranstaltung gelöscht. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
+
     </template>
   </article-text>
   <notification ref="notification">

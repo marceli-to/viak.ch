@@ -37,16 +37,10 @@ class BasketController extends Controller
     $store = $this->store->get();
 
     $data = [
-      'user' => [
-        'uuid' => isset($store['user']['uuid']) ? $store['user']['uuid'] : NULL,
-        'invoice_address' => [
-          'uuid' => isset($store['user']['invoice_address']['uuid']) ? $store['user']['invoice_address']['uuid'] : NULL,
-        ]
-      ],
-      'discount' => [
-        'code' => isset($store['discount']['code']) ? $store['discount']['code'] : NULL,
-        'uuid' => isset($store['discount']['uuid']) ? $store['discount']['uuid'] : NULL
-      ]
+      'user_uuid' => isset($store['user_uuid']) ? $store['useruser_uuid'] : NULL,
+      'invoice_address_uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
+      'discount_code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
+      'discount_uuid' => isset($store['discount_uuid']) ? $store['discount_uuid'] : NULL,
     ];
 
     // Events
@@ -55,7 +49,7 @@ class BasketController extends Controller
     // Totals
     $data['totals'] = $this->getTotals(
       $this->getEvents($store['items']), 
-      $data['discount']['uuid']
+      $data['discount_uuid']
     );
     return response()->json($data);
   }
@@ -84,18 +78,12 @@ class BasketController extends Controller
   public function addUser(Request $request)
   {
     $user = User::findOrFail(auth()->user()->id);
+    $this->store->addAttribute('user_uuid', $user->uuid);
 
-    $this->store->removeAttribute('user');
-    $this->store->addAttribute('user', ['uuid' => $user->uuid]);
-
+    $this->store->removeAttribute('invoice_address_uuid');
     if ($request->input('address_uuid'))
     {
-      $this->store->addAttribute('user', [
-        'uuid' => $user->uuid,
-        'invoice_address' => [
-          'uuid' => $request->input('address_uuid'),
-        ]
-      ]);
+      $this->store->addAttribute('invoice_address_uuid', $request->input('address_uuid'));
     }
     return response()->json($this->store->get());
   }
@@ -109,7 +97,8 @@ class BasketController extends Controller
 
   public function addPayment(Request $request)
   {
-    $this->store->removeAttribute('discount');
+    $this->store->removeAttribute('discount_code');
+    $this->store->removeAttribute('discount_uuid');
 
     if ($request->input('discount_code'))
     {
@@ -119,13 +108,8 @@ class BasketController extends Controller
 
       if (Discount::validate($discountCode->uuid))
       {
-        $this->store->addAttribute(
-          'discount',
-          [
-            'uuid' => $discountCode->uuid,
-            'code' => $discountCode->code
-          ]
-        );
+        $this->store->addAttribute('discount_code', $discountCode->code);
+        $this->store->addAttribute('discount_uuid', $discountCode->uuid);
       }
     }
     

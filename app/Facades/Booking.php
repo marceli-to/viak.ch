@@ -31,8 +31,8 @@ class Booking
       {
         $event    = Event::where('uuid', $item)->first();
         $user     = User::find(auth()->user()->id);
-        $address  = isset($basket['user']['invoice_address']['uuid']) ? UserAddress::where('uuid', $basket['user']['invoice_address']['uuid'])->first() : NULL;
-        $discount = isset($basket['discount']['uuid']) ? DiscountCode::where('uuid', $basket['discount']['uuid'])->first() : NULL;
+        $address  = isset($basket['invoice_address_uuid']) ? UserAddress::where('uuid', $basket['invoice_address_uuid'])->first() : NULL;
+        $discount = isset($basket['discount_uuid']) ? DiscountCode::where('uuid', $basket['discount_uuid'])->first() : NULL;
 
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),

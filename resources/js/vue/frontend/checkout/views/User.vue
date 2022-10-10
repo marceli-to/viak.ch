@@ -165,9 +165,9 @@ export default {
           this.basket = response.data;
 
           // check for recently set invoice addresses
-          if (this.basket.user.invoice_address.uuid) {
+          if (this.basket.invoice_address_uuid) {
             this.hasAdresses = true;
-            this.form.address_uuid = this.basket.user.invoice_address.uuid;
+            this.form.address_uuid = this.basket.invoice_address_uuid;
           }
 
           this.isFetched = true;
