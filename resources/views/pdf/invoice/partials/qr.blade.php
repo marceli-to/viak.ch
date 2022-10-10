@@ -160,8 +160,7 @@
   }
   
   </style>
-  
-  {{-- <div class="page-break"></div> --}}
+ 
   <div class="qr cf">
     <div class="qr-item qr-item--receipt">
       <div class="qr-item--receipt__information">
@@ -169,15 +168,15 @@
         <div>
           <h2>Konto / Zahlbar an</h2>
           <p>
-            {{config('invoice.qr_iban')}}<br>
-            {{config('invoice.beneficiary_name')}}<br>
-            {{config('invoice.beneficiary_street')}}<br>
-            {{config('invoice.beneficiary_city')}}<br>
+            {{ config('invoice.qr_iban') }}<br>
+            {{ config('invoice.beneficiary_name') }}<br>
+            {{ config('invoice.beneficiary_street') }}<br>
+            {{ config('invoice.beneficiary_city') }}<br>
           </p>
         </div>
         <div>
           <h2>Referenz</h2>
-          <p>{{$data_qr['reference_number']}}</p>
+          <p>{{ $qr['reference_number'] }}</p>
         </div>
         <div>
           <h2>Zahlbar durch</h2>
@@ -193,7 +192,7 @@
         </div>
         <div class="amount">
           <h2>Betrag</h2>
-          <p>{{ number_format($data['invoice_total'], 2, '.', ' ') }}</p>
+          <p>{{ number_format($invoice->grand_total, 2, '.', ' ') }}</p>
         </div>
       </div>
       <div class="qr-item--receipt__acceptance">
@@ -204,7 +203,7 @@
       <div class="qr-item--payment__left">
         <h1>Zahlteil</h1>
         <div class="qr-item--payment__code">
-          <img src="{{$data_qr['qr_code']}}" height="100" width="100" style="">
+          <img src="{{$qr['qr_code']}}" height="100" width="100" style="">
         </div>
         <div class="qr-item--payment__amount">
           <div class="currency">
@@ -213,7 +212,7 @@
           </div>
           <div class="amount">
             <h2>Betrag</h2>
-            <p>{{ number_format($data['invoice_total'], 2, '.', ' ') }}</p>
+            <p>{{ number_format($invoice->grand_total, 2, '.', ' ') }}</p>
           </div>
         </div>
       </div>
@@ -222,16 +221,18 @@
           <div>
             <h2>Konto / Zahlbar an</h2>
             <p>
-              {{config('invoice.qr_iban')}}<br>
-              {{config('invoice.beneficiary_name')}}<br>
-              {{config('invoice.beneficiary_byline')}}<br>
-              {{config('invoice.beneficiary_street')}}<br>
-              {{config('invoice.beneficiary_city')}}<br>
+              {{ config('invoice.qr_iban') }}<br>
+              {{ config('invoice.beneficiary_name') }}<br>
+              @if (config('invoice.beneficiary_byline'))
+                {{ config('invoice.beneficiary_byline') }}<br>
+              @endif
+              {{ config('invoice.beneficiary_street') }}<br>
+              {{ config('invoice.beneficiary_city') }}<br>
             </p>
           </div>
           <div>
             <h2>Referenz<h2>
-            <p>{{$data_qr['reference_number']}}</p>
+            <p>{{$qr['reference_number']}}</p>
           </div>
           <div>
             <h2>Zahlbar durch</h2>

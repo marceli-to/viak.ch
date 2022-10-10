@@ -335,6 +335,8 @@ export default {
     },
 
     confirmEvent() {
+      this.isLoading = true;
+      NProgress.start();
       this.axios.put(`${this.routes.confirm}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$refs.notification.init({
           message: 'Die Veranstaltung ist bestätigt!',
@@ -342,6 +344,8 @@ export default {
           style: 'success',
           autohide: true,
         });
+        this.isLoading = false;
+        NProgress.done();
         this.actionToBeConfirmed = null;  
       });
     },

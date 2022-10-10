@@ -1,21 +1,27 @@
 @include('pdf.partials.header')
 <div class="page">
-  <table class="page__info">
-    <tr> 
-      <td>{{ __('Kursteilnehmer:in') }}</td>
-      <td>Marcel Stadelmann</td>
-    </tr>
-    <tr> 
-      <td>{{ __('Adresse') }}</td>
-      <td>Letzigraben 149, 8047 Zürich</td>
-    </tr>
-    <tr> 
-      <td>{{ __('E-Mail') }}</td>
-      <td>m@marceli.to</td>
-    </tr>
-    <tr> 
-      <td>{{ __('Telefon') }}</td>
-      <td>078 513 35 41</td>
+  <table class="page-info">
+    <tr>
+      <td class="page-info__left">
+        <table>
+          <tr> 
+            <td>{{ __('Kursteilnehmer:in') }}</td>
+            <td>Marcel Stadelmann</td>
+          </tr>
+          <tr> 
+            <td>{{ __('Adresse') }}</td>
+            <td>Letzigraben 149, 8047 Zürich</td>
+          </tr>
+          <tr> 
+            <td>{{ __('E-Mail') }}</td>
+            <td>m@marceli.to</td>
+          </tr>
+          <tr> 
+            <td>{{ __('Telefon') }}</td>
+            <td>078 513 35 41</td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
   <h1 class="page__title">{{ __('Kursbestätigung') }}<br>Marcel Stadelmann</h1>

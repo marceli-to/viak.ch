@@ -30,6 +30,10 @@ class EventConfirmed extends Mailable
    */
   public function build()
   {
+
+    
+
+
     $event = Event::with('course')->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Bestätigung') . ' – ' . $event->course->title)

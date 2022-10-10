@@ -140,7 +140,7 @@
           Speichern
         </a>
       </form-group>
-      <div class="form-danger-zone" v-if="$props.type == 'edit'">
+      <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>Experte löschen</h2>
         <p>Mit dieser Aktion wird der Experte gelöscht und aus den Veranstaltungen entfernt.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>

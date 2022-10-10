@@ -1,5 +1,5 @@
 <?php
-namespace App\Services\Pdf;
+namespace App\Services\Pdf\Invoice;
 use Sprain\SwissQrBill as QrBill;
 
 class Qr
@@ -71,14 +71,6 @@ class Qr
     );
 
     // Add payment reference
-    // Explicitly define that no reference number will be used by setting TYPE_NON.
-    // $qrBill->setPaymentReference(
-    //   QrBill\DataGroup\Element\PaymentReference::create(
-    //     QrBill\DataGroup\Element\PaymentReference::TYPE_NON
-    //   )
-    // );
-
-    // Add payment reference
     // This is what you will need to identify incoming payments.
     $referenceNumber = QrBill\Reference\QrPaymentReferenceGenerator::generate(
       NULL,  // You receive this number from your bank (BESR-ID). Unless your bank is PostFinance, in that case use NULL.
@@ -97,7 +89,6 @@ class Qr
         'Rechnung ' . $this->invoiceNumber
       )
     );
-
     
     // Return Data URI
     return $qrBill->getQrCode()->writeDataUri();

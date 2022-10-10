@@ -34,6 +34,7 @@ table {
 
 td {
   padding: 0;
+  vertical-align: top;
 }
 
 th {
@@ -111,7 +112,7 @@ p {
   z-index: 100;
 }
 
-.page__info,
+.page-info,
 .page__title,
 .page__date,
 .page__content {
@@ -119,12 +120,24 @@ p {
   position: absolute;
 }
 
-.page__info {
+.page-info {
   top: 42mm;
   width: 164mm;
 }
 
-.page__info td:first-child {
+.page-info td.page-info__left {
+  width: 96mm;
+}
+
+.page-info td.page-info__center {
+  width: 14mm;
+}
+
+.page-info td.page-info__right {
+  width: 54mm;
+}
+
+.page-info td.page-info__left td:first-child {
   width: 36mm;
 }
 

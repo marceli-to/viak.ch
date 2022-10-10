@@ -14,8 +14,8 @@ class AlterEventsTableAddDateFields extends Migration
   public function up()
   {
     Schema::table('events', function (Blueprint $table) {
-      $table->dateTime('confirmed_at')->nullable()->after('location_id');
-      $table->dateTime('cancelled_at')->nullable()->after('confirmed_at');
+      $table->timestamp('confirmed_at')->nullable()->after('location_id');
+      $table->timestamp('cancelled_at')->nullable()->after('confirmed_at');
     });
   }
 

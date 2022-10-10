@@ -117,9 +117,9 @@ export default {
         }, this.autohideDelay);
       }
 
-      setTimeout(() => {
-        this.addListeners();
-      }, 50)
+      // setTimeout(() => {
+      //   this.addListeners();
+      // }, 50)
 
     },
 
@@ -161,7 +161,6 @@ export default {
           this.hide();
         }
       }, false);
-
     }
   },
 

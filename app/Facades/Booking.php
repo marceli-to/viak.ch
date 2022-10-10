@@ -40,6 +40,7 @@ class Booking
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
           'number' => self::getNumber(),
+          'course_fee' => $event->courseFee,
           'invoice_address' => $address ? $address->address : NULL,
           'discount_code' => $discount ? $discount->code : NULL,
           'discount_amount' => $discount ? Discount::apply($discount->uuid, $event->courseFee) : NULL,
@@ -124,7 +125,7 @@ class Booking
 
   public function getNumber()
   {
-    $bookings = BookingModel::get();
+    $bookings = BookingModel::withTrashed()->get();
     $number = 1;
     if ($bookings->count() >= 1)
     {

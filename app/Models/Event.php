@@ -51,6 +51,7 @@ class Event extends Base
   protected $appends = [
     'number',
     'date_str',
+    'date_short',
     'course_fee',
     'course_online',
     'expert_ids',
@@ -299,6 +300,18 @@ class Event extends Base
   public function getDateStrAttribute()
   {   
     return date('d. F Y', strtotime($this->date));
+  }
+
+  /**
+   * Get the short version for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateShortAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->date));
   }
 
   /**
