@@ -89,28 +89,45 @@
     color: $color-primary;
   }
 
-  a[class*=btn] {
-    @extend %mt-3x;
-    @extend %sm\:mt-6x;
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &[class*=btn] {
+      @extend %mt-3x;
+      @extend %sm\:mt-6x;
+      text-decoration: none !important;
+    }
   }
 
   &.is-danger {
     border-color: $color-danger;
-    h2 {
+    color: $color-danger;
+
+    h2, a:not([class*=btn]) {
       color: $color-danger;
     }
   }
 
   &.is-success {
     border-color: $color-success;
-    h2 {
+    color: $color-success;
+
+    h2, a:not([class*=btn]) {
       color: $color-success;
     }
   }
 
   &.is-info {
     border-color: $color-primary;
-    h2 {
+    color: $color-primary;
+
+    h2, a:not([class*=btn]) {
       color: $color-primary;
     }
   }

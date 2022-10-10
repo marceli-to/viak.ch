@@ -46,7 +46,7 @@ class BookingController extends Controller
   { 
     $this->authorize('cancel', $booking);
     BookingFacade::cancel($booking);
-    return response()->json('successfully deleted');
+    return response()->json('successfully cancelled');
   }
 
 }

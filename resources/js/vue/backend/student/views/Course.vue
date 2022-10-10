@@ -55,9 +55,14 @@
           {{ __('Dokumente') }}
         </template>
         <template #content>
-          <stacked-list-item v-for="(file, index) in data.files" :key="index">
-            <list-item-file :file="file" />
-          </stacked-list-item>
+          <template v-if="data.files.length">
+            <stacked-list-item v-for="(file, index) in data.files" :key="index">
+              <list-item-file :file="file" />
+            </stacked-list-item>
+          </template>
+          <template v-else>
+            <p class="no-results">{{ __('Es sind keine Dokumente vorhanden.') }}</p>
+          </template>
         </template>
       </collapsible>
     </collapsible-container>

@@ -34,7 +34,7 @@ class EventController extends Controller
    */
   public function find(Event $event)
   {
-    $event = Event::with('dates', 'experts', 'location', 'course')->find($event->id);
+    $event = Event::with('dates', 'experts', 'location', 'course', 'bookings')->find($event->id);
     return response()->json($event);
   }
 

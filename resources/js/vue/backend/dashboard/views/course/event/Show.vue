@@ -90,17 +90,17 @@
                 </template>
               </list-item-file>
             </stacked-list-item>
-            <div class="mt-6x">
-              <router-link :to="{ name: 'event-file-create' }" class="icon-plus">
-                <icon-plus />
-              </router-link>
-            </div>
           </template>
           <template v-else>
             <p class="no-results">
               {{ __('Es sind keine Dokumente vorhanden.') }}
             </p>
           </template>
+          <div class="mt-6x">
+            <router-link :to="{ name: 'event-file-create' }" class="icon-plus">
+              <icon-plus />
+            </router-link>
+          </div>
         </template>
       </collapsible>
     </collapsible-container>

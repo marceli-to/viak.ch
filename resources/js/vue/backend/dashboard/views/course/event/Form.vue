@@ -3,10 +3,10 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide" v-html="title"></h1>
-      <div class="sm:mt-6x">
-        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below is-small">
+      <div class="sm:mt-5x md:mt-10x">
+        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below">
           <span>Zurück</span>
-          <icon-arrow-right :size="'sm'" />
+          <icon-arrow-right />
         </router-link>
       </div>
     </template>
@@ -159,8 +159,15 @@
 
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>Veranstaltung löschen</h2>
-        <p>Mit dieser Aktion wird die Veranstaltung gelöscht. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
-        <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
+        <template v-if="data.bookings.length">
+          Diese Veranstaltng kann nicht gelöscht werden, da 
+          <router-link :to="{ name: 'event-show', params: { uuid: data.uuid } }"><strong>{{ data.bookings.length }}</strong> Buchung(en)</router-link>
+          vorhanden sind.
+        </template>
+        <template v-else>
+          <p>Mit dieser Aktion wird die Veranstaltung gelöscht.</p>
+          <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
+        </template>
       </div>
 
     </template>
@@ -232,6 +239,8 @@ export default {
         dates: [],
         location_id: 1,
         expert_ids: [],
+        bookings: [],
+        confirmed: 0,
       },
 
       // Validation
@@ -352,6 +361,7 @@ export default {
         });
         this.isLoading = false;
         NProgress.done();
+        this.data.confirmed = 1;
         this.actionToBeConfirmed = null;  
       });
     },
@@ -383,7 +393,7 @@ export default {
     confirmDestroy() {
       this.actionToBeConfirmed = 'destroy';
       this.$refs.notification.init({
-        message: 'Bitte Aktion bestätigen!',
+        message: 'Bitte «Veranstaltung bestätigen» bestätigen!',
         type: 'dialog',
         style: 'info',
         autohide: false,
@@ -393,7 +403,7 @@ export default {
     confirmConfirmation() {
       this.actionToBeConfirmed = 'confirm';
       this.$refs.notification.init({
-        message: 'Bitte Aktion bestätigen!',
+        message: 'Bitte «Veranstaltung bestätigen» bestätigen!',
         type: 'dialog',
         style: 'info',
         autohide: false,
@@ -403,7 +413,7 @@ export default {
     confirmCancellation() {
       this.actionToBeConfirmed = 'cancel';
       this.$refs.notification.init({
-        message: 'Bitte Aktion bestätigen!',
+        message: 'Bitte «Veranstaltung absagen» bestätigen!',
         type: 'dialog',
         style: 'info',
         autohide: false,

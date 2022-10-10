@@ -20,8 +20,7 @@ class BookingCancelled
    */
   public function __construct(User $user, Booking $booking)
   {
-    $booking = Booking::with('event.course')->find($booking->id);
     $this->user = $user;
-    $this->booking = $booking;
+    $this->booking = Booking::with('event.course')->find($booking->id);
   }
 }

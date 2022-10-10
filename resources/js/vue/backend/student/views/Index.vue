@@ -128,12 +128,6 @@
       <template #content v-else>
         <div>
           <pre v-html="user.address"></pre>
-          <!-- 
-          <template v-if="user.has_invoice_address && user.invoice_address">
-            <h4 class="mt-4x sm:mt-6x md:mt-8x">{{ __('Rechnungsadresse') }}</h4>
-            <pre v-html="user.invoice_address.address"></pre>
-          </template>
-          -->
         </div>
       </template>
     </article-text>

@@ -27,7 +27,6 @@ class StudentResource extends JsonResource
       'zip' => $this->zip,
       'city' => $this->city,
       'phone' => $this->phone,
-      'has_invoice_address' => $this->has_invoice_address,
       'invoice_addresses' => UserAddressResource::collection($this->invoiceAddresses),
       'operating_system' => $this->operating_system,
       'email' => $this->email,

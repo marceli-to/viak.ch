@@ -40,9 +40,6 @@
             <div v-for="event in course.events" :key="event.id" class="relative">
               <stacked-list-event :event="event" :isAdmin="true">
                 <template #action>
-                  <!-- <router-link :to="{ name: 'event-edit', params: { courseId: course.id, eventId: event.id } }" class="icon-edit mt-5x">
-                    <icon-edit />
-                  </router-link> -->
                   <router-link :to="{ name: 'event-edit', params: { uuid: event.uuid } }" class="btn-primary mb-3x">
                     Bearbeiten
                   </router-link>

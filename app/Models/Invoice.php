@@ -140,7 +140,7 @@ class Invoice extends Base
    */
   public function scopePending($query)
   {
-    return $query->where('cancelled', 0)->where('paid', 0);
+    return $query->where('cancelled', 0);
   }
 
   /*

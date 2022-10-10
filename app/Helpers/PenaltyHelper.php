@@ -34,7 +34,7 @@ class PenaltyHelper
     }
 
     return [
-      'penalty' => $penalty,
+      'penalty' => $penalty, // %
       'amount'  => $amount
     ];
 

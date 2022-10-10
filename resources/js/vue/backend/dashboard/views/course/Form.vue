@@ -4,10 +4,10 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <div class="sm:mt-6x">
-        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below is-small">
+      <div class="sm:mt-5x md:mt-10x">
+        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below">
           <span>Zurück</span>
-          <icon-arrow-right :size="'sm'" />
+          <icon-arrow-right />
         </router-link>
       </div>
     </template>

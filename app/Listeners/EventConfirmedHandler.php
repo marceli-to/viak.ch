@@ -6,7 +6,7 @@ use App\Models\Booking;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class BookingCancelledHandler
+class EventConfirmedHandler
 {
   /**
    * Handle the event.

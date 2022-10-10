@@ -53,7 +53,6 @@ export default {
         new_email: null,
         new_password: null,
         new_password_confirmation: null,
-        has_invoice_address: null,
       },
 
       // Store
