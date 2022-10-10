@@ -131,6 +131,11 @@ class EventController extends Controller
    */
   public function confirm(Event $event)
   {
+    if ($event->confirmed == 1)
+    {
+      return response()->json('successfully updated');
+    }
+    
     $event->confirmed = 1;
     $event->confirmed_at = \Carbon\Carbon::now();
     $event->save();

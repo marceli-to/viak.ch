@@ -4,12 +4,12 @@
 <p>{{ __('Wir haben deine Annullation für den Kurs «:attribute» erhalten.', ['attribute' => $data->event->course->title]) }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="120">{{ __('Kurs') }}</td>
-    <td>{{ $data->event->course->title }}</td>
+    <td width="120">{{ __('Buchung') }}</td>
+    <td>{{ $data->number }}</td>
   </tr>
   <tr>
-    <td>{{ __('Buchung') }}</td>
-    <td>{{ $data->number }}</td>
+    <td>{{ __('Kurs') }}</td>
+    <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>

@@ -1,18 +1,16 @@
 <?php
 namespace App\Services\Pdf\Invoice;
+use App\Models\Invoice;
 use Sprain\SwissQrBill as QrBill;
 
 class Qr
 {
-  protected $invoiceNumber;
-  protected $clientNumber; 
-  protected $amount;
+  protected $invoice;
 
-  public function __construct($invoiceNumber, $clientNumber, $amount)
+  public function __construct(Invoice $invoice, $clientNumber = 0)
   {
-    $this->invoiceNumber = $invoiceNumber;
+    $this->invoice = $invoice;
     $this->clientNumber = $clientNumber;
-    $this->amount = $amount;
   }
 
   public function get()
@@ -61,12 +59,12 @@ class Qr
       )
     );
 
-    // Add payment amount information
+    // Add payment invoice->grand_total information
     // The currency must be defined.
     $qrBill->setPaymentAmountInformation(
       QrBill\DataGroup\Element\PaymentAmountInformation::create(
         config('invoice.currency'),
-        $this->amount
+        $this->invoice->grand_total
       )
     );
 
@@ -74,7 +72,7 @@ class Qr
     // This is what you will need to identify incoming payments.
     $referenceNumber = QrBill\Reference\QrPaymentReferenceGenerator::generate(
       NULL,  // You receive this number from your bank (BESR-ID). Unless your bank is PostFinance, in that case use NULL.
-      $this->invoiceNumber // A number to match the payment with your internal data, e.g. an invoice number
+      $this->invoice->number // A number to match the payment with your internal data, e.g. an invoice number
     );
 
     $qrBill->setPaymentReference(
@@ -86,7 +84,7 @@ class Qr
     // Optionally, add some human-readable information about what the bill is for.
     $qrBill->setAdditionalInformation(
       QrBill\DataGroup\Element\AdditionalInformation::create(
-        'Rechnung ' . $this->invoiceNumber
+        'Rechnung ' . $this->invoice->number
       )
     );
     
@@ -98,24 +96,24 @@ class Qr
   /**
    * Get invoice number as padded string
    * 
-   * @return String $invoiceNumber
+   * @return String $invoice->number
    */
 
   private function getInvoiceNumberString()
   {
     $str = '';
-    switch(strlen($this->invoiceNumber))
+    switch(strlen($this->invoice->number))
     {
       case 5:
-        $str = str_pad(substr($this->invoiceNumber, 0, 1),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoiceNumber, 1, strlen($this->invoiceNumber));
+        $str = str_pad(substr($this->invoice->number, 0, 1),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoice->number, 1, strlen($this->invoice->number));
       break;
 
       case 6:
-        $str = str_pad(substr($this->invoiceNumber, 0, 2),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoiceNumber, 2, strlen($this->invoiceNumber));
+        $str = str_pad(substr($this->invoice->number, 0, 2),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoice->number, 2, strlen($this->invoice->number));
       break;
 
       case 7:
-        $str = str_pad(substr($this->invoiceNumber, 0, 3),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoiceNumber, 3, strlen($this->invoiceNumber));
+        $str = str_pad(substr($this->invoice->number, 0, 3),  5, "0", STR_PAD_LEFT) . ' ' . substr($this->invoice->number, 3, strlen($this->invoice->number));
       break;
     }
 

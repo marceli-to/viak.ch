@@ -148,20 +148,21 @@ class Event extends Base
    * The bookings that belong to this event.
    */
   
-  public function bookings()
+  public function allBookings()
   {
     return $this->hasMany(Booking::class, 'event_id', 'id');
   }
-
 
   /**
    * The (active) bookings that belong to this event.
    */
   
-  public function activeBookings()
+  public function bookings()
   {
     return $this->hasMany(Booking::class, 'event_id', 'id')->where('cancelled', 0);
+    
   }
+
 
   /**
    * The messages that belongs to this event.
@@ -355,13 +356,12 @@ class Event extends Base
    * relationship with events, they are related via the
    * booking.
    * 
-   * 
    * @return Array $users
    */
 
   public function getStudents()
   {
-    return $this->activeBookings->pluck('user')->all();
+    return $this->bookings->pluck('user')->all();
   }
 
   /**

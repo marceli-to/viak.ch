@@ -160,7 +160,7 @@
   }
   
   </style>
- 
+  <div class="page-break"></div>
   <div class="qr cf">
     <div class="qr-item qr-item--receipt">
       <div class="qr-item--receipt__information">
@@ -180,9 +180,11 @@
         </div>
         <div>
           <h2>Zahlbar durch</h2>
-          <p>
-            Marcel Stadelmann<br>Letzigraben 149<br>8047 Zürich
-          </p>
+          @if ($invoice->invoice_address)
+            <p>{!! $invoice->invoice_address !!}</p>
+          @else
+            <p>{!! $invoice->booking->user->address !!}</p>
+          @endif
         </div>
       </div>
       <div class="qr-item--receipt__amount">
@@ -236,9 +238,11 @@
           </div>
           <div>
             <h2>Zahlbar durch</h2>
-            <p>
-              Marcel Stadelmann<br>Letzigraben 149<br>8047 Zürich
-            </p> 
+            @if ($invoice->invoice_address)
+              <p>{!! $invoice->invoice_address !!}</p>
+            @else
+              <p>{!! $invoice->booking->user->address !!}</p>
+            @endif
           </div>
         </div>
       </div>

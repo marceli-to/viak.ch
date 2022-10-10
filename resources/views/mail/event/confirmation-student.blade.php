@@ -1,23 +1,23 @@
 @component('mail::message')
-<h1>{{ __('Bestätigung') . ' – ' . $data->course->title }}</h1>
-<p>{{ __('Hallo') }}</p>
+<h1>{{ __('Bestätigung') . ' – ' . $event->course->title }}</h1>
+<p>{{ __('Hallo') }} {{ $user->fullname }}</p>
 <p>{{ __('Hiermit bestätigen wir die Durchführung des oben erwähnten Kurses:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Kurs') }}</td>
-    <td>{{ $data->course->title }}</td>
+    <td>{{ $event->course->title }}</td>
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
-    <td>{{ collect($data->dates->pluck('date_short')->all())->implode(', ') }}</td>
+    <td>{{ collect($event->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>
   <tr>
     <td>{{ __('Experten') }}</td>
-    <td>{{ collect($data->experts->pluck('fullname')->all())->implode(', ') }}
+    <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $data->courseFee }}</td>
+    <td>CHF {{ $event->courseFee }}</td>
   </tr>
 </table>
 <p>{{ __('Die Rechnung für die Kurskosten findest du in der Beilage. Falls du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>

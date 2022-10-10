@@ -129,9 +129,19 @@ class Invoice extends Base
    */
   public function scopeCancelled($query)
   {
-    return $query->where('cancelled', 0);
+    return $query->where('cancelled', 1);
   }
 
+  /**
+   * Scope a query to only include pending invoices
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopePending($query)
+  {
+    return $query->where('cancelled', 0)->where('paid', 0);
+  }
 
   /*
   |--------------------------------------------------------------------------

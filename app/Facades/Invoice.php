@@ -12,16 +12,22 @@ use App\Models\DiscountCode;
 
 class Invoice
 {
-
   /**
-   * Create an invoice from a bookng
+   * Find or create an invoice from a booking.
    * 
    * @param Booking $booking
-   * 
+   * @return $invoice
    */
 
-  public function createFromBooking(Booking $booking)
+  public function findOrCreateFromBooking(Booking $booking)
   {
+    // Check for an existing invoice for this booking
+    $invoice = InvoiceModel::pending()->where('booking_id', $booking->id)->first();
+    if ($invoice)
+    {
+      return $invoice;
+    }
+    
     $invoice = InvoiceModel::create([
       'uuid' => \Str::uuid(),
       'number' => self::getNumber(),
@@ -36,6 +42,10 @@ class Invoice
     ]);
 
     $pdf = (new EventInvoice())->create($invoice);
+
+    // Update invoice
+    $invoice->filename = $pdf['filename'];
+    $invoice->save();
 
     return $invoice;
   }

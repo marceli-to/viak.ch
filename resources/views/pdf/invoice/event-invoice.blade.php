@@ -20,14 +20,16 @@
         </table>
       </td>
       <td class="page-info__right">
-        <table>
-          <tr> 
-            <td>
-              {{ __('Rechnungsadresse') }}<br>
-              {!! $invoice->booking->user->address !!}
-            </td>
-          </tr>
-        </table>
+        @if ($invoice->invoice_address)
+          <table>
+            <tr> 
+              <td>
+                {{ __('Rechnungsadresse:') }}<br>
+                {!! $invoice->invoice_address !!}
+              </td>
+            </tr>
+          </table>
+        @endif
       </td>
     </tr>
   </table>
@@ -46,10 +48,10 @@
       </thead>
       <tbody>
         <tr>
-          <td style="width: 85mm"><strong>{{ $invoice->booking->event->course->title }}</strong></td>
-          <td style="width: 28mm">{{ $invoice->booking->event->date_short }}</td>
+          <td style="width: 80mm"><strong>{{ $invoice->booking->event->course->title }}</strong></td>
+          <td style="width: 31mm">{{ $invoice->booking->event->date_short }}</td>
           <td style="width: 31mm">{{ $invoice->booking->event->number }}</td>
-          <td style="width: 20mm" class="align-right">
+          <td style="width: 22mm" class="align-right">
             <strong>CHF {{ $invoice->total }}</strong>
           </td>
         </tr>

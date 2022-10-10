@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EventConfirmed extends Mailable
+class EventConfirmationExpert extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -30,14 +30,12 @@ class EventConfirmed extends Mailable
    */
   public function build()
   {
-
-    
-
-
+    // Get the event
     $event = Event::with('course')->find($this->data->id);
+
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Bestätigung') . ' – ' . $event->course->title)
-                ->with(['data' => $event])
-                ->markdown('mail.event.confirmation');
+                ->with(['event' => $event])
+                ->markdown('mail.event.confirmation-expert');
   }
 }

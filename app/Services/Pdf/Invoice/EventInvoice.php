@@ -32,8 +32,8 @@ class EventInvoice
     $invoice = $invoice->with('booking.event.course', 'booking.user')->find($invoice->id);
 
     // Set view data
-    $this->viewData['invoice']    = $invoice;
-    $this->viewData['qr'] = (new Qr($invoice->number, 0, $invoice->grand_total))->get();
+    $this->viewData['invoice'] = $invoice;
+    $this->viewData['qr'] = (new Qr($invoice))->get();
 
     // Load view and save file to disk
     $pdf = DomPDF::loadView('pdf.invoice.event-invoice', $this->viewData);
@@ -42,7 +42,7 @@ class EventInvoice
     
     return [
       'path' => $this->storageFolder . $file,
-      'name' => $file
+      'filename' => $file
     ];
   }
 

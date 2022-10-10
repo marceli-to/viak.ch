@@ -18,6 +18,6 @@ class EventConfirmed
    */
   public function __construct(Event $event)
   { 
-    $this->event = Event::with('course')->find($event->id);;
+    $this->event = Event::with('course')->find($event->id);
   }
 }

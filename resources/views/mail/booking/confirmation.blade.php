@@ -1,20 +1,31 @@
 @component('mail::message')
 <h1>{{ __('Buchungsbestätigung') . ' – ' . $data->event->course->title }}</h1>
 <p>{{ __('Hallo') }} {{ $data->user->fullname }}</p>
-<p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->event->course->title }}». {{ __('Dieser findet wie folgt statt:') }}</p>
+<p>{{ __('Vielen Dank für deine Anmeldung für den Kurs') }} «{{ $data->event->course->title }}». {{ __('Gerne bestätigen wir deine Anmeldung wie folgt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="120">{{ __('Kurs') }}</td>
-    <td>{{ $data->event->course->title }}</td>
+    <td width="120">{{ __('Buchung') }}</td>
+    <td>{{ $data->number }}</td>
   </tr>
   <tr>
-    <td>{{ __('Buchung') }}</td>
-    <td>{{ $data->number }}</td>
+    <td>{{ __('Kurs') }}</td>
+    <td>{{ $data->event->course->title }}</td>
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
     <td>{{ collect($data->event->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>
+  @if ($data->event->online)
+    <tr>
+      <td>{{ __('Ort') }}</td>
+      <td>{{ __('online') }}</td>
+    </tr>
+  @else
+    <tr>
+      <td>{{ __('Ort') }}</td>
+      <td>{{ $data->event->location ? $data->event->location->description : '' }}</td>
+    </tr>
+  @endif
   <tr>
     <td>{{ __('Kosten') }}</td>
     <td>CHF {{ $data->event->courseFee }}</td>

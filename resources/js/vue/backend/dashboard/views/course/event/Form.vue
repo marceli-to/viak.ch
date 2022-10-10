@@ -140,9 +140,15 @@
       </form-group>
 
       <div class="form-danger-zone is-success" v-if="$props.type == 'edit'">
-        <h2>Veranstaltung bestätigen</h2>
-        <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
-        <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
+        <template v-if="data.confirmed">
+          <h2>Veranstaltung bestätigt</h2>
+          <p>Diese Veranstaltung wurde am {{ data.confirmed_at }} bestätigt.</p>
+        </template>
+        <template v-else>
+          <h2>Veranstaltung bestätigen</h2>
+          <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
+          <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
+        </template>
       </div>
 
       <div class="form-danger-zone is-info" v-if="$props.type == 'edit'">

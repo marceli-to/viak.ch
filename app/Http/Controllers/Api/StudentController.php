@@ -40,29 +40,6 @@ class StudentController extends Controller
     ]));
     $user->save();
 
-    // Update invoice_address
-    if ($request->input('has_invoice_address'))
-    {
-      $uuid = $request->input('invoice_address.uuid') ? $request->input('invoice_address.uuid') : \Str::uuid();
-      $invoice_address = UserAddress::updateOrCreate(
-        ['uuid' =>$uuid],
-        [
-          'firstname' => $request->input('invoice_address.firstname'),
-          'name' =>$request->input('invoice_address.name'),
-          'company' => $request->input('invoice_address.company'),
-          'street' => $request->input('invoice_address.street'),
-          'street_no' => $request->input('invoice_address.street_no'),
-          'zip' => $request->input('invoice_address.zip'),
-          'city' => $request->input('invoice_address.city'),
-          'country_id' => $request->input('invoice_address.country_id'),
-          'user_id' => $user->id,
-        ] 
-      );
-
-      $user->has_invoice_address = TRUE;
-      $user->save();
-    }
-
     // Update password (if set)
     if ($request->input('new_password') && $request->input('new_password_confirmation'))
     {
