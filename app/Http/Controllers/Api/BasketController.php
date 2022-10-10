@@ -37,7 +37,7 @@ class BasketController extends Controller
     $store = $this->store->get();
 
     $data = [
-      'user_uuid' => isset($store['user_uuid']) ? $store['useruser_uuid'] : NULL,
+      'user_uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
       'invoice_address_uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
       'discount_code' => isset($store['discount_code']) ? $store['discount_code'] : NULL,
       'discount_uuid' => isset($store['discount_uuid']) ? $store['discount_uuid'] : NULL,

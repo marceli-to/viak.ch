@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Helpers\PenaltyHelper;
 
-class EventCancelledWithPenalty extends Mailable
+class BookingCancelledWithPenalty extends Mailable
 {
   use Queueable, SerializesModels;
 

@@ -97,7 +97,7 @@ export default {
     show() {
       this.isOpen = true;
       setTimeout(() => {
-        this.addListener();
+        this.addListeners();
       }, 50)
     },
 
@@ -105,8 +105,10 @@ export default {
       this.isOpen = false;
     },
 
-    addListener() {
+    addListeners() {
       const message = document.querySelector('.message.is-visible');
+
+      // Handle outside click
       message.addEventListener('click', ($event) => { 
         const message_inner = document.querySelector('.message.is-visible > div');
         if ($event.target.contains(message_inner) && event.target !== message_inner) {

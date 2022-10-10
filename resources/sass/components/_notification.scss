@@ -66,9 +66,18 @@
 // Modal styled notification
 .notification.is-modal {
   @extend %lightbox;
+  cursor: pointer;
   opacity: 1;
   pointer-events: all;
   z-index: 1001;
+
+  &:hover {
+    cursor: pointer;
+
+    .notification__inner {
+      cursor: default;
+    }
+  }
 
   .notification__inner {
     @extend %pl-4x;

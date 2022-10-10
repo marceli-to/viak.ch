@@ -6,7 +6,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 use App\Models\Booking;
 
-class EventCancelledWithPenalty
+class BookingCancelledWithPenalty
 {
   use Dispatchable, SerializesModels;
 
@@ -20,8 +20,7 @@ class EventCancelledWithPenalty
    */
   public function __construct(User $user, Booking $booking)
   {
-    $booking = Booking::with('event.course')->find($booking->id);
     $this->user = $user;
-    $this->booking = $booking;
+    $this->booking = Booking::with('event.course')->find($booking->id);
   }
 }

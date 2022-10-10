@@ -5,7 +5,7 @@ use App\Models\Job;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class ExpertCreatedNotification
+class ExpertCreatedHandler
 {
   /**
    * Handle the event.

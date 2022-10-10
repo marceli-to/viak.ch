@@ -67,7 +67,7 @@ export default {
 
       // State [Boolean]
       isOpen: false,
-
+      
     }
   },
 
@@ -116,6 +116,11 @@ export default {
           this.hide();
         }, this.autohideDelay);
       }
+
+      setTimeout(() => {
+        this.addListeners();
+      }, 50)
+
     },
 
     hide() {
@@ -144,6 +149,19 @@ export default {
 
     setAutoHide(autohide) {
       this.autohide = autohide;
+    },
+
+    addListeners() {
+      const modal = document.querySelector('.notification.is-modal');
+
+      // Handle outside click
+      modal.addEventListener('click', ($event) => { 
+        const inner = document.querySelector('.notification__inner');
+        if ($event.target.contains(inner) && event.target !== inner) {
+          this.hide();
+        }
+      }, false);
+
     }
   },
 

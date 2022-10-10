@@ -9,7 +9,7 @@ use App\Models\Booking;
 use App\Models\Message;
 use App\Models\Country;
 use App\Http\Resources\EventParticipantsResource;
-use App\Events\EventBooked;
+use App\Events\BookingCompleted;
 use Illuminate\Http\Request;
 
 class TestController extends BaseController
@@ -585,7 +585,7 @@ class TestController extends BaseController
   {
     $user = User::first();
     $event = Event::first();
-    event(new EventBooked($user, $event));
+    event(new BookingCompleted($user, $event));
   }
 
   public function notify()

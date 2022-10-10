@@ -142,13 +142,13 @@
       <div class="form-danger-zone is-success" v-if="$props.type == 'edit'">
         <h2>Veranstaltung bestätigen</h2>
         <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
-        <a href="" class="btn-success" @click.prevent="confirmDestroy()">Bestätigen</a>
+        <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
       </div>
 
       <div class="form-danger-zone is-info" v-if="$props.type == 'edit'">
         <h2>Veranstaltung absagen</h2>
         <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
-        <a href="" class="btn-info" @click.prevent="confirmDestroy()">Absagen</a>
+        <a href="" class="btn-info" @click.prevent="confirmCancellation()">Absagen</a>
       </div>
 
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
@@ -161,7 +161,7 @@
   </article-text>
   <notification ref="notification">
     <template #actions>
-      <a href="javascript:;" @click="destroy()" class="btn-primary">Bestätigen</a>
+      <a href="javascript:;" @click="confirm()" class="btn-primary">Bestätigen</a>
       <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">Abbrechen</a>
     </template>
   </notification>
@@ -248,6 +248,8 @@ export default {
         store: '/api/dashboard/event',
         update: '/api/dashboard/event',
         delete: '/api/dashboard/event',
+        confirm: '/api/dashboard/event/confirm',
+        cancel: '/api/dashboard/event/cancel',
         settings: '/api/dashboard/event-settings',
       },
 
@@ -321,13 +323,80 @@ export default {
       });
     },
 
-    destroy() {
+    destroyEvent() {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'courses' });
         this.isLoading = false;
         NProgress.done();
+        this.actionToBeConfirmed = null;  
+      });
+    },
+
+    confirmEvent() {
+      this.axios.put(`${this.routes.confirm}/${this.$route.params.uuid}`, this.data).then(response => {
+        this.$refs.notification.init({
+          message: 'Die Veranstaltung ist bestätigt!',
+          type: 'toast',
+          style: 'success',
+          autohide: true,
+        });
+        this.actionToBeConfirmed = null;  
+      });
+    },
+
+    cancelEvent() {
+      this.axios.put(`${this.routes.cancel}/${this.$route.params.uuid}`, this.data).then(response => {
+        this.$refs.notification.init({
+          message: 'Die Veranstaltung ist abgesagt!',
+          type: 'toast',
+          style: 'success',
+          autohide: true,
+        });
+        this.actionToBeConfirmed = null;  
+      });
+    },
+
+    confirm() {
+      if (this.actionToBeConfirmed == 'destroy') {
+        this.destroyEvent();
+      }
+      if (this.actionToBeConfirmed == 'cancel') {
+        this.cancelEvent();
+      }
+      if (this.actionToBeConfirmed == 'confirm') {
+        this.confirmEvent();
+      }
+    },
+
+    confirmDestroy() {
+      this.actionToBeConfirmed = 'destroy';
+      this.$refs.notification.init({
+        message: 'Bitte Aktion bestätigen!',
+        type: 'dialog',
+        style: 'info',
+        autohide: false,
+      });
+    },
+    
+    confirmConfirmation() {
+      this.actionToBeConfirmed = 'confirm';
+      this.$refs.notification.init({
+        message: 'Bitte Aktion bestätigen!',
+        type: 'dialog',
+        style: 'info',
+        autohide: false,
+      });
+    },
+
+    confirmCancellation() {
+      this.actionToBeConfirmed = 'cancel';
+      this.$refs.notification.init({
+        message: 'Bitte Aktion bestätigen!',
+        type: 'dialog',
+        style: 'info',
+        autohide: false,
       });
     },
 

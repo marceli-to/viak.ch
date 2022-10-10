@@ -9,9 +9,9 @@ use App\Models\UserAddress;
 use App\Models\Event;
 use App\Facades\Discount;
 use App\Models\DiscountCode;
-use App\Events\EventBooked;
-use App\Events\EventCancelled;
-use App\Events\EventCancelledWithPenalty;
+use App\Events\BookingCompleted;
+use App\Events\BookingCancelled;
+use App\Events\BookingCancelledWithPenalty;
 
 class Booking
 {
@@ -27,13 +27,16 @@ class Booking
     // Create bookings for all basket items
     if ($basket['items'])
     {
+      $user     = User::find(auth()->user()->id);
+      $address  = isset($basket['invoice_address_uuid']) ? UserAddress::where('uuid', $basket['invoice_address_uuid'])->first() : NULL;
+      $discount = isset($basket['discount_uuid']) ? DiscountCode::where('uuid', $basket['discount_uuid'])->first() : NULL;
+      
       foreach($basket['items'] as $item)
       {
-        $event    = Event::where('uuid', $item)->first();
-        $user     = User::find(auth()->user()->id);
-        $address  = isset($basket['invoice_address_uuid']) ? UserAddress::where('uuid', $basket['invoice_address_uuid'])->first() : NULL;
-        $discount = isset($basket['discount_uuid']) ? DiscountCode::where('uuid', $basket['discount_uuid'])->first() : NULL;
+        // Get the event
+        $event = Event::where('uuid', $item)->first();
 
+        // Create the booking
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
           'number' => self::getNumber(),
@@ -58,7 +61,7 @@ class Booking
         EventParticipantLimit::handle($event);
 
         // Fire Event
-        event(new EventBooked($user, $booking));
+        event(new BookingCompleted($user, $booking));
       }
     }
 
@@ -83,7 +86,7 @@ class Booking
     // Check for cancellation penalty and fire events
     if (PenaltyHelper::has($booking->event->date))
     {
-      event(new EventCancelledWithPenalty(
+      event(new BookingCancelledWithPenalty(
         User::find($booking->user_id), 
         BookingModel::find($booking->id)
       ));
@@ -91,7 +94,7 @@ class Booking
     }
     
     // No cancellation penalty
-    event(new EventCancelled(
+    event(new BookingCancelled(
       User::find($booking->user_id), 
       BookingModel::find($booking->id)
     ));

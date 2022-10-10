@@ -6,7 +6,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 use App\Models\Booking;
 
-class EventCancelled
+class BookingCancelled
 {
   use Dispatchable, SerializesModels;
 

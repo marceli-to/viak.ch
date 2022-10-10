@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EventCancelled extends Mailable
+class BookingCompleted extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -32,8 +32,8 @@ class EventCancelled extends Mailable
   {
     $booking = Booking::with('user', 'event')->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject(__('Annullationsbestätigung') . ' – ' . $booking->event->course->title)
+                ->subject(__('Buchungsbestätigung') . ' – ' . $booking->event->course->title)
                 ->with(['data' => $booking])
-                ->markdown('mail.booking.cancellation');
+                ->markdown('mail.booking.confirmation');
   }
 }

@@ -15,8 +15,10 @@ class Event extends Base
    */
 
   protected $casts = [
-    'registration_until' => 'date:d.m.Y',
-    'date' => 'date:d.m.Y',
+    'registration_until'  => 'date:d.m.Y',
+    'date'                => 'date:d.m.Y',
+    'confirmed_at'        => 'date:d.m.Y',
+    'cancelled_at'        => 'date:d.m.Y',
   ];
 
   /**
@@ -35,7 +37,9 @@ class Event extends Base
     'fee',
     'course_id',
     'location_id',
-    'publish'
+    'publish',
+    'confirmed',
+    'cancelled'
   ];
 
   /**
@@ -70,6 +74,28 @@ class Event extends Base
   public function isOnline()
   {
     return $this->online == 1 ? TRUE : FALSE;
+  }
+
+  /**
+   * Check for confirmed
+   * 
+   * @return Boolean
+   */
+
+  public function isConfirmed()
+  {
+    return $this->confirmed == 1 ? TRUE : FALSE;
+  }
+
+  /**
+   * Check for cancelled
+   * 
+   * @return Boolean
+   */
+
+  public function isCancelled()
+  {
+    return $this->cancelled == 1 ? TRUE : FALSE;
   }
 
 
@@ -126,6 +152,16 @@ class Event extends Base
     return $this->hasMany(Booking::class, 'event_id', 'id');
   }
 
+
+  /**
+   * The (active) bookings that belong to this event.
+   */
+  
+  public function activeBookings()
+  {
+    return $this->hasMany(Booking::class, 'event_id', 'id')->where('cancelled', 0);
+  }
+
   /**
    * The messages that belongs to this event.
    */
@@ -173,6 +209,51 @@ class Event extends Base
   {
     return $query->where('online', 0);
   }
+
+  /**
+   * Scope a query to only include confirmed events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeConfirmed($query)
+  {
+    return $query->where('confirmed', 1);
+  }
+
+  /**
+   * Scope a query to only include not confirmed events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeUnconfirmed($query)
+  {
+    return $query->where('confirmed', 0);
+  }
+
+  /**
+   * Scope a query to only include cancelled events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeCancelled($query)
+  {
+    return $query->where('cancelled', 1);
+  }
+
+  /**
+   * Scope a query to only include active (= not cancelled) events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeActive($query)
+  {
+    return $query->where('cancelled', 0);
+  }
+
 
 
   /*
@@ -267,7 +348,7 @@ class Event extends Base
 
   public function getStudents()
   {
-    return $this->bookings->pluck('user')->all();
+    return $this->activeBookings->pluck('user')->all();
   }
 
   /**

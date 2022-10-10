@@ -131,10 +131,6 @@ Route::get('/message', [TestController::class, 'index']);
 Route::get('/notification', [TestController::class, 'notify']);
 Route::get('/notification/process', [TestController::class, 'process']);
 Route::get('/notification/booked', [TestController::class, 'booked']);
-Route::get('/mailable', function () {
-  $event = \App\Models\Event::with('course')->first();
-  return new App\Mail\EventBooked($event);
-});
 
 
 // PDF Documents

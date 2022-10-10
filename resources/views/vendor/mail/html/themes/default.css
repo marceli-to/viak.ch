@@ -64,7 +64,7 @@ h2 {
 p {
   font-size: 16px;
   line-height: 1.5;
-  margin: 0 0 18px 0;
+  margin: 0 0 24px 0;
   text-align: left;
 }
 
@@ -165,37 +165,6 @@ em {
   display: block;
 }
 
-/* Buttons */
-
-.action {
-  -premailer-cellpadding: 0;
-  -premailer-cellspacing: 0;
-  -premailer-width: 100%;
-  margin: 30px auto;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-}
-
-.button {
-  -webkit-text-size-adjust: none;
-  border-radius: 0;
-  color: #fff !important;
-  display: inline-block;
-  overflow: hidden;
-  text-decoration: none;
-}
-
-.button-blue,
-.button-primary {
-  background-color: #50c8c8;
-  border-bottom: 8px solid #50c8c8;
-  border-left: 18px solid #50c8c8;
-  border-right: 18px solid #50c8c8;
-  border-top: 8px solid #50c8c8;
-  font-weight: bold;
-}
-
 
 /* Utilities */
 .break-all {
@@ -240,4 +209,39 @@ em {
 
 .content-table td:first-of-type {
   width: 120px;
+}
+
+/* Buttons */
+
+.action {
+  -premailer-cellpadding: 0;
+  -premailer-cellspacing: 0;
+  -premailer-width: 100%;
+  margin: 30px auto;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+a.button,
+button.button {
+  -webkit-text-size-adjust: none;
+  border-radius: 0;
+  color: #fff !important;
+  display: inline-block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+a.button-blue,
+a.button-primary,
+button.button-primary,
+button.button-blue {
+  background-color: #50c8c8;
+  border-bottom: 8px solid #50c8c8;
+  border-left: 18px solid #50c8c8;
+  border-right: 18px solid #50c8c8;
+  border-top: 8px solid #50c8c8;
+  color: #ffffff !important;
+  font-weight: bold;
 }

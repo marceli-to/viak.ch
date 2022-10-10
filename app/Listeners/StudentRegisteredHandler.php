@@ -5,19 +5,19 @@ use App\Models\Job;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class StudentRegisteredNotification
+class StudentRegisteredHandler
 {
   /**
    * Handle the event.
    *
-   * @param  StudentRegistered $studentRegistered
+   * @param  StudentRegistered $event
    * @return void
    */
-  public function handle(StudentRegistered $studentRegistered)
+  public function handle(StudentRegistered $event)
   {
     Job::create([
-      'recipient' => $studentRegistered->user->email,
-      'mailable_id' => $studentRegistered->user->id,
+      'recipient' => $event->user->email,
+      'mailable_id' => $event->user->id,
       'mailable_type' => \App\Models\User::class,
       'mailable_class' => \App\Mail\StudentRegistered::class
     ]);

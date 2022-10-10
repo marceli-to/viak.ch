@@ -34,4 +34,13 @@ class Job extends Model
 		return $query->where('processed', 0);
 	}
 
+  /**
+   * The scope for processed jobs.
+   * 
+   */
+	public function scopeProcessed($query)
+	{
+		return $query->where('processed', 1);
+	}
+
 }

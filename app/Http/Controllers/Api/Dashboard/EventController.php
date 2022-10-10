@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\EventDate;
+use App\Events\EventConfirmed;
+use App\Events\EventCancelled;
 use App\Http\Requests\EventStoreRequest;
 use Illuminate\Http\Request;
 
@@ -119,6 +121,38 @@ class EventController extends Controller
     $event->publish = $event->publish == 0 ? 1 : 0;
     $event->save();
     return response()->json($event->publish);
+  }
+
+  /**
+   * Confirm an event
+   *
+   * @param  Event $event
+   * @return \Illuminate\Http\Response
+   */
+  public function confirm(Event $event)
+  {
+    $event->confirmed = 1;
+    $event->confirmed_at = \Carbon\Carbon::now();
+    $event->save();
+
+    event(new EventConfirmed($event));
+    return response()->json('successfully updated');
+  }
+
+  /**
+   * Cancel an event
+   *
+   * @param  Event $event
+   * @return \Illuminate\Http\Response
+   */
+  public function cancel(Event $event)
+  {
+    $event->cancelled = 1;
+    $event->cancelled_at = \Carbon\Carbon::now();
+    $event->save();
+
+    event(new EventCancelled($event));
+    return response()->json('successfully updated');
   }
 
   /**
