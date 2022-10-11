@@ -106,7 +106,7 @@
     }
   }
 
-  &.is-booked-error {
+  &.has-booking {
     border-top-color: $color-danger;
     *:not([class*=btn-]) {
       color: $color-danger;

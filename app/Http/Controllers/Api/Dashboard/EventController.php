@@ -136,6 +136,7 @@ class EventController extends Controller
       return response()->json('successfully updated');
     }
     
+    // Update event
     $event->confirmed = 1;
     $event->confirmed_at = \Carbon\Carbon::now();
     $event->save();
@@ -152,10 +153,10 @@ class EventController extends Controller
    */
   public function cancel(Event $event)
   {
-    $event->cancelled = 1;
-    $event->cancelled_at = \Carbon\Carbon::now();
-    $event->save();
-
+    if ($event->cancelled == 1)
+    {
+      return response()->json('successfully updated');
+    }
     event(new EventCancelled($event));
     return response()->json('successfully updated');
   }

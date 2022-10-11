@@ -48,7 +48,8 @@
       </div>
     </div>
   </article>
-  <article :class="[$props.event.isBooked ? 'is-booked-error' : '', 'stacked-list-event']" data-touch v-else>
+  
+  <article :class="[$props.event.isBooked ? 'has-booking' : '', 'stacked-list-event']" data-touch v-else>
     <template v-if="$props.event.isBooked">
       <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
     </template>
@@ -88,21 +89,26 @@
 
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
         <div>
-          <div v-if="$props.showFee">CHF {{ $props.event.fee}}</div>
-          <div>
-            <div v-if="$props.event.confirmed">
-              <strong class="text-success">Bestätigt</strong>
+          <template v-if="showState">
+            <div>
+              <div v-if="$props.event.confirmed">
+                <strong class="text-success">Bestätigt</strong>
+              </div>
+              <div v-else-if="$props.event.cancelled">
+                <strong class="text-danger">Abgesagt</strong>
+              </div>
+              <div v-else>
+                <strong>Offen</strong>
+              </div>
+              <div v-if="$props.showBookings">
+                {{ $props.event.bookings }} Teilnehmer
+              </div>
             </div>
-            <div v-else-if="$props.event.cancelled">
-              <strong class="text-danger">Abgesagt</strong>
-            </div>
-            <div v-else>
-              <strong>Offen</strong>
-            </div>
-            <div v-if="$props.showBookingCount">
-              {{ $props.event.bookings }} Teilnehmer
-            </div>
+          </template>
+          <div v-if="$props.showFee">
+            CHF {{ $props.event.fee}}
           </div>
+
         </div>
         <div class="stacked-list__action" v-if="$slots.action">
           <slot name="action" />
@@ -156,9 +162,14 @@ export default {
       default: true,
     },
     
-    showBookingCount: {
+    showBookings: {
       type: Boolean,
       default: false
+    },
+
+    showState: {
+      type: Boolean,
+      default: false,
     }
   },
 }

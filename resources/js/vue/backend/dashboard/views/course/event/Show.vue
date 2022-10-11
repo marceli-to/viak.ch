@@ -24,7 +24,8 @@
         <template #content>
           <stacked-list-event 
             :event="data.event" 
-            :showFee="false">
+            :showFee="false"
+            :showState="true">
             <template #action></template>
           </stacked-list-event>
         </template>

@@ -139,37 +139,44 @@
         </a>
       </form-group>
 
-      <div class="form-danger-zone is-success" v-if="$props.type == 'edit'">
-        <template v-if="data.confirmed">
-          <h2>Veranstaltung bestätigt</h2>
-          <p>Diese Veranstaltung wurde am {{ data.confirmed_at }} bestätigt.</p>
+      <template v-if="$props.type == 'edit'">
+        <template v-if="data.cancelled">
+          <div class="form-danger-zone is-info">
+            <h2>Veranstaltung abgesagt</h2>
+            <p>Diese Veranstaltung wurde am {{ data.cancelled_at }} abgesagt.</p>
+          </div>
         </template>
         <template v-else>
-          <h2>Veranstaltung bestätigen</h2>
-          <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
-          <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
+          <div class="form-danger-zone is-success">
+            <template v-if="data.confirmed">
+              <h2>Veranstaltung bestätigt</h2>
+              <p>Diese Veranstaltung wurde am {{ data.confirmed_at }} bestätigt.</p>
+            </template>
+            <template v-else>
+              <h2>Veranstaltung bestätigen</h2>
+              <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
+              <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
+            </template>
+          </div>
+          <div class="form-danger-zone is-info">
+            <h2>Veranstaltung absagen</h2>
+            <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
+            <a href="" class="btn-info" @click.prevent="confirmCancellation()">Absagen</a>
+          </div>
+          <div class="form-danger-zone is-danger">
+            <h2>Veranstaltung löschen</h2>
+            <template v-if="data.bookings.length">
+              Diese Veranstaltng kann nicht gelöscht werden, da 
+              <router-link :to="{ name: 'event-show', params: { uuid: data.uuid } }"><strong>{{ data.bookings.length }}</strong> Buchung(en)</router-link>
+              vorhanden sind.
+            </template>
+            <template v-else>
+              <p>Mit dieser Aktion wird die Veranstaltung gelöscht.</p>
+              <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
+            </template>
+          </div>   
         </template>
-      </div>
-
-      <div class="form-danger-zone is-info" v-if="$props.type == 'edit'">
-        <h2>Veranstaltung absagen</h2>
-        <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
-        <a href="" class="btn-info" @click.prevent="confirmCancellation()">Absagen</a>
-      </div>
-
-      <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
-        <h2>Veranstaltung löschen</h2>
-        <template v-if="data.bookings.length">
-          Diese Veranstaltng kann nicht gelöscht werden, da 
-          <router-link :to="{ name: 'event-show', params: { uuid: data.uuid } }"><strong>{{ data.bookings.length }}</strong> Buchung(en)</router-link>
-          vorhanden sind.
-        </template>
-        <template v-else>
-          <p>Mit dieser Aktion wird die Veranstaltung gelöscht.</p>
-          <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
-        </template>
-      </div>
-
+      </template>
     </template>
   </article-text>
   <notification ref="notification">

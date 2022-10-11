@@ -117,7 +117,8 @@
               :event="event" 
               :showExperts="false"
               :showFee="false" 
-              :showBookingCount="true">
+              :showBookings="true"
+              :showState="true">
 
               <template #action>
                 <router-link :to="{ name: 'expert-course-event', params: { uuid: event.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
