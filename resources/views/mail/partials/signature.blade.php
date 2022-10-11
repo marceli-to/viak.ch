@@ -1,1 +1,1 @@
-<p>Beste Grüsse<br>{{ env('APP_NAME') }}</p>
+<p>{!! __('Beste Grüsse<br>das Team der Visualisierungs-Akademie') !!}</p>

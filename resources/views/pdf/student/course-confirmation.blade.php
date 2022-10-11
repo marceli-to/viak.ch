@@ -37,6 +37,7 @@
         </tr>
       </tbody>
     </table>
+    <p>[Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.]</p>
     <p>{{ __('Wir bestätigen, dass Marcel Stadelmann oben aufgeführte Kurse erfolgreich absolviert hat.') }}</p>
     @include('pdf.partials.signature')
   </div>

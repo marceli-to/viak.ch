@@ -164,7 +164,7 @@ p {
 }
 
 .content-table tbody tr:first-of-type {
-  border-top: .1mm solid #000000;
+  border-bottom: .1mm solid #000000;
 }
 
 .content-table td:first-child {
