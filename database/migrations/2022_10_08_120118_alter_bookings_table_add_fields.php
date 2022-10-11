@@ -14,7 +14,7 @@ class AlterBookingsTableAddFields extends Migration
   public function up()
   {
     Schema::table('bookings', function (Blueprint $table) {
-      $table->string('discount_code', 14)->nullable()->after('course_fee');
+      $table->string('discount_code', 14)->nullable()->after('number');
       $table->decimal('discount_amount', 8, 0)->nullable()->default(0.00)->after('discount_code');
     });
   }
