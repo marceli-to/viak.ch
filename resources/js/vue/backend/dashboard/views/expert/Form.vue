@@ -3,12 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <div class="sm:mt-5x md:mt-10x">
-        <router-link :to="{ name: 'experts' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
-          <icon-arrow-right />
-        </router-link>
-      </div>
+      <back-link :route="'experts'"></back-link>
     </template>
     <template #content>
       <form-group 
@@ -169,7 +164,7 @@ import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import Images from "@/shared/modules/images/Index.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
 
@@ -182,7 +177,7 @@ export default {
     FormGroupHeader,
     TinymceEditor,
     Images,
-    IconArrowRight,
+    BackLink,
     CollapsibleContainer,
     Collapsible
   },

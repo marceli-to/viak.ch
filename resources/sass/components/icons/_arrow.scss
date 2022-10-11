@@ -5,7 +5,8 @@
  */
 
 [class*="icon-arrow-right"],
-.icon-arrow-right {
+.icon-arrow-right,
+.icon-arrow-left {
   transition: color .1s ease-in;
   span {
     display: block;
@@ -19,12 +20,15 @@
 }
 
 .icon-arrow-right\:before,
-.icon-arrow-right\:after {
+.icon-arrow-right\:after,
+.icon-arrow-left\:before,
+.icon-arrow-left\:after {
   align-items: center;
   display: flex;
 }
 
-.icon-arrow-right\:before {
+.icon-arrow-right\:before,
+.icon-arrow-left\:before {
   @extend %link;
   @extend %mb-2x;
   @extend %sm\:mb-4x;
@@ -39,11 +43,13 @@
   }
 }
 
-.icon-arrow-right\:after {
+.icon-arrow-right\:after,
+.icon-arrow-left\:after {
   justify-content: space-between;
 }
 
-.icon-arrow-right\:below {
+.icon-arrow-right\:below,
+.icon-arrow-left\:below {
   display: inline-block;
   &:hover {
     color: $color-secondary;

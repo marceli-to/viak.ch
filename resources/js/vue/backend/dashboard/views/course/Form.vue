@@ -4,12 +4,7 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <div class="sm:mt-5x md:mt-10x">
-        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
-          <icon-arrow-right />
-        </router-link>
-      </div>
+      <back-link :route="'courses'"></back-link>
     </template>
 
     <template #content>
@@ -212,7 +207,7 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import Images from "@/shared/modules/images/Index.vue";
 import Videos from "@/backend/dashboard/views/course/videos/Index.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
   components: {
@@ -225,7 +220,7 @@ export default {
     TinymceEditor,
     Images,
     Videos,
-    IconArrowRight,
+    BackLink,
     CollapsibleContainer,
     Collapsible
   },

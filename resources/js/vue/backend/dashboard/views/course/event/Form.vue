@@ -3,12 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide" v-html="title"></h1>
-      <div class="sm:mt-5x md:mt-10x">
-        <router-link :to="{ name: 'courses' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
-          <icon-arrow-right />
-        </router-link>
-      </div>
+      <back-link :route="'courses'"></back-link>
     </template>
     <template #content>
 
@@ -199,9 +194,9 @@ import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconTrash from "@/shared/components/ui/icons/Trash.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
+import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
   components: {
@@ -210,6 +205,7 @@ export default {
     FormGroup,
     FormGroupHeader,
     IconArrowRight,
+    BackLink,
     IconTrash,
     IconPlus,
     CollapsibleContainer,

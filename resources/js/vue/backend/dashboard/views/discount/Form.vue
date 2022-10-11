@@ -3,12 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <div class="sm:mt-5x md:mt-10x">
-        <router-link :to="{ name: 'discount-codes' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
-          <icon-arrow-right />
-        </router-link>
-      </div>
+      <back-link :route="'discount-codes'"></back-link>
     </template>
     <template #content>
       <form-group :label="'Code'" :required="true" :error="errors.code">
@@ -93,7 +88,7 @@ import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
 
@@ -103,7 +98,7 @@ export default {
     Grid,
     GridCol,
     FormGroup,
-    IconArrowRight,
+    BackLink,
     CollapsibleContainer,
     Collapsible,
     TheMask

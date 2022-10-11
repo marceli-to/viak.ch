@@ -3,12 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <div class="sm:mt-5x md:mt-10x">
-        <router-link :to="{ name: 'settings' }" class="icon-arrow-right:below">
-          <span>Zurück</span>
-          <icon-arrow-right />
-        </router-link>
-      </div>
+      <back-link :route="'settings'"></back-link>
     </template>
     <template #content>
       <form-group :label="'Beschreibung'" :required="true" :error="errors.description">
@@ -43,7 +38,7 @@ import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
 
@@ -51,7 +46,7 @@ export default {
     NProgress,
     ArticleText,
     FormGroup,
-    IconArrowRight,
+    BackLink,
   },
 
   mixins: [ErrorHandling, Helpers],
