@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Http\Resources\Dashboard\CourseCollection;
+use App\Http\Resources\Dashboard\CourseResource;
 use App\Models\Course;
 use App\Http\Requests\CourseStoreRequest;
 use App\Http\Requests\CourseUpdateRequest;
@@ -24,11 +25,11 @@ class CourseController extends Controller
     }
     return new CourseCollection(
       Course::with(
-        'upcomingEvents.experts', 
-        'upcomingEvents.dates', 
-        'upcomingEvents.location', 
-        'upcomingEvents.course', 
-        'upcomingEvents.bookings', 
+        'events.experts', 
+        'events.dates', 
+        'events.location', 
+        'events.course', 
+        'events.bookings', 
         'categories'
       )
       ->orderBy('order', 'ASC')
@@ -44,6 +45,7 @@ class CourseController extends Controller
    */
   public function find(Course $course)
   {
+    // dd(CourseResource::make($course->with('upcomingEvents', 'pastEvents')->get()));
     $course = Course::with('images', 'videos')->find($course->id);
     return response()->json($course);
   }

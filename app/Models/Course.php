@@ -218,6 +218,16 @@ class Course extends Base
   }
 
   /**
+   * The past events that belong to this course.
+   */
+  
+  public function pastEvents()
+  {
+    $constraint = date('Y-m-d', time());
+    return $this->hasMany(Event::class)->where('date', '<', $constraint)->orderBy('date', 'ASC');
+  }
+
+  /**
    * The image(s) that belong to this course.
    */
   

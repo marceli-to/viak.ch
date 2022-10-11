@@ -163,7 +163,8 @@ p {
   width: 100%;
 }
 
-.content-table tbody tr:first-of-type {
+.content-table tbody tr:first-of-type,
+.content-table thead {
   border-bottom: .1mm solid #000000;
 }
 

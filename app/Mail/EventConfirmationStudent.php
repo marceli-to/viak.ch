@@ -34,20 +34,20 @@ class EventConfirmationStudent extends Mailable
     // Get the booking
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
 
-    // Find or create the invoice for this booking
-    $invoice = Invoice::findOrCreateFromBooking($booking);
-
     // Create the mail
     $mail = $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                  ->subject(__('Kursbestätigung') . ' – ' . $booking->event->course->title)
                  ->with(
                       [
                         'event' => $booking->event,
-                        'booking' => $booking->event,
+                        'booking' => $booking,
                         'user' => $booking->user
                       ]
                     )
-                 ->markdown('mail.event.confirmation-student');
+                 ->markdown('mail.event.confirmation', ['recipient' => 'student']);
+
+    // Find or create the invoice for this booking
+    $invoice = Invoice::findOrCreateFromBooking($booking);
 
     if ($invoice)
     {

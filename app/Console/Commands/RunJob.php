@@ -11,7 +11,7 @@ class RunJob extends Command
    *
    * @var string
    */
-  protected $signature = 'run:job';
+  protected $signature = 'run:job {--reset}';
 
   /**
    * The console command description.
@@ -37,15 +37,26 @@ class RunJob extends Command
    */
   public function handle()
   {
-    // Reset invoice
-    // Invoice::truncate();
-    
-    // Reset jobs
-    // Job::query()->update(['error' => null, 'processed' => 0]);
+    $reset = $this->option('reset');
+
+    if ($reset)
+    {
+      $this->info('Clearing tables "invoices" and "jobs"');
+
+      // Reset invoice
+      Invoice::truncate();
+      
+      // Reset jobs
+      Job::query()->update(['error' => null, 'processed' => 0]);
+    }
+
     
     $jobs = Job::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
     $env  = app()->environment();
+
+    $this->info('Starting jobs...');
+
 
     foreach($jobs->all() as $j)
     {
@@ -65,5 +76,7 @@ class RunJob extends Command
         $j->save();
       }
     }
+
+    $this->info('The command was successful!');
   }
 }

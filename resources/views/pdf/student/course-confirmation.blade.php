@@ -32,7 +32,7 @@
           <td><strong>Helge Maus</strong></td>
         </tr>
         <tr>
-          <td>{{ __('Buchungs-Nr.') }}</td>
+          <td>{{ __('Buchung') }}</td>
           <td><strong>000001</strong></td>
         </tr>
       </tbody>

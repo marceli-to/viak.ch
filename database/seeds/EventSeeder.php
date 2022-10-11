@@ -27,22 +27,23 @@ class EventSeeder extends Seeder
       1120
     ];
 
-    for($i = 0; $i <= 25; $i++)
+    for($i = 0; $i < 100; $i++)
     { 
       $course = $courses->random();
-      $date_event = $faker->dateTimeBetween('-16 week', '+32 week');
+      $date_event = $faker->dateTimeBetween('-24 week', '+32 week');
       $date_event_2 = (new \Carbon\Carbon($date_event))->addDays(1);
-      $date_deadline = (new \Carbon\Carbon($date_event))->subDays(14);
+      $date_deadline = (new \Carbon\Carbon($date_event))->subDays(10);
+
       $event = Event::create([
         'registration_until' => $date_deadline,
         'min_participants' => mt_rand(2,8),
         'max_participants' => mt_rand(8,16),
-        'online' => ($i % 5 == 0) ? 1 : 0,
+        'online' => ($i % 5 == 0) ? 1 : 0, // every 5th is online
         'fee' => $fees[mt_rand(0,3)],
         'uuid' => \Str::uuid(),
         'publish' => 1,
         'course_id' => $course->id,
-        'location_id' => ($i % 5 == 0) ? NULL : mt_rand(1,2)
+        'location_id' => ($i % 5 == 0) ? NULL : mt_rand(1,2) // every 5th is online and has no location_id
       ]);
 
       if ($i % 4 == 0)

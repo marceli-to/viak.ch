@@ -6,7 +6,7 @@
       <td class="page-info__left">
         {!! $invoice->booking->user->address !!}
         <br><br>
-        {{ __('Buchungs-Nr.:') }}
+        {{ __('Buchung:') }}
         {{ $invoice->booking->number }}
       </td>
       <td class="page-info__right">

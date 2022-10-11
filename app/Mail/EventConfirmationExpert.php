@@ -36,6 +36,6 @@ class EventConfirmationExpert extends Mailable
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Bestätigung') . ' – ' . $event->course->title)
                 ->with(['event' => $event])
-                ->markdown('mail.event.confirmation-expert');
+                ->markdown('mail.event.confirmation', ['recipient' => 'expert']);
   }
 }
