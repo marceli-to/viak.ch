@@ -18,7 +18,7 @@ class RunJob extends Command
    *
    * @var string
    */
-  protected $description = 'Run the mail-job task';
+  protected $description = 'Run the job task';
 
   /**
    * Create a new command instance.
@@ -37,11 +37,10 @@ class RunJob extends Command
    */
   public function handle()
   {
-    
     // Reset invoice
     // Invoice::truncate();
     
-    // // Reset jobs
+    // Reset jobs
     // Job::query()->update(['error' => null, 'processed' => 0]);
     
     $jobs = Job::with('mailable')->unprocessed()->get();

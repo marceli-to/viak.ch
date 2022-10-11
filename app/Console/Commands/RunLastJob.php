@@ -17,7 +17,7 @@ class RunLastJob extends Command
    *
    * @var string
    */
-  protected $description = 'Re-run the last mail-job task';
+  protected $description = 'Re-run the last job task';
 
   /**
    * Create a new command instance.

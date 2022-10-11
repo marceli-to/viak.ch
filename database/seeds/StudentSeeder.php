@@ -88,6 +88,55 @@ class StudentSeeder extends Seeder
       'user_id' => $user->id
     ]);
 
+    // Test student 4
+    $user = User::create([
+      'firstname' => 'Balint',
+      'name' => 'Kalotay',
+      'company' => '',
+      'street' => 'Billrothstrasse',
+      'street_no' => '5',
+      'zip' => '8000',
+      'city' => 'Zürich',
+      'phone' => '077 888 88 88',
+      'email' => 'viak-student4@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
+
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
+
+
+    // Test Bettina
+    $user = User::create([
+      'firstname' => 'Bettina',
+      'name' => 'Puorger',
+      'company' => '',
+      'street' => '',
+      'street_no' => '',
+      'zip' => '8045',
+      'city' => 'Zürich',
+      'phone' => '077 777 77 88',
+      'email' => 'viak-bettina@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('viak2022*'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 2,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
+
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
+
 
     for($i = 0; $i<=20; $i++)
     {

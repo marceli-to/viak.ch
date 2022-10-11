@@ -9,9 +9,11 @@ class Job
     $jobs = JobModel::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
 
+    $env = app()->environment();
+
     foreach($jobs->all() as $job)
     {
-      $recipient = app()->environment(['production']) && $job->recipient ? $job->recipient : env('MAIL_TO');
+      $recipient = ($env == 'staging' || $env == 'production') && $job->recipient ? $job->recipient : env('MAIL_TO');
       try
       {
         \Mail::to($recipient)->send(new $job->mailable_class($job->mailable));
