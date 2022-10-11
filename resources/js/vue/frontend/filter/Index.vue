@@ -23,6 +23,7 @@
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
         <div class="filter__items">
+
           <div 
             :class="[filterAttributes.category == id ? 'is-active' : '', 'filter__item']"
             v-for="(category, id) in options.settings.categories" 
@@ -31,7 +32,9 @@
               {{ category }}
             </a>
           </div>
-          <div :class="[filterAttributes.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
+          
+          <div 
+            :class="[filterAttributes.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
             <div class="select-wrapper">
               <select 
                 v-model="filterAttributes.location"
@@ -42,7 +45,9 @@
               </select>
             </div>
           </div>
-          <div :class="[filterAttributes.software != 'null' ? 'is-active' : '', 'filter__item']">
+          
+          <div 
+            :class="[filterAttributes.software != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
               <select 
                 v-model="filterAttributes.software"
@@ -57,7 +62,9 @@
               </select>
             </div>
           </div>
-          <div :class="[filterAttributes.level != 'null' ? 'is-active' : '', 'filter__item']">
+
+          <div 
+            :class="[filterAttributes.level != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
               <select 
                 v-model="filterAttributes.level"
@@ -72,7 +79,9 @@
               </select>
             </div>
           </div>
-          <div :class="[filterAttributes.language != 'null' ? 'is-active' : '', 'filter__item']">
+
+          <div 
+            :class="[filterAttributes.language != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
               <select 
                 v-model="filterAttributes.language"
@@ -87,7 +96,9 @@
               </select>
             </div>
           </div>
-          <div :class="[filterAttributes.expert != 'null' ? 'is-active' : '', 'filter__item']">
+
+          <div 
+            :class="[filterAttributes.expert != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
               <select 
                 v-model="filterAttributes.expert"
@@ -102,6 +113,7 @@
               </select>
             </div>
           </div>
+
           <div class="filter__buttons mt-10x sm:mt-4x">
             <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
               {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
@@ -110,6 +122,7 @@
               {{ __('Zurücksetzen') }}
             </a>
           </div>
+
         </div>
       </form>
     </div> 
