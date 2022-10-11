@@ -58,10 +58,7 @@ class Booking
           Discount::update($discount);
         }
 
-        // Handle event participant limits
-        EventParticipantLimit::handle($event);
-
-        // Fire Event
+        // Fire event
         event(new BookingCompleted($user, $booking));
       }
     }

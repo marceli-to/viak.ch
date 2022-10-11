@@ -35,7 +35,7 @@
           <div v-else-if="$props.event.cancelled">
             <strong class="text-danger">Abgesagt</strong>
           </div>
-          <div>
+          <div :class="[$props.event.bookings >= $props.event.max_participants ? 'text-success' : '', '']">
             {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
           </div>
         </div>

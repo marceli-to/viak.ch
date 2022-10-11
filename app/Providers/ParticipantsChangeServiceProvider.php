@@ -1,9 +1,9 @@
 <?php
 namespace App\Providers;
-use App\Facades\EventParticipantLimit;
+use App\Facades\ParticipantsChange;
 use Illuminate\Support\ServiceProvider;
 
-class EventParticipantLimitServiceProvider extends ServiceProvider
+class ParticipantsChangeServiceProvider extends ServiceProvider
 {
   /**
    * Register services.
@@ -12,8 +12,8 @@ class EventParticipantLimitServiceProvider extends ServiceProvider
    */
   public function register()
   {
-    $this->app->bind('eventParticipantLimit', function(){
-      return new EventParticipantLimit();
+    $this->app->bind('participantsChange', function(){
+      return new ParticipantsChange();
     });
   }
 

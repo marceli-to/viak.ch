@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EventParticipantLimitReached extends Mailable
+class ParticipantsMax extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -34,6 +34,6 @@ class EventParticipantLimitReached extends Mailable
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject('Max. Teilnehmerzahl erreicht – ' . $event->course->title)
                 ->with(['data' => $event])
-                ->markdown('mail.event.participant-limit-reached');
+                ->markdown('mail.event.participants-change', ['type' => 'max']);
   }
 }

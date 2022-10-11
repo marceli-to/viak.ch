@@ -182,7 +182,7 @@ return [
         App\Providers\DiscountServiceProvider::class,
         App\Providers\BookmarkServiceProvider::class,
         App\Providers\BookingServiceProvider::class,
-        App\Providers\EventParticipantLimitServiceProvider::class,
+        App\Providers\ParticipantsChangeServiceProvider::class,
         App\Providers\InvoiceServiceProvider::class,
     ],
 
@@ -246,7 +246,7 @@ return [
         'Bookmark' =>  App\Facades\BookmarkFacade::class,
         'Booking' =>  App\Facades\BookingFacade::class,
         'Invoice' =>  App\Facades\InvoiceFacade::class,
-        'EventParticipantLimit' =>  App\Facades\EventParticipantLimitFacade::class
+        'ParticipantsChange' =>  App\Facades\ParticipantsChangeFacade::class
     ],
 
 ];
