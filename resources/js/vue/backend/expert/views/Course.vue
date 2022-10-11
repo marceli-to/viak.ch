@@ -4,12 +4,7 @@
       <template #aside>
         <h1 class="xs:hide">{{ data.event.course.title }}</h1>
         <h2 class="xs:hide">{{ data.event.course.subtitle }}</h2>
-        <div class="sm:mt-5x md:mt-10x">
-          <router-link :to="{ name: 'expert-profile' }" class="icon-arrow-right:below" :title="__('Zurück')">
-            <span>{{ __('Zurück') }}</span>
-            <icon-arrow-right />
-          </router-link>
-        </div>
+        <back-link :route="'expert-profile'"></back-link>
       </template>
       <template #content>
         <h1 class="sm:hide">{{ data.event.course.title }}</h1>
@@ -128,6 +123,7 @@ import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
 import ButtonFileDelete from "@/shared/modules/files/components/ButtonDelete.vue";
+import BackLink from '@/shared/components/ui/misc/BackLink.vue';
 
 export default {
 
@@ -143,7 +139,8 @@ export default {
     IconCheckmark,
     IconPlus,
     Messages,
-    ButtonFileDelete
+    ButtonFileDelete,
+    BackLink
   },
 
   mixins: [ErrorHandling, i18n, Meta],

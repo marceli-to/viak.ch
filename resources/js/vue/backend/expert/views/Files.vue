@@ -3,12 +3,7 @@
     <article-text>
       <template #aside>
         <h1 class="xs:hide">{{ __('Dokumente hochladen') }}</h1>
-        <div class="sm:mt-5x md:mt-10x">
-          <router-link :to="{ name: 'expert-course-event' }" class="icon-arrow-right:below">
-            <span>{{ __('Zurück') }}</span>
-            <icon-arrow-right :size="'sm'" />
-          </router-link>
-        </div>
+        <back-link :route="'expert-course-event'"></back-link>
       </template>
       <template #content>
          <files 
@@ -35,17 +30,17 @@
   import Helpers from "@/shared/mixins/Helpers";
   import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
   import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
-  import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
   import Files from "@/shared/modules/files/Index.vue";
-  
+  import BackLink from '@/shared/components/ui/misc/BackLink.vue';
+
   export default {
   
     components: {
       NProgress,
       ArticleText,
       FormGroup,
-      IconArrowRight,
-      Files
+      Files,
+      BackLink
     },
   
     mixins: [ErrorHandling, Helpers, i18n, Meta],

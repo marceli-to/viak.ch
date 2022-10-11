@@ -4,12 +4,7 @@
       <template #aside>
         <h1 class="xs:hide">{{ data.event.course.title }}</h1>
         <h2 class="xs:hide">{{ data.event.course.subtitle }}</h2>
-        <div class="sm:mt-5x md:mt-10x">
-          <router-link :to="{ name: 'student-profile' }" class="icon-arrow-right:below" :title="__('Zurück')">
-            <span>{{ __('Zurück') }}</span>
-            <icon-arrow-right />
-          </router-link>
-        </div>
+        <back-link :route="'student-profile'"></back-link>
       </template>
       <template #content>
         <h1 class="sm:hide">{{ data.event.course.title }}</h1>
@@ -87,9 +82,9 @@ import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import ListItemFile from "@/shared/modules/files/components/ListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
+import BackLink from '@/shared/components/ui/misc/BackLink.vue';
 
 export default {
 
@@ -100,10 +95,10 @@ export default {
     StackedListItem,
     CollapsibleContainer,
     Collapsible,
-    IconArrowRight,
     IconCheckmark,
     ListItemFile,
-    Messages
+    Messages,
+    BackLink
   },
 
   mixins: [ErrorHandling, i18n, Booking, Meta],

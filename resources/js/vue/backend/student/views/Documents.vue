@@ -3,15 +3,10 @@
     <article-text v-if="isFetched">
       <template #aside>
         <h1 class="xs:hide">{{ __('Meine Dokumente') }}</h1>
-        <div class="sm:mt-5x md:mt-10x">
-          <router-link :to="{ name: 'student-profile' }" class="icon-arrow-right:below" :title="__('Zurück')">
-            <span>{{ __('Zurück') }}</span>
-            <icon-arrow-right />
-          </router-link>
-        </div>
+        <back-link :route="'student-profile'"></back-link>
       </template>
     </article-text>
-  
+
     <collapsible-container>
       <collapsible>
         <template #title>
@@ -88,7 +83,7 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
-import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import BackLink from '@/shared/components/ui/misc/BackLink.vue';
 
 export default {
 
@@ -98,8 +93,8 @@ export default {
     CollapsibleContainer,
     Collapsible,
     StackedListItem,
-    IconArrowRight,
-  },
+    BackLink
+},
 
   mixins: [ErrorHandling, i18n, Meta],
 
