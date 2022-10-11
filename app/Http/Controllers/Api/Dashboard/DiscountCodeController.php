@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Models\DiscountCode as DiscountCodeModel;
+use App\Facades\Discount as DiscountFacade;
 use App\Http\Requests\DiscountCodeStoreRequest;
 use App\Http\Requests\DiscountCodeUpdateRequest;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class DiscountCodeController extends Controller
   public function create()
   {
     return response()->json(
-      Discount::create()
+      DiscountFacade::create()
     );
   }
 

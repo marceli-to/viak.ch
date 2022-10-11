@@ -204,7 +204,6 @@ export default {
     ArticleText,
     FormGroup,
     FormGroupHeader,
-    IconArrowRight,
     BackLink,
     IconTrash,
     IconPlus,

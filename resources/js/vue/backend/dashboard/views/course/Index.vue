@@ -82,6 +82,7 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
+import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
 
@@ -100,6 +101,7 @@ export default {
     Collapsible,
     IconEdit,
     IconPlus,
+    IconArrowRight,
     Grid,
     GridCol
   },

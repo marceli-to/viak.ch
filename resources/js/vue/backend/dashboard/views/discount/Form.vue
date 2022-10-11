@@ -13,6 +13,22 @@
         <input type="number" min="0" v-model="data.amount" required @focus="removeError('amount')" />
       </form-group>
 
+      <grid class="grid-cols-12 mt-3x sm:mt-6x">
+        <grid-col class="span-3">
+          <form-group class="flex items-center">
+            <input type="radio" id="discount-type-fix" name="discount-type" required value="1" v-model="data.fix" @change="setType('fix')">
+            <label for="discount-type-fix">Fixbetrag</label>
+          </form-group>
+        </grid-col>
+        <grid-col class="span-3">
+          <form-group class="flex items-center">
+            <input type="radio" id="discount-type-percent" name="discount-type" required value="1" v-model="data.percent" @change="setType('percent')">
+            <label for="discount-type-percent">Prozent</label>
+          </form-group>
+        </grid-col>
+      </grid>
+
+
       <grid class="grid-cols-12">
         <grid-col class="span-6">
           <form-group :label="'Gültig ab'" :error="errors.valid_from">
@@ -38,21 +54,6 @@
               @focus="removeError('valid_to')"
               v-model="data.valid_to">
             </the-mask>
-          </form-group>
-        </grid-col>
-      </grid>
-
-      <grid class="grid-cols-12 mt-3x mb-3x">
-        <grid-col class="span-3">
-          <form-group class="flex items-center">
-            <input type="radio" id="discount-type-fix" name="discount-type" required value="1" v-model="data.fix" @change="setType('fix')">
-            <label for="discount-type-fix">Fixbetrag</label>
-          </form-group>
-        </grid-col>
-        <grid-col class="span-3">
-          <form-group class="flex items-center">
-            <input type="radio" id="discount-type-percent" name="discount-type" required value="1" v-model="data.percent" @change="setType('percent')">
-            <label for="discount-type-percent">Prozent</label>
           </form-group>
         </grid-col>
       </grid>
