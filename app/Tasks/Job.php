@@ -8,8 +8,7 @@ class Job
   {
     $jobs = JobModel::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
-
-    $env = app()->environment();
+    $env  = app()->environment();
 
     foreach($jobs->all() as $job)
     {

@@ -27,7 +27,7 @@ class RunJob extends Command
    */
   public function __construct()
   {
-      parent::__construct();
+    parent::__construct();
   }
 
   /**
@@ -45,10 +45,12 @@ class RunJob extends Command
     
     $jobs = Job::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
-    
+    $env  = app()->environment();
+
     foreach($jobs->all() as $j)
     {
-      $recipient = app()->environment(['production']) && $j->recipient ? $j->recipient : env('MAIL_TO');
+      $recipient = ($env == 'staging' || $env == 'production') && $job->recipient ? $job->recipient : env('MAIL_TO');
+
       try
       {
         \Mail::to($recipient)->send(new $j->mailable_class($j->mailable));

@@ -40,7 +40,8 @@ class RunLastJob extends Command
     $job->error = NULL;
     $job->save();
 
-    $recipient = app()->environment(['production']) && $job->recipient ? $job->recipient : env('MAIL_TO');
+    $env = app()->environment();
+    $recipient = ($env == 'staging' || $env == 'production') && $job->recipient ? $job->recipient : env('MAIL_TO');
 
     try
     {
@@ -55,7 +56,5 @@ class RunLastJob extends Command
       $job->processed = 1;
       $job->save();
     }
-
-
   }
 }
