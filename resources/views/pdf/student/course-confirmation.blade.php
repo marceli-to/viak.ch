@@ -3,24 +3,10 @@
   <table class="page-info">
     <tr>
       <td class="page-info__left">
-        <table>
-          <tr> 
-            <td>{{ __('Kursteilnehmer:in') }}</td>
-            <td>Marcel Stadelmann</td>
-          </tr>
-          <tr> 
-            <td>{{ __('Adresse') }}</td>
-            <td>Letzigraben 149, 8047 Zürich</td>
-          </tr>
-          <tr> 
-            <td>{{ __('E-Mail') }}</td>
-            <td>m@marceli.to</td>
-          </tr>
-          <tr> 
-            <td>{{ __('Telefon') }}</td>
-            <td>078 513 35 41</td>
-          </tr>
-        </table>
+        {{ __('Kursteilnehmer:in') }}<br>
+        Marcel Stadelmann<br>
+        Letzigraben 149<br>
+        8047 Zürich
       </td>
     </tr>
   </table>

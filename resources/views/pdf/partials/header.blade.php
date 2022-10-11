@@ -9,3 +9,7 @@
 <header class="header">
   <img src="{{ asset('assets/img/pdf-header.svg') }}" height="100" width="100">
 </header>
+<footer class="footer">
+  <strong>visualisierungs-akademie.ch</strong><br>
+  <strong>3d-software.ch</strong>
+</footer>

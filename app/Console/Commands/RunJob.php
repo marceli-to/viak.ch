@@ -1,6 +1,7 @@
 <?php
 namespace App\Console\Commands;
 use App\Models\Job;
+use App\Models\Invoice;
 use Illuminate\Console\Command;
 
 class RunJob extends Command
@@ -36,6 +37,13 @@ class RunJob extends Command
    */
   public function handle()
   {
+    
+    // Reset invoice
+    // Invoice::truncate();
+    
+    // // Reset jobs
+    // Job::query()->update(['error' => null, 'processed' => 0]);
+    
     $jobs = Job::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
     

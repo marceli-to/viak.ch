@@ -1,14 +1,14 @@
 <style>
   .qr {
     border-top: .15mm dashed #222;
-    bottom: 10mm;
+    bottom: 20mm;
     left: 0;
     font-weight: 400;
     color: #000000;
     height: 105mm;
     position: absolute;
     width: 210mm;
-    left: -36mm;
+    left: -32mm;
   }
   
   .qr * {

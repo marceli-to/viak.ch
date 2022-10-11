@@ -4,31 +4,15 @@
   <table class="page-info">
     <tr>
       <td class="page-info__left">
-        <table>
-          <tr> 
-            <td>{{ __('Kursteilnehmer:in') }}</td>
-            <td>{{ $invoice->booking->user->fullname }}</td>
-          </tr>
-          <tr> 
-            <td>{{ __('Adresse') }}</td>
-            <td>{!! $invoice->booking->user->address !!}</td>
-          </tr>
-          <tr> 
-            <td>{{ __('Buchungs-Nr.') }}</td>
-            <td>{{ $invoice->booking->number }}</td>
-          </tr>
-        </table>
+        {!! $invoice->booking->user->address !!}
+        <br><br>
+        {{ __('Buchungs-Nr.:') }}
+        {{ $invoice->booking->number }}
       </td>
       <td class="page-info__right">
         @if ($invoice->invoice_address)
-          <table>
-            <tr> 
-              <td>
-                {{ __('Rechnungsadresse:') }}<br>
-                {!! $invoice->invoice_address !!}
-              </td>
-            </tr>
-          </table>
+        {{ __('Rechnungsadresse:') }}<br>
+          {!! $invoice->invoice_address !!}
         @endif
       </td>
     </tr>
@@ -48,7 +32,7 @@
       </thead>
       <tbody>
         <tr>
-          <td style="width: 80mm"><strong>{{ $invoice->booking->event->course->title }}</strong></td>
+          <td style="width: 75mm"><strong>{{ $invoice->booking->event->course->title }}</strong></td>
           <td style="width: 31mm">{{ $invoice->booking->event->date_short }}</td>
           <td style="width: 31mm">{{ $invoice->booking->event->number }}</td>
           <td style="width: 22mm" class="align-right">
@@ -71,6 +55,7 @@
             CHF {{ \FormatHelper::number($invoice->vat) }}
           </td>
         </tr>
+
         <tr class="content-table__footer">
           <td colspan="3">
             <strong>Total</strong>

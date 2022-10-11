@@ -4,7 +4,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Course;
 use App\Models\Event;
 use App\Services\Pdf\Pdf;
-use App\Services\Pdf\Invoice;
+use App\Services\Pdf\Invoice\EventInvoice;
 use Illuminate\Http\Request;
 
 class DocumentController extends BaseController
@@ -83,7 +83,8 @@ class DocumentController extends BaseController
    */
   public function invoice()
   { 
-    $pdf = (new Invoice())->create([
+    
+    $pdf = (new EventInvoice())->create([
       'number' => '0000001',
       'amount' => '890.00'
     ]);

@@ -87,11 +87,11 @@ p {
 /* Header */
 .header {
   display: inline-block;
-  height: 11.7mm;
+  height: 16mm;
   left: 0;
   position: fixed;
-  top: 6mm;
-  width: 162mm;
+  top: 10mm;
+  width: 168mm;
   z-index: 100;
 }
 
@@ -101,6 +101,11 @@ p {
   width: 100%;
 }
 
+.footer {
+  bottom: -2mm;
+  position: fixed;
+}
+
 .break {
   page-break-after: always;
 }
@@ -108,7 +113,7 @@ p {
 .page {
   margin-top: 0;
   position: relative;
-  width: 164mm;
+  width: 168mm;
   z-index: 100;
 }
 
@@ -122,23 +127,15 @@ p {
 
 .page-info {
   top: 42mm;
-  width: 164mm;
+  width: 168mm;
 }
 
 .page-info td.page-info__left {
-  width: 96mm;
+  width: 75mm;
 }
 
-.page-info td.page-info__center {
-  width: 14mm;
-}
-
-.page-info td.page-info__right {
-  width: 54mm;
-}
-
-.page-info td.page-info__left td:first-child {
-  width: 36mm;
+.page-info td.page-info__left table td:first-of-type {
+  width: 25mm;
 }
 
 .page__title {
@@ -158,7 +155,7 @@ p {
 .page__content {
   padding-top: 124mm;
   top: 0;
-  width: 164mm;
+  width: 168mm;
 }
 
 .content-table {
@@ -184,7 +181,7 @@ p {
 }
 
 .content-table .content-table__footer {
-  border-bottom: .4mm solid #000000;
+  border-bottom: none;
 }
 
 </style>
