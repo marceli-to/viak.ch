@@ -14,7 +14,7 @@ class AlterUsersTableAddCountryId extends Migration
   public function up()
   {
     Schema::table('users', function (Blueprint $table) {
-      $table->foreignId('country_id')->constrained();
+      $table->foreignId('country_id')->nullable()->constrained();
     });
   }
 
