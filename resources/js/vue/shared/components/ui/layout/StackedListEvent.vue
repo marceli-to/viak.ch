@@ -1,9 +1,6 @@
 <template>
 <div>
-  
-  <article v-if="$props.isAdmin"
-    class="stacked-list-event" 
-    data-touch>
+  <article v-if="$props.isAdmin" class="stacked-list-event" data-touch>
     <div>
       <div class="stacked-list__col">
         <div>
@@ -32,7 +29,6 @@
       </div>
       <div class="stacked-list__col stacked-list__col--action">
         <div>
-          <!-- <div>CHF {{ $props.event.fee ? $props.event.fee : $props.event.course.fee }}</div> -->
           <div v-if="$props.event.confirmed">
             <strong class="text-success">Bestätigt</strong>
           </div>
@@ -42,7 +38,7 @@
           <div v-else>
             <strong>Offen</strong>
           </div>
-          <div v-if="$props.event.bookings">
+          <div>
             {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
           </div>
         </div>
@@ -52,16 +48,11 @@
       </div>
     </div>
   </article>
-
-  <article v-else
-    :class="[$props.event.isBooked ? 'is-booked-error' : '', 'stacked-list-event']" 
-    data-touch>
+  <article :class="[$props.event.isBooked ? 'is-booked-error' : '', 'stacked-list-event']" data-touch v-else>
     <template v-if="$props.event.isBooked">
       <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
     </template>
-
     <div>
-      
       <div class="stacked-list__col">
         <div :class="[$slots.icon ? 'sm:flex' : '']">
           <div class="stacked-list__icon" v-if="$slots.icon">
@@ -120,9 +111,7 @@
       
     </div>
   </article>
-
   <notification ref="notification" />
-  
 </div>
 </template>
 <script>
