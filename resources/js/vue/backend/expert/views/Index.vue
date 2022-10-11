@@ -118,11 +118,13 @@
               :showExperts="false"
               :showFee="false" 
               :showBookingCount="true">
+
               <template #action>
                 <router-link :to="{ name: 'expert-course-event', params: { uuid: event.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
                   {{ __('Detail')}}
                 </router-link>
               </template>
+              
             </stacked-list-event>
           </div>
         </div>

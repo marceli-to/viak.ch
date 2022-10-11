@@ -31,7 +31,21 @@
         </template>
       </div>
       <div class="stacked-list__col stacked-list__col--action">
-        <div>CHF {{ $props.event.fee ? $props.event.fee : $props.event.course.fee }}</div>
+        <div>
+          <!-- <div>CHF {{ $props.event.fee ? $props.event.fee : $props.event.course.fee }}</div> -->
+          <div v-if="$props.event.confirmed">
+            <strong class="text-success">Bestätigt</strong>
+          </div>
+          <div v-else-if="$props.event.cancelled">
+            <strong class="text-danger">Abgesagt</strong>
+          </div>
+          <div v-else>
+            <strong>Offen</strong>
+          </div>
+          <div v-if="$props.event.bookings">
+            {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
+          </div>
+        </div>
         <div class="stacked-list__action">
           <slot name="action" />
         </div>
@@ -45,8 +59,9 @@
     <template v-if="$props.event.isBooked">
       <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
     </template>
-    <div>
 
+    <div>
+      
       <div class="stacked-list__col">
         <div :class="[$slots.icon ? 'sm:flex' : '']">
           <div class="stacked-list__icon" v-if="$slots.icon">
@@ -78,16 +93,25 @@
         <template v-if="$props.event.experts && $props.showExperts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
-        <template v-if="$props.showBookingCount">
-          <div>
-            <strong>{{ $props.event.bookings}}</strong> Teilnehmer
-          </div>
-        </template>
       </div>
 
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
         <div>
           <div v-if="$props.showFee">CHF {{ $props.event.fee}}</div>
+          <div>
+            <div v-if="$props.event.confirmed">
+              <strong class="text-success">Bestätigt</strong>
+            </div>
+            <div v-else-if="$props.event.cancelled">
+              <strong class="text-danger">Abgesagt</strong>
+            </div>
+            <div v-else>
+              <strong>Offen</strong>
+            </div>
+            <div v-if="$props.showBookingCount">
+              {{ $props.event.bookings }} Teilnehmer
+            </div>
+          </div>
         </div>
         <div class="stacked-list__action" v-if="$slots.action">
           <slot name="action" />

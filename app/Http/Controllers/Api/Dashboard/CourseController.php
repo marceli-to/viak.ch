@@ -23,9 +23,16 @@ class CourseController extends Controller
       return new DataCollection(Course::published()->orderBy('number', 'ASC')->get());
     }
     return new CourseCollection(
-      Course::with('upcomingEvents.experts', 'upcomingEvents.dates', 'upcomingEvents.location', 'upcomingEvents.course', 'categories')
-        ->orderBy('order', 'ASC')
-        ->get()
+      Course::with(
+        'upcomingEvents.experts', 
+        'upcomingEvents.dates', 
+        'upcomingEvents.location', 
+        'upcomingEvents.course', 
+        'upcomingEvents.bookings', 
+        'categories'
+      )
+      ->orderBy('order', 'ASC')
+      ->get()
     );
   }
 

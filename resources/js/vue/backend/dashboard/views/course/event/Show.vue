@@ -39,7 +39,11 @@
         <template #content>
           <template v-if="data.participants.length">
             <stacked-list-item v-for="(participant, index) in data.participants" :key="index">
-              {{ participant.firstname }} {{ participant.name }}, {{ participant.city }}
+              <div>
+                <div class="sm:span-4 md:span-3">{{ participant.fullname }}</div>
+                <div class="sm:span-2 md:span-3">{{ participant.city }}</div>
+                <div class="sm:span-3 md:span-4">{{ participant.email }}</div>
+              </div>
             </stacked-list-item>
             <div class="mt-5x sm:mt-10x">
               <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">

@@ -14,9 +14,11 @@ class EventParticipantsResource extends JsonResource
   {
     return [
       'uuid' => $this->uuid,
+      'fullname' => $this->fullname,
       'name' => $this->name,
       'firstname' => $this->firstname,
       'city' => $this->city,
+      'email' => auth()->user()->isAdmin() ? $this->email : null,
     ];
   }
 }

@@ -171,9 +171,9 @@
             <div v-for="(booking, index) in sorted(user.bookings, 'event.date', 'asc')" :key="index">
 
               <stacked-list-event :event="booking.event" :booking="booking">
-                <template #icon>
+                <!-- <template #icon>
                   <icon-checkmark />
-                </template>
+                </template> -->
                 <template #action>
                   <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-3x" :title="__('Detail')">
                     {{ __('Detail')}}

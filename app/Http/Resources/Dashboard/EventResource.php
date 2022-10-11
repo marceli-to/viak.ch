@@ -34,7 +34,12 @@ class EventResource extends JsonResource
           'time_end' => $date->time_end,
         ];
       }),
+      'bookings' => $this->bookings->count(),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
+      'confirmed' => $this->confirmed,
+      'confirmed_at' => $this->confirmed_at,
+      'cancelled' => $this->cancelled,
+      'cancelled_at' => $this->cancelled_at,
     ];
   }
 }
