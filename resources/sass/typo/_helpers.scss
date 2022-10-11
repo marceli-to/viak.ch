@@ -72,6 +72,10 @@ p {
   color: $color-danger;
 }
 
+.text-warning {
+  color: $color-warning;
+}
+
 .no-results {
   @extend %mt-2x;
   @extend %sm\:mt-4x;

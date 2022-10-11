@@ -40,6 +40,12 @@ button {
   @extend %md\:fs-16x;
   @extend %pt-2x;
   color: $color-danger;
+
+  &--booking {
+    @extend %mb-3x;
+    display: block !important;
+    padding-top: 0 !important;
+  }
 }
 
 .requirements {

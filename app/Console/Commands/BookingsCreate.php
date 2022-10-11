@@ -39,23 +39,17 @@ class BookingsCreate extends Command
    */
   public function handle()
   {
-    $eventUUid = $userId = $this->argument('event');
+    // Get the event
+    $event = Event::where('uuid', $this->argument('event'))->first();
 
-    $event = Event::where('uuid', $eventUUid)->first();
+    // Get users
+    $users = User::where('email', 'like', 'viak-student%@0704.ch')->get();
 
-    $users = [
-      '5f461f83-0295-499d-bc76-14467230bf41',
-      '531e9038-77d5-4895-9ac2-41059f15029a',
-      'db4c704d-a7c1-41ee-b662-b73fb7a8e818',
-      'd3b99700-cf22-48aa-9cc6-20ab690e7a02'
-    ];
-
+    // Create bookings
     foreach($users as $user)
     {
-      $user = User::where('uuid', $user)->first();
-
       $booking = Booking::create([
-        'uuid' => \Str::uuid(),
+        'uuid' => $user->uuid,
         'number' => BookingFacade::getNumber(),
         'course_fee' => $event->courseFee,
         'invoice_address' => NULL,

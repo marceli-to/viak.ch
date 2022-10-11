@@ -15,6 +15,6 @@
     <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
 </table>
-<p>{{ __('Weitere Informationen zu diese Kurs findest du ') }} <a href="{{ route('page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>
+<p>{{ __('Weitere Informationen zu diesem Kurs findest du ') }} <a href="{{ route('page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>
 @include('mail.partials.signature')
 @endcomponent

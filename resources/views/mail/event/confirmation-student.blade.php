@@ -15,13 +15,24 @@
     <td>{{ __('Experten') }}</td>
     <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
+  @if ($event->online)
+    <tr>
+      <td>{{ __('Ort') }}</td>
+      <td>{{ __('online') }}</td>
+    </tr>
+  @else
+    <tr>
+      <td>{{ __('Ort') }}</td>
+      <td>{{ $event->location ? $event->location->description : '' }}</td>
+    </tr>
+  @endif
   <tr>
     <td>{{ __('Kosten') }}</td>
     <td>CHF {{ $event->courseFee }}</td>
   </tr>
 </table>
 <p>{{ __('Die Rechnung für die Kurskosten findest du in der Beilage. Falls du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>
-<p><a href="{{ route('page.student.profile') }}" target="_blank" class="button-primary" style="text-decoration: none;"><strong>{{ __('Mit Kreditkarte bezahlen') }}</strong></a></p>
+<p class="py-2x"><a href="{{ route('page.student.profile') }}" target="_blank" class="button-primary" style="text-decoration: none;"><strong>{{ __('Mit Kreditkarte bezahlen') }}</strong></a></p>
 <p>{{ __('Möchtest du weitere Kurse besuchen? Verwalte deine Kurse und deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
 @include('mail.partials.signature')
 @endcomponent

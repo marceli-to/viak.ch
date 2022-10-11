@@ -136,40 +136,51 @@
 
       <template v-if="$props.type == 'edit'">
         <template v-if="data.cancelled">
-          <div class="form-danger-zone is-info">
-            <h2>Veranstaltung abgesagt</h2>
-            <p>Diese Veranstaltung wurde am {{ data.cancelled_at }} abgesagt.</p>
-          </div>
+
+          <danger-zone :type="'warning'">
+            <template #content>
+              <h2>Veranstaltung abgesagt</h2>
+              <p>Diese Veranstaltung wurde am {{ data.cancelled_at }} abgesagt.</p>
+            </template>
+          </danger-zone>
+
         </template>
         <template v-else>
-          <div class="form-danger-zone is-success">
-            <template v-if="data.confirmed">
+
+          <danger-zone :type="'success'">
+            <template #content v-if="data.confirmed">
               <h2>Veranstaltung bestätigt</h2>
               <p>Diese Veranstaltung wurde am {{ data.confirmed_at }} bestätigt.</p>
             </template>
-            <template v-else>
+            <template #content v-else>
               <h2>Veranstaltung bestätigen</h2>
               <p>Mit dieser Aktion wird die Durchführung der Veranstaltung bestätigt. Die Teilnehmer und Experten werden per E-Mail informiert.</p>
               <a href="" class="btn-success" @click.prevent="confirmConfirmation()">Bestätigen</a>
             </template>
-          </div>
-          <div class="form-danger-zone is-info">
-            <h2>Veranstaltung absagen</h2>
-            <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
-            <a href="" class="btn-info" @click.prevent="confirmCancellation()">Absagen</a>
-          </div>
-          <div class="form-danger-zone is-danger">
-            <h2>Veranstaltung löschen</h2>
-            <template v-if="data.bookings.length">
+          </danger-zone>
+
+          <danger-zone :type="'warning'">
+            <template #content>
+              <h2>Veranstaltung absagen</h2>
+              <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
+              <a href="" class="btn-warning" @click.prevent="confirmCancellation()">Absagen</a>
+            </template>
+          </danger-zone>
+
+          <danger-zone :type="'danger'">
+            <template #content v-if="data.bookings.length">
+              <h2>Veranstaltung löschen</h2>
               Diese Veranstaltng kann nicht gelöscht werden, da 
               <router-link :to="{ name: 'event-show', params: { uuid: data.uuid } }"><strong>{{ data.bookings.length }}</strong> Buchung(en)</router-link>
               vorhanden sind.
             </template>
-            <template v-else>
+            <template #content v-else>
+              <h2>Veranstaltung löschen</h2>
               <p>Mit dieser Aktion wird die Veranstaltung gelöscht.</p>
               <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
             </template>
-          </div>   
+          </danger-zone>
+
         </template>
       </template>
     </template>
@@ -190,6 +201,7 @@ import { TheMask } from "vue-the-mask";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
+import DangerZone from "@/shared/components/ui/form/DangerZone.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
@@ -204,6 +216,7 @@ export default {
     ArticleText,
     FormGroup,
     FormGroupHeader,
+    DangerZone,
     BackLink,
     IconTrash,
     IconPlus,
@@ -376,6 +389,7 @@ export default {
           style: 'success',
           autohide: true,
         });
+        this.data.cancelled = 1;
         this.actionToBeConfirmed = null;  
       });
     },

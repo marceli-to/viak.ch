@@ -33,7 +33,11 @@ class BookingCompleted extends Mailable
     $booking = Booking::with('user', 'event')->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Buchungsbestätigung') . ' – ' . $booking->event->course->title)
-                ->with(['data' => $booking])
+                ->with([
+                    'event' => $booking->event,
+                    'booking' => $booking,
+                    'user' => $booking->user
+                  ])
                 ->markdown('mail.booking.confirmation');
   }
 }

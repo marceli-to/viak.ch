@@ -45,9 +45,10 @@ class EventCancelStudent extends Mailable
                  ->with(
                       [
                         'event' => $booking->event,
+                        'booking' => $booking,
                         'user' => $booking->user
                       ]
                     )
-                 ->markdown('mail.event.cancel', ['role' => 'student']);
+                 ->markdown('mail.event.cancel', ['recipient' => 'student']);
   }
 }

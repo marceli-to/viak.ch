@@ -36,6 +36,6 @@ class EventCancelExpert extends Mailable
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Kursabsage') . ' – ' . $event->course->title)
                 ->with(['event' => $event])
-                ->markdown('mail.event.cancel-expert');
+                ->markdown('mail.event.cancel', ['recipient' => 'expert']);
   }
 }

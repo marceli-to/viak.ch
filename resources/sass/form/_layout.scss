@@ -114,6 +114,15 @@
     }
   }
 
+  &.is-warning {
+    border-color: $color-warning;
+    color: $color-warning;
+
+    h2, a:not([class*=btn]) {
+      color: $color-warning;
+    }
+  }
+
   &.is-success {
     border-color: $color-success;
     color: $color-success;

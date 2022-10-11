@@ -43,6 +43,7 @@ class EventConfirmationStudent extends Mailable
                  ->with(
                       [
                         'event' => $booking->event,
+                        'booking' => $booking->event,
                         'user' => $booking->user
                       ]
                     )

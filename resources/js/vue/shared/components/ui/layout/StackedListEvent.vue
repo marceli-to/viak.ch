@@ -35,9 +35,6 @@
           <div v-else-if="$props.event.cancelled">
             <strong class="text-danger">Abgesagt</strong>
           </div>
-          <div v-else>
-            <strong>Offen</strong>
-          </div>
           <div>
             {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
           </div>
@@ -51,7 +48,9 @@
   
   <article :class="[$props.event.isBooked ? 'has-booking' : '', 'stacked-list-event']" data-touch v-else>
     <template v-if="$props.event.isBooked">
-      <strong class="error-message !block mb-3x">{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
+      <div class="error-message error-message--booking">
+        <strong>{{ __('Du hast bereits eine Buchung für diesen Kurs!') }}</strong>
+      </div>
     </template>
     <div>
       <div class="stacked-list__col">
@@ -96,9 +95,6 @@
               </div>
               <div v-else-if="$props.event.cancelled">
                 <strong class="text-danger">Abgesagt</strong>
-              </div>
-              <div v-else>
-                <strong>Offen</strong>
               </div>
               <div v-if="$props.showBookings">
                 {{ $props.event.bookings }} Teilnehmer
