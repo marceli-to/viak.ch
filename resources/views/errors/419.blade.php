@@ -5,5 +5,10 @@
   <h1>{{ __('Fehler') }} 419</h1>
   <p>{{ __('Der Zugriff auf diese Seite wurde verweigert.') }}</p>
   @include('errors.partials.footer')
+  <p>
+    <a href="{{ route('logout') }}" title="{{ __('Logout') }}" class="btn-primary !btn-auto-w">
+      {{ __('Logout') }}
+    </a>
+  </p>
 </x-error>
 @endsection

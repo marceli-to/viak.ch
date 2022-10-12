@@ -75,7 +75,7 @@
     max-width: 480px;
   }
 
-  a {
+  a:not([class*="btn-"]) {
     color: inherit;
     &:hover {
       text-decoration: underline;
