@@ -183,7 +183,7 @@ class CourseFilter
     $ids = CategoryCourse::get(['category_id'])->unique('category_id')->pluck('category_id');
     $categories = Category::whereIn('id', $ids)->get();
     $data = $categories->pluck('description', 'uuid');
-    return $data->all();
+    return $data->sort()->all();
   }
 
   /**
@@ -197,7 +197,7 @@ class CourseFilter
     $ids = CourseSoftware::get(['software_id'])->unique('software_id')->pluck('software_id');
     $software = Software::whereIn('id', $ids)->orderBy('description')->get();
     $data = $software->pluck('description', 'uuid');
-    return $data->all();
+    return $data->sort()->all();
   }
 
   /**
@@ -211,7 +211,7 @@ class CourseFilter
     $ids = CourseLanguage::get(['language_id'])->unique('language_id')->pluck('language_id');
     $language = Language::whereIn('id', $ids)->orderBy('description')->get();
     $data = $language->pluck('description', 'uuid');
-    return $data->all();
+    return $data->sort()->all();
   }
 
   /**
@@ -225,7 +225,7 @@ class CourseFilter
     $ids = CourseLevel::get(['level_id'])->unique('level_id')->pluck('level_id');
     $level = Level::whereIn('id', $ids)->orderBy('description')->get();
     $data = $level->pluck('description', 'uuid');
-    return $data->all();
+    return $data->sort()->all();
   }
 
   /**
