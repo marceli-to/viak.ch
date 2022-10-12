@@ -3,11 +3,7 @@
     <article-text class="content-text--event">
       <template #aside>
         <h1>{{ data.event.course.title }}</h1>
-        <h2>{{ data.event.course.subtitle }}</h2>
         <back-link :route="'courses'"></back-link>
-      </template>
-      <template #content>
-        <div class="mt-4x sm:mt-0" v-html="data.event.course.text"></div>
       </template>
     </article-text>
 
@@ -20,7 +16,8 @@
           <stacked-list-event 
             :event="data.event" 
             :showFee="false"
-            :showState="true">
+            :showState="true"
+            :dashboard="true">
             <template #action></template>
           </stacked-list-event>
         </template>
@@ -76,7 +73,7 @@
     <collapsible-container>
       <collapsible :items="data.files">
         <template #title>
-          {{ __('Dokumente') }}
+          {{ __('Kurs-Dokumente') }}
         </template>
         <template #content>
           <template v-if="data.files.length">

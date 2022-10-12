@@ -19,6 +19,8 @@ class EventResource extends JsonResource
       'date' => $this->date,
       'online' => $this->online,
       'fee' => $this->courseFee,
+      'min_participants' => $this->min_participants,
+      'max_participants' => $this->max_participants,
       'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
       'bookings' => auth()->user()->isExpert() ? collect($this->bookings)->count() : NULL,

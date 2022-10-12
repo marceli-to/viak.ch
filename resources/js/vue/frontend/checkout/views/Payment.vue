@@ -13,10 +13,11 @@
       <stacked-list-item>
         <div>
           <div class="sm:span-4">
-            <strong>{{ __('Zahlungsoption') }}</strong>
+            <strong>{{ __('Zahlungsoptionen') }}</strong>
           </div>
           <div class="sm:span-8">
-            {{ __('per Rechnung') }}
+            <!-- {{ __('per Rechnung') }} -->
+            {{ __('Unsere Rechnungen können entweder mittels QR-Einzahlungsschein oder per Krediktarte bezahlt werden. Die Rechnungsstellung erfolgt sobald die Durchführung eines Kurses feststeht.') }}
           </div>
         </div>
       </stacked-list-item>

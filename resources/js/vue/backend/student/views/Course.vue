@@ -3,20 +3,14 @@
     <article-text class="content-text--event">
       <template #aside>
         <h1 class="xs:hide">{{ data.event.course.title }}</h1>
-        <h2 class="xs:hide">{{ data.event.course.subtitle }}</h2>
         <back-link :route="'student-profile'"></back-link>
-      </template>
-      <template #content>
-        <h1 class="sm:hide">{{ data.event.course.title }}</h1>
-        <h2 class="sm:hide">{{ data.event.course.subtitle }}</h2>
-        <div class="mt-4x sm:mt-0" v-html="data.event.course.text"></div>
       </template>
     </article-text>
 
     <collapsible-container>
       <collapsible :expanded="true">
         <template #title>
-          {{ __('Informationen') }}
+          {{ __('Buchung') }}
         </template>
         <template #content>
           <stacked-list-event :event="data.event" :booking="data.booking">
@@ -47,7 +41,7 @@
     <collapsible-container>
       <collapsible :items="data.files">
         <template #title>
-          {{ __('Dokumente') }}
+          {{ __('Kurs-Dokumente') }}
         </template>
         <template #content>
           <template v-if="data.files.length">
@@ -56,7 +50,7 @@
             </stacked-list-item>
           </template>
           <template v-else>
-            <p class="no-results">{{ __('Es sind keine Dokumente vorhanden.') }}</p>
+            <p class="no-results">{{ __('Es sind keine Kurs-Dokumente vorhanden.') }}</p>
           </template>
         </template>
       </collapsible>

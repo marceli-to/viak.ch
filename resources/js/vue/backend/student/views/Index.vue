@@ -212,17 +212,17 @@
           <stacked-list-item>
             <div>
               <div class="sm:span-4">
-                <strong>Rechnung 0000094</strong><br>
-                06. Juni 2022
+                <strong>Blender Animationskurs</strong>
+                <br>06. Juni 2022
               </div>
               <div class="sm:span-4">
-                Blender Animationskurs
+                Rechnung 0000094
               </div>
               <div class="sm:span-4">
                 <div class="flex justify-between">
                   <div>CHF 960.00</div>
                   <div>
-                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
+                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary">Download</a>
                   </div>
                 </div>
               </div>
@@ -231,17 +231,17 @@
           <stacked-list-item>
             <div>
               <div class="sm:span-4">
-                <strong>Rechnung 0000086</strong><br>
-                13. Mai 2022
+                <strong>Blender Einführungskurs</strong>
+                <br>13. Mai 2022
               </div>
               <div class="sm:span-4">
-                Blender Einführungskurs
+                Rechnung 0000086
               </div>
               <div class="sm:span-4">
                 <div class="flex justify-between">
                   <div>CHF 700.00</div>
                   <div>
-                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
+                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary">Download</a>
                   </div>
                 </div>
               </div>
@@ -250,16 +250,16 @@
           <stacked-list-item>
             <div>
               <div class="sm:span-4">
-                <strong>Kursbestätigung</strong><br>
-                25. Mai 2022
+                <strong>Blender Einführungskurs</strong>
+                <br>25. Mai 2022
               </div>
               <div class="sm:span-4">
-                Blender Einführungskurs
+                Kursbestätigung
               </div>
               <div class="sm:span-4">
                 <div class="flex justify-end">
                   <div>
-                    <a href="/pdf/kurs-bestaetigung?v=1659123592" target="_blank" class="btn-primary is-outline">Download</a>
+                    <a href="/pdf/kurs-bestaetigung?v=1659123592" target="_blank" class="btn-primary">Download</a>
                   </div>
                 </div>
               </div>
