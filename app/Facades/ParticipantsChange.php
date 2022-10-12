@@ -9,7 +9,7 @@ class ParticipantsChange
 {
   public function handle(Event $event)
   {
-    $bookings = Booking::where('event_id', $event->id)->get();
+    $bookings = Booking::active()->where('event_id', $event->id)->get();
 
     if ($bookings)
     {

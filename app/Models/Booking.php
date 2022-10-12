@@ -91,4 +91,25 @@ class Booking extends Base
     return $this->hasOne(User::class, 'id', 'user_id');
   }
 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Local scopes
+  |--------------------------------------------------------------------------
+  |
+  |
+  */
+
+  /**
+   * Scope a query to only include active bookings
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeActive($query)
+  {
+    return $query->where('cancelled', 0)->where('cancelled_at', 0);
+  }
+
+
 }
