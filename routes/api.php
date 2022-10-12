@@ -113,6 +113,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
 });
 Route::post('/student/register', [StudentRegisterController::class, 'create']);
 
+
 /*
 |--------------------------------------------------------------------------
 | Expert
@@ -136,6 +137,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function() 
   Route::put('/admin', [AdminController::class, 'update']);
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Courses, Events, Messages etc.
@@ -150,7 +152,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'findExpertEvent'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{event:uuid}', [EventController::class, 'findStudentEvent'])->middleware(['role:admin,student']);
 });
-
 
 
 /*
@@ -170,7 +171,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(func
   Route::get('image/state/{image}', [ImageController::class, 'toggle']);
   Route::delete('image/{image}', [ImageController::class, 'destroy']);
 });
-
 
 
 /*
