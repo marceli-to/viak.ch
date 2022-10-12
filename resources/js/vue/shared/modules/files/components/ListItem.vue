@@ -14,7 +14,7 @@
   </div>
   <div class="sm:span-3 flex justify-end">
     <div>
-      <a :href="`/storage/uploads/${file.name}`" target="_blank" class="btn-primary btn-auto-w mb-3x">
+      <a :href="`/storage/uploads/${file.name}`" target="_blank" class="btn-primary btn-auto-w mb-2x">
         {{ __('Download') }}
       </a>
       <slot name="action" />

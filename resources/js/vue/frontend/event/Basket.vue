@@ -1,6 +1,12 @@
 <template>
 <div>
-  <notification ref="notification" />
+  <notification ref="notification">
+    <template #actions>
+      <a href="/checkout/basket" class="btn-success">
+        {{ __('Warenkorb') }}
+      </a>
+    </template>
+  </notification>
   <a href="" class="btn-primary btn-auto-w" @click.prevent="addToBasket($props.uuid)" v-if="!inBasket">
     {{ __('Buchen') }}
   </a>

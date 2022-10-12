@@ -64,8 +64,9 @@ export default {
         this.inBasket = true;
         this.$refs.notification.init({
           message: 'Der Kurs wurde im Warenkorb abgelegt.',
-          type: 'toast',
+          type: 'dialog',
           style: 'success',
+          autohide: false,
         });
         NProgress.done();
       });

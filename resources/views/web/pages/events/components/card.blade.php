@@ -12,7 +12,12 @@
           </div>
         @else
           <div class="stacked-list__icon">
-            <bookmark-button event="{{ $event->uuid }}" />
+            @auth
+              <bookmark-button event="{{ $event->uuid }}" :auth="true" />
+            @endauth
+            @guest
+              <bookmark-button event="{{ $event->uuid }}" :auth="false" />
+            @endguest
           </div>
         @endif
         <div>

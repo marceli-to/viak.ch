@@ -37,6 +37,12 @@
   &__icon {
     @extend %sm\:pr-4x;
     @extend %sm\:pt-1x;
+    
+    @include bp-xs() {
+      right: 0;
+      position: absolute;
+      top: $space-3x
+    }
   }
 
   &__action {

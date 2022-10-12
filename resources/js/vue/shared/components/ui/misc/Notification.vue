@@ -24,6 +24,7 @@
         <template v-if="$slots.actions">
           <div class="notification-actions">
             <slot name="actions" />
+            <a href="javascript:;" @click="hide()">Schliessen</a>
           </div>
         </template>
         <template v-else>
@@ -38,12 +39,14 @@
 </template>
 <script>
 import IconCross from "@/shared/components/ui/icons/Cross.vue";
+import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import i18n from "@/shared/mixins/i18n";
 
 export default {
 
   components: {
     IconCross,
+    IconCheckmark,
   },
 
   mixins: [i18n],
@@ -116,11 +119,6 @@ export default {
           this.hide();
         }, this.autohideDelay);
       }
-
-      // setTimeout(() => {
-      //   this.addListeners();
-      // }, 50)
-
     },
 
     hide() {

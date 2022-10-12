@@ -5,7 +5,8 @@
       <h1 class="xs:hide">{{ __('Registrieren') }}</h1>
       <div class="sm:mt-5x md:mt-10x">
         <a :href="routes.login" class="icon-arrow-right:below" :title="__('Login')">
-          <span>{{ __('Bereits registriert?') }}</span>
+          <span v-if="!isRegistered">{{ __('Bereits registriert?') }}</span>
+          <span v-if="isRegistered">{{ __('Zum Login') }}</span>
           <icon-arrow-right />
         </a>
       </div>

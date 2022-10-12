@@ -6,7 +6,13 @@
   <a href="" :class="[bookmarked ? 'is-active' : '', 'icon-bookmark']" @click.prevent="removeBookmark()" v-else>
     <icon-heart :active="bookmarked"  />
   </a>
-  <notification ref="notification" />
+  <notification ref="notification">
+    <template #actions>
+      <a href="/login" class="btn-primary" :title="__('Login')">
+        {{ __('Login') }}
+      </a>
+    </template>
+  </notification>
 </div>
 </template>
 <script>

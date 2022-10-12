@@ -23,13 +23,16 @@
 
     .notification-actions {
       @extend %mt-8x;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
 
-      .btn-primary,
-      .btn-secondary {
+      a[class^="btn-"] {
         @extend %mx-auto;
         align-items: center;
         display: flex;
-        max-width: 200px;
+        max-width: 240px;
+        text-decoration: none !important;
       }
 
       .btn-primary {
@@ -44,11 +47,12 @@
         color: $color-quaternary;
       }
 
-      .btn-primary + .btn-secondary {
+      [class^="btn-"] + [class^="btn-"],
+      [class^="btn-"] + a:not([class^="btn-"]), {
         @extend %mt-3x;
       }
 
-      a:not(.btn-primary):not(.btn-secondary) {
+      a:not([class^="btn-"]) {
         display: block;
         text-decoration: underline;
         text-underline-offset: 2px;
@@ -133,9 +137,11 @@
     
     > div {
       border-color: $color-success;
-      a:not(.btn-primary) {
+
+      a:not([class^="btn-"]) {
         color: $color-success;
       }
+
     }
   }
 
@@ -152,10 +158,6 @@
         color: $color-info;
       }
     }
-  }
-
-  .btn-primary {
-    color: $color-white;
   }
 
 }

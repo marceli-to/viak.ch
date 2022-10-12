@@ -6,6 +6,12 @@
   <x-article-text>
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Buchung abgeschlossen') }}</h1>
+      <div class="sm:mt-5x md:mt-10x">
+        <a href="{{ route('page.student.profile') }}" class="icon-arrow-right:below" title="{{ __('Zum Profil') }}">
+          <span>{{ __('Zum Profil') }}</span>
+          @include('web.partials.icons.arrow-right')
+        </a>
+      </div>
     </x-slot>
     <x-slot name="content">
       <p>{{ __('Vielen Dank für Deine Buchung. Du erhältst in den nächsten Minuten eine Bestätigung per E-Mail.') }}</p>

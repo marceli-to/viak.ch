@@ -33,6 +33,7 @@ export default {
   },
 
   props: {
+
     event: {
       type: String,
       default: null,
@@ -46,6 +47,11 @@ export default {
     callback: {
       type: String,
       default: null,
+    },
+
+    auth: {
+      type: [Boolean, Number],
+      default: false,
     }
   },
 
@@ -58,18 +64,29 @@ export default {
   methods: {
 
     addBookmark() {
-      NProgress.start();
-      this.eventUuid = this.$props.event;
-      this.axios.put(`${this.routes.bookmark.add}/${this.eventUuid}`).then(response => {
-        this.bookmarked = true;
-        this.bookmarkUuid = response.data.uuid;
-        this.$refs.notification.init({
-          message: 'Der Kurs wurde in der Merkliste gespeichert.',
-          type: 'toast',
-          style: 'success',
+
+      if (this.$props.auth) {
+        NProgress.start();
+        this.eventUuid = this.$props.event;
+        this.axios.put(`${this.routes.bookmark.add}/${this.eventUuid}`).then(response => {
+          this.bookmarked = true;
+          this.bookmarkUuid = response.data.uuid;
+          this.$refs.notification.init({
+            message: 'Der Kurs wurde in der Merkliste gespeichert.',
+            type: 'toast',
+            style: 'success',
+          });
+          NProgress.done();
         });
-        NProgress.done();
-      });
+      }
+      else {
+        this.$refs.notification.init({
+          message: '<p>Die Merkliste steht nur registrierten Benutzern zur Verfügung.</p>',
+          type: 'dialog',
+          style: 'info',
+          autohide: false,
+        });
+      }
     },
 
     removeBookmark() {
