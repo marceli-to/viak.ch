@@ -121,6 +121,17 @@ class EventDate extends Base
     return date('d. F Y', strtotime($value));
   }
 
+  /**
+   * Get the date for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateStrAttribute($value)
+  {   
+    return date('d. F Y', strtotime($this->date));
+  }
 
   /**
    * Get the date for an event_date.

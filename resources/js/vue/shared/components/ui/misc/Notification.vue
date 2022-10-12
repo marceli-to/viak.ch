@@ -24,7 +24,6 @@
         <template v-if="$slots.actions">
           <div class="notification-actions">
             <slot name="actions" />
-            <a href="javascript:;" @click="hide()">Schliessen</a>
           </div>
         </template>
         <template v-else>

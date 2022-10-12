@@ -11,6 +11,9 @@
       <a href="/login" class="btn-primary" :title="__('Login')">
         {{ __('Login') }}
       </a>
+      <a href="javascript:;" @click="hide()">
+        {{ __('Schliessen') }}
+      </a>
     </template>
   </notification>
 </div>

@@ -8,15 +8,13 @@
 .btn {
   @extend %fs-14x;
   @extend %sm\:fs-16x;
-  @extend %md\:fs-18x;
   @extend %pr-6x;
   @extend %pl-6x;
   align-items: center;
   display: flex;
   justify-content: center;
   @include font-bold();
-  padding-top: 2px;
-  padding-bottom: 2px;
+  min-height: 28px;
   transition: background-color .1s ease-in, color .1s ease-in;
 
   &.is-disabled {
@@ -60,8 +58,6 @@
   display: inline-block;
   width: auto !important;
 }
-
-
 
 .\!xs\:btn-full-w {
   @include bp-xs() {

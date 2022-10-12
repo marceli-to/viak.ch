@@ -140,7 +140,6 @@
         <template #content>
           <div v-if="user.bookmarks && user.bookmarks.length">
             <div v-for="(bookmark, index) in sorted(user.bookmarks, 'event.date', 'asc')" :key="index">
-
               <stacked-list-event :event="bookmark.event" :bookmark="bookmark" :data-bookmark="bookmark.uuid">
                 <template #icon>
                   <bookmark-icons 
@@ -153,7 +152,6 @@
                   <basket-buttons :uuid="bookmark.event.uuid" />
                 </template>
               </stacked-list-event>
-
             </div>
           </div>
           <div v-else>
@@ -173,6 +171,9 @@
                 :event="booking.event" 
                 :booking="booking"
                 :showState="true">
+                <template #icon>
+                  <icon-checkmark />
+                </template>
                 <template #action>
                   <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
                     {{ __('Detail')}}

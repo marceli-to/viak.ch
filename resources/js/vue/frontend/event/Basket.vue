@@ -5,6 +5,9 @@
       <a href="/checkout/basket" class="btn-success">
         {{ __('Warenkorb') }}
       </a>
+      <a href="javascript:;" @click="hide()">
+        {{ __('Schliessen') }}
+      </a>
     </template>
   </notification>
   <a href="" class="btn-primary btn-auto-w" @click.prevent="addToBasket($props.uuid)" v-if="!inBasket">

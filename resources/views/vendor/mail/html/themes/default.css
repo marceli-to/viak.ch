@@ -10,12 +10,12 @@ body *:not(html):not(style):not(br):not(tr):not(code) {
 }
 
 html {
-  background-color: #50c8c8;
+  background-color: #46baba;
 }
 
 body {
   -webkit-text-size-adjust: none;
-  background-color: #50c8c8;
+  background-color: #46baba;
   color: #000000;
   height: 100%;
   font-size: 16px;
@@ -44,7 +44,7 @@ a img {
 /* Typography */
 
 h1 {
-  color: #50c8c8;
+  color: #46baba;
   font-size: 18px;
   font-weight: bold;
   line-height: 1.3;
@@ -95,7 +95,7 @@ em {
   -premailer-cellpadding: 0;
   -premailer-cellspacing: 0;
   -premailer-width: 100%;
-  background-color: #50c8c8;
+  background-color: #46baba;
   margin: 0;
   padding: 0 32px;
   width: 100%;
@@ -136,7 +136,7 @@ em {
   -premailer-cellpadding: 0;
   -premailer-cellspacing: 0;
   -premailer-width: 100%;
-  background-color: #50c8c8;
+  background-color: #46baba;
   border-bottom: none;
   border-top: none;
   margin: 0;
@@ -237,11 +237,11 @@ a.button-blue,
 a.button-primary,
 button.button-primary,
 button.button-blue {
-  background-color: #50c8c8;
-  border-bottom: 8px solid #50c8c8;
-  border-left: 18px solid #50c8c8;
-  border-right: 18px solid #50c8c8;
-  border-top: 8px solid #50c8c8;
+  background-color: #46baba;
+  border-bottom: 8px solid #46baba;
+  border-left: 18px solid #46baba;
+  border-right: 18px solid #46baba;
+  border-top: 8px solid #46baba;
   color: #ffffff !important;
   font-weight: bold;
 }
