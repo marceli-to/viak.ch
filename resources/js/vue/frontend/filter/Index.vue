@@ -114,6 +114,23 @@
             </div>
           </div>
 
+          <div 
+            :class="[filterAttributes.tag != 'null' ? 'is-active' : '', 'filter__item']">
+            <div class="select-wrapper">
+              <select 
+                v-model="filterAttributes.tag"
+                @change="updateUrlParams()">
+                <option value="null">Tags</option>
+                <option 
+                  v-for="(option, uuid) in options.settings.tags" 
+                  :key="uuid" 
+                  :value="uuid">
+                  {{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+
           <div class="filter__buttons mt-10x sm:mt-4x">
             <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
               {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
@@ -174,7 +191,8 @@ export default {
         location: 'null',
         language: 'null',
         level: 'null',
-        expert: 'null'
+        expert: 'null',
+        tag: 'null',
       },
 
       store: {},
@@ -277,6 +295,7 @@ export default {
         this.filterAttributes.level = 'null';
         this.filterAttributes.expert = 'null';
         this.filterAttributes.software = 'null';
+        this.filterAttributes.tag = 'null';
         this.courses = [];
         this.updateUrlParams();
       });
@@ -289,7 +308,6 @@ export default {
     showResults() {
       this.hasFilter = false;
     },
-
   },
 }
 </script>

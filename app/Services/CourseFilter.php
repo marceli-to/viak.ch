@@ -13,6 +13,8 @@ use App\Models\CourseLanguage;
 use App\Models\Language;
 use App\Models\CourseLevel;
 use App\Models\Level;
+use App\Models\CourseTag;
+use App\Models\Tag;
 
 class CourseFilter
 {
@@ -20,6 +22,7 @@ class CourseFilter
   protected $software;
   protected $language;
   protected $level;
+  protected $tag;
   protected $location;
   protected $expert;
   protected $store;
@@ -47,6 +50,7 @@ class CourseFilter
     $this->setLevel($request);
     $this->setLocation($request);
     $this->setExpert($request);
+    $this->setTag($request);
 
     // Start building a query
     $query = Course::query()->published()->with('upcomingEvents.experts', 'categories', 'softwares', 'teaserImage');
@@ -55,7 +59,7 @@ class CourseFilter
     if ($this->category)
     {
       $query->whereHas('categories', function ($query) {
-        $query->where('id', $this->category);
+        $query->where('uuid', $this->category);
       });
     }
 
@@ -63,7 +67,7 @@ class CourseFilter
     if ($this->software)
     {
       $query->whereHas('softwares', function ($query) {
-        $query->where('id', $this->software);
+        $query->where('uuid', $this->software);
       });
     }
 
@@ -71,7 +75,7 @@ class CourseFilter
     if ($this->language)
     {
       $query->whereHas('languages', function ($query) {
-        $query->where('id', $this->language);
+        $query->where('uuid', $this->language);
       });
     }
 
@@ -79,7 +83,15 @@ class CourseFilter
     if ($this->level)
     {
       $query->whereHas('levels', function ($query) {
-        $query->where('id', $this->level);
+        $query->where('uuid', $this->level);
+      });
+    }
+
+    // Filter by 'tag'
+    if ($this->tag)
+    {
+      $query->whereHas('tags', function ($query) {
+        $query->where('uuid', $this->tag);
       });
     }
 
@@ -140,8 +152,8 @@ class CourseFilter
         'software' => $this->getSoftware(),
         'languages' => $this->getLanguages(),
         'levels' => $this->getLevels(),
+        'tags' => $this->getTags(),
       ],
-      // 'filter' => (!empty($this->store->get())) ? $this->store->get() : NULL,
       'filter' => NULL,
     ];
   }
@@ -170,7 +182,7 @@ class CourseFilter
   {
     $ids = CategoryCourse::get(['category_id'])->unique('category_id')->pluck('category_id');
     $categories = Category::whereIn('id', $ids)->get();
-    $data = $categories->pluck('description', 'id');
+    $data = $categories->pluck('description', 'uuid');
     return $data->all();
   }
 
@@ -183,8 +195,8 @@ class CourseFilter
   private function getSoftware()
   {
     $ids = CourseSoftware::get(['software_id'])->unique('software_id')->pluck('software_id');
-    $software = Software::whereIn('id', $ids)->get();
-    $data = $software->pluck('description', 'id');
+    $software = Software::whereIn('id', $ids)->orderBy('description')->get();
+    $data = $software->pluck('description', 'uuid');
     return $data->all();
   }
 
@@ -197,8 +209,8 @@ class CourseFilter
   private function getLanguages()
   {
     $ids = CourseLanguage::get(['language_id'])->unique('language_id')->pluck('language_id');
-    $language = Language::whereIn('id', $ids)->get();
-    $data = $language->pluck('description', 'id');
+    $language = Language::whereIn('id', $ids)->orderBy('description')->get();
+    $data = $language->pluck('description', 'uuid');
     return $data->all();
   }
 
@@ -211,9 +223,23 @@ class CourseFilter
   private function getLevels()
   {
     $ids = CourseLevel::get(['level_id'])->unique('level_id')->pluck('level_id');
-    $level = Level::whereIn('id', $ids)->get();
-    $data = $level->pluck('description', 'id');
+    $level = Level::whereIn('id', $ids)->orderBy('description')->get();
+    $data = $level->pluck('description', 'uuid');
     return $data->all();
+  }
+
+  /**
+   * Get tags assigned to courses.
+   * 
+   * @return array
+   */
+  
+  private function getTags()
+  {
+    $ids = CourseTag::get(['tag_id'])->unique('tag_id')->pluck('tag_id');
+    $tag = Tag::whereIn('id', $ids)->orderBy('description')->get();
+    $data = $tag->pluck('description', 'uuid');
+    return $data->sort()->all();
   }
 
   /**
@@ -300,6 +326,18 @@ class CourseFilter
     {
       $this->location = $request->input('location') !== 'null' ? $request->input('location') : NULL;
       // $this->store->setAttribute('attributes.location', $this->location);
+    }
+  }
+
+  /**
+   * Set current tag as filter item.
+   * 
+   */
+  private function setTag($request)
+  {
+    if ($request && $request->input('tag'))
+    {
+      $this->tag = $request->input('tag') !== 'null' ? $request->input('tag') : NULL;
     }
   }
 

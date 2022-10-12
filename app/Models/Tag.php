@@ -47,7 +47,8 @@ class Tag extends Base
    * @var array
    */
   protected $fillable = [
-    'description'
+    'description',
+    'uuid'
   ];
 
   /**

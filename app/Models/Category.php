@@ -60,7 +60,8 @@ class Category extends Base
    */
 
   protected $fillable = [
-    'description'
+    'description',
+    'uuid'
   ];
 
   /**
