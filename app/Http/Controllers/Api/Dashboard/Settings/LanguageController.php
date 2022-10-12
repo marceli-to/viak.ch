@@ -39,8 +39,12 @@ class LanguageController extends Controller
    */
   public function store(LanguageStoreRequest $request)
   {
-    $language = Language::create($request->all());
-    $language->save();
+    $language = Language::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     return response()->json(['languageId' => $language->id]);
   }
 

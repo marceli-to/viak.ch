@@ -10,7 +10,11 @@
           <strong>{{ __('Schritt') }} 1/4</strong>
         </template>
       </stacked-list-header>
-      <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event">
+      <stacked-list-event 
+        v-for="event in basket.events" 
+        :key="event.uuid" 
+        :event="event"
+        :basket="true">
         <template #action>
           <a href="" class="btn-secondary btn-auto-w" @click.prevent="removeFromBasket(event.uuid, true)">
             {{ __('Entfernen') }}

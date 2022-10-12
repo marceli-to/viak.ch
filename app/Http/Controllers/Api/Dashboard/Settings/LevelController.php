@@ -39,7 +39,12 @@ class LevelController extends Controller
    */
   public function store(LevelStoreRequest $request)
   {
-    $level = Level::create($request->all());
+    $level = Level::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     return response()->json(['levelId' => $level->id]);
   }
 

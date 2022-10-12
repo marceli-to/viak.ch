@@ -102,6 +102,7 @@
         <event-state 
           :confirmed="$props.event.confirmed"
           :cancelled="$props.event.cancelled"
+          v-if="!$props.basket"
          />
 
       </div>
@@ -158,6 +159,11 @@ export default {
     },
     
     dashboard: {
+      type: [Number, Boolean],
+      default: false,
+    },
+
+    basket: {
       type: [Number, Boolean],
       default: false,
     },

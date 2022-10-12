@@ -10,7 +10,7 @@
       </template>
     </stacked-list-header>
 
-    <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event" />
+    <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event" :basket="true" />
 
     <stacked-list-item>
       <div>

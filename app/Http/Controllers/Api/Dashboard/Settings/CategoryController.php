@@ -40,6 +40,12 @@ class CategoryController extends Controller
   public function store(CategoryStoreRequest $request)
   {
     $category = Category::create($request->all());
+    $category = Category::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     return response()->json(['categoryId' => $category->id]);
   }
 

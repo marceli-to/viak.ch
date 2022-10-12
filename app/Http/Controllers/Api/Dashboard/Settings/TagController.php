@@ -39,8 +39,12 @@ class TagController extends Controller
    */
   public function store(TagStoreRequest $request)
   {
-    $tag = Tag::create($request->all());
-    $tag->save();
+    $tag = Tag::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     return response()->json(['tagId' => $tag->id]);
   }
 

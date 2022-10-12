@@ -39,8 +39,12 @@ class SoftwareController extends Controller
    */
   public function store(SoftwareStoreRequest $request)
   {
-    $software = Software::create($request->all());
-    $software->save();
+    $software = Software::create(
+      array_merge(
+        $request->all(), 
+        ['uuid' => \Str::uuid()]
+      )
+    );
     return response()->json(['softwareId' => $software->id]);
   }
 
