@@ -30,7 +30,7 @@ class Pdf
     $view = $opts['view'];
     $name = $opts['name'];
     $output = isset($opts['output']) ? $opts['output'] : NULL;
-    
+    asdf
     $this->viewData['data'] = $data;
     $pdf = DomPDF::loadView('pdf.' . $view, $this->viewData);
     $file = 'viak-'. $name .'-' . date('dmY', time()) . '-' . \Str::random(12) . '.pdf';
