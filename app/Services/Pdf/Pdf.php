@@ -36,11 +36,6 @@ class Pdf
     $file = 'viak-'. $name .'-' . date('dmY', time()) . '-' . \Str::random(12) . '.pdf';
     $pdf->save($this->storageFolder . $file);
 
-    if ($output == 'stream')
-    {
-      return $pdf->stream();
-    }
-
     return [
       'path' => $this->storageFolder . $file,
       'name' => $file
