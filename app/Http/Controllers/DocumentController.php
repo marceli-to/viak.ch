@@ -71,8 +71,10 @@ class DocumentController extends BaseController
         'students' => $event->getStudents()
       ],
       'view' => 'course.participants-list',
-      'name' => 'teilnehmerliste'
+      'name' => 'teilnehmerliste',
+      'output' => 'stream'
     ]);
+
     return response()->download($pdf['path'], $pdf['name'], $this->headers);
   }
 
