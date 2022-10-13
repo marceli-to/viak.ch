@@ -39,7 +39,7 @@
               </div>
             </stacked-list-item>
             <div class="mt-5x sm:mt-10x">
-              <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
+              <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}?v=${randomString()}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
                 <span>{{ __('Teilnehmerliste (PDF)') }}</span>
                 <icon-arrow-right />
               </a>
@@ -109,6 +109,7 @@
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
+import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
@@ -140,7 +141,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [ErrorHandling, i18n, Helpers],
 
   data() {
     return {

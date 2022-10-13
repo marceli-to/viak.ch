@@ -26,11 +26,11 @@ class Pdf
 
   public function create($opts = array())
   {
-    $data = $opts['data'];
-    $view = $opts['view'];
-    $name = $opts['name'];
+    $data   = $opts['data'];
+    $view   = $opts['view'];
+    $name   = $opts['name'];
     $output = isset($opts['output']) ? $opts['output'] : NULL;
-    asdf
+
     $this->viewData['data'] = $data;
     $pdf = DomPDF::loadView('pdf.' . $view, $this->viewData);
     $file = 'viak-'. $name .'-' . date('dmY', time()) . '-' . \Str::random(12) . '.pdf';

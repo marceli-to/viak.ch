@@ -72,7 +72,7 @@ class DocumentController extends BaseController
       ],
       'view' => 'course.participants-list',
       'name' => 'teilnehmerliste',
-      'output' => 'stream'
+      // 'output' => 'stream'
     ]);
 
     return response()->download($pdf['path'], $pdf['name'], $this->headers);
