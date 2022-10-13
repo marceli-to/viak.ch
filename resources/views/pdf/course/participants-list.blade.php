@@ -25,8 +25,7 @@
   <div class="page__content">
     <table class="content-table">
       <thead>
-        <th style="width: 100mm">{{ __('Name, Ort') }}</th>
-        <th>{{ __('Unterschrift') }}</th>
+        <th style="width: 100mm">{{ __('Teilnehmer') }}</th>
       </thead>
       <tbody>
         @foreach($data['students'] as $student)
@@ -36,7 +35,6 @@
                 {{ $student->fullname }}, {{ $student->city }}
               </strong>
             </td>
-            <td></td>
           </tr>
         @endforeach
       </tbody>
