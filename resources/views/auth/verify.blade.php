@@ -12,7 +12,7 @@
       <h1 class="xs:hide">{{ __('E-Mail verifizieren') }}</h1>
     </x-slot>
     <x-slot name="content">
-      <p>{{__('Bevor Du weiterfahren kannst, musst Du deine E-Mail-Adresse bestätigen. Wir haben Dir dazu eine E-Mail mit einem Bestätigungs-Link geschickt.') }}</p>
+      <p>{{__('Bevor Du weiterfahren kannst, musst Du Deine E-Mail-Adresse bestätigen. Wir haben Dir dazu eine E-Mail mit einem Bestätigungs-Link geschickt.') }}</p>
       <p>{{__('Falls Du keine E-Mail erhalten hast, kannst Du einen neuen Link anfordern:') }}</p>
       <form method="POST" action="{{ route('verification.resend') }}">
         @csrf

@@ -11,7 +11,7 @@
         <h1 class="xs:hide">{{ __('Konto eingerichtet') }}</h1>
       </x-slot>
       <x-slot name="content">
-        <p>{{ __('Vielen Danke, dein Konto ist damit eingerichtet.') }}</p>
+        <p>{{ __('Vielen Danke, Dein Konto ist damit eingerichtet.') }}</p>
       </x-slot>
     </x-article-text>
   </section>
@@ -25,7 +25,7 @@
         <h1 class="xs:hide">{{ __('Konto abschliessen') }}</h1>
       </x-slot>
       <x-slot name="content">
-        <p>{{ __('Um die Erstellung deines Kontos abzuschliessen, musst du ein Passwort einrichten:') }}</p>
+        <p>{{ __('Um die Erstellung Deines Kontos abzuschliessen, musst Du ein Passwort einrichten:') }}</p>
         <form method="POST" action="{{ route('auth.expert.finish') }}">
           @csrf
           <input type="hidden" name="uuid" value="{{ $uuid }}" />

@@ -36,9 +36,9 @@
     <td>CHF {{ $event->courseFee }}</td>
   </tr>
 </table>
-<p>{{ __('Die Rechnung für die Kurskosten findest du in der Beilage. Falls du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>
+<p>{{ __('Die Rechnung für die Kurskosten findest Du in der Beilage. Falls Du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>
 <p class="py-2x"><a href="{{ route('page.student.profile') }}" target="_blank" class="button-primary" style="text-decoration: none;"><strong>{{ __('Mit Kreditkarte bezahlen') }}</strong></a></p>
-<p>{{ __('Möchtest du weitere Kurse besuchen? Verwalte deine Kurse und deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
+<p>{{ __('Möchtest Du weitere Kurse besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
 @endif
 
 @if ($recipient == 'expert')
@@ -57,7 +57,7 @@
     <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
 </table>
-<p>{{ __('Weitere Informationen zu diesem Kurs findest du ') }} <a href="{{ route('page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>
+<p>{{ __('Weitere Informationen zu diesem Kurs findest Du ') }} <a href="{{ route('page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>
 @endif
 
 @include('mail.partials.signature')

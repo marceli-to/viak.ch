@@ -21,7 +21,7 @@
     <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
 </table>
-<p>{{ __('Deine Buchung für diesen Kurs wurde automatisch annulliert.') }} {{ __('Möchtest du einen anderen Kurse besuchen? Unsere Kurse und Angebote findest du ') }} <a href="{{ route('page.courses') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>hier</strong></a>.</p>
+<p>{{ __('Deine Buchung für diesen Kurs wurde automatisch annulliert.') }} {{ __('Möchtest Du einen anderen Kurse besuchen? Unsere Kurse und Angebote findest Du ') }} <a href="{{ route('page.courses') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>hier</strong></a>.</p>
 @endif
 
 @if ($recipient == 'expert')

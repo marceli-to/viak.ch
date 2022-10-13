@@ -135,7 +135,7 @@
       </form>
     </template>
     <template #content v-else>
-      <p>{{ __('Vielen Dank für deine Anmeldung. Du erhältst in den nächsten Minuten eine E-Mail, um deine Anmeldung zu verifizieren.') }}</p>
+      <p>{{ __('Vielen Dank für Deine Anmeldung. Du erhältst in den nächsten Minuten eine E-Mail, um Deine Anmeldung zu verifizieren.') }}</p>
     </template>
   </article-text>
   <notification ref="notification"/>  
