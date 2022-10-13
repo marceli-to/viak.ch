@@ -76,6 +76,7 @@
           </div>
         </form-group>
       </grid>
+      
       <collapsible class="">
         <template #title>Über</template>
         <template #content>
