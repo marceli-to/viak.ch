@@ -165,8 +165,8 @@
           {{ __('Gebuchte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.bookings && user.bookings.length">
-            <div v-for="(booking, index) in sorted(user.bookings, 'event.date', 'asc')" :key="index">
+          <div v-if="user.bookings">
+            <div v-for="(booking, index) in user.bookings" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
                 :booking="booking"
