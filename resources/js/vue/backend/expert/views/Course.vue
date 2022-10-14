@@ -8,7 +8,7 @@
     </article-text>
 
     <collapsible-container>
-      <collapsible :expanded="true">
+      <collapsible :expanded="true" :uuid="'expert-event-info'">
         <template #title>
           {{ __('Informationen') }}
         </template>
@@ -23,7 +23,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.participants">
+      <collapsible :items="data.participants" :uuid="'expert-event-participants'">
         <template #title>
           {{ __('Teilnehmer') }}
         </template>
@@ -52,7 +52,7 @@
     </collapsible-container>
 
     <collapsible-container v-if="data.participants.length">
-      <collapsible :items="data.messages">
+      <collapsible :items="data.messages" :uuid="'expert-event-messages'">
         <template #title>
           {{ __('Nachrichten') }}
         </template>
@@ -68,7 +68,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.files">
+      <collapsible :items="data.files" :uuid="'expert-event-files'">
         <template #title>
           {{ __('Kurs-Dokumente') }}
         </template>

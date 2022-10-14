@@ -133,7 +133,7 @@
     </article-text>
 
     <collapsible-container>
-      <collapsible :items="user.bookmarks">
+      <collapsible :items="user.bookmarks" :uuid="'student-bookmarks'">
         <template #title>
           {{ __('Merkliste') }}
         </template>
@@ -160,9 +160,9 @@
         </template>
       </collapsible>
       
-      <collapsible :expanded="true" :items="user.bookings">
+      <collapsible :expanded="true" :items="user.bookings" :uuid="'student-bookings'">
         <template #title>
-          {{ __('Gebuchte Kurse') }}
+          {{ __('Gebuchte Kurse') }}asdf
         </template>
         <template #content>
           <div v-if="user.bookings">
@@ -193,7 +193,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :uuid="'student-completed-courses'">
         <template #title>
           {{ __('Absolvierte Kurse') }}
         </template>
@@ -204,7 +204,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible>
+      <collapsible :uuid="'student-documents'">
         <template #title>
           {{ __('Dokumente') }}
         </template>

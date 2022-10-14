@@ -6,7 +6,7 @@
   <collapsible-container>
 
     <!-- Categories -->
-    <collapsible :expanded="$route.params.type == 'categories' ? true : false">
+    <collapsible :expanded="$route.params.type == 'categories' ? true : false" :uuid="'dashboard-settings-categories'">
       <template #title>Kategorien</template>
       <template #content>
         <template v-if="data['categories'].length">
@@ -36,7 +36,7 @@
     </collapsible>
   
     <!-- Languages -->
-    <collapsible :expanded="$route.params.type == 'languages' ? true : false">
+    <collapsible :expanded="$route.params.type == 'languages' ? true : false" :uuid="'dashboard-settings-languages'">
       <template #title>Sprachen</template>
       <template #content>
         <template v-if="data['languages'].length">
@@ -66,7 +66,7 @@
     </collapsible>
 
     <!-- Levels -->
-    <collapsible :expanded="$route.params.type == 'levels' ? true : false">
+    <collapsible :expanded="$route.params.type == 'levels' ? true : false" :uuid="'dashboard-settings-levels'">
       <template #title>Levels</template>
       <template #content>
         <template v-if="data['levels'].length">
@@ -96,7 +96,7 @@
     </collapsible>
 
     <!-- Software -->
-    <collapsible :expanded="$route.params.type == 'software' ? true : false">
+    <collapsible :expanded="$route.params.type == 'software' ? true : false" :uuid="'dashboard-settings-software'">
       <template #title>Software</template>
       <template #content>
         <template v-if="data['software'].length">
@@ -126,7 +126,7 @@
     </collapsible>
 
     <!-- Tags -->
-    <collapsible :expanded="$route.params.type == 'tags' ? true : false">
+    <collapsible :expanded="$route.params.type == 'tags' ? true : false" :uuid="'dashboard-settings-tags'">
       <template #title>Tags</template>
       <template #content>
         <template v-if="data['tags'].length">

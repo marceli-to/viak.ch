@@ -16,6 +16,7 @@
 </template>
 <script>
 import Count from "@/shared/components/ui/misc/Count.vue";
+import Helpers from "@/shared/mixins/Helpers";
 
 export default {
 
@@ -23,9 +24,12 @@ export default {
     Count
   },
 
+  mixins: [Helpers],
+
   data() {
     return {
       isOpen: false,
+      collapsibles: [],
     }
   },
 
@@ -38,17 +42,28 @@ export default {
     items: {
       type: [Array, Object],
       default: null,
+    },
+
+    uuid: {
+      type: String,
+      default: null,
     }
   },
 
   mounted() {
     this.isOpen = this.$props.expanded ? true : false;
+    this.collapsibles = this.$store.state.collapsibles;
+
+    if (this.findInState(this.$props.uuid)) {
+      this.isOpen = true;
+    }
   },
 
   methods: {
 
     toggle() {
       this.isOpen = this.isOpen ? false : true;
+      this.updateState(this.$props.uuid);
     },
 
     show() {
@@ -57,6 +72,24 @@ export default {
 
     hide() {
       this.isOpen = false;
+    },
+
+    updateState(uid) {
+      if (this.isOpen) {
+        if (!this.collapsibles.includes(uid)) {
+          this.collapsibles.push(uid);
+          this.$store.commit('collapsibles', this.collapsibles);
+        }
+      }
+      else {
+        let index = this.collapsibles.findIndex((x) => x === uid);
+        this.collapsibles.splice(index, 1);
+        this.$store.commit('collapsibles', this.collapsibles);
+      }
+    },
+
+    findInState(uid) {
+      return this.collapsibles.includes(uid);
     }
   }
 }

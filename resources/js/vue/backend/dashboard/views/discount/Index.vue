@@ -20,7 +20,7 @@
   </content-list-header>
 
   <collapsible-container>
-    <collapsible :expanded="true">
+    <collapsible :expanded="true" :uuid="'dashboard-discounts-valid'">
       <template #title>Gültige Codes</template>
       <template #content>
         <stacked-list-item v-for="code in query('unused')" :key="code.id" class="relative">
@@ -51,7 +51,7 @@
   </collapsible-container>
 
   <collapsible-container>
-    <collapsible>
+    <collapsible :uuid="'dashboard-discounts-invalid'">
       <template #title>Verwendete oder abgelaufene Codes</template>
       <template #content>
         <stacked-list-item v-for="code in query('used')" :key="code.id" class="relative">

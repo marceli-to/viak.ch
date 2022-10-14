@@ -24,7 +24,7 @@
       @end="order"
       ghost-class="draggable-ghost"
       draggable=".is-draggable">
-      <collapsible v-for="course in queryData" :key="course.id" :class="[!course.publish ? 'is-hidden' : '', 'is-draggable']">
+      <collapsible v-for="course in queryData" :key="course.id" :class="[!course.publish ? 'is-hidden' : '', 'is-draggable']" :uuid="`course-events-${course.uuid}`">
         <template #title>
           {{ course.course_number }} <span>{{ course.title }}</span>
         </template>

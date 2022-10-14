@@ -8,7 +8,7 @@
     </article-text>
 
     <collapsible-container>
-      <collapsible :expanded="true">
+      <collapsible :expanded="true" :uuid="'student-event-booking'">
         <template #title>
           {{ __('Buchung') }}
         </template>
@@ -25,7 +25,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.messages">
+      <collapsible :items="data.messages" :uuid="'student-event-messages'">
         <template #title>
           {{ __('Nachrichten') }}
         </template>
@@ -39,7 +39,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.files">
+      <collapsible :items="data.files" :uuid="'student-event-files'">
         <template #title>
           {{ __('Kurs-Dokumente') }}
         </template>

@@ -8,7 +8,7 @@
     </article-text>
 
     <collapsible-container>
-      <collapsible :expanded="true">
+      <collapsible :expanded="true" :uuid="'dashboard-course-event-info'">
         <template #title>
           {{ __('Informationen') }}
         </template>
@@ -25,7 +25,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.participants">
+      <collapsible :items="data.participants" :uuid="'dashboard-course-event-participants'">
         <template #title>
           {{ __('Teilnehmer') }}
         </template>
@@ -63,7 +63,7 @@
     </collapsible-container>
 
     <collapsible-container v-if="data.participants.length">
-      <collapsible :items="data.messages">
+      <collapsible :items="data.messages" :uuid="'dashboard-course-event-messages'">
         <template #title>
           {{ __('Nachrichten') }}
         </template>
@@ -79,7 +79,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.files">
+      <collapsible :items="data.files" :uuid="'dashboard-course-event-files'">
         <template #title>
           {{ __('Kurs-Dokumente') }}
         </template>

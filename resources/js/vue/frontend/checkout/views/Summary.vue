@@ -10,9 +10,13 @@
       </template>
     </stacked-list-header>
 
-    <stacked-list-event v-for="event in basket.events" :key="event.uuid" :event="event" :basket="true" />
+    <stacked-list-event 
+      v-for="event in basket.events" 
+      :key="event.uuid" 
+      :event="event" 
+      :basket="true" />
 
-    <stacked-list-item>
+    <stacked-list-item v-if="basket.totals.discount > 0">
       <div>
         <div class="sm:span-4">
           {{ __('Zwischentotal') }}
@@ -34,7 +38,7 @@
       </div>
     </stacked-list-item>
 
-    <stacked-list-item>
+    <!-- <stacked-list-item>
       <div>
         <div class="sm:span-4">
           {{ __('Mehrwertsteuer') }} 0%
@@ -45,12 +49,13 @@
           <template v-else>0.00</template>
         </div>
       </div>
-    </stacked-list-item>
+    </stacked-list-item> -->
 
     <stacked-list-item>
       <div>
         <div class="sm:span-4">
-          <strong>{{ __('Total') }}</strong>
+          <strong>{{ __('Total') }}</strong><br>
+          {{ __('inkl. 0% Mehrwertsteuer') }}
         </div>
         <div class="sm:span-8 sm:align-right">
           <strong>CHF {{ basket.totals.grandTotal | currency }}</strong>

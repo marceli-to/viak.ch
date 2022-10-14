@@ -73,13 +73,6 @@ class EventMessageController extends Controller
           'fileable_id' => $message->id
         ]);
 
-        // Attach file to event
-        Fileable::create([
-          'file_id' => $file->id,
-          'fileable_type' => "App\Models\Event",
-          'fileable_id' => $event->id
-        ]);
-
         (new Media())->copy($file->name);
       }
     }
