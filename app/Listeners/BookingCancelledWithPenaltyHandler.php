@@ -10,14 +10,14 @@ class BookingCancelledWithPenaltyHandler
   /**
    * Handle the event.
    *
-   * @param  BookingCancelledWithPenalty $event
+   * @param  BookingCancelledWithPenalty $bookingCancelledWithPenaltyEvent
    * @return void
    */
-  public function handle(BookingCancelledWithPenalty $event)
+  public function handle(BookingCancelledWithPenalty $bookingCancelledWithPenaltyEvent)
   {
     Job::create([
-      'recipient' => $event->user->email,
-      'mailable_id' => $event->booking->id,
+      'recipient' => $bookingCancelledWithPenaltyEvent->user->email,
+      'mailable_id' => $bookingCancelledWithPenaltyEvent->booking->id,
       'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\BookingCancelledWithPenalty::class
     ]);

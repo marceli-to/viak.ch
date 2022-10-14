@@ -10,14 +10,14 @@ class ExpertCreatedHandler
   /**
    * Handle the event.
    *
-   * @param  ExpertCreated $event
+   * @param  ExpertCreated $expertCreatedEvent
    * @return void
    */
-  public function handle(ExpertCreated $event)
+  public function handle(ExpertCreated $expertCreatedEvent)
   {
     Job::create([
-      'recipient' => $event->user->email,
-      'mailable_id' => $event->user->id,
+      'recipient' => $expertCreatedEvent->user->email,
+      'mailable_id' => $expertCreatedEvent->user->id,
       'mailable_type' => \App\Models\User::class,
       'mailable_class' => \App\Mail\ExpertCreated::class
     ]);

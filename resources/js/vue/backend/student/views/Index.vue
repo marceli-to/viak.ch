@@ -162,7 +162,7 @@
       
       <collapsible :expanded="true" :items="user.bookings" :uuid="'student-bookings'">
         <template #title>
-          {{ __('Gebuchte Kurse') }}asdf
+          {{ __('Gebuchte Kurse') }}
         </template>
         <template #content>
           <div v-if="user.bookings">

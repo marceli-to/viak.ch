@@ -10,14 +10,14 @@ class StudentRegisteredHandler
   /**
    * Handle the event.
    *
-   * @param  StudentRegistered $event
+   * @param  StudentRegistered $studentRegisteredEvent
    * @return void
    */
-  public function handle(StudentRegistered $event)
+  public function handle(StudentRegistered $studentRegisteredEvent)
   {
     Job::create([
-      'recipient' => $event->user->email,
-      'mailable_id' => $event->user->id,
+      'recipient' => $studentRegisteredEvent->user->email,
+      'mailable_id' => $studentRegisteredEvent->user->id,
       'mailable_type' => \App\Models\User::class,
       'mailable_class' => \App\Mail\StudentRegistered::class
     ]);

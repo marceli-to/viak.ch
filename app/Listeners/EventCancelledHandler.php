@@ -11,18 +11,18 @@ class EventCancelledHandler
   /**
    * Handle the event.
    *
-   * @param  EventCancelled $event
+   * @param  EventCancelled $eventCancelledEvent
    * @return void
    */
-  public function handle(EventCancelled $event)
+  public function handle(EventCancelled $eventCancelledEvent)
   { 
     // Update event
-    $event->event->cancelled = 1;
-    $event->event->cancelled_at = \Carbon\Carbon::now();
-    $event->event->save();
+    $eventCancelledEvent->event->cancelled = 1;
+    $eventCancelledEvent->event->cancelled_at = \Carbon\Carbon::now();
+    $eventCancelledEvent->event->save();
 
     // Get bookings for the event
-    $bookings = $event->event->bookings()->get();
+    $bookings = $eventCancelledEvent->event->bookings()->get();
 
     if ($bookings)
     {
@@ -39,7 +39,7 @@ class EventCancelledHandler
     }
 
     // Get the experts
-    $experts = $event->event->experts()->get();
+    $experts = $eventCancelledEvent->event->experts()->get();
     
     if ($experts)
     {
@@ -48,7 +48,7 @@ class EventCancelledHandler
         // Create a job for the confirmation email to each student
         Job::create([
           'recipient' => $expert->email,
-          'mailable_id' => $event->event->id,
+          'mailable_id' => $eventCancelledEvent->event->id,
           'mailable_type' => \App\Models\Event::class,
           'mailable_class' => \App\Mail\EventCancelExpert::class
         ]);

@@ -11,13 +11,13 @@ class EventConfirmedHandler
   /**
    * Handle the event.
    *
-   * @param  EventConfirmed $event
+   * @param  EventConfirmed $eventConfirmedEvent
    * @return void
    */
-  public function handle(EventConfirmed $event)
+  public function handle(EventConfirmed $eventConfirmedEvent)
   { 
     // Get bookings for the event
-    $bookings = $event->event->bookings()->get();
+    $bookings = $eventConfirmedEvent->event->bookings()->get();
 
     if ($bookings)
     {
@@ -34,7 +34,7 @@ class EventConfirmedHandler
     }
 
     // Get the experts
-    $experts = $event->event->experts()->get();
+    $experts = $eventConfirmedEvent->event->experts()->get();
     
     if ($experts)
     {
@@ -43,7 +43,7 @@ class EventConfirmedHandler
         // Create a job for the confirmation email to each student
         Job::create([
           'recipient' => $expert->email,
-          'mailable_id' => $event->event->id,
+          'mailable_id' => $eventConfirmedEvent->event->id,
           'mailable_type' => \App\Models\Event::class,
           'mailable_class' => \App\Mail\EventConfirmationExpert::class
         ]);
