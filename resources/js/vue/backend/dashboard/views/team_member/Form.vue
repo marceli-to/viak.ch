@@ -24,27 +24,22 @@
       </form-group>
 
       <form-group :label="'Titel'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.title.de"
-        ></tinymce-editor>
+        <textarea v-model="data.title.de" class="is-large"></textarea>
       </form-group>
 
-      <form-group :label="'Beschreibung'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.description.de"
-        ></tinymce-editor>
-      </form-group>
-
-      <form-group :label="'Info (Telefon, E-Mail)'">
+      <form-group :label="'Info'">
         <tinymce-editor
           :api-key="tinyApiKey"
           :init="tinyConfig"
           v-model="data.info.de"
         ></tinymce-editor>
+      </form-group>
+
+      <form-group class="line-after line-before flex mt-8x">
+        <div class="form-group__checkbox">
+          <input type="checkbox" id="publish" name="publish" v-model="data.publish">
+          <label for="publish">Publizieren</label>
+        </div>
       </form-group>
 
       <collapsible-container>
@@ -141,10 +136,6 @@ export default {
         firstname: null,
         name: null,
         title: {
-          de: null,
-          en: null,
-        },
-        description: {
           de: null,
           en: null,
         },

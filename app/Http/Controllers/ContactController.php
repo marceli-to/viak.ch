@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\TeamMember;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,10 @@ class ContactController extends BaseController
 
   public function index()
   {
-    return view($this->viewPath . 'index');
+    return view(
+      $this->viewPath . 'index', [
+        'members' => TeamMember::published()->with('publishedImage')->orderBy('order', 'ASC')->get()
+      ]
+    );
   }
 }

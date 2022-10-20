@@ -1,4 +1,4 @@
-<article class="card-text">
+<article {{ $attributes ? $attributes : 'class="card-text' }}>
   <div>
     <aside>
       {{ $aside ?? '' }}

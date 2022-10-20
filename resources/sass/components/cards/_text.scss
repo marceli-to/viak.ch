@@ -4,6 +4,7 @@
  * -----------------------------------------------------------------------------
  */
 
+%card-text,
 article.card-text {
   @extend %mt-4x;
   @extend %pt-2x;
@@ -36,5 +37,25 @@ article.card-text {
   h2, h3 {
     color: $color-primary;
   }
+}
 
+article.card-team {
+  @extend %card-text;
+  margin-top: $space-4x !important;
+
+  aside + div {
+    @extend %mt-4x;
+    @extend %sm\:mt-0;
+  }
+
+  a:not([class*="btn-"]) {
+    color: $color-primary;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

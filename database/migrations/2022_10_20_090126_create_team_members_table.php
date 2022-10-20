@@ -18,7 +18,6 @@ class CreateTeamMembersTable extends Migration
       $table->string('firstname');
       $table->string('name');
       $table->json('title');
-      $table->json('description')->nullable();
       $table->json('info')->nullable();
       $table->string('uuid', 36);
       $table->tinyInteger('publish')->default(1);

@@ -268,6 +268,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::get('team-member/{teamMember}', [DashboardTeamMemberController::class, 'find']);
   Route::post('team-member', [DashboardTeamMemberController::class, 'store']);
   Route::put('team-member/{teamMember}', [DashboardTeamMemberController::class, 'update']);
+  Route::post('team-members/order', [DashboardTeamMemberController::class, 'order']);
   Route::delete('team-member/{teamMember}', [DashboardTeamMemberController::class, 'destroy']);
 
   // Settings

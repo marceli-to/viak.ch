@@ -18,7 +18,6 @@ class TeamMember extends Base
   
   protected $casts = [
     'title' => 'array',
-    'description' => 'array',
     'info' => 'array',
   ];
 
@@ -30,9 +29,6 @@ class TeamMember extends Base
 
   protected $attributes = [
     'title' => '{
-      "de": "null", "en": "null"
-    }',
-    'description' => '{
       "de": "null", "en": "null"
     }',
     'info' => '{
@@ -48,7 +44,6 @@ class TeamMember extends Base
 
   public $translatable = [
     'title',
-    'description',
     'info',
   ];
 
@@ -63,8 +58,9 @@ class TeamMember extends Base
     'firstname',
     'name',
     'title',
-    'description',
     'info',
+    'publish',
+    'order'
   ];
 
 
@@ -76,6 +72,15 @@ class TeamMember extends Base
 
   protected $hidden = [];
 
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'fullname',
+  ];
 
   /*
   |--------------------------------------------------------------------------
@@ -90,9 +95,28 @@ class TeamMember extends Base
     return $this->morphOne(Image::class, 'imageable');
   }
 
+
+  public function publishedImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('publish', 1);
+  }
+
+
   public function images()
   {
     return $this->morphMany(Image::class, 'imageable');
   }
+  
+  
+  /**
+   * Get the members full name.
+   *
+   * @param  string  $value
+   * @return string
+   */
 
+  public function getFullnameAttribute($value)
+  {
+    return trim("{$this->firstname} {$this->name}");
+  }
 }

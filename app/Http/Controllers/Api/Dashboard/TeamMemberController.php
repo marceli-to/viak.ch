@@ -16,7 +16,7 @@ class TeamMemberController extends Controller
    */
   public function get()
   {
-    return new DataCollection(TeamMember::published()->orderBy('name', 'ASC')->get());
+    return new DataCollection(TeamMember::orderBy('order', 'ASC')->get());
   }
 
   /**
@@ -27,7 +27,7 @@ class TeamMemberController extends Controller
    */
   public function find(TeamMember $teamMember)
   {
-    $teamMember = TeamMember::with('image')->find($teamMember->id);
+    $teamMember = TeamMember::with('images')->find($teamMember->id);
     return response()->json($teamMember);
   }
 
@@ -76,6 +76,25 @@ class TeamMemberController extends Controller
     $teamMember->publish = $teamMember->publish == 0 ? 1 : 0;
     $teamMember->save();
     return response()->json($teamMember->publish);
+  }
+
+  /**
+   * Update the order the team members
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function order(Request $request)
+  {
+    $items = $request->get('items');
+    foreach($items as $item)
+    {
+      $i = TeamMember::find($item['id']);
+      $i->order = $item['order'];
+      $i->save(); 
+    }
+    return response()->json('successfully updated');
   }
 
   /**
