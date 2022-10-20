@@ -22,6 +22,7 @@ import adminRoutes from '@/backend/dashboard/views/admin/config/routes';
 import settingRoutes from '@/backend/dashboard/views/setting/config/routes';
 import discountCodeRoutes from '@/backend/dashboard/views/discount/config/routes';
 import teamMemberRoutes from '@/backend/dashboard/views/team_member/config/routes';
+import newsRoutes from '@/backend/dashboard/views/news/config/routes';
 
 const router = new VueRouter(
   { 
@@ -35,7 +36,8 @@ const router = new VueRouter(
       ...adminRoutes,
       ...settingRoutes,
       ...discountCodeRoutes,
-      ...teamMemberRoutes
+      ...teamMemberRoutes,
+      ...newsRoutes
     ]
   }
 );

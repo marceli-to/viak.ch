@@ -4,38 +4,35 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <back-link :route="'team-members'"></back-link>
+      <back-link :route="'news'"></back-link>
     </template>
 
     <template #content>
-      <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
+      <form-group :label="'Titel'" :required="true" :error="errors.title">
         <input 
           type="text" 
-          v-model="data.firstname"
+          v-model="data.title.de"
           required 
-          @focus="removeError('firstname')" />
-      </form-group>
-      <form-group :label="'Name'" :required="true" :error="errors.name">
-        <input 
-          type="text" 
-          v-model="data.name"
-          required 
-          @focus="removeError('name')" />
+          @focus="removeError('title')" />
       </form-group>
 
-      <form-group :label="'Titel'">
-        <textarea v-model="data.title.de" class="is-large"></textarea>
-      </form-group>
-
-      <form-group :label="'Info'">
+      <form-group :label="'Text'">
         <tinymce-editor
           :api-key="tinyApiKey"
           :init="tinyConfig"
-          v-model="data.info.de"
+          v-model="data.text.de"
         ></tinymce-editor>
       </form-group>
 
-      <form-group class="line-after line-before flex mt-8x">
+      <form-group :label="'Link'">
+        <input 
+          type="text" 
+          v-model="data.link"
+          required 
+          @focus="removeError('link')" />
+      </form-group>
+
+      <form-group class="line-after flex mt-8x">
         <div class="form-group__checkbox">
           <input type="checkbox" id="publish" name="publish" v-model="data.publish">
           <label for="publish">Publizieren</label>
@@ -44,12 +41,12 @@
 
       <collapsible-container>
         <collapsible :expanded="true">
-          <template #title>Bilder</template>
+          <template #title>Bild</template>
           <template #content>
             <images 
               :imageRatioW="16" 
               :imageRatioH="9"
-              :type="'TeamMember'"
+              :type="'News'"
               :typeId="data.id"
               :images="data.images"
               v-if="$props.type == 'edit'">
@@ -75,8 +72,8 @@
         </a>
       </form-group>
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
-        <h2>Team-Mitglied löschen</h2>
-        <p>Mit dieser Aktion wird das Team-Mitglied gelöscht.</p>
+        <h2>News löschen</h2>
+        <p>Mit dieser Aktion wird das News gelöscht.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
     </template>
@@ -132,13 +129,11 @@ export default {
       
       // Model
       data: {
-        firstname: null,
-        name: null,
         title: {
           de: null,
           en: null,
         },
-        info: {
+        text: {
           de: null,
           en: null,
         },
@@ -148,16 +143,15 @@ export default {
 
       // Validation
       errors: {
-        firstname: null,
-        name: null,
+        title: null,
       },
 
       // Routes
       routes: {
-        find: '/api/dashboard/team-member',
-        store: '/api/dashboard/team-member',
-        update: '/api/dashboard/team-member',
-        delete: '/api/dashboard/team-member',
+        find: '/api/dashboard/news',
+        store: '/api/dashboard/news',
+        update: '/api/dashboard/news',
+        delete: '/api/dashboard/news',
       },
 
       // States
@@ -215,10 +209,10 @@ export default {
         NProgress.done();
         this.isLoading = false;
         if (redirect) {
-          this.$router.push({ name: 'team-members'});
+          this.$router.push({ name: 'news'});
         }
         else {
-          this.$router.push({ name: 'team-member-edit', params: { id: response.data.teamMemberId }});
+          this.$router.push({ name: 'news-edit', params: { id: response.data.newsId }});
         }
       });
     },
@@ -226,7 +220,7 @@ export default {
     update() {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: 'team-members'});
+        this.$router.push({ name: 'news'});
       });
     },
 
@@ -234,20 +228,16 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-        this.$router.push({ name: 'team-members'});
+        this.$router.push({ name: 'news'});
         this.isLoading = false;
         NProgress.done();
       });
     },
-
-    sorted(data, by, dir){
-      return _.orderBy(data, by, dir);
-    }
   },
 
   computed: {
     title() {
-      return this.$props.type == 'edit' ? "Team-Mitglied bearbeiten" : "Team-Mitglied hinzufügen";
+      return this.$props.type == 'edit' ? "News bearbeiten" : "News hinzufügen";
     },
   }
 };

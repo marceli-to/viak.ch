@@ -35,6 +35,7 @@ use App\Http\Controllers\Api\Dashboard\Settings\LevelController as DashboardLeve
 use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardSoftwareController;
 use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
 use App\Http\Controllers\Api\Dashboard\TeamMemberController as DashboardTeamMemberController;
+use App\Http\Controllers\Api\Dashboard\NewsController as DashboardNewsController;
 
 
 /*
@@ -270,6 +271,14 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('team-member/{teamMember}', [DashboardTeamMemberController::class, 'update']);
   Route::post('team-members/order', [DashboardTeamMemberController::class, 'order']);
   Route::delete('team-member/{teamMember}', [DashboardTeamMemberController::class, 'destroy']);
+
+  // News
+  Route::get('news-items', [DashboardNewsController::class, 'get']);
+  Route::get('news/{news}', [DashboardNewsController::class, 'find']);
+  Route::post('news', [DashboardNewsController::class, 'store']);
+  Route::put('news/{news}', [DashboardNewsController::class, 'update']);
+  Route::post('news/order', [DashboardNewsController::class, 'order']);
+  Route::delete('news/{news}', [DashboardNewsController::class, 'destroy']);
 
   // Settings
   Route::prefix('settings')->group(function() {
