@@ -3,9 +3,38 @@
 @section('content')
 <section class="container">
   <article class="content-text-media is-reverse">
-    <figure class="text-media__visual">
+    
+
+    @if ($hero->publishedImages->count() > 1)
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          @foreach($hero->publishedImages as $image)
+            <figure class="swiper-slide text-media__visual">
+              @if ($image)
+                <x-image :maxSizes="[1000 => 1600, 700 => 1200, 0 => 900]" width="1600" height="900" :image="$image" ratio="16x9" />
+              @else
+                <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="{{ $image->title }}">
+              @endif
+            </figure>
+          @endforeach
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    @else
+      <figure class="text-media__visual">
+        @if ($hero->publishedImage)
+          <x-image :maxSizes="[1000 => 1600, 700 => 1200, 0 => 900]" width="1600" height="900" :image="$hero->publishedImage" ratio="16x9" />
+        @else
+          <img src="/media/viak-placeholder-visual.png" width="1600" height="900" alt="">
+        @endif
+      </figure>
+    @endif
+
+    {{-- <figure class="text-media__visual">
       <img src="/media/viak-keyvisual-home.jpg" width="1600" height="900" alt="Ihre Zukunft ist visuell">
-    </figure>
+    </figure> --}}
+
     <div class="text-media__body">
       <aside>
         <h1>{{ __('Ihre Zukunft ist visuell') }}</h1>

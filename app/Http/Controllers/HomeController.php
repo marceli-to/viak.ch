@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\Hero;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,10 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
-    return view($this->viewPath . 'index');
+    return view(
+      $this->viewPath . 'index', [
+        'hero' => Hero::published()->with('publishedImages')->where('slug', 'home')->first()
+      ]
+    );
   }
 }

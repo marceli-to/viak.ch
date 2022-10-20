@@ -43,7 +43,6 @@ class HeroController extends Controller
       array_merge(
         $request->all(), 
         [
-          'slug' => \Str::slug($request->input('title')),
           'uuid' => \Str::uuid(), 
         ]
       )
@@ -63,7 +62,6 @@ class HeroController extends Controller
   {
     $hero = Hero::findOrFail($hero->id);
     $hero->update($request->all());
-    $hero->slug = \Str::slug($request->input('title'));
     $hero->save();
     return response()->json('successfully updated');
   }

@@ -186,7 +186,7 @@ export default {
         NProgress.done();
         this.isLoading = false;
         if (redirect) {
-          this.$router.push({ name: 'heroes'});
+          this.$router.push({ name: 'content-heroes' });
         }
         else {
           this.$router.push({ name: 'content-hero-edit', params: { id: response.data.heroId }});
@@ -197,7 +197,7 @@ export default {
     update() {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: 'heroes'});
+        this.$router.push({ name: 'content-heroes' });
       });
     },
 
@@ -205,7 +205,7 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-        this.$router.push({ name: 'heroes'});
+        this.$router.push({ name: 'content-heroes' });
         this.isLoading = false;
         NProgress.done();
       });

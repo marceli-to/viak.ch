@@ -76,7 +76,12 @@ article.content-text-media {
 
   &.is-reverse {
 
+    .swiper {
+      @extend %mb-6x;
+    }
+
     @include bp-sm() {
+      .swiper,
       .text-media__visual {
         margin-bottom: 0;
         order: 2;

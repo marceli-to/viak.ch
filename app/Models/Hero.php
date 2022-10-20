@@ -34,9 +34,15 @@ class Hero extends Base
   {
     return $this->morphMany(Image::class, 'imageable');
   }
-
+ 
   public function publishedImages()
   {
     return $this->morphMany(Image::class, 'imageable')->where('publish', 1);
   }
+
+  public function publishedImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('publish', 1);
+  }
+
 }
