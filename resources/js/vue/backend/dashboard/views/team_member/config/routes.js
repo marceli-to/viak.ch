@@ -4,17 +4,17 @@ import TeamMemberEdit from '@/backend/dashboard/views/team_member/partials/Edit.
 
 const routes = [
   {
-    name: 'team-members',
+    name: 'content-team-members',
     path: '/dashboard/team-members',
     component: TeamMemberIndex,
   },
   {
-    name: 'team-member-create',
+    name: 'content-team-member-create',
     path: '/dashboard/team-member/create',
     component: TeamMemberCreate,
   },
   {
-    name: 'team-member-edit',
+    name: 'content-team-member-edit',
     path: '/dashboard/team-member/edit/:id',
     component: TeamMemberEdit,
   },

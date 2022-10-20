@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
       \Database\Seeders\LocationSeeder::class,
       \Database\Seeders\CourseSeeder::class,
       \Database\Seeders\EventSeeder::class,
+      \Database\Seeders\HeroSeeder::class,
     ]);
   }
 }

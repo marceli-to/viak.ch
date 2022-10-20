@@ -3,39 +3,31 @@
   <content-list-header>
     <grid class="grid-cols-12">
       <grid-col class="span-4">
-        <h1>Team</h1>
+        <h1>Heroes</h1>
       </grid-col>
       <grid-col class="span-4">
-        <router-link :to="{ name: 'content-team-member-create' }" class="icon-plus">
+        <router-link :to="{ name: 'content-hero-create' }" class="icon-plus">
           <icon-plus />
         </router-link>
       </grid-col>
     </grid>
   </content-list-header>
-  <draggable 
-    :disabled="false"
-    v-model="data" 
-    @end="order"
-    ghost-class="draggable-ghost"
-    draggable=".is-draggable">
-    <stacked-list-item v-for="teamMember in data" :key="teamMember.uuid" class="relative is-draggable">
-      <router-link :to="{ name: 'content-team-member-edit', params: { id: teamMember.id } }" class="icon-edit mt-3x">
-        <icon-edit />
-      </router-link>
-      <div>
-        <div :class="[!teamMember.publish ? 'is-hidden' : '', 'span-4']">
-          {{ teamMember.firstname }} {{ teamMember.name }}
-        </div>
+  <stacked-list-item v-for="hero in data" :key="hero.uuid" class="relative">
+    <router-link :to="{ name: 'content-hero-edit', params: { id: hero.id } }" class="icon-edit mt-3x">
+      <icon-edit />
+    </router-link>
+    <div>
+      <div :class="[!hero.publish ? 'is-hidden' : '', 'span-8']">
+        {{ hero.title }}
       </div>
-    </stacked-list-item>
-  </draggable>
+    </div>
+  </stacked-list-item>
   <notification ref="notification" />
 </div>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
-import draggable from 'vuedraggable';
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
@@ -54,7 +46,6 @@ export default {
   components: {
     NProgress,
     ErrorHandling,
-    draggable,
     Grid,
     GridCol,
     ContentListHeader,
@@ -76,11 +67,9 @@ export default {
 
       data: [],
 
-
       // Routes
       routes: {
-        get: '/api/dashboard/team-members',
-        order: '/api/dashboard/team-members/order'
+        get: '/api/dashboard/heroes',
       },
 
       // States
@@ -110,25 +99,6 @@ export default {
         NProgress.done();
       });
     },
-
-    order() {
-      let items = this.data.map(function(item, index) {
-        item.order = index;
-        return item;
-      });
-      if (this.debounce) return;
-      this.debounce = setTimeout(function(items) {
-        this.debounce = false;
-        this.axios.post(this.routes.order, {items: items}).then((response) => {
-          this.$refs.notification.init({
-            message: 'Reihenfolge angepasst',
-            type: 'toast',
-            style: 'success',
-          });
-        });
-      }.bind(this, items), 1000);
-    },
-
   },
 
 }

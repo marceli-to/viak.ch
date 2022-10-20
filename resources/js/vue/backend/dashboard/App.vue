@@ -63,15 +63,27 @@
                     Rabatte Codes
                   </router-link>
                 </li>
-                <li>
-                  <router-link :to="{name: 'team-members'}">
-                    Team
-                  </router-link>
-                </li>
-                <li>
-                  <router-link :to="{name: 'news'}">
-                    News
-                  </router-link>
+                <li class="is-parent">
+                  <a href="" @click.prevent="toggleSubMenu('content')" :class="[hasSubMenu.content || $route.name.startsWith('content')  ? 'is-active' : '', '']">
+                    Seiteninhalte
+                  </a>
+                  <ul v-if="hasSubMenu.content || $route.name.startsWith('content') ">
+                    <li>
+                      <router-link :to="{name: 'content-heroes'}" :class="[$route.name.startsWith('content-hero') ? 'is-active' : '', '']">
+                        Heroes
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{name: 'content-team-members'}" :class="[$route.name.startsWith('content-team-') ? 'is-active' : '', '']">
+                        Team
+                      </router-link>
+                    </li>
+                    <li>
+                      <router-link :to="{name: 'content-news'}" :class="[$route.name.startsWith('content-news') ? 'is-active' : '', '']">
+                        News
+                      </router-link>
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   <router-link :to="{name: 'settings'}">
@@ -114,6 +126,9 @@ export default {
       isLoaded: true,
       isActive: false,
       hasMenu: false,
+      hasSubMenu: {
+        content: false,
+      }
     }
   },
 
@@ -122,17 +137,26 @@ export default {
       this.hasMenu = this.hasMenu ? false : true;
     },
 
+    toggleSubMenu(type) {
+      this.hasSubMenu[type] =  this.hasSubMenu[type] ? false : true
+    },
+
     showMenu() {
       this.hasMenu = true;
     },
 
     hideMenu() {
       this.hasMenu = false;
-    }
+    },
+
+    hideSubMenu() {
+      this.hasSubMenu.content = false;
+    },
   },
   watch: {
     '$route'() {
       this.hideMenu();
+      this.hideSubMenu();
     }
   },
 }

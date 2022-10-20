@@ -4,17 +4,17 @@ import NewsEdit from '@/backend/dashboard/views/news/partials/Edit.vue';
 
 const routes = [
   {
-    name: 'news',
+    name: 'content-news',
     path: '/dashboard/news',
     component: NewsIndex,
   },
   {
-    name: 'news-create',
+    name: 'content-news-create',
     path: '/dashboard/news/create',
     component: NewsCreate,
   },
   {
-    name: 'news-edit',
+    name: 'content-news-edit',
     path: '/dashboard/news/edit/:id',
     component: NewsEdit,
   },

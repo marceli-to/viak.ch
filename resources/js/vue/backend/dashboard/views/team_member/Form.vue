@@ -215,10 +215,10 @@ export default {
         NProgress.done();
         this.isLoading = false;
         if (redirect) {
-          this.$router.push({ name: 'team-members'});
+          this.$router.push({ name: 'content-team-members'});
         }
         else {
-          this.$router.push({ name: 'team-member-edit', params: { id: response.data.teamMemberId }});
+          this.$router.push({ name: 'content-team-member-edit', params: { id: response.data.teamMemberId }});
         }
       });
     },
@@ -226,7 +226,7 @@ export default {
     update() {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: 'team-members'});
+        this.$router.push({ name: 'content-team-members'});
       });
     },
 
@@ -234,7 +234,7 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-        this.$router.push({ name: 'team-members'});
+        this.$router.push({ name: 'content-team-members'});
         this.isLoading = false;
         NProgress.done();
       });

@@ -6,14 +6,14 @@
         <h1>News</h1>
       </grid-col>
       <grid-col class="span-4">
-        <router-link :to="{ name: 'news-create' }" class="icon-plus">
+        <router-link :to="{ name: 'content-news-create' }" class="icon-plus">
           <icon-plus />
         </router-link>
       </grid-col>
     </grid>
   </content-list-header>
   <stacked-list-item v-for="news in data" :key="news.uuid" class="relative">
-    <router-link :to="{ name: 'news-edit', params: { id: news.id } }" class="icon-edit mt-3x">
+    <router-link :to="{ name: 'content-news-edit', params: { id: news.id } }" class="icon-edit mt-3x">
       <icon-edit />
     </router-link>
     <div>

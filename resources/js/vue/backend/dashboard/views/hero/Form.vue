@@ -4,32 +4,16 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <back-link :route="'content-news'"></back-link>
+      <back-link :route="'heroes'"></back-link>
     </template>
 
     <template #content>
       <form-group :label="'Titel'" :required="true" :error="errors.title">
         <input 
           type="text" 
-          v-model="data.title.de"
+          v-model="data.title"
           required 
           @focus="removeError('title')" />
-      </form-group>
-
-      <form-group :label="'Text'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.text.de"
-        ></tinymce-editor>
-      </form-group>
-
-      <form-group :label="'Link'">
-        <input 
-          type="text" 
-          v-model="data.link"
-          required 
-          @focus="removeError('link')" />
       </form-group>
 
       <form-group class="line-after flex mt-8x">
@@ -41,12 +25,12 @@
 
       <collapsible-container>
         <collapsible :expanded="true">
-          <template #title>Bild</template>
+          <template #title>Bilder</template>
           <template #content>
             <images 
               :imageRatioW="16" 
               :imageRatioH="9"
-              :type="'News'"
+              :type="'Hero'"
               :typeId="data.id"
               :images="data.images"
               v-if="$props.type == 'edit'">
@@ -72,8 +56,8 @@
         </a>
       </form-group>
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
-        <h2>News löschen</h2>
-        <p>Mit dieser Aktion wird das News gelöscht.</p>
+        <h2>Hero löschen</h2>
+        <p>Mit dieser Aktion wird dieser Inhalt gelöscht.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
     </template>
@@ -129,14 +113,7 @@ export default {
       
       // Model
       data: {
-        title: {
-          de: null,
-          en: null,
-        },
-        text: {
-          de: null,
-          en: null,
-        },
+        title: null,
         publish: 1,
         images: [],
       },
@@ -148,10 +125,10 @@ export default {
 
       // Routes
       routes: {
-        find: '/api/dashboard/news',
-        store: '/api/dashboard/news',
-        update: '/api/dashboard/news',
-        delete: '/api/dashboard/news',
+        find: '/api/dashboard/hero',
+        store: '/api/dashboard/hero',
+        update: '/api/dashboard/hero',
+        delete: '/api/dashboard/hero',
       },
 
       // States
@@ -209,10 +186,10 @@ export default {
         NProgress.done();
         this.isLoading = false;
         if (redirect) {
-          this.$router.push({ name: 'content-news'});
+          this.$router.push({ name: 'heroes'});
         }
         else {
-          this.$router.push({ name: 'content-news-edit', params: { id: response.data.newsId }});
+          this.$router.push({ name: 'content-hero-edit', params: { id: response.data.heroId }});
         }
       });
     },
@@ -220,7 +197,7 @@ export default {
     update() {
       this.isLoading = true;
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
-        this.$router.push({ name: 'content-news'});
+        this.$router.push({ name: 'heroes'});
       });
     },
 
@@ -228,7 +205,7 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
-        this.$router.push({ name: 'content-news'});
+        this.$router.push({ name: 'heroes'});
         this.isLoading = false;
         NProgress.done();
       });
@@ -237,7 +214,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == 'edit' ? "News bearbeiten" : "News hinzufügen";
+      return this.$props.type == 'edit' ? "Hero bearbeiten" : "Hero hinzufügen";
     },
   }
 };

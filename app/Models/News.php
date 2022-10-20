@@ -62,14 +62,6 @@ class News extends Base
   ];
 
 
-  /**
-   * The attributes that should be hidden for arrays.
-   *
-   * @var array
-   */
-
-  protected $hidden = [];
-
   /*
   |--------------------------------------------------------------------------
   | Relationships

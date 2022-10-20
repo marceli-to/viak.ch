@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardS
 use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
 use App\Http\Controllers\Api\Dashboard\TeamMemberController as DashboardTeamMemberController;
 use App\Http\Controllers\Api\Dashboard\NewsController as DashboardNewsController;
+use App\Http\Controllers\Api\Dashboard\HeroController as DashboardHeroController;
 
 
 /*
@@ -279,6 +280,13 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::put('news/{news}', [DashboardNewsController::class, 'update']);
   Route::post('news/order', [DashboardNewsController::class, 'order']);
   Route::delete('news/{news}', [DashboardNewsController::class, 'destroy']);
+
+  // News
+  Route::get('heroes', [DashboardHeroController::class, 'get']);
+  Route::get('hero/{hero}', [DashboardHeroController::class, 'find']);
+  Route::post('hero', [DashboardHeroController::class, 'store']);
+  Route::put('hero/{hero}', [DashboardHeroController::class, 'update']);
+  Route::delete('hero/{hero}', [DashboardHeroController::class, 'destroy']);
 
   // Settings
   Route::prefix('settings')->group(function() {

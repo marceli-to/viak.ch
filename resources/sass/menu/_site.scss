@@ -217,6 +217,22 @@ nav.site-menu-dashboard {
       li {
         margin-right: 0;
 
+        &.is-parent {
+          display: block;
+
+          ul {
+            margin-right: 0;
+
+            li {
+              margin-bottom: 0;
+
+              a {
+                @include font-regular();
+              }
+            }
+          }
+        }
+
         &:first-child {
           margin-bottom: $space-2x;
         }
