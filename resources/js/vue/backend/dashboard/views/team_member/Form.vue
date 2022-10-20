@@ -4,7 +4,7 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <back-link :route="'team-members'"></back-link>
+      <back-link :route="'content-team-members'"></back-link>
     </template>
 
     <template #content>
@@ -247,7 +247,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == 'edit' ? "Team-Mitglied bearbeiten" : "Team-Mitglied hinzufügen";
+      return this.$props.type == 'edit' ? "Mitglied bearbeiten" : "Mitglied hinzufügen";
     },
   }
 };

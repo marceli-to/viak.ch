@@ -4,7 +4,7 @@
 
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <back-link :route="'heroes'"></back-link>
+      <back-link :route="'content-heroes'"></back-link>
     </template>
 
     <template #content>
