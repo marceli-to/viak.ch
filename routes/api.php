@@ -34,6 +34,7 @@ use App\Http\Controllers\Api\Dashboard\Settings\LanguageController as DashboardL
 use App\Http\Controllers\Api\Dashboard\Settings\LevelController as DashboardLevelController;
 use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardSoftwareController;
 use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
+use App\Http\Controllers\Api\Dashboard\TeamMemberController as DashboardTeamMemberController;
 
 
 /*
@@ -261,6 +262,13 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::post('discount-code', [DashboardDiscountCodeController::class, 'store']);
   Route::put('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'update']);
   Route::delete('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'destroy']);
+
+  // Team member
+  Route::get('team-members', [DashboardTeamMemberController::class, 'get']);
+  Route::get('team-member/{teamMember}', [DashboardTeamMemberController::class, 'find']);
+  Route::post('team-member', [DashboardTeamMemberController::class, 'store']);
+  Route::put('team-member/{teamMember}', [DashboardTeamMemberController::class, 'update']);
+  Route::delete('team-member/{teamMember}', [DashboardTeamMemberController::class, 'destroy']);
 
   // Settings
   Route::prefix('settings')->group(function() {

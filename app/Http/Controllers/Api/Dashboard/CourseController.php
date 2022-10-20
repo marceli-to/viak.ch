@@ -45,7 +45,6 @@ class CourseController extends Controller
    */
   public function find(Course $course)
   {
-    // dd(CourseResource::make($course->with('upcomingEvents', 'pastEvents')->get()));
     $course = Course::with('images', 'videos')->find($course->id);
     return response()->json($course);
   }

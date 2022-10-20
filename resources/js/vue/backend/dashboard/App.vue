@@ -64,6 +64,11 @@
                   </router-link>
                 </li>
                 <li>
+                  <router-link :to="{name: 'team-members'}">
+                    Team
+                  </router-link>
+                </li>
+                <li>
                   <router-link :to="{name: 'settings'}">
                     Einstellungen
                   </router-link>
