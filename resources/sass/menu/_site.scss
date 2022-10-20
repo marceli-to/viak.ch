@@ -197,11 +197,15 @@ nav.site-menu-dashboard {
     opacity: 0;
     padding-top: $space-5x;
     position: fixed;
-    right: calc((100% - #{$site-max-width-md})/2);
+    right: calc((100% - #{$site-max-width-sm})/2);
     transition: all .0s ease-in;
     top: 0;
     width: 240px;
     z-index: -1;
+
+    @include bp-md() {
+      right: calc((100% - #{$site-max-width-md})/2);
+    }
 
     &.is-open {
       opacity: 1;
