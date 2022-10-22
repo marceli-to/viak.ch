@@ -3,25 +3,35 @@
   <content-list-header>
     <grid class="grid-cols-12">
       <grid-col class="span-4">
-        <h1>Heroes</h1>
+        <h1>Hero Bilder</h1>
       </grid-col>
-      <grid-col class="span-4">
+      <!-- <grid-col class="span-4">
         <router-link :to="{ name: 'content-hero-create' }" class="icon-plus">
           <icon-plus />
         </router-link>
-      </grid-col>
+      </grid-col> -->
     </grid>
   </content-list-header>
-  <stacked-list-item v-for="hero in data" :key="hero.uuid" class="relative">
-    <router-link :to="{ name: 'content-hero-edit', params: { id: hero.id } }" class="icon-edit mt-3x">
-      <icon-edit />
-    </router-link>
-    <div>
-      <div :class="[!hero.publish ? 'is-hidden' : '', 'span-8']">
-        {{ hero.title }}
-      </div>
-    </div>
-  </stacked-list-item>
+
+  
+  <collapsible-container>
+    <collapsible :expanded="true" v-for="hero in data" :key="hero.uuid">
+      <template #title>{{ hero.title }}</template>
+      <template #content>
+        <images 
+          :imageRatioW="16" 
+          :imageRatioH="9"
+          :type="'Hero'"
+          :typeId="hero.id"
+          :hasTypes="false"
+          :previewItemClass="'!span-3'"
+          :images="hero.images">
+        </images>
+      </template>
+    </collapsible>
+  </collapsible-container>
+
+
   <notification ref="notification" />
 </div>
 </template>
@@ -40,6 +50,8 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
+import Images from "@/shared/modules/images/Index.vue";
+
 
 export default {
 
@@ -57,7 +69,8 @@ export default {
     CollapsibleContainer,
     Collapsible,
     IconEdit,
-    IconPlus
+    IconPlus,
+    Images
   },
 
   mixins: [],

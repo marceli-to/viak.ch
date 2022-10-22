@@ -20,7 +20,6 @@ use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\EventMessageController;
 use App\Http\Controllers\Api\EventFileController;
-
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
@@ -37,6 +36,8 @@ use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagCon
 use App\Http\Controllers\Api\Dashboard\TeamMemberController as DashboardTeamMemberController;
 use App\Http\Controllers\Api\Dashboard\NewsController as DashboardNewsController;
 use App\Http\Controllers\Api\Dashboard\HeroController as DashboardHeroController;
+use App\Http\Controllers\Api\Dashboard\GridRowController as DashboardGridRowController;
+use App\Http\Controllers\Api\Dashboard\GridRowItemController as DashboardGridRowItemController;
 
 
 /*
@@ -287,6 +288,18 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::post('hero', [DashboardHeroController::class, 'store']);
   Route::put('hero/{hero}', [DashboardHeroController::class, 'update']);
   Route::delete('hero/{hero}', [DashboardHeroController::class, 'destroy']);
+
+  // Grid rows
+  Route::get('grid/rows', [DashboardGridRowController::class, 'get']);
+  Route::post('grid/row', [DashboardGridRowController::class, 'store']);
+  Route::delete('grid/row/{gridRow}', [DashboardGridRowController::class, 'destroy']);
+  Route::post('grid/item/order', [DashboardGridRowController::class, 'order']);
+
+  // Grid row items
+  Route::get('grid/row/item/reset/{gridRowItem}', [DashboardGridRowItemController::class, 'reset']);
+  Route::put('grid/row/item/add/news/{gridRowItem}', [DashboardGridRowItemController::class, 'addNews']);
+  Route::put('grid/row/item/add/course/{gridRowItem}', [DashboardGridRowItemController::class, 'addCourse']);
+  Route::put('grid/row/item/add/code/{gridRowItem}', [DashboardGridRowItemController::class, 'addCode']);
 
   // Settings
   Route::prefix('settings')->group(function() {

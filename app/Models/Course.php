@@ -246,7 +246,6 @@ class Course extends Base
     return $this->morphMany(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
   }
 
-
   public function image()
   {
     return $this->morphOne(Image::class, 'imageable');

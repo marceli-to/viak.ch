@@ -14,9 +14,12 @@
       <image-edit 
         :images="data"
         :imagePreviewRoute="'cache'"
-        :ratioW="this.$props.imageRatioW"
-        :ratioH="this.$props.imageRatioH"
-        :allowRatioSwitch="this.$props.allowRatioSwitch"
+        :ratioW="$props.imageRatioW"
+        :ratioH="$props.imageRatioH"
+        :allowRatioSwitch="$props.allowRatioSwitch"
+        :hasTypes="$props.hasTypes"
+        :previewItemClass="$props.previewItemClass"
+
         @toggleImage="toggleImage($event)"
         @destroyImage="confirmDestroyImage($event)"
         @updateImage="updateImage($event)">
@@ -62,6 +65,16 @@ export default {
     allowRatioSwitch: {
       type: Boolean,
       default: false,
+    },
+
+    hasTypes: {
+      type: Boolean,
+      default: true
+    },
+
+    previewItemClass: {
+      type: String,
+      default: 'span-4'
     },
 
     typeId: null,

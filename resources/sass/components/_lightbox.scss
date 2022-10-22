@@ -34,6 +34,7 @@
     background-color: $color-white;
     border: 2px solid $color-quaternary;
     max-width: 900px;
+    min-width: 400px;
   }
 
   .icon-lightbox-close {
@@ -49,4 +50,29 @@
       top: $space-4x;
     }
   }
+
+  .lightbox-widget {
+
+    
+    .lightbox-widget__item {
+      @extend %p-2x;
+      padding-left: 2px;
+      @extend %fs-14x;
+      @extend %sm\:fs-16x;
+      @extend %md\:fs-18x;
+      border-bottom: 1px solid $color-quaternary;
+      background-color: transparent;
+      display: block;
+      transition: background-color .1s ease-in;
+
+      &:first-of-type {
+        border-top: 1px solid $color-quaternary;
+      }
+
+      &:hover {
+        background-color: $color-light;
+      }
+    }
+  }
+
 }

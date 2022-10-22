@@ -69,6 +69,11 @@
                   </a>
                   <ul v-if="hasSubMenu.content || $route.name.startsWith('content') ">
                     <li>
+                      <router-link :to="{name: 'content-home-layout'}" :class="[$route.name.startsWith('content-home') ? 'is-active' : '', '']">
+                        Startseite
+                      </router-link>
+                    </li>
+                    <li>
                       <router-link :to="{name: 'content-heroes'}" :class="[$route.name.startsWith('content-hero') ? 'is-active' : '', '']">
                         Heroes
                       </router-link>

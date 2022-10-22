@@ -18,6 +18,7 @@
           v-model="data.registration_until">
         </the-mask>
       </form-group>
+
       <grid class="sm:grid-cols-12">
         <form-group :label="'min. Teilnehmer'" :required="true" :error="errors.min_participants" class="span-6">
           <input 
@@ -26,6 +27,7 @@
             required 
             @focus="removeError('min_participants')" />
         </form-group>
+        
         <form-group :label="'max. Teilnehmer'" :required="true" :error="errors.max_participants" class="span-6">
           <input 
             type="number" 
@@ -34,11 +36,13 @@
             @focus="removeError('max_participants')" />
         </form-group>
       </grid>
+
       <form-group :label="'Kosten'">
         <input 
           type="number" 
           v-model="data.fee" />
       </form-group>
+
       <form-group class="line-after flex mt-8x">
         <div class="mr-16x md:mr-20x">
           <div class="form-group__checkbox">
@@ -53,6 +57,7 @@
           </div>
         </div>
       </form-group>
+
       <form-group 
         :label="'Ort'" 
         :required="true" 

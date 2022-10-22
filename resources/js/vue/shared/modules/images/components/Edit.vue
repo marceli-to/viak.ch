@@ -41,12 +41,14 @@
         <div class="media-uploads__grid">
           <div v-for="(image, index) in images"
             :key="index"
-            class="media-uploads-item">
+            :class="`media-uploads-item ${$props.previewItemClass}`">
             <figure>
               <a :href="getSource(image, 'cache')" target="_blank" class="media-uploads-item__preview">
                 <img :src="getSource(image, 'thumbnail')" :class="[image.publish == 0 ? 'is-hidden' : '', '']" height="300" width="300">
-                <figcaption v-if="image.type == 'teaser'">Vorschau</figcaption>
-                <figcaption v-if="image.type == 'visual'">Hauptbild</figcaption>
+                <template  v-if="$props.hasTypes">
+                  <figcaption v-if="image.type == 'teaser'">Vorschau</figcaption>
+                  <figcaption v-if="image.type == 'visual'">Hauptbild</figcaption>
+                </template>
               </a>
               <div class="media-uploads-item__actions">
                 <image-actions 
@@ -148,7 +150,7 @@
             <form-group :label="__('Bildbeschreibung')">
               <textarea v-model="currentImage.description"></textarea>
             </form-group>
-            <form-group :label="__('Typ')">
+            <form-group :label="__('Typ')" v-if="$props.hasTypes">
               <div class="select-wrapper">
                 <select v-model="currentImage.type">
                   <option value="teaser">{{ __('Vorschau') }}</option>
@@ -223,6 +225,16 @@ export default {
     ratioH: {
       type: Number,
       default: 2
+    },
+
+    hasTypes: {
+      type: Boolean,
+      default: true
+    },
+
+    previewItemClass: {
+      type: String,
+      default: 'span-4'
     },
 
     allowRatioSwitch: {

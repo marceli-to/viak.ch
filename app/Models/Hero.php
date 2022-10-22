@@ -1,12 +1,10 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Hero extends Base
 {
-  use HasFactory;
 
   /**
    * The attributes that are mass assignable.
@@ -32,17 +30,17 @@ class Hero extends Base
   
   public function images()
   {
-    return $this->morphMany(Image::class, 'imageable');
+    return $this->morphMany(Image::class, 'imageable')->orderBy('order');
   }
  
   public function publishedImages()
   {
-    return $this->morphMany(Image::class, 'imageable')->where('publish', 1);
+    return $this->morphMany(Image::class, 'imageable')->where('publish', 1)->orderBy('order');
   }
 
   public function publishedImage()
   {
-    return $this->morphOne(Image::class, 'imageable')->where('publish', 1);
+    return $this->morphOne(Image::class, 'imageable')->where('publish', 1)->orderBy('order');
   }
 
 }

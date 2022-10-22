@@ -113,6 +113,12 @@
 }
 
 @for $i from 1 through 12 {
+  .\!span-#{$i} {
+    grid-column: span $i / span $i !important;
+  }
+}
+
+@for $i from 1 through 12 {
   %xs\:span-#{$i},
   .xs\:span-#{$i} {
     @include bp-xs() {

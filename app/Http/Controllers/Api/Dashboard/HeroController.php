@@ -16,7 +16,7 @@ class HeroController extends Controller
    */
   public function get()
   {
-    return new DataCollection(Hero::orderBy('slug', 'DESC')->get());
+    return new DataCollection(Hero::with('images')->orderBy('slug', 'DESC')->get());
   }
 
   /**
@@ -43,7 +43,8 @@ class HeroController extends Controller
       array_merge(
         $request->all(), 
         [
-          'uuid' => \Str::uuid(), 
+          'uuid' => \Str::uuid(),
+          'slug' => \Str::slug($request->input('title')) 
         ]
       )
     );
