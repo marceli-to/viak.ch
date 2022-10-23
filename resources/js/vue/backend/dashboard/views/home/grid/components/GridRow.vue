@@ -25,7 +25,7 @@ export default {
 .grid {
   display: grid;
   grid-gap: 32px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   margin-top: 12px;
 }
 
