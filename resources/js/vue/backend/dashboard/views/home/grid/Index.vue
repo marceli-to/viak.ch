@@ -200,8 +200,8 @@ export default {
 
       // Build next row
       const nextRow = {
-        layout: lastRow.layout == '1-2' ? '2-1' : '1-2',
-        order: lastRow.order + 1
+        layout: lastRow && lastRow.layout == '1-2' ? '2-1' : '1-2',
+        order: lastRow ? lastRow.order + 1 : 0
       };
 
       NProgress.start();
