@@ -5,15 +5,8 @@
       <grid-col class="span-4">
         <h1>Hero Bilder</h1>
       </grid-col>
-      <!-- <grid-col class="span-4">
-        <router-link :to="{ name: 'content-hero-create' }" class="icon-plus">
-          <icon-plus />
-        </router-link>
-      </grid-col> -->
     </grid>
   </content-list-header>
-
-  
   <collapsible-container>
     <collapsible :expanded="true" v-for="hero in data" :key="hero.uuid">
       <template #title>{{ hero.title }}</template>
@@ -31,8 +24,6 @@
       </template>
     </collapsible>
   </collapsible-container>
-
-
   <notification ref="notification" />
 </div>
 </template>
