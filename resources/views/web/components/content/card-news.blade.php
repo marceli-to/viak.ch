@@ -1,5 +1,5 @@
-<article class="card-news grid-cols-12">
-  <div class="span-6">
+<article class="card-news sm:grid-cols-12">
+  <div class="sm:span-6">
     <header>
       <h2>{{ $news->title }}</h2>
     </header>
@@ -7,7 +7,7 @@
       {!! $news->text !!}
     </div>
   </div>
-  <figure class="span-6">
+  <figure class="sm:span-6">
     @if ($news->publishedImage)
       <x-image :maxSizes="[0 => 700, 700 => 1100]" width="600" height="600" :image="$news->publishedImage" ratio="16x9" :caption="$news->title" />
     @else

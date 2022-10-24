@@ -5,9 +5,15 @@
  */
 
 .content-grid {
-  @extend %grid-cols-12;
+  @extend %sm\:grid-cols-12;
   @extend %mt-4x;
   @extend %sm\:mt-8x;
+
+  > div, 
+  > article {
+    @extend %mb-4x;
+    @extend %sm\:mb-0;
+  }
 
   &.content-grid--1-2 {
 

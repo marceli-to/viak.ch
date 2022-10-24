@@ -15,7 +15,7 @@
       <form-group :label="'Code'" class="mt-3x sm:mt-6x">
         <textarea v-model="code" class="is-large"></textarea>
       </form-group>
-      <form-group :label="'Seitenverhältnis'">
+      <form-group :label="'Seitenverhältnis (Videos)'">
         <div class="select-wrapper">
           <select v-model="ratio">
             <option value="16:9">16:9</option>
@@ -53,7 +53,7 @@
           de: null,
           en: null
         },
-        ratio: '16:9',
+        ratio: null,
         code: null,
         item: null,
         isOpen: false,
