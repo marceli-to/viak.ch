@@ -8,8 +8,9 @@
 .card-code {
   @extend %pt-2x;
   @extend %md\:pt-4x;
-  @extend %sm\:fs-16x;
-  @extend %md\:fs-18x;
+  @extend %fs-16x;
+  @extend %sm\:fs-18x;
+  @extend %md\:fs-24x;
   border-top: 1px solid $color-primary;
 
   header {
