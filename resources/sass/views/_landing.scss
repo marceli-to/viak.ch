@@ -1,0 +1,41 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: views/content
+ * -----------------------------------------------------------------------------
+ */
+
+.content-grid {
+  @extend %grid-cols-12;
+  @extend %mt-4x;
+  @extend %sm\:mt-8x;
+
+  &.content-grid--1-2 {
+
+    > div,
+    > article {
+
+      &:first-of-type {
+        @extend %sm\:span-4;
+      }
+
+      &:last-of-type {
+        @extend %sm\:span-8;
+      }
+    }
+  }
+
+  &.content-grid--2-1 {
+    
+    > div,
+    > article {
+
+      &:first-of-type {
+        @extend %sm\:span-8;
+      }
+
+      &:last-of-type {
+        @extend %sm\:span-4;
+      }
+    }
+  }
+}

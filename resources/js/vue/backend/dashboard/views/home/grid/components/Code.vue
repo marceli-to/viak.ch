@@ -7,7 +7,23 @@
           <x-icon size="24"></x-icon>
         </a>
       </header>
-      <textarea v-model="code" class="is-large"></textarea>
+      <form-group :label="'Titel'" class="mt-1x sm:mt-3x">
+        <input 
+          type="text" 
+          v-model="title.de" />
+      </form-group>
+      <form-group :label="'Code'" class="mt-3x sm:mt-6x">
+        <textarea v-model="code" class="is-large"></textarea>
+      </form-group>
+      <form-group :label="'Seitenverhältnis'">
+        <div class="select-wrapper">
+          <select v-model="ratio">
+            <option value="16:9">16:9</option>
+            <option value="16:10">16:10</option>
+            <option value="4:3">4:3</option>
+          </select>
+        </div>
+      </form-group>
       <form-group class="mt-3x sm:mt-6x">
         <a href="javascript:;" class="btn-primary" @click="add();">
           Speichern
@@ -33,6 +49,11 @@
   
     data() {
       return {
+        title: {
+          de: null,
+          en: null
+        },
+        ratio: '16:9',
         code: null,
         item: null,
         isOpen: false,
@@ -51,7 +72,7 @@
     methods: {
   
       add() {
-        this.$parent.addCode(this.code, this.item);
+        this.$parent.addCode(this.item, this.code, this.ratio, this.title);
         this.hide();
       },
   
@@ -62,6 +83,11 @@
   
       hide() {
         this.item = null;
+        this.title = {
+          de: null,
+          en: null
+        };
+        this.code = null;
         this.isOpen = false;
       }
     }

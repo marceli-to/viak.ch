@@ -28,6 +28,7 @@
     @extend %md\:fs-16x;
     @extend %mb-1x;
     @include font-medium();
+    color: $color-quaternary;
     line-height: 1;
   }
 

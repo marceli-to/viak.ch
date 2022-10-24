@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
+use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 
 class GridRowItem extends Base
 {
+  use HasTranslations;
 
   /**
    * The attributes that are mass assignable.
@@ -13,23 +15,36 @@ class GridRowItem extends Base
    */
 
   protected $fillable = [
+    'title',
     'course_id',
     'news_id',
     'grid_row_id',
     'code',
+    'ratio',
     'position'
   ];
 
   /**
-   * The accessors to append to the model's array form.
+   * The model's default values for attributes.
    *
    * @var array
    */
 
-  protected $appends = [
-
+  protected $attributes = [
+    'title' => '{
+      "de": "null", "en": "null"
+    }',
   ];
 
+  /**
+   * The attributes that are translatable.
+   *
+   * @var array
+   */
+
+  public $translatable = [
+    'title',
+  ];
 
   /*
   |--------------------------------------------------------------------------

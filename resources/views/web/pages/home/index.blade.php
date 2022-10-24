@@ -4,7 +4,6 @@
 <section class="container">
   <article class="content-text-media is-reverse">
     
-
     @if ($hero->publishedImages->count() > 1)
       <div class="swiper">
         <div class="swiper-wrapper">
@@ -31,10 +30,6 @@
       </figure>
     @endif
 
-    {{-- <figure class="text-media__visual">
-      <img src="/media/viak-keyvisual-home.jpg" width="1600" height="900" alt="Ihre Zukunft ist visuell">
-    </figure> --}}
-
     <div class="text-media__body">
       <aside>
         <h1>{{ __('Ihre Zukunft ist visuell') }}</h1>
@@ -44,5 +39,29 @@
       </div>
     </div>
   </article>
+
+  @if ($grid)
+    @foreach($grid as $row)
+      <section class="content-grid content-grid--{{$row->layout}}">
+        @foreach($row->items as $item)
+        <div>
+          @if ($item->course)
+            <x-course-card :uuid="$item->course->uuid" />
+          @endif
+          @if ($item->news)
+            <x-news-card :id="$item->news->id" />
+          @endif
+          @if ($item->code)
+            <x-code-card :item="$item" />
+          @endif
+        </div>
+        @endforeach
+      </section>
+    @endforeach
+  @endif
+
+
+
+
 </section>
 @endsection

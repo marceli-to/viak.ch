@@ -80,7 +80,7 @@
           <icon-cross />
         </a>
         <div :class="[cropImage && cropImage.orientation ? 'is-' + cropImage.orientation : '', '']">
-          <div class="media-uploads-cropper__formats">
+          <div class="media-uploads-cropper__formats" v-if="$props.allowRatioSwitch">
             <a href="javascript:;" 
               @click.prevent="changeRatio(16,9)" 
               class="btn-crop-format">

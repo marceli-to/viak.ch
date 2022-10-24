@@ -73,7 +73,7 @@ export default {
     },
 
     add(course) {
-      this.$parent.addCourse(course, this.item);
+      this.$parent.addCourse(this.item, course);
       this.hide();
     },
 

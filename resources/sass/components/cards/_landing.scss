@@ -1,0 +1,46 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/cards/landing
+ * -----------------------------------------------------------------------------
+ */
+
+.card-news, 
+.card-code {
+  @extend %pt-2x;
+  @extend %md\:pt-4x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+  border-top: 1px solid $color-primary;
+
+  header {
+
+    h2 {
+      @extend %fs-10x;
+      @extend %sm\:fs-13x;
+      @extend %md\:fs-16x;
+      @extend %mb-1x;
+      @include font-medium();
+      color: $color-quaternary;
+      line-height: 1;
+    }
+  }
+}
+
+.card-news {
+
+  img {
+    aspect-ratio: 2.929/4;
+  }
+
+  &__text {
+    @extend %mt-3x;
+    @extend %sm\:mt-6x;
+  }
+}
+
+.card-code {
+  header {
+    @extend %mb-2x;
+    @extend %sm\:mb-2x;
+  }
+}

@@ -41,7 +41,7 @@
         >
           <div>
             <div class="mb-2x">{{d.title}}</div>
-            <div v-html="d.code" class="ratio-container ratio-container--16x9" style="min-width: 200px">
+            <div v-html="d.code" :class="`ratio-container ratio-container--16:9`">
             </div>
             <div class="media-uploads-item__actions">
               <div>

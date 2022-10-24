@@ -6,7 +6,7 @@
 
 .ratio-container {
   position: relative; 
-  padding-bottom: 56.25%; /* ratio 16x9 */
+  padding-bottom: 56.25%; /* default: ratio 16x9 */
   height: 0; 
   overflow: hidden; 
   width: 100%;
@@ -22,12 +22,14 @@
   height: 100%; 
 }
 
-/* ratio 4x3 */
-.ratio-container--4x3 {
+.ratio-container--4\:3 {
   padding-bottom: 75%;
 }
 
-/* ratio 16x9 */
-.ratio-container--16x9 {
+.ratio-container--16\:9 {
   padding-bottom: 56.25%;
+}
+
+.ratio-container--16\:10 {
+  padding-bottom: 62.50%;
 }

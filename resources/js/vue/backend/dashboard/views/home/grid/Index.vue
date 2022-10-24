@@ -30,9 +30,11 @@
             <strong>{{ item.news.title.de }}</strong>
             <div v-html="item.news.text.de"></div>
           </div>
-          <div v-if="item.code" 
-            v-html="item.code"
-            class="ratio-container">
+          <div v-if="item.code">
+            <div v-if="item.title" class="mb-2x">
+              <label>{{ item.title.de }}</label><br>
+            </div>
+            <div v-html="item.code" :class="`ratio-container ratio-container--${item.ratio}`"></div>
           </div>
           <a href="javascript:;" class="btn-danger" @click="resetItem(item.id)">
             Löschen
@@ -41,7 +43,6 @@
       </grid-row-item>
     </div>
   </grid-row>
-
 
   <form-group class="flex justify-center mt-8x">
     <a href="" class="icon-plus" @click.prevent="addRow()">
@@ -165,7 +166,7 @@ export default {
       }.bind(this, events), 500);
     },
 
-    addCourse(course, item) {
+    addCourse(item, course) {
       NProgress.start();
       this.axios.put(`${this.routes.addCourse}/${item}`, {course_id: course.id}).then(response => {
         this.fetch();
@@ -174,7 +175,7 @@ export default {
       });
     },
 
-    addNews(news, item) {
+    addNews(item, news) {
       NProgress.start();
       this.axios.put(`${this.routes.addNews}/${item}`, {news_id: news.id}).then(response => {
         this.$refs.newsSelector.hide();
@@ -183,9 +184,9 @@ export default {
       });
     },
 
-    addCode(code, item) {
+    addCode(item, code, ratio = null, title = null) {
       NProgress.start();
-      this.axios.put(`${this.routes.addCode}/${item}`, {code: code}).then(response => {
+      this.axios.put(`${this.routes.addCode}/${item}`, {title: title, ratio: ratio, code: code}).then(response => {
         this.$refs.codeInput.hide();
         this.fetch();
         NProgress.done();

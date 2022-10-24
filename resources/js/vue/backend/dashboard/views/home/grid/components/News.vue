@@ -73,7 +73,7 @@ export default {
     },
 
     add(news) {
-      this.$parent.addNews(news, this.item);
+      this.$parent.addNews(this.item, news);
       this.hide();
     },
 

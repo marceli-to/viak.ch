@@ -44,10 +44,12 @@
           <template #title>Bild</template>
           <template #content>
             <images 
-              :imageRatioW="16" 
-              :imageRatioH="9"
+              :imageRatioW="3" 
+              :imageRatioH="4"
               :type="'News'"
               :typeId="data.id"
+              :allowRatioSwitch="false"
+              :hasTypes="false"
               :images="data.images"
               v-if="$props.type == 'edit'">
             </images>

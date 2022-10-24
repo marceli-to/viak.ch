@@ -43,7 +43,9 @@ class GridRowItemController extends Controller
    */
   public function addCode(GridRowItem $gridRowItem, Request $request)
   {
-    $gridRowItem->code = $request->input('code');
+    $gridRowItem->title = $request->input('title') ? $request->input('title') : null;
+    $gridRowItem->code  = $request->input('code');
+    $gridRowItem->ratio = $request->input('ratio') ? $request->input('ratio') : null;
     $gridRowItem->save();
     return response()->json(true);
   }
@@ -56,9 +58,11 @@ class GridRowItemController extends Controller
    */
   public function reset(GridRowItem $gridRowItem)
   {
+    $gridRowItem->title = NULL;
     $gridRowItem->course_id = NULL;
     $gridRowItem->news_id = NULL;
     $gridRowItem->code = NULL;
+    $gridRowItem->ratio = NULL;
     $gridRowItem->save();
     return response()->json('successfully deleted');
   }
