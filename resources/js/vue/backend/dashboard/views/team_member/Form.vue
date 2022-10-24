@@ -51,6 +51,8 @@
               :imageRatioH="9"
               :type="'TeamMember'"
               :typeId="data.id"
+              :allowRatioSwitch="false"
+              :hasTypes="false"
               :images="data.images"
               v-if="$props.type == 'edit'">
             </images>

@@ -19,7 +19,6 @@
         :allowRatioSwitch="$props.allowRatioSwitch"
         :hasTypes="$props.hasTypes"
         :previewItemClass="$props.previewItemClass"
-
         @toggleImage="toggleImage($event)"
         @destroyImage="confirmDestroyImage($event)"
         @updateImage="updateImage($event)">
@@ -64,7 +63,7 @@ export default {
 
     allowRatioSwitch: {
       type: Boolean,
-      default: false,
+      default: true,
     },
 
     hasTypes: {

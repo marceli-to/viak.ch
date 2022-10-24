@@ -33,6 +33,7 @@
               :type="'Hero'"
               :typeId="data.id"
               :images="data.images"
+              :allowRatioSwitch="false"
               v-if="$props.type == 'edit'">
             </images>
             <div class="text-small text-danger mt-2x sm:mt-4x" v-else>

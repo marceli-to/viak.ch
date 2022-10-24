@@ -24,6 +24,7 @@
           :type="'Hero'"
           :typeId="hero.id"
           :hasTypes="false"
+          :allowRatioSwitch="false"
           :previewItemClass="'!span-3'"
           :images="hero.images">
         </images>
