@@ -1,4 +1,4 @@
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Verantwortlich für den Inhalt') }}
   </x-slot>
@@ -9,7 +9,7 @@
   </x-slot>
 </x-card-text>
 
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Copyright') }}
   </x-slot>
@@ -18,7 +18,7 @@
   </x-slot>
 </x-card-text>
 
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Umsetzung') }}
   </x-slot>
@@ -29,7 +29,7 @@
   </x-slot>
 </x-card-text>
 
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Disclaimer') }}
   </x-slot>
@@ -38,7 +38,7 @@
   </x-slot>
 </x-card-text>
 
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Datenschutz') }}
   </x-slot>

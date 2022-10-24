@@ -1,4 +1,4 @@
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Seit 15 Jahren dabei und doch brandneu!') }}</h2>
   </x-slot>

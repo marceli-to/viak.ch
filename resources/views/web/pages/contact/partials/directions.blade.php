@@ -1,4 +1,4 @@
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Anreise ÖV') }}
   </x-slot>
@@ -7,7 +7,7 @@
   </x-slot>
 </x-card-text>
 
-<x-card-text>
+<x-card-text class="card-text">
   <x-slot name="aside">
     <h2>{{ __('Anreise Auto') }}
   </x-slot>
