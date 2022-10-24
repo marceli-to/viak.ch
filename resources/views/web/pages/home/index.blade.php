@@ -4,7 +4,7 @@
 <section class="container">
   <article class="content-text-media is-reverse">
     
-    @if ($hero->publishedImages->count() > 1)
+    @if ($hero->publishedImages && $hero->publishedImages->count() > 1)
       <div class="swiper">
         <div class="swiper-wrapper">
           @foreach($hero->publishedImages as $image)
