@@ -22,6 +22,14 @@ class NewsCard extends Component
   public $news;
 
   /**
+   * Link target
+   *
+   * @var String $target
+   */
+
+  public $target;
+
+  /**
    * Create a new component instance.
    *
    * @return void
@@ -29,6 +37,7 @@ class NewsCard extends Component
   public function __construct($id = NULL)
   {
     $this->news = News::find($id);
+    $this->target = $this->news->link ? \AppHelper::linkTarget($this->news->link) : NULL;
   }
 
   /**
