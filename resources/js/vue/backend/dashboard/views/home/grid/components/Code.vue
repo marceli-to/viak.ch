@@ -13,7 +13,7 @@
           v-model="title.de" />
       </form-group>
       <form-group :label="'Code'" class="mt-3x sm:mt-6x">
-        <textarea v-model="code" class="is-large"></textarea>
+        <textarea v-model="code" class="is-large is-code"></textarea>
       </form-group>
       <form-group :label="'Seitenverhältnis (Videos)'">
         <div class="select-wrapper">

@@ -31,7 +31,12 @@ class Course extends Base
     'slug' => 'array',
     'title' => 'array',
     'subtitle' => 'array',
-    'text' => 'array',
+    'short_description' => 'array',
+    'full_description' => 'array',
+    'additional_information' => 'array',
+    'facts_column_1' => 'array',
+    'facts_column_2' => 'array',
+    'facts_column_3' => 'array',
     'seo_description' => 'array',
     'seo_tags' => 'array',
   ];
@@ -52,7 +57,22 @@ class Course extends Base
     'subtitle' => '{
       "de": "null", "en": "null"
     }',
-    'text' => '{
+    'short_description' => '{
+      "de": "null", "en": "null"
+    }',
+    'full_description' => '{
+      "de": "null", "en": "null"
+    }',
+    'additional_information' => '{
+      "de": "null", "en": "null"
+    }',
+    'facts_column_1' => '{
+      "de": "null", "en": "null"
+    }',
+    'facts_column_2' => '{
+      "de": "null", "en": "null"
+    }',
+    'facts_column_3' => '{
       "de": "null", "en": "null"
     }',
     'seo_description' => '{
@@ -73,7 +93,12 @@ class Course extends Base
     'slug',
     'title',
     'subtitle',
-    'text',
+    'short_description',
+    'full_description',
+    'additional_information',
+    'facts_column_1',
+    'facts_column_2',
+    'facts_column_3',
     'seo_description',
     'seo_tags'
   ];
@@ -90,7 +115,12 @@ class Course extends Base
     'course',
     'title',
     'subtitle',
-    'text',
+    'short_description',
+    'full_description',
+    'additional_information',
+    'facts_column_1',
+    'facts_column_2',
+    'facts_column_3',
     'fee',
     'reviews',
     'seo_description',

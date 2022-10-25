@@ -27,7 +27,7 @@ class CourseUpdateRequest extends FormRequest
       'number' => 'required|gt:0',
       'title.de' => 'required',
       'subtitle.de' => 'required',
-      'text.de' => 'required',
+      'short_description.de' => 'required',
       'category_ids' => 'required|array|min:1',
       'category_ids.*'  => 'required|min:1',
       'language_ids' => 'required|array|min:1',
@@ -64,9 +64,9 @@ class CourseUpdateRequest extends FormRequest
         'field' => 'subtitle',
         'error' => 'Subtitel wird benötigt'
       ],
-      'text.de.required' => [
+      'short_description.de.required' => [
         'field' => 'text',
-        'error' => 'Text wird benötigt'
+        'error' => 'Kurzbeschreibung wird benötigt'
       ],
       'category_ids.required' => [
         'field' => 'category_ids',

@@ -29,6 +29,29 @@
   @extend %md\:mb-8x;
 }
 
+// Page: Course (show)
+.container-course {
+  h2, h3 {
+    @extend %mb-1x;
+  }
+
+  ul {
+    @extend %unordered-list;
+    li {
+      @extend %unordered-list-item;
+      &:before {
+        top: 0;
+      }
+    }
+  }
+
+  .text-item {
+    a {
+      @extend %link-underline-hover;
+    }
+  }
+}
+
 // Page: Contact
 .container-contact {
   @extend %container;

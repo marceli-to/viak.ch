@@ -41,51 +41,17 @@
         @endif
       </aside>
       <div>
-        @if ($course->text)
-          {!! $course->text !!}
-        @endif
-        @if ($course->publishedVideos)
-          <div class="mt-8x mt-12x">
-            @foreach($course->publishedVideos as $video)
-              <p>{{ $video->title }}</p>
-              <div class="ratio-container mb-8x md:mb-12x">
-                {!! $video->code !!}
-              </div>
-            @endforeach
-          </div>
+        @if ($course->short_description)
+          {!! $course->short_description !!}
         @endif
       </div>
     </div>
   </article>
 </section>
 
-<section class="container">
+<section class="container container-course">
 
-  <x-collapsible title="{{ __('Facts') }}">
-    <div class="sm:grid-cols-12">
-      <div class="mb-4x sm:mb-0 sm:span-4">
-        <h3>Kursinhalt</h3>
-        <ul>
-          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-          <li>Vamet consectetur adipisicing elit</li>
-          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-          <li>Vamet consectetur adipisicing elit</li>
-          <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
-          <li>Vamet consectetur adipisicing elit</li>
-        </ul>
-      </div>
-      <div class="mb-4x sm:mb-0 sm:span-4">
-        <h3>Methodik</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, iusto vitae ut voluptas ducimus ad sint alias impedit, eligendi est tenetur explicabo eius.</p>
-      </div>
-      <div class="mb-4x sm:mb-0 sm:span-4">
-        <h3>Abschluss</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Fuga recusandae ab eligendi est tenetur explicabo eius.</p>
-      </div>
-    </div>
-  </x-collapsible>
-  
-  <x-collapsible title="{{ __('Kurse') }}" :expanded="true" id="app-events">
+  <x-collapsible title="{{ __('Aktuelle Kurse') }}" :expanded="true" id="app-events">
     @if ($course->upcomingEvents->count() > 0)
       @foreach($course->upcomingEvents as $event)
         <x-event-card :event="$event" />
@@ -95,11 +61,69 @@
     @endif
   </x-collapsible>
 
-  <x-collapsible title="{{ __('Weitere Informationen') }}" class="mt-24x">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Exercitationem, iusto vitae ut voluptas ducimus ad sint alias impedit, fuga recusandae ab eligendi est tenetur explicabo eius.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, iusto vitae ut voluptas ducimus ad sint alias impedit, eligendi est tenetur explicabo eius.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae aliquam debitis? Fuga recusandae ab eligendi est tenetur explicabo eius.</p>
+  @if ($course->publishedVideos)
+    <x-collapsible title="{{ __('Videos') }}">
+      @foreach($course->publishedVideos as $video)
+        <x-card-text class="card-video">
+          <x-slot name="aside">
+            {{ $video->title }}
+          </x-slot>
+          <x-slot name="content">
+            <div class="ratio-container">
+              {!! $video->code !!}
+            </div>
+          </x-slot>
+        </x-card-text>
+      @endforeach
+    </x-collapsible>
+  @endif
+
+  @if ($course->facts_column_1 || $course->facts_column_2 || $course->facts_column_3)
+    <x-collapsible title="{{ __('Facts') }}">
+      <div class="sm:grid-cols-12">
+        @if ($course->facts_column_1)
+          <div class="mb-4x sm:mb-0 sm:span-4 text-item">
+            {!! $course->facts_column_1 !!}
+          </div>
+        @endif
+        @if ($course->facts_column_2)
+          <div class="mb-4x sm:mb-0 sm:span-4 text-item">
+            {!! $course->facts_column_2 !!}
+          </div>
+        @endif
+        @if ($course->facts_column_3)
+          <div class="mb-4x sm:mb-0 sm:span-4 text-item">
+            {!! $course->facts_column_3 !!}
+          </div>
+        @endif
+      </div>
+    </x-collapsible>
+  @endif
+  
+  @if ($course->full_description)
+    <x-collapsible title="{{ __('Detailbeschrieb') }}">
+      <div class="sm:grid-cols-12">
+        <div class="span-8">
+          {!! $course->full_description !!}
+        </div>
+      </div>
+    </x-collapsible>
+  @endif
+
+  <x-collapsible title="{{ __('Weitere Informationen') }}">
+    <div class="sm:grid-cols-12">
+      @if ($course->additional_information)
+        <div class="mb-4x sm:mb-0 sm:span-4 text-item">
+          {!! $course->additional_information !!}
+        </div>
+      @endif
+      <div class="mb-4x sm:mb-0 sm:span-4">
+      </div>
+      <div class="mb-4x sm:mb-0 sm:span-4">
+      </div>
+    </div>
   </x-collapsible>
+
 
   @if ($browse)
     <div class="content-list-item">

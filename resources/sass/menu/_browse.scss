@@ -36,9 +36,10 @@ nav.browse {
       }
 
       a {
+        color: $color-primary;
         display: flex;
         flex-direction: column;
-
+        text-decoration: none !important;
         &:hover {
           color: $color-secondary;
         }

@@ -35,6 +35,18 @@ a.link-underline {
   }
 }
 
+%link-underline-hover,
+a.link-underline-hover {
+  color: $color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+}
+
 a.link-helper {
   @extend %link;
   &:hover {

@@ -8,6 +8,7 @@
     </template>
 
     <template #content>
+
       <form-group :label="'Nummer'" :required="true" :error="errors.number">
         <input 
           type="number" 
@@ -15,6 +16,7 @@
           required 
           @focus="removeError('number')" />
       </form-group>
+
       <form-group :label="'Titel'" :required="true" :error="errors.title">
         <input 
           type="text" 
@@ -22,6 +24,7 @@
           required 
           @focus="removeError('title')" />
       </form-group>
+
       <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
         <textarea 
           v-model="data.subtitle.de" 
@@ -30,17 +33,68 @@
           @focus="removeError('subtitle')">
         </textarea>
       </form-group>
+
       <form-group :label="'Kosten'">
         <input type="number" v-model="data.fee" />
       </form-group>
-      <form-group :label="'Beschreibung'" :required="true" :error="errors.text">
+
+      <form-group :label="'Kurzbeschrieb'" :required="true" :error="errors.short_description">
         <tinymce-editor
           :api-key="tinyApiKey"
           :init="tinyConfig"
-          v-model="data.text.de"
+          v-model="data.short_description.de"
         ></tinymce-editor>
       </form-group>
+
+      <form-group :label="'Detailbeschrieb'">
+        <tinymce-editor
+          :api-key="tinyApiKey"
+          :init="tinyConfig"
+          v-model="data.full_description.de"
+        ></tinymce-editor>
+      </form-group>
+
+      <form-group :label="'Weitere Informationen'">
+        <tinymce-editor
+          :api-key="tinyApiKey"
+          :init="tinyConfig"
+          v-model="data.additional_information.de"
+        ></tinymce-editor>
+      </form-group>
+
       <collapsible-container>
+
+        <collapsible>
+          <template #title>Facts</template>
+          <template #content>
+            <form-group>
+              <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="data.facts_column_1.de"
+              ></tinymce-editor>
+            </form-group>
+            <form-group>
+              <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="data.facts_column_2.de"
+              ></tinymce-editor>
+            </form-group>
+            <form-group>
+              <tinymce-editor
+              :api-key="tinyApiKey"
+              :init="tinyConfig"
+              v-model="data.facts_column_3.de"
+              ></tinymce-editor>
+            </form-group>
+          </template>
+        </collapsible>
+
+      </collapsible-container>
+
+      <collapsible-container>
+
         <collapsible :expanded="true" v-if="isFetchedSettings">
           <template #title>Einstellungen</template>
           <template #content>
@@ -115,7 +169,6 @@
             </form-group>
           </template>
         </collapsible>
-
         <collapsible>
           <template #title>Bilder</template>
           <template #content>
@@ -150,7 +203,7 @@
         <collapsible>
           <template #title>Metatags + SEO</template>
           <template #content>
-            <form-group :label="'Reviews'" class="md:mt-4x">
+            <form-group :label="'Rezensionen'" class="md:mt-4x">
               <textarea v-model="data.reviews" class="has-autosize"></textarea>
             </form-group>
             <form-group :label="'SEO - Beschreibung'">
@@ -163,6 +216,7 @@
         </collapsible>
 
       </collapsible-container>
+
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
           <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
@@ -176,11 +230,13 @@
           Speichern
         </a>
       </form-group>
+
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>Kurs löschen</h2>
         <p>Mit dieser Aktion wird der Kurs inklusive aller Veranstaltungen gelöscht.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
+
     </template>
   </article-text>
 
@@ -249,7 +305,27 @@ export default {
           de: null,
           en: null,
         },
-        text: {
+        short_description: {
+          de: null,
+          en: null
+        },
+        full_description: {
+          de: null,
+          en: null
+        },
+        additional_information: {
+          de: null,
+          en: null
+        },
+        facts_column_1: {
+          de: null,
+          en: null
+        },
+        facts_column_2: {
+          de: null,
+          en: null
+        },
+        facts_column_3: {
           de: null,
           en: null
         },
