@@ -112,7 +112,8 @@
     }
   }
 
-  &.has-booking {
+  &.has-booking,
+  &.has-warning {
     border-top-color: $color-danger;
     *:not([class*=btn-]) {
       color: $color-danger;

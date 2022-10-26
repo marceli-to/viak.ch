@@ -1,11 +1,13 @@
-<article class="stacked-list-event {{ $isBooked ? 'is-booked' : ''}}" data-touch>
+<article class="stacked-list-event {{ $styles }}" data-touch>
   <div>
     <div class="stacked-list__col">
       <div class="sm:flex">
-        @if ($isBooked || $bookmark)
+        @if ($hasBooking || $bookmark || $isFullyBooked)
           <div class="stacked-list__icon">
-            @if ($isBooked)
+            @if ($hasBooking)
               @include('web.partials.icons.checkmark')
+            @elseif ($isFullyBooked)
+              @include('web.partials.icons.heart', ['active' => false])
             @else
               <bookmark-button event="{{ $event->uuid }}" bookmark="{{ $bookmark->uuid }}" />
             @endif
@@ -58,18 +60,37 @@
           @endforeach
         </div>
       @endif
+      @if ($event->registration_until && !$hasBooking)
+        <div>
+          <em class="text-xsmall">Anmeldung möglich bis {{ $event->registration_until_str }}</em>
+        </div>
+      @endif
     </div>
     <div class="stacked-list__col stacked-list__col--action">
       <div>
         {{ $event->courseFee }}
       </div>
       <div class="stacked-list__action">
-        @if (!$isBooked)
-          <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
+
+        @if ($isFullyBooked)
+
+          @if ($hasBooking)
+            <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
+              {{ __('Verwalten')}}
+            </a>
+          @else
+            <div class="text-small align-right text-danger pl-4x">
+              <em>{{ __('Kurs ist ausgebucht') }}</em>
+            </div>
+          @endif
         @else
-          <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
-            {{ __('Verwalten')}}
-          </a>
+          @if (!$hasBooking)
+            <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
+          @else
+            <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
+              {{ __('Verwalten')}}
+            </a>
+          @endif
         @endif
       </div>
     </div>

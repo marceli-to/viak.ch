@@ -145,10 +145,9 @@
   }
 
   &.is-info {
-    color: $color-info;
-
+    color: $color-info !important;
     .icon {
-      color: $color-info;
+      color: $color-info !important;
     }
     
     > div {

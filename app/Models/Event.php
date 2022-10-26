@@ -54,6 +54,7 @@ class Event extends Base
     'course_fee',
     'course_online',
     'expert_ids',
+    'registration_deadline',
   ];
 
 
@@ -96,6 +97,17 @@ class Event extends Base
   public function isCancelled()
   {
     return $this->cancelled == 1 ? TRUE : FALSE;
+  }
+
+  /**
+   * Check for fully booked
+   * 
+   * @return Boolean
+   */
+
+  public function isFullyBooked()
+  {
+    return $this->bookings->count() >= $this->max_participants ? TRUE : FALSE;
   }
 
 
@@ -290,6 +302,19 @@ class Event extends Base
   }
 
   /**
+   * Get the short version for an event_date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getRegistrationUntilStrAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->date));
+  }
+
+
+  /**
    * Get the date for an event_date.
    *
    * @param  string $value
@@ -375,3 +400,4 @@ class Event extends Base
   }
 
 }
+

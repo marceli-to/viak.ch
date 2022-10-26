@@ -32,11 +32,19 @@ class EventCard extends Component
   public $inBasket;
 
   /**
-   * Event is booked.
+   * User has a booking.
    * 
    */
 
-  public $isBooked;
+  public $hasBooking;
+
+  /**
+   * Event is fully booked.
+   * 
+   */
+
+  public $isFullyBooked;
+
 
   /**
    * Event with a bookmark.
@@ -44,6 +52,13 @@ class EventCard extends Component
    */
 
   public $bookmark;
+
+  /**
+   * Additional styles
+   * 
+   */
+
+  public $styles;
 
 
   /**
@@ -57,12 +72,16 @@ class EventCard extends Component
     $this->bookmark = NULL;
     $this->experts  = collect($event->experts->pluck('fullname')->all());
     $this->inBasket = (int) (new BasketStore())->hasItem($this->event->uuid);
+    $this->isFullyBooked = $event->isFullyBooked();
+
+    $this->styles = $this->isFullyBooked ? 'has-warning' : '';
 
     // check for booking and bookmarks
     if (auth()->user())
     {
-      $this->isBooked = BookingFacade::has($event, auth()->user());
+      $this->hasBooking = BookingFacade::has($event, auth()->user());
       $this->bookmark = BookmarkFacade::find($event, auth()->user());
+      $this->styles = $this->hasBooking ? 'is-booked' : '';
     }
   }
 

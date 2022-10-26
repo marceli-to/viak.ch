@@ -8,7 +8,7 @@
     <template #content>
 
       <!-- Event -->
-      <form-group :label="'Deadline Anmeldung'" :required="true" :error="errors.registration_until">
+      <form-group :label="'Deadline Anmeldung'">
         <the-mask
           type="text"
           mask="##.##.####"
