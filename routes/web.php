@@ -129,6 +129,7 @@ Route::post('/expert/finish', [ConfirmExpertController::class, 'store'])->name('
 Route::get('/419', function() {
   abort(419);
 });
+Route::get('/observe-events', [TestController::class, 'observe']);
 
 Route::get('/message', [TestController::class, 'index']);
 

@@ -21,6 +21,15 @@ class TestController extends BaseController
     parent::__construct();
   }
 
+  public function observe()
+  {
+    $constraint = date('Y-m-d', time());
+    return $this->hasMany(Event::class)->where('date', '>', $constraint)->orderBy('date', 'ASC');
+
+    $events = Event::where('date', '>', $constraint)->get();
+    dd($events);
+  }
+
   public function index()
   {
 
