@@ -2,6 +2,7 @@
 namespace App\Console;
 use App\Tasks\Job;
 use App\Tasks\CleanUpTempFolder;
+use App\Tasks\ObserveEventState;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
   {
     $schedule->call(new Job)->everyMinute();
     $schedule->call(new CleanUpTempFolder)->everyMinute();
+    $schedule->call(new ObserveEventState)->everyMinute();
   }
 
   /**

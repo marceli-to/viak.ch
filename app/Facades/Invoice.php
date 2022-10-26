@@ -20,7 +20,7 @@ class Invoice
    * @return $invoice
    */
 
-  public function findFromBooking(Booking $booking)
+  public static function findFromBooking(Booking $booking)
   {
     return InvoiceModel::pending()->where('booking_id', $booking->id)->first();
   }
@@ -32,7 +32,7 @@ class Invoice
    * @return $invoice
    */
 
-  public function findOrCreateFromBooking(Booking $booking)
+  public static function findOrCreateFromBooking(Booking $booking)
   {
     // Check for an existing invoice for a booking
     $invoice = self::findFromBooking($booking);
@@ -51,7 +51,7 @@ class Invoice
    * @return $invoice
    */
 
-  public function createFromBooking(Booking $booking)
+  public static function createFromBooking(Booking $booking)
   {
     // Create invoice
     $invoice = InvoiceModel::create([
@@ -85,7 +85,7 @@ class Invoice
    * @return $invoice
    */
 
-  public function createFromBookingWithPenalty(Booking $booking, $cancellation)
+  public static function createFromBookingWithPenalty(Booking $booking, $cancellation)
   {
     // Check for an existing invoice for a booking
     $existingInvoice = self::findFromBooking($booking);
@@ -131,7 +131,7 @@ class Invoice
    * @return Decimal $grand_total
    */
 
-  public function getGrandTotal($fee, $discount = NULL)
+  public static function getGrandTotal($fee, $discount = NULL)
   {
     return $discount ? $fee - $discount : $fee;
   }
@@ -142,7 +142,7 @@ class Invoice
    * @return String number
    */
 
-  public function getNumber()
+  public static function getNumber()
   {
     $invoices = InvoiceModel::withTrashed()->get();
     $number = 1;
@@ -161,7 +161,7 @@ class Invoice
    * @return String padded input
    */
 
-  public function pad($number, $length = 6)
+  public static function pad($number, $length = 6)
   {
     return str_pad($number, $length, "0", STR_PAD_LEFT);
   }

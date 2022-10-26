@@ -1,12 +1,26 @@
 <?php
 namespace App\Tasks;
-use App\Models\Event;
-
 
 class ObserveEventState
 {
   public function __invoke()
   {
-    dd('d');
+    $constraint = \Carbon\Carbon::now()->addDays(10)->format('Y-m-d');
+    $events = \App\Models\Event::where('date', $constraint)->notFlagged('hasCancelOrConfirmReminder')->get();
+    if ($events)
+    {
+      foreach($events as $event)
+      {
+        // Create a job for the confirmation email to each student
+        \App\Models\Job::create([
+          'recipient' => env('MAIL_TO'),
+          'mailable_id' => $event->id,
+          'mailable_type' => \App\Models\Event::class,
+          'mailable_class' => \App\Mail\EventCancelOrConfirmReminder::class
+        ]);
+
+        $event->flag('hasCancelOrConfirmReminder');
+      }
+    }
   }
 }

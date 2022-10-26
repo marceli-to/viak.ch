@@ -15,7 +15,7 @@ class Bookmark
    * @return \Illuminate\Http\Response
    */
 
-  public function find(Event $event, User $user)
+  public static function find(Event $event, User $user)
   {
     return BookmarkModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
   }
@@ -28,7 +28,7 @@ class Bookmark
    * @return \Illuminate\Http\Response
    */
 
-  public function findAndDestroy(Event $event, User $user)
+  public static function findAndDestroy(Event $event, User $user)
   {
     $bookmark = self::find($event, $user);
     if ($bookmark)
@@ -46,7 +46,7 @@ class Bookmark
    * @return Boolean
    */
 
-  public function has(Event $event, User $user)
+  public static function has(Event $event, User $user)
   {
     $bookmark = BookmarkModel::where('event_id', $event->id)->where('user_id', $user->id)->first();
     return $bookmark ? TRUE : FALSE;
@@ -58,7 +58,7 @@ class Bookmark
    * @param  Event $event
    * @return \Illuminate\Http\Response
    */
-  public function store(Event $event)
+  public static function store(Event $event)
   {
     $bookmark = BookmarkModel::create([
       'uuid' => \Str::uuid(),
@@ -75,7 +75,7 @@ class Bookmark
    * @param  BookmarkModel $bookmark
    * @return Boolean
    */
-  public function destroy(BookmarkModel $bookmark)
+  public static function destroy(BookmarkModel $bookmark)
   {
     return $bookmark->delete();
   }

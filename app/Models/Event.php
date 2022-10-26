@@ -3,10 +3,11 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelFlags\Models\Concerns\HasFlags;
 
 class Event extends Base
 {
-  use SoftDeletes;
+  use SoftDeletes, HasFlags;
 
   /**
    * The attributes that should be cast to native types.
@@ -54,7 +55,6 @@ class Event extends Base
     'course_fee',
     'course_online',
     'expert_ids',
-    'registration_deadline',
   ];
 
 

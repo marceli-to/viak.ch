@@ -15,7 +15,7 @@ class Discount
    * @return String $discountCode
    */
 
-  public function create()
+  public static function create()
   {
     return self::generate();
   }
@@ -26,7 +26,7 @@ class Discount
    * @param DiscountCode $discountCode
    */
 
-  public function update(DiscountCodeModel $discountCode)
+  public static function update(DiscountCodeModel $discountCode)
   {
     if ($discountCode->isSingle())
     {
@@ -42,7 +42,7 @@ class Discount
    * @return String $discountCodeUuid
    */
 
-  public function getByUuid($discountCodeUuid)
+  public static function getByUuid($discountCodeUuid)
   {
     return DiscountCodeModel::where('uuid', $discountCodeUuid)->first();
   }
@@ -54,7 +54,7 @@ class Discount
    * @return DiscountCode $discountCode
    */
 
-  public function getByCode($discountCode)
+  public static function getByCode($discountCode)
   {
     return DiscountCodeModel::where('code', $discountCode)->first();
   }
@@ -67,7 +67,7 @@ class Discount
    * @return Mixed $amount
    */
 
-  public function apply($discountCodeUuid, $total = NULL)
+  public static function apply($discountCodeUuid, $total = NULL)
   {
     if (self::validate($discountCodeUuid))
     {
@@ -89,7 +89,7 @@ class Discount
    * @return Boolean
    */
   
-  public function validate($discountCodeUuid)
+  public static function validate($discountCodeUuid)
   {
     $discountCode = self::getByUuid($discountCodeUuid);
     if ($discountCode && $discountCode->isValid())
@@ -105,7 +105,7 @@ class Discount
    * @return String $code
    */
 
-  public function generate()
+  public static function generate()
   {
     $chars  = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
     $string = self::PREFIX . self::SEPARATOR;
@@ -140,7 +140,7 @@ class Discount
    * @return Boolean
    */
 
-  public function exists($code)
+  public static function exists($code)
   {
     return DiscountCodeModel::where('code', $code)->first() == NULL ? TRUE : FALSE;
   }

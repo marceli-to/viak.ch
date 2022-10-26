@@ -22,7 +22,7 @@ class Booking
    * @return Boolean
    */
 
-  public function create($basket = [])
+  public static function create($basket = [])
   {
     // Create bookings for all basket items
     if ($basket['items'])
@@ -73,7 +73,7 @@ class Booking
    * @return Boolean
    */
 
-  public function cancel(BookingModel $booking)
+  public static function cancel(BookingModel $booking)
   {
     // Cancel booking
     $booking = BookingModel::find($booking->id);
@@ -108,7 +108,7 @@ class Booking
    * @param User $user
    */
 
-  public function has(Event $event, User $user)
+  public static function has(Event $event, User $user)
   {
     $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->whereNull('cancelled_at')->first();
     return $booking ? TRUE : FALSE;
@@ -120,7 +120,7 @@ class Booking
    * @return String number
    */
 
-  public function getNumber()
+  public static function getNumber()
   {
     $bookings = BookingModel::withTrashed()->get();
     $number = 1;
@@ -138,7 +138,7 @@ class Booking
    * @return String padded input
    */
 
-  public function pad($number, $length = 6)
+  public static function pad($number, $length = 6)
   {
     return str_pad($number, $length, "0", STR_PAD_LEFT);
   }
