@@ -15,7 +15,7 @@ class ExpertController extends BaseController
 
   public function list()
   {
-    $experts = User::experts()->with('teaserImage')->published()->visible()->orderBy('name')->get();
+    $experts = User::experts()->with('teaserImage')->published()->visible()->orderBy('expert_order')->get();
     return view($this->viewPath . 'list', ['experts' => $experts]);
   }
 

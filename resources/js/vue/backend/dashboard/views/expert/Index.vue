@@ -109,6 +109,8 @@ export default {
     return {
 
       data: {
+        active: [],
+        inactive: []
       },
 
       searchQuery: null,
