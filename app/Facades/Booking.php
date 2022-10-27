@@ -101,6 +101,22 @@ class Booking
   }
 
   /**
+   * Update participation for a booking
+   * 
+   * @param BookingModel $booking
+   * @return Boolean
+   */
+
+  public static function updateParticipation(BookingModel $booking)
+  {
+    if (!$booking->hasFlag('hasParticipated'))
+    {
+      return $booking->flag('hasParticipated');
+    }
+    return $booking->unflag('hasParticipated');
+  }
+
+  /**
    * Check whether or not a student has a booking
    * for a specific event.
    * 

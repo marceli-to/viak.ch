@@ -2,8 +2,11 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Event;
+use App\Models\User;
 use App\Stores\BasketStore;
 use App\Facades\Booking as BookingFacade;
+use App\Http\Requests\BookingParticipationRequest;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -32,7 +35,7 @@ class BookingController extends Controller
       BookingFacade::create($this->store->get());
       $this->store->clear();
     }
-    return response()->json(true);
+    return response()->json('successfully stored');
   }
 
   /**
@@ -47,6 +50,22 @@ class BookingController extends Controller
     $this->authorize('cancel', $booking);
     BookingFacade::cancel($booking);
     return response()->json('successfully cancelled');
+  }
+
+  /**
+   * Update participation for a booking
+   * 
+   * @param BookingParticipationRequest $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function updateParticipation(BookingParticipationRequest $request)
+  { 
+    $event = Event::where('uuid', $request->input('event_uuid'))->first();
+    $user = User::where('uuid', $request->input('user_uuid'))->first();
+    $booking = Booking::where('event_id', $event->id)->where('user_id', $user->id)->first();
+    BookingFacade::updateParticipation($booking);
+    return response()->json('successfully updated');
   }
 
 }

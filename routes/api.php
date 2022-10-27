@@ -77,11 +77,12 @@ Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
-  Route::post('/booking', [BookingController::class, 'store']);
-  Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel']);
-  Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store']);
-  Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
+  Route::post('/booking', [BookingController::class, 'store'])->middleware(['role:student']);
+  Route::post('/booking/participation', [BookingController::class, 'updateParticipation'])->middleware(['role:admin,expert']);
+  Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel'])->middleware(['role:student']);;
+  Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store'])->middleware(['role:student']);;
+  Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy'])->middleware(['role:student']);;
 });
 
 
@@ -152,7 +153,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
   Route::get('/event/messages/{event:uuid}', [EventMessageController::class, 'get']);
   Route::post('/event/message', [EventMessageController::class, 'store']);
   Route::post('/event/file', [EventFileController::class, 'store']);
-  Route::post('/event/student/participation', [EventController::class, 'updateParticipation'])->middleware(['role:admin,expert']);
   Route::get('/message/{message:uuid}', [EventMessageController::class, 'find']);
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'findExpertEvent'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{event:uuid}', [EventController::class, 'findStudentEvent'])->middleware(['role:admin,student']);

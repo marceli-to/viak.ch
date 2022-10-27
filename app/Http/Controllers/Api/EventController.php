@@ -65,21 +65,4 @@ class EventController extends Controller
     return response()->json($data);
   }
 
-  public function updateParticipation(Request $request)
-  { 
-    $event   = Event::where('uuid', $request->input('eventUuid'))->first();
-    $user    = User::where('uuid', $request->input('userUuid'))->first();
-    $booking = Booking::where('event_id', $event->id)->where('user_id', $user->id)->first();
-
-    if (!$booking->hasFlag('hasParticipated'))
-    {
-      $booking->flag('hasParticipated');
-    }
-    else
-    {
-      $booking->unflag('hasParticipated');
-    }
-    return response()->json(true);
-  }
-
 }

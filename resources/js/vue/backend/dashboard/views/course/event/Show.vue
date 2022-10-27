@@ -158,7 +158,7 @@ export default {
 
       routes: {
         show: '/api/expert/course/event',
-        updateParticipation: '/api/event/student/participation'
+        updateParticipation: '/api/booking/participation'
       },
     };
   },
@@ -188,16 +188,13 @@ export default {
     },
 
     updateAttendance(uuid) {
-
       const data = {
-        userUuid: uuid,
-        eventUuid: this.$route.params.uuid
+        user_uuid: uuid,
+        event_uuid: this.$route.params.uuid
       };
-
       this.axios.post(`${this.routes.updateParticipation}`, data).then(response => {
         this.$toast.open(this.__('Teilnahme angepasst'));
       })
-
     }
   },
 }
