@@ -15,10 +15,8 @@
     <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
   </tr>
 </table>
-
 <p class="py-2x">
   <a href="{{ env('APP_URL') }}/dashboard/course/event/edit/{{ $event->uuid }}" class="button button-primary">{{ __('Kurs bearbeiten') }}</a>
 </p>
-
 @include('mail.partials.signature')
 @endcomponent

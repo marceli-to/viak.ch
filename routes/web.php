@@ -130,6 +130,9 @@ Route::get('/419', function() {
   abort(419);
 });
 
+Route::get('/participant-changes', [TestController::class, 'participantChanges']);
+
+
 Route::get('/message', [TestController::class, 'index']);
 
 Route::get('/notification', [TestController::class, 'notify']);

@@ -5,6 +5,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 use App\Models\Booking;
+use App\Facades\ParticipantsChange;
 
 class BookingCancelledWithPenalty
 {
@@ -22,5 +23,9 @@ class BookingCancelledWithPenalty
   {
     $this->user = $user;
     $this->booking = Booking::with('event.course')->find($booking->id);
+
+    // Handle event participant change
+    ParticipantsChange::handle($this->booking->event, TRUE);
+
   }
 }

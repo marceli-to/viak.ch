@@ -108,8 +108,7 @@ class Booking extends Base
    */
   public function scopeActive($query)
   {
-    return $query->where('cancelled', 0)->where('cancelled_at', 0);
+    return $query->where('cancelled', 0)->where('cancelled_at', NULL);
   }
-
 
 }

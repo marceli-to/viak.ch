@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ParticipantsMax extends Mailable
+class ParticipantsBelowMin extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -32,8 +32,8 @@ class ParticipantsMax extends Mailable
   {
     $event = Event::with('course')->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject('Max. Teilnehmerzahl erreicht – ' . $event->course->title)
+                ->subject('Min. Teilnehmerzahl unterschritten – ' . $event->course->title)
                 ->with(['event' => $event])
-                ->markdown('mail.event.participants-change', ['type' => 'max']);
+                ->markdown('mail.event.participants-change', ['type' => 'belowMin']);
   }
 }

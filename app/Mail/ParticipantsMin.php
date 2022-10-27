@@ -33,7 +33,7 @@ class ParticipantsMin extends Mailable
     $event = Event::with('course')->find($this->data->id);
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject('Min. Teilnehmerzahl erreicht – ' . $event->course->title)
-                ->with(['data' => $event])
+                ->with(['event' => $event])
                 ->markdown('mail.event.participants-change', ['type' => 'min']);
   }
 }

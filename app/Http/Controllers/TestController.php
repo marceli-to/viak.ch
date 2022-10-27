@@ -21,6 +21,43 @@ class TestController extends BaseController
     parent::__construct();
   }
 
+  public function participantChanges()
+  {
+    $bookingId = 30;
+    $booking = \App\Models\Booking::with('event.course')->find($bookingId);
+    $bookings = \App\Models\Booking::active()->where('event_id', $booking->event->id)->get();
+    $event = $booking->event;
+
+    dd();
+
+
+    if ($bookings)
+    {
+      // Equal max. participants
+      if ($bookings->count() == $event->max_participants)
+      {
+        \App\Models\Job::create([
+          'recipient' => env('MAIL_TO'),
+          'mailable_id' => $event->id,
+          'mailable_type' => \App\Models\Event::class,
+          'mailable_class' => \App\Mail\ParticipantsMax::class
+        ]);
+      }
+
+      // Equal min. participants
+      if ($bookings->count() == $event->min_participants)
+      {
+        \App\Models\Job::create([
+          'recipient' => env('MAIL_TO'),
+          'mailable_id' => $event->id,
+          'mailable_type' => \App\Models\Event::class,
+          'mailable_class' => \App\Mail\ParticipantsMin::class,
+        ]);
+      }
+    }
+
+
+  }
 
   public function index()
   {

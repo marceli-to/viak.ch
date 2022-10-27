@@ -4,40 +4,57 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Booking;
 use App\Models\Job;
+use App\Mail\ParticipantsBelowMin;
+use App\Mail\ParticipantsMin;
+use App\Mail\ParticipantsMax;
 
 class ParticipantsChange
 {
-  public static function handle(Event $event)
+  public static function handle(Event $event, $bookingCancelled = FALSE)
   {
-    $bookings = Booking::active()->where('event_id', $event->id)->get();
+    $bookingsCount     = Booking::active()->where('event_id', $event->id)->get()->count();
+    $equalsMax         = $event->max_participants;
+    $equalsMin         = $event->min_participants;
+    $equalsOneBelowMin = $event->min_participants - 1;
 
-    if ($bookings)
+    if ($bookingsCount > 0)
     {
-      // Equal max. participants
-      if ($bookings->count() == $event->max_participants)
+      // Handling booking cancelling first
+      if ($bookingCancelled)
       {
+        if ($bookingsCount == $equalsOneBelowMin)
+        // Below min participants
         Job::create([
           'recipient' => env('MAIL_TO'),
           'mailable_id' => $event->id,
-          'mailable_type' => \App\Models\Event::class,
-          'mailable_class' => \App\Mail\ParticipantsMax::class
+          'mailable_type' => Event::class,
+          'mailable_class' => ParticipantsBelowMin::class
         ]);
       }
-
-      // Equal min. participants
-      if ($bookings->count() == $event->min_participants)
+      else
       {
-        Job::create([
-          'recipient' => env('MAIL_TO'),
-          'mailable_id' => $event->id,
-          'mailable_type' => \App\Models\Event::class,
-          'mailable_class' => \App\Mail\ParticipantsMin::class
-        ]);
+        // Equal max. participants
+        if ($bookingsCount == $equalsMax)
+        {
+          Job::create([
+            'recipient' => env('MAIL_TO'),
+            'mailable_id' => $event->id,
+            'mailable_type' => Event::class,
+            'mailable_class' => ParticipantsMax::class
+          ]);
+        }
+
+        // Equal min. participants
+        if ($bookingsCount == $equalsMin)
+        {
+          Job::create([
+            'recipient' => env('MAIL_TO'),
+            'mailable_id' => $event->id,
+            'mailable_type' => Event::class,
+            'mailable_class' => ParticipantsMin::class,
+          ]);
+        }
       }
     }
-
-    // Below min participants
-
-
   }
 }
