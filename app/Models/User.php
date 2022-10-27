@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     'phone',
     'expert_title',
     'expert_description',
-    'expert_bio',
+    'expert_order',
     'operating_system',
     'email', 
     'password',

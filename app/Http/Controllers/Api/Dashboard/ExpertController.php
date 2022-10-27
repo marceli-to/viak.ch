@@ -21,8 +21,22 @@ class ExpertController extends Controller
   public function get()
   {
     return response()->json([
-      'active' =>  User::experts()->published()->orderBy('name', 'ASC')->get(),
-      'inactive' =>  User::experts()->unpublished()->orderBy('name', 'ASC')->get(),
+      'active' =>  User::experts()->published()->orderBy('expert_order', 'ASC')->get(),
+      'inactive' =>  User::experts()->unpublished()->orderBy('expert_order', 'ASC')->get(),
+    ]);
+  }
+
+  /**
+   * Get a list of users by a keyword
+   * 
+   * @param String $constraint
+   * @return \Illuminate\Http\Response
+   */
+  public function search($keyword = NULL)
+  {
+    return response()->json([
+      'active' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->published()->orderBy('expert_order', 'ASC')->get(),
+      'inactive' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->unpublished()->orderBy('expert_order', 'ASC')->get(),
     ]);
   }
 
@@ -92,6 +106,25 @@ class ExpertController extends Controller
     $user->publish = $user->publish == 0 ? 1 : 0;
     $user->save();
     return response()->json($user->publish);
+  }
+
+  /**
+   * Update the order the courses
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+
+  public function order(Request $request)
+  {
+    $experts = $request->get('experts');
+    foreach($experts as $expert)
+    {
+      $i = User::find($expert['id']);
+      $i->expert_order = $expert['order'];
+      $i->save(); 
+    }
+    return response()->json('successfully updated');
   }
 
   /**

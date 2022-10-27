@@ -252,9 +252,11 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
 
   // Experts
   Route::get('experts', [DashboardExpertController::class, 'get']);
+  Route::get('experts/search/{keyword}', [DashboardExpertController::class, 'search']);
   Route::get('expert/{user}', [DashboardExpertController::class, 'find']);
   Route::post('expert', [DashboardExpertController::class, 'store']);
   Route::put('expert/{user}', [DashboardExpertController::class, 'update']);
+  Route::post('expert/order', [DashboardExpertController::class, 'order']);
   Route::get('expert/state/{user}', [DashboardExpertController::class, 'toggle']);
   Route::delete('expert/{user}', [DashboardExpertController::class, 'destroy']);
 

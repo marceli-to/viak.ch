@@ -94,19 +94,6 @@
       </collapsible>
 
       <collapsible>
-        <template #title>Biographie</template>
-        <template #content>
-          <form-group :error="errors.expert_bio">
-            <tinymce-editor
-              :api-key="tinyApiKey"
-              :init="tinyConfig"
-              v-model="data.expert_bio"
-            ></tinymce-editor>
-          </form-group>
-        </template>
-      </collapsible>
-
-      <collapsible>
         <template #title>Profilbild</template>
         <template #content>
           <images 

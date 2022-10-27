@@ -3,7 +3,7 @@
   <notification ref="notification">
     <template #actions>
       <a href="/checkout/basket" class="btn-success">
-        {{ __('Warenkorb') }}
+        {{ __('Warenkorb anzeigen') }}
       </a>
       <a href="javascript:;" @click="$refs.notification.hide()">
         {{ __('Schliessen') }}

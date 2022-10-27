@@ -11,8 +11,10 @@
         </router-link>
       </grid-col>
       <grid-col class="span-4">
-        <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
-          <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+        <search-container @clear="fetch()" :input="searchQuery ? true : false">
+          <form v-on:submit.prevent="search()">
+            <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+          </form>
         </search-container>
       </grid-col>
     </grid>
@@ -21,25 +23,32 @@
     <collapsible :expanded="true">
       <template #title>Aktive Experten</template>
       <template #content>
-        <stacked-list-item v-for="expert in query('active')" :key="expert.uuid" class="relative">
-          <router-link :to="{ name: 'expert-edit', params: { id: expert.id } }" class="icon-edit mt-3x">
-            <icon-edit />
-          </router-link>
-          <div>
-            <div class="span-4">
-              {{ expert.fullname }}<span v-if="expert.city">, {{ expert.city }}</span>
+        <draggable 
+          :disabled="false"
+          v-model="data['active']" 
+          @end="order"
+          ghost-class="draggable-ghost"
+          draggable=".is-draggable">
+          <stacked-list-item v-for="expert in data['active']" :key="expert.uuid" class="relative is-draggable">
+            <router-link :to="{ name: 'expert-edit', params: { id: expert.id } }" class="icon-edit mt-3x">
+              <icon-edit />
+            </router-link>
+            <div>
+              <div class="span-4">
+                {{ expert.fullname }}<span v-if="expert.city">, {{ expert.city }}</span>
+              </div>
+              <div class="span-8">
+                <a :href="`mailto:${expert.email}`" target="_blank">{{ expert.email }}</a>
+              </div>
             </div>
-            <div class="span-8">
-              <a :href="`mailto:${expert.email}`" target="_blank">{{ expert.email }}</a>
-            </div>
-          </div>
-        </stacked-list-item>
+          </stacked-list-item>
+        </draggable>
       </template>
     </collapsible>
-    <collapsible>
+    <collapsible :expanded="searchQuery && data['inactive'].length > 0 ? true : false">
       <template #title>Inaktive Experten</template>
       <template #content>
-        <stacked-list-item v-for="expert in query('inactive')" :key="expert.uuid" class="relative">
+        <stacked-list-item v-for="expert in data['inactive']" :key="expert.uuid" class="relative">
           <router-link :to="{ name: 'expert-edit', params: { id: expert.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>
@@ -60,6 +69,7 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import draggable from 'vuedraggable';
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
@@ -78,6 +88,7 @@ export default {
   components: {
     NProgress,
     ErrorHandling,
+    draggable,
     ContentListHeader,
     Grid,
     GridCol,
@@ -98,7 +109,6 @@ export default {
     return {
 
       data: {
-
       },
 
       searchQuery: null,
@@ -106,9 +116,11 @@ export default {
       // Routes
       routes: {
         get: '/api/dashboard/experts',
+        search: '/api/dashboard/experts/search',
         store: '/api/dashboard/expert',
         delete: '/api/dashboard/expert',
         toggle: '/api/dashboard/expert/state',
+        order: '/api/dashboard/expert/order'
       },
 
       // States
@@ -132,6 +144,7 @@ export default {
     fetch() {
       NProgress.start();
       this.isLoaded = false;
+      this.searchQuery = null;
       this.axios.get(`${this.routes.get}`).then(response => {
         this.data.active = response.data.active;
         this.data.inactive = response.data.inactive;
@@ -140,19 +153,28 @@ export default {
       });
     },
 
-    query(type) {
-      if (this.searchQuery) {
-        return this.data[type].filter((item) => {
-          return this.searchQuery.toLowerCase().split(' ').every(
-            v => 
-            item.firstname.toLowerCase().includes(v) || 
-            item.name.toLowerCase().includes(v)
-          )
-        })
-      }
-      else {
-        return this.data[type];
-      }
+    search() {
+      this.isLoaded = false;
+      this.axios.get(`${this.routes.search}/${this.searchQuery}`).then(response => {
+        this.data.active = response.data.active;
+        this.data.inactive = response.data.inactive;
+        this.isLoaded = true;
+        NProgress.done();
+      });
+    },
+
+    order() {
+      let experts = this.data['active'].map(function(expert, index) {
+        expert.order = index;
+        return expert;
+      });
+      if (this.debounce) return;
+      this.debounce = setTimeout(function(experts) {
+        this.debounce = false;
+        this.axios.post(this.routes.order, {experts: experts}).then((response) => {
+          this.$toast.open('Reihenfolge angepasst');
+        });
+      }.bind(this, experts), 1000);
     },
   },
 }
