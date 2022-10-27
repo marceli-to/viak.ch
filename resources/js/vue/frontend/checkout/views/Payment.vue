@@ -61,7 +61,6 @@
         </div>
       </stacked-list-footer>
     </stacked-list-container>
-    <notification ref="notification" />
   </div>
 </template>
 <script>

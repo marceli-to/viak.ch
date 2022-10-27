@@ -75,7 +75,6 @@
       
     </stacked-list-container>
 
-    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -180,11 +179,9 @@ export default {
 
       // Validate address selection
       if (this.hasAdresses && this.form.address_uuid == null) {
-        this.$refs.notification.init({
-          message: 'Bitte Adresse auswählen',
-          type: 'toast',
-          style: 'error',
-          autohide: false,
+        this.$toast.open({
+          'message': 'Bitte Rechnungsadresse auswählen',
+          'type': 'error'
         });
         return;
       }

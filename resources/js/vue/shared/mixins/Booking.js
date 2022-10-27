@@ -19,7 +19,6 @@ export default {
         message: message,
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 
@@ -29,12 +28,7 @@ export default {
       this.axios.put(`${this.routes.booking.cancel}/${this.uuidToDelete}`).then(response => {
         this.uuidToDelete = null;
         if (this.$route.name == 'student-profile') {
-          this.$refs.notification.init({
-            message: 'Die Buchung wurde annulliert.',
-            type: 'toast',
-            style: 'success',
-            autohide: true,
-          });
+          this.$toast.open(this.__('Die Buchung wurde annulliert.'));
           this.find();
         }
         else {

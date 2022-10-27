@@ -75,10 +75,11 @@ export default {
       isFetched: false,
 
       // Messages
-      messages: {
+      notifications: {
         emptyData: 'Es sind noch keine Dateien vorhanden...',
-        saved: 'Datei gespeichert!',
-        updated: 'Änderungen gespeichert!',
+        saved: 'Datei gespeichert',
+        deleted: 'Datei gelöscht',
+        updated: 'Änderungen gespeichert',
       },
     };
   },
@@ -124,6 +125,7 @@ export default {
         file.uuid = response.data.file.uuid;
         this.data.push(file);
         this.$emit('fileStored', response.data.file.uuid);
+        this.$toast.open(this.__(this.notifications.saved));
         NProgress.done();
       });
     },
@@ -134,7 +136,6 @@ export default {
         message: 'Bitte Löschen bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 
@@ -145,18 +146,14 @@ export default {
         const index = this.data.findIndex(x => x.uuid === this.currentFile.uuid);
         this.data.splice(index, 1);
         this.currentFile = null;
+        this.$toast.open(this.__(this.notifications.deleted));
         NProgress.done();
       });
     },
 
     updateFile(file) {
       this.axios.put(`${this.routes.update}/${file.uuid}`, file).then((response) => {
-        this.$refs.notification.init({
-          message: this.messages.updated,
-          type: 'toast',
-          style: 'success',
-          autohide: true
-        });
+        this.$toast.open(this.__(this.notifications.updated));
       });
     },
 

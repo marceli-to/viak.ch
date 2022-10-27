@@ -29,7 +29,6 @@
       </div>
     </stacked-list-item>
   </draggable>
-  <notification ref="notification" />
 </div>
 </template>
 <script>
@@ -120,11 +119,7 @@ export default {
       this.debounce = setTimeout(function(items) {
         this.debounce = false;
         this.axios.post(this.routes.order, {items: items}).then((response) => {
-          this.$refs.notification.init({
-            message: 'Reihenfolge angepasst',
-            type: 'toast',
-            style: 'success',
-          });
+          this.$toast.open(this.messages.updated);
         });
       }.bind(this, items), 1000);
     },

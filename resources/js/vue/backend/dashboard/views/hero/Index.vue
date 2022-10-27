@@ -24,7 +24,6 @@
       </template>
     </collapsible>
   </collapsible-container>
-  <notification ref="notification" />
 </div>
 </template>
 <script>

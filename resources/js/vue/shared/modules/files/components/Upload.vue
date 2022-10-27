@@ -7,7 +7,6 @@
       @vdropzone-complete="complete"
     ></vue-dropzone-file>
     <span class="requirements">{{restrictions}}</span>
-    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -50,7 +49,6 @@ export default {
           message: this.messages.uploadError,
           type: 'alert',
           style: 'error',
-          autohide: false
         });
       } 
       else {

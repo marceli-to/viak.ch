@@ -96,8 +96,7 @@
         </template>
       </collapsible>
     </collapsible-container>
-    
-    <notification ref="notification" />
+   
   </div>
 </template>
 <script>
@@ -173,12 +172,7 @@ export default {
       if (index > -1) {
         this.data.files.splice(index, 1);
       }
-
-      this.$refs.notification.init({
-        message: 'Datei entfernt',
-        type: 'toast',
-        style: 'success',
-      });
+      this.$toast.open(this.__('Datei entfernt'));
     }
   },
 }

@@ -36,7 +36,6 @@
       </a>
     </form-group>
   </form>
-  <notification ref="notification" />
 </div>
 </template>
 <script>

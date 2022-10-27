@@ -373,12 +373,7 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.put(`${this.routes.confirm}/${this.$route.params.uuid}`, this.data).then(response => {
-        this.$refs.notification.init({
-          message: 'Die Veranstaltung ist bestätigt!',
-          type: 'toast',
-          style: 'success',
-          autohide: true,
-        });
+        this.$toast.open(this.__('Die Veranstaltung ist bestätigt'));
         this.isLoading = false;
         NProgress.done();
         this.data.confirmed = 1;
@@ -388,12 +383,7 @@ export default {
 
     cancelEvent() {
       this.axios.put(`${this.routes.cancel}/${this.$route.params.uuid}`, this.data).then(response => {
-        this.$refs.notification.init({
-          message: 'Die Veranstaltung ist abgesagt!',
-          type: 'toast',
-          style: 'success',
-          autohide: true,
-        });
+        this.$toast.open(this.__('Die Veranstaltung ist abgesagt'));
         this.data.cancelled = 1;
         this.actionToBeConfirmed = null;  
       });
@@ -417,7 +407,6 @@ export default {
         message: 'Bitte «Veranstaltung bestätigen» bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
     
@@ -427,7 +416,6 @@ export default {
         message: 'Bitte «Veranstaltung bestätigen» bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 
@@ -437,7 +425,6 @@ export default {
         message: 'Bitte «Veranstaltung absagen» bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 

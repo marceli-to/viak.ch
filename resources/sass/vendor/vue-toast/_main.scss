@@ -1,0 +1,90 @@
+.v-toast {
+  @extend %fs-16x;
+  @extend %md\:fs-18x;
+
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  padding: 0;
+  overflow: hidden;
+  z-index: 1052;
+  pointer-events: none;
+  transition: top .1s ease-in;
+
+  @include bp-xs() {
+    left: 16px;
+    top: 16px;
+    width: calc(100% - 32px);
+  }
+
+  @include bp-sm() {
+    max-width: 360px;
+    right: calc((100% - #{$site-max-width-md})/2 + #{$space-4x});
+    top: $space-4x;
+    width: auto;
+  }
+
+  &__item {
+    @include font-bold();
+    display: inline-flex;
+    align-items: center;
+    animation-duration: 150ms;
+    margin: 0 0 $space-2x 0;
+    box-shadow: none;
+    border-radius: 0;
+    pointer-events: auto;
+    opacity: 1;
+    color: #fff;
+    min-height: auto;
+    cursor: pointer;
+
+    // Colors
+    @each $color, $value in $toast-colors {
+      &--#{$color} {
+        background-color: $value !important;
+      }
+    }
+
+    // Individual toast position
+    &.v-toast__item--top, &.v-toast__item--bottom {
+      align-self: center;
+    }
+
+    &.v-toast__item--top-right, &.v-toast__item--bottom-right {
+      align-self: flex-end;
+    }
+
+    &.v-toast__item--top-left, &.v-toast__item--bottom-left {
+      align-self: flex-start;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    padding: 0.5em 1em;
+    word-break: break-word;
+  }
+
+  &__icon {
+    display: none;
+  }
+
+  // Notice container positions
+  &.v-toast--top {
+    flex-direction: column;
+  }
+
+  &.v-toast--bottom {
+    flex-direction: column-reverse;
+  }
+
+  &.v-toast--custom-parent {
+    position: absolute;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0;
+    position: fixed !important;
+  }
+}

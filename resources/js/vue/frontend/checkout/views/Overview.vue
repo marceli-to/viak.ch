@@ -34,7 +34,6 @@
       </div>
     </template>
   </stacked-list-container>
-  <notification ref="notification" />
 </div>
 </template>
 <script>

@@ -126,7 +126,6 @@
     </div>
   </article>
 
-  <notification ref="notification" />
 </div>
 </template>
 <script>

@@ -71,11 +71,7 @@ export default {
         this.axios.put(`${this.routes.bookmark.add}/${this.eventUuid}`).then(response => {
           this.bookmarked = true;
           this.bookmarkUuid = response.data.uuid;
-          this.$refs.notification.init({
-            message: 'Der Kurs wurde in der Merkliste gespeichert.',
-            type: 'toast',
-            style: 'success',
-          });
+          this.$toast.open(this.__('Der Kurs wurde in der Merkliste gespeichert.'));
           NProgress.done();
         });
       }
@@ -84,7 +80,6 @@ export default {
           message: '<p>Die Merkliste steht nur registrierten Benutzern zur Verfügung.</p>',
           type: 'dialog',
           style: 'info',
-          autohide: false,
         });
       }
     },
@@ -93,12 +88,7 @@ export default {
       NProgress.start();
       this.axios.delete(`${this.routes.bookmark.delete}/${this.bookmarkUuid}`).then(response => {
         this.bookmarked = false;
-        this.$refs.notification.init({
-          message: 'Der Kurs wurde aus der Merkliste gelöscht.',
-          type: 'toast',
-          style: 'success',
-        });
-
+        this.$toast.open(this.__('Der Kurs wurde aus der Merkliste gelöscht.'));
         if (this.$props.callback && this.$props.callback == 'hideAfter') {
           const el = document.querySelector(`[data-bookmark="${this.bookmarkUuid}"]`);
           el.remove();

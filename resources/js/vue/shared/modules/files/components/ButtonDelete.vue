@@ -46,7 +46,6 @@ export default {
         message: 'Bitte Löschen bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 

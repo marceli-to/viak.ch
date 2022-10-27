@@ -41,7 +41,7 @@
                 <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
                 <div class="sm:span-2 md:span-3 flex justify-end mr-2x">
                   <div class="form-group__checkbox">
-                    <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :value="1">
+                    <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :value="1" @change="updateAttendance(participant.uuid)">
                   </div>
                 </div>
               </div>
@@ -109,8 +109,6 @@
         </template>
       </collapsible>
     </collapsible-container>
-    
-    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -185,12 +183,11 @@ export default {
       if (index > -1) {
         this.data.files.splice(index, 1);
       }
+      this.$toast.open(this.__('Datei entfernt'));
+    },
 
-      this.$refs.notification.init({
-        message: 'Datei entfernt',
-        type: 'toast',
-        style: 'success',
-      });
+    updateAttendance(uuid) {
+      this.$toast.open(this.__('Teilnahme bestätigt'));
     }
   },
 }

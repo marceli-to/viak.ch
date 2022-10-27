@@ -1,0 +1,11 @@
+$toast-colors: () !default;
+$toast-colors: map-merge(
+  (
+    "success": #5FAD56,
+    "info": #505050,
+    "warning": #ff944f,
+    "error": #ff2800,
+    "default": #505050
+  ),
+  $toast-colors
+);

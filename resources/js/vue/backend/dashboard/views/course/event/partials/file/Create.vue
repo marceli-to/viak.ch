@@ -19,7 +19,6 @@
         </form-group>
       </template>
     </article-text>
-    <notification ref="notification" />
   </form>
 </template>
 <script>

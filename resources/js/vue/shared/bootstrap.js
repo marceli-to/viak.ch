@@ -41,3 +41,9 @@ if (token) {
 // Notifications
 import Notification from "@/shared/components/ui/misc/Notification.vue";
 Vue.component('notification', Notification);
+
+import VueToast from 'vue-toast-notification';
+//import 'vue-toast-notification/dist/theme-sugar.css';
+Vue.use(VueToast, {
+  position: 'top'
+});

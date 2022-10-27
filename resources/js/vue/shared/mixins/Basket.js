@@ -66,7 +66,6 @@ export default {
           message: 'Der Kurs wurde im Warenkorb abgelegt.',
           type: 'dialog',
           style: 'success',
-          autohide: false,
         });
         NProgress.done();
       });
@@ -77,12 +76,7 @@ export default {
       this.axios.delete(`${this.routes.basket.delete}/${uuid}`).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = false;
-        this.$refs.notification.init({
-          message: 'Der Kurs wurde aus dem Warenkorb gelöscht.',
-          type: 'toast',
-          style: 'success',
-        });
-
+        this.$toast.open(this.__('Der Kurs wurde aus dem Warenkorb gelöscht.'));
         if (reload) {
           this.getBasket();
           return;

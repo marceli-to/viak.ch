@@ -108,6 +108,7 @@ export default {
         emptyData: 'Es sind noch keine Dateien vorhanden...',
         saved: 'Bild gespeichert',
         updated: 'Änderungen gespeichert',
+        deleted: 'Bild gelöscht',
         confirmDelete: 'Bitte löschen bestätigen'
       },
     };
@@ -151,14 +152,9 @@ export default {
 
       NProgress.start();
       this.axios.post(`${this.routes.store}`, img).then(response => {
-        this.$refs.notification.init({
-          message: this.notifications.saved,
-          type: 'toast',
-          style: 'success',
-          autohide: true,
-        });
         img.id = response.data.imageId;
         this.data.push(img);
+        this.$toast.open(this.__(this.notifications.saved));
         NProgress.done();
       });
     },
@@ -169,7 +165,6 @@ export default {
         message: 'Bitte Löschen bestätigen!',
         type: 'dialog',
         style: 'info',
-        autohide: false,
       });
     },
 
@@ -179,6 +174,7 @@ export default {
         const index = this.data.findIndex(x => x.name === this.currentImage);
         this.data.splice(index, 1);
         this.currentImage = null;
+        this.$toast.open(this.__(this.notifications.deleted));
         NProgress.done();
       });
     },
@@ -195,12 +191,7 @@ export default {
     updateImage(image) {
       NProgress.start();
       this.axios.put(`${this.routes.coords}/${image.id}`, image).then(response => {
-        this.$refs.notification.init({
-          message: this.notifications.updated,
-          type: 'toast',
-          style: 'success',
-          autohide: true,
-        });
+        this.$toast.open(this.__(this.notifications.updated));
         NProgress.done();
       });
     },

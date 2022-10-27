@@ -64,11 +64,9 @@ export default {
       this.errors = errors;
       this.isLoading = false;
       NProgress.done();
-      this.$refs.notification.init({
-        message: 'Bitte alle mit * markierten Felder prüfen!',
-        type: 'toast',
-        style: 'error',
-        autohide: true,
+      this.$toast.open({
+        'message': 'Bitte alle mit * markierten Felder prüfen!',
+        'type': 'error'
       });
     },
 

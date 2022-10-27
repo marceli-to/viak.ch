@@ -1,13 +1,9 @@
 <template>
   <div 
-    :class="[type == 'toast' ? 'is-toast' : 'is-modal', style]" 
+    :class="`is-modal ${style}`" 
     v-show="isOpen" 
     @click="hide()">
     <div class="notification__inner">
-
-      <template v-if="type == 'toast'">
-        <div class="notification-message" v-html="message"></div>
-      </template>
 
       <template v-if="type == 'alert'">
         <div class="notification-icon">
@@ -56,14 +52,14 @@ export default {
       // Message [String]
       message: null,
 
-      // Type [String: 'alert', 'toast']
+      // Type [String: 'alert', 'modal']
       type: 'alert',
 
       // Style [String]
       style: '',
 
       // Autohide [Boolean]
-      autohide: true,
+      autohide: false,
       
       autohideDelay: 2000,
 
@@ -106,12 +102,7 @@ export default {
     },
 
     show() {
-      // @todo: hide previous items
-      // const items = document.querySelectorAll('.notification');
-      // if (items.length > 0) {
-      //   items.forEach( el => el.style.top = items.length * 70 + 'px' );
-      // }
-      
+     
       this.isOpen = true;
       if (this.autohide) {
         setTimeout(() => {

@@ -22,7 +22,6 @@
       </div>
     </div>
   </stacked-list-item>
-  <notification ref="notification" />
 </div>
 </template>
 <script>

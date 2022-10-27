@@ -5,7 +5,7 @@
       <a href="/checkout/basket" class="btn-success">
         {{ __('Warenkorb') }}
       </a>
-      <a href="javascript:;" @click="hide()">
+      <a href="javascript:;" @click="$refs.notification.hide()">
         {{ __('Schliessen') }}
       </a>
     </template>

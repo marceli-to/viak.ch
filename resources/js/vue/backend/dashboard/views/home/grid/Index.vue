@@ -49,16 +49,15 @@
       <icon-plus :size="'lg'" />
     </a>
   </form-group>
-
   <news-selector ref="newsSelector"></news-selector>
   <course-selector ref="courseSelector"></course-selector>
   <code-input ref="codeInput"></code-input>
-  <notification ref="notification" />
 </div>
 </template>
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import draggable from 'vuedraggable';
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
@@ -86,7 +85,7 @@ export default {
     IconTrash
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [ErrorHandling, Helpers, i18n],
 
   data() {
     return {
@@ -161,7 +160,7 @@ export default {
       this.debounce = setTimeout(function() {
         this.debounce = false;
         this.axios.post(`${this.routes.order}`, {items: events}).then((response) => {
-          this.$notify({type: 'success', text: this.messages.updated});
+          this.$toast.open(this.__(this.messages.updated));
         });
       }.bind(this, events), 500);
     },
@@ -216,11 +215,7 @@ export default {
       this.axios.delete(`${this.routes.delete}/${id}`).then(response => {
         const index = this.grid.findIndex(x => x.id == id);
         this.grid.splice(index, 1);
-        this.$refs.notification.init({
-          message: 'Zeile wurde gelöscht.',
-          type: 'toast',
-          style: 'success',
-        });
+        this.$toast.open(this.__('Zeile wurde gelöscht'));
         NProgress.done();
       });
     },

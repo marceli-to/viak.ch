@@ -178,7 +178,6 @@
       </div>
     </div>
     <!-- // edit -->
-    <notification ref="notification" />
   </div>
 </template>
 <script>
@@ -267,11 +266,6 @@ export default {
       routes: {
         update: '/api/image',
       },
-
-      // Messages
-      messages: {
-        updated: 'Daten aktualisiert!',
-      },
     };
   },
 
@@ -297,11 +291,7 @@ export default {
 
     update() {
       this.axios.put(`${this.routes.update}/${this.currentImage.id}`, this.currentImage).then((response) => {
-        this.$refs.notification.init({
-          message: `${this.messages.updated}`,
-          type: 'toast',
-          style: 'success',
-        });
+        this.$toast.open(this.__('Daten aktualisiert'));
         this.hideEdit();
       });
     },
@@ -317,11 +307,7 @@ export default {
         this.debounce = false;
         let uri = `/api/images/order`;
         this.axios.post(uri, {images: images}).then((response) => {
-          this.$refs.notification.init({
-            message: 'Reihenfolge angepasst',
-            type: 'toast',
-            style: 'success',
-          });
+          this.$toast.open(this.__('Reihenfolge angepasst'));
         });
       }.bind(this, images), 1000);
     },
