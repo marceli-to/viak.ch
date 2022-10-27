@@ -19,9 +19,22 @@ class StudentController extends Controller
   {
     if ($constraint == 'publish')
     {
-      return new DataCollection(User::published()->orderBy('name', 'ASC')->get());
+      return new DataCollection(User::students()->published()->orderBy('name', 'ASC')->get());
     }
     return new DataCollection(User::students()->orderBy('name', 'ASC')->get());
+  }
+
+  /**
+   * Get a list of users by a keyword
+   * 
+   * @param String $constraint
+   * @return \Illuminate\Http\Response
+   */
+  public function search($keyword = NULL)
+  {
+    return new DataCollection(
+      User::students()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->published()->orderBy('name', 'ASC')->get()
+    );
   }
 
   /**

@@ -244,6 +244,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
 
   // Students
   Route::get('students/{constraint?}', [DashboardStudentController::class, 'get']);
+  Route::get('students/search/{keyword}', [DashboardStudentController::class, 'search']);
   Route::get('student/{user}', [DashboardStudentController::class, 'find']);
   Route::post('student', [DashboardStudentController::class, 'store']);
   Route::put('student/{user}', [DashboardStudentController::class, 'update']);

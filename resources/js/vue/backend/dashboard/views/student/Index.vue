@@ -6,8 +6,10 @@
         <h1>Studenten</h1>
       </grid-col>
       <grid-col class="span-8">
-        <search-container @clear="searchQuery = null" :input="searchQuery ? true : false">
-          <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+        <search-container @clear="fetch()" :input="searchQuery ? true : false">
+          <form v-on:submit.prevent="search()">
+            <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
+          </form>
         </search-container>
       </grid-col>
     </grid>
@@ -16,7 +18,7 @@
     <collapsible :expanded="true">
       <template #title>Aktive Studenten</template>
       <template #content>
-        <stacked-list-item v-for="student in queryData" :key="student.uuid" class="relative">
+        <stacked-list-item v-for="student in data" :key="student.uuid" class="relative">
           <router-link :to="{ name: 'student-edit', params: { id: student.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>
@@ -79,6 +81,7 @@ export default {
       // Routes
       routes: {
         get: '/api/dashboard/students',
+        search: '/api/dashboard/students/search',
         store: '/api/dashboard/student',
         delete: '/api/dashboard/student',
         toggle: '/api/dashboard/student/state',
@@ -105,6 +108,7 @@ export default {
     fetch() {
       NProgress.start();
       this.isLoaded = false;
+      this.searchQuery = null;
       this.axios.get(`${this.routes.get}`).then(response => {
         this.data = response.data.data;
         this.isLoaded = true;
@@ -112,24 +116,14 @@ export default {
       });
     },
 
+    search() {
+      this.isLoaded = false;
+      this.axios.get(`${this.routes.search}/${this.searchQuery}`).then(response => {
+        this.data = response.data.data;
+        this.isLoaded = true;
+        NProgress.done();
+      });
+    },
   },
-  computed: {
-    queryData() {
-      if (this.searchQuery) {
-        return this.data.filter((item) => {
-          return this.searchQuery.toLowerCase().split(' ').every(
-            v => 
-            item.firstname.toLowerCase().includes(v) || 
-            item.name.toLowerCase().includes(v) || 
-            (item.city && item.city.toLowerCase().includes(v)) ||
-            item.email.toLowerCase().includes(v)
-          )
-        })
-      }
-      else {
-        return this.data;
-      }
-    }
-  }
 }
 </script>
