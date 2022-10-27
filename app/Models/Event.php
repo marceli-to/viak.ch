@@ -302,7 +302,7 @@ class Event extends Base
   }
 
   /**
-   * Get the short version for an event_date.
+   * Get the short version for an event date.
    *
    * @param  string $value
    * @return string $date
@@ -315,7 +315,7 @@ class Event extends Base
 
 
   /**
-   * Get the date for an event_date.
+   * Get the date for an event date.
    *
    * @param  string $value
    * @return string $date
@@ -327,7 +327,7 @@ class Event extends Base
   }
 
   /**
-   * Get the short version for an event_date.
+   * Get the short version for an event date.
    *
    * @param  string $value
    * @return string $date
@@ -353,7 +353,7 @@ class Event extends Base
 
   /**
    * Get the course 'online' attribute depending on whether the event 
-   * has 'online' set. If not, take the 'fee' of the parent course 
+   * has 'online' set. If not, take the 'online' attribute of the parent course 
    *
    * @param  string $value
    * @return string $date
@@ -375,19 +375,6 @@ class Event extends Base
   }
 
   /**
-   * Get all users for an event. Users do not have a direct
-   * relationship with events, they are related via the
-   * booking.
-   * 
-   * @return Array $users
-   */
-
-  public function getStudents()
-  {
-    return $this->bookings;
-  }
-
-  /**
    * Get the event number attribute. The event number is a combination
    * of the events course and the first date of the event.
    *
@@ -400,4 +387,3 @@ class Event extends Base
   }
 
 }
-

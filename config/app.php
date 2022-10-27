@@ -184,6 +184,8 @@ return [
         App\Providers\BookingServiceProvider::class,
         App\Providers\ParticipantsChangeServiceProvider::class,
         App\Providers\InvoiceServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*

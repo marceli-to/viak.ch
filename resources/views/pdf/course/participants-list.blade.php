@@ -28,11 +28,11 @@
         <th style="width: 100mm">{{ __('Teilnehmer') }}</th>
       </thead>
       <tbody>
-        @foreach($data['students'] as $student)
+        @foreach($data['bookings'] as $booking)
           <tr>
             <td>
               <strong>
-                {{ $student->fullname }}, {{ $student->city }}
+                {{ $booking->user->fullname }}, {{ $booking->user->city }}
               </strong>
             </td>
           </tr>

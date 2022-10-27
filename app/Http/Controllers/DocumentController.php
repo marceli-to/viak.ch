@@ -64,11 +64,11 @@ class DocumentController extends BaseController
    */
   public function participantsList(Event $event)
   { 
-    $event = $event->with('course', 'experts')->findOrFail($event->id);
+    $event = $event->with('course', 'experts', 'bookings')->findOrFail($event->id);
     $pdf = (new Pdf())->create([
       'data' => [
         'event' => $event,
-        'students' => $event->getStudents()
+        'bookings' => $event->bookings
       ],
       'view' => 'course.participants-list',
       'name' => 'teilnehmerliste',

@@ -47,7 +47,7 @@ class EventMessageController extends Controller
   public function store(MessageStoreRequest $request)
   {
     // Get the event
-    $event = Event::where('uuid', $request->input('event_uuid'))->first();
+    $event = Event::with('bookings')->where('uuid', $request->input('event_uuid'))->first();
 
     // Create message
     $message = Message::create([
@@ -77,11 +77,11 @@ class EventMessageController extends Controller
       }
     }
 
-    // Create job and add students
-    foreach($event->getStudents() as $student)
+    // Create job and add students via a booking
+    foreach($event->bookings as $booking)
     {
       Job::create([
-        'recipient' => $student->email,
+        'recipient' => $booking->user->email,
         'mailable_id' => $message->id,
         'mailable_type' => \App\Models\Message::class,
         'mailable_class' => \App\Mail\EventMessage::class
@@ -89,7 +89,7 @@ class EventMessageController extends Controller
 
       MessageUser::create([
         'message_id' => $message->id,
-        'user_id' => $student->id
+        'user_id' => $booking->user->id
       ]);
     }
 

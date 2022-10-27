@@ -3,7 +3,7 @@
 {!! nl2br($message->body) !!}
 <br>
 <br>
-@if ($message->files)
+@if ($message->files->count() > 0)
   <div>Anhänge</div>
   @foreach($message->files as $file)
     <div>
