@@ -49,7 +49,7 @@ class BookingsCreate extends Command
     foreach($users as $user)
     {
       $booking = Booking::create([
-        'uuid' => $user->uuid,
+        'uuid' => \Str::uuid(),
         'number' => BookingFacade::getNumber(),
         'course_fee' => $event->courseFee,
         'invoice_address' => NULL,

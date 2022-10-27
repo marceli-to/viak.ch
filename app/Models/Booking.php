@@ -3,10 +3,11 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\ModelFlags\Models\Concerns\HasFlags;
 
 class Booking extends Base
 {
-  use SoftDeletes;
+  use SoftDeletes, HasFlags;
 
   /**
    * The attributes that should be cast to native types.
@@ -91,7 +92,7 @@ class Booking extends Base
     return $this->hasOne(User::class, 'id', 'user_id');
   }
 
-
+  
   /*
   |--------------------------------------------------------------------------
   | Local scopes

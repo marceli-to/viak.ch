@@ -13,12 +13,13 @@ class EventParticipantsResource extends JsonResource
   public function toArray($request)
   {
     return [
-      'uuid' => $this->uuid,
-      'fullname' => $this->fullname,
-      'name' => $this->name,
-      'firstname' => $this->firstname,
-      'city' => $this->city,
-      'email' => auth()->user()->isAdmin() ? $this->email : null,
+      'uuid' => $this->user->uuid,
+      'fullname' => $this->user->fullname,
+      'name' => $this->user->name,
+      'firstname' => $this->user->firstname,
+      'city' => $this->user->city,
+      'email' => auth()->user()->isAdmin() ? $this->user->email : null,
+      'hasParticipated' => $this->hasFlag('hasParticipated') ? true : false
     ];
   }
 }

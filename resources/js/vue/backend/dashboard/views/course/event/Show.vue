@@ -41,7 +41,7 @@
                 <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
                 <div class="sm:span-2 md:span-3 flex justify-end mr-2x">
                   <div class="form-group__checkbox">
-                    <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :value="1" @change="updateAttendance(participant.uuid)">
+                    <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :checked="participant.hasParticipated ? true : false" :value="1" @change="updateAttendance(participant.uuid)">
                   </div>
                 </div>
               </div>
@@ -158,6 +158,7 @@ export default {
 
       routes: {
         show: '/api/expert/course/event',
+        updateParticipation: '/api/event/student/participation'
       },
     };
   },
@@ -187,7 +188,16 @@ export default {
     },
 
     updateAttendance(uuid) {
-      this.$toast.open(this.__('Teilnahme bestätigt'));
+
+      const data = {
+        userUuid: uuid,
+        eventUuid: this.$route.params.uuid
+      };
+
+      this.axios.post(`${this.routes.updateParticipation}`, data).then(response => {
+        this.$toast.open(this.__('Teilnahme angepasst'));
+      })
+
     }
   },
 }

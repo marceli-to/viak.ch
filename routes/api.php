@@ -152,6 +152,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
   Route::get('/event/messages/{event:uuid}', [EventMessageController::class, 'get']);
   Route::post('/event/message', [EventMessageController::class, 'store']);
   Route::post('/event/file', [EventFileController::class, 'store']);
+  Route::post('/event/student/participation', [EventController::class, 'updateParticipation'])->middleware(['role:admin,expert']);
   Route::get('/message/{message:uuid}', [EventMessageController::class, 'find']);
   Route::get('/expert/course/event/{event:uuid}', [EventController::class, 'findExpertEvent'])->middleware(['role:admin,expert']);
   Route::get('/student/course/event/{event:uuid}', [EventController::class, 'findStudentEvent'])->middleware(['role:admin,student']);

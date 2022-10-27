@@ -384,7 +384,7 @@ class Event extends Base
 
   public function getStudents()
   {
-    return $this->bookings->pluck('user')->all();
+    return $this->bookings;
   }
 
   /**
