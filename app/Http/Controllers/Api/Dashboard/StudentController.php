@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Models\User;
+use App\Models\Role;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use Illuminate\Http\Request;
@@ -96,6 +97,12 @@ class StudentController extends Controller
    */
   public function destroy(User $user)
   {
+    if ($user->hasMultipleRoles())
+    {
+      $user->roles()->detach(Role::STUDENT);
+      return response()->json('successfully removed role');
+    }
+
     $user->delete();
     return response()->json('successfully deleted');
   }

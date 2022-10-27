@@ -135,6 +135,12 @@ class ExpertController extends Controller
    */
   public function destroy(User $user)
   {
+    if ($user->hasMultipleRoles())
+    {
+      $user->roles()->detach(Role::EXPERT);
+      return response()->json('successfully removed role');
+    }
+    
     $user->delete();
     return response()->json('successfully deleted');
   }
