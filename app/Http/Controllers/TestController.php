@@ -792,7 +792,7 @@ class TestController extends BaseController
           'title' => $course->title,
           'date' => date('d. F Y', strtotime($event->date)),
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
-          'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
+          'experts' => $event->experts_fullname_string,
           'fee' => $course->fee,
           'online' => $event->online ? TRUE : FALSE,
           'upcoming' => TRUE,

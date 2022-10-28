@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td>{{ __('Experten') }}</td>
-    <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
+    <td>{{ $event->experts_fullname_string }}
   </tr>
   @if ($event->online)
     <tr>
@@ -54,7 +54,7 @@
   </tr>
   <tr>
     <td>{{ __('Experten') }}</td>
-    <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
+    <td>{{ $event->experts_fullname_string }}
   </tr>
 </table>
 <p>{{ __('Weitere Informationen zu diesem Kurs findest Du ') }} <a href="{{ route('page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>

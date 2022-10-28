@@ -36,6 +36,11 @@ class BasketController extends Controller
   {
     $store = $this->store->get();
 
+    if (!isset($store['items']) || collect($store['items'])->isEmpty())
+    {
+      abort(404);
+    }
+
     $data = [
       'user_uuid' => isset($store['user_uuid']) ? $store['user_uuid'] : NULL,
       'invoice_address_uuid' => isset($store['invoice_address_uuid']) ? $store['invoice_address_uuid'] : NULL,
@@ -201,9 +206,11 @@ class BasketController extends Controller
             'time_end' => $date->time_end,
           ];
         }),
-        'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
+        'experts' => $event->experts_fullname_string,
         'course' => [
           'title' => $event->course->title,
+          'slug' => $event->course->slug,
+          'uuid' => $event->course->uuid,
         ],
       ];
     });

@@ -13,6 +13,7 @@ use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TestController;
@@ -71,6 +72,11 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
   Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');
   Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
+
+  Route::get('/payment/booking/{booking:uuid}', [PaymentController::class, 'index'])->name('page.payment.overview')->middleware(['role:student']);
+  Route::get('/payment/success', [PaymentController::class, 'success'])->name('page.payment.success')->middleware(['role:student']);
+  Route::get('/payment/error', [PaymentController::class, 'error'])->name('page.payment.error')->middleware(['role:student']);
+
 
   // Routes for user with multiple roles
   Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select')->middleware(['role:admin']);

@@ -365,7 +365,7 @@ class Event extends Base
   }
 
   /**
-   * Get array of ids from the m:n relationships
+   * Get array of ids from event experts
    *
    */
 
@@ -373,6 +373,28 @@ class Event extends Base
   {
     return $this->experts->pluck('id');
   }
+
+  /**
+   * Get the events experts fullnames as comma separated string
+   *
+   */
+
+  public function getExpertsFullnameStringAttribute()
+  {
+    return collect($this->experts->pluck('fullname')->all())->implode(', ');
+  }
+
+  /**
+   * Get the events dates as comma separated string
+   *
+   */
+
+  public function getDatesStringAttribute()
+  {
+    $dates = collect($this->dates);
+    return collect($dates->pluck('date_short')->all())->implode(', ');
+  }
+
 
   /**
    * Get the event number attribute. The event number is a combination

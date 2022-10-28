@@ -373,7 +373,7 @@ class CourseFilter
           'title' => $course->title,
           'date' => $event->date,
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
-          'experts' => collect($event->experts->pluck('fullname')->all())->implode(', '),
+          'experts' => $event->experts_fullname_string,
           'fee' => $course->fee,
           'course_fee' => $event->courseFee,
           'online' => $course->online ? TRUE : FALSE,

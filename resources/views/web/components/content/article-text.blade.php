@@ -1,10 +1,10 @@
 <article class="content-text">
   <div class="text__body">
     <aside>
-      {{ $aside }}
+      {{ $aside ?? '' }}
     </aside>
     <div>
-      {{ $content }}
+      {{ $content ?? '' }}
     </div>
   </div>
 </article>

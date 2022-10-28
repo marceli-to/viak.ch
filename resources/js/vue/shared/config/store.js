@@ -18,7 +18,6 @@ export default new Vuex.Store({
     },
     collapsibles(state, collapsibles) {
       state.collapsibles = collapsibles;
-      console.log(state.collapsibles);
     },
   }
 });

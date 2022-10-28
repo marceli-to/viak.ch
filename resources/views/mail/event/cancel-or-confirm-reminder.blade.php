@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <td>{{ __('Experten') }}</td>
-    <td>{{ collect($event->experts->pluck('fullname')->all())->implode(', ') }}
+    <td>{{ $event->experts_fullname_string }}
   </tr>
 </table>
 <p class="py-2x">
