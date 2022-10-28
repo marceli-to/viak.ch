@@ -6,7 +6,7 @@
   <p>{{ __('Der Zugriff auf diese Seite wurde verweigert.') }}</p>
   @include('errors.partials.footer')
   <p>
-    <a href="{{ route('logout') }}" title="{{ __('Logout') }}" class="btn-primary !btn-auto-w">
+    <a href="{{ route('logout') }}" title="{{ __('Logout') }}" class="link-underline">
       {{ __('Logout') }}
     </a>
   </p>

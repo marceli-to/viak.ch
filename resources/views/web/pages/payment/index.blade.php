@@ -70,12 +70,18 @@
     </article>
 
     <footer class="stacked-list-footer">
-      <a href="javascript:;" class="btn-next btn-next-wide span-12">
-        <span>{{ __('Weiter') }}</span>
-        <div>
-          @include('web.partials.icons.arrow-right')
-        </div>
-      </a>
+
+      <form action="{{ route('page.payment.checkout.session') }}" method="POST" class="span-12">
+        @csrf
+        <input type="hidden" name="invoice" value="{{ $invoice->uuid }}" />
+        <button type="submit" class="btn-next btn-next-wide">
+          <span>{{ __('Weiter zur Zahlung') }}</span>
+          <div>
+            @include('web.partials.icons.arrow-right')
+          </div>
+        </button>
+      </form>
+
     </footer>
   </div>
 </section>

@@ -73,9 +73,10 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');
   Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
 
-  Route::get('/payment/booking/{booking:uuid}', [PaymentController::class, 'index'])->name('page.payment.overview')->middleware(['role:student']);
+  Route::get('/payment/invoice/{invoice:uuid}', [PaymentController::class, 'index'])->name('page.payment.overview')->middleware(['role:student']);
+  Route::post('/payment/checkout/session', [PaymentController::class, 'create'])->name('page.payment.checkout.session')->middleware(['role:student']);
   Route::get('/payment/success', [PaymentController::class, 'success'])->name('page.payment.success')->middleware(['role:student']);
-  Route::get('/payment/error', [PaymentController::class, 'error'])->name('page.payment.error')->middleware(['role:student']);
+  Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('page.payment.cancel')->middleware(['role:student']);
 
 
   // Routes for user with multiple roles
