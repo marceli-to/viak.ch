@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Models\Country;
 use App\Http\Resources\EventParticipantsResource;
 use App\Events\BookingCompleted;
+use Newsletter;
 use Illuminate\Http\Request;
 
 class TestController extends BaseController
@@ -22,12 +23,12 @@ class TestController extends BaseController
   }
 
   public function index()
-  {
-    $event = Event::with('bookings.user')->find(69);
-    //dd($event);
-    foreach($event->bookings as $booking)
+  { 
+    $email = 'viak-student2@0704.ch';
+    if (!Newsletter::isSubscribed($email))
     {
-      dd($booking);
+      Newsletter::subscribe($email, ['FNAME'=>'Peter', 'LNAME'=>'Müller']);
+      Newsletter::addTags(['VA Newsletter'], $email);
     }
   }
 

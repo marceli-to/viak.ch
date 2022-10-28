@@ -5,6 +5,7 @@ use App\Http\Resources\DataCollection;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Facades\NewsletterSubscriber;
 use App\Http\Requests\ExpertStoreRequest;
 use App\Http\Requests\ExpertUpdateRequest;
 use App\Events\ExpertCreated;
@@ -75,6 +76,9 @@ class ExpertController extends Controller
     $user->roles()->attach(Role::EXPERT);
     $user->save();
 
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
+
     // Send notification email
     event(new ExpertCreated($user));
 
@@ -92,6 +96,10 @@ class ExpertController extends Controller
   {
     $user = User::findOrFail($user->id);
     $user->update($request->all());
+
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
+    
     return response()->json('successfully updated');
   }
 

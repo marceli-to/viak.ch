@@ -28,6 +28,7 @@ class ExpertResource extends JsonResource
       'email' => $this->email,
       'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
+      'subscribe_newsletter' => $this->subscribe_newsletter,
       'upcoming_events' => EventResource::collection($this->upcomingEvents)
     ];
   }

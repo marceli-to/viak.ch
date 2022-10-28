@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentResource;
 use App\Models\User;
 use App\Models\UserAddress;
+use App\Facades\NewsletterSubscriber;
 use Illuminate\Http\Request;
 use App\Http\Requests\StudentUpdateRequest;
 
@@ -53,6 +54,9 @@ class StudentController extends Controller
       $user->email = $request->input('new_email');
       $user->save();
     }
+
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
 
     return response()->json($user->uuid);
   }

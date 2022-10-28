@@ -56,9 +56,9 @@
           </form-group>
         </grid>
 
-        <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
+        <form-group :label="__('Land')" :required="true" :error="errors.country_id">
           <div class="select-wrapper">
-            <select v-model="form.country_id" @change="removeError('gender_id')">
+            <select v-model="form.country_id" @change="removeError('country_id')">
               <option 
                 v-for="(option) in settings.countries" 
                 :key="option.id" 

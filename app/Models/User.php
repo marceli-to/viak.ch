@@ -40,6 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
     'expert_description',
     'expert_order',
     'operating_system',
+    'subscribe_newsletter',
     'email', 
     'password',
     'temp_password',

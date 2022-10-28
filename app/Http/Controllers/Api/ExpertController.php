@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ExpertResource;
 use App\Models\User;
 use App\Models\Event;
+use App\Facades\NewsletterSubscriber;
 use Illuminate\Http\Request;
 use App\Http\Requests\ExpertUpdateRequest;
 
@@ -47,6 +48,9 @@ class ExpertController extends Controller
       $user->email = $request->input('new_email');
       $user->save();
     }
+
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
 
     return response()->json($user->uuid);
   }

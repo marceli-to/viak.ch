@@ -36,7 +36,7 @@ export default {
         new_password_confirmation: null,
         operating_system: [],
         accept_tos: null,
-        subscribe_newsletter: false,
+        subscribe_newsletter: 0,
       },
 
       // Settings

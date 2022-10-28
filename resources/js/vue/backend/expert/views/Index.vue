@@ -58,9 +58,9 @@
             <input type="text" v-model="form.city" required @focus="removeError('city')" />
           </form-group>
         </grid>
-        <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
+        <form-group :label="__('Land')" :required="true" :error="errors.country_id">
           <div class="select-wrapper">
-            <select v-model="form.country_id" @change="removeError('gender_id')">
+            <select v-model="form.country_id" @change="removeError('country_id')">
               <option 
                 v-for="(option) in settings.countries" 
                 :key="option.id" 
@@ -68,6 +68,12 @@
                 {{option.name}}
               </option>
             </select>
+          </div>
+        </form-group>
+        <form-group class="line-after">
+          <div class="flex items-center">
+            <input type="checkbox" id="subscribe_newsletter" name="subscribe_newsletter" required value="1" v-model="form.subscribe_newsletter">
+            <label for="subscribe_newsletter">{{ __('Ich möchte den Newsletter abonnieren.') }}</label>
           </div>
         </form-group>
         <collapsible class="mt-6x sm:mt-9x md:mt-12x">

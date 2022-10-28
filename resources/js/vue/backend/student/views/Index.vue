@@ -74,6 +74,13 @@
             </div>
           </form-group>
 
+          <form-group class="line-after">
+            <div class="flex items-center">
+              <input type="checkbox" id="subscribe_newsletter" name="subscribe_newsletter" required value="1" v-model="form.subscribe_newsletter">
+              <label for="subscribe_newsletter">{{ __('Ich möchte den Newsletter abonnieren.') }}</label>
+            </div>
+          </form-group>
+
           <collapsible class="mt-14x">
             <template #title class="mb-3x">
               <div class="mb-3x">{{ __('Rechnungsadressen') }}</div>

@@ -247,7 +247,8 @@ return [
         'Bookmark' =>  App\Facades\BookmarkFacade::class,
         'Booking' =>  App\Facades\BookingFacade::class,
         'Invoice' =>  App\Facades\InvoiceFacade::class,
-        'ParticipantsChange' =>  App\Facades\ParticipantsChangeFacade::class
+        'ParticipantsChange' =>  App\Facades\ParticipantsChangeFacade::class,
+        'NewsletterSubscriber' =>  App\Facades\NewsletterSubscriber::class
     ],
 
 ];

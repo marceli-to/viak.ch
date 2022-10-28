@@ -63,7 +63,12 @@
           </select>
         </div>
       </form-group>
-
+      <form-group class="line-after">
+        <div class="flex items-center">
+          <input type="checkbox" id="subscribe_newsletter" name="subscribe_newsletter" required value="1" v-model="data.subscribe_newsletter">
+          <label for="subscribe_newsletter">Newsletter abonnieren</label>
+        </div>
+      </form-group>
       <form-group>
         <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
@@ -127,6 +132,7 @@ export default {
       
       // Model
       data: {
+        subscribe_newsletter: 0,
       },
 
       // Validation

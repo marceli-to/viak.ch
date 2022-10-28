@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Models\User;
 use App\Models\Role;
+use App\Facades\NewsletterSubscriber;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use Illuminate\Http\Request;
@@ -59,6 +60,10 @@ class StudentController extends Controller
   public function store(StudentStoreRequest $request)
   {
     $user = User::create($request->all());
+
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
+
     return response()->json(['userId' => $user->id]);
   }
 
@@ -73,6 +78,10 @@ class StudentController extends Controller
   {
     $user = User::findOrFail($user->id);
     $user->update($request->all());
+
+    // Handle newsletter subscription
+    NewsletterSubscriber::update($user);
+
     return response()->json('successfully updated');
   }
 

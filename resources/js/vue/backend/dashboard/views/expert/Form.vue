@@ -65,6 +65,12 @@
           </select>
         </div>
       </form-group>
+      <form-group class="line-after">
+        <div class="flex items-center">
+          <input type="checkbox" id="subscribe_newsletter" name="subscribe_newsletter" required value="1" v-model="data.subscribe_newsletter">
+          <label for="subscribe_newsletter">Newsletter abonnieren</label>
+        </div>
+      </form-group>
       <grid class="sm:grid-cols-12">
         <form-group :label="'Experte anzeigen?'" class="span-6">
             <div class="form-group__checkbox">
@@ -144,6 +150,7 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
@@ -173,7 +180,7 @@ export default {
     Collapsible
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [ErrorHandling, Helpers, i18n],
 
   props: {
     type: String
@@ -187,6 +194,7 @@ export default {
         gender_id: 2,
         publish: 0,
         visisble: 0,
+        subscribe_newsletter: 0,
       },
 
       // Validation

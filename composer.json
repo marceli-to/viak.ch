@@ -24,6 +24,7 @@
         "laravel/ui": "^3.0",
         "nesbot/carbon": "^2.36",
         "spatie/laravel-model-flags": "^1.0",
+        "spatie/laravel-newsletter": "^4.11",
         "spatie/laravel-translatable": "^5.2.0",
         "sprain/swiss-qr-bill": "^3.2",
         "stripe/stripe-php": "^9.8"

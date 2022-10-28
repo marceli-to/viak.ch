@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Http\Requests\StudentStoreRequest;
 use App\Events\StudentRegistered;
+use App\Facades\NewsletterSubscriber;
 use Illuminate\Http\Request;
 
 class StudentRegisterController extends Controller
@@ -41,6 +42,7 @@ class StudentRegisterController extends Controller
       'city' => $request->input('city'),
       'phone' => $request->input('phone') ? $request->input('phone') : NULL,
       'operating_system' => $request->input('operating_system') ? collect($request->input('operating_system'))->implode(',') : NULL,
+      'subscribe_newsletter' => $request->input('subscribe_newsletter'),
       'email' => $request->input('email'),
       'password' => \Hash::make($request->input('password')),
       'uuid' => \Str::uuid(),
@@ -53,6 +55,9 @@ class StudentRegisterController extends Controller
 
     // Send confirmation email
     event(new StudentRegistered($user));
+
+    // Add user to Mailchimp List
+    NewsletterSubscriber::update($user);
 
     // Log the user in
     Auth::login($user);
