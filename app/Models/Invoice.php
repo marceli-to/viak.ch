@@ -165,7 +165,7 @@ class Invoice extends Base
   }
 
   /**
-   * Get the date for an event_date.
+   * Get the date string for an invoice.
    *
    * @param  string $value
    * @return string $date
@@ -174,5 +174,18 @@ class Invoice extends Base
   public function getDateStrAttribute()
   {   
     return date('d. F Y', strtotime($this->date));
+  }
+
+
+  /**
+   * Get the paid_at date for an invoice.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getPaidAtStrAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->paid_at));
   }
 }

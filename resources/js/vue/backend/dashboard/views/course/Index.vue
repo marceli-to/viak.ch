@@ -67,6 +67,8 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Helpers from "@/shared/mixins/Helpers";
+import i18n from "@/shared/mixins/i18n";
 import draggable from 'vuedraggable';
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
@@ -105,7 +107,7 @@ export default {
     GridCol
   },
 
-  mixins: [],
+  mixins: [ErrorHandling, Helpers, i18n],
 
   data() {
     return {

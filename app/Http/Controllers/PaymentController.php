@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\BaseController;
 use App\Models\Booking;
 use App\Models\Invoice;
+use App\Events\InvoicePaid;
 use App\Stores\PaymentStore;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,13 @@ class PaymentController extends BaseController
   public function index(Invoice $invoice)
   {
     $this->authorize('view', $invoice->booking);
-
     $invoice = invoice::with('booking.user')->findOrFail($invoice->id);
+
+    if ($invoice->paid)
+    {
+      return view($this->viewPath . 'info', ['invoice' => $invoice]);
+    }
+
     return view($this->viewPath . 'index', ['booking' => $invoice->booking, 'invoice' => $invoice]);
   }
 
@@ -76,17 +82,24 @@ class PaymentController extends BaseController
   public function success()
   {
     $invoice_uuid = (new PaymentStore())->getAttribute('invoice_uuid');
+
+    // Abort if uuid is missing
     if (!$invoice_uuid)
     {
-      abort(422);
+      abort(403);
     }
 
+    // Update invoice
     $invoice = Invoice::where('uuid', $invoice_uuid)->firstOrFail();
     $invoice->paid = 1;
     $invoice->paid_at = \Carbon\Carbon::now();
     $invoice->save();
 
     (new PaymentStore())->clear();
+
+    // No cancellation penalty
+    event(new InvoicePaid($invoice));
+
     return view($this->viewPath . 'success', ['invoice' => $invoice]);
   }
 

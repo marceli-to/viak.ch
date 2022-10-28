@@ -201,6 +201,7 @@
 <script>
 import NProgress from 'nprogress';
 import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import { TheMask } from "vue-the-mask";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -232,7 +233,7 @@ export default {
     TheMask
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [ErrorHandling, Helpers, i18n],
 
   props: {
 
