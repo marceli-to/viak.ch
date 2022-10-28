@@ -56,7 +56,7 @@ class PaymentController extends BaseController
 
     // Setup stripe payment
     \Stripe\Stripe::setApiKey(env('PAYMENT_STRIPE_PRIVATE_KEY'));
-    $domain = env('PAYMENT_STRIPE_DOMAIN');
+    $domain = env('APP_URL');
 
     // Create checkout session id
     $checkout_session = \Stripe\Checkout\Session::create([

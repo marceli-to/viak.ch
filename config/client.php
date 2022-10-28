@@ -9,7 +9,7 @@ return [
   |
   */
 
-  'company' => env('VIAK_COMPANY_NAME', 'Visualisierungs-Akademie Schweiz GmbH'),
+  'company' => env('APP_NAME', 'Visualisierungs-Akademie Schweiz GmbH'),
 
   /*
   |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
   |
   */
 
-  'domain' => env('VIAK_DOMAIN', 'https://visualisierungs-akademie.ch'),
+  'domain' => env('APP_URL', 'https://visualisierungs-akademie.ch'),
 
   /*
   |--------------------------------------------------------------------------
