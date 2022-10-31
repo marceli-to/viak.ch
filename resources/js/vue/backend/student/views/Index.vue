@@ -199,7 +199,7 @@
         </template>
       </collapsible>
       
-      <collapsible :expanded="true" :items="user.events_concluded" :uuid="'student-bookings-concluded'">
+      <collapsible :items="user.events_concluded" :uuid="'student-bookings-concluded'">
         <template #title>
           {{ __('Absolvierte Kurse') }}
         </template>
@@ -222,23 +222,13 @@
             </div>
           </div>
           <div v-else>
-            <p class="no-results">{{ __('Du hast noch keine Kurse gebucht.') }}</p>
+            <p class="no-results">{{ __('Du hast noch keine Kurse absolviert.') }}</p>
           </div>
         </template>
       </collapsible>
 
     </collapsible-container>
 
-    <collapsible-container>
-      <collapsible :uuid="'student-completed-courses'">
-        <template #title>
-          {{ __('Absolvierte Kurse') }}
-        </template>
-        <template #content>
-          <p class="no-results">{{ __('Du hast noch keine Kurse absolviert.') }}</p>
-        </template>
-      </collapsible>
-    </collapsible-container>
 
     <collapsible-container>
       <collapsible :uuid="'student-documents'">
