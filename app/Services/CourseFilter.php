@@ -117,13 +117,13 @@ class CourseFilter
     }
 
     // Filter out cancelled
-    $query->whereHas('upcomingAndPublishedEvents', function ($query) {
-      $query->where('cancelled', 0);
-    });
+    // $query->whereHas('upcomingAndPublishedEvents', function ($query) {
+    //   $query->where('cancelled', 0);
+    // });
 
-    $query->whereHas('upcomingAndPublishedEvents', function ($query) {
-      $query->where('publish', 1);
-    });
+    // $query->whereHas('upcomingAndPublishedEvents', function ($query) {
+    //   $query->where('publish', 1);
+    // });
 
 
     if ($map)
