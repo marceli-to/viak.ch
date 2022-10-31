@@ -334,7 +334,7 @@ class Event extends Base
 
   public function getRegistrationUntilStrAttribute()
   {   
-    return date('d.m.Y', strtotime($this->date));
+    return date('d.m.Y', strtotime($this->registration_until));
   }
 
 
@@ -345,9 +345,9 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateAttribute($value)
+  public function getDateAttribute()
   {   
-    return date('d. F Y', strtotime($value));
+    return date('d. F Y', strtotime($this->date));
   }
 
   /**
