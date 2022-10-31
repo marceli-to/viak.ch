@@ -30,7 +30,7 @@
       <em class="text-warning">
 
         <template v-if="$props.dashboard">
-          {{ __('Kurs offen') }}
+          {{ __('Kurs nicht bestätigt') }}
         </template>
 
         <template v-else>

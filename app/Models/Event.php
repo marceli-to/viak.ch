@@ -20,6 +20,7 @@ class Event extends Base
     'date'                => 'date:d.m.Y',
     'confirmed_at'        => 'date:d.m.Y',
     'cancelled_at'        => 'date:d.m.Y',
+    'closed_at'           => 'date:d.m.Y',
   ];
 
   /**
@@ -40,7 +41,8 @@ class Event extends Base
     'location_id',
     'publish',
     'confirmed',
-    'cancelled'
+    'cancelled',
+    'closed'
   ];
 
   /**
@@ -52,9 +54,12 @@ class Event extends Base
   protected $appends = [
     'number',
     'date_short',
+    'date_long',
     'course_fee',
     'course_online',
     'expert_ids',
+    'is_past',
+    'is_upcoming'
   ];
 
 
@@ -67,7 +72,7 @@ class Event extends Base
   */
 
   /**
-   * Check for online
+   * Check for online event
    * 
    * @return Boolean
    */
@@ -78,7 +83,7 @@ class Event extends Base
   }
 
   /**
-   * Check for confirmed
+   * Check for confirmed event
    * 
    * @return Boolean
    */
@@ -89,7 +94,7 @@ class Event extends Base
   }
 
   /**
-   * Check for cancelled
+   * Check for cancelled event
    * 
    * @return Boolean
    */
@@ -97,6 +102,30 @@ class Event extends Base
   public function isCancelled()
   {
     return $this->cancelled == 1 ? TRUE : FALSE;
+  }
+
+  /**
+   * Check for past event
+   * 
+   * @return Boolean
+   */
+
+  public function isPast()
+  {
+    $constraint = date('Y-m-d', time());
+    return $this->date < $constraint ? TRUE : FALSE;
+  }
+
+  /**
+   * Check for upcoming event
+   * 
+   * @return Boolean
+   */
+
+  public function isUpcoming()
+  {
+    $constraint = date('Y-m-d', time());
+    return $this->date > $constraint ? TRUE : FALSE;
   }
 
   /**
@@ -345,9 +374,9 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateAttribute($value)
+  public function getDateLongAttribute()
   {   
-    return date('d. F Y', strtotime($value));
+    return date('d. F Y', strtotime($this->date));
   }
 
   /**
@@ -430,6 +459,26 @@ class Event extends Base
   public function getNumberAttribute()
   {
     return str_pad($this->course->number,  2, "0", STR_PAD_LEFT) . '-' . date('dmy', strtotime($this->date));
+  }
+
+  /**
+   * Get the events 'is_past' stage
+   *
+   */
+
+  public function getIsPastAttribute()
+  {
+    return $this->isPast();
+  }
+
+  /**
+   * Get the events 'is_upcoming' stage
+   *
+   */
+
+  public function getIsUpcomingAttribute()
+  {
+    return $this->isUpcoming();
   }
 
 }

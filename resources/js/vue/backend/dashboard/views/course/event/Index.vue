@@ -3,7 +3,7 @@
   <content-list-header>
     <grid class="grid-cols-12">
       <grid-col class="span-4">
-        <h1>{{ data.course.title.de }}</h1>
+        <h1>Veranstaltungen für<br>{{ data.course.title.de }}</h1>
         <back-link :route="'courses'"></back-link>
       </grid-col>
     </grid>

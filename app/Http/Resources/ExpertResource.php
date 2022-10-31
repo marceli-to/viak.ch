@@ -29,7 +29,8 @@ class ExpertResource extends JsonResource
       'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
       'subscribe_newsletter' => $this->subscribe_newsletter,
-      'upcoming_events' => EventResource::collection($this->upcomingEvents)
+      'upcoming_events' => EventResource::collection($this->upcomingEvents),
+      'past_events' => EventResource::collection($this->pastEvents)
     ];
   }
 }

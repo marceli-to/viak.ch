@@ -4,6 +4,18 @@
  * -----------------------------------------------------------------------------
  */
 
+form {
+  &.is-disabled {
+    opacity: .4;
+
+    * {
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+}
+
+
 input[type=text],
 input[type=email],
 input[type=number],

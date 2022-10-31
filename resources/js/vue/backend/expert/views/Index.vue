@@ -140,6 +140,35 @@
         </div>
       </template>
     </collapsible>
+
+    <collapsible :expanded="false">
+      <template #title>
+        {{ __('Vergangene Kurse') }}
+      </template>
+      <template #content>
+        <div v-if="user.past_events && user.past_events.length">
+          <div v-for="(event, index) in sorted(user.past_events, 'event.date', 'asc')" :key="index">
+            <stacked-list-event 
+              :event="event" 
+              :showExperts="false"
+              :showFee="false" 
+              :showBookings="true"
+              :showState="false">
+
+              <template #action>
+                <router-link :to="{ name: 'expert-course-event', params: { uuid: event.uuid } }" class="btn-primary mb-3x" :title="__('Detail')">
+                  {{ __('Detail')}}
+                </router-link>
+              </template>
+              
+            </stacked-list-event>
+          </div>
+        </div>
+        <div v-else>
+          <p class="no-results">{{ __('Du hast keine bevorstehenden Kurse.') }}</p>
+        </div>
+      </template>
+    </collapsible>
   </collapsible-container>
     
 </div>

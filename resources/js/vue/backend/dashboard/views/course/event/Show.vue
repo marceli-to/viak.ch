@@ -1,6 +1,6 @@
 <template>
   <div v-if="isFetched">
-    <article-text class="content-text--event">
+    <article-text class="content-text">
       <template #aside>
         <h1>{{ data.event.course.title }}</h1>
         <template v-if="$route.params.referrer">

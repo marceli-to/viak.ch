@@ -17,7 +17,7 @@ class EventResource extends JsonResource
     return [
       'id' => $this->id,
       'uuid' => $this->uuid,
-      'date' => $this->date,
+      'date' => $this->date_long,
       'registration_until' => $this->registration_until,
       'min_participants' => $this->min_participants,
       'max_participants' => $this->max_participants,
@@ -40,6 +40,8 @@ class EventResource extends JsonResource
       'confirmed_at' => $this->confirmed_at,
       'cancelled' => $this->cancelled,
       'cancelled_at' => $this->cancelled_at,
+      'is_past' => $this->is_past,
+      'is_upcoming' => $this->is_upcoming,
     ];
   }
 }

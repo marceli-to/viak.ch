@@ -17,137 +17,140 @@
     </template>
     <template #content>
 
-      <!-- Event -->
-      <form-group :label="'Deadline Anmeldung'">
-        <the-mask
-          type="text"
-          mask="##.##.####"
-          :masked="true"
-          name="registration_until"
-          placeholder="dd.mm.YYYY"
-          v-model="data.registration_until">
-        </the-mask>
-      </form-group>
+      <form :class="[data.is_past ? 'is-disabled' : '']">
 
-      <grid class="sm:grid-cols-12">
-        <form-group :label="'min. Teilnehmer'" :required="true" :error="errors.min_participants" class="span-6">
-          <input 
-            type="number" 
-            v-model="data.min_participants"
-            required 
-            @focus="removeError('min_participants')" />
+        <!-- Event -->
+        <form-group :label="'Deadline Anmeldung'">
+          <the-mask
+            type="text"
+            mask="##.##.####"
+            :masked="true"
+            name="registration_until"
+            placeholder="dd.mm.YYYY"
+            v-model="data.registration_until">
+          </the-mask>
         </form-group>
-        
-        <form-group :label="'max. Teilnehmer'" :required="true" :error="errors.max_participants" class="span-6">
-          <input 
-            type="number" 
-            v-model="data.max_participants"
-            required 
-            @focus="removeError('max_participants')" />
-        </form-group>
-      </grid>
 
-      <form-group :label="'Kosten'">
-        <input 
-          type="number" 
-          v-model="data.fee" />
-      </form-group>
-
-      <form-group class="line-after flex mt-8x">
-        <div class="mr-16x md:mr-20x">
-          <div class="form-group__checkbox">
-            <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
-            <label for="online">Online</label>
-          </div>
-        </div>
-        <div>
-          <div class="form-group__checkbox">
-            <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
-            <label for="publish">Publizieren</label>
-          </div>
-        </div>
-      </form-group>
-
-      <form-group 
-        :label="'Ort'" 
-        :required="true" 
-        :error="errors.location_id"
-        v-if="isFetchedSettings">
-        <div class="select-wrapper">
-          <select v-model="data.location_id" @change="removeError('location_id')">
-            <option 
-              v-for="(option) in settings.locations" 
-              :key="option.id" 
-              :value="option.id">
-              {{option.description.de}}
-            </option>
-          </select>
-        </div>
-      </form-group>
-
-      <!-- Event dates -->
-      <form-group-header class="mt-8x" :error="errors.dates">
-        <h3><strong>Veranstaltungsdaten</strong></h3>
-      </form-group-header>
-      <div v-for="(date, index) in data.dates" :key="date.id">
-        <grid class="flex items-center justify-between">
-          <form-group :label="'Datum'" class="mr-8x">
-            <the-mask
-              type="text"
-              mask="##.##.####"
-              :masked="true"
-              placeholder="dd.mm.YYYY"
-              v-model="data.dates[index].date_short">
-            </the-mask>
+        <grid class="sm:grid-cols-12">
+          <form-group :label="'min. Teilnehmer'" :required="true" :error="errors.min_participants" class="span-6">
+            <input 
+              type="number" 
+              v-model="data.min_participants"
+              required 
+              @focus="removeError('min_participants')" />
           </form-group>
-          <form-group :label="'von'" class="mr-8x">
-            <the-mask
-              type="text"
-              mask="##.##"
-              :masked="true"
-              placeholder="hh.mm"
-              v-model="data.dates[index].time_start">
-            </the-mask>
+          
+          <form-group :label="'max. Teilnehmer'" :required="true" :error="errors.max_participants" class="span-6">
+            <input 
+              type="number" 
+              v-model="data.max_participants"
+              required 
+              @focus="removeError('max_participants')" />
           </form-group>
-          <form-group :label="'bis'" class="mr-8x">
-            <the-mask
-              type="text"
-              mask="##.##"
-              :masked="true"
-              placeholder="hh.mm"
-              v-model="data.dates[index].time_end">
-            </the-mask>
-          </form-group>
-          <div class="flex justify-end">
-            <a href="" class="icon-trash mb-3x" @click.prevent="removeDate(index)">
-              <icon-trash />
-            </a>
-          </div>
         </grid>
-      </div>
-      <form-group class="flex justify-center line-after">
-        <a href="" class="icon-plus" @click.prevent="addDate()">
-          <icon-plus :size="'lg'" />
-        </a>
-      </form-group>
 
-      <!-- Event experts -->
-      <form-group-header class="mt-8x">
-        <h3><strong>Experten</strong></h3>
-      </form-group-header>
-      <form-group class="line-after grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings" :error="errors.expert_ids">
-        <div class="form-group__checkbox span-6" v-for="(expert, index) in sorted(settings.experts, 'firstname', 'asc')" :key="index">
-          <input type="checkbox" :id="`expert-${expert.id}`" :name="`expert-${expert.id}`" :value="expert.id" v-model="data.expert_ids">
-          <label :for="`expert-${expert.id}`">
-            {{ expert.fullname }}
-          </label>
+        <form-group :label="'Kosten'">
+          <input 
+            type="number" 
+            v-model="data.fee" />
+        </form-group>
+
+        <form-group class="line-after flex mt-8x">
+          <div class="mr-16x md:mr-20x">
+            <div class="form-group__checkbox">
+              <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
+              <label for="online">Online</label>
+            </div>
+          </div>
+          <div>
+            <div class="form-group__checkbox">
+              <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
+              <label for="publish">Publizieren</label>
+            </div>
+          </div>
+        </form-group>
+
+        <form-group 
+          :label="'Ort'" 
+          :required="true" 
+          :error="errors.location_id"
+          v-if="isFetchedSettings">
+          <div class="select-wrapper">
+            <select v-model="data.location_id" @change="removeError('location_id')">
+              <option 
+                v-for="(option) in settings.locations" 
+                :key="option.id" 
+                :value="option.id">
+                {{option.description.de}}
+              </option>
+            </select>
+          </div>
+        </form-group>
+
+        <!-- Event dates -->
+        <form-group-header class="mt-8x" :error="errors.dates">
+          <h3><strong>Veranstaltungsdaten</strong></h3>
+        </form-group-header>
+        <div v-for="(date, index) in data.dates" :key="date.id">
+          <grid class="flex items-center justify-between">
+            <form-group :label="'Datum'" class="mr-8x">
+              <the-mask
+                type="text"
+                mask="##.##.####"
+                :masked="true"
+                placeholder="dd.mm.YYYY"
+                v-model="data.dates[index].date_short">
+              </the-mask>
+            </form-group>
+            <form-group :label="'von'" class="mr-8x">
+              <the-mask
+                type="text"
+                mask="##.##"
+                :masked="true"
+                placeholder="hh.mm"
+                v-model="data.dates[index].time_start">
+              </the-mask>
+            </form-group>
+            <form-group :label="'bis'" class="mr-8x">
+              <the-mask
+                type="text"
+                mask="##.##"
+                :masked="true"
+                placeholder="hh.mm"
+                v-model="data.dates[index].time_end">
+              </the-mask>
+            </form-group>
+            <div class="flex justify-end">
+              <a href="" class="icon-trash mb-3x" @click.prevent="removeDate(index)">
+                <icon-trash />
+              </a>
+            </div>
+          </grid>
         </div>
-      </form-group>
-      <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
-          Speichern
-        </a>
-      </form-group>
+        <form-group class="flex justify-center line-after">
+          <a href="" class="icon-plus" @click.prevent="addDate()">
+            <icon-plus :size="'lg'" />
+          </a>
+        </form-group>
+
+        <!-- Event experts -->
+        <form-group-header class="mt-8x">
+          <h3><strong>Experten</strong></h3>
+        </form-group-header>
+        <form-group class="line-after grid-cols-12 grid-row-gap-none" v-if="isFetchedSettings" :error="errors.expert_ids">
+          <div class="form-group__checkbox span-6" v-for="(expert, index) in sorted(settings.experts, 'firstname', 'asc')" :key="index">
+            <input type="checkbox" :id="`expert-${expert.id}`" :name="`expert-${expert.id}`" :value="expert.id" v-model="data.expert_ids">
+            <label :for="`expert-${expert.id}`">
+              {{ expert.fullname }}
+            </label>
+          </div>
+        </form-group>
+        <form-group>
+          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+            Speichern
+          </a>
+        </form-group>
+      </form>
 
       <template v-if="$props.type == 'edit'">
         <template v-if="data.cancelled">
@@ -174,7 +177,19 @@
             </template>
           </danger-zone>
 
-          <danger-zone :type="'warning'">
+          <danger-zone :type="'success'" v-if="data.is_past" class="mb-6x">
+            <template #content v-if="data.closed">
+              <h2>Veranstaltung abgeschlossen</h2>
+              <p>Diese Veranstaltung wurde am {{ data.closed_at }} abgeschlossen.</p>
+            </template>
+            <template #content v-else>
+              <h2>Veranstaltung abschliessen</h2>
+              <p>Mit dieser Aktion wird die Veranstaltung bestätigt geschlossen. Die Teilnehmer und Experten werden per E-Mail informiert und erhalten eine Teilnahmebestätigung.</p>
+              <a href="" class="btn-success" @click.prevent="confirmClosing()">Schliessen</a>
+            </template>
+          </danger-zone>
+
+          <danger-zone :type="'warning'" v-if="!data.is_past">
             <template #content>
               <h2>Veranstaltung absagen</h2>
               <p>Mit dieser Aktion wird die Veranstaltung abgesagt. Für den Kurs angemeldete Studenten werden per Mail informiert.</p>
@@ -182,7 +197,7 @@
             </template>
           </danger-zone>
 
-          <danger-zone :type="'danger'">
+          <danger-zone :type="'danger'" v-if="!data.is_past">
             <template #content v-if="data.bookings.length">
               <h2>Veranstaltung löschen</h2>
               Diese Veranstaltng kann nicht gelöscht werden, da 
@@ -198,8 +213,10 @@
 
         </template>
       </template>
+
     </template>
   </article-text>
+
   <notification ref="notification">
     <template #actions>
       <a href="javascript:;" @click="confirm()" class="btn-primary">Bestätigen</a>
@@ -412,6 +429,9 @@ export default {
       if (this.actionToBeConfirmed == 'confirm') {
         this.confirmEvent();
       }
+      if (this.actionToBeConfirmed == 'close') {
+        this.closeEvent();
+      }
     },
 
     confirmDestroy() {
@@ -440,6 +460,16 @@ export default {
         style: 'info',
       });
     },
+
+    confirmClosing() {
+      this.actionToBeConfirmed = 'close';
+      this.$refs.notification.init({
+        message: 'Bitte «Veranstaltung schliessen bestätigen!',
+        type: 'dialog',
+        style: 'info',
+      });
+    },
+
 
     addDate() {
       this.data.dates.push({
