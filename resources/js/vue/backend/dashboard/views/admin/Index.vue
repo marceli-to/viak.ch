@@ -113,6 +113,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
+import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -143,7 +144,7 @@ export default {
     UserAddress
   },
 
-  mixins: [UserData],
+  mixins: [UserData, i18n],
 
   data() {
     return {

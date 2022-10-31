@@ -293,6 +293,7 @@
 
 <script>
 import NProgress from 'nprogress';
+import i18n from "@/shared/mixins/i18n";
 import Booking from "@/shared/mixins/Booking";
 import Basket from "@/shared/mixins/Basket";
 import BasketButtons from "@/frontend/event/Basket.vue";
@@ -338,7 +339,7 @@ export default {
     BookmarkIcons,
   },
 
-  mixins: [UserData, Booking, Basket, Meta],
+  mixins: [UserData, Booking, Basket, Meta, i18n],
 
   data() {
     return {

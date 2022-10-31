@@ -34,7 +34,8 @@ class StudentResource extends JsonResource
       'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
       'bookings' => BookingResource::collection($this->bookings)->sortBy('event.date'),
-      //'bookings' => BookingResource::collection($this->bookings),
+      // 'cancelled_bookings' => BookingResource::collection($this->cancelledBookings)->sortBy('event.date'),
+      // 'bookings' => BookingResource::collection($this->bookings),
       'bookmarks' => BookmarkResource::collection($this->bookmarks),
     ];
   }

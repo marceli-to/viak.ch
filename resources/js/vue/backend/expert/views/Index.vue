@@ -146,6 +146,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
+import i18n from "@/shared/mixins/i18n";
 import Meta from "@/shared/mixins/Meta";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
@@ -186,7 +187,7 @@ export default {
     UserAddress
   },
 
-  mixins: [UserData, Meta],
+  mixins: [UserData, Meta, i18n],
 
   data() {
     return {
