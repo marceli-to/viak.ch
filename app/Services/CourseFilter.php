@@ -116,6 +116,7 @@ class CourseFilter
       }
     }
 
+    
     // Filter out cancelled
     // $query->whereHas('upcomingAndPublishedEvents', function ($query) {
     //   $query->where('cancelled', 0);
