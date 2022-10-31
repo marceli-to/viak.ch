@@ -345,9 +345,9 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateAttribute()
+  public function getDateAttribute($value)
   {   
-    return date('d. F Y', strtotime($this->date));
+    return date('d. F Y', strtotime($value));
   }
 
   /**
