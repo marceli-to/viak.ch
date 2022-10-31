@@ -35,7 +35,7 @@ class EventCancelStudent extends Mailable
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
 
     // Update the booking
-    $booking->cancelled = 1;
+    $booking->flag('isCancelled');
     $booking->cancelled_at = \Carbon\Carbon::now();
     $booking->save();
 

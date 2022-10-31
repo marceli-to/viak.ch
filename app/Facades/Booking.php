@@ -12,6 +12,7 @@ use App\Models\DiscountCode;
 use App\Events\BookingCompleted;
 use App\Events\BookingCancelled;
 use App\Events\BookingCancelledWithPenalty;
+use App\Facades\ParticipantsChange;
 
 class Booking
 {
@@ -60,6 +61,9 @@ class Booking
 
         // Fire event
         event(new BookingCompleted($user, $booking));
+
+        // Handle event participant change
+        ParticipantsChange::handle($booking->event);
       }
     }
 
@@ -77,9 +81,12 @@ class Booking
   {
     // Cancel booking
     $booking = BookingModel::find($booking->id);
-    $booking->cancelled = 1;
+    $booking->flag('isCancelled');
     $booking->cancelled_at = \Carbon\Carbon::now();
     $booking->save();
+
+    // Handle event participant change
+    ParticipantsChange::handle($booking->event, TRUE);
 
     // Check for cancellation penalty and fire events
     if (PenaltyHelper::has($booking->event->date))
@@ -126,7 +133,7 @@ class Booking
 
   public static function has(Event $event, User $user)
   {
-    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->whereNull('cancelled_at')->first();
+    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->notFlagged('isCancelled')->first();
     return $booking ? TRUE : FALSE;
   }
 

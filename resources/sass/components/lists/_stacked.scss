@@ -112,6 +112,12 @@
     }
   }
 
+  &.is-hidden {
+    *:not([class*=btn-]) {
+      color: $color-tertiary;
+    }
+  }
+
   &.has-booking,
   &.has-warning {
     border-top-color: $color-danger;

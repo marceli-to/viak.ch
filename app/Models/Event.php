@@ -185,23 +185,13 @@ class Event extends Base
   }
 
   /**
-   * The bookings that belong to this event.
-   */
-  
-  public function allBookings()
-  {
-    return $this->hasMany(Booking::class, 'event_id', 'id');
-  }
-
-  /**
-   * The (active) bookings that belong to this event.
+   * All bookings that belong to this event.
    */
   
   public function bookings()
   {
-    return $this->hasMany(Booking::class, 'event_id', 'id')->where('cancelled', 0);
+    return $this->hasMany(Booking::class, 'event_id', 'id')->notFlagged('isCancelled');
   }
-
 
   /**
    * The messages that belongs to this event.

@@ -49,7 +49,7 @@
     </div>
   </article>
   
-  <article :class="[$props.event.isBooked ? 'has-booking' : '', 'stacked-list-event']" data-touch v-else>
+  <article :class="`stacked-list-event ${marked}`" data-touch v-else>
 
     <template v-if="$props.event.isBooked">
       <div class="error-message error-message--booking">
@@ -187,5 +187,13 @@ export default {
       default: false,
     }
   },
+
+  computed: {
+    marked() {
+      if (this.$props.event.isBooked) {
+        return 'has-booking';
+      }
+    }
+  }
 }
 </script>

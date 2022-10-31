@@ -33,7 +33,6 @@ class Booking extends Base
     'invoice_address',
     'discount_code',
     'discount_amount',
-    'cancelled',
     'event_id',
     'user_id',
     'booked_at',
@@ -109,7 +108,7 @@ class Booking extends Base
    */
   public function scopeActive($query)
   {
-    return $query->where('cancelled', 0)->where('cancelled_at', NULL);
+    return $query->notFlagged('isCancelled');
   }
 
 }

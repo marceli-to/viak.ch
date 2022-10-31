@@ -1,25 +1,26 @@
 <?php
 namespace App\Console\Commands;
 use App\Models\Booking;
+use App\Facades\Booking as BookingFacade;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class EventReset extends Command
+class BookingsUpdate extends Command
 {
   /**
    * The name and signature of the console command.
    *
    * @var string
    */
-  protected $signature = 'event:reset {event}';
+  protected $signature = 'bookings:update';
 
   /**
    * The console command description.
    *
    * @var string
    */
-  protected $description = 'Reset an event (cancelled, confirmed) and its bookings';
+  protected $description = 'Add flag to all cancelled bookings';
 
   /**
    * Create a new command instance.
@@ -38,21 +39,12 @@ class EventReset extends Command
    */
   public function handle()
   {
-    // Update the event
-    $event = Event::where('uuid', $this->argument('event'))->first();
-    $event->cancelled = 0;
-    $event->cancelled_at = NULL;
-    $event->confirmed = 0;
-    $event->confirmed_at = NULL;
-    $event->save();
+    $bookings = Booking::where('cancelled', 1)->get();
 
-    // Update bookings
-    $bookings = Booking::where('event_id', $event->id)->get();
+    // Create bookings
     foreach($bookings as $booking)
     {
-      $booking->unflag('isCancelled');
-      $booking->cancelled_at = NULL;
-      $booking->save();
+      $booking->flag('isCancelled');
     }
   }
 }

@@ -33,7 +33,6 @@ class EventClosedHandler
             'mailable_class' => \App\Mail\EventClosedStudent::class
           ]);
           $booking->flag('isConcluded');
-          $booking->flag('wasSentAttendanceConfirmation');
         }
       }
     }
