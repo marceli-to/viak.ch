@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <router-link :to="{name: 'discount-codes'}">
-                    Rabatte Codes
+                    Rabatt-Codes
                   </router-link>
                 </li>
                 <li class="is-parent">

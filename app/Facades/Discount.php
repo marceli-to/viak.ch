@@ -30,8 +30,7 @@ class Discount
   {
     if ($discountCode->isSingle())
     {
-      $discountCode->used = 1;
-      $discountCode->save();
+      $discountCode->flag('isUsed');
     }
   }
 
@@ -125,7 +124,7 @@ class Discount
       }
     }
 
-    while(self::exists($string) == FALSE)
+    while(self::exists($string) === FALSE)
     {
       self::generate();
     }

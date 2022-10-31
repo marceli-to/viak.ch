@@ -3,10 +3,11 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelFlags\Models\Concerns\HasFlags;
 
 class DiscountCode extends Base
 {
-  use SoftDeletes;
+  use SoftDeletes, HasFlags;
 
   /**
    * The attributes that should be cast to native types.
@@ -32,7 +33,6 @@ class DiscountCode extends Base
     'valid_to',
     'fix',
     'percent',
-    'used',
     'uuid',
   ];
 
@@ -51,7 +51,7 @@ class DiscountCode extends Base
 	public function scopeUnused($query)
 	{
     $constraint = date('Y-m-d', time());
-    return $query->where('used', 0)->where(function($query) use ($constraint) {
+    return $query->notFlagged('isUsed')->where(function($query) use ($constraint) {
       $query->where('valid_to', '>', $constraint)->OrWhereNull('valid_to');
     });
 	}
@@ -63,7 +63,7 @@ class DiscountCode extends Base
 	public function scopeUsed($query)
 	{
     $constraint = date('Y-m-d', time());
-    return $query->where('used', 1)->OrWhere(function($query) use ($constraint) {
+    return $query->flagged('isUsed')->OrWhere(function($query) use ($constraint) {
       $query->where('valid_to', '<', $constraint)->whereNotNull('valid_to');
     });
 	}
@@ -84,7 +84,7 @@ class DiscountCode extends Base
 
   public function isValid()
   {
-    if ($this->used == 1)
+    if ($this->hasFlag('isUsed'))
     {
       return FALSE;
     }
