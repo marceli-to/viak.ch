@@ -1,6 +1,7 @@
 import CourseIndex from '@/backend/dashboard/views/course/Index.vue';
 import CourseCreate from '@/backend/dashboard/views/course/partials/Create.vue';
 import CourseEdit from '@/backend/dashboard/views/course/partials/Edit.vue';
+import EventIndex from '@/backend/dashboard/views/course/event/Index.vue';
 import EventCreate from '@/backend/dashboard/views/course/event/partials/Create.vue';
 import EventEdit from '@/backend/dashboard/views/course/event/partials/Edit.vue';
 import EventShow from '@/backend/dashboard/views/course/event/Show.vue';
@@ -24,18 +25,23 @@ const routes = [
     component: CourseEdit,
   },
   {
+    name: 'events',
+    path: '/dashboard/course/event/index/:courseUuid',
+    component: EventIndex,
+  },
+  {
     name: 'event-create',
     path: '/dashboard/course/event/create/:courseId',
     component: EventCreate,
   },
   {
     name: 'event-edit',
-    path: '/dashboard/course/event/edit/:uuid',
+    path: '/dashboard/course/event/edit/:uuid/:referrer?',
     component: EventEdit,
   },
   {
     name: 'event-show',
-    path: '/dashboard/course/event/show/:uuid',
+    path: '/dashboard/course/event/show/:uuid/:referrer?',
     component: EventShow,
   },
   {

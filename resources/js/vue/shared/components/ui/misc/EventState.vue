@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$props.confirmed">
+    <div v-if="$props.confirmed && !$props.cancelled">
       <em class="text-success">
 
         <template v-if="$props.dashboard">

@@ -234,7 +234,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::get('event-settings', [DashboardEventSettingsController::class, 'get']);
 
   // Events
-  Route::get('events/{constraint?}', [DashboardEventController::class, 'get']);
+  Route::get('events/{course:uuid}', [DashboardEventController::class, 'get']);
   Route::get('event/{event:uuid}', [DashboardEventController::class, 'find']);
   Route::post('event', [DashboardEventController::class, 'store']);
   Route::put('event/confirm/{event:uuid}', [DashboardEventController::class, 'confirm']);

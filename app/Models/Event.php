@@ -252,7 +252,7 @@ class Event extends Base
    */
   public function scopeCancelled($query)
   {
-    return $query->where('cancelled', 1);
+    return $query->where('cancelled', 1)->orderBy('date', 'DESC');
   }
 
   /**
@@ -264,6 +264,30 @@ class Event extends Base
   public function scopeActive($query)
   {
     return $query->where('cancelled', 0);
+  }
+
+  /**
+   * Scope a query to only include upcoming events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeUpcoming($query)
+  { 
+    $constraint = date('Y-m-d', time());
+    return $query->where('date', '>=', $constraint)->orderBy('date', 'ASC');
+  }
+
+  /**
+   * Scope a query to only include upcoming events
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopePast($query)
+  { 
+    $constraint = date('Y-m-d', time());
+    return $query->where('date', '<=', $constraint)->orderBy('date', 'DESC');
   }
 
 

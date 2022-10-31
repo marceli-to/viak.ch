@@ -53,9 +53,12 @@
           <template v-else>
             <p class="no-results">Es sind keine Veranstaltungen vorhanden.</p>
           </template>
-          <div class="flex justify-start mt-6x">
+          <div class="flex justify-between mt-6x">
             <router-link :to="{ name: 'event-create', params: { courseId: course.id }  }" class="icon-plus">
               <icon-plus />
+            </router-link>
+            <router-link :to="{ name: 'events', params: { courseUuid: course.uuid }  }" class="icon-arrow-right">
+              <icon-arrow-right />
             </router-link>
           </div>
         </template>

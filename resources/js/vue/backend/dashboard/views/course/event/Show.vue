@@ -3,7 +3,17 @@
     <article-text class="content-text--event">
       <template #aside>
         <h1>{{ data.event.course.title }}</h1>
-        <back-link :route="'courses'"></back-link>
+        <template v-if="$route.params.referrer">
+          <div class="sm:mt-5x md:mt-10x">
+            <router-link :to="{ name: 'events', params: { courseUuid: data.event.course.uuid }  }" class="icon-arrow-right">
+              <span>{{ __('Zurück') }}</span>
+              <icon-arrow-left />
+            </router-link>
+          </div>
+        </template>
+        <template v-else>
+          <back-link :route="'courses'"></back-link>
+        </template>
       </template>
     </article-text>
 
@@ -123,6 +133,7 @@ import ListItemFile from "@/shared/modules/files/components/ListItem.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
+import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import IconCheckmark from "@/shared/components/ui/icons/Checkmark.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
@@ -140,6 +151,7 @@ export default {
     CollapsibleContainer,
     Collapsible,
     IconArrowRight,
+    IconArrowLeft,
     IconCheckmark,
     IconPlus,
     Messages,
@@ -174,6 +186,7 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
+        console.log(this.data);
         this.isFetched = true;
         NProgress.done();
       });

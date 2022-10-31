@@ -3,7 +3,17 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide" v-html="title"></h1>
-      <back-link :route="'courses'"></back-link>
+      <template v-if="$route.params.referrer">
+        <div class="sm:mt-5x md:mt-10x">
+          <router-link :to="{ name: 'events', params: { courseUuid: data.course.uuid }  }" class="icon-arrow-right">
+            <span>{{ __('Zurück') }}</span>
+            <icon-arrow-left />
+          </router-link>
+        </div>
+      </template>
+      <template v-else>
+        <back-link :route="'courses'"></back-link>
+      </template>
     </template>
     <template #content>
 
@@ -214,6 +224,7 @@ import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleConta
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconTrash from "@/shared/components/ui/icons/Trash.vue";
 import IconPlus from "@/shared/components/ui/icons/Plus.vue";
+import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import BackLink from "@/shared/components/ui/misc/BackLink.vue";
 
 export default {
@@ -226,6 +237,7 @@ export default {
     BackLink,
     IconTrash,
     IconPlus,
+    IconArrowLeft,
     CollapsibleContainer,
     Collapsible,
     Grid,

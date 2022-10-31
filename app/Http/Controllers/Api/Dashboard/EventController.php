@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DataCollection;
+use App\Http\Resources\Dashboard\EventCollection;
+use App\Models\Course;
 use App\Models\Event;
 use App\Models\EventDate;
 use App\Events\EventConfirmed;
@@ -14,16 +17,35 @@ class EventController extends Controller
   /**
    * Get a list of events
    * 
-   * @param String $constraint
+   * @param Course $course
    * @return \Illuminate\Http\Response
    */
-  public function get($constraint = NULL)
+  public function get(Course $course)
   {
-    if ($constraint == 'publish')
-    {
-      return new DataCollection(Event::published()->orderBy('date', 'ASC')->get());
-    }
-    return new DataCollection(Event::orderBy('date', 'ASC')->get());
+    $data = [
+      'course' => $course,
+      'upcoming' => new EventCollection(
+        Event::upcoming()
+        ->active()
+        ->with('dates', 'experts', 'location', 'course', 'bookings')
+        ->where('course_id', $course->id)->get()
+      ),
+      'past' => new EventCollection(
+        Event::past()
+        ->active()
+        ->with('dates', 'experts', 'location', 'course', 'bookings')
+        ->where('course_id', $course->id)
+        ->get()
+      ),
+      'cancelled' => new EventCollection(
+        Event::cancelled()
+        ->with('dates', 'experts', 'location', 'course', 'bookings')
+        ->where('course_id', $course->id)
+        ->get()
+      ),
+    ];
+
+    return response()->json($data);
   }
 
   /**
