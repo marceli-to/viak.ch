@@ -259,7 +259,6 @@ class Course extends Base
     return $this->hasMany(Event::class)->where('date', '>', $constraint)->where('cancelled', 0)->orderBy('date', 'ASC');
   }
 
-
   /**
    * The upcoming events that are published and not cancelled 
    * and that belong to this course.
@@ -270,7 +269,6 @@ class Course extends Base
     $constraint = date('Y-m-d', time());
     return $this->hasMany(Event::class)->where('date', '>', $constraint)->where('cancelled', 0)->where('publish', 1)->orderBy('date', 'ASC');
   }
-
 
   /**
    * The past events that belong to this course.
