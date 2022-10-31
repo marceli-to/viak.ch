@@ -1,11 +1,12 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
-@section('page_title', __('Zahlung'))
+@section('seo_title', __('Kreditkartenzahlung'))
+@section('page_title', __('Kreditkartenzahlung'))
 @section('content')
 <section class="container">
   <x-article-text>
     <x-slot name="aside">
-      <h1 class="xs:hide">{{ __('Zahlung') }}</h1>
+      <h1 class="xs:hide">{{ __('Kreditkartenzahlung') }}</h1>
     </x-slot>
     <x-slot name="content">
       <p>Informationen bezüglich akzeptiere Kreditkarten, Weiterleitung auf Seite des Anbieters etc.</p>

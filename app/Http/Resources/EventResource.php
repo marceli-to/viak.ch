@@ -14,16 +14,13 @@ class EventResource extends JsonResource
    */
   public function toArray($request)
   {
-    return [
+    $data = [
       'uuid' => $this->uuid,
       'date' => $this->date_long,
       'online' => $this->online,
       'fee' => $this->courseFee,
-      'min_participants' => $this->min_participants,
-      'max_participants' => $this->max_participants,
       'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
-      'bookings' => auth()->user()->isExpert() ? collect($this->bookings)->count() : NULL,
       'dates' => $this->dates->map(function($date) {
         return [
           'date' => $date->date,
@@ -34,9 +31,19 @@ class EventResource extends JsonResource
       }),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
       'confirmed' => $this->confirmed,
-      'confirmed_at' => $this->confirmed_at,
-      'cancelled' => $this->cancelled,
-      'cancelled_at' => $this->cancelled_at,
     ];
+
+    // Additional data for role 'Expert' or 'Admin'
+    if (auth()->user()->isExpert() || auth()->user()->isAdmin())
+    {
+      $data['bookings'] = collect($this->bookings)->count();
+      $data['min_participants'] = $this->min_participants;
+      $data['max_participants'] = $this->max_participants;
+      $data['confirmed_at'] = $this->confirmed_at;
+      $data['cancelled'] = $this->cancelled;
+      $data['cancelled_at'] = $this->cancelled_at;
+    }
+
+    return $data;
   }
 }

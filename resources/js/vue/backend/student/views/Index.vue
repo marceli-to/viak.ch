@@ -134,7 +134,8 @@
       
       <template #content v-else>
         <div>
-          <pre v-html="user.address"></pre>
+          <p><pre v-html="user.address"></pre></p>
+          <p>{{ user.email }}</p>
         </div>
       </template>
     </article-text>
@@ -167,13 +168,13 @@
         </template>
       </collapsible>
       
-      <collapsible :expanded="true" :items="user.bookings" :uuid="'student-bookings'">
+      <collapsible :expanded="true" :items="user.events" :uuid="'student-bookings'">
         <template #title>
           {{ __('Gebuchte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.bookings">
-            <div v-for="(booking, index) in user.bookings" :key="index">
+          <div v-if="user.events">
+            <div v-for="(booking, index) in user.events" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
                 :booking="booking"
@@ -197,6 +198,35 @@
           </div>
         </template>
       </collapsible>
+      
+      <collapsible :expanded="true" :items="user.events_concluded" :uuid="'student-bookings-concluded'">
+        <template #title>
+          {{ __('Absolvierte Kurse') }}
+        </template>
+        <template #content>
+          <div v-if="user.events_concluded">
+            <div v-for="(booking, index) in user.events_concluded" :key="index">
+              <stacked-list-event 
+                :event="booking.event" 
+                :booking="booking"
+                :showState="true">
+                <template #icon>
+                  <icon-checkmark />
+                </template>
+                <template #action>
+                  <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
+                    {{ __('Detail')}}
+                  </router-link>
+                </template>
+              </stacked-list-event>
+            </div>
+          </div>
+          <div v-else>
+            <p class="no-results">{{ __('Du hast noch keine Kurse gebucht.') }}</p>
+          </div>
+        </template>
+      </collapsible>
+
     </collapsible-container>
 
     <collapsible-container>

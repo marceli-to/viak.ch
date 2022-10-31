@@ -40,7 +40,7 @@ class EventConfirmedHandler
     {
       foreach($experts as $expert)
       { 
-        // Create a job for the confirmation email to each student
+        // Create a job for the confirmation email to each expert
         Job::create([
           'recipient' => $expert->email,
           'mailable_id' => $eventConfirmedEvent->event->id,

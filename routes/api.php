@@ -186,14 +186,18 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(func
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
   Route::get('files', [FileController::class, 'get']);
-  Route::post('files/order', [FileController::class, 'order']);
   Route::get('file/{file}', [FileController::class, 'find']);
+});
+
+Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->group(function() {
+  Route::post('files/order', [FileController::class, 'order']);
   Route::post('file/upload', [FileController::class, 'upload']);
   Route::post('file', [FileController::class, 'store']);
   Route::put('file/{file:uuid}', [FileController::class, 'update']);
   Route::get('file/state/{file}', [FileController::class, 'toggle']);
   Route::delete('file/{file:uuid}', [FileController::class, 'destroy']);
 });
+
 
 
 /*
@@ -207,7 +211,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
 //   return $request->user()->uuid;
 // });
 
-Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('dashboard')->group(function() {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard')->group(function() {
 
   // Course settings
   Route::get('course-settings', [DashboardCourseSettingsController::class, 'get']);
@@ -239,6 +243,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert'])->prefix('da
   Route::post('event', [DashboardEventController::class, 'store']);
   Route::put('event/confirm/{event:uuid}', [DashboardEventController::class, 'confirm']);
   Route::put('event/cancel/{event:uuid}', [DashboardEventController::class, 'cancel']);
+  Route::put('event/close/{event:uuid}', [DashboardEventController::class, 'close']);
   Route::put('event/{event:uuid}', [DashboardEventController::class, 'update']);
   Route::get('event/state/{event}', [DashboardEventController::class, 'toggle']);
   Route::delete('event/{event}', [DashboardEventController::class, 'destroy']);

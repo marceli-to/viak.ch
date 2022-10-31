@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventDate;
 use App\Events\EventConfirmed;
 use App\Events\EventCancelled;
+use App\Events\EventClosed;
 use App\Http\Requests\EventStoreRequest;
 use Illuminate\Http\Request;
 
@@ -180,6 +181,28 @@ class EventController extends Controller
       return response()->json('successfully updated');
     }
     event(new EventCancelled($event));
+    return response()->json('successfully updated');
+  }
+
+  /**
+   * Close an event
+   *
+   * @param  Event $event
+   * @return \Illuminate\Http\Response
+   */
+  public function close(Event $event)
+  {
+    if ($event->closed == 1)
+    {
+      return response()->json('successfully updated');
+    }
+    
+    // Update event
+    $event->closed = 1;
+    $event->closed_at = \Carbon\Carbon::now();
+    $event->save();
+
+    event(new EventClosed($event));
     return response()->json('successfully updated');
   }
 

@@ -1,5 +1,6 @@
 @extends('web.layout.frontend')
 @section('html_class', 'is-auth')
+@section('seo_title', __('Zahlungsvorgang abgebrochen'))
 @section('page_title', __('Zahlungsvorgang abgebrochen'))
 @section('content')
 <section class="container-contact">

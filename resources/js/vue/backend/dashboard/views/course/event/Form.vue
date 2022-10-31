@@ -315,6 +315,7 @@ export default {
         delete: '/api/dashboard/event',
         confirm: '/api/dashboard/event/confirm',
         cancel: '/api/dashboard/event/cancel',
+        close: '/api/dashboard/event/close',
         settings: '/api/dashboard/event-settings',
       },
 
@@ -415,6 +416,14 @@ export default {
       this.axios.put(`${this.routes.cancel}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist abgesagt'));
         this.data.cancelled = 1;
+        this.actionToBeConfirmed = null;  
+      });
+    },
+
+    closeEvent() {
+      this.axios.put(`${this.routes.close}/${this.$route.params.uuid}`, this.data).then(response => {
+        this.$toast.open(this.__('Die Veranstaltung ist geschlossen'));
+        this.data.closed = 1;
         this.actionToBeConfirmed = null;  
       });
     },

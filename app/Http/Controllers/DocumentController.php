@@ -83,8 +83,7 @@ class DocumentController extends BaseController
    * @return \Illuminate\Http\Response
    */
   public function invoice()
-  { 
-    
+  {
     $pdf = (new EventInvoice())->create([
       'number' => '0000001',
       'amount' => '890.00'

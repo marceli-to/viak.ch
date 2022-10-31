@@ -1,6 +1,6 @@
 @component('mail::message')
 @if ($recipient == 'student')
-<h1>{{ __('Zahlungsbestätigung Rechnung Nr.') . ' – ' . $invoice->number }}</h1>
+<h1>{{ __('Zahlungsbestätigung Rechnung') . ' ' . $invoice->number }}</h1>
 <p>{{ __('Hallo') }} {{ $invoice->user->fullname }}</p>
 <p>{{ __('Wir haben deine Zahlung erhalten, welche wir gerne wie folgt bestätigen:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">

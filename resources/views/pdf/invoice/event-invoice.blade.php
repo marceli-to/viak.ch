@@ -6,12 +6,12 @@
       <td class="page-info__left">
         {!! $invoice->booking->user->address !!}
         <br><br>
-        {{ __('Buchung:') }}
+        {{ __('Buchung') }}
         {{ $invoice->booking->number }}
       </td>
       <td class="page-info__right">
         @if ($invoice->invoice_address)
-        {{ __('Rechnungsadresse:') }}<br>
+        {{ __('Rechnungsadresse') }}<br>
           {!! $invoice->invoice_address !!}
         @endif
       </td>

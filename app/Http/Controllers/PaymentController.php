@@ -22,7 +22,7 @@ class PaymentController extends BaseController
     $this->authorize('view', $invoice->booking);
     $invoice = invoice::with('booking.user')->findOrFail($invoice->id);
 
-    if ($invoice->paid)
+    if ($invoice->hasFlag('isPaid'))
     {
       return view($this->viewPath . 'info', ['invoice' => $invoice]);
     }
@@ -39,6 +39,11 @@ class PaymentController extends BaseController
   {
     // Get the invoice
     $invoice = Invoice::with('booking.user')->where('uuid', $request->input('invoice'))->firstOrFail();
+
+    if ($invoice->hasFlag('isPaid'))
+    {
+      return view($this->viewPath . 'info', ['invoice' => $invoice]);
+    }
 
     // save invoice to store
     $store = (new PaymentStore())->setAttribute('invoice_uuid', $invoice->uuid);
@@ -91,7 +96,7 @@ class PaymentController extends BaseController
 
     // Update invoice
     $invoice = Invoice::where('uuid', $invoice_uuid)->firstOrFail();
-    $invoice->paid = 1;
+    $invoice->flag('isPaid');
     $invoice->paid_at = \Carbon\Carbon::now();
     $invoice->save();
 

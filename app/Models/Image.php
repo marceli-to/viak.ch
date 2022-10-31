@@ -74,7 +74,7 @@ class Image extends Base
 
   public function isTeaser()
   {
-    return $this->type = 'teaser';
+    return $this->type == 'teaser';
   }
 
   /**
@@ -85,7 +85,7 @@ class Image extends Base
 
   public function isVisual()
   {
-    return $this->type = 'visual';
+    return $this->type == 'visual';
   }
 
 

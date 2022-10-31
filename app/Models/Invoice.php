@@ -3,10 +3,11 @@ namespace App\Models;
 use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelFlags\Models\Concerns\HasFlags;
 
 class Invoice extends Base
 {
-  use SoftDeletes;
+  use SoftDeletes, HasFlags;
 
   /**
    * The attributes that should be cast to native types.
@@ -35,8 +36,6 @@ class Invoice extends Base
     'filename',
     'invoice_address',
     'cancel_reason',
-    'paid',
-    'cancelled',
     'uuid',
     'booking_id',
     'user_id',
@@ -61,7 +60,7 @@ class Invoice extends Base
 
   public function isPaid()
   {
-    return $this->paid == 1 ? TRUE : FALSE;
+    return $this->hasFlag('isPaid');
   }
 
   /**
@@ -72,7 +71,7 @@ class Invoice extends Base
 
   public function isCancelled()
   {
-    return $this->cancelled == 1 ? TRUE : FALSE;
+    return $this->hasFlag('isCancelled');
   }
 
 
@@ -118,7 +117,7 @@ class Invoice extends Base
    */
   public function scopePaid($query)
   {
-    return $query->where('paid', 1);
+    return $query->whereNotNull('paid_at');
   }
 
   /**
@@ -129,7 +128,7 @@ class Invoice extends Base
    */
   public function scopeCancelled($query)
   {
-    return $query->where('cancelled', 1);
+    return $query->whereNotNull('cancelled_at');
   }
 
   /**
@@ -140,7 +139,7 @@ class Invoice extends Base
    */
   public function scopePending($query)
   {
-    return $query->where('cancelled', 0);
+    return $query->whereNull('paid_at')->whereNull('cancelled_at');
   }
 
   /*

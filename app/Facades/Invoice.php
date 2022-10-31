@@ -114,7 +114,7 @@ class Invoice
     // Cancel an existing invoice
     if ($existingInvoice)
     {
-      $existingInvoice->cancelled = 1;
+      $existingInvoice->flag('isCancelled');
       $existingInvoice->cancelled_at = \Carbon\Carbon::now();
       $existingInvoice->cancel_reason = 'Replaced by Invoice No. ' . $invoiceWithPenalty->number;
       $existingInvoice->save();
