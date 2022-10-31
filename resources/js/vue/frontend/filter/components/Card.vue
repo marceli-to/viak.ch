@@ -16,7 +16,7 @@
             <div class="card-teaser__list">
               <ul>
                 <li>{{ __('Experte') }}: {{ data.experts}}</li>
-                <li>{{ __('ab') }} {{ data.date }}</li>
+                <li>{{ __('ab') }} {{ data.date_long }}</li>
                 <li v-if="data.online">{{ __('Online Schulung')}}</li>
                 <li>CHF {{ data.fee }}</li>
               </ul>
