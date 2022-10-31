@@ -360,7 +360,7 @@ class CourseFilter
           'uuid' => $course->uuid,
           'slug' => $course->slug,
           'title' => $course->title,
-          'date' => $event->date,
+          'date_long' => $event->date_long,
           'categories' => collect($course->categories->pluck('description')->all())->implode(', '),
           'experts' => $event->experts_fullname_string,
           'fee' => $course->fee,
