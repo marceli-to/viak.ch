@@ -116,17 +116,6 @@ class CourseFilter
       }
     }
 
-    
-    // Filter out cancelled
-    // $query->whereHas('upcomingAndPublishedEvents', function ($query) {
-    //   $query->where('cancelled', 0);
-    // });
-
-    // $query->whereHas('upcomingAndPublishedEvents', function ($query) {
-    //   $query->where('publish', 1);
-    // });
-
-
     if ($map)
     {
       return $this->map(
@@ -298,11 +287,9 @@ class CourseFilter
    */
   private function setLevel($request)
   {
-    // $this->level = $this->store->getAttribute('attributes.level');
     if ($request && $request->input('level'))
     {
       $this->level = $request->input('level') !== 'null' ? $request->input('level') : NULL;
-      // $this->store->setAttribute('attributes.level', $this->level);
     }
   }
 
@@ -395,7 +382,6 @@ class CourseFilter
         ];
       }
     }
-    // return ['courses' => $data, 'filter' => $this->store->get()];
     return ['courses' => $data, 'filter' => NULL];
   }
 
