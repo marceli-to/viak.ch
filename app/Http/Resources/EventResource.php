@@ -24,6 +24,7 @@ class EventResource extends JsonResource
       'dates' => $this->dates->map(function($date) {
         return [
           'date' => $date->date,
+          'date_long' => $date->date_long,
           'date_short' => $date->date_short,
           'time_start' => $date->time_start,
           'time_end' => $date->time_end,
