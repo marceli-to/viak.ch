@@ -256,7 +256,7 @@ class Course extends Base
   public function upcomingEvents()
   {
     $constraint = date('Y-m-d', time());
-    return $this->hasMany(Event::class)->where('date', '>', $constraint)->where('cancelled', 0)->orderBy('date', 'ASC');
+    return $this->hasMany(Event::class)->where('date', '>', $constraint)->notFlagged('isCancelled')->orderBy('date', 'ASC');
   }
 
   /**
@@ -267,7 +267,7 @@ class Course extends Base
   public function upcomingAndPublishedEvents()
   {
     $constraint = date('Y-m-d', time());
-    return $this->hasMany(Event::class)->where('date', '>', $constraint)->where('cancelled', 0)->where('publish', 1)->orderBy('date', 'ASC');
+    return $this->hasMany(Event::class)->where('date', '>', $constraint)->notFlagged('isCancelled')->where('publish', 1)->orderBy('date', 'ASC');
   }
 
   /**

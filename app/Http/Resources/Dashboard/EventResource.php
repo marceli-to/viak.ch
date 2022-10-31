@@ -24,7 +24,6 @@ class EventResource extends JsonResource
       'online' => $this->online,
       'fee' => $this->fee,
       'publish' => $this->publish,
-      //'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
       'dates' => $this->dates->map(function($date) {
         return [
@@ -36,10 +35,12 @@ class EventResource extends JsonResource
       }),
       'bookings' => $this->bookings->count(),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
-      'confirmed' => $this->confirmed,
+      'is_confirmed' => $this->is_confirmed,
       'confirmed_at' => $this->confirmed_at,
-      'cancelled' => $this->cancelled,
+      'is_cancelled' => $this->is_cancelled,
       'cancelled_at' => $this->cancelled_at,
+      'is_closed' => $this->is_closed,
+      'closed_at' => $this->closed_at,
       'is_past' => $this->is_past,
       'is_upcoming' => $this->is_upcoming,
     ];

@@ -199,13 +199,13 @@
         </template>
       </collapsible>
       
-      <collapsible :items="user.events_concluded" :uuid="'student-bookings-concluded'">
+      <collapsible :items="user.events_participated" :uuid="'student-bookings-concluded'">
         <template #title>
           {{ __('Absolvierte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.events_concluded">
-            <div v-for="(booking, index) in user.events_concluded" :key="index">
+          <div v-if="user.events_participated">
+            <div v-for="(booking, index) in user.events_participated" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
                 :booking="booking"

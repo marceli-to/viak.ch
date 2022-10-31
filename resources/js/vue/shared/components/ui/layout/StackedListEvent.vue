@@ -30,8 +30,9 @@
         </template>
         
         <event-state 
-          :confirmed="$props.event.confirmed" 
-          :cancelled="$props.event.cancelled"
+          :confirmed="$props.event.is_confirmed" 
+          :cancelled="$props.event.is_cancelled"
+          :closed="$props.event.is_closed"
           :dashboard="true"
         />
 
@@ -100,8 +101,9 @@
         </template>
 
         <event-state 
-          :confirmed="$props.event.confirmed"
-          :cancelled="$props.event.cancelled"
+          :confirmed="$props.event.is_confirmed"
+          :cancelled="$props.event.is_cancelled"
+          :closed="$props.event.is_closed"
           v-if="!$props.basket"
          />
 

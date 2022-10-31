@@ -153,7 +153,7 @@
       </form>
 
       <template v-if="$props.type == 'edit'">
-        <template v-if="data.cancelled">
+        <template v-if="data.is_cancelled">
 
           <danger-zone :type="'warning'">
             <template #content>
@@ -166,7 +166,7 @@
         <template v-else>
 
           <danger-zone :type="'success'">
-            <template #content v-if="data.confirmed">
+            <template #content v-if="data.is_confirmed">
               <h2>Veranstaltung bestätigt</h2>
               <p>Diese Veranstaltung wurde am {{ data.confirmed_at }} bestätigt.</p>
             </template>
@@ -178,7 +178,7 @@
           </danger-zone>
 
           <danger-zone :type="'success'" v-if="data.is_past" class="mb-6x">
-            <template #content v-if="data.closed">
+            <template #content v-if="data.is_closed">
               <h2>Veranstaltung abgeschlossen</h2>
               <p>Diese Veranstaltung wurde am {{ data.closed_at }} abgeschlossen.</p>
             </template>
@@ -407,7 +407,7 @@ export default {
         this.$toast.open(this.__('Die Veranstaltung ist bestätigt'));
         this.isLoading = false;
         NProgress.done();
-        this.data.confirmed = 1;
+        this.data.is_confirmed = 1;
         this.actionToBeConfirmed = null;  
       });
     },
@@ -415,7 +415,7 @@ export default {
     cancelEvent() {
       this.axios.put(`${this.routes.cancel}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist abgesagt'));
-        this.data.cancelled = 1;
+        this.data.is_cancelled = 1;
         this.actionToBeConfirmed = null;  
       });
     },
@@ -423,7 +423,7 @@ export default {
     closeEvent() {
       this.axios.put(`${this.routes.close}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist geschlossen'));
-        this.data.closed = 1;
+        this.data.is_closed = 1;
         this.actionToBeConfirmed = null;  
       });
     },

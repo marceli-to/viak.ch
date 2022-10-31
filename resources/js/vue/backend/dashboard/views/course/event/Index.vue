@@ -44,7 +44,7 @@
           <div v-for="event in data.events.past" :key="event.id" class="relative">
             <stacked-list-event :event="event" :dashboard="true">
               <template #action>
-                <router-link :to="{ name: 'event-edit', params: { uuid: event.uuid, referrer: 'events' } }" class="btn-primary mb-3x">
+                <router-link :to="{ name: 'event-edit', params: { uuid: event.uuid, referrer: 'events' } }" class="btn-primary mb-3x" v-if="!event.is_closed""">
                   Bearbeiten
                 </router-link>
                 <router-link :to="{ name: 'event-show', params: { uuid: event.uuid, referrer: 'events' } }" class="btn-secondary">

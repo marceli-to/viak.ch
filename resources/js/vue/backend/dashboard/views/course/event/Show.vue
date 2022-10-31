@@ -50,8 +50,11 @@
                 <div class="sm:span-2 md:span-3">{{ participant.city }}</div>
                 <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
                 <div class="sm:span-2 md:span-3 flex justify-end mr-2x">
-                  <div class="form-group__checkbox">
+                  <div class="form-group__checkbox" v-if="!data.event.is_closed">
                     <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :checked="participant.hasParticipated ? true : false" :value="1" @change="updateAttendance(participant.uuid)">
+                  </div>
+                  <div v-else>
+                    <strong>{{ participant.hasParticipated ? 'Ja' : 'Nein' }}</strong>
                   </div>
                 </div>
               </div>

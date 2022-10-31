@@ -30,7 +30,9 @@ class EventResource extends JsonResource
         ];
       }),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
-      'confirmed' => $this->confirmed,
+      'is_confirmed' => $this->hasFlag('isConfirmed'),
+      'is_closed' => $this->hasFlag('isClosed'),
+      'is_cancelled' => $this->hasFlag('isCancelled'),
     ];
 
     // Additional data for role 'Expert' or 'Admin'
@@ -40,8 +42,8 @@ class EventResource extends JsonResource
       $data['min_participants'] = $this->min_participants;
       $data['max_participants'] = $this->max_participants;
       $data['confirmed_at'] = $this->confirmed_at;
-      $data['cancelled'] = $this->cancelled;
       $data['cancelled_at'] = $this->cancelled_at;
+      $data['closed_at'] = $this->closed_at;
     }
 
     return $data;

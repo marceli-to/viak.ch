@@ -34,6 +34,7 @@ class StudentResource extends JsonResource
       'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
       'events' => BookingResource::collection($this->bookings)->sortBy('event.date')->toArray(),
+      'events_participated' => BookingResource::collection($this->bookingsParticipated)->sortBy('event.date')->toArray(),
       'events_concluded' => BookingResource::collection($this->bookingsConcluded)->sortBy('event.date')->toArray(),
       'bookmarks' => BookmarkResource::collection($this->bookmarks),
     ];

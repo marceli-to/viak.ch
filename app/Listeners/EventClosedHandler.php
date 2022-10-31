@@ -32,26 +32,9 @@ class EventClosedHandler
             'mailable_type' => \App\Models\Booking::class,
             'mailable_class' => \App\Mail\EventClosedStudent::class
           ]);
-          $booking->flag('isConcluded');
         }
+        $booking->flag('isConcluded');
       }
     }
-
-    // // Get the experts
-    // $experts = $eventConfirmedEvent->event->experts()->get();
-    
-    // if ($experts)
-    // {
-    //   foreach($experts as $expert)
-    //   { 
-    //     // Create a job for the confirmation email to each expert
-    //     Job::create([
-    //       'recipient' => $expert->email,
-    //       'mailable_id' => $eventConfirmedEvent->event->id,
-    //       'mailable_type' => \App\Models\Event::class,
-    //       'mailable_class' => \App\Mail\EventConfirmationExpert::class
-    //     ]);
-    //   }
-    // }
   }
 }

@@ -40,9 +40,9 @@ class EventReset extends Command
   {
     // Update the event
     $event = Event::where('uuid', $this->argument('event'))->first();
-    $event->cancelled = 0;
+    $event->unflag('isCancelled');
     $event->cancelled_at = NULL;
-    $event->confirmed = 0;
+    $event->unflag('isConfirmed');
     $event->confirmed_at = NULL;
     $event->save();
 

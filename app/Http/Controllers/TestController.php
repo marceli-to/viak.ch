@@ -24,12 +24,14 @@ class TestController extends BaseController
 
   public function index()
   { 
-    $email = 'viak-student2@0704.ch';
-    if (!Newsletter::isSubscribed($email))
-    {
-      Newsletter::subscribe($email, ['FNAME'=>'Peter', 'LNAME'=>'Müller']);
-      Newsletter::addTags(['VA Newsletter'], $email);
-    }
+    $events = Event::active()->get();
+    dd($events);
+    // $email = 'viak-student2@0704.ch';
+    // if (!Newsletter::isSubscribed($email))
+    // {
+    //   Newsletter::subscribe($email, ['FNAME'=>'Peter', 'LNAME'=>'Müller']);
+    //   Newsletter::addTags(['VA Newsletter'], $email);
+    // }
   }
 
   public function participantChanges()

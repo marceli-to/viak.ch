@@ -154,13 +154,13 @@ class EventController extends Controller
    */
   public function confirm(Event $event)
   {
-    if ($event->confirmed == 1)
+    if ($event->hasFlag('isConfirmed'))
     {
       return response()->json('successfully updated');
     }
     
     // Update event
-    $event->confirmed = 1;
+    $event->flag('isConfirmed');
     $event->confirmed_at = \Carbon\Carbon::now();
     $event->save();
 
@@ -176,10 +176,16 @@ class EventController extends Controller
    */
   public function cancel(Event $event)
   {
-    if ($event->cancelled == 1)
+    if ($event->hasFlag('isCancelled'))
     {
       return response()->json('successfully updated');
     }
+
+    // Update event
+    $event->flag('isCancelled');
+    $event->cancelled_at = \Carbon\Carbon::now();
+    $event->save();
+
     event(new EventCancelled($event));
     return response()->json('successfully updated');
   }
@@ -192,13 +198,13 @@ class EventController extends Controller
    */
   public function close(Event $event)
   {
-    if ($event->closed == 1)
+    if ($event->hasFlag('isClosed'))
     {
       return response()->json('successfully updated');
     }
     
     // Update event
-    $event->closed = 1;
+    $event->flag('isClosed');
     $event->closed_at = \Carbon\Carbon::now();
     $event->save();
 

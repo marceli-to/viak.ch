@@ -15,6 +15,7 @@ class BookingCompletedHandler
    */
   public function handle(BookingCompleted $bookingCompletedEvent)
   {
+    // Send booking completed email
     Job::create([
       'recipient' => $bookingCompletedEvent->user->email,
       'mailable_id' => $bookingCompletedEvent->booking->id,
@@ -22,8 +23,8 @@ class BookingCompletedHandler
       'mailable_class' => \App\Mail\BookingCompleted::class
     ]);
 
-    // Confirm if event is already confirmed
-    if ($bookingCompletedEvent->booking->event->confirmed)
+    // Send event confirmed email
+    if ($bookingCompletedEvent->booking->event->hasFlag('isConfirmed'))
     {
       Job::create([
         'recipient' => $bookingCompletedEvent->user->email,

@@ -16,11 +16,6 @@ class EventCancelledHandler
    */
   public function handle(EventCancelled $eventCancelledEvent)
   { 
-    // Update event
-    $eventCancelledEvent->event->cancelled = 1;
-    $eventCancelledEvent->event->cancelled_at = \Carbon\Carbon::now();
-    $eventCancelledEvent->event->save();
-
     // Get bookings for the event
     $bookings = $eventCancelledEvent->event->bookings()->get();
 

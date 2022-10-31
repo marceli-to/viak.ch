@@ -14,7 +14,7 @@
         </template>
         <template #content>
           <stacked-list-event :event="data.event" :booking="data.booking">
-            <template #action>
+            <template #action v-if="!data.event.is_closed">
               <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(data.booking.uuid, data.booking)">
                 {{ __('Annullieren') }}
               </a>

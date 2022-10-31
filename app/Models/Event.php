@@ -40,6 +40,7 @@ class Event extends Base
     'course_id',
     'location_id',
     'publish',
+
     'confirmed',
     'cancelled',
     'closed'
@@ -59,7 +60,10 @@ class Event extends Base
     'course_online',
     'expert_ids',
     'is_past',
-    'is_upcoming'
+    'is_upcoming',
+    'is_confirmed',
+    'is_cancelled',
+    'is_closed',
   ];
 
 
@@ -90,7 +94,7 @@ class Event extends Base
 
   public function isConfirmed()
   {
-    return $this->confirmed == 1 ? TRUE : FALSE;
+    return $this->hasFlag('isConfirmed');
   }
 
   /**
@@ -101,7 +105,18 @@ class Event extends Base
 
   public function isCancelled()
   {
-    return $this->cancelled == 1 ? TRUE : FALSE;
+    return $this->hasFlag('isCancelled');
+  }
+
+  /**
+   * Check for closed event
+   * 
+   * @return Boolean
+   */
+
+  public function isClosed()
+  {
+    return $this->hasFlag('isClosed');
   }
 
   /**
@@ -271,7 +286,7 @@ class Event extends Base
    */
   public function scopeCancelled($query)
   {
-    return $query->where('cancelled', 1)->orderBy('date', 'DESC');
+    return $query->flagged('isCancelled')->orderBy('date', 'DESC');
   }
 
   /**
@@ -282,7 +297,7 @@ class Event extends Base
    */
   public function scopeActive($query)
   {
-    return $query->where('cancelled', 0);
+    return $query->notFlagged('isCancelled');
   }
 
   /**
@@ -452,7 +467,7 @@ class Event extends Base
   }
 
   /**
-   * Get the events 'is_past' stage
+   * Get the events 'is_past' state
    *
    */
 
@@ -462,7 +477,7 @@ class Event extends Base
   }
 
   /**
-   * Get the events 'is_upcoming' stage
+   * Get the events 'is_upcoming' state
    *
    */
 
@@ -471,4 +486,33 @@ class Event extends Base
     return $this->isUpcoming();
   }
 
+  /**
+   * Get the events 'is_closed' state
+   *
+   */
+
+  public function getIsConfirmedAttribute()
+  {
+    return $this->isConfirmed();
+  }
+
+  /**
+   * Get the events 'is_closed' state
+   *
+   */
+
+  public function getIsCancelledAttribute()
+  {
+    return $this->isCancelled();
+  }
+
+  /**
+   * Get the events 'is_closed' state
+   *
+   */
+
+  public function getIsClosedAttribute()
+  {
+    return $this->isClosed();
+  }
 }
