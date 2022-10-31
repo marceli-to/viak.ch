@@ -25,7 +25,6 @@ class CourseResource extends JsonResource
       'publish' => $this->publish,
       'count' => collect($this->upcomingEvents)->count(),
       'events' => EventResource::collection($this->upcomingEvents)->sortByDesc('date'),
-      // 'past_events' => EventResource::collection($this->pastEvents)->sortByDesc('date'),
     ];
   }
 }

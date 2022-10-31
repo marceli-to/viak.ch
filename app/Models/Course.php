@@ -175,6 +175,18 @@ class Course extends Base
   }
 
 
+  /**
+   * Check for upcoming, published events
+   * 
+   * @return Boolean
+   */
+
+  public function hasUpcomingAndPublishedEvents()
+  {
+    return $this->upcomingAndPublishedEvents()->count() > 0 ? TRUE : FALSE;
+  }
+
+
   /*
   |--------------------------------------------------------------------------
   | Relationships
@@ -246,6 +258,19 @@ class Course extends Base
     $constraint = date('Y-m-d', time());
     return $this->hasMany(Event::class)->where('date', '>', $constraint)->orderBy('date', 'ASC');
   }
+
+
+  /**
+   * The upcoming events that are published and not cancelled 
+   * and that belong to this course.
+   */
+  
+  public function upcomingAndPublishedEvents()
+  {
+    $constraint = date('Y-m-d', time());
+    return $this->hasMany(Event::class)->where('date', '>', $constraint)->where('cancelled', 0)->where('publish', 1)->orderBy('date', 'ASC');
+  }
+
 
   /**
    * The past events that belong to this course.

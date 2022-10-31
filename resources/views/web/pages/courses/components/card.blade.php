@@ -12,15 +12,15 @@
     </header>
     <figure>
       <div>
-        @if ($course->hasUpcomingEvents())
+        @if ($course->hasUpcomingAndPublishedEvents())
           <h3>{{ __('Übersicht') }}:</h3>
           <div class="card-teaser__list">
             <ul>
               <li>
-                {{ __('Experte') }}: {{ $course->upcomingEvents()->first()->experts()->first()->fullname}}
+                {{ __('Experte') }}: {{ $course->upcomingAndPublishedEvents()->first()->experts()->first()->fullname}}
               </li>
               <li>
-                {{ __('ab') }} {{ $course->upcomingEvents()->first()->date }}
+                {{ __('ab') }} {{ $course->upcomingAndPublishedEvents()->first()->date }}
               </li>
               @if ($course->online)
                 <li>

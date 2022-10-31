@@ -52,8 +52,8 @@
 <section class="container container-course">
 
   <x-collapsible title="{{ __('Aktuelle Kurse') }}" :expanded="true" id="app-events">
-    @if ($course->upcomingEvents->count() > 0)
-      @foreach($course->upcomingEvents as $event)
+    @if ($course->upcomingAndPublishedEvents->count() > 0)
+      @foreach($course->upcomingAndPublishedEvents as $event)
         <x-event-card :event="$event" />
       @endforeach
     @else

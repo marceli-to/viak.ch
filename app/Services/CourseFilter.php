@@ -53,7 +53,7 @@ class CourseFilter
     $this->setTag($request);
 
     // Start building a query
-    $query = Course::query()->published()->with('upcomingEvents.experts', 'categories', 'softwares', 'teaserImage');
+    $query = Course::query()->published()->with('upcomingAndPublishedEvents.experts', 'categories', 'softwares', 'teaserImage');
 
     // Filter by 'category'
     if ($this->category)
@@ -115,6 +115,16 @@ class CourseFilter
         $query->offline();
       }
     }
+
+    // Filter out cancelled
+    $query->whereHas('upcomingAndPublishedEvents', function ($query) {
+      $query->where('cancelled', 0);
+    });
+
+    $query->whereHas('upcomingAndPublishedEvents', function ($query) {
+      $query->where('publish', 1);
+    });
+
 
     if ($map)
     {
@@ -249,11 +259,9 @@ class CourseFilter
   
   private function setCategory($request)
   {
-    // $this->category = $this->store->getAttribute('attributes.category');
     if ($request && $request->input('category'))
     {
       $this->category = $request->input('category') !== 'null' ? $request->input('category') : NULL;
-      // $this->store->setAttribute('attributes.category', $this->category);
     }
   }
   
@@ -264,11 +272,9 @@ class CourseFilter
   
   private function setSoftware($request)
   {
-    // $this->software = $this->store->getAttribute('attributes.software');
     if ($request && $request->input('software'))
     {
       $this->software = $request->input('software') !== 'null' ? $request->input('software') : NULL;
-      // $this->store->setAttribute('attributes.software', $this->software);
     }
   }
 
@@ -279,11 +285,9 @@ class CourseFilter
   
   private function setLanguage($request)
   {
-    // $this->language = $this->store->getAttribute('attributes.language');
     if ($request && $request->input('language'))
     {
       $this->language = $request->input('language') !== 'null' ? $request->input('language') : NULL;
-      // $this->store->setAttribute('attributes.language', $this->language);
     }
   }
 
@@ -307,11 +311,9 @@ class CourseFilter
    */
   private function setExpert($request)
   {
-    // $this->expert = $this->store->getAttribute('attributes.expert');
     if ($request && $request->input('expert'))
     {
       $this->expert = $request->input('expert') !== 'null' ? $request->input('expert') : NULL;
-      // $this->store->setAttribute('attributes.expert', $this->expert);
     }
   }
 
@@ -321,11 +323,9 @@ class CourseFilter
    */
   private function setLocation($request)
   {
-    // $this->location = $this->store->getAttribute('attributes.location');
     if ($request && $request->input('location'))
     {
       $this->location = $request->input('location') !== 'null' ? $request->input('location') : NULL;
-      // $this->store->setAttribute('attributes.location', $this->location);
     }
   }
 
@@ -352,18 +352,19 @@ class CourseFilter
     $data = [];
     foreach($courses as $course)
     {
-      if ($course->hasUpcomingEvents())
+      if ($course->hasUpcomingAndPublishedEvents())
       { 
-        $event = $course->upcomingEvents->first();
+        $event = $course->upcomingAndPublishedEvents->first();
         
         // Get the first upcoming event with a matching expert uuid.
-        // The 'upcomingEvents' are sorted by date, so the first 
+        // The 'upcomingAndPublishedEvents' are sorted by date, so the first 
         // matching event is the closest to todays date.
         if ($expertUuid)
         {
-          $filtered = $course->upcomingEvents->filter(function ($value, $key) use ($expertUuid) {
+          $filtered = $course->upcomingAndPublishedEvents->filter(function ($value, $key) use ($expertUuid) {
             return $value->experts->firstWhere('uuid', $expertUuid);
           });
+
           $event = collect($filtered->all())->first();
         }
 

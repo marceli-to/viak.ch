@@ -41,9 +41,6 @@ class CourseController extends BaseController
   public function show($slug = NULL, Course $course)
   {
     $course = Course::with(
-      'upcomingEvents.experts', 
-      'upcomingEvents.dates', 
-      'upcomingEvents.location', 
       'categories',
       'publishedVideos'
     )->find($course->id);
