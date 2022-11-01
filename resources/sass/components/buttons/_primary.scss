@@ -10,7 +10,8 @@
   @extend %btn-full-width;
   background-color: $color-secondary;
   color: $color-white;
-
+  line-height: 1 !important;
+  
   &:hover {
     background-color: $color-primary;
   }
