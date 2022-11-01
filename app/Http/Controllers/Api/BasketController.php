@@ -36,9 +36,10 @@ class BasketController extends Controller
   {
     $store = $this->store->get();
 
-    if (!isset($store['items']) || collect($store['items'])->isEmpty())
+    if (!isset($store['count']) || $store['count'] == 0)
     {
-      abort(404);
+      $data['events'] = [];
+      return response()->json($data);
     }
 
     $data = [
@@ -201,6 +202,7 @@ class BasketController extends Controller
         'dates' => $event->dates->map(function($date) {
           return [
             'date' => $date->date,
+            'date_long' => $date->date_long,
             'date_short' => $date->date_short,
             'time_start' => $date->time_start,
             'time_end' => $date->time_end,
