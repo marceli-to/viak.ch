@@ -60,7 +60,7 @@ class RunJob extends Command
 
     foreach($jobs->all() as $j)
     {
-      $recipient = ($env == 'staging' || $env == 'production') && $job->recipient ? $job->recipient : env('MAIL_TO');
+      $recipient = ($env == 'staging' || $env == 'production') && $j->recipient ? $j->recipient : env('MAIL_TO');
 
       try
       {
