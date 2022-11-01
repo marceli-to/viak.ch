@@ -4,7 +4,7 @@ use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UserFile extends Base
+class UserDocument extends Base
 {
   use SoftDeletes;
 
@@ -28,9 +28,9 @@ class UserFile extends Base
     'uuid',
     'name',
     'type',
-    'path',
-    'uuid',
-    'filable_id',
+    'uri',
+    'user_id',
+    'fileable_id',
     'fileable_type'
   ];
 
@@ -42,6 +42,15 @@ class UserFile extends Base
   public function fileable()
   {
     return $this->morphTo();
+  }
+
+  /**
+   * The user that belong to this address.
+   */
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
   }
 
 

@@ -13,13 +13,14 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('user_files', function (Blueprint $table) {
+    Schema::create('user_documents', function (Blueprint $table) {
       $table->id();
       $table->string('name', 255);
       $table->string('type', 255);
-      $table->string('path', 255);
+      $table->string('uri', 255);
       $table->string('uuid', 36);
-      $table->nullableMorphs('filable');
+      $table->nullableMorphs('fileable');
+      $table->foreignId('user_id')->constrained();
       $table->softDeletes();
       $table->timestamps();
     });
@@ -32,6 +33,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('user_files');
+    Schema::dropIfExists('user_documents');
   }
   };

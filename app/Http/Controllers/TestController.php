@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Booking;
 use App\Models\Message;
 use App\Models\Country;
+use App\Services\Pdf\EventParticipationConfirmation;
 use App\Http\Resources\EventParticipantsResource;
 use App\Events\BookingCompleted;
 use Newsletter;
@@ -24,14 +25,9 @@ class TestController extends BaseController
 
   public function index()
   { 
-    $events = Event::active()->get();
-    dd($events);
-    // $email = 'viak-student2@0704.ch';
-    // if (!Newsletter::isSubscribed($email))
-    // {
-    //   Newsletter::subscribe($email, ['FNAME'=>'Peter', 'LNAME'=>'Müller']);
-    //   Newsletter::addTags(['VA Newsletter'], $email);
-    // }
+    $booking = Booking::find(13);
+    $pdf = (new EventParticipationConfirmation())->create($booking);
+    dd($pdf);
   }
 
   public function participantChanges()

@@ -26,20 +26,7 @@ class DocumentController extends BaseController
     return view('web.pages.test.index');
   }
 
-  /**
-   * Generate and download a pdf
-   * 
-   * @return \Illuminate\Http\Response
-   */
-  public function attendanceConfirmation()
-  { 
-    $pdf = (new Pdf())->create([
-      'data' => '',
-      'view' => 'student.course-confirmation',
-      'name' => 'kursbestaetigung'
-    ]);
-    return response()->download($pdf['path'], $pdf['name'], $this->headers);
-  }
+
 
   /**
    * Generate and download a pdf
@@ -82,13 +69,28 @@ class DocumentController extends BaseController
    * 
    * @return \Illuminate\Http\Response
    */
-  public function invoice()
-  {
-    $pdf = (new EventInvoice())->create([
-      'number' => '0000001',
-      'amount' => '890.00'
-    ]);
-    return response()->download($pdf['path'], $pdf['name'], $this->headers);
-  }
+  // public function attendanceConfirmation()
+  // { 
+  //   $pdf = (new Pdf())->create([
+  //     'data' => '',
+  //     'view' => 'student.course-confirmation',
+  //     'name' => 'kursbestaetigung'
+  //   ]);
+  //   return response()->download($pdf['path'], $pdf['name'], $this->headers);
+  // }
+
+  /**
+   * Generate and download a pdf
+   * 
+   * @return \Illuminate\Http\Response
+   */
+  // public function invoice()
+  // {
+  //   $pdf = (new EventInvoice())->create([
+  //     'number' => '0000001',
+  //     'amount' => '890.00'
+  //   ]);
+  //   return response()->download($pdf['path'], $pdf['name'], $this->headers);
+  // }
 
 }

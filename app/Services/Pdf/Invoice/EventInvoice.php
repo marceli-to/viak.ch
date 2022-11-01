@@ -45,6 +45,5 @@ class EventInvoice
       'filename' => $file
     ];
   }
-
   
 }
