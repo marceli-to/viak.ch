@@ -226,78 +226,28 @@
           </div>
         </template>
       </collapsible>
-
     </collapsible-container>
 
-
     <collapsible-container>
-      <collapsible :uuid="'student-documents'">
+      <collapsible :uuid="'student-documents'" :items="user.documents">
         <template #title>
           {{ __('Dokumente') }}
         </template>
         <template #content>
-          <stacked-list-item>
-            <div>
-              <div class="sm:span-4">
-                <strong>Blender Animationskurs</strong>
-                <br>06. Juni 2022
-              </div>
-              <div class="sm:span-4">
-                Rechnung 0000094
-              </div>
-              <div class="sm:span-4">
-                <div class="flex justify-between">
-                  <div>CHF 960.00</div>
-                  <div>
-                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary">Download</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </stacked-list-item>
-          <stacked-list-item>
-            <div>
-              <div class="sm:span-4">
-                <strong>Blender Einführungskurs</strong>
-                <br>13. Mai 2022
-              </div>
-              <div class="sm:span-4">
-                Rechnung 0000086
-              </div>
-              <div class="sm:span-4">
-                <div class="flex justify-between">
-                  <div>CHF 700.00</div>
-                  <div>
-                    <a href="/pdf/rechnung?v=1659123592" target="_blank" class="btn-primary">Download</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </stacked-list-item>
-          <stacked-list-item>
-            <div>
-              <div class="sm:span-4">
-                <strong>Blender Einführungskurs</strong>
-                <br>25. Mai 2022
-              </div>
-              <div class="sm:span-4">
-                Kursbestätigung
-              </div>
-              <div class="sm:span-4">
-                <div class="flex justify-end">
-                  <div>
-                    <a href="/pdf/kurs-bestaetigung?v=1659123592" target="_blank" class="btn-primary">Download</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </stacked-list-item>
+          
+          <stacked-list-document 
+            v-for="document in user.documents" 
+            :key="document.uuid" 
+            :document="document">
+          </stacked-list-document>
+
           <div class="mt-4x">
             <router-link :to="{name: 'student-documents'}" class="link-helper">
               <span>{{ __('Alle Dokumente anzeigen') }}</span>
               <icon-arrow-right />
             </router-link>
           </div>
+          
         </template>
       </collapsible>
     </collapsible-container>
@@ -324,6 +274,7 @@ import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import StackedListEvent from "@/shared/components/ui/layout/StackedListEvent.vue";
+import StackedListDocument from "@/shared/components/ui/layout/StackedListDocument.vue";
 import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
@@ -349,6 +300,7 @@ export default {
     Collapsible,
     StackedListEvent,
     StackedListItem,
+    StackedListDocument,
     IconArrowRight,
     IconEdit,
     IconCross,

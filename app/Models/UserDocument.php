@@ -37,6 +37,17 @@ class UserDocument extends Base
   ];
 
   /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'date_short',
+  ];
+
+
+  /**
    * Relationships
    * 
    */
@@ -55,14 +66,34 @@ class UserDocument extends Base
     return $this->belongsTo(User::class);
   }
 
-
-	/**
-   * Scope for published images
+  /**
+   * The booking that belongs to this document.
    */
 
-	public function scopePublish($query)
-	{
-		return $query->where('publish', 1);
-	}
+  public function booking()
+  {
+    return $this->belongsTo(Booking::class, 'fileable_id');
+  }
+
+  /**
+   * The invoice that belongs to this document.
+   */
+
+  public function invoice()
+  {
+    return $this->belongsTo(Invoice::class, 'fileable_id');
+  }
+
+  /**
+   * Get the short version for an document date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateShortAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->date));
+  }
 
 }

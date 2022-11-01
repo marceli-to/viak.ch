@@ -114,6 +114,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::put('/student/address/{userAddress:uuid}', [StudentAddressController::class, 'update']);
   Route::delete('student/address/{userAddress:uuid}', [StudentAddressController::class, 'destroy']);
   Route::get('/student', [StudentController::class, 'find']);
+  Route::get('/student/documents', [StudentController::class, 'getDocuments']);
   Route::put('/student', [StudentController::class, 'update']);
 });
 Route::post('/student/register', [StudentRegisterController::class, 'create']);

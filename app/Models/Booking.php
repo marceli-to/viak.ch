@@ -91,6 +91,15 @@ class Booking extends Base
     return $this->hasOne(User::class, 'id', 'user_id');
   }
 
+  /**
+   * The documents that belong to this booking.
+   */
+
+  public function documents()
+  {
+    return $this->morphMany(UserDocument::class, 'fileable');
+  }
+
   
   /*
   |--------------------------------------------------------------------------

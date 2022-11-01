@@ -5,6 +5,7 @@ use App\Models\Job;
 use App\Models\Event;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\UserDocument;
 use App\Models\Booking;
 use App\Models\Message;
 use App\Models\Country;
@@ -25,48 +26,46 @@ class TestController extends BaseController
 
   public function index()
   { 
-    $booking = Booking::find(13);
-    $pdf = (new EventParticipationConfirmation())->create($booking);
-    dd($pdf);
+    // dd(User::with('documents.booking', 'documents.invoice')->find(auth()->user()->id));
   }
 
-  public function participantChanges()
-  {
-    $bookingId = 30;
-    $booking = \App\Models\Booking::with('event.course')->find($bookingId);
-    $bookings = \App\Models\Booking::active()->where('event_id', $booking->event->id)->get();
-    $event = $booking->event;
+  // public function participantChanges()
+  // {
+  //   $bookingId = 30;
+  //   $booking = \App\Models\Booking::with('event.course')->find($bookingId);
+  //   $bookings = \App\Models\Booking::active()->where('event_id', $booking->event->id)->get();
+  //   $event = $booking->event;
 
-    dd();
-
-
-    if ($bookings)
-    {
-      // Equal max. participants
-      if ($bookings->count() == $event->max_participants)
-      {
-        \App\Models\Job::create([
-          'recipient' => env('MAIL_TO'),
-          'mailable_id' => $event->id,
-          'mailable_type' => \App\Models\Event::class,
-          'mailable_class' => \App\Mail\ParticipantsMax::class
-        ]);
-      }
-
-      // Equal min. participants
-      if ($bookings->count() == $event->min_participants)
-      {
-        \App\Models\Job::create([
-          'recipient' => env('MAIL_TO'),
-          'mailable_id' => $event->id,
-          'mailable_type' => \App\Models\Event::class,
-          'mailable_class' => \App\Mail\ParticipantsMin::class,
-        ]);
-      }
-    }
+  //   dd();
 
 
-  }
+  //   if ($bookings)
+  //   {
+  //     // Equal max. participants
+  //     if ($bookings->count() == $event->max_participants)
+  //     {
+  //       \App\Models\Job::create([
+  //         'recipient' => env('MAIL_TO'),
+  //         'mailable_id' => $event->id,
+  //         'mailable_type' => \App\Models\Event::class,
+  //         'mailable_class' => \App\Mail\ParticipantsMax::class
+  //       ]);
+  //     }
+
+  //     // Equal min. participants
+  //     if ($bookings->count() == $event->min_participants)
+  //     {
+  //       \App\Models\Job::create([
+  //         'recipient' => env('MAIL_TO'),
+  //         'mailable_id' => $event->id,
+  //         'mailable_type' => \App\Models\Event::class,
+  //         'mailable_class' => \App\Mail\ParticipantsMin::class,
+  //       ]);
+  //     }
+  //   }
+
+
+  // }
 
   // public function index()
   // {

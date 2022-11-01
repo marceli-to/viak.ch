@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentDocumentResource;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Facades\NewsletterSubscriber;
@@ -24,6 +25,20 @@ class StudentController extends Controller
     $data = new StudentResource(User::with('invoiceAddresses')->findOrFail(auth()->user()->id));
     return response()->json($data);
   }
+
+  /**
+   * Get a student with:
+   * 
+   * - Documents
+   * 
+   * @return \Illuminate\Http\Response
+   */
+  public function getDocuments()
+  { 
+    $user = User::findOrFail(auth()->user()->id);
+    return response()->json(StudentDocumentResource::collection($user->documents()->get()));
+  }
+
 
   /**
    * Update a student

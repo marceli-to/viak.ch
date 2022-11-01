@@ -218,6 +218,16 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
 
+  /**
+   * The bookmarks that belongs to this user.
+   */
+
+  public function documents()
+  {
+    return $this->hasMany(UserDocument::class)->orderBy('created_at', 'DESC');
+  }
+
+
   /*
   |--------------------------------------------------------------------------
   | Local scopes

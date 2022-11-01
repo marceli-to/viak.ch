@@ -101,6 +101,16 @@ class Invoice extends Base
     return $this->belongsTo(User::class);
   }
 
+  /**
+   * The documents that belong to this invoice.
+   */
+
+  public function documents()
+  {
+    return $this->morphMany(UserDocument::class, 'fileable');
+  }
+
+
   /*
   |--------------------------------------------------------------------------
   | Local scopes

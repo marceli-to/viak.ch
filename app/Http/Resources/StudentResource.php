@@ -3,6 +3,7 @@ namespace App\Http\Resources;
 use App\Http\Resources\BookingResource;
 use App\Http\Resources\BookmarkResource;
 use App\Http\Resources\UserAddressResource;
+use App\Http\Resources\StudentDocumentResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudentResource extends JsonResource
@@ -37,6 +38,7 @@ class StudentResource extends JsonResource
       'events_participated' => BookingResource::collection($this->bookingsParticipated)->sortBy('event.date')->toArray(),
       'events_concluded' => BookingResource::collection($this->bookingsConcluded)->sortBy('event.date')->toArray(),
       'bookmarks' => BookmarkResource::collection($this->bookmarks),
+      'documents' => StudentDocumentResource::collection($this->documents()->take(5)->get()),
     ];
   }
 }

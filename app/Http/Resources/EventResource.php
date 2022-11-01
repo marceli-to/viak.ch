@@ -46,7 +46,7 @@ class EventResource extends JsonResource
       $data['cancelled_at'] = $this->cancelled_at;
       $data['closed_at'] = $this->closed_at;
     }
-
+    
     return $data;
   }
 }
