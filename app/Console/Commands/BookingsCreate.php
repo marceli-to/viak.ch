@@ -48,6 +48,11 @@ class BookingsCreate extends Command
     // Create bookings
     foreach($users as $user)
     {
+      if (BookingFacade::has($event, $user))
+      {
+        return;
+      }
+      
       $booking = Booking::create([
         'uuid' => \Str::uuid(),
         'number' => BookingFacade::getNumber(),

@@ -37,6 +37,11 @@ class Booking
         // Get the event
         $event = Event::where('uuid', $item)->first();
 
+        if (BookingFacade::has($event, $user))
+        {
+          return;
+        }
+
         // Create the booking
         $booking = BookingModel::create([
           'uuid' => \Str::uuid(),
