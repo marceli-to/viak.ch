@@ -1,7 +1,7 @@
 @component('mail::message')
 <h1>{{ __('Teilnahmebestätigung') . ' – ' . $event->course->title }}</h1>
 <p>{{ __('Hallo') }} {{ $user->fullname }}</p>
-<p>{{ __('Hiermit bestätigen wir Deine Teilnahme am folgenden Kurs:') }}</p>
+<p>{{ __('Hiermit bestätigen wir Deine Teilnahme an unserem Kurs:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td>{{ __('Kurs') }}</td>
