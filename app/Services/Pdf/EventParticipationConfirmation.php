@@ -40,9 +40,10 @@ class EventParticipationConfirmation
     // Add to user documents
     UserDocument::create([
       'uuid' => \Str::uuid(),
+      'date' => $booking->event->closed_at,
       'name' => $fileName,
       'type' => 'PARTICIPATION_CONFIRMATION',
-      'uri' =>   public_path() . $this->storageUri . '/' . $fileName,
+      'uri' =>   $this->storageUri . '/' . $fileName,
       'user_id' => $booking->user->id,
       'fileable_type' => "App\Models\Booking",
       'fileable_id' => $booking->id

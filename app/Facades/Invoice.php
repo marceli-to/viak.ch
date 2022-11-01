@@ -5,6 +5,7 @@ use App\Models\Invoice as InvoiceModel;
 use App\Services\Pdf\Invoice\EventInvoice;
 use App\Models\User;
 use App\Models\UserAddress;
+use App\Models\UserDocument;
 use App\Models\Event;
 use App\Models\Booking;
 use App\Facades\Discount;

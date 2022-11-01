@@ -15,6 +15,7 @@ class UserDocument extends Base
    */
   
   protected $casts = [
+    'date'       => 'date:d.m.Y',
     'created_at' => 'datetime:d.m.Y',
   ];
 
@@ -26,6 +27,7 @@ class UserDocument extends Base
 
 	protected $fillable = [
     'uuid',
+    'date',
     'name',
     'type',
     'uri',

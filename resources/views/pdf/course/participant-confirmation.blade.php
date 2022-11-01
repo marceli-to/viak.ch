@@ -15,7 +15,7 @@
       <tbody>
         <tr>
           <td>{{ __('Kurs') }}</td>
-          <td><strong>{{ $booking->event->course->course_number }} {{ $booking->event->course->title }}</strong></td>
+          <td><strong>{{ $booking->event->course->title }}</strong></td>
         </tr>
         <tr>
           <td>{{ __('Datum') }}</td>
