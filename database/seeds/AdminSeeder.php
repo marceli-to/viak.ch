@@ -100,14 +100,14 @@ class AdminSeeder extends Seeder
       'user_id' => 1
     ]);
     
-    // RoleUser::create([
-    //   'role_id' => 2,
-    //   'user_id' => 2
-    // ]);
-    // RoleUser::create([
-    //   'role_id' => 3,
-    //   'user_id' => 2
-    // ]);
+    RoleUser::create([
+      'role_id' => 2,
+      'user_id' => 2
+    ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => 2
+    ]);
 
   }
 }

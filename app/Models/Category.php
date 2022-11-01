@@ -39,7 +39,8 @@ class Category extends Base
 
   protected $attributes = [
     'description' => '{
-      "de": "null", "en": "null"
+      "de": "null", 
+      "en": "null"
     }'
   ];
 

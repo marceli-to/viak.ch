@@ -36,6 +36,7 @@ class SoftwareSeeder extends Seeder
     foreach($data as $d)
     {
       Software::create([
+        'uuid' => \Str::uuid(),
         'description' => [
           'de' => $d['description']['de'],
           'en' => $d['description']['en'],

@@ -27,19 +27,19 @@ class Course extends Base
    * @var array
    */
   
-  protected $casts = [
-    'slug' => 'array',
-    'title' => 'array',
-    'subtitle' => 'array',
-    'short_description' => 'array',
-    'full_description' => 'array',
-    'additional_information' => 'array',
-    'facts_column_1' => 'array',
-    'facts_column_2' => 'array',
-    'facts_column_3' => 'array',
-    'seo_description' => 'array',
-    'seo_tags' => 'array',
-  ];
+  // protected $casts = [
+  //   'slug' => 'array',
+  //   'title' => 'array',
+  //   'subtitle' => 'array',
+  //   'short_description' => 'array',
+  //   'full_description' => 'array',
+  //   'additional_information' => 'array',
+  //   'facts_column_1' => 'array',
+  //   'facts_column_2' => 'array',
+  //   'facts_column_3' => 'array',
+  //   'seo_description' => 'array',
+  //   'seo_tags' => 'array',
+  // ];
 
   /**
    * The model's default values for attributes.

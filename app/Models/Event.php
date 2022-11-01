@@ -40,10 +40,6 @@ class Event extends Base
     'course_id',
     'location_id',
     'publish',
-
-    'confirmed',
-    'cancelled',
-    'closed'
   ];
 
   /**

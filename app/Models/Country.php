@@ -29,7 +29,8 @@ class Country extends Base
 
   protected $attributes = [
     'name' => '{
-      "de": "null", "en": "null"
+      "de": "null", 
+      "en": "null"
     }'
   ];
   

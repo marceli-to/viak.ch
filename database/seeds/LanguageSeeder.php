@@ -30,6 +30,7 @@ class LanguageSeeder extends Seeder
     foreach($data as $d)
     {
       Language::create([
+        'uuid' => \Str::uuid(),
         'description' => [
           'de' => $d['description']['de'],
           'en' => $d['description']['en'],

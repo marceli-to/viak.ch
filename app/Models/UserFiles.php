@@ -45,7 +45,6 @@ class UserFile extends Base
   }
 
 
-
 	/**
    * Scope for published images
    */

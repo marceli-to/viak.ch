@@ -30,6 +30,7 @@ class LevelSeeder extends Seeder
     foreach($data as $d)
     {
       Level::create([
+        'uuid' => \Str::uuid(),
         'description' => [
           'de' => $d['description']['de'],
           'en' => $d['description']['en'],

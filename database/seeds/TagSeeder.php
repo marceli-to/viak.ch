@@ -66,6 +66,7 @@ class TagSeeder extends Seeder
     foreach($data as $d)
     {
       Tag::create([
+        'uuid' => \Str::uuid(),
         'description' => [
           'de' => $d['description']['de'],
           'en' => $d['description']['en'],

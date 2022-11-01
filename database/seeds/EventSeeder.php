@@ -89,14 +89,14 @@ class EventSeeder extends Seeder
           if ($record)
           {
             $expert = $experts->random();
-            EventUser::create([
+            EventUser::firstOrCreate([
               'event_id' => $event->id,
               'user_id' => $expert->id,
             ]);
           }
           else
           {
-            EventUser::create([
+            EventUser::firstOrCreate([
               'event_id' => $event->id,
               'user_id' => $expert->id,
             ]);
@@ -105,7 +105,7 @@ class EventSeeder extends Seeder
       }
       else
       {
-        EventUser::create([
+        EventUser::firstOrCreate([
           'event_id' => $event->id,
           'user_id' => $expert->id,
         ]);

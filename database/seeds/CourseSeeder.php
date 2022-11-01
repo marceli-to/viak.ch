@@ -43,6 +43,7 @@ class CourseSeeder extends Seeder
     for($i = 0; $i<=11; $i++)
     {
       $rand2 = mt_rand(0,3);
+
       $course = Course::create([
         'number' => $i+1,
         'slug' => [
@@ -57,10 +58,43 @@ class CourseSeeder extends Seeder
           'de' => $faker->sentence(6, true),
           'en' => $faker->sentence(6, true),
         ],
-        'text' => [
+
+        'short_description' => [
           'de' => $faker->text(400),
           'en' => $faker->text(400),
         ],
+        
+        'full_description' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+        'additional_information' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+        'facts_column_1' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+        'facts_column_2' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+        'facts_column_3' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+
+        'seo_description' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+
+        'seo_tags' => [
+          'de' => $faker->text(400),
+          'en' => $faker->text(400),
+        ],
+
         'fee' => $fees[$rand2],
         'uuid' => \Str::uuid(),
         'online' => rand(0,1),

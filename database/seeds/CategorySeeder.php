@@ -36,6 +36,7 @@ class CategorySeeder extends Seeder
     foreach($data as $d)
     {
       Category::create([
+        'uuid' => \Str::uuid(),
         'description' => [
           'de' => $d['description']['de'],
           'en' => $d['description']['en'],
