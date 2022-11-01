@@ -60,7 +60,7 @@
           @endforeach
         </div>
       @endif
-      @if ($event->registration_until && !$hasBooking)
+      @if ($event->registration_until && !$hasBooking && !$isFullyBooked)
         <div>
           <em class="text-xsmall">Anmeldung möglich bis {{ $event->registration_until_str }}</em>
         </div>
