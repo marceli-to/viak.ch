@@ -42,7 +42,8 @@ class CourseController extends BaseController
   {
     $course = Course::with(
       'categories',
-      'publishedVideos'
+      'publishedVideos',
+      'openGraphImage'
     )->find($course->id);
     return view($this->viewPath . 'show', ['course' =>  $course, 'browse' => $this->getBrowse($course)]);
   }

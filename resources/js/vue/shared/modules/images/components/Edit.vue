@@ -155,6 +155,7 @@
                 <select v-model="currentImage.type">
                   <option value="teaser">{{ __('Vorschau') }}</option>
                   <option value="visual">{{ __('Hauptbild') }}</option>
+                  <option value="open-graph">{{ __('Open Graph') }}</option>
                 </select>
               </div>
             </form-group>

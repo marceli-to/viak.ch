@@ -1,10 +1,14 @@
 @extends('web.layout.frontend')
-@section('seo_title', __('Kurse'))
+@section('seo_title', $course->title)
+@section('seo_description', $course->seo_description ? $course->seo_description : '')
+@section('seo_keywords', $course->seo_tags ? $course->seo_tags : '')
+@if ($course->openGraphImage)
+  @section('og_image', url('/') . '/img/cache/' . $course->openGraphImage->name .'/1500/'. $course->openGraphImage->coords)
+@endif
 @section('page_title', __('Kurse'))
 @section('content')
 <section class="container">
   <article class="content-text-media">
-
     @if ($course->visualImages->count() > 1)
       <div class="swiper">
         <div class="swiper-wrapper">
@@ -30,8 +34,7 @@
         @endif
       </figure>
     @endif
-
-    <div class="text-media__body">
+     <div class="text-media__body">
       <aside>
         @if ($course->title)
           <h1>{{ $course->title }}</h1>

@@ -22,26 +22,6 @@ class Course extends Base
   }
 
   /**
-   * The attributes that should be cast to native types.
-   *
-   * @var array
-   */
-  
-  // protected $casts = [
-  //   'slug' => 'array',
-  //   'title' => 'array',
-  //   'subtitle' => 'array',
-  //   'short_description' => 'array',
-  //   'full_description' => 'array',
-  //   'additional_information' => 'array',
-  //   'facts_column_1' => 'array',
-  //   'facts_column_2' => 'array',
-  //   'facts_column_3' => 'array',
-  //   'seo_description' => 'array',
-  //   'seo_tags' => 'array',
-  // ];
-
-  /**
    * The model's default values for attributes.
    *
    * @var array
@@ -298,6 +278,12 @@ class Course extends Base
   {
     return $this->morphMany(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
   }
+
+  public function openGraphImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('type', 'open-graph')->where('publish', 1);
+  }
+
 
   public function image()
   {
