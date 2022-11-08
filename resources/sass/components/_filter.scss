@@ -70,15 +70,17 @@
   .filter {
     background-color: $color-white;
     height: 100%;
-    left: 16px;
+    left: 0;
     opacity: 1;
     overflow-y: auto;
     pointer-events: all;
     position: fixed;
     padding-bottom: 48px;
+    padding-right: 16px;
+    padding-left: 16px;
     padding-top: 88px; // 48 + 24 + 16 (min-height header, margin-bottom header, padding-top body)
     top: 0;
-    width: calc(100% - 32px);
+    width: 100%;
     z-index: 100;
   }
 }
