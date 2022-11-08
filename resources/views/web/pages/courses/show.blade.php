@@ -113,20 +113,24 @@
     </x-collapsible>
   @endif
 
-  <x-collapsible title="{{ __('Weitere Informationen') }}">
-    <div class="sm:grid-cols-12">
-      @if ($course->additional_information)
-        <div class="mb-4x sm:mb-0 sm:span-4 text-item">
-          {!! $course->additional_information !!}
+  @if ($course->additional_information || $course->reviews)
+    <x-collapsible title="{{ __('Weitere Informationen') }}">
+      <div class="sm:grid-cols-12">
+        @if ($course->additional_information)
+          <div class="mb-4x sm:mb-0 sm:span-4 text-item">
+            {!! $course->additional_information !!}
+          </div>
+        @endif
+        <div class="mb-4x sm:mb-0 sm:span-4">
         </div>
-      @endif
-      <div class="mb-4x sm:mb-0 sm:span-4">
+        @if ($course->reviews)
+          <div class="mb-4x sm:mb-0 sm:span-4">
+            {{ $course->reviews }}
+          </div>
+        @endif
       </div>
-      <div class="mb-4x sm:mb-0 sm:span-4">
-      </div>
-    </div>
-  </x-collapsible>
-
+    </x-collapsible>
+  @endif
 
   @if ($browse)
     <div class="content-list-item">
