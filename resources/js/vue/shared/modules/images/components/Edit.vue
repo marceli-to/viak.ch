@@ -48,6 +48,7 @@
                 <template  v-if="$props.hasTypes">
                   <figcaption v-if="image.type == 'teaser'">Vorschau</figcaption>
                   <figcaption v-if="image.type == 'visual'">Hauptbild</figcaption>
+                  <figcaption v-if="image.type == 'open-graph'">OpenGraph</figcaption>
                 </template>
               </a>
               <div class="media-uploads-item__actions">
