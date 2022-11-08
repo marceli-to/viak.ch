@@ -72,8 +72,10 @@
     height: 100%;
     left: 16px;
     opacity: 1;
+    overflow-y: auto;
     pointer-events: all;
     position: fixed;
+    padding-bottom: 48px;
     padding-top: 88px; // 48 + 24 + 16 (min-height header, margin-bottom header, padding-top body)
     top: 0;
     width: calc(100% - 32px);
