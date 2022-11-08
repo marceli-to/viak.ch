@@ -125,7 +125,7 @@
         </div>
         @if ($course->reviews)
           <div class="mb-4x sm:mb-0 sm:span-4">
-            {{ $course->reviews }}
+            {!! $course->reviews !!}
           </div>
         @endif
       </div>
