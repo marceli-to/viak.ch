@@ -276,7 +276,7 @@ class Course extends Base
 
   public function visualImages()
   {
-    return $this->morphMany(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1);
+    return $this->morphMany(Image::class, 'imageable')->where('type', 'visual')->where('publish', 1)->orderBy('order');
   }
 
   public function openGraphImage()
@@ -292,7 +292,7 @@ class Course extends Base
 
   public function images()
   {
-    return $this->morphMany(Image::class, 'imageable');
+    return $this->morphMany(Image::class, 'imageable')->orderBy('order');
   }
 
   /**

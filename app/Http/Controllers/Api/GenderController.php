@@ -15,5 +15,4 @@ class GenderController extends Controller
   { 
     return response()->json(Gender::all());
   }
-
 }

@@ -304,6 +304,8 @@ export default {
         return image;
       });
 
+      this.imageData = images;
+
       if (this.debounce) return;
       this.debounce = setTimeout(function(images) {
         this.debounce = false;
@@ -337,6 +339,7 @@ export default {
 
     toggleView() {
       this.imageData = this.$props.images;
+      this.imageData = this.imageData.sort((a,b) => a.order - b.order);
       this.view = this.view == 'grid' ? 'list' : 'grid';
     }
   }
