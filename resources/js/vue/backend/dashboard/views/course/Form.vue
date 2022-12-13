@@ -9,91 +9,160 @@
 
     <template #content>
 
-      <form-group :label="'Nummer'" :required="true" :error="errors.number">
-        <input 
-          type="number" 
-          v-model="data.number"
-          required 
-          @focus="removeError('number')" />
-      </form-group>
+      <div class="flex justify-end text-xsmall">
+        <a href="" @click.prevent="switchLanguage()">Sprache wechseln</a>
+      </div>
 
-      <form-group :label="'Titel'" :required="true" :error="errors.title">
-        <input 
-          type="text" 
-          v-model="data.title.de" 
-          required 
-          @focus="removeError('title')" />
-      </form-group>
+      <template v-if="language == 'de'">
+        <form-group :label="'Nummer'" :required="true" :error="errors.number" v-if="language == 'de'">
+          <input 
+            type="number" 
+            v-model="data.number"
+            required 
+            @focus="removeError('number')" />
+        </form-group>
+        <form-group :label="'Titel'" :required="true" :error="errors.title">
+          <input 
+            type="text" 
+            v-model="data.title.de" 
+            required 
+            @focus="removeError('title')" />        
+        </form-group>
 
-      <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
-        <textarea 
-          v-model="data.subtitle.de" 
-          class="is-small has-autosize" 
-          required 
-          @focus="removeError('subtitle')">
-        </textarea>
-      </form-group>
+        <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
+          <textarea 
+            v-model="data.subtitle.de" 
+            class="is-small has-autosize" 
+            required 
+            @focus="removeError('subtitle')">
+          </textarea>
+        </form-group>
 
-      <form-group :label="'Kosten'">
-        <input type="number" v-model="data.fee" />
-      </form-group>
+        <form-group :label="'Kosten'">
+          <input type="number" v-model="data.fee" />
+        </form-group>
 
-      <form-group :label="'Kurzbeschrieb'" :required="true" :error="errors.short_description">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.short_description.de"
-        ></tinymce-editor>
-      </form-group>
+        <form-group :label="'Kurzbeschrieb'" :required="true" :error="errors.short_description">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.short_description.de"
+          ></tinymce-editor>
+        </form-group>
 
-      <form-group :label="'Detailbeschrieb'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.full_description.de"
-        ></tinymce-editor>
-      </form-group>
+        <form-group :label="'Detailbeschrieb'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.full_description.de"
+          ></tinymce-editor>
+        </form-group>
 
-      <form-group :label="'Weitere Informationen'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.additional_information.de"
-        ></tinymce-editor>
-      </form-group>
+        <form-group :label="'Weitere Informationen'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.additional_information.de"
+          ></tinymce-editor>
+        </form-group>
+
+      </template>
+      <template v-if="language == 'en'">
+        <form-group :label="'Titel'" v-if="language == 'en'">
+          <input 
+            type="text" 
+            v-model="data.title.en" />    
+        </form-group>
+
+        <form-group :label="'Subtitel'">
+          <textarea 
+            v-model="data.subtitle.en" 
+            class="is-small has-autosize">
+          </textarea>
+        </form-group>
+
+        <form-group :label="'Kurzbeschrieb'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.short_description.en"
+          ></tinymce-editor>
+        </form-group>
+
+        <form-group :label="'Detailbeschrieb'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.full_description.en"
+          ></tinymce-editor>
+        </form-group>
+
+        <form-group :label="'Weitere Informationen'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.additional_information.de"
+          ></tinymce-editor>
+        </form-group>
+
+      </template>
 
       <collapsible-container>
-
         <collapsible>
           <template #title>Facts</template>
           <template #content>
-            <form-group>
-              <tinymce-editor
-              :api-key="tinyApiKey"
-              :init="tinyConfig"
-              v-model="data.facts_column_1.de"
-              ></tinymce-editor>
-            </form-group>
-            <form-group>
-              <tinymce-editor
-              :api-key="tinyApiKey"
-              :init="tinyConfig"
-              v-model="data.facts_column_2.de"
-              ></tinymce-editor>
-            </form-group>
-            <form-group>
-              <tinymce-editor
-              :api-key="tinyApiKey"
-              :init="tinyConfig"
-              v-model="data.facts_column_3.de"
-              ></tinymce-editor>
-            </form-group>
+            <template v-if="language == 'de'">
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_1.de"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_2.de"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_3.de"
+                ></tinymce-editor>
+              </form-group>
+            </template>
+            <template v-if="language == 'en'">
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_1.en"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_2.en"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_3.en"
+                ></tinymce-editor>
+              </form-group>
+            </template>
           </template>
         </collapsible>
 
       </collapsible-container>
 
-      <collapsible-container>
+      <collapsible-container v-if="language == 'de'">
 
         <collapsible :expanded="true" v-if="isFetchedSettings">
           <template #title>Einstellungen</template>
@@ -386,6 +455,9 @@ export default {
       // Tiny configuration
       tinyConfig: tinyConfig,
       tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
+
+      // Language
+      language: 'de',
     };
   },
 
@@ -462,6 +534,10 @@ export default {
 
     sorted(data, by, dir){
       return _.orderBy(data, by, dir);
+    },
+
+    switchLanguage() {
+      this.language = this.language == 'de' ? 'en' : 'de';
     }
   },
 

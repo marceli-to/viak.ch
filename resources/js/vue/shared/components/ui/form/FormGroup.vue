@@ -10,7 +10,14 @@
   </div>
 </template>
 <script>
+import IconFlagEn from "@/shared/components/ui/icons/FlagEn.vue";
+
 export default {
+
+  components: {
+    IconFlagEn
+  },
+
   props: {
     
     label: {
