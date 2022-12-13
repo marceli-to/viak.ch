@@ -53,7 +53,7 @@ class BookingCancelledWithPenalty extends Mailable
     if ($invoice)
     {
       $mail->attach(
-        public_path() . '/storage/files/' . $invoice->filename,
+        public_path() . "/storage/files/{$booking->user->uuid}/{$invoice->filename}",
         ['mime' => 'application/pdf']
       );
     }
