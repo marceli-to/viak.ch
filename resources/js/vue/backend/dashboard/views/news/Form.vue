@@ -8,57 +8,81 @@
     </template>
 
     <template #content>
-      <form-group :label="'Titel'" :required="true" :error="errors.title">
-        <input 
-          type="text" 
-          v-model="data.title.de"
-          required 
-          @focus="removeError('title')" />
-      </form-group>
 
-      <form-group :label="'Text'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.text.de"
-        ></tinymce-editor>
-      </form-group>
+      <div class="flex justify-end items-center text-xsmall">
+        <a href="" :class="[language == 'de' ? 'link-underline' : '', '']" @click.prevent="setLanguage('de')">DE</a>
+        <span class="px-1x">/</span>
+        <a href="" :class="[language == 'en' ? 'link-underline' : '', '']" @click.prevent="setLanguage('en')">EN</a>
+      </div>
 
-      <form-group :label="'Link'">
-        <input 
-          type="text" 
-          v-model="data.link"
-          required 
-          @focus="removeError('link')" />
-      </form-group>
+      <template v-if="language == 'de'">
+        <form-group :label="'Titel'" :required="true" :error="errors.title">
+          <input 
+            type="text" 
+            v-model="data.title.de"
+            required 
+            @focus="removeError('title')" />
+        </form-group>
 
-      <form-group class="line-after flex mt-8x">
-        <div class="form-group__checkbox">
-          <input type="checkbox" id="publish" name="publish" v-model="data.publish">
-          <label for="publish">Publizieren</label>
-        </div>
-      </form-group>
+        <form-group :label="'Text'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.text.de"
+          ></tinymce-editor>
+        </form-group>
 
-      <collapsible-container>
-        <collapsible :expanded="true">
-          <template #title>Bild</template>
-          <template #content>
-            <images 
-              :imageRatioW="3" 
-              :imageRatioH="4"
-              :type="'News'"
-              :typeId="data.id"
-              :allowRatioSwitch="false"
-              :hasTypes="false"
-              :images="data.images"
-              v-if="$props.type == 'edit'">
-            </images>
-            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
-              <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-            </div>
-          </template>
-        </collapsible>
-      </collapsible-container>
+        <form-group :label="'Link'">
+          <input 
+            type="text" 
+            v-model="data.link"
+            required 
+            @focus="removeError('link')" />
+        </form-group>
+
+        <form-group class="line-after flex mt-8x">
+          <div class="form-group__checkbox">
+            <input type="checkbox" id="publish" name="publish" v-model="data.publish">
+            <label for="publish">Publizieren</label>
+          </div>
+        </form-group>
+
+        <collapsible-container>
+          <collapsible :expanded="true">
+            <template #title>Bild</template>
+            <template #content>
+              <images 
+                :imageRatioW="3" 
+                :imageRatioH="4"
+                :type="'News'"
+                :typeId="data.id"
+                :allowRatioSwitch="false"
+                :hasTypes="false"
+                :images="data.images"
+                v-if="$props.type == 'edit'">
+              </images>
+              <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+                <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+              </div>
+            </template>
+          </collapsible>
+        </collapsible-container>
+      </template>
+      <template v-if="language == 'en'">
+        <form-group :label="'Titel'">
+          <input 
+            type="text" 
+            v-model="data.title.en" />
+        </form-group>
+
+        <form-group :label="'Text'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.text.en"
+          ></tinymce-editor>
+        </form-group>
+      </template>
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
@@ -73,11 +97,13 @@
           Speichern
         </a>
       </form-group>
+
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>News löschen</h2>
         <p>Mit dieser Aktion wird das News gelöscht.</p>
         <a href="" class="btn-danger" @click.prevent="confirmDestroy()">Löschen</a>
       </div>
+      
     </template>
   </article-text>
 
@@ -142,6 +168,8 @@ export default {
         publish: 1,
         images: [],
       },
+
+      language: 'de',
 
       // Validation
       errors: {
@@ -235,6 +263,10 @@ export default {
         NProgress.done();
       });
     },
+
+    setLanguage(language) {
+      this.language = language;
+    }
   },
 
   computed: {

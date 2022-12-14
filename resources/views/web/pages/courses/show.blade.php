@@ -138,13 +138,13 @@
       <nav class="browse">
         <ul>
           <li>
-            <a href="{{ route('page.course', ['slug' => $browse['prev']->slug, 'course' => $browse['prev']->uuid]) }}" title="{{ $browse['prev']->title }}">
+            <a href="{{ localized_route('page.course', ['slug' => $browse['prev']->slug, 'course' => $browse['prev']->uuid]) }}" title="{{ $browse['prev']->title }}">
               <span>{{ $browse['prev']->title }}</span>
               @include('web.partials.icons.arrow-left')
             </a>
           </li>
           <li>
-            <a href="{{ route('page.course', ['slug' => $browse['next']->slug, 'course' => $browse['next']->uuid]) }}" title="{{ $browse['next']->title }}">
+            <a href="{{ localized_route('page.course', ['slug' => $browse['next']->slug, 'course' => $browse['next']->uuid]) }}" title="{{ $browse['next']->title }}">
               <span>{{ $browse['next']->title }}</span>
               @include('web.partials.icons.arrow-right')
             </a>

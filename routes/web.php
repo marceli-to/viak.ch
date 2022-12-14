@@ -26,12 +26,20 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('page.home');
-Route::get('/kontakt', [ContactController::class, 'index'])->name('page.contact');
-Route::get('/kurse', [CourseController::class, 'list'])->name('page.courses');
-Route::get('/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('page.course');
-Route::get('/experten', [ExpertController::class, 'list'])->name('page.experts');
-Route::get('/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('page.expert');
+Route::get('/', [HomeController::class, 'index'])->name('de.page.home');
+Route::get('/de', [HomeController::class, 'index'])->name('de.page.home');
+Route::get('/en', [HomeController::class, 'index'])->name('en.page.home');
+
+Route::multilingual('kontakt', [ContactController::class, 'index'])->names(['de' => 'page.contact', 'en' => 'page.contact']);
+
+Route::multilingual('kurse', [CourseController::class, 'list'])->names(['de' => 'page.courses', 'en' => 'page.courses']);
+Route::get('de/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('de.page.course');
+Route::get('en/course/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('en.page.course');
+
+Route::multilingual('experten', [ExpertController::class, 'list'])->names(['de' => 'page.experts', 'en' => 'page.experts']);
+Route::get('de/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('de.page.expert');
+Route::get('en/expert/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('en.page.expert');
+
 Route::get('/student/register', [RegisterController::class, 'register'])->name('page.register.form');
 
 // URL based images
@@ -69,14 +77,39 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
     'web.pages.user.student.index'
   )->name('page.student.profile')->where('any', '.*')->middleware(['role:student']);
 
-  Route::get('/checkout/basket', [CheckoutController::class, 'index'])->name('page.checkout.basket')->middleware(['role:student']);
-  Route::get('/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('page.checkout.confirmation');
-  Route::get('/checkout/{any?}', [CheckoutController::class, 'index'])->middleware(['role:student']);
+  
 
-  Route::get('/payment/invoice/{invoice:uuid}', [PaymentController::class, 'index'])->name('page.payment.overview')->middleware(['role:student']);
-  Route::post('/payment/checkout/session', [PaymentController::class, 'create'])->name('page.payment.checkout.session')->middleware(['role:student']);
-  Route::get('/payment/success', [PaymentController::class, 'success'])->name('page.payment.success')->middleware(['role:student']);
-  Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('page.payment.cancel')->middleware(['role:student']);
+  Route::middleware(['role:student'])->group(function() {
+    Route::get('de/checkout/basket', [CheckoutController::class, 'index'])->name('de.page.checkout.basket');
+    Route::get('en/checkout/basket', [CheckoutController::class, 'index'])->name('en.page.checkout.basket');
+
+    Route::get('de/checkout/user', [CheckoutController::class, 'index'])->name('de.page.checkout.user');
+    Route::get('en/checkout/user', [CheckoutController::class, 'index'])->name('en.page.checkout.user');
+
+    Route::get('de/checkout/payment', [CheckoutController::class, 'index'])->name('de.page.checkout.payment');
+    Route::get('en/checkout/payment', [CheckoutController::class, 'index'])->name('en.page.checkout.payment');
+
+    Route::get('de/checkout/summary', [CheckoutController::class, 'index'])->name('de.page.checkout.summary');
+    Route::get('en/checkout/summary', [CheckoutController::class, 'index'])->name('en.page.checkout.summary');
+
+    Route::get('de/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('de.page.checkout.confirmation');
+    Route::get('en/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('en.page.checkout.confirmation');
+
+    Route::get('de/checkout/{any?}', [CheckoutController::class, 'index']);
+    Route::get('en/checkout/{any?}', [CheckoutController::class, 'index']);
+
+    Route::post('/payment/checkout/session', [PaymentController::class, 'create'])->name('page.payment.checkout.session');
+
+    Route::get('/de/zahlung/rechnung/{invoice:uuid}', [PaymentController::class, 'index'])->name('de.page.payment.overview');
+    Route::get('/en/payment/invoice/{invoice:uuid}', [PaymentController::class, 'index'])->name('en.page.payment.overview');
+
+    Route::get('/de/zahlung/erfolgreich', [PaymentController::class, 'success'])->name('de.page.payment.success');
+    Route::get('/en/payment/success', [PaymentController::class, 'success'])->name('en.page.payment.success');
+
+    Route::get('/de/zahlung/abbrechen', [PaymentController::class, 'cancel'])->name('de.page.payment.cancel');
+    Route::get('/en/payment/cancel', [PaymentController::class, 'cancel'])->name('en.page.payment.cancel');
+
+  });
 
 
   // Routes for user with multiple roles

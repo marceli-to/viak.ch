@@ -65,7 +65,7 @@
 
     <stacked-list-footer>
       <div>
-        <router-link :to="{ name: 'checkout-payment' }" class="btn-previous">
+        <router-link :to="{ name: `${_getLocale()}-checkout-payment` }" class="btn-previous">
           <icon-arrow-left />
           <span>{{ __('Zurück') }}</span>
         </router-link>
@@ -126,7 +126,7 @@ export default {
       routes: {
         get: '/api/basket',
         create: '/api/booking',
-        confirmation: '/checkout/confirmation'
+        confirmation: `/${this._getLocale()}/checkout/confirmation`
       },
 
       // States

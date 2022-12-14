@@ -5,25 +5,49 @@ import Summary from '@/frontend/checkout/views/Summary.vue';
 
 const routes = [
   {
-    name: 'checkout-basket',
-    path: '/checkout/basket',
+    name: 'de-checkout-basket',
+    path: '/de/checkout/basket',
     component: Basket,
   },
   {
-    name: 'checkout-user',
-    path: '/checkout/user',
+    name: 'en-checkout-basket',
+    path: '/en/checkout/basket',
+    component: Basket,
+  },
+
+  {
+    name: 'de-checkout-user',
+    path: '/de/checkout/user',
     component: User,
   },
   {
-    name: 'checkout-payment',
-    path: '/checkout/payment',
+    name: 'en-checkout-user',
+    path: '/en/checkout/user',
+    component: User,
+  },
+
+  {
+    name: 'de-checkout-payment',
+    path: '/de/checkout/payment',
     component: Payment,
   },
   {
-    name: 'checkout-summary',
-    path: '/checkout/summary',
+    name: 'en-checkout-payment',
+    path: '/en/checkout/payment',
+    component: Payment,
+  },
+
+  {
+    name: 'de-checkout-summary',
+    path: '/de/checkout/summary',
     component: Summary,
   },
+  {
+    name: 'en-checkout-summary',
+    path: '/en/checkout/summary',
+    component: Summary,
+  },
+
 ];
 
 export default routes;

@@ -27,7 +27,7 @@ class NewsController extends Controller
    */
   public function find(News $news)
   {
-    $news = News::with('images')->find($news->id);
+    $news = News::with('image')->find($news->id);
     return response()->json($news);
   }
 

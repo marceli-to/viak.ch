@@ -1,22 +1,22 @@
 <nav class="site-menu js-menu">
   <div>
-    <a href="{{ route('page.home') }}" title="Home | {{env('APP_NAME')}}" class="sm:hide">
+    <a href="{{ localized_route('page.home') }}" title="Home | {{ env('APP_NAME') }}" class="sm:hide">
       @include('web.partials.icons.logo')
     </a>
     <div class="site-menu__main">
       <ul>
         <li>
-          <a href="{{ route('page.courses')}}" class="{{ request()->routeIs('page.course*') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
+          <a href="{{ localized_route('page.courses')}}" class="{{ request()->routeIs('page.course*') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
             {{ __('Kurse') }}
           </a>
         </li>
         <li>
-          <a href="{{ route('page.experts')}}" class="{{ request()->routeIs('page.experts') || request()->routeIs('page.expert') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
+          <a href="{{ localized_route('page.experts')}}" class="{{ request()->routeIs('page.experts') || request()->routeIs('page.expert') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
             {{ __('Experten') }}
           </a>
         </li>
         <li>
-          <a href="{{ route('page.contact') }}" class="{{ request()->routeIs('page.contact') ? 'is-active' : '' }}">{{ __('Kontakt') }}</a>
+          <a href="{{ localized_route('page.contact') }}" class="{{ request()->routeIs('*.page.contact') ? 'is-active' : '' }}">{{ __('Kontakt') }}</a>
         </li>
       </ul>
       <ul>

@@ -71,8 +71,8 @@ class PaymentController extends BaseController
       'line_items' => $items,
       'mode' => 'payment',
       'locale' => app()->getLocale(),
-      'success_url' => route('page.payment.success'),
-      'cancel_url' => route('page.payment.cancel'),
+      'success_url' => route(locale() . 'page.payment.success'),
+      'cancel_url' => route(locale() . 'page.payment.cancel'),
     ]);
     return redirect()->away($checkout_session->url);
   }

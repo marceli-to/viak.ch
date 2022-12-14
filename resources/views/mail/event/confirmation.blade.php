@@ -37,7 +37,7 @@
   </tr>
 </table>
 <p>{{ __('Die Rechnung für die Kurskosten findest Du in der Beilage. Falls Du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>
-<p class="py-2x"><a href="{{ route('page.payment.overview', ['invoice' => $invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
+<p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
 <p>{{ __('Möchtest Du weitere Kurse besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route('page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
 @endif
 

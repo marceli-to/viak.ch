@@ -2,7 +2,7 @@
 <header class="site-header">
   <div>
     <div class="sm:span-4">
-      <a href="{{ route('page.home') }}" title="Home | {{env('APP_NAME')}}" class="{{ !request()->routeIs('page.home') ? 'xs:hide': '' }}">
+      <a href="{{ localized_route('page.home') }}" title="Home | {{env('APP_NAME')}}" class="{{ !request()->routeIs('*.page.home') ? 'xs:hide': '' }}">
         @include('web.partials.icons.logo')
       </a>
       {{-- mobile header for all pages except home --}}

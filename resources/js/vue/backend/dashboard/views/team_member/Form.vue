@@ -8,60 +8,78 @@
     </template>
 
     <template #content>
-      <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
-        <input 
-          type="text" 
-          v-model="data.firstname"
-          required 
-          @focus="removeError('firstname')" />
-      </form-group>
-      <form-group :label="'Name'" :required="true" :error="errors.name">
-        <input 
-          type="text" 
-          v-model="data.name"
-          required 
-          @focus="removeError('name')" />
-      </form-group>
 
-      <form-group :label="'Titel'">
-        <textarea v-model="data.title.de" class="is-large"></textarea>
-      </form-group>
+      <div class="flex justify-end items-center text-xsmall">
+        <a href="" :class="[language == 'de' ? 'link-underline' : '', '']" @click.prevent="setLanguage('de')">DE</a>
+        <span class="px-1x">/</span>
+        <a href="" :class="[language == 'en' ? 'link-underline' : '', '']" @click.prevent="setLanguage('en')">EN</a>
+      </div>
 
-      <form-group :label="'Info'">
-        <tinymce-editor
-          :api-key="tinyApiKey"
-          :init="tinyConfig"
-          v-model="data.info.de"
-        ></tinymce-editor>
-      </form-group>
+      <template v-if="language == 'de'">
+        <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
+          <input 
+            type="text" 
+            v-model="data.firstname"
+            required 
+            @focus="removeError('firstname')" />
+        </form-group>
+        <form-group :label="'Name'" :required="true" :error="errors.name">
+          <input 
+            type="text" 
+            v-model="data.name"
+            required 
+            @focus="removeError('name')" />
+        </form-group>
+        <form-group :label="'Titel'">
+          <textarea v-model="data.title.de" class="is-small has-autosize"></textarea>
+        </form-group>
+        <form-group :label="'Info'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.info.de"
+          ></tinymce-editor>
+        </form-group>
+        <form-group class="line-after line-before flex mt-8x">
+          <div class="form-group__checkbox">
+            <input type="checkbox" id="publish" name="publish" v-model="data.publish">
+            <label for="publish">Publizieren</label>
+          </div>
+        </form-group>
+        <collapsible-container>
+          <collapsible :expanded="true">
+            <template #title>Bilder</template>
+            <template #content>
+              <images 
+                :imageRatioW="16" 
+                :imageRatioH="9"
+                :type="'TeamMember'"
+                :typeId="data.id"
+                :allowRatioSwitch="false"
+                :hasTypes="false"
+                :images="data.images"
+                v-if="$props.type == 'edit'">
+              </images>
+              <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+                <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+              </div>
+            </template>
+          </collapsible>
+        </collapsible-container>      
+      </template>
 
-      <form-group class="line-after line-before flex mt-8x">
-        <div class="form-group__checkbox">
-          <input type="checkbox" id="publish" name="publish" v-model="data.publish">
-          <label for="publish">Publizieren</label>
-        </div>
-      </form-group>
-
-      <collapsible-container>
-        <collapsible :expanded="true">
-          <template #title>Bilder</template>
-          <template #content>
-            <images 
-              :imageRatioW="16" 
-              :imageRatioH="9"
-              :type="'TeamMember'"
-              :typeId="data.id"
-              :allowRatioSwitch="false"
-              :hasTypes="false"
-              :images="data.images"
-              v-if="$props.type == 'edit'">
-            </images>
-            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
-              <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-            </div>
-          </template>
-        </collapsible>
-      </collapsible-container>
+      <template v-if="language == 'en'">
+        <form-group :label="'Titel'">
+          <textarea v-model="data.title.en" class="is-small has-autosize"></textarea>
+        </form-group>
+        <form-group :label="'Info'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.info.en"
+          ></tinymce-editor>
+        </form-group>
+      </template>
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
@@ -154,6 +172,8 @@ export default {
         name: null,
       },
 
+      language: 'de',
+
       // Routes
       routes: {
         find: '/api/dashboard/team-member',
@@ -244,6 +264,10 @@ export default {
 
     sorted(data, by, dir){
       return _.orderBy(data, by, dir);
+    },
+
+    setLanguage(language) {
+      this.language = language;
     }
   },
 

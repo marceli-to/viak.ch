@@ -9,8 +9,10 @@
 
     <template #content>
 
-      <div class="flex justify-end text-xsmall">
-        <a href="" @click.prevent="switchLanguage()">Sprache wechseln</a>
+      <div class="flex justify-end items-center text-xsmall">
+        <a href="" :class="[language == 'de' ? 'link-underline' : '', '']" @click.prevent="setLanguage('de')">DE</a>
+        <span class="px-1x">/</span>
+        <a href="" :class="[language == 'en' ? 'link-underline' : '', '']" @click.prevent="setLanguage('en')">EN</a>
       </div>
 
       <template v-if="language == 'de'">
@@ -66,9 +68,159 @@
           ></tinymce-editor>
         </form-group>
 
+        <collapsible-container>
+          <collapsible>
+            <template #title>Facts</template>
+            <template #content>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_1.de"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_2.de"
+                ></tinymce-editor>
+              </form-group>
+              <form-group>
+                <tinymce-editor
+                :api-key="tinyApiKey"
+                :init="tinyConfig"
+                v-model="data.facts_column_3.de"
+                ></tinymce-editor>
+              </form-group>
+            </template>
+          </collapsible>
+        </collapsible-container>
+
+        <collapsible-container>
+          <collapsible :expanded="true" v-if="isFetchedSettings">
+            <template #title>Einstellungen</template>
+            <template #content>
+              <form-group class="line-after flex mt-4x">
+                <div class="mr-16x md:mr-20x">
+                  <div class="form-group__checkbox">
+                    <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
+                    <label for="online">Online</label>
+                  </div>
+                </div>
+                <div>
+                  <div class="form-group__checkbox">
+                    <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
+                    <label for="publish">Publizieren</label>
+                  </div>
+                </div>
+              </form-group>
+              <form-group-header :error="errors.category_ids">
+                <h3>Kategorien *</h3>
+              </form-group-header>
+              <form-group class="line-after" :required="true" :error="errors.category_ids">
+                <div class="form-group__checkbox" v-for="(category, index) in sorted(settings.categories, 'description.de', 'asc')" :key="index">
+                  <input type="checkbox" :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.id" v-model="data.category_ids">
+                  <label :for="`category-${category.id}`">
+                    {{category.description.de}}
+                  </label>
+                </div>
+              </form-group>
+              <form-group-header :error="errors.language_ids">
+                <h3>Sprachen *</h3>
+              </form-group-header>
+              <form-group class="line-after" :required="true" :error="errors.language_ids">
+                <div class="form-group__checkbox" v-for="(language, index) in sorted(settings.languages, 'description.de', 'asc')" :key="index">
+                  <input type="checkbox" :id="`language-${language.id}`" :name="`language-${language.id}`" :value="language.id" v-model="data.language_ids">
+                  <label :for="`language-${language.id}`">
+                    {{language.description.de}}
+                  </label>
+                </div>
+              </form-group>
+              <form-group-header :error="errors.level_ids">
+                <h3>Levels *</h3>
+              </form-group-header>
+              <form-group class="line-after" :required="true" :error="errors.level_ids">
+                <div class="form-group__checkbox" v-for="(level, index) in sorted(settings.levels, 'description.de', 'asc')" :key="index">
+                  <input type="checkbox" :id="`level-${level.id}`" :name="`level-${level.id}`" :value="level.id" v-model="data.level_ids">
+                  <label :for="`level-${level.id}`">
+                    {{level.description.de}}
+                  </label>
+                </div>
+              </form-group>
+              <form-group-header>
+                <h3>Software</h3>
+              </form-group-header>
+              <form-group class="line-after">
+                <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.software, 'description.de', 'asc')" :key="index">
+                  <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
+                  <label :for="`software-${software.id}`">
+                    {{software.description.de}}
+                  </label>
+                </div>
+              </form-group>
+              <form-group-header>
+                <h3>Tags</h3>
+              </form-group-header>
+              <form-group class="line-after grid-cols-12 grid-row-gap-none">
+                <div class="form-group__checkbox span-6" v-for="(tag, index) in sorted(settings.tags, 'description.de', 'asc')" :key="index">
+                  <input type="checkbox" :id="`tag-${tag.id}`" :name="`tag-${tag.id}`" :value="tag.id" v-model="data.tag_ids">
+                  <label :for="`tag-${tag.id}`">
+                    {{tag.description.de}}
+                  </label>
+                </div>
+              </form-group>
+            </template>
+          </collapsible>
+          <collapsible>
+            <template #title>Bilder</template>
+            <template #content>
+              <images 
+                :imageRatioW="16" 
+                :imageRatioH="9"
+                :type="'Course'"
+                :typeId="data.id"
+                :images="data.images"
+                v-if="$props.type == 'edit'">
+              </images>
+              <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+                <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
+              </div>
+            </template>
+          </collapsible>
+          <collapsible>
+            <template #title>Videos</template>
+            <template #content>
+              <videos 
+              :courseId="data.id"
+              :videos="data.videos"
+              v-if="$props.type == 'edit'">
+            </videos>
+            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
+              <em>Videos können erst nach dem Speichern hinzugefügt werden...</em>
+            </div>
+            </template>
+          </collapsible>
+          <collapsible>
+            <template #title>Metatags + SEO</template>
+            <template #content>
+              <form-group :label="'Rezensionen'" class="md:mt-4x">
+                <textarea v-model="data.reviews" class="has-autosize"></textarea>
+              </form-group>
+              <form-group :label="'SEO - Beschreibung'">
+                <textarea v-model="data.seo_description.de" class="has-autosize"></textarea>
+              </form-group>
+              <form-group :label="'SEO - Keywords'">
+                <textarea v-model="data.seo_tags.de" class="has-autosize"></textarea>
+              </form-group>
+            </template>
+          </collapsible>
+        </collapsible-container>
+
       </template>
+
       <template v-if="language == 'en'">
-        <form-group :label="'Titel'" v-if="language == 'en'">
+        <form-group :label="'Titel'">
           <input 
             type="text" 
             v-model="data.title.en" />    
@@ -101,40 +253,14 @@
           <tinymce-editor
             :api-key="tinyApiKey"
             :init="tinyConfig"
-            v-model="data.additional_information.de"
+            v-model="data.additional_information.en"
           ></tinymce-editor>
         </form-group>
 
-      </template>
-
-      <collapsible-container>
-        <collapsible>
-          <template #title>Facts</template>
-          <template #content>
-            <template v-if="language == 'de'">
-              <form-group>
-                <tinymce-editor
-                :api-key="tinyApiKey"
-                :init="tinyConfig"
-                v-model="data.facts_column_1.de"
-                ></tinymce-editor>
-              </form-group>
-              <form-group>
-                <tinymce-editor
-                :api-key="tinyApiKey"
-                :init="tinyConfig"
-                v-model="data.facts_column_2.de"
-                ></tinymce-editor>
-              </form-group>
-              <form-group>
-                <tinymce-editor
-                :api-key="tinyApiKey"
-                :init="tinyConfig"
-                v-model="data.facts_column_3.de"
-                ></tinymce-editor>
-              </form-group>
-            </template>
-            <template v-if="language == 'en'">
+        <collapsible-container>
+          <collapsible>
+            <template #title>Facts</template>
+            <template #content>
               <form-group>
                 <tinymce-editor
                 :api-key="tinyApiKey"
@@ -157,134 +283,27 @@
                 ></tinymce-editor>
               </form-group>
             </template>
-          </template>
-        </collapsible>
+          </collapsible>
+        </collapsible-container>
 
-      </collapsible-container>
+        <collapsible-container>
+          <collapsible>
+            <template #title>Metatags + SEO</template>
+            <template #content>
+              <form-group :label="'Rezensionen'" class="md:mt-4x">
+                <textarea v-model="data.reviews" class="has-autosize"></textarea>
+              </form-group>
+              <form-group :label="'SEO - Beschreibung'">
+                <textarea v-model="data.seo_description.de" class="has-autosize"></textarea>
+              </form-group>
+              <form-group :label="'SEO - Keywords'">
+                <textarea v-model="data.seo_tags.de" class="has-autosize"></textarea>
+              </form-group>
+            </template>
+          </collapsible>
+        </collapsible-container>
 
-      <collapsible-container v-if="language == 'de'">
-
-        <collapsible :expanded="true" v-if="isFetchedSettings">
-          <template #title>Einstellungen</template>
-          <template #content>
-            <form-group class="line-after flex mt-4x">
-              <div class="mr-16x md:mr-20x">
-                <div class="form-group__checkbox">
-                  <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
-                  <label for="online">Online</label>
-                </div>
-              </div>
-              <div>
-                <div class="form-group__checkbox">
-                  <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
-                  <label for="publish">Publizieren</label>
-                </div>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.category_ids">
-              <h3>Kategorien *</h3>
-            </form-group-header>
-            <form-group class="line-after" :required="true" :error="errors.category_ids">
-              <div class="form-group__checkbox" v-for="(category, index) in sorted(settings.categories, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.id" v-model="data.category_ids">
-                <label :for="`category-${category.id}`">
-                  {{category.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.language_ids">
-              <h3>Sprachen *</h3>
-            </form-group-header>
-            <form-group class="line-after" :required="true" :error="errors.language_ids">
-              <div class="form-group__checkbox" v-for="(language, index) in sorted(settings.languages, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`language-${language.id}`" :name="`language-${language.id}`" :value="language.id" v-model="data.language_ids">
-                <label :for="`language-${language.id}`">
-                  {{language.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header :error="errors.level_ids">
-              <h3>Levels *</h3>
-            </form-group-header>
-            <form-group class="line-after" :required="true" :error="errors.level_ids">
-              <div class="form-group__checkbox" v-for="(level, index) in sorted(settings.levels, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`level-${level.id}`" :name="`level-${level.id}`" :value="level.id" v-model="data.level_ids">
-                <label :for="`level-${level.id}`">
-                  {{level.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header>
-              <h3>Software</h3>
-            </form-group-header>
-            <form-group class="line-after">
-              <div class="form-group__checkbox" v-for="(software, index) in sorted(settings.software, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`software-${software.id}`" :name="`software-${software.id}`" :value="software.id" v-model="data.software_ids">
-                <label :for="`software-${software.id}`">
-                  {{software.description.de}}
-                </label>
-              </div>
-            </form-group>
-            <form-group-header>
-              <h3>Tags</h3>
-            </form-group-header>
-            <form-group class="line-after grid-cols-12 grid-row-gap-none">
-              <div class="form-group__checkbox span-6" v-for="(tag, index) in sorted(settings.tags, 'description.de', 'asc')" :key="index">
-                <input type="checkbox" :id="`tag-${tag.id}`" :name="`tag-${tag.id}`" :value="tag.id" v-model="data.tag_ids">
-                <label :for="`tag-${tag.id}`">
-                  {{tag.description.de}}
-                </label>
-              </div>
-            </form-group>
-          </template>
-        </collapsible>
-        <collapsible>
-          <template #title>Bilder</template>
-          <template #content>
-            <images 
-              :imageRatioW="16" 
-              :imageRatioH="9"
-              :type="'Course'"
-              :typeId="data.id"
-              :images="data.images"
-              v-if="$props.type == 'edit'">
-            </images>
-            <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
-              <em>Bilder können erst nach dem Speichern hochgeladen werden...</em>
-            </div>
-          </template>
-        </collapsible>
-
-        <collapsible>
-          <template #title>Videos</template>
-          <template #content>
-            <videos 
-            :courseId="data.id"
-            :videos="data.videos"
-            v-if="$props.type == 'edit'">
-          </videos>
-          <div class="text-small text-danger mt-2x sm:mt-4x" v-else>
-            <em>Videos können erst nach dem Speichern hinzugefügt werden...</em>
-          </div>
-          </template>
-        </collapsible>
-
-        <collapsible>
-          <template #title>Metatags + SEO</template>
-          <template #content>
-            <form-group :label="'Rezensionen'" class="md:mt-4x">
-              <textarea v-model="data.reviews" class="has-autosize"></textarea>
-            </form-group>
-            <form-group :label="'SEO - Beschreibung'">
-              <textarea v-model="data.seo_description.de" class="has-autosize"></textarea>
-            </form-group>
-            <form-group :label="'SEO - Keywords'">
-              <textarea v-model="data.seo_tags.de" class="has-autosize"></textarea>
-            </form-group>
-          </template>
-        </collapsible>
-
-      </collapsible-container>
+      </template>
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
@@ -536,8 +555,8 @@ export default {
       return _.orderBy(data, by, dir);
     },
 
-    switchLanguage() {
-      this.language = this.language == 'de' ? 'en' : 'de';
+    setLanguage(language) {
+      this.language = language;
     }
   },
 

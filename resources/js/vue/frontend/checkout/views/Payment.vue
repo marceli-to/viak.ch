@@ -48,7 +48,7 @@
 
       <stacked-list-footer>
         <div>
-          <router-link :to="{ name: 'checkout-user' }" class="btn-previous">
+          <router-link :to="{ name: `${_getLocale()}-checkout-user` }" class="btn-previous">
             <icon-arrow-left />
             <span>{{ __('Zurück') }}</span>
           </router-link>
@@ -147,7 +147,7 @@ export default {
     store() {
       NProgress.start();
       this.axios.put(`${this.routes.basket.payment}`, {'discount_code': this.discount_code}).then((response) => {
-        this.$router.push({ name: 'checkout-summary' });
+        this.$router.push({ name: `${this._getLocale()}-checkout-summary` });
         NProgress.done();
       });  
     },

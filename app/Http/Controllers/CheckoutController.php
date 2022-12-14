@@ -21,6 +21,16 @@ class CheckoutController extends BaseController
   }
 
   /**
+   * Show users info
+   * @return \Illuminate\Http\Response
+   */
+
+   public function user()
+   {
+     return view($this->viewPath . 'index');
+   }
+
+  /**
    * Show the confirmation page
    * @return \Illuminate\Http\Response
    */

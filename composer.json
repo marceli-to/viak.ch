@@ -27,7 +27,9 @@
         "spatie/laravel-newsletter": "^4.11",
         "spatie/laravel-translatable": "^5.2.0",
         "sprain/swiss-qr-bill": "^3.2",
-        "stripe/stripe-php": "^9.8"
+        "stripe/stripe-php": "^9.8",
+        "chinleung/laravel-locales": "^2.0",
+        "chinleung/laravel-multilingual-routes": "^3.0"
     },
     "require-dev": {
         "amirami/localizator": "^0.11.0@alpha",

@@ -2,7 +2,7 @@
 <div>
   <notification ref="notification">
     <template #actions>
-      <a href="/checkout/basket" class="btn-success">
+      <a :href="`/${_getLocale()}/checkout/basket`" class="btn-success">
         {{ __('Warenkorb anzeigen') }}
       </a>
       <a href="javascript:;" @click="$refs.notification.hide()">
@@ -20,7 +20,8 @@
 </template>
 <script>
 import Basket from "@/shared/mixins/Basket";
+import i18n from "@/shared/mixins/i18n";
 export default {
-  mixins: [Basket],
+  mixins: [Basket, i18n],
 }
 </script>

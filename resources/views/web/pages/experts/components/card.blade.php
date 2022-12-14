@@ -1,5 +1,5 @@
 <article class="card-teaser span-6 sm:span-4" data-touch>
-  <a href="{{ route('page.expert', ['slug' => SlugHelper::make($expert->fullname), 'user' => $expert->uuid]) }}">
+  <a href="{{ route(locale() . '.page.expert', ['slug' => SlugHelper::make($expert->fullname), 'user' => $expert->uuid]) }}">
     <header>
       <h2 class="card-teaser__heading">
         {{ $expert->fullname }}
