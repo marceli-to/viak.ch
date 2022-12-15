@@ -3,7 +3,7 @@
     <article-text class="content-text--event">
       <template #aside>
         <h1 class="xs:hide">{{ data.event.course.title }}</h1>
-        <back-link :route="'expert-profile'"></back-link>
+        <back-link :route="`${_getLocale()}-expert-profile`"></back-link>
       </template>
     </article-text>
 
@@ -61,7 +61,7 @@
             :messages="data.messages" 
             :eventUuid="data.event.uuid"
             :canCreate="true"
-            :routeCreate="'expert-course-event-message'">
+            :routeCreate="`${_getLocale()}-expert-course-event-message`">
           </messages>
         </template>
       </collapsible>
@@ -89,7 +89,7 @@
             <p class="no-results">{{ __('Es sind keine Dokumente vorhanden.') }}</p>
           </template>
           <div class="mt-6x">
-            <router-link :to="{ name: 'expert-course-event-file' }" class="icon-plus">
+            <router-link :to="{ name: `${_getLocale()}-expert-course-event-file` }" class="icon-plus">
               <icon-plus />
             </router-link>
           </div>

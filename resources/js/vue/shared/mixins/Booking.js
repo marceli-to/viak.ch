@@ -10,9 +10,9 @@ export default {
 
   methods: {
     confirm(uuid, booking) {
-      let message = `Bitte Annullation bestätigen. Die Annullation wird Dir per E-Mail bestätigt.`;
+      let message = this.__('Bitte Annullation bestätigen. Die Annullation wird Dir per E-Mail bestätigt.');
       if (booking.cancellation.penalty) {
-        message = `Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ${booking.cancellation.amount}.– (${booking.cancellation.penalty}% der Kurskosten)<br><br>Bitte Annullation bestätigen. Die Annullation wird Dir per E-Mail bestätigt.`;
+        message = `${this.__('Die kurzfristige Annullation hat gemäss unseren AGB kosten zur Folge. Diese belaufen sich auf CHF ')} ${booking.cancellation.amount} (${booking.cancellation.penalty}% ${this.__('der Kurskosten')})<br><br>${this.__('Die Annullation wird Dir per E-Mail bestätigt.')}`;
       }
       this.uuidToDelete = uuid;
       this.$refs.notification.init({
@@ -32,7 +32,7 @@ export default {
           this.find();
         }
         else {
-          this.$router.push({ name: 'student-profile'});
+          this.$router.push({ name: `${this._getLocale()}-student-profile`});
         }
       });
     }

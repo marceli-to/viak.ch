@@ -6,28 +6,57 @@ import StudentAddressEdit from '@/backend/student/views/address/partials/Edit.vu
 
 const routes = [
   {
-    name: 'student-profile',
-    path: '/student/profile',
+    name: 'de-student-profile',
+    path: '/de/student/profil',
     component: StudentIndex,
   },
   {
-    name: 'student-documents',
-    path: '/student/profile/documents',
+    name: 'en-student-profile',
+    path: '/en/student/profile',
+    component: StudentIndex,
+  },
+
+  {
+    name: 'de-student-documents',
+    path: '/de/student/profil/dokumente',
     component: StudentDocuments,
   },
   {
-    name: 'student-course-event',
-    path: '/student/profile/course/event/:uuid',
+    name: 'en-student-documents',
+    path: '/en/student/profile/documents',
+    component: StudentDocuments,
+  },
+
+  {
+    name: 'de-student-course-event',
+    path: '/de/student/profil/kurs/veranstaltung/:uuid',
     component: StudentCourse,
   },
   {
-    name: 'student-address-create',
-    path: '/student/profile/address/create',
+    name: 'en-student-course-event',
+    path: '/en/student/profile/course/event/:uuid',
+    component: StudentCourse,
+  },
+
+  {
+    name: 'de-student-address-create',
+    path: '/de/student/profil/adresse/erstellen',
     component: StudentAddressCreate,
   },
   {
-    name: 'student-address-edit',
-    path: '/student/profile/address/edit/:uuid',
+    name: 'en-student-address-create',
+    path: '/en/student/profile/address/create',
+    component: StudentAddressCreate,
+  },
+
+  {
+    name: 'de-student-address-edit',
+    path: '/de/student/profil/adresse/bearbeiten/:uuid',
+    component: StudentAddressEdit,
+  },
+  {
+    name: 'en-student-address-edit',
+    path: '/en/student/profile/address/edit/:uuid',
     component: StudentAddressEdit,
   },
 ];

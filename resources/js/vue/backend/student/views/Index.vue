@@ -91,12 +91,12 @@
                 :key="address.uuid"
                 :class="[index == 0 ? 'md:mt-3x' : '', '']">
                 {{ address.address_str }}
-                <router-link :to="{ name: 'student-address-edit', params: { uuid: address.uuid } }" class="icon-edit mt-2x sm:mt-4x">
+                <router-link :to="{ name: `${_getLocale()}-student-address-edit`, params: { uuid: address.uuid } }" class="icon-edit mt-2x sm:mt-4x">
                   <icon-edit />
                 </router-link>
               </stacked-list-item>
               <div class="flex justify-start mt-6x">
-                <router-link :to="{ name: 'student-address-create' }" class="icon-plus">
+                <router-link :to="{ name: `${_getLocale()}-student-address-create` }" class="icon-plus">
                   <icon-plus />
                 </router-link>
               </div>
@@ -183,7 +183,7 @@
                   <icon-checkmark />
                 </template>
                 <template #action>
-                  <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
+                  <router-link :to="{ name: `${_getLocale()}-student-course-event`, params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
                     {{ __('Detail')}}
                   </router-link>
                   <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(booking.uuid, booking)">
@@ -214,7 +214,7 @@
                   <icon-checkmark />
                 </template>
                 <template #action>
-                  <router-link :to="{ name: 'student-course-event', params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
+                  <router-link :to="{ name: `${_getLocale()}-student-course-event`, params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
                     {{ __('Detail')}}
                   </router-link>
                 </template>
@@ -242,7 +242,7 @@
           </stacked-list-document>
 
           <div class="mt-4x">
-            <router-link :to="{name: 'student-documents'}" class="link-helper">
+            <router-link :to="{name: `${_getLocale()}-student-documents`}" class="link-helper">
               <span>{{ __('Alle Dokumente anzeigen') }}</span>
               <icon-arrow-right />
             </router-link>

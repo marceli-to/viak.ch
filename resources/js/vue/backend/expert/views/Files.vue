@@ -3,7 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ __('Dokumente hochladen') }}</h1>
-      <back-link :route="'expert-course-event'"></back-link>
+      <back-link :route="`${_getLocale()}-expert-course-event`"></back-link>
     </template>
     <template #content>
         <files 
@@ -80,7 +80,7 @@ export default {
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
         this.isLoading = true;
-        this.$router.push({ name: 'expert-course-event', params: { uuid: this.$route.params.uuid } });
+        this.$router.push({ name: `${this._getLocale()}-expert-course-event`, params: { uuid: this.$route.params.uuid } });
       });
     },
 

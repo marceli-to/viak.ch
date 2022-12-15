@@ -67,7 +67,7 @@
           </div>
           <div>
             <h2>
-              <a :href="`/${__('kurs')}/${$props.event.course.slug}/${$props.event.course.uuid}`" :title="$props.event.course.title">
+              <a :href="`/${_getLocale()}/${__('kurs')}/${$props.event.course.slug}/${$props.event.course.uuid}`" :title="$props.event.course.title">
                 {{ $props.event.course.title }}
               </a>
             </h2>

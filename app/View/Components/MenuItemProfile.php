@@ -31,30 +31,31 @@ class MenuItemProfile extends Component
           switch(session('selected-role')->key)
           {
             case 'student':
-              $route = 'page.student.profile';
+              $route = localized_route('page.student.profile');
             break;
             case 'expert':
-              $route = 'page.expert.profile';
+              $route = localized_route('page.expert.profile');
             break;
             case 'admin':
-              $route = 'page.admin.profile';
+              $route = route('page.admin.profile');
             break;
           }
         }
       }
       else if (auth()->user()->isStudent())
       {
-        $route = 'page.student.profile';
+        $route = localized_route('page.student.profile');
       }
       else if (auth()->user()->isExpert())
       {
-        $route = 'page.expert.profile';
+        $route = localized_route('page.expert.profile');
       }
       else if (auth()->user()->isAdmin())
       {
-        $route = 'page.admin.profile';
+        $route = route('page.admin.profile');
       }
     }
+
     $this->route = $route;
   }
 

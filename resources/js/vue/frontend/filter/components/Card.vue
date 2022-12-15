@@ -1,6 +1,6 @@
 <template>
   <article>
-    <a :href="`/kurs/${data.slug}/${data.uuid}`" :title="data.title">
+    <a :href="`/${_getLocale()}/${__('kurs')}/${data.slug}/${data.uuid}`" :title="data.title">
       <header>
         <div class="card-teaser__category">
           {{ data.categories }}

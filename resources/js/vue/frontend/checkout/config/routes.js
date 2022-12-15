@@ -14,18 +14,16 @@ const routes = [
     path: '/en/checkout/basket',
     component: Basket,
   },
-
   {
     name: 'de-checkout-user',
-    path: '/de/checkout/user',
+    path: '/de/checkout/address',
     component: User,
   },
   {
     name: 'en-checkout-user',
-    path: '/en/checkout/user',
+    path: '/en/checkout/address',
     component: User,
   },
-
   {
     name: 'de-checkout-payment',
     path: '/de/checkout/payment',
@@ -47,7 +45,6 @@ const routes = [
     path: '/en/checkout/summary',
     component: Summary,
   },
-
 ];
 
 export default routes;

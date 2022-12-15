@@ -22,7 +22,7 @@
         </template>
       </stacked-list-event>
       <stacked-list-footer>
-        <router-link :to="{ name: `${_getLocale()}-checkout-user` }" class="btn-next btn-next-wide span-12">
+        <router-link :to="{ name:  `${_getLocale()}-checkout-user` }" class="btn-next btn-next-wide span-12">
           <span>{{ __('Weiter') }}</span>
           <icon-arrow-right />
         </router-link>

@@ -3,7 +3,7 @@
     <article-text class="content-text--event">
       <template #aside>
         <h1 class="xs:hide">{{ data.event.course.title }}</h1>
-        <back-link :route="'student-profile'"></back-link>
+        <back-link :route="`${_getLocale()}-student-profile`"></back-link>
       </template>
     </article-text>
 

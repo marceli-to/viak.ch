@@ -3,7 +3,7 @@
   <article-text>
     <template #aside>
       <h1 class="xs:hide">{{ title }}</h1>
-      <back-link :route="'student-profile'"></back-link>
+      <back-link :route="`${_getLocale()}-student-profile`"></back-link>
     </template>
     <template #content>
 
@@ -177,7 +177,7 @@ export default {
       NProgress.start();
       this.isLoading = true;
       this.axios.post(this.routes.store, this.data).then(response => {
-        this.$router.push({ name: 'student-profile'});
+        this.$router.push({ name: `${this._getLocale()}-student-profile`});
         NProgress.done();
         this.isLoading = true;
       });
@@ -185,7 +185,7 @@ export default {
 
     update() {
       this.axios.put(`${this.routes.update}/${this.$route.params.uuid}`, this.data).then(response => {
-        this.$router.push({ name: 'student-profile'});
+        this.$router.push({ name: `${this._getLocale()}-student-profile`});
       });
     },
 
@@ -193,7 +193,7 @@ export default {
       this.isLoading = true;
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.uuid}`).then(response => {
-        this.$router.push({ name: 'student-profile'});
+        this.$router.push({ name: `${this._getLocale()}-student-profile`});
         this.isLoading = false;
         NProgress.done();
       });
@@ -202,7 +202,7 @@ export default {
 
   computed: {
     title() {
-      return this.$props.type == 'edit' ? "Adresse bearbeiten" : "Adresse hinzufügen";
+      return this.$props.type == 'edit' ? `${this.__('Adresse bearbeiten')}` : `${this.__('Adresse hinzufügen')}`;
     },
   }
 };

@@ -3,10 +3,10 @@
     <template #aside>
       <h1 class="xs:hide">{{ __('Nachricht erstellen') }}</h1>
       <p class="text-small sm:mt-3x">{{ __('Sende eine Nachricht an alle Studenten dieses Kurses.') }}</p>
-      <back-link :route="'expert-course-event'"></back-link>
+      <back-link :route="`${_getLocale()}-expert-course-event`"></back-link>
     </template>
     <template #content>
-      <message-form :redirect="'expert-course-event'"></message-form>
+      <message-form :redirect="`${_getLocale()}-expert-course-event`"></message-form>
     </template>
   </article-text>
 </template>

@@ -75,7 +75,7 @@
         @if ($isFullyBooked)
 
           @if ($hasBooking)
-            <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
+            <a href="{{ route(locale() . '.page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
               {{ __('Verwalten')}}
             </a>
           @else
@@ -87,7 +87,7 @@
           @if (!$hasBooking)
             <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
           @else
-            <a href="{{ route('page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
+            <a href="{{ route(locale() . '.page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
               {{ __('Verwalten')}}
             </a>
           @endif

@@ -7,7 +7,7 @@
     <x-slot name="aside">
       <h1 class="xs:hide">{{ __('Buchung abgeschlossen') }}</h1>
       <div class="sm:mt-5x md:mt-10x">
-        <a href="{{ route('page.student.profile') }}" class="icon-arrow-right:below" title="{{ __('Zum Profil') }}">
+        <a href="{{ route(locale() . '.page.student.profile') }}" class="icon-arrow-right:below" title="{{ __('Zum Profil') }}">
           <span>{{ __('Zum Profil') }}</span>
           @include('web.partials.icons.arrow-right')
         </a>
