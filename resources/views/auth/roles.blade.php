@@ -20,7 +20,7 @@
         <div class="mt-8x">
           @foreach($roles as $role)
             <div class="mb-4x">
-              <a href="{{ route('page.role.set', ['role' => $role->uuid]) }}" class="btn-primary btn-half-w">{{ $role->name }}</a>
+              <a href="{{ localized_route('page.role.set', ['role' => $role->uuid]) }}" class="btn-primary btn-half-w">{{ $role->name }}</a>
             </div>
           @endforeach
         </div>

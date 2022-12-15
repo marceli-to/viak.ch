@@ -55,24 +55,22 @@ Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageCon
 // Protected routes
 Route::middleware('auth:sanctum', 'verified')->group(function() {
 
-  // Expert
-  Route::view(
-    '/de/experte/profil/kurs/veranstaltung/{uuid}', 
-    'web.pages.user.expert.index'
-  )->name('de.page.expert.profile.course.event')->middleware(['role:admin,expert']);
-  Route::view(
-    '/en/expert/profile/course/event/{uuid}', 
-    'web.pages.user.expert.index'
-  )->name('en.page.expert.profile.course.event')->middleware(['role:admin,expert']);
+  // Expert - Course
+  Route::get('de/experte/profil/kurs/veranstaltung/{uuid}', function () {
+    return view('web.pages.user.expert.index');
+  })->where('any', '.*')->middleware(['role:admin,expert'])->name('de.page.expert.profile.course.event');
+  Route::get('en/expert/profile/course/event/{uuid}', function () {
+    return view('web.pages.user.expert.index');
+  })->where('any', '.*')->middleware(['role:admin,expert'])->name('en.page.expert.profile.course.event');
 
-  Route::view(
-    '/de/experte/profil/{any?}',
-    'web.pages.user.expert.index'
-  )->name('de.page.expert.profile')->where('any', '.*')->middleware(['role:expert']);
-  Route::view(
-    '/en/expert/profile/{any?}',
-    'web.pages.user.expert.index'
-  )->name('en.page.expert.profile')->where('any', '.*')->middleware(['role:expert']);
+  // Expert - Profile
+  Route::get('de/experte/profil/{any?}', function () {
+    return view('web.pages.user.expert.index');
+  })->where('any', '.*')->middleware(['role:admin,expert'])->name('de.page.expert.profile');
+
+  Route::get('en/expert/profile/{any?}', function () {
+    return view('web.pages.user.expert.index');
+  })->where('any', '.*')->middleware(['role:admin,expert'])->name('en.page.expert.profile');
 
   // Student - Course
   Route::view(
@@ -127,9 +125,11 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   });
 
   // Routes for user with multiple roles
-  Route::get('/roles', [RolesController::class, 'index'])->name('page.role.select')->middleware(['role:admin']);
-  Route::get('/role/{role:uuid}', [RolesController::class, 'set'])->name('page.role.set')->middleware(['role:admin']);
-  
+  Route::get('/de/roles', [RolesController::class, 'index'])->name('de.page.role.select')->middleware(['role:admin']);
+  Route::get('/en/roles', [RolesController::class, 'index'])->name('en.page.role.select')->middleware(['role:admin']);
+  Route::get('/de/role/{role:uuid}', [RolesController::class, 'set'])->name('de.page.role.set')->middleware(['role:admin']);
+  Route::get('/en/role/{role:uuid}', [RolesController::class, 'set'])->name('en.page.role.set')->middleware(['role:admin']);
+
   // Dashboard routes
   Route::get('/dashboard/{any?}', function () {
     return view('web.layout.backend');
