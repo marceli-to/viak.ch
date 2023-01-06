@@ -7907,10 +7907,10 @@ article.card-text h3 {
   color: #000000;
 }
 
-article.card-team {
+article.card-team,
+article.card-video {
   margin-top: 16px !important;
 }
-
 article.card-team a:not([class*=btn-]),
 article.card-video a:not([class*=btn-]) {
   color: #000000;
@@ -7923,10 +7923,8 @@ article.card-video a:not([class*=btn-]):hover {
   text-decoration: none;
 }
 
-article.card-video {
-  border-top: none;
-}
 article.card-video:first-of-type {
+  border-top: none !important;
   margin-top: 0 !important;
 }
 

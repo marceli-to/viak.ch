@@ -39,13 +39,10 @@ article.card-text {
   }
 }
 
-article.card-team {
-  margin-top: $space-4x !important;
-}
-
 article.card-team,
 article.card-video {
   @extend %card-text;
+  margin-top: $space-4x !important;
 
   aside + div {
     @extend %mt-4x;
@@ -65,9 +62,8 @@ article.card-video {
 }
 
 article.card-video {
-  border-top: none;
-
   &:first-of-type {
+    border-top: none !important;
     margin-top: 0 !important;
   }
 }
