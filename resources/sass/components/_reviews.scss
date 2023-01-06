@@ -10,10 +10,8 @@
     border-radius: 0 !important;
   }
   div[class^='ReviewBackground__Container'], div[class*=' ReviewBackground__Container']{
-    background-color: transparent !important;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
+    @extend %p-2x;
+    @extend %md\:p-4x;
   }
  
 }

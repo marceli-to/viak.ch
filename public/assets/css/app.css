@@ -3839,7 +3839,7 @@ article.card-video aside + div, .sm\:mt-0 {
 }
 
 .media-upload .media-uploads__grid .media-uploads-item > div,
-.media-upload .media-uploads__grid .media-uploads-item > figure, .message .message__inner, .form-danger-zone, .notification.is-toast .notification__inner, .media-upload .media-uploads-cropper .lightbox-widget .lightbox-widget__item, .media-upload .media-uploads-edit .lightbox-widget .lightbox-widget__item, .message .lightbox-widget .lightbox-widget__item, .notification.is-modal .lightbox-widget .lightbox-widget__item,
+.media-upload .media-uploads__grid .media-uploads-item > figure, .message .message__inner, .form-danger-zone, [data-app=eapps-google-reviews] div[class^=ReviewBackground__Container], [data-app=eapps-google-reviews] div[class*=" ReviewBackground__Container"], .notification.is-toast .notification__inner, .media-upload .media-uploads-cropper .lightbox-widget .lightbox-widget__item, .media-upload .media-uploads-edit .lightbox-widget .lightbox-widget__item, .message .lightbox-widget .lightbox-widget__item, .notification.is-modal .lightbox-widget .lightbox-widget__item,
 .lightbox .lightbox-widget .lightbox-widget__item, .card-teaser figure > div, .card-teaser,
 .card, .p-2x {
   padding: 8px;
@@ -4098,7 +4098,7 @@ body, .p-4x {
 }
 
 @media only screen and (min-width: 1132px) {
-  .form-danger-zone, .card-teaser figure > div, .card-teaser,
+  .form-danger-zone, [data-app=eapps-google-reviews] div[class^=ReviewBackground__Container], [data-app=eapps-google-reviews] div[class*=" ReviewBackground__Container"], .card-teaser figure > div, .card-teaser,
 .card, .md\:p-4x {
     padding: 16px;
   }
@@ -10096,13 +10096,6 @@ a.link-helper:hover {
 [data-app=eapps-google-reviews] div {
   border-radius: 0 !important;
 }
-[data-app=eapps-google-reviews] div[class^=ReviewBackground__Container], [data-app=eapps-google-reviews] div[class*=" ReviewBackground__Container"] {
-  background-color: transparent !important;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-}
-
 /**
  * -----------------------------------------------------------------------------
  * File: component/underline
