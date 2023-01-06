@@ -7,8 +7,12 @@
 
 [data-app="eapps-google-reviews"] {
   div {
-    background-color: transparent !important;
     border-radius: 0 !important;
-    //padding: 0 !important;
   }
+  div[class^='ReviewBackground__Container'], div[class*=' ReviewBackground__Container']{
+    background-color: transparent !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+ 
 }

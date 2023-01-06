@@ -10094,8 +10094,12 @@ a.link-helper:hover {
  *
  */
 [data-app=eapps-google-reviews] div {
-  background-color: transparent !important;
   border-radius: 0 !important;
+}
+[data-app=eapps-google-reviews] div[class^=ReviewBackground__Container], [data-app=eapps-google-reviews] div[class*=" ReviewBackground__Container"] {
+  background-color: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /**
