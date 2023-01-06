@@ -29,7 +29,7 @@
 }
 
 .btn-next {
-  @include font-bold();
+  //@include font-bold();
 
   span {
     @extend %mr-2x;

@@ -3,9 +3,9 @@
   <notification ref="notification">
     <template #actions>
       <a :href="`/${_getLocale()}/checkout/${__('warenkorb')}`" class="btn-success">
-        {{ __('Warenkorb anzeigen') }}
+        {{ __('Warenkorb') }}
       </a>
-      <a href="javascript:;" @click="$refs.notification.hide()">
+      <a href="javascript:;" @click="$refs.notification.hide()" class="btn-success is-outline">
         {{ __('Schliessen') }}
       </a>
     </template>

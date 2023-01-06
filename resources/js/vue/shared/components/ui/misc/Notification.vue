@@ -11,7 +11,7 @@
         </div>
         <div class="notification-message" v-html="message"></div>
         <div class="notification-actions">
-          <a href="javascript:;" @click="hide()">Schliessen</a>
+          <a href="javascript:;" @click="hide()" class="btn-secondary">Schliessen</a>
         </div>
       </template>
 
@@ -23,8 +23,8 @@
           </div>
         </template>
         <template v-else>
-          <div class="notification--actions">
-            <a href="javascript:;" @click="hide()">Schliessen</a>
+          <div class="notification-actions">
+            <a href="javascript:;" @click="hide()" class="btn-secondary">Schliessen</a>
           </div>
         </template>
       </template>

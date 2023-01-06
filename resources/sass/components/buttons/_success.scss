@@ -9,10 +9,16 @@
   @extend %btn;
   @extend %btn-full-width;
   background-color: $color-success;
+  border: 1px solid $color-success;
   color: $color-white;
 
   &:hover {
     background-color: darken($color-success, 15);
+  }
+
+  &.is-outline {
+    background-color: $color-white;
+    color: $color-success;
   }
 
 }
