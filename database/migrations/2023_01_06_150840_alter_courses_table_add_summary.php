@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
       Schema::table('courses', function (Blueprint $table) {
-        $table->json('confirmation_description')->nullable()->after('additional_information');
+        $table->json('summary')->nullable()->after('additional_information');
       });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
       Schema::table('courses', function (Blueprint $table) {
-        $table->dropColumn('confirmation_description');
+        $table->dropColumn('summary');
       });
     }
 };
