@@ -28,11 +28,9 @@ body {
 	@include font-smoothing();
 	@include font-regular();
   letter-spacing: 0.01em;
-  line-height: 1.25;
+  line-height: 1.3;
   min-height: 100vh;
   min-height: calc(100vh - var(--vh-offset, 0px));
-  // min-height: -webkit-fill-available;
-  // min-height: calc(100vh - #{$space-4x});
   padding-top: 0;
 	position: relative;
 }
