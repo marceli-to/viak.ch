@@ -125,7 +125,9 @@
         </div>
         @if ($course->reviews)
           <div class="mb-4x sm:mb-0 sm:span-4">
-            <header><h2>Kundenmeinungen</h2></header>
+            <header>
+              <h2>Kundenmeinungen</h2>
+            </header>
             {!! $course->reviews !!}
           </div>
         @endif
