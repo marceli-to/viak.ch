@@ -66,4 +66,8 @@ article.card-video {
 
 article.card-video {
   border-top: none;
+
+  &:first-of-type {
+    margin-top: 0 !important;
+  }
 }
