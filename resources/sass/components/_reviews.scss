@@ -6,12 +6,15 @@
  */
 
 [data-app="eapps-google-reviews"] {
+  
   div {
     border-radius: 0 !important;
   }
-  div[class^='ReviewBackground__Container'], div[class*=' ReviewBackground__Container']{
+
+  div[class^='ReviewBackground__Container'], 
+  div[class*=' ReviewBackground__Container'] {
     @extend %p-2x;
     @extend %md\:p-4x;
   }
- 
+
 }
