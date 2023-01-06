@@ -68,6 +68,14 @@
           ></tinymce-editor>
         </form-group>
 
+        <form-group :label="'Kursbeschreibung (PDF)'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.summary.de"
+          ></tinymce-editor>
+        </form-group>
+
         <collapsible-container>
           <collapsible>
             <template #title>Facts</template>
@@ -257,6 +265,14 @@
           ></tinymce-editor>
         </form-group>
 
+        <form-group :label="'Kursbeschreibung (PDF)'">
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.summary.en"
+          ></tinymce-editor>
+        </form-group>
+
         <collapsible-container>
           <collapsible>
             <template #title>Facts</template>
@@ -402,6 +418,10 @@ export default {
           en: null
         },
         additional_information: {
+          de: null,
+          en: null
+        },
+        summary: {
           de: null,
           en: null
         },

@@ -66,6 +66,15 @@ p {
   margin-bottom: 5mm;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-left: 4mm;
+}
+
 /* Helpers */
 .align-right {
   text-align: right;

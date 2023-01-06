@@ -55,6 +55,12 @@
 // Page: Contact
 .container-contact {
   @extend %container;
+
+  .text__body p {
+    @include font-bold();
+    color: $color-secondary;
+  }
+
   a[href^="tel:"],
   a[href^="mailto:"] {
     color: $color-secondary;

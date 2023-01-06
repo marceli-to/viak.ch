@@ -38,7 +38,11 @@
       </tbody>
     </table>
     <p>{{ __('Wir bestätigen, dass Marcel Stadelmann oben aufgeführte Kurse erfolgreich absolviert hat.') }}</p>
-    <p>[Lorem ipsum dolor sit amet. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.]</p>
+    @if ($booking->event->course->summary)
+      <div style="margin-bottom: 1mm"><strong>Kursinhalt / Beschreibung / Einleitung</strong></div>
+      {!! $booking->event->course->summary !!}
+      <br>
+    @endif
     @include('pdf.partials.signature')
   </div>
 </div>
