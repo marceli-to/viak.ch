@@ -29,6 +29,7 @@ class StudentUpdateRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
+      'phone' => 'required',
       'gender_id' => 'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id',
       'new_email' => 'nullable|email|max:255|unique:users,email',
@@ -65,6 +66,10 @@ class StudentUpdateRequest extends FormRequest
       'city.required' => [
         'field' => 'city',
         'error' => 'Ort wird benötigt'
+      ],
+      'phone.required' => [
+        'field' => 'phone',
+        'error' => 'Telefon wird benötigt'
       ],
       'gender_id.required' => [
         'field' => 'gender_id',

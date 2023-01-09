@@ -24,7 +24,6 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
-    //dd(GridRow::with('items.course.teaserImage', 'items.news.publishedImage', 'items')->orderBy('order')->get());
     return view(
       $this->viewPath . 'index', [
         'hero' => Hero::published()->with('publishedImages')->where('slug', 'home')->first(),

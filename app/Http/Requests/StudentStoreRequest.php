@@ -32,6 +32,7 @@ class StudentStoreRequest extends FormRequest
       'street' => 'required',
       'zip' => 'required',
       'city' => 'required',
+      'phone' => 'required',
       'accept_tos' => 'required|boolean',
       'gender_id' => 'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id'
@@ -110,6 +111,10 @@ class StudentStoreRequest extends FormRequest
       'city.required' => [
         'field' => 'city',
         'error' => 'Ort wird benötigt'
+      ],
+      'phone.required' => [
+        'field' => 'phone',
+        'error' => 'Telefon wird benötigt'
       ],
       'accept_tos.required' => [
         'field' => 'accept_tos',

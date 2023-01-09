@@ -49,6 +49,7 @@ export default {
       errors: {
         firstname: null,
         name: null,
+        phone: null,
         gender_id: null,
         new_email: null,
         new_password: null,
