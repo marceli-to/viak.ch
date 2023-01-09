@@ -33,7 +33,7 @@ class StudentStoreRequest extends FormRequest
       'zip' => 'required',
       'city' => 'required',
       'phone' => 'required',
-      'accept_tos' => 'required|boolean',
+      'accept_tos' => 'accepted',
       'gender_id' => 'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id'
     ];
@@ -116,7 +116,7 @@ class StudentStoreRequest extends FormRequest
         'field' => 'phone',
         'error' => 'Telefon wird benötigt'
       ],
-      'accept_tos.required' => [
+      'accept_tos.accepted' => [
         'field' => 'accept_tos',
         'error' => 'AGB müssen akzeptiert werden'
       ],
