@@ -37,38 +37,36 @@ class Booking
         // Get the event
         $event = Event::where('uuid', $item)->first();
 
-        if (BookingFacade::has($event, $user))
+        if (BookingFacade::can($event, $user))
         {
-          return;
+          // Create the booking
+          $booking = BookingModel::create([
+            'uuid' => \Str::uuid(),
+            'number' => self::getNumber(),
+            'course_fee' => $event->courseFee,
+            'invoice_address' => $address ? $address->address : NULL,
+            'discount_code' => $discount ? $discount->code : NULL,
+            'discount_amount' => $discount ? Discount::apply($discount->uuid, $event->courseFee) : NULL,
+            'event_id' => $event->id,
+            'user_id' => $user->id,
+            'booked_at' => \Carbon\Carbon::now(),
+          ]);
+          
+          // Update bookmarks
+          BookmarkFacade::findAndDestroy($event, $user);
+
+          // Update discount
+          if ($discount)
+          {
+            Discount::update($discount);
+          }
+
+          // Fire event
+          event(new BookingCompleted($user, $booking));
+
+          // Handle event participant change
+          ParticipantsChange::handle($booking->event);
         }
-
-        // Create the booking
-        $booking = BookingModel::create([
-          'uuid' => \Str::uuid(),
-          'number' => self::getNumber(),
-          'course_fee' => $event->courseFee,
-          'invoice_address' => $address ? $address->address : NULL,
-          'discount_code' => $discount ? $discount->code : NULL,
-          'discount_amount' => $discount ? Discount::apply($discount->uuid, $event->courseFee) : NULL,
-          'event_id' => $event->id,
-          'user_id' => $user->id,
-          'booked_at' => \Carbon\Carbon::now(),
-        ]);
-        
-        // Update bookmarks
-        BookmarkFacade::findAndDestroy($event, $user);
-
-        // Update discount
-        if ($discount)
-        {
-          Discount::update($discount);
-        }
-
-        // Fire event
-        event(new BookingCompleted($user, $booking));
-
-        // Handle event participant change
-        ParticipantsChange::handle($booking->event);
       }
     }
 
@@ -129,7 +127,7 @@ class Booking
   }
 
   /**
-   * Check whether or not a student has a booking
+   * Check whether or not a student HAS a booking
    * for a specific event.
    * 
    * @param Event $event
@@ -138,10 +136,24 @@ class Booking
 
   public static function has(Event $event, User $user)
   {
-    $booking = BookingModel::where('event_id', $event->id)->where('user_id', $user->id)->notFlagged('isCancelled')->first();
-    return $booking ? TRUE : FALSE;
+    $booking = BookingModel::active()->where('event_id', $event->id)->where('user_id', $user->id)->first();
+    return $booking === null ? FALSE : TRUE;
   }
 
+  /**
+   * Check whether or not a student CAN book an event
+   * for a specific event.
+   * 
+   * @param Event $event
+   * @param User $user
+   */
+
+   public static function can(Event $event, User $user)
+   {
+     $booking = BookingModel::active()->where('event_id', $event->id)->where('user_id', $user->id)->first();
+     return $booking === null ? TRUE : FALSE;
+   }
+ 
   /**
    * Get the next booking number
    * 

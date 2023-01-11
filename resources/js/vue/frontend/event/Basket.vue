@@ -2,7 +2,7 @@
 <div>
   <notification ref="notification">
     <template #actions>
-      <a :href="`/${_getLocale()}/checkout/${__('warenkorb')}`" class="btn-success">
+      <a :href="`/${_getLocale()}/checkout/basket`" class="btn-success">
         {{ __('Warenkorb') }}
       </a>
       <a href="javascript:;" @click="$refs.notification.hide()" class="btn-success is-outline">

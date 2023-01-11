@@ -1,13 +1,14 @@
 <?php
 namespace App\Models;
-use App\Models\Base;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\ModelFlags\Models\Concerns\HasFlags;
+use App\Models\Base;
+use App\Traits\InvoiceScopes;
 
 class Invoice extends Base
 {
-  use SoftDeletes, HasFlags;
+  use SoftDeletes, HasFlags, InvoiceScopes;
 
   /**
    * The attributes that should be cast to native types.
@@ -18,6 +19,7 @@ class Invoice extends Base
   protected $casts = [
     'cancelled_at' => 'date:d.m.Y',
     'paid_at' => 'date:d.m.Y',
+    'due_at' => 'date:d.m.Y',
   ];
 
   /**
@@ -39,6 +41,7 @@ class Invoice extends Base
     'uuid',
     'booking_id',
     'user_id',
+    'due_at',
     'paid_at',
     'cancelled_at',
   ];
@@ -109,48 +112,7 @@ class Invoice extends Base
   {
     return $this->morphMany(UserDocument::class, 'fileable');
   }
-
-
-  /*
-  |--------------------------------------------------------------------------
-  | Local scopes
-  |--------------------------------------------------------------------------
-  |
-  |
-  */
-
-  /**
-   * Scope a query to only include paid invoices
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopePaid($query)
-  {
-    return $query->whereNotNull('paid_at');
-  }
-
-  /**
-   * Scope a query to only include cancelled invoices
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopeCancelled($query)
-  {
-    return $query->whereNotNull('cancelled_at');
-  }
-
-  /**
-   * Scope a query to only include pending invoices
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopePending($query)
-  {
-    return $query->whereNull('paid_at')->whereNull('cancelled_at');
-  }
+  
 
   /*
   |--------------------------------------------------------------------------
@@ -197,4 +159,16 @@ class Invoice extends Base
   {   
     return date('d.m.Y', strtotime($this->paid_at));
   }
+
+  /**
+   * Get the paid_at date for an invoice.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+   public function getDueAtStrAttribute()
+   {   
+     return date('d.m.Y', strtotime($this->due_at));
+   }
 }

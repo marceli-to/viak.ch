@@ -1,13 +1,15 @@
 <?php
 namespace App\Models;
-use App\Models\Base;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\ModelFlags\Models\Concerns\HasFlags;
+use App\Models\Base;
+use App\Traits\BookingScopes;
 
 class Booking extends Base
 {
-  use SoftDeletes, HasFlags;
+  use SoftDeletes, HasFlags, BookingScopes;
 
   /**
    * The attributes that should be cast to native types.
@@ -72,7 +74,6 @@ class Booking extends Base
   |
   */
 
-
   /**
    * The event that belong to this course.
    */
@@ -99,25 +100,4 @@ class Booking extends Base
   {
     return $this->morphMany(UserDocument::class, 'fileable');
   }
-
-  
-  /*
-  |--------------------------------------------------------------------------
-  | Local scopes
-  |--------------------------------------------------------------------------
-  |
-  |
-  */
-
-  /**
-   * Scope a query to only include active bookings
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopeActive($query)
-  {
-    return $query->notFlagged('isCancelled');
-  }
-
 }

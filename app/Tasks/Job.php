@@ -7,7 +7,7 @@ class Job
   public function __invoke()
   {
     $jobs = JobModel::with('mailable')->unprocessed()->get();
-    $jobs = collect($jobs)->splice(0,1);
+    $jobs = collect($jobs)->splice(0,2);
     $env  = app()->environment();
 
     foreach($jobs->all() as $job)

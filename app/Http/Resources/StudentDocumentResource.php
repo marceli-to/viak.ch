@@ -19,8 +19,8 @@ class StudentDocumentResource extends JsonResource
       'uri' => $this->uri,
       'type' => $this->type,
       'document_title' => $this->getType($this->type),
-      'course_title' => $this->booking->event->course->title,
-      'course_date' => $this->booking->event->date_short,
+      'course_title' => $this->type = 'INVOICE' ? $this->invoice->booking->event->course->title : '',
+      'course_date' =>  $this->type = 'INVOICE' ? $this->invoice->booking->event->date_short : '',
       'number' => $this->type = 'INVOICE' ? $this->invoice->number : NULL,
       'total' => $this->type = 'INVOICE' ? $this->invoice->total : NULL
     ];

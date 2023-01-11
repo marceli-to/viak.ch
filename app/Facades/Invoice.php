@@ -65,7 +65,8 @@ class Invoice
       'grand_total' => self::getGrandTotal($booking->course_fee, $booking->discount_amount),
       'invoice_address' => $booking->invoice_address ? $booking->invoice_address : NULL,
       'booking_id' => $booking->id,
-      'user_id' => $booking->user->id
+      'user_id' => $booking->user->id,
+      'due_at' => \Carbon\Carbon::now()->addDays(config('invoice.payment_period'))
     ]);
 
     // Write invoice as PDF
@@ -102,7 +103,8 @@ class Invoice
       'grand_total' => self::getGrandTotal($cancellation['amount']),
       'invoice_address' => $booking->invoice_address ? $booking->invoice_address : NULL,
       'booking_id' => $booking->id,
-      'user_id' => $booking->user->id
+      'user_id' => $booking->user->id,
+      'due_at' => \Carbon\Carbon::now()->addDays(config('invoice.payment_period'))
     ]);
 
     // Write invoice as PDF

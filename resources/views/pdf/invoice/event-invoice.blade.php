@@ -7,7 +7,9 @@
         {!! $invoice->booking->user->address !!}
         <br><br>
         {{ __('Buchung') }}
-        {{ $invoice->booking->number }}
+        {{ $invoice->booking->number }}<br>
+        {{ __('Zahlbar bis') }}
+        {{ $invoice->due_at_str }}<br>
       </td>
       <td class="page-info__right">
         @if ($invoice->invoice_address)

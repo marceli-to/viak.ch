@@ -45,38 +45,23 @@ class BookingsCreate extends Command
     // Get users
     $users = User::where('email', 'like', 'viak-student%@0704.ch')->get();
 
-    // // Create bookings
-    // foreach($users as $user)
-    // {
-    //   if (BookingFacade::has($event, $user))
-    //   {
-    //     return;
-    //   }
-      
-    //   $booking = Booking::create([
-    //     'uuid' => \Str::uuid(),
-    //     'number' => BookingFacade::getNumber(),
-    //     'course_fee' => $event->courseFee,
-    //     'invoice_address' => NULL,
-    //     'discount_code' => NULL,
-    //     'discount_amount' => NULL,
-    //     'event_id' => $event->id,
-    //     'user_id' => $user->id,
-    //     'booked_at' => \Carbon\Carbon::now(),
-    //   ]);
-    // }
-
-    // viak.ch.marceli.to - booking for user Oliver Schmid
-    $booking = Booking::create([
-      'uuid' => \Str::uuid(),
-      'number' => BookingFacade::getNumber(),
-      'course_fee' => $event->courseFee,
-      'invoice_address' => NULL,
-      'discount_code' => NULL,
-      'discount_amount' => NULL,
-      'event_id' => $event->id,
-      'user_id' => '47',
-      'booked_at' => \Carbon\Carbon::now(),
-    ]);
+    // Create bookings
+    foreach($users as $user)
+    {
+      if (BookingFacade::can($event, $user))
+      {
+        Booking::create([
+          'uuid' => \Str::uuid(),
+          'number' => BookingFacade::getNumber(),
+          'course_fee' => $event->courseFee,
+          'invoice_address' => NULL,
+          'discount_code' => NULL,
+          'discount_amount' => NULL,
+          'event_id' => $event->id,
+          'user_id' => $user->id,
+          'booked_at' => \Carbon\Carbon::now(),
+        ]);
+      }
+    }
   }
 }
