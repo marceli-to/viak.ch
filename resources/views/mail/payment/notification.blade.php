@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
-    <td>{{ $invoice->paid_at_str }}</td>
+    <td>{{ $invoice->paid_at_short }}</td>
   </tr>
   <tr>
     <td>{{ __('Bezahlt per') }}</td>
@@ -38,7 +38,7 @@
   </tr>
   <tr>
     <td>{{ __('Datum') }}</td>
-    <td>{{ $invoice->paid_at_str }}</td>
+    <td>{{ $invoice->paid_at_short }}</td>
   </tr>
   <tr>
     <td>{{ __('Teilnehmer') }}</td>

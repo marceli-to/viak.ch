@@ -71,7 +71,7 @@
   "der Kurskosten": "of the course costs.",
   "Die maximale Teilnehmerzahl für den Kurs ": "",
   "Die minimale Teilnehmerzahl für den Kurs ": "",
-  "Die Rechnung <strong>' . $invoice->number .'<\/strong> wurde am '. $invoice->paid_at_str .' beglichen.": "",
+  "Die Rechnung <strong>' . $invoice->number .'<\/strong> wurde am '. $invoice->paid_at_short .' beglichen.": "",
   "Die Rechnung für die Kurskosten findest Du in der Beilage. Falls Du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.": "",
   "Die Rechnung sowie die definitive Einladung für den Kurs erhältst Du in den nächsten Tagen.": "",
   "Die Veranstaltung ist abgesagt": "",

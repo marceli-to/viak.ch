@@ -9,7 +9,7 @@
       <h1 class="xs:hide">{{ __('Rechnung bezahlt') }}</h1>
     </x-slot>
     <x-slot name="content">
-      <p>{!! __('Die Rechnung <strong>' . $invoice->number .'</strong> wurde am '. $invoice->paid_at_str .' beglichen.') !!}</p>
+      <p>{!! __('Die Rechnung <strong>' . $invoice->number .'</strong> wurde am '. $invoice->paid_at_short .' beglichen.') !!}</p>
     </x-slot>
   </x-article-text>
 </section>

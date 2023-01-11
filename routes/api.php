@@ -38,6 +38,7 @@ use App\Http\Controllers\Api\Dashboard\NewsController as DashboardNewsController
 use App\Http\Controllers\Api\Dashboard\HeroController as DashboardHeroController;
 use App\Http\Controllers\Api\Dashboard\GridRowController as DashboardGridRowController;
 use App\Http\Controllers\Api\Dashboard\GridRowItemController as DashboardGridRowItemController;
+use App\Http\Controllers\Api\Dashboard\InvoiceController as DashboardInvoiceController;
 
 
 /*
@@ -248,6 +249,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::put('event/{event:uuid}', [DashboardEventController::class, 'update']);
   Route::get('event/state/{event}', [DashboardEventController::class, 'toggle']);
   Route::delete('event/{event}', [DashboardEventController::class, 'destroy']);
+
+  // Backoffice Invoices
+  Route::get('invoices', [DashboardInvoiceController::class, 'get']);
 
   // Students
   Route::get('students/{constraint?}', [DashboardStudentController::class, 'get']);

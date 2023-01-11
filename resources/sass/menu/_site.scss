@@ -223,7 +223,10 @@ nav.site-menu-dashboard {
 
         &.is-parent {
           display: block;
-
+          a {
+            text-align: right;
+          }
+          
           ul {
             margin-right: 0;
 
@@ -232,6 +235,7 @@ nav.site-menu-dashboard {
 
               a {
                 @include font-regular();
+                text-align: right;
               }
             }
           }

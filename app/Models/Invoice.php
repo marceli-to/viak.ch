@@ -46,6 +46,19 @@ class Invoice extends Base
     'cancelled_at',
   ];
 
+  /**
+   * The accessors to append to the model's array form.
+   *
+   * @var array
+   */
+
+  protected $appends = [
+    'date_str',
+    'date_short',
+    'due_at_short',
+    'paid_at_short',
+  ];
+
 
   /*
   |--------------------------------------------------------------------------
@@ -147,6 +160,17 @@ class Invoice extends Base
     return date('d. F Y', strtotime($this->date));
   }
 
+  /**
+   * Get the short date for an invoice.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateShortAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->date));
+  }
 
   /**
    * Get the paid_at date for an invoice.
@@ -155,7 +179,7 @@ class Invoice extends Base
    * @return string $date
    */
 
-  public function getPaidAtStrAttribute()
+  public function getPaidAtShortAttribute()
   {   
     return date('d.m.Y', strtotime($this->paid_at));
   }
@@ -167,7 +191,7 @@ class Invoice extends Base
    * @return string $date
    */
 
-   public function getDueAtStrAttribute()
+   public function getDueAtShortAttribute()
    {   
      return date('d.m.Y', strtotime($this->due_at));
    }

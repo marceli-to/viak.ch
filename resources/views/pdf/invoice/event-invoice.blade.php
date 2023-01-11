@@ -9,7 +9,7 @@
         {{ __('Buchung') }}
         {{ $invoice->booking->number }}<br>
         {{ __('Zahlbar bis') }}
-        {{ $invoice->due_at_str }}<br>
+        {{ $invoice->due_at_short }}<br>
       </td>
       <td class="page-info__right">
         @if ($invoice->invoice_address)
@@ -23,7 +23,7 @@
   <h1 class="page__title">
     {{ __('Rechnung') }}<br>{{ $invoice->number }}
   </h1>
-  <div class="page__date">Zürich, {{date('d.m.Y', time())}}</div>
+  <div class="page__date">Zürich, {{ $invoice->date_short }}</div>
   <div class="page__content">
     <table class="content-table" style="margin-bottom: 5mm">
       <thead>

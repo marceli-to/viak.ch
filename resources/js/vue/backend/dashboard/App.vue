@@ -55,8 +55,15 @@
                     </svg>
                   </a>
                 </li>
-                <li>
-                  <a href="">Backoffice</a>
+                <li class="is-parent">
+                  <a href="" @click.prevent="toggleSubMenu('backoffice')" :class="[hasSubMenu.backoffice || $route.name.startsWith('backoffice')  ? 'is-active' : '', '']">Backoffice</a>
+                  <ul v-if="hasSubMenu.backoffice || $route.name.startsWith('backoffice')">
+                    <li>
+                      <router-link :to="{name: 'backoffice-invoices'}" :class="[$route.name.startsWith('backoffice-invoices') ? 'is-active' : '', '']">
+                        Rechnungen
+                      </router-link>
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   <router-link :to="{name: 'discount-codes'}">
@@ -67,7 +74,7 @@
                   <a href="" @click.prevent="toggleSubMenu('content')" :class="[hasSubMenu.content || $route.name.startsWith('content')  ? 'is-active' : '', '']">
                     Seiteninhalte
                   </a>
-                  <ul v-if="hasSubMenu.content || $route.name.startsWith('content') ">
+                  <ul v-if="hasSubMenu.content || $route.name.startsWith('content')">
                     <li>
                       <router-link :to="{name: 'content-home-layout'}" :class="[$route.name.startsWith('content-home') ? 'is-active' : '', '']">
                         Startseite
@@ -133,6 +140,7 @@ export default {
       hasMenu: false,
       hasSubMenu: {
         content: false,
+        backoffice: false,
       }
     }
   },
@@ -143,7 +151,7 @@ export default {
     },
 
     toggleSubMenu(type) {
-      this.hasSubMenu[type] =  this.hasSubMenu[type] ? false : true
+      this.hasSubMenu[type] = this.hasSubMenu[type] ? false : true
     },
 
     showMenu() {
@@ -156,6 +164,7 @@ export default {
 
     hideSubMenu() {
       this.hasSubMenu.content = false;
+      this.hasSubMenu.backoffice = false;
     },
   },
   watch: {

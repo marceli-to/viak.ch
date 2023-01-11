@@ -1,0 +1,26 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: components/icons/filter
+ * -----------------------------------------------------------------------------
+ */
+
+.icon-download {
+  @extend %icon;
+  height: 18px;
+  right: 0;
+  position: absolute;
+  top: 0;
+  width: 18px;
+  z-index: 50;
+  
+  svg {
+    display: block;
+    height: 18px;
+    width: auto;
+  }
+
+  &:hover {
+    color: $color-secondary;
+  }
+
+}
