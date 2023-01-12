@@ -68,7 +68,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import draggable from 'vuedraggable';
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
@@ -87,7 +86,6 @@ export default {
 
   components: {
     NProgress,
-    ErrorHandling,
     draggable,
     ContentListHeader,
     Grid,

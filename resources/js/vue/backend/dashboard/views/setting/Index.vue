@@ -160,7 +160,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
@@ -176,7 +175,6 @@ export default {
 
   components: {
     NProgress,
-    ErrorHandling,
     ContentListHeader,
     SearchContainer,
     StackedListContainer,

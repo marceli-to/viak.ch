@@ -7,7 +7,13 @@ Vue.component('basket-button', require('@/frontend/event/Basket.vue').default);
 // Vuex store
 import store from '@/shared/config/store';
 
+// Interceptor
+import Interceptor from "@/shared/mixins/Interceptor";
+
 // Mount
 if (document.getElementById("app-events")) {
-  const app = new Vue({store}).$mount('#app-events');
+  const app = new Vue({
+    mixins: [Interceptor],
+    store
+  }).$mount('#app-events');
 }

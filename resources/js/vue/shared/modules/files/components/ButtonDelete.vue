@@ -13,7 +13,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 
 export default {
@@ -22,7 +22,7 @@ export default {
     NProgress,
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [Validation, i18n],
 
   props: {
     file: {
@@ -54,6 +54,9 @@ export default {
       this.axios.delete(`${this.routes.delete}/${this.$props.file.uuid}`).then(response => {
         this.$emit('fileDeleted', this.$props.file);
         NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   }

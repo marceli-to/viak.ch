@@ -148,7 +148,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
@@ -165,7 +164,7 @@ export default {
     Card,
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [i18n],
 
   data() {
     return {

@@ -11,7 +11,7 @@
         v-model="video.code" 
         class="is-code" 
         required 
-        @focus="removeError('code')">
+        @focus="removeValidationError('code')">
       </textarea>
     </form-group>
     <form-group>
@@ -19,7 +19,7 @@
         <a href="" @click.prevent="hideForm()" class="btn-secondary span-6">
           Abbrechen
         </a>
-        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary span-6']">
+        <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary span-6']">
           Speichern
         </a>
       </grid>
@@ -90,7 +90,7 @@
 <script>
 import { EyeIcon, EyeOffIcon, EditIcon, Trash2Icon, CropIcon, ImageIcon} from 'vue-feather-icons';
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 
@@ -105,7 +105,7 @@ export default {
     Trash2Icon,
   },
 
-  mixins: [ErrorHandling],
+  mixins: [Validation],
 
   props: {
     courseId: null,
@@ -196,17 +196,21 @@ export default {
         this.reset();
         this.hideForm();
         NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.video.id}`, this.video).then(response => {
         this.reset();
-        this.isLoading = false;
         this.hideForm();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
@@ -227,28 +231,30 @@ export default {
 
     destroy() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.delete(`${this.routes.delete}/${this.videoToDelete.id}`).then(response => {
         const index = this.data.findIndex(x => x.id === this.videoToDelete.id);
         if (index > -1) {
           this.data.splice(index, 1);
         }
         this.videoToDelete = null;
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     toggle(video) {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.get(`${this.routes.toggle}/${video.id}`).then(response => {
         const index = this.data.findIndex(x => x.id === video.id);
         if (index > -1) {
           this.data[index].publish = response.data;
         }
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

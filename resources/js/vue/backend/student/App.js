@@ -26,13 +26,16 @@ const router = new VueRouter(
   }
 );
 
+// Interceptor
+import Interceptor from "@/shared/mixins/Interceptor";
+
 // App component
 import AppComponent from '@/backend/student/App.vue';
 
 // Mount App
 if (document.getElementById("app-user")) {
   const app = new Vue({
-    mixins: [],
+    mixins: [Interceptor],
     components: { 
       AppComponent,
     },

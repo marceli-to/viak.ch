@@ -23,7 +23,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -41,7 +41,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   props: {
     type: String
@@ -74,11 +74,14 @@ export default {
   
     submit() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
-        this.isLoading = true;
+        this.$store.commit('isLoading', true); 
         this.$router.push({ name: 'event-show', params: { uuid: this.$route.params.uuid } });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

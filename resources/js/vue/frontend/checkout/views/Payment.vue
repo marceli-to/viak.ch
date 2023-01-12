@@ -148,8 +148,10 @@ export default {
       NProgress.start();
       this.axios.put(`${this.routes.basket.payment}`, {'discount_code': this.discount_code}).then((response) => {
         this.$router.push({ name: `${this._getLocale()}-checkout-summary` });
-        NProgress.done();
-      });  
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
+      });
     },
 
     validateCode() {

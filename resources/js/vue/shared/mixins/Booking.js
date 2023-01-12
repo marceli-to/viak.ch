@@ -27,13 +27,16 @@ export default {
       NProgress.start();
       this.axios.put(`${this.routes.booking.cancel}/${this.uuidToDelete}`).then(response => {
         this.uuidToDelete = null;
-        if (this.$route.name == 'student-profile') {
+        if (this.$route.name == `${this._getLocale()}-student-profile`) {
           this.$toast.open(this.__('Die Buchung wurde annulliert.'));
           this.find();
         }
         else {
           this.$router.push({ name: `${this._getLocale()}-student-profile`});
         }
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     }
   }

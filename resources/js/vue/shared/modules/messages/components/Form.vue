@@ -6,14 +6,14 @@
         type="text" 
         v-model="data.subject" 
         required 
-        @focus="removeError('subject')" />
+        @focus="removeValidationError('subject')" />
     </form-group>
     <form-group :label="'Nachricht'" :required="true" :error="errors.body">
       <textarea 
         v-model="data.body" 
         required 
         class="is-large"
-        @focus="removeError('body')">
+        @focus="removeValidationError('body')">
       </textarea>
     </form-group>
     <form-group :label="'Anhänge'">
@@ -31,7 +31,7 @@
       </div>
     </form-group>
     <form-group>
-      <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+      <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
         {{ __('Senden') }}
       </a>
     </form-group>
@@ -40,7 +40,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
@@ -56,7 +56,7 @@ export default {
     Files
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   props: {
     redirect: {
@@ -105,11 +105,14 @@ export default {
   
     submit() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
-        this.isLoading = true;
+        this.$store.commit('isLoading', true); 
         this.$router.push({ name: this.$props.redirect, params: { uuid: this.$route.params.uuid } });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

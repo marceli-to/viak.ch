@@ -21,14 +21,14 @@
             type="number" 
             v-model="data.number"
             required 
-            @focus="removeError('number')" />
+            @focus="removeValidationError('number')" />
         </form-group>
         <form-group :label="'Titel'" :required="true" :error="errors.title">
           <input 
             type="text" 
             v-model="data.title.de" 
             required 
-            @focus="removeError('title')" />        
+            @focus="removeValidationError('title')" />        
         </form-group>
 
         <form-group :label="'Subtitel'" :required="true" :error="errors.subtitle">
@@ -36,7 +36,7 @@
             v-model="data.subtitle.de" 
             class="is-small has-autosize" 
             required 
-            @focus="removeError('subtitle')">
+            @focus="removeValidationError('subtitle')">
           </textarea>
         </form-group>
 
@@ -323,14 +323,14 @@
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
-          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
+          <a href="" @click.prevent="submit(true)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
             Speichern und schliessen
           </a>
-          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
+          <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
             Speichern
           </a>
         </grid>
-        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
+        <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
           Speichern
         </a>
       </form-group>
@@ -354,7 +354,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
@@ -385,7 +385,7 @@ export default {
     Collapsible
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [Validation, Helpers],
 
   props: {
     type: String
@@ -541,33 +541,39 @@ export default {
 
     store(redirect) {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
-        NProgress.done();
-        this.isLoading = false;
         if (redirect) {
           this.$router.push({ name: 'courses'});
         }
         else {
           this.$router.push({ name: 'course-edit', params: { id: response.data.courseId }});
         }
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
-      this.isLoading = true;
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'courses'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'courses'});
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

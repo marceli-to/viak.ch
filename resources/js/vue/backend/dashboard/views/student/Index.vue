@@ -38,7 +38,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import ContentListHeader from "@/shared/components/ui/layout/ContentListHeader.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
@@ -55,7 +54,6 @@ export default {
 
   components: {
     NProgress,
-    ErrorHandling,
     Grid,
     GridCol,
     ContentListHeader,

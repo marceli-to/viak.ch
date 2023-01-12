@@ -84,7 +84,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import SearchContainer from "@/shared/components/ui/form/Search.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
@@ -102,7 +101,6 @@ export default {
 
   components: {
     NProgress,
-    ErrorHandling,
     Grid,
     GridCol,
     ContentListHeader,

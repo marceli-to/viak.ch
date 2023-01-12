@@ -1,5 +1,5 @@
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import IconHeart from "@/shared/components/ui/icons/Heart.vue";
 
@@ -10,7 +10,7 @@ export default {
     IconHeart
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [i18n],
 
   data() {
     return {
@@ -72,7 +72,9 @@ export default {
           this.bookmarked = true;
           this.bookmarkUuid = response.data.uuid;
           this.$toast.open(this.__('Der Kurs wurde in der Merkliste gespeichert.'));
-          NProgress.done();
+        })
+        .catch(error => {
+          this.handleValidationErrors(error.response.data);
         });
       }
       else {
@@ -93,7 +95,9 @@ export default {
           const el = document.querySelector(`[data-bookmark="${this.bookmarkUuid}"]`);
           el.remove();
         }
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   },

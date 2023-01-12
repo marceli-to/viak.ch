@@ -69,7 +69,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
 import draggable from 'vuedraggable';
@@ -92,7 +91,6 @@ export default {
 
   components: {
     NProgress,
-    ErrorHandling,
     draggable,
     ContentListHeader,
     SearchContainer,
@@ -110,7 +108,7 @@ export default {
     GridCol
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Helpers, i18n],
 
   data() {
     return {

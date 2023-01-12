@@ -1,11 +1,11 @@
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import BasketCounter from "@/shared/mixins/BasketCounter";
 
 export default {
 
-  mixins: [ErrorHandling, i18n, BasketCounter],
+  mixins: [Validation, i18n, BasketCounter],
 
   props: {
     uuid: {
@@ -49,16 +49,16 @@ export default {
 
     getBasket() {
       NProgress.start();
-      this.isLoaded = false;
+      this.$store.commit('isLoading', true);
       this.axios.get(`${this.routes.basket.get}`).then(response => {
         this.basket = response.data;
         this.isLoaded = true;
-        NProgress.done();
       });
     },
 
     addToBasket(uuid) {
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.basket.add}/${uuid}`).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = true;
@@ -67,12 +67,15 @@ export default {
           type: 'dialog',
           style: 'success',
         });
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     removeFromBasket(uuid, reload = false) {
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.basket.delete}/${uuid}`).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = false;
@@ -81,7 +84,9 @@ export default {
           this.getBasket();
           return;
         }
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   }

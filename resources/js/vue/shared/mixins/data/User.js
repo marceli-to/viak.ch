@@ -1,5 +1,5 @@
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 
 export default {
@@ -8,7 +8,7 @@ export default {
     NProgress,
   },
 
-  mixins: [ErrorHandling, i18n],
+  mixins: [Validation, i18n],
 
   data() {
     return { 
@@ -46,18 +46,7 @@ export default {
       },
 
       // Validation
-      errors: {
-        firstname: null,
-        name: null,
-        phone: null,
-        gender_id: null,
-        new_email: null,
-        new_password: null,
-        new_password_confirmation: null,
-      },
-
-      // Store
-      store: {},
+      errors: {},
 
       // States
       isValid: false,
@@ -73,10 +62,6 @@ export default {
   },
 
   methods: {
-
-    /*
-    this.axios.all([])
-    */ 
 
     fetch() {
       this.isFetched = false;
@@ -101,11 +86,13 @@ export default {
 
     update() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.user.update}`, this.form).then(response => {
         this.hideForm();
-        this.isLoading = false;
         this.find();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

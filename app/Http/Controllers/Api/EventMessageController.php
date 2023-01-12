@@ -84,7 +84,7 @@ class EventMessageController extends Controller
         'recipient' => $booking->user->email,
         'mailable_id' => $message->id,
         'mailable_type' => \App\Models\Message::class,
-        'mailable_class' => \App\Mail\EventMessage::class
+        'mailable_class' => \App\Mail\EventMessageStudent::class
       ]);
 
       MessageUser::create([
@@ -100,7 +100,7 @@ class EventMessageController extends Controller
         'recipient' => auth()->user()->email,
         'mailable_id' => $message->id,
         'mailable_type' => \App\Models\Message::class,
-        'mailable_class' => \App\Mail\EventMessage::class
+        'mailable_class' => \App\Mail\EventMessageExpert::class
       ]);
     }
    

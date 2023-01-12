@@ -66,7 +66,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import Booking from "@/shared/mixins/Booking";
@@ -95,7 +94,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, i18n, Booking, Meta],
+  mixins: [i18n, Booking, Meta],
 
   data() {
     return {

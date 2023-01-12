@@ -8,16 +8,25 @@ export default new Vuex.Store({
     user: false,
     i18n: false,
     collapsibles: [],
+    isLoading: false,
   },
+
   mutations: {
-    user(state, user) {
-      state.user = user;
+    user(state, payload) {
+      state.user = payload;
     },
-    i18n(state, i18n) {
-      state.i18n = i18n;
+    
+    i18n(state, payload) {
+      state.i18n = payload;
     },
-    collapsibles(state, collapsibles) {
-      state.collapsibles = collapsibles;
+
+    collapsibles(state, payload) {
+      state.collapsibles = payload;
     },
-  }
+
+    isLoading(state, payload) {
+      state.isLoading = payload;
+    }
+  },
+
 });

@@ -83,7 +83,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
@@ -111,7 +111,7 @@ export default {
     FormGroup
   },
 
-  mixins: [ErrorHandling, i18n, Helpers],
+  mixins: [Validation, i18n, Helpers],
 
   data() {
     return {

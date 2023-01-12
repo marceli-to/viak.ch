@@ -4,6 +4,7 @@ import Payment from '@/frontend/checkout/views/Payment.vue';
 import Summary from '@/frontend/checkout/views/Summary.vue';
 
 const routes = [
+  
   {
     name: 'de-checkout-basket',
     path: '/de/checkout/basket',

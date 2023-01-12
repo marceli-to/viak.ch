@@ -7,13 +7,13 @@
     </template>
     <template #content>
       <form-group :label="'Beschreibung'" :required="true" :error="errors.description">
-        <input type="text" v-model="data.description.de" required @focus="removeError('description')" />
+        <input type="text" v-model="data.description.de" required @focus="removeValidationError('description')" />
       </form-group>
       <form-group :label="'Beschreibung (en)'">
         <input type="text" v-model="data.description.en" />
       </form-group>
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
@@ -34,7 +34,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
@@ -49,7 +49,7 @@ export default {
     BackLink,
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [Validation, Helpers],
 
   props: {
     type: String
@@ -121,27 +121,34 @@ export default {
 
     store() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'settings', params: { type: 'levels' } });
-        NProgress.done();
-        this.isLoading = true;
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'settings', params: { type: 'levels' } });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'settings', params: { type: 'levels' } });
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   },

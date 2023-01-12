@@ -38,7 +38,7 @@
               <template v-if="hasAdresses">
                 <div class="select-wrapper">
                   <select v-model="form.address_uuid">
-                    <option :value="null">Bitte wählen...</option>
+                    <option :value="null">{{ __('Bitte wählen...') }}</option>
                     <option 
                       v-for="(address) in user.invoice_addresses" 
                       :key="address.uuid" 
@@ -48,8 +48,8 @@
                   </select>
                 </div>
                 <div class="mt-1x sm:mt-2x align-right">
-                  <a href="/student/profile" class="text-xsmall link-underline">
-                    Adressen verwalten
+                  <a href="/de/student/profil" class="text-xsmall link-underline">
+                    {{ __('Adressen verwalten') }}
                   </a>
                 </div>
               </template>
@@ -79,7 +79,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
@@ -107,7 +107,7 @@ export default {
     FormGroup
   },
 
-  mixins: [ErrorHandling, i18n, Helpers],
+  mixins: [Validation, i18n, Helpers],
 
   data() {
     return { 
@@ -187,9 +187,12 @@ export default {
       }
 
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.basket.update}`, this.form).then(response => {
         this.$router.push({ name: `${this._getLocale()}-checkout-payment` });
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

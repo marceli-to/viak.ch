@@ -12,7 +12,7 @@
         :error="errors.gender_id"
         v-if="isFetchedSettings">
         <div class="select-wrapper">
-          <select v-model="data.gender_id" @change="removeError('gender_id')">
+          <select v-model="data.gender_id" @change="removeValidationError('gender_id')">
             <option 
               v-for="(option) in settings.genders" 
               :key="option.id" 
@@ -23,23 +23,23 @@
         </div>
       </form-group>
       <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
-        <input type="text" v-model="data.firstname" required @focus="removeError('firstname')" />
+        <input type="text" v-model="data.firstname" required @focus="removeValidationError('firstname')" />
       </form-group>
       <form-group :label="'Name'" :required="true" :error="errors.name">
-        <input type="text" v-model="data.name" required @focus="removeError('name')" />
+        <input type="text" v-model="data.name" required @focus="removeValidationError('name')" />
       </form-group>
       <form-group :label="'Firma'">
         <input type="text" v-model="data.company" />
       </form-group>
       <form-group :label="'E-Mail'" :required="true" :error="errors.email">
-        <input type="email" v-model="data.email" required autocomplete="off" aria-autocomplete="off" @focus="removeError('email')" />
+        <input type="email" v-model="data.email" required autocomplete="off" aria-autocomplete="off" @focus="removeValidationError('email')" />
       </form-group>
       <form-group :label="'Telefon'">
         <input type="text" v-model="data.phone" maxlength="30" />
       </form-group>
       <grid class="sm:grid-cols-12">
         <form-group :label="'Strasse'" :required="true" class="span-6" :error="errors.street">
-          <input type="text" v-model="data.street" required @focus="removeError('street')" />
+          <input type="text" v-model="data.street" required @focus="removeValidationError('street')" />
         </form-group>
         <form-group :label="'Nr.'" class="span-6">
           <input type="text" v-model="data.street_no" maxlength="5" />
@@ -47,15 +47,15 @@
       </grid>
       <grid class="sm:grid-cols-12">
         <form-group :label="'PLZ'" :required="true" class="span-6" :error="errors.zip">
-          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeError('zip')" />
+          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeValidationError('zip')" />
         </form-group>
         <form-group :label="'Ort'" :required="true" class="span-6" :error="errors.city">
-          <input type="text" v-model="data.city" required @focus="removeError('city')" />
+          <input type="text" v-model="data.city" required @focus="removeValidationError('city')" />
         </form-group>
       </grid>
       <form-group :label="'Land'" :required="true" :error="errors.country_id">
         <div class="select-wrapper">
-          <select v-model="data.country_id" @change="removeError('country_id')">
+          <select v-model="data.country_id" @change="removeValidationError('country_id')">
             <option 
               v-for="(option) in settings.countries" 
               :key="option.id" 
@@ -121,14 +121,14 @@
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
-          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
+          <a href="" @click.prevent="submit(true)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
             Speichern und schliessen
           </a>
-          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
+          <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
             Speichern
           </a>
         </grid>
-        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
+        <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
           Speichern
         </a>
       </form-group>
@@ -149,7 +149,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import TinymceEditor from "@tinymce/tinymce-vue";
@@ -180,7 +180,7 @@ export default {
     Collapsible
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   props: {
     type: String
@@ -285,33 +285,42 @@ export default {
 
     store(redirect) {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
-        this.isLoading = true;
+        this.$store.commit('isLoading', true); 
         if (redirect) {
           this.$router.push({ name: 'experts'});
         }
         else {
           this.$router.push({ name: 'expert-edit', params: { id: response.data.userId }});
         }
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.data.id}`, this.data).then(response => {
         this.$router.push({ name: 'experts'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'experts'});
-        this.isLoading = false;
-        NProgress.done();
-      });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
+      });  
     },
 
     sorted(data, by, dir){

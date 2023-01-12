@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EventMessage extends Mailable
+class EventMessageExpert extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -33,6 +33,7 @@ class EventMessage extends Mailable
   {
     $event   = $this->message->messageable->with('course')->find($this->message->messageable->id);
     $message = $this->message->with('user')->find($this->message->id);
+    
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject($this->message->subject)
                 ->with(
@@ -41,6 +42,6 @@ class EventMessage extends Mailable
                       'event' => $event
                     ]
                   )
-                ->markdown('mail.event.message');
+                ->markdown('mail.event.message-expert');
   }
 }

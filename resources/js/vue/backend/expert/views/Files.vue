@@ -23,7 +23,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Meta from "@/shared/mixins/Meta";
 import Helpers from "@/shared/mixins/Helpers";
@@ -42,7 +42,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, Helpers, i18n, Meta],
+  mixins: [Validation, Helpers, i18n, Meta],
 
   props: {
     type: String
@@ -76,11 +76,14 @@ export default {
   
     submit() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         NProgress.done();
-        this.isLoading = true;
+        this.$store.commit('isLoading', true); 
         this.$router.push({ name: `${this._getLocale()}-expert-course-event`, params: { uuid: this.$route.params.uuid } });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

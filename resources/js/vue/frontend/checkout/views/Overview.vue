@@ -38,7 +38,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
 import Basket from "@/shared/mixins/Basket";
 import StackedListContainer from "@/shared/components/ui/layout/StackedListContainer.vue";
@@ -58,7 +57,7 @@ export default {
     IconArrowRight
   },
 
-  mixins: [ErrorHandling, i18n, Basket],
+  mixins: [i18n, Basket],
 
   data() {
     return {

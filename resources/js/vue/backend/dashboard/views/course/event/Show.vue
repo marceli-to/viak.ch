@@ -126,7 +126,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -162,7 +162,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, i18n, Helpers],
+  mixins: [Validation, i18n, Helpers],
 
   data() {
     return {
@@ -189,9 +189,7 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
-        console.log(this.data);
         this.isFetched = true;
-        NProgress.done();
       });
     },
 
@@ -211,6 +209,9 @@ export default {
       this.axios.post(`${this.routes.updateParticipation}`, data).then(response => {
         this.$toast.open(this.__('Teilnahme angepasst'));
       })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
+      });
     }
   },
 }

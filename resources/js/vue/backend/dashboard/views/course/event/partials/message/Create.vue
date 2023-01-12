@@ -14,7 +14,6 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
 import i18n from "@/shared/mixins/i18n";
 import Meta from "@/shared/mixins/Meta";
 import Helpers from "@/shared/mixins/Helpers";
@@ -31,7 +30,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, Helpers, i18n, Meta],
+  mixins: [Helpers, i18n, Meta],
 
   data() {
     return {

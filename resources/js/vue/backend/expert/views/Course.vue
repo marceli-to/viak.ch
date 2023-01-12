@@ -101,7 +101,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Meta from "@/shared/mixins/Meta";
 import i18n from "@/shared/mixins/i18n";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -135,7 +135,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, i18n, Meta],
+  mixins: [Validation, i18n, Meta],
 
   data() {
     return {

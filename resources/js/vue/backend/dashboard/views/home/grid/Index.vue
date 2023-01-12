@@ -56,7 +56,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import draggable from 'vuedraggable';
@@ -85,7 +85,7 @@ export default {
     IconTrash
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   data() {
     return {
@@ -167,28 +167,37 @@ export default {
 
     addCourse(item, course) {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.addCourse}/${item}`, {course_id: course.id}).then(response => {
         this.fetch();
         this.$refs.courseSelector.hide();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     addNews(item, news) {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.addNews}/${item}`, {news_id: news.id}).then(response => {
         this.$refs.newsSelector.hide();
         this.fetch();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     addCode(item, code, ratio = null, title = null) {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.addCode}/${item}`, {title: title, ratio: ratio, code: code}).then(response => {
         this.$refs.codeInput.hide();
         this.fetch();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
@@ -204,27 +213,36 @@ export default {
       };
 
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, nextRow).then(response => {
         this.fetch();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     deleteRow(id) {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.delete(`${this.routes.delete}/${id}`).then(response => {
         const index = this.grid.findIndex(x => x.id == id);
         this.grid.splice(index, 1);
         this.$toast.open(this.__('Zeile wurde gelöscht'));
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     resetItem(id) {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.get(`${this.routes.resetItem}/${id}`).then(response => {
         this.fetch();
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

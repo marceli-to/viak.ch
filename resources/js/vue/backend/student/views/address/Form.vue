@@ -9,18 +9,18 @@
 
       <grid class="sm:grid-cols-12">
         <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.firstname">
-          <input type="text" v-model="data.firstname" @focus="removeError('firstname')" />
+          <input type="text" v-model="data.firstname" @focus="removeValidationError('firstname')" />
         </form-group>
         <form-group :label="__('Name')" class="sm:span-6" :error="errors.name">
-          <input type="text" v-model="data.name" @focus="removeError('name')" />
+          <input type="text" v-model="data.name" @focus="removeValidationError('name')" />
         </form-group>
       </grid>
       <form-group :label="__('Firma')" :error="errors.company">
-        <input type="text" v-model="data.company" @focus="removeError('company')" />
+        <input type="text" v-model="data.company" @focus="removeValidationError('company')" />
       </form-group>
       <grid class="sm:grid-cols-12">
         <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">
-          <input type="text" v-model="data.street" required @focus="removeError('street')" />
+          <input type="text" v-model="data.street" required @focus="removeValidationError('street')" />
         </form-group>
         <form-group :label="__('Nr.')" class="span-6">
           <input type="text" v-model="data.street_no" maxlength="5" />
@@ -28,10 +28,10 @@
       </grid>
       <grid class="sm:grid-cols-12">
         <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.zip">
-          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeError('zip')" />
+          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeValidationError('zip')" />
         </form-group>
         <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.city">
-          <input type="text" v-model="data.city" required @focus="removeError('city')" />
+          <input type="text" v-model="data.city" required @focus="removeValidationError('city')" />
         </form-group>
       </grid>
       <form-group :label="__('Land')" :required="true" v-if="isFetchedSettings">
@@ -47,7 +47,7 @@
         </div>
       </form-group>
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
@@ -68,7 +68,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import i18n from "@/shared/mixins/i18n";
 import { TheMask } from "vue-the-mask";
@@ -95,7 +95,7 @@ export default {
     BackLink
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   props: {
     type: String
@@ -175,27 +175,34 @@ export default {
 
     store() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: `${this._getLocale()}-student-profile`});
-        NProgress.done();
-        this.isLoading = true;
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.update}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$router.push({ name: `${this._getLocale()}-student-profile`});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.delete}/${this.data.uuid}`).then(response => {
         this.$router.push({ name: `${this._getLocale()}-student-profile`});
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   },

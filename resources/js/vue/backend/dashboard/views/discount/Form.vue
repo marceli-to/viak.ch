@@ -7,10 +7,10 @@
     </template>
     <template #content>
       <form-group :label="'Code'" :required="true" :error="errors.code">
-        <input type="text" v-model="data.code" disabled required @focus="removeError('firstname')" />
+        <input type="text" v-model="data.code" disabled required @focus="removeValidationError('firstname')" />
       </form-group>
       <form-group :label="'Betrag oder Prozentsatz'" :required="true" :error="errors.amount">
-        <input type="number" min="0" v-model="data.amount" required @focus="removeError('amount')" />
+        <input type="number" min="0" v-model="data.amount" required @focus="removeValidationError('amount')" />
       </form-group>
 
       <grid class="grid-cols-12 mt-3x sm:mt-6x">
@@ -38,7 +38,7 @@
               :masked="true"
               name="valid_from"
               placeholder="dd.mm.YYYY"
-              @focus="removeError('valid_from')"
+              @focus="removeValidationError('valid_from')"
               v-model="data.valid_from">
             </the-mask>
           </form-group>
@@ -51,7 +51,7 @@
               :masked="true"
               name="valid_to"
               placeholder="dd.mm.YYYY"
-              @focus="removeError('valid_to')"
+              @focus="removeValidationError('valid_to')"
               v-model="data.valid_to">
             </the-mask>
           </form-group>
@@ -59,7 +59,7 @@
       </grid>
 
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
@@ -80,7 +80,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import { TheMask } from "vue-the-mask";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
@@ -105,7 +105,7 @@ export default {
     TheMask
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [Validation, Helpers],
 
   props: {
     type: String
@@ -171,6 +171,9 @@ export default {
         this.data.code = response.data;
         this.isFetched = true;
         NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
@@ -186,27 +189,34 @@ export default {
 
     store() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'discount-codes'});
-        NProgress.done();
-        this.isLoading = true;
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'discount-codes'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'discount-codes'});
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

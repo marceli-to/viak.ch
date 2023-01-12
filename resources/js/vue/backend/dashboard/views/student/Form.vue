@@ -12,7 +12,7 @@
         :error="errors.gender_id"
         v-if="isFetchedSettings">
         <div class="select-wrapper">
-          <select v-model="data.gender_id" @change="removeError('gender_id')">
+          <select v-model="data.gender_id" @change="removeValidationError('gender_id')">
             <option 
               v-for="(option) in settings.genders" 
               :key="option.id" 
@@ -23,17 +23,17 @@
         </div>
       </form-group>
       <form-group :label="'Vorname'" :required="true" :error="errors.firstname">
-        <input type="text" v-model="data.firstname" required @focus="removeError('firstname')" />
+        <input type="text" v-model="data.firstname" required @focus="removeValidationError('firstname')" />
       </form-group>
       <form-group :label="'Name'" :required="true" :error="errors.name">
-        <input type="text" v-model="data.name" required @focus="removeError('name')" />
+        <input type="text" v-model="data.name" required @focus="removeValidationError('name')" />
       </form-group>
-      <form-group :label="'Telefon'">
-        <input type="text" v-model="data.phone" maxlength="30" />
+      <form-group :label="'Telefon'" :required="true" class="span-6" :error="errors.phone">
+        <input type="text" v-model="data.phone" required maxlength="30" @focus="removeValidationError('phone')" />
       </form-group>
       <grid class="sm:grid-cols-12">
         <form-group :label="'Strasse'" :required="true" class="span-6" :error="errors.street">
-          <input type="text" v-model="data.street" required @focus="removeError('street')" />
+          <input type="text" v-model="data.street" required @focus="removeValidationError('street')" />
         </form-group>
         <form-group :label="'Nr.'" class="span-6">
           <input type="text" v-model="data.street_no" maxlength="5" />
@@ -41,10 +41,10 @@
       </grid>
       <grid class="sm:grid-cols-12">
         <form-group :label="'PLZ'" :required="true" class="span-6" :error="errors.zip">
-          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeError('zip')" />
+          <input type="text" v-model="data.zip" required maxlength="10" @focus="removeValidationError('zip')" />
         </form-group>
         <form-group :label="'Ort'" :required="true" class="span-6" :error="errors.city">
-          <input type="text" v-model="data.city" required @focus="removeError('city')" />
+          <input type="text" v-model="data.city" required @focus="removeValidationError('city')" />
         </form-group>
       </grid>
       <form-group 
@@ -53,7 +53,7 @@
         :error="errors.country_id" 
         v-if="isFetchedSettings">
         <div class="select-wrapper">
-          <select v-model="data.country_id" @change="removeError('country_id')">
+          <select v-model="data.country_id" @change="removeValidationError('country_id')">
             <option 
               v-for="(option) in settings.countries" 
               :key="option.id" 
@@ -70,7 +70,7 @@
         </div>
       </form-group>
       <form-group>
-        <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+        <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
@@ -91,7 +91,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
@@ -121,7 +121,7 @@ export default {
     Collapsible
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [Validation, Helpers],
 
   props: {
     type: String
@@ -221,27 +221,31 @@ export default {
 
     store() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'students'});
-        NProgress.done();
-        this.isLoading = true;
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'students'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'students'});
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
   },

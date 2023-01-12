@@ -19,7 +19,7 @@
       <form method="POST">
         <form-group :label="__('Geschlecht')" :required="true" :error="errors.gender_id">
           <div class="select-wrapper">
-            <select v-model="form.gender_id" @change="removeError('gender_id')">
+            <select v-model="form.gender_id" @change="removeValidationError('gender_id')">
               <option 
                 v-for="(option) in settings.genders" 
                 :key="option.id" 
@@ -30,10 +30,10 @@
           </div>
         </form-group>
         <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
-          <input type="text" v-model="form.firstname" required @focus="removeError('firstname')" />
+          <input type="text" v-model="form.firstname" required @focus="removeValidationError('firstname')" />
         </form-group>
         <form-group :label="__('Name')" :required="true" :error="errors.name">
-          <input type="text" v-model="form.name" required @focus="removeError('name')" />
+          <input type="text" v-model="form.name" required @focus="removeValidationError('name')" />
         </form-group>
         <form-group :label="__('Firma')">
           <input type="text" v-model="form.company" />
@@ -42,24 +42,24 @@
           <input type="text" v-model="form.phone" maxlength="30" />
         </form-group>
         <grid class="sm:grid-cols-12">
-          <form-group :label="__('Strasse')" :required="true" class="span-6" :error="errors.street">
-            <input type="text" v-model="form.street" required @focus="removeError('street')" />
+          <form-group :label="__('Strasse')" class="span-6">
+            <input type="text" v-model="form.street" />
           </form-group>
           <form-group :label="__('Nr.')" class="span-6">
             <input type="text" v-model="form.street_no" maxlength="5" />
           </form-group>
         </grid>
         <grid class="sm:grid-cols-12">
-          <form-group :label="__('PLZ')" :required="true" class="span-6" :error="errors.zip">
-            <input type="text" v-model="form.zip" required maxlength="10" @focus="removeError('zip')" />
+          <form-group :label="__('PLZ')" class="span-6">
+            <input type="text" v-model="form.zip" maxlength="10" />
           </form-group>
-          <form-group :label="__('Ort')" :required="true" class="span-6" :error="errors.city">
-            <input type="text" v-model="form.city" required @focus="removeError('city')" />
+          <form-group :label="__('Ort')" class="span-6">
+            <input type="text" v-model="form.city" />
           </form-group>
         </grid>
         <form-group :label="__('Land')" :required="true" :error="errors.gender_id">
           <div class="select-wrapper">
-            <select v-model="form.country_id" @change="removeError('gender_id')">
+            <select v-model="form.country_id" @change="removeValidationError('gender_id')">
               <option 
                 v-for="(option) in settings.countries" 
                 :key="option.id" 
@@ -76,19 +76,19 @@
           </template>
           <template #content>
             <form-group :label="__('E-Mail')" :error="errors.new_email">
-              <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeError('new_email')" />
+              <input type="email" v-model="form.new_email" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeValidationError('new_email')" />
             </form-group>
             <form-group :label="__('Passwort')" :error="errors.new_password">
-              <input type="password" v-model="form.new_password" required autocomplete="new-password" aria-autocomplete="off" @focus="removeError('new_password')" />
+              <input type="password" v-model="form.new_password" required autocomplete="new-password" aria-autocomplete="off" @focus="removeValidationError('new_password')" />
               <div class="requirements">{{ __('min. 8 Zeichen') }}</div>
             </form-group>
             <form-group :label="__('Passwort wiederholen')" :error="errors.new_password_confirmation">
-              <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeError('new_password_confirmation')" />
+              <input type="password" v-model="form.new_password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeValidationError('new_password_confirmation')" />
             </form-group>
           </template>
         </collapsible>
         <form-group>
-          <a href="" @click.prevent="update()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          <a href="" @click.prevent="update()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
             {{ __('Speichern') }}
           </a>
         </form-group>

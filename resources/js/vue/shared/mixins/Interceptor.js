@@ -1,14 +1,11 @@
 import NProgress from 'nprogress';
 
 export default {
-
-  data() {
-    return { 
-      //errors: null,
-    };
-  },
   
   mounted() {
+    window.intercepted.$on('response:200', data => {
+      this.success(data);
+    });
 
     window.intercepted.$on('response:401', data => {
       this.unauthorized(data);
@@ -56,23 +53,22 @@ export default {
 
   methods: {
 
-    validationError(data) {
-      let errors = {};
-      data.body.forEach(function(key) {
-        errors[key.field] = key.error;
-      });
-      this.errors = errors;
-      this.isLoading = false;
+    success() {
+      NProgress.done();
+      this.$store.commit('isLoading', false); 
+    },
+
+    validationError() {
       NProgress.done();
       this.$toast.open({
         'message': 'Bitte alle mit * markierten Felder prüfen!',
         'type': 'error'
-      });
+      });   
     },
 
     serverError(data) {
-      this.isLoading = false;
       NProgress.done();
+      this.$store.commit('isLoading', false);
       this.$refs.notification.init({
         message: `${data.status} ${data.code}<br>${data.body.message}`,
         type: 'alert',
@@ -81,8 +77,8 @@ export default {
     },
 
     contentTooLarge(data) {
-      this.isLoading = false;
       NProgress.done();
+      this.$store.commit('isLoading', false);
       this.$refs.notification.init({
         message: `${data.status} ${data.code}<br>${data.body.message}`,
         type: 'alert',
@@ -91,14 +87,14 @@ export default {
     },
 
     notFoundError(data) {
-      this.isLoading = false;
       NProgress.done();
+      this.$store.commit('isLoading', false);
       this.$router.push({ name: 'not-found' });
     },
 
     notAllowed(data) {
-      this.isLoading = false;
       NProgress.done();
+      this.$store.commit('isLoading', false);
       this.$refs.notification.init({
         message: `${data.status} ${data.code}<br>${data.body.message}`,
         type: 'alert',
@@ -107,18 +103,15 @@ export default {
     },
 
     forbiddenError(data) {
-      this.isLoading = false;
       NProgress.done();
+      this.$store.commit('isLoading', false);
       this.$router.push({ name: 'forbidden' });
     },
 
     unauthorized(data) {
+      NProgress.done();
+      this.$store.commit('isLoading', false);
       document.location.href = '/login';
     },
-
-    removeError(field) {
-      this.errors[field] = null;
-    }
   },
-
 };

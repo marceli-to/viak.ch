@@ -37,7 +37,7 @@
               type="number" 
               v-model="data.min_participants"
               required 
-              @focus="removeError('min_participants')" />
+              @focus="removeValidationError('min_participants')" />
           </form-group>
           
           <form-group :label="'max. Teilnehmer'" :required="true" :error="errors.max_participants" class="span-6">
@@ -45,7 +45,7 @@
               type="number" 
               v-model="data.max_participants"
               required 
-              @focus="removeError('max_participants')" />
+              @focus="removeValidationError('max_participants')" />
           </form-group>
         </grid>
 
@@ -76,7 +76,7 @@
           :error="errors.location_id"
           v-if="isFetchedSettings">
           <div class="select-wrapper">
-            <select v-model="data.location_id" @change="removeError('location_id')">
+            <select v-model="data.location_id" @change="removeValidationError('location_id')">
               <option 
                 v-for="(option) in settings.locations" 
                 :key="option.id" 
@@ -146,7 +146,7 @@
           </div>
         </form-group>
         <form-group>
-          <a href="" @click.prevent="submit()" :class="[isLoading ? 'is-disabled' : '', 'btn-primary']">
+          <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
             Speichern
           </a>
         </form-group>
@@ -227,7 +227,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import { TheMask } from "vue-the-mask";
@@ -262,7 +262,7 @@ export default {
     TheMask
   },
 
-  mixins: [ErrorHandling, Helpers, i18n],
+  mixins: [Validation, Helpers, i18n],
 
   props: {
 
@@ -374,57 +374,75 @@ export default {
 
     store() {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.data.course_id = this.$route.params.courseId;
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'courses' });
-        NProgress.done();
-        this.isLoading = true;
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$router.push({ name: 'courses' });
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroyEvent() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'courses' });
-        this.isLoading = false;
-        NProgress.done();
         this.actionToBeConfirmed = null;  
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     confirmEvent() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.confirm}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist bestätigt'));
-        this.isLoading = false;
-        NProgress.done();
         this.data.is_confirmed = 1;
         this.actionToBeConfirmed = null;  
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     cancelEvent() {
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.cancel}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist abgesagt'));
         this.data.is_cancelled = 1;
         this.actionToBeConfirmed = null;  
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     closeEvent() {
+      NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.close}/${this.$route.params.uuid}`, this.data).then(response => {
         this.$toast.open(this.__('Die Veranstaltung ist geschlossen'));
         this.data.is_closed = 1;
         this.actionToBeConfirmed = null;  
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

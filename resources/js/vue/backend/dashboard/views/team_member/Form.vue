@@ -21,14 +21,14 @@
             type="text" 
             v-model="data.firstname"
             required 
-            @focus="removeError('firstname')" />
+            @focus="removeValidationError('firstname')" />
         </form-group>
         <form-group :label="'Name'" :required="true" :error="errors.name">
           <input 
             type="text" 
             v-model="data.name"
             required 
-            @focus="removeError('name')" />
+            @focus="removeValidationError('name')" />
         </form-group>
         <form-group :label="'Titel'">
           <textarea v-model="data.title.de" class="is-small has-autosize"></textarea>
@@ -83,14 +83,14 @@
 
       <form-group>
         <grid class="sm:grid-cols-12" v-if="$props.type == 'create'">
-          <a href="" @click.prevent="submit(true)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
+          <a href="" @click.prevent="submit(true)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary xs:mb-3x sm:span-6']">
             Speichern und schliessen
           </a>
-          <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
+          <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']">
             Speichern
           </a>
         </grid>
-        <a href="" @click.prevent="submit(false)" :class="[isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
+        <a href="" @click.prevent="submit(false)" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary sm:span-6']" v-else>
           Speichern
         </a>
       </form-group>
@@ -112,7 +112,7 @@
 </template>
 <script>
 import NProgress from 'nprogress';
-import ErrorHandling from "@/shared/mixins/ErrorHandling";
+import Validation from "@/shared/mixins/Validation";
 import Helpers from "@/shared/mixins/Helpers";
 import TinymceEditor from "@tinymce/tinymce-vue";
 import tinyConfig from "@/shared/config/tiny.js";
@@ -141,7 +141,7 @@ export default {
     Collapsible
   },
 
-  mixins: [ErrorHandling, Helpers],
+  mixins: [Validation, Helpers],
 
   props: {
     type: String
@@ -232,33 +232,39 @@ export default {
 
     store(redirect) {
       NProgress.start();
-      this.isLoading = true;
+      this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
-        NProgress.done();
-        this.isLoading = false;
         if (redirect) {
           this.$router.push({ name: 'content-team-members'});
         }
         else {
           this.$router.push({ name: 'content-team-member-edit', params: { id: response.data.teamMemberId }});
         }
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     update() {
-      this.isLoading = true;
+      NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.put(`${this.routes.update}/${this.$route.params.id}`, this.data).then(response => {
         this.$router.push({ name: 'content-team-members'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 
     destroy() {
-      this.isLoading = true;
       NProgress.start();
+      this.$store.commit('isLoading', true);
       this.axios.delete(`${this.routes.delete}/${this.data.id}`).then(response => {
         this.$router.push({ name: 'content-team-members'});
-        this.isLoading = false;
-        NProgress.done();
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
       });
     },
 

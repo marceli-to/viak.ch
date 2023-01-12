@@ -25,10 +25,13 @@ import CheckoutComponent from '@/frontend/checkout/Index.vue';
 // Vuex store
 import store from '@/shared/config/store';
 
+// Interceptor
+import Interceptor from "@/shared/mixins/Interceptor";
+
 // Mount App
 if (document.getElementById("app-checkout")) {
   const app = new Vue({
-    mixins: [],
+    mixins: [Interceptor],
     components: { 
       CheckoutComponent
     },
