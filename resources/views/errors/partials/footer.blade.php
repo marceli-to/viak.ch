@@ -4,7 +4,7 @@
     +41 43 501 40 40
   </a>
   <br>
-  <a href="mailto:mail@visualisierungs-akademie.ch" title="{{ __('per E-Mail') }}">
-    mail@visualisierungs-akademie.ch
+  <a href="mailto:hallo@visualisierungs-akademie.ch" title="{{ __('per E-Mail') }}">
+    hallo@visualisierungs-akademie.ch
   </a>
 </p>
