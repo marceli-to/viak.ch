@@ -1,87 +1,72 @@
 <template>
   <div>
-    <div v-if="$props.closed">
+    <div v-if="state.closed">
       <em>
-        <template v-if="$props.dashboard">
-          {{ __('Kurs abgeschlossen') }}
-        </template>
-        <template v-else>
-          {{ __('Kurs ist abgeschlossen') }}
-        </template>
-
+        {{ mode.dashboard ? __('Kurs abgeschlossen') : __('Kurs ist abgeschlossen') }}
       </em>
     </div>
     
-    <div v-else-if="$props.confirmed && !$props.cancelled">
-      <em class="text-success">
-
-        <template v-if="$props.dashboard">
-          {{ __('Kurs bestätigt') }}
-        </template>
-        <template v-else>
-          {{ __('Kurs findet statt') }}
-        </template>
-
+    <div v-else-if="$props.cancelled">
+      <em class="text-danger">
+        {{ mode.dashboard ? __('Kurs abgesagt') : __('Kurs wurde abgesagt') }}
       </em>
     </div>
 
-    <div v-else-if="$props.cancelled">
-      <em class="text-danger">
-
-        <template v-if="$props.dashboard">
-          {{ __('Kurs abgesagt') }}
-        </template>
-        <template v-else>
-          {{ __('Kurs wurde abgesagt') }}
-        </template>
-
+    <div v-else-if="state.confirmed">
+      <em class="text-success">
+        {{ mode.dashboard ? __('Kurs bestätigt') : __('Kurs findet statt') }}
       </em>
     </div>
 
     <div v-else>
       <em class="text-warning">
-
-        <template v-if="$props.dashboard">
-          {{ __('Kurs nicht bestätigt') }}
-        </template>
-        <template v-else>
-          {{ __('Kurs offen, wird bestätigt') }}
-        </template>
-
+        {{ mode.dashboard ? __('Kurs nicht bestätigt') : __('Kurs offen, wird bestätigt') }}
       </em>
     </div>
   </div>
 </template>
 <script>
 import i18n from "@/shared/mixins/i18n";
-import { mounted } from "vue2-dropzone";
 
 export default {
   
   mixins: [i18n],
 
-  props: {
-
-    closed: {
-      type: [Number, Boolean],
-      default: false,
-    },
-
-    confirmed: {
-      type: [Number, Boolean],
-      default: false,
-    },
-
-    cancelled: {
-      type: [Number, Boolean],
-      default: false,
-    },
-
-    dashboard: {
-      type: [Number, Boolean],
-      default: false,
+  data() {
+    return {
+      state: {
+        confirmed: false,
+        closed: false,
+        cancelled: false,
+      },
+      mode: {
+        dashboard: false,
+      }
     }
+  },
 
+  props: {
+    event: {
+      type: Object,
+      default: null,
+    },
+  },
+
+  mounted() {
+    this.setState();
+    this.setMode();
+  },
+
+  methods: {
+    setState() {
+      this.state.confirmed = this.$props.event.is_confirmed;
+      this.state.closed = this.$props.event.is_closed;
+      this.state.cancelled = this.$props.event.is_cancelled;
+    },
+
+    setMode() {
+      this.mode.dashboard = this.$props.dashboard ? true : false;
+    }
   }
 }
 </script>

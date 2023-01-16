@@ -173,7 +173,7 @@
           {{ __('Gebuchte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.events">
+          <div v-if="user.events.length > 0">
             <div v-for="(booking, index) in user.events" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
@@ -204,7 +204,7 @@
           {{ __('Absolvierte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.events_participated">
+          <div v-if="user.events_participated.length > 0">
             <div v-for="(booking, index) in user.events_participated" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
@@ -234,20 +234,23 @@
           {{ __('Dokumente') }}
         </template>
         <template #content>
-          
-          <stacked-list-document 
-            v-for="document in user.documents" 
-            :key="document.uuid" 
-            :document="document">
-          </stacked-list-document>
+          <div v-if="user.documents.length > 0">
+            <stacked-list-document 
+              v-for="document in user.documents" 
+              :key="document.uuid" 
+              :document="document">
+            </stacked-list-document>
 
-          <div class="mt-4x">
-            <router-link :to="{name: `${_getLocale()}-student-documents`}" class="link-helper">
-              <span>{{ __('Alle Dokumente anzeigen') }}</span>
-              <icon-arrow-right />
-            </router-link>
+            <div class="mt-4x">
+              <router-link :to="{name: `${_getLocale()}-student-documents`}" class="link-helper">
+                <span>{{ __('Alle Dokumente anzeigen') }}</span>
+                <icon-arrow-right />
+              </router-link>
+            </div>
           </div>
-          
+          <div v-else>
+            <p class="no-results">{{ __('Es sind noch keine Dokumente vorhanden.') }}</p>
+          </div>
         </template>
       </collapsible>
     </collapsible-container>

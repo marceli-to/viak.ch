@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-  
   /**
    * Get a list of news
    * 
@@ -27,7 +26,7 @@ class NewsController extends Controller
    */
   public function find(News $news)
   {
-    $news = News::with('image')->find($news->id);
+    $news = News::with('images')->find($news->id);
     return response()->json($news);
   }
 
@@ -42,9 +41,7 @@ class NewsController extends Controller
     $news = News::create(
       array_merge(
         $request->all(), 
-        [
-          'uuid' => \Str::uuid(), 
-        ]
+        ['uuid' => \Str::uuid()]
       )
     );
 
@@ -60,7 +57,6 @@ class NewsController extends Controller
    */
   public function update(News $news, NewsStoreRequest $request)
   {
-    $news = News::findOrFail($news->id);
     $news->update($request->all());
     return response()->json('successfully updated');
   }

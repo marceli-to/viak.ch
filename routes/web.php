@@ -39,8 +39,8 @@ Route::multilingual('experten', [ExpertController::class, 'list'])->name('page.e
 Route::get('de/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('de.page.expert');
 Route::get('en/expert/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('en.page.expert');
 
-Route::get('de/student/registration', [RegisterController::class, 'register'])->name('de.page.register.form');
-Route::get('en/student/register', [RegisterController::class, 'register'])->name('en.page.register.form');
+Route::get('de/registration', [RegisterController::class, 'register'])->name('de.page.register.form');
+Route::get('en/register', [RegisterController::class, 'register'])->name('en.page.register.form');
 
 // URL based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);

@@ -29,9 +29,7 @@
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
         <event-state 
-          :confirmed="$props.event.is_confirmed" 
-          :cancelled="$props.event.is_cancelled"
-          :closed="$props.event.is_closed"
+          :event="$props.event" 
           :dashboard="true"
         />
       </div>
@@ -101,9 +99,7 @@
         </template>
 
         <event-state 
-          :confirmed="$props.event.is_confirmed"
-          :cancelled="$props.event.is_cancelled"
-          :closed="$props.event.is_closed"
+          :event="$props.event"
           v-if="!$props.basket"
          />
 

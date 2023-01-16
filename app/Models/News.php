@@ -75,6 +75,12 @@ class News extends Base
     return $this->morphOne(Image::class, 'imageable');
   }
 
+  public function images()
+  {
+    return $this->morphMany(Image::class, 'imageable');
+  }
+
+
   public function publishedImage()
   {
     return $this->morphOne(Image::class, 'imageable')->where('publish', 1);
