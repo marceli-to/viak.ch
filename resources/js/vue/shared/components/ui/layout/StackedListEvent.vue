@@ -20,22 +20,20 @@
         <template v-if="$props.event.online">
           {{ __('Online') }}
         </template>
-
         <template v-else-if="$props.event.location && $props.event.location.description">
-          {{ $props.event.location.description }}
+          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')">
+            {{ $props.event.location.description }}
+          </a>
         </template>
-
         <template v-if="$props.event.experts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
-        
         <event-state 
           :confirmed="$props.event.is_confirmed" 
           :cancelled="$props.event.is_cancelled"
           :closed="$props.event.is_closed"
           :dashboard="true"
         />
-
       </div>
       <div class="stacked-list__col stacked-list__col--action">
         <div>
@@ -93,7 +91,9 @@
         </template>
 
         <template v-else-if="$props.event.location && $props.event.location.description">
-          {{ $props.event.location.description }}
+          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')">
+            {{ $props.event.location.description }}
+          </a>
         </template>
 
         <template v-if="$props.event.experts && $props.showExperts">

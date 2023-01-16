@@ -64,7 +64,7 @@
     @endif
   </x-collapsible>
 
-  @if ($course->publishedVideos)
+  @if ($course->publishedVideos->count() > 0)
     <x-collapsible title="{{ __('Videos') }}">
       @foreach($course->publishedVideos as $video)
         <x-card-text class="card-video">
