@@ -177,7 +177,6 @@ function initMap() {
     position: latLng,
     map: map,
     icon: {
-      //anchor: new google.maps.Point(0,0),
       anchor: new google.maps.Point(0,0),
       url: 'data:image/svg+xml;utf-8, \
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 54" fill="none"><rect x="0.886154" y="46.7674" width="60" height="10" rx="2" transform="rotate(-50 0.886154 46.7674)" fill="black"/><rect x="8.54659" y="0.804733" width="60" height="10" rx="2" transform="rotate(50 8.54659 0.804733)" fill="black"/></svg>',
