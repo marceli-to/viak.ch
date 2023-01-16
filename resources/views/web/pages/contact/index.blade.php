@@ -8,19 +8,9 @@
     </x-slot>
     <x-slot name="content">
       <p><strong>Visualisierungs-Akademie Schweiz GmbH<br>Limmatstrasse 291<br>CH-8005 Zürich<br>Schweiz</p><p><a href='tel:+41435014040' title='{{ __('per Telefon') }}'>+41 43 501 40 40</a><br><a href='mailto:hallo@visualisierungs-akademie.ch' title='{{ __('per E-Mail') }}'>hallo@visualisierungs-akademie.ch</a></strong></p>
-      <figure class="mt-4x sm:mt-6x md:mt-8x">
-        <picture>
-          <source media="(min-width: 700px)" data-srcset="/media/viak-keyvisual-map-preview.png">
-          <img 
-            data-src="/media/viak-keyvisual-map-preview.png" 
-            src="/media/viak-placeholder-visual.png"
-            width="1600" 
-            height="900"
-            title="{{ __('Google Maps') }}"
-            class="is-responsive lazy"
-            alt="{{ __('Google Maps') }}">
-        </picture>
-      </figure>
+      <div class="mt-4x sm:mt-6x md:mt-8x">
+        <x-map />
+      </div>
     </x-slot>
   </x-article-text>
 </section>
