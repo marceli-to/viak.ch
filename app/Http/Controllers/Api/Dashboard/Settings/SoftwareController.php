@@ -57,7 +57,6 @@ class SoftwareController extends Controller
    */
   public function update(Software $software, SoftwareStoreRequest $request)
   {
-    $software = Software::findOrFail($software->id);
     $software->update($request->all());
     return response()->json('successfully updated');
   }

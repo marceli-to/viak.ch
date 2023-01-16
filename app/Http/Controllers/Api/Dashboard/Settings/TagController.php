@@ -57,7 +57,6 @@ class TagController extends Controller
    */
   public function update(Tag $tag, TagStoreRequest $request)
   {
-    $tag = Tag::findOrFail($tag->id);
     $tag->update($request->all());
     return response()->json('successfully updated');
   }

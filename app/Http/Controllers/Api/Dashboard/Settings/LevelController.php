@@ -57,7 +57,6 @@ class LevelController extends Controller
    */
   public function update(Level $level, LevelStoreRequest $request)
   {
-    $level = Level::findOrFail($level->id);
     $level->update($request->all());
     return response()->json('successfully updated');
   }

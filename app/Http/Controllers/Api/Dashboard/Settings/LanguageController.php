@@ -57,7 +57,6 @@ class LanguageController extends Controller
    */
   public function update(Language $language, LanguageStoreRequest $request)
   {
-    $language = Language::findOrFail($language->id);
     $language->update($request->all());
     return response()->json('successfully updated');
   }
