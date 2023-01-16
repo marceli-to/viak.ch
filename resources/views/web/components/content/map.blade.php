@@ -162,8 +162,7 @@ function initMap() {
         }
       ]
     }
-    ];
-
+  ];
 
   const latLng = { lat: 47.38904320283179, lng: 8.524579610686503 };
 
