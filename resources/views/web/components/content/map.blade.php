@@ -1,5 +1,5 @@
 <div class="ratio-container ratio-container--16:10 map" id="js-map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5mihvHkgnNaRyHnz4xGx73zKfdX4JSjE&callback=initMap&v=weekly" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLEMAPS_APIKEY')}}&callback=initMap&v=weekly" defer></script>
 <script>
 function initMap() {
 
