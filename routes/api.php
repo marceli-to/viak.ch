@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\Dashboard\Settings\LanguageController as DashboardL
 use App\Http\Controllers\Api\Dashboard\Settings\LevelController as DashboardLevelController;
 use App\Http\Controllers\Api\Dashboard\Settings\SoftwareController as DashboardSoftwareController;
 use App\Http\Controllers\Api\Dashboard\Settings\TagController as DashboardTagController;
+use App\Http\Controllers\Api\Dashboard\Settings\LocationController as DashboardLocationController;
 use App\Http\Controllers\Api\Dashboard\TeamMemberController as DashboardTeamMemberController;
 use App\Http\Controllers\Api\Dashboard\NewsController as DashboardNewsController;
 use App\Http\Controllers\Api\Dashboard\HeroController as DashboardHeroController;
@@ -352,6 +353,13 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
     Route::post('tag', [DashboardTagController::class, 'store']);
     Route::put('tag/{tag}', [DashboardTagController::class, 'update']);
     Route::delete('tag/{tag}', [DashboardTagController::class, 'destroy']);
+
+    // Location
+    Route::get('locations', [DashboardLocationController::class, 'get']);
+    Route::get('location/{location}', [DashboardLocationController::class, 'find']);
+    Route::post('location', [DashboardLocationController::class, 'store']);
+    Route::put('location/{location}', [DashboardLocationController::class, 'update']);
+    Route::delete('location/{location}', [DashboardLocationController::class, 'destroy']);
   });
 
 });

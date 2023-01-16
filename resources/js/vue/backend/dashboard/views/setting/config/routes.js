@@ -9,6 +9,8 @@ import SoftwareCreate from '@/backend/dashboard/views/setting/software/partials/
 import SoftwareEdit from '@/backend/dashboard/views/setting/software/partials/Edit.vue';
 import TagCreate from '@/backend/dashboard/views/setting/tag/partials/Create.vue';
 import TagEdit from '@/backend/dashboard/views/setting/tag/partials/Edit.vue';
+import LocationCreate from '@/backend/dashboard/views/setting/location/partials/Create.vue';
+import LocationEdit from '@/backend/dashboard/views/setting/location/partials/Edit.vue';
 
 
 const routes = [
@@ -66,6 +68,16 @@ const routes = [
     name: 'settings-tag-edit',
     path: '/dashboard/settings/tag/edit/:id',
     component: TagEdit,
+  },
+  {
+    name: 'settings-location-create',
+    path: '/dashboard/settings/location/create',
+    component: LocationCreate,
+  },
+  {
+    name: 'settings-location-edit',
+    path: '/dashboard/settings/location/edit/:id',
+    component: LocationEdit,
   }, 
 ];
 

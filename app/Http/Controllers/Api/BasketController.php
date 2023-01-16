@@ -197,6 +197,7 @@ class BasketController extends Controller
         'location' => [
           'description' => $event->location ? $event->location->description : NULL,
           'address' => $event->location ? $event->location->address : NULL,
+          'map' => $event->location && $event->location->map ? $event->location->map : NULL,
         ],
         'isBooked' => BookingFacade::has($event, auth()->user()),
         'dates' => $event->dates->map(function($date) {

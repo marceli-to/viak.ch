@@ -42,6 +42,7 @@ export default {
   },
 
   beforeDestroy(){
+    window.intercepted.$off('response:200', this.listener);
     window.intercepted.$off('response:401', this.listener);
     window.intercepted.$off('response:403', this.listener);
     window.intercepted.$off('response:404', this.listener);
@@ -69,20 +70,20 @@ export default {
     serverError(data) {
       NProgress.done();
       this.$store.commit('isLoading', false);
-      this.$refs.notification.init({
-        message: `${data.status} ${data.code}<br>${data.body.message}`,
-        type: 'alert',
-        style: 'error',
-      });
+      this.$toast.open({
+        'message': `${data.status} ${data.code}<br>${data.body.message}`,
+        'type': 'error',
+        'duration': 0
+      });  
     },
 
     contentTooLarge(data) {
       NProgress.done();
       this.$store.commit('isLoading', false);
-      this.$refs.notification.init({
-        message: `${data.status} ${data.code}<br>${data.body.message}`,
-        type: 'alert',
-        style: 'error',
+      this.$toast.open({
+        'message': `${data.status} ${data.code}<br>${data.body.message}`,
+        'type': 'error',
+        'duration': 0
       });
     },
 
@@ -95,10 +96,10 @@ export default {
     notAllowed(data) {
       NProgress.done();
       this.$store.commit('isLoading', false);
-      this.$refs.notification.init({
-        message: `${data.status} ${data.code}<br>${data.body.message}`,
-        type: 'alert',
-        style: 'error',
+      this.$toast.open({
+        'message': `${data.status} ${data.code}<br>${data.body.message}`,
+        'type': 'error',
+        'duration': 0
       });
     },
 

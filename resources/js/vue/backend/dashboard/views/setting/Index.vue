@@ -155,6 +155,36 @@
       </template>
     </collapsible>
 
+    <!-- Locations -->
+    <collapsible :expanded="$route.params.type == 'locations' ? true : false" :uuid="'dashboard-settings-locations'">
+      <template #title>Locations</template>
+      <template #content>
+        <template v-if="data['locations'].length">
+          <stacked-list-item v-for="location in data['locations']" :key="location.id" class="relative">
+          <router-link :to="{ name: 'settings-location-edit', params: { id: location.id } }" class="icon-edit mt-3x">
+            <icon-edit />
+          </router-link>
+          <div>
+            <div class="span-4">
+              {{ location.description.de }}
+            </div>
+            <div class="span-4" v-if="location.description.en">
+              {{ location.description.en }}
+            </div>
+          </div>
+        </stacked-list-item>
+        </template>
+        <template v-else>
+          <p class="no-results">Es sind keine Locations vorhanden.</p>
+        </template>
+        <div class="flex justify-start mt-6x">
+          <router-link :to="{ name: 'settings-location-create' }" class="icon-plus">
+            <icon-plus />
+          </router-link>
+        </div>
+      </template>
+    </collapsible>
+
   </collapsible-container>
 </div>
 </template>
@@ -222,6 +252,11 @@ export default {
           store: '/api/dashboard/settings/tags',
           delete: '/api/dashboard/settings/tags',
         },
+        locations: {
+          get: '/api/dashboard/settings/locations',
+          store: '/api/dashboard/settings/locations',
+          delete: '/api/dashboard/settings/locations',
+        },
       },
 
       // States
@@ -251,6 +286,7 @@ export default {
         this.axios.get(this.routes.levels.get),
         this.axios.get(this.routes.software.get),
         this.axios.get(this.routes.tags.get),
+        this.axios.get(this.routes.locations.get),
       ]).then(axios.spread((...responses) => {
         this.data = {
           categories: responses[0].data.data,
@@ -258,6 +294,7 @@ export default {
           levels: responses[2].data.data,
           software: responses[3].data.data,
           tags: responses[4].data.data,
+          locations: responses[5].data.data,
         };
         this.isLoaded = true;
         NProgress.done();

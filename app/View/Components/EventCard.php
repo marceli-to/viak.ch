@@ -73,7 +73,6 @@ class EventCard extends Component
     $this->experts  = collect($event->experts->pluck('fullname')->all());
     $this->inBasket = (int) (new BasketStore())->hasItem($this->event->uuid);
     $this->isFullyBooked = $event->isFullyBooked();
-
     $this->styles = $this->isFullyBooked ? 'has-warning' : '';
 
     // check for booking and bookmarks

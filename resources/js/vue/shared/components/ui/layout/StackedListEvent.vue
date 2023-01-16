@@ -21,9 +21,12 @@
           {{ __('Online') }}
         </template>
         <template v-else-if="$props.event.location && $props.event.location.description">
-          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')">
+          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')" v-if="$props.event.location.map">
             {{ $props.event.location.description }}
           </a>
+          <span v-else>
+            {{ $props.event.location.description }}
+          </span>
         </template>
         <template v-if="$props.event.experts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
@@ -89,9 +92,12 @@
         </template>
 
         <template v-else-if="$props.event.location && $props.event.location.description">
-          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')">
+          <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')" v-if="$props.event.location.map">
             {{ $props.event.location.description }}
           </a>
+          <span v-else>
+            {{ $props.event.location.description }}
+          </span>
         </template>
 
         <template v-if="$props.event.experts && $props.showExperts">
