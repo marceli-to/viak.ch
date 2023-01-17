@@ -18,7 +18,7 @@ nav.browse {
       max-width: 150px;
 
       @include bp-sm() {
-        max-width: 225px;
+        max-width: none;
       }
 
       &:first-of-type {
