@@ -5,19 +5,16 @@
         {{ mode.dashboard ? __('Kurs abgeschlossen') : __('Kurs ist abgeschlossen') }}
       </em>
     </div>
-    
-    <div v-else-if="$props.cancelled">
+    <div v-else-if="state.cancelled">
       <em class="text-danger">
         {{ mode.dashboard ? __('Kurs abgesagt') : __('Kurs wurde abgesagt') }}
       </em>
     </div>
-
     <div v-else-if="state.confirmed">
       <em class="text-success">
         {{ mode.dashboard ? __('Kurs bestätigt') : __('Kurs findet statt') }}
       </em>
     </div>
-
     <div v-else>
       <em class="text-warning">
         {{ mode.dashboard ? __('Kurs nicht bestätigt') : __('Kurs offen, wird bestätigt') }}
