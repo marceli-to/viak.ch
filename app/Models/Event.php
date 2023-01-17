@@ -205,6 +205,15 @@ class Event extends Base
   }
 
   /**
+   * All bookings that belong to this event.
+   */
+  
+   public function cancelledBookings()
+   {
+     return $this->hasMany(Booking::class, 'event_id', 'id')->withTrashed();
+   }
+
+  /**
    * The messages that belongs to this event.
    */
 
