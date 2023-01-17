@@ -29,7 +29,7 @@ class EventController extends Controller
     $data = [
       'event' => new EventResource($event),
       'participants' => EventParticipantsResource::collection(
-        $event->bookings
+        $event->isCancelled() ? $event->cancelledBookings : $event->bookings
       ),
       'messages' => EventMessageResource::collection(
         $event->messages

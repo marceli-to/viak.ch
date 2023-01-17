@@ -31,10 +31,7 @@
         <template v-if="$props.event.experts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
-        <event-state 
-          :event="$props.event" 
-          :dashboard="true"
-        />
+        <event-state :event="$props.event" :dashboard="true" />
       </div>
       <div class="stacked-list__col stacked-list__col--action">
         <div>
@@ -103,12 +100,7 @@
         <template v-if="$props.event.experts && $props.showExperts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
-
-        <event-state 
-          :event="$props.event"
-          v-if="!$props.basket"
-         />
-
+        <event-state :event="$props.event" v-if="!$props.basket" />
       </div>
 
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">

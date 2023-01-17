@@ -67,7 +67,13 @@
       <template #content>
         <template v-if="data.events.cancelled.length > 0">
           <div v-for="event in data.events.cancelled" :key="event.id" class="relative">
-            <stacked-list-event :event="event" :dashboard="true"></stacked-list-event>
+            <stacked-list-event :event="event" :dashboard="true">
+              <template #action>
+                <router-link :to="{ name: 'event-show', params: { uuid: event.uuid, referrer: 'events' } }" class="btn-secondary">
+                  Details
+                </router-link>
+              </template>            
+            </stacked-list-event>
           </div>
         </template>
         <template v-else>

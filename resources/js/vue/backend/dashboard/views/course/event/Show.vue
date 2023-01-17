@@ -28,7 +28,6 @@
             :showFee="false"
             :showState="true"
             :dashboard="true">
-            <template #action></template>
           </stacked-list-event>
         </template>
       </collapsible>
@@ -41,7 +40,7 @@
         </template>
         <template #content>
           <template v-if="data.participants.length">
-            <div class="flex justify-end mt-3x sm:mt-6x">
+            <div class="flex justify-end mt-3x sm:mt-6x" v-if="!data.event.is_cancelled">
               Teilgenommen?
             </div>
             <stacked-list-item v-for="(participant, index) in data.participants" :key="index" :class="[index == 0 ? 'mt-2x sm:mt-2x md:mt-3x' : '', '']">
@@ -50,12 +49,14 @@
                 <div class="sm:span-2 md:span-3">{{ participant.city }}</div>
                 <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
                 <div class="sm:span-2 md:span-3 flex justify-end mr-2x">
-                  <div class="form-group__checkbox" v-if="!data.event.is_closed">
-                    <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :checked="participant.hasParticipated ? true : false" :value="1" @change="updateAttendance(participant.uuid)">
-                  </div>
-                  <div v-else>
-                    <strong>{{ participant.hasParticipated ? 'Ja' : 'Nein' }}</strong>
-                  </div>
+                  <template v-if="!data.event.is_cancelled">
+                    <div class="form-group__checkbox" v-if="!data.event.is_closed">
+                      <input type="checkbox" :id="participant.uuid" :name="participant.uuid" :checked="participant.hasParticipated ? true : false" :value="1" @change="updateAttendance(participant.uuid)">
+                    </div>
+                    <div v-else>
+                      <strong>{{ participant.hasParticipated ? 'Ja' : 'Nein' }}</strong>
+                    </div>
+                  </template>
                 </div>
               </div>
             </stacked-list-item>

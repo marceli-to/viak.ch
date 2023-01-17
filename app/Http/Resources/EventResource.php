@@ -39,7 +39,7 @@ class EventResource extends JsonResource
     // Additional data for role 'Expert' or 'Admin'
     if (auth()->user()->isExpert() || auth()->user()->isAdmin())
     {
-      $data['bookings'] = collect($this->bookings)->count();
+      $data['bookings'] = collect($this->hasFlag('isCancelled') ? $this->cancelledBookings : $this->bookings)->count();
       $data['min_participants'] = $this->min_participants;
       $data['max_participants'] = $this->max_participants;
       $data['confirmed_at'] = $this->confirmed_at;

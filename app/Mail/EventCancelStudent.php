@@ -41,14 +41,14 @@ class EventCancelStudent extends Mailable
 
     // Create the mail
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                 ->subject(__('Kursabsage') . ' – ' . $booking->event->course->title)
-                 ->with(
-                      [
-                        'event' => $booking->event,
-                        'booking' => $booking,
-                        'user' => $booking->user
-                      ]
-                    )
-                 ->markdown('mail.event.cancel', ['recipient' => 'student']);
+                ->subject(__('Kursabsage') . ' – ' . $booking->event->course->title)
+                ->with(
+                    [
+                      'event' => $booking->event,
+                      'booking' => $booking,
+                      'user' => $booking->user
+                    ]
+                  )
+                ->markdown('mail.event.cancel', ['recipient' => 'student']);
   }
 }

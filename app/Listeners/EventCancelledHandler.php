@@ -18,12 +18,12 @@ class EventCancelledHandler
   { 
     // Get bookings for the event
     $bookings = $eventCancelledEvent->event->bookings()->get();
-
     if ($bookings)
     {
       foreach($bookings as $booking)
       { 
-        // Create a job for the confirmation email to each student
+        $booking->flag('isCancelledByAdministrator');
+        // Create a job for the cancellation email to each student
         Job::create([
           'recipient' => $booking->user->email,
           'mailable_id' => $booking->id,
@@ -35,12 +35,11 @@ class EventCancelledHandler
 
     // Get the experts
     $experts = $eventCancelledEvent->event->experts()->get();
-    
     if ($experts)
     {
       foreach($experts as $expert)
       { 
-        // Create a job for the confirmation email to each student
+        // Create a job for the cancellation email to each expert
         Job::create([
           'recipient' => $expert->email,
           'mailable_id' => $eventCancelledEvent->event->id,
