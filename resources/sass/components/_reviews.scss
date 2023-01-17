@@ -9,13 +9,16 @@
   
   div {
     border-radius: 0 !important;
-    min-height: 60px;
   }
 
   div[class^='ReviewBackground__Container'], 
   div[class*=' ReviewBackground__Container'] {
     @extend %p-2x;
     @extend %md\:p-4x;
+  }
+
+  div[class^='SimpleShortener__Inner'] {
+    min-height: 60px;
   }
 
 }
