@@ -5,7 +5,7 @@
         <h2>{{ $item->title }}</h2>
       </header>
     @endif
-    <div class="card-code__code {{ $item->ratio ? 'ratio-container ratio-container--' . $item->ratio : '' }} ">
+    <div class="card-code__code {{ $item->ratio ? 'ratio-container ratio-container--' . $item->ratio : '' }}">
       {!! $item->code !!}
     </div>
   </div>
