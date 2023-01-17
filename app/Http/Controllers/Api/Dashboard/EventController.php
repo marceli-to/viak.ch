@@ -45,9 +45,6 @@ class EventController extends Controller
         ->get()
       ),
     ];
-
-    dd($data);
-
     return response()->json($data);
   }
 
