@@ -34,11 +34,6 @@ class EventCancelStudent extends Mailable
     // Get the booking
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
 
-    // Update the booking
-    $booking->flag('isCancelled');
-    $booking->cancelled_at = \Carbon\Carbon::now();
-    $booking->save();
-
     // Create the mail
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Kursabsage') . ' – ' . $booking->event->course->title)

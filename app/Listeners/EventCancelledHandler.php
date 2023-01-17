@@ -22,7 +22,12 @@ class EventCancelledHandler
     {
       foreach($bookings as $booking)
       { 
+        // Update the booking
+        $booking->flag('isCancelled');
         $booking->flag('isCancelledByAdministrator');
+        $booking->cancelled_at = \Carbon\Carbon::now();
+        $booking->save();
+
         // Create a job for the cancellation email to each student
         Job::create([
           'recipient' => $booking->user->email,

@@ -76,7 +76,7 @@ class EventController extends Controller
       )
     );
 
-    // Add expers
+    // Add experts
     $event->experts()->attach($request->input('expert_ids'));
 
     // Set the 'main' date from the dates array
