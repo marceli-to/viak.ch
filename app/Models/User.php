@@ -4,11 +4,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use App\Traits\UserScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-  use Notifiable, SoftDeletes;
+  use Notifiable, SoftDeletes, UserScopes;
   
   /**
    * The attributes that should be cast to native types.
@@ -146,7 +147,7 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * The address that belongs to this user.
+   * The invoice addresses that belongs to this user.
    */
 
   public function invoiceAddresses()
@@ -227,95 +228,7 @@ class User extends Authenticatable implements MustVerifyEmail
     return $this->hasMany(UserDocument::class)->orderBy('created_at', 'DESC');
   }
 
-
-  /*
-  |--------------------------------------------------------------------------
-  | Local scopes
-  |--------------------------------------------------------------------------
-  |
-  |
-  */
-
-  /**
-   * The scope for published users.
-   * 
-   */
-  
-	public function scopePublished($query)
-	{
-		return $query->where('publish', 1);
-	}
-
-  /**
-   * The scope for not published users.
-   * 
-   */
-  
-	public function scopeUnpublished($query)
-	{
-		return $query->where('publish', 0);
-	}
-
-  /**
-   * The scope for visible users.
-   * 
-   */
-  
-	public function scopeVisible($query)
-	{
-		return $query->where('visible', 1);
-	}
-
-  /**
-   * The scope for hidden users.
-   * 
-   */
-  
-	public function scopeHidden($query)
-	{
-		return $query->where('visible', 0);
-	}
-
-  /**
-   * Scope a query to only include users with role 'admin'.
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopeAdmins($query)
-  {
-    return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', Role::ADMIN);
-    });
-  }
-
-  /**
-   * Scope a query to only include users with role 'admin'.
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopeExperts($query)
-  {
-    return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', Role::EXPERT);
-    });
-  }
-
-  /**
-   * Scope a query to only include users with role 'student'.
-   *
-   * @param  \Illuminate\Database\Eloquent\Builder  $query
-   * @return \Illuminate\Database\Eloquent\Builder
-   */
-  public function scopeStudents($query)
-  {
-    return $query->whereHas('roles', function ($q) {
-      $q->where('role_id', Role::STUDENT);
-    });
-  }
-
-
+ 
   /*
   |--------------------------------------------------------------------------
   | Helpers
@@ -402,9 +315,8 @@ class User extends Authenticatable implements MustVerifyEmail
   }
 
   /**
-   * Get all courses for a user. This is only applicable for users with
-   * the role 'expert' as 'students' are not listed in 'events_users'
-   * but in 'bookings'
+   * Get all courses for a user. This is only applicable for users with the role 'expert'
+   * since 'students' are not listed in 'events_users' but in 'bookings'
    * 
    * @param  User $user
    * @return Event $event

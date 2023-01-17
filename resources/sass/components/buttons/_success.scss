@@ -9,7 +9,6 @@
   @extend %btn;
   @extend %btn-full-width;
   background-color: $color-success;
-  border: 1px solid $color-success;
   color: $color-white;
 
   &:hover {
@@ -18,6 +17,7 @@
 
   &.is-outline {
     background-color: $color-white;
+    border: 1px solid $color-success;
     color: $color-success;
   }
 
