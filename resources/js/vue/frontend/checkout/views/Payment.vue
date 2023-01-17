@@ -16,8 +16,7 @@
             <strong>{{ __('Zahlungsoptionen') }}</strong>
           </div>
           <div class="sm:span-8">
-            <!-- {{ __('per Rechnung') }} -->
-            {{ __('Unsere Rechnungen können entweder mittels QR-Einzahlungsschein oder per Kreditkarte bezahlt werden. Die Rechnungsstellung erfolgt sobald die Durchführung eines Kurses feststeht.') }}
+            {{ __('Unsere Rechnungen können entweder mittels QR-Einzahlungsschein oder per Kreditkarte bezahlt werden. Die Rechnungsstellung erfolgt, sobald die Durchführung eines Kurses feststeht.') }}
           </div>
         </div>
       </stacked-list-item>
