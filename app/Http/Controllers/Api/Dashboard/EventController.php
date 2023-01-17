@@ -41,6 +41,7 @@ class EventController extends Controller
       'cancelled' => new EventCollection(
         Event::cancelled()
         ->with('dates', 'experts', 'location', 'course', 'bookings')
+        ->withTrashed()
         ->where('course_id', $course->id)
         ->get()
       ),
