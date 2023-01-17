@@ -114,7 +114,7 @@
   @endif
 
   @if ($course->additional_information || $course->reviews)
-    <x-collapsible title="{{ __('Weitere Informationen') }}" expanded="true">
+    <x-collapsible title="{{ __('Weitere Informationen') }}">
       <div class="sm:grid-cols-12">
         @if ($course->additional_information)
           <div class="mb-4x sm:mb-0 sm:span-4 text-item">
