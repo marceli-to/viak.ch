@@ -210,7 +210,7 @@ class Event extends Base
   
    public function cancelledBookings()
    {
-     return $this->hasMany(Booking::class, 'event_id', 'id')->withTrashed();
+     return $this->hasMany(Booking::class, 'event_id', 'id')->flagged('isCancelled');
    }
 
   /**
@@ -329,8 +329,6 @@ class Event extends Base
     return $query->where('date', '<=', $constraint)->orderBy('date', 'DESC');
   }
 
-
-
   /*
   |--------------------------------------------------------------------------
   | Mutators & Accessors
@@ -338,7 +336,6 @@ class Event extends Base
   |
   |
   */
-
 
   /**
    * Set the date.
