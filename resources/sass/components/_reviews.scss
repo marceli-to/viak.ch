@@ -17,6 +17,7 @@
     @extend %md\:p-4x;
   }
 
+  div[class^='SimpleShortener__Outer-'],
   div[class^='SimpleShortener__Inner'] {
     min-height: 60px;
   }
