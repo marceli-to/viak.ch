@@ -40,11 +40,13 @@ class EventController extends Controller
       ),
       'cancelled' => new EventCollection(
         Event::cancelled()
-        ->with('dates', 'experts', 'location', 'course', 'cancelledBookings')
+        ->with('dates', 'experts', 'location', 'course', 'bookings')
         ->where('course_id', $course->id)
         ->get()
       ),
     ];
+
+    dd($data);
 
     return response()->json($data);
   }
