@@ -121,8 +121,11 @@
             {!! $course->additional_information !!}
           </div>
         @endif
+        @if ($course->additional_information_1)
         <div class="mb-4x sm:mb-0 sm:span-4">
+          {!! $course->additional_information !!}
         </div>
+        @endif
         @if ($course->reviews)
           <div class="mb-4x sm:mb-0 sm:span-4">
             <header>
