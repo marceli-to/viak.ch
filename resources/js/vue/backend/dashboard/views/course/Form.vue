@@ -8,7 +8,6 @@
     </template>
 
     <template #content>
-
       <div class="flex justify-end items-center text-xsmall">
         <a href="" :class="[language == 'de' ? 'link-underline' : '', '']" @click.prevent="setLanguage('de')">DE</a>
         <span class="px-1x">/</span>
@@ -65,6 +64,11 @@
             :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.additional_information.de"
+          ></tinymce-editor>
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.additional_information_1.de"
           ></tinymce-editor>
         </form-group>
 
@@ -263,6 +267,11 @@
             :init="tinyConfig"
             v-model="data.additional_information.en"
           ></tinymce-editor>
+          <tinymce-editor
+            :api-key="tinyApiKey"
+            :init="tinyConfig"
+            v-model="data.additional_information_1.en"
+          ></tinymce-editor>
         </form-group>
 
         <form-group :label="'Kursbeschreibung (PDF)'">
@@ -418,6 +427,10 @@ export default {
           en: null
         },
         additional_information: {
+          de: null,
+          en: null
+        },
+        additional_information_1: {
           de: null,
           en: null
         },

@@ -46,6 +46,9 @@ class Course extends Base
     'additional_information' => '{
       "de": "null", "en": "null"
     }',
+    'additional_information_1' => '{
+      "de": "null", "en": "null"
+    }',
     'summary' => '{
       "de": "null", "en": "null"
     }',
@@ -79,6 +82,7 @@ class Course extends Base
     'short_description',
     'full_description',
     'additional_information',
+    'additional_information_1',
     'summary',
     'facts_column_1',
     'facts_column_2',
@@ -102,6 +106,7 @@ class Course extends Base
     'short_description',
     'full_description',
     'additional_information',
+    'additional_information_1',
     'summary',
     'facts_column_1',
     'facts_column_2',
