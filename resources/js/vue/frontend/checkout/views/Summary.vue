@@ -10,11 +10,27 @@
       </template>
     </stacked-list-header>
 
+    <stacked-list-item v-if="basket.user_address">
+      <div>
+        <div class="sm:span-4">
+          <strong>{{ __('Adresse') }}</strong>
+          <div v-html="basket.user_address"></div>
+        </div>
+        <template v-if="basket.invoice_address">
+          <div class="mt-3x sm:mt-0 sm:span-8">
+            <strong>{{ __('Rechnungsadresse') }}</strong>
+            <div v-html="basket.invoice_address"></div>
+          </div>
+        </template>
+      </div>
+    </stacked-list-item>
+
     <stacked-list-event 
       v-for="event in basket.events" 
       :key="event.uuid" 
       :event="event" 
-      :basket="true" />
+      :basket="true">
+    </stacked-list-event>
 
     <stacked-list-item v-if="basket.totals.discount > 0">
       <div>
@@ -37,20 +53,6 @@
         </div>
       </div>
     </stacked-list-item>
-
-    <!-- <stacked-list-item>
-      <div>
-        <div class="sm:span-4">
-          {{ __('Mehrwertsteuer') }} 0%
-        </div>
-        <div class="sm:span-8 sm:align-right">
-          CHF
-          <template v-if="basket.totals.vat">{{ basket.totals.vat | currency }}</template>
-          <template v-else>0.00</template>
-        </div>
-      </div>
-    </stacked-list-item> -->
-
     <stacked-list-item>
       <div>
         <div class="sm:span-4">
@@ -62,7 +64,6 @@
         </div>
       </div>
     </stacked-list-item>
-
     <stacked-list-footer>
       <div>
         <router-link :to="{ name: `${_getLocale()}-checkout-payment` }" class="btn-previous">
@@ -76,9 +77,7 @@
           <icon-arrow-right />
         </a>
       </div>
-
     </stacked-list-footer>
-
   </stacked-list-container>
 </template>
 <script>

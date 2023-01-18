@@ -111,7 +111,7 @@
             </div>
           </template>
           <div v-if="$props.showFee">
-            CHF {{ $props.event.fee}}
+            CHF {{ $props.event.fee | currency }}
           </div>
         </div>
         <div class="stacked-list__action" v-if="$slots.action">
@@ -127,6 +127,7 @@
 <script>
 import NProgress from 'nprogress';
 import i18n from "@/shared/mixins/i18n";
+import Helpers from "@/shared/mixins/Helpers";
 import Bookmark from "@/shared/mixins/Bookmark";
 import EventState from "@/shared/components/ui/misc/EventState";
 
@@ -137,7 +138,7 @@ export default {
     EventState
   },
 
-  mixins: [i18n, Bookmark],
+  mixins: [i18n, Bookmark, Helpers],
 
   props: {
 

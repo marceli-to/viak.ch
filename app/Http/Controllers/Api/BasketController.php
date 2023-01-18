@@ -49,6 +49,20 @@ class BasketController extends Controller
       'discount_uuid' => isset($store['discount_uuid']) ? $store['discount_uuid'] : NULL,
     ];
 
+    // Add user address
+    if (isset($store['user_uuid']))
+    {
+      $user = User::where('uuid', $store['user_uuid'])->first();
+      $data['user_address'] = $user->address;
+    }
+
+    // Add invoice address
+    if (isset($store['invoice_address_uuid']))
+    {
+      $user_address = UserAddress::where('uuid', $store['invoice_address_uuid'])->first();
+      $data['invoice_address'] = $user_address->address;
+    }
+
     // Events
     $data['events'] = $this->getEvents($store['items']);
 
@@ -57,9 +71,9 @@ class BasketController extends Controller
       $this->getEvents($store['items']), 
       $data['discount_uuid']
     );
+
     return response()->json($data);
   }
-
 
   /**
    * Store an item in the basket
@@ -85,8 +99,8 @@ class BasketController extends Controller
   {
     $user = User::findOrFail(auth()->user()->id);
     $this->store->addAttribute('user_uuid', $user->uuid);
-
     $this->store->removeAttribute('invoice_address_uuid');
+
     if ($request->input('address_uuid'))
     {
       $this->store->addAttribute('invoice_address_uuid', $request->input('address_uuid'));
@@ -144,7 +158,6 @@ class BasketController extends Controller
 
   private function getEvents($items, $map = TRUE)
   {
-    $events = [];
     foreach($items as $item)
     {
       $events[] = Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item)->first();
