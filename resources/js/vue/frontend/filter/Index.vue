@@ -1,7 +1,7 @@
 <template>
 <grid class="grid-cols-12">
   <grid-col class="span-12 sm:span-8">
-    <a href="javascript:;" class="icon-filter sm:hide" @click.prevent="toggleFilter()">
+    <a href="javascript:;" class="icon-filter sm:hide" @click.prevent="toggleFilter()" :title="__('Filter anzeigen')">
       <icon-filter :active="hasFilter ? true : false" />
     </a>
     <template v-if="!hasResults">
@@ -23,16 +23,14 @@
       <h2>Filter</h2>
       <form @submit.prevent="filter()">
         <div class="filter__items">
-
           <div 
             :class="[filterAttributes.category == id ? 'is-active' : '', 'filter__item']"
             v-for="(category, id) in options.settings.categories" 
             :key="id">
-            <a href="" @click.prevent="setCategory('category', id, category)">
+            <a href="javascript:;" @click.prevent="setCategory('category', id, category)">
               {{ category }}
             </a>
           </div>
-          
           <div 
             :class="[filterAttributes.location != 'null' ? 'is-active' : '', 'filter__item mt-10x']">
             <div class="select-wrapper">
@@ -45,7 +43,6 @@
               </select>
             </div>
           </div>
-          
           <div 
             :class="[filterAttributes.software != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
@@ -62,7 +59,6 @@
               </select>
             </div>
           </div>
-
           <div 
             :class="[filterAttributes.level != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
@@ -79,7 +75,6 @@
               </select>
             </div>
           </div>
-
           <div 
             :class="[filterAttributes.language != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
@@ -113,7 +108,6 @@
               </select>
             </div>
           </div>
-
           <div 
             :class="[filterAttributes.tag != 'null' ? 'is-active' : '', 'filter__item']">
             <div class="select-wrapper">
@@ -130,16 +124,14 @@
               </select>
             </div>
           </div>
-
           <div class="filter__buttons mt-10x sm:mt-4x">
-            <a href="" @click.prevent="showResults()" class="btn-primary sm:hide">
+            <a href="javascript:;" @click.prevent="showResults()" class="btn-primary sm:hide">
               {{ __('Anzeigen') }} {{ courses.length ? `(${courses.length})` : '' }}
             </a>
-            <a href="" @click.prevent="resetFilter()" class="btn-primary is-outline mt-4x" data-touch>
+            <a href="javascript:;" @click.prevent="resetFilter()" class="btn-primary is-outline mt-4x" data-touch>
               {{ __('Zurücksetzen') }}
             </a>
           </div>
-
         </div>
       </form>
     </div> 
