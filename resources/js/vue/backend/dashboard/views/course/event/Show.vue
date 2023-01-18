@@ -60,7 +60,7 @@
                 </div>
               </div>
             </stacked-list-item>
-            <div class="mt-5x sm:mt-10x">
+            <div class="mt-5x sm:mt-10x" v-if="!data.event.is_cancelled">
               <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}?v=${randomString()}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
                 <span>{{ __('Teilnehmerliste (PDF)') }}</span>
                 <icon-arrow-right />
