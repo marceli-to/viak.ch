@@ -32,7 +32,7 @@ class GridRowItem extends Base
 
   protected $attributes = [
     'title' => '{
-      "de": "null", "en": "null"
+      "de": null, "en": null
     }',
   ];
 

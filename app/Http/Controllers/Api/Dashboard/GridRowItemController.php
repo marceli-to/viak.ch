@@ -51,6 +51,18 @@ class GridRowItemController extends Controller
   }
 
   /**
+   * Get a grid row item code
+   *
+   * @param GridRowItem $gridRowItem
+   * @param  \Illuminate\Http\Request $request
+   * @return \Illuminate\Http\Response
+   */
+  public function getCode(GridRowItem $gridRowItem)
+  {
+    return response()->json($gridRowItem);
+  }
+
+  /**
    * Reset a grid row item
    *
    * @param  GridRow $gridRowItem

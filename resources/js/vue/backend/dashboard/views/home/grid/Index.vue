@@ -36,9 +36,14 @@
             </div>
             <div v-html="item.code" :class="`ratio-container ratio-container--${item.ratio}`"></div>
           </div>
-          <a href="javascript:;" class="btn-danger" @click="resetItem(item.id)">
-            Löschen
-          </a>
+          <div class="action-buttons">
+            <a href="javascript:;" class="btn-secondary btn-edit" @click="$refs.codeInput.show(item.id);" v-if="item.code">
+              Bearbeiten
+            </a>
+            <a href="javascript:;" class="btn-danger" @click="resetItem(item.id)">
+              Löschen
+            </a>
+          </div>
         </template>
       </grid-row-item>
     </div>
@@ -133,6 +138,7 @@ export default {
 
     fetch() {
       NProgress.start();
+      this.$store.commit('isLoading', true); 
       this.axios.get(`${this.routes.get}`).then(response => {
         this.grid = response.data;
         this.currentRow = this.grid.length;
@@ -257,15 +263,31 @@ export default {
   min-height: inherit;
 }
 
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+
 .btn-primary {
   max-width: 240px;
   margin: 4px 0;
 }
 
-.btn-danger {
-  bottom: 4px;
+.btn-danger,
+.btn-edit {
   max-width: 120px;
-  right: 4px;
-  position: absolute;
+  min-width: auto;
 }
+
+.btn-edit {
+  margin-right: 12px;
+}
+
 </style>

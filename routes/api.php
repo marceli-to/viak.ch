@@ -315,6 +315,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::put('grid/row/item/add/news/{gridRowItem}', [DashboardGridRowItemController::class, 'addNews']);
   Route::put('grid/row/item/add/course/{gridRowItem}', [DashboardGridRowItemController::class, 'addCourse']);
   Route::put('grid/row/item/add/code/{gridRowItem}', [DashboardGridRowItemController::class, 'addCode']);
+  Route::get('grid/row/item/get/code/{gridRowItem}', [DashboardGridRowItemController::class, 'getCode']);
 
   // Settings
   Route::prefix('settings')->group(function() {

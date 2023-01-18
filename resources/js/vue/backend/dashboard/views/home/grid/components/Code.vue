@@ -35,6 +35,7 @@
   <script>
   import { PlusIcon, XIcon } from 'vue-feather-icons'
   import Helpers from "@/shared/mixins/Helpers";
+  import NProgress from 'nprogress';
   import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 
   export default {
@@ -57,6 +58,10 @@
         code: null,
         item: null,
         isOpen: false,
+
+        routes: {
+          get: '/api/dashboard/grid/row/item/get/code',
+        }
       }
     },
   
@@ -77,8 +82,15 @@
       },
   
       show(item) {
-        this.item = item;
-        this.isOpen = true;
+        NProgress.start();
+        this.$store.commit('isLoading', true); 
+        this.axios.get(`${this.routes.get}/${item}`).then(response => {
+          this.item = response.data.id;
+          this.title = response.data.title ? response.data.title : '';
+          this.code = response.data.code;
+          this.ratio = response.data.ratio;
+          this.isOpen = true;
+        });
       },
   
       hide() {
