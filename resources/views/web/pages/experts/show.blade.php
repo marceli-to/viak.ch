@@ -28,7 +28,7 @@
     </div>
   </article>
 </section>
-@if ($courses)
+@if ($courses->count() > 0)
   <section class="container">
     <div class="content-list-item">
       <h2 class="mb-6x md:mb-8x">{{ __('Kurse') }}</h2>
