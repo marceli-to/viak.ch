@@ -47,8 +47,17 @@
     font-size: 18px !important;
   }
 }
-
 </style>
+<!--[if mso]>
+<style>
+  .content-table td {
+    padding: 0 !important;
+  }
+  .content-table td:first-of-type {
+    width: auto !important;
+  }
+</style>
+<![endif]-->
 </head>
 <body>
 
