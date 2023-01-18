@@ -26,21 +26,24 @@ use App\Http\Controllers\TestController;
 |
 */
 
+Route::get('/en/{any?}', [HomeController::class, 'index'])->middleware(['role:admin']); // remove ROUTE if multilanguage for all users
+
 Route::get('/', [HomeController::class, 'index'])->name('de.page.home');
 Route::get('/de', [HomeController::class, 'index'])->name('de.page.home');
-Route::get('/en', [HomeController::class, 'index'])->name('en.page.home');
+Route::get('/en', [HomeController::class, 'index'])->name('en.page.home')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
 Route::multilingual('kontakt', [ContactController::class, 'index'])->name('page.contact');
 Route::multilingual('kurse', [CourseController::class, 'list'])->name('page.courses');
+
 Route::get('de/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('de.page.course');
-Route::get('en/course/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('en.page.course');
+Route::get('en/course/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('en.page.course')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
 Route::multilingual('experten', [ExpertController::class, 'list'])->name('page.experts');
 Route::get('de/experte/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('de.page.expert');
-Route::get('en/expert/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('en.page.expert');
+Route::get('en/expert/{slug?}/{user:uuid}', [ExpertController::class, 'show'])->name('en.page.expert')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
 Route::get('de/registration', [RegisterController::class, 'register'])->name('de.page.register.form');
-Route::get('en/register', [RegisterController::class, 'register'])->name('en.page.register.form');
+Route::get('en/register', [RegisterController::class, 'register'])->name('en.page.register.form')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
 // URL based images
 Route::get('/img/{template}/{filename}/{maxSize?}/{coords?}/{ratio?}', [ImageController::class, 'getResponse']);
@@ -95,30 +98,30 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
   // Student - Checkout and Payment
   Route::middleware(['role:student'])->group(function() {
     Route::get('/de/checkout/basket', [CheckoutController::class, 'index'])->name('de.page.checkout.basket');
-    Route::get('/en/checkout/basket', [CheckoutController::class, 'index'])->name('en.page.checkout.basket');
+    Route::get('/en/checkout/basket', [CheckoutController::class, 'index'])->name('en.page.checkout.basket')->middleware(['role:admin']);  // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/checkout/address', [CheckoutController::class, 'index'])->name('de.page.checkout.user');
-    Route::get('en/checkout/address', [CheckoutController::class, 'index'])->name('en.page.checkout.user');
+    Route::get('en/checkout/address', [CheckoutController::class, 'index'])->name('en.page.checkout.user')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/checkout/payment', [CheckoutController::class, 'index'])->name('de.page.checkout.payment');
-    Route::get('en/checkout/payment', [CheckoutController::class, 'index'])->name('en.page.checkout.payment');
+    Route::get('en/checkout/payment', [CheckoutController::class, 'index'])->name('en.page.checkout.payment')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/checkout/summary', [CheckoutController::class, 'index'])->name('de.page.checkout.summary');
-    Route::get('en/checkout/summary', [CheckoutController::class, 'index'])->name('en.page.checkout.summary');
+    Route::get('en/checkout/summary', [CheckoutController::class, 'index'])->name('en.page.checkout.summary')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('de.page.checkout.confirmation');
-    Route::get('en/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('en.page.checkout.confirmation');
+    Route::get('en/checkout/confirmation', [CheckoutController::class, 'confirmation'])->name('en.page.checkout.confirmation')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('checkout/{any?}', [CheckoutController::class, 'index']);
 
     Route::get('de/zahlung/rechnung/{invoice:uuid}', [PaymentController::class, 'index'])->name('de.page.payment.overview');
-    Route::get('en/payment/invoice/{invoice:uuid}', [PaymentController::class, 'index'])->name('en.page.payment.overview');
+    Route::get('en/payment/invoice/{invoice:uuid}', [PaymentController::class, 'index'])->name('en.page.payment.overview')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/zahlung/erfolgreich', [PaymentController::class, 'success'])->name('de.page.payment.success');
-    Route::get('en/payment/success', [PaymentController::class, 'success'])->name('en.page.payment.success');
+    Route::get('en/payment/success', [PaymentController::class, 'success'])->name('en.page.payment.success')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::get('de/zahlung/abbrechen', [PaymentController::class, 'cancel'])->name('de.page.payment.cancel');
-    Route::get('en/payment/cancel', [PaymentController::class, 'cancel'])->name('en.page.payment.cancel');
+    Route::get('en/payment/cancel', [PaymentController::class, 'cancel'])->name('en.page.payment.cancel')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users
 
     Route::post('/payment/checkout/session', [PaymentController::class, 'create'])->name('page.payment.checkout.session');
 
@@ -170,35 +173,3 @@ Route::get('/email/confirm/{id}/{token}', function (Request $request, $id, $toke
 
 Route::get('/email/bestaetigen/{token}', [ConfirmExpertController::class, 'confirm'])->name('auth.expert.confirm');
 Route::post('/expert/finish', [ConfirmExpertController::class, 'store'])->name('auth.expert.finish');
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Test routes
-|--------------------------------------------------------------------------
-|
-*/
-
-// Route::get('/419', function() {
-//   abort(419);
-// });
-
-// Route::get('/test', [TestController::class, 'index']);
-
-// Route::get('/participant-changes', [TestController::class, 'participantChanges']);
-
-
-// Route::get('/message', [TestController::class, 'index']);
-
-// Route::get('/notification', [TestController::class, 'notify']);
-// Route::get('/notification/process', [TestController::class, 'process']);
-// Route::get('/notification/booked', [TestController::class, 'booked']);
-
-
-// // PDF Documents
-// Route::get('/dokumente', [DocumentController::class, 'index'])->name('documents.index');
-// Route::get('/pdf/kurs-bestaetigung', [DocumentController::class, 'attendanceConfirmation'])->name('pdf.student-attendance-confirmation');
-// Route::get('/pdf/kurs-uebersicht', [DocumentController::class, 'courseOverview'])->name('pdf.student-course-overview');
-// Route::get('/pdf/rechnung', [DocumentController::class, 'invoice'])->name('pdf.invoice');
