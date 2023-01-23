@@ -10,16 +10,15 @@ class Job
     $jobs = collect($jobs)->splice(0,2);
     $env  = app()->environment();
 
-    $allowed_email = [
-      'mail@0704.ch'
-      // 'deiters@nightnurse.ch',
-      // 'direk@nightnurse.ch',
-      // 'oliver.schmid@visualisierungs-akademie.ch',
+    $test_accounts = [
+      'deiters@nightnurse.ch',
+      'direk@nightnurse.ch',
+      'oliver.schmid@visualisierungs-akademie.ch',
     ];
 
     foreach($jobs->all() as $job)
     {
-      $recipient = ($env == 'preproduction' && in_array($job->recipient, $allowed_email)) ? $job->recipient : env('MAIL_TO');
+      $recipient = ($env == 'preproduction' && in_array($job->recipient, $test_accounts)) ? $job->recipient : env('MAIL_TO');
       // $recipient = ($env == 'staging' || $env == 'production') && $job->recipient ? $job->recipient : env('MAIL_TO');
       try
       {
