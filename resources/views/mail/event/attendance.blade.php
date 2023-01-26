@@ -1,6 +1,6 @@
 @component('mail::message')
 <h1>{{ __('Teilnahmebestätigung') . ' – ' . $event->course->title }}</h1>
-<p>{{ __('Hallo') }} {{ $user->fullname }}</p>
+<p>{{ __('Guten Tag') }} {{ $user->fullname }}</p>
 <p>{{ __('Hiermit bestätigen wir Deine Teilnahme an unserem Kurs:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
@@ -27,6 +27,6 @@
     </tr>
   @endif
 </table>
-<p>{{ __('Möchtest Du weitere Kurse besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
+<p>{{ __('Möchtest Du weitere Schulungen besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
 @include('mail.partials.signature')
 @endcomponent

@@ -14,8 +14,6 @@
   @endforeach
 @endif
 
-<p><a href="{{ route('de.page.student.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank">Weitere Informationen zu diesem Kurs</a></p>
-
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Kurs') }}</td>

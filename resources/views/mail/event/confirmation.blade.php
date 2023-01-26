@@ -1,7 +1,7 @@
 @component('mail::message')
 <h1>{{ __('Kursbestätigung') . ' – ' . $event->course->title }}</h1>
 @if ($recipient == 'student')
-<p>{{ __('Hallo') }} {{ $user->fullname }}</p>
+<p>{{ __('Guten Tag') }} {{ $user->fullname }}</p>
 <p>{{ __('Hiermit bestätigen wir die Durchführung des oben erwähnten Kurses:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
@@ -36,12 +36,14 @@
     <td>CHF {{ $event->courseFee }}</td>
   </tr>
 </table>
-<p>{{ __('Die Rechnung für die Kurskosten findest Du in der Beilage. Falls Du die Rechnung wie Kreditkarte bezahlen möchtest, klick bitte auf den nachfolgenden Link.') }}</p>
+<p>{!! __('Die Rechnung für die Kurskosten findest Du im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
 <p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
-<p>{{ __('Möchtest Du weitere Kurse besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
+<p>{{ __('Bei Fragen stehen wir Dir gerne zur Verfügung.') }}</p>
+<p>{{ __('Möchtest Du weitere Schulungen besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>viak.ch/profil</strong></a></p>
 @endif
 
 @if ($recipient == 'expert')
+<p>{{ __('Sali') }} {{ $user->firstname }}</p>
 <p>{{ __('Hiermit bestätigen wir die Durchführung des oben erwähnten Kurses:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
@@ -58,7 +60,7 @@
   </tr>
 </table>
 <p>{{ __('Weitere Informationen zu diesem Kurs findest Du ') }} <a href="{{ route('de.page.expert.profile.course.event', ['uuid' => $event->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>
+<p>{{ __('Wende Dich bei Fragen doch bitte umgehend an uns.') }}</p>
 @endif
-
 @include('mail.partials.signature')
 @endcomponent

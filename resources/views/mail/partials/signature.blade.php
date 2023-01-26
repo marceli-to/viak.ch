@@ -1,1 +1,1 @@
-<p>{!! __('Beste Grüsse<br>das Team der Visualisierungs-Akademie') !!}</p>
+<p>{!! __('Beste Grüsse,<br>das Team der Visualisierungs-Akademie') !!}</p>

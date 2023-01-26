@@ -1,6 +1,7 @@
 <?php
 namespace App\Mail;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -33,9 +34,13 @@ class EventConfirmationExpert extends Mailable
     // Get the event
     $event = Event::with('course')->find($this->data->id);
 
+    // Get user (i.e. Expert)
+    $email = collect($this->to)->pluck('address')->first();
+    $user = User::where('email', $email)->first();
+
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                 ->subject(__('Bestätigung') . ' – ' . $event->course->title)
-                ->with(['event' => $event])
+                ->with(['event' => $event, 'user' => $user])
                 ->markdown('mail.event.confirmation', ['recipient' => 'expert']);
   }
 }
