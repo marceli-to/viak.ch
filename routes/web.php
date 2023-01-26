@@ -26,7 +26,7 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/en/{any?}', [HomeController::class, 'index'])->middleware(['role:admin']); // remove ROUTE if multilanguage for all users
+// Route::get('/en/{any?}')->middleware(['role:admin']); // remove ROUTE if multilanguage for all users
 
 Route::get('/', [HomeController::class, 'index'])->name('de.page.home');
 Route::get('/de', [HomeController::class, 'index'])->name('de.page.home');

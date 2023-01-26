@@ -11,7 +11,7 @@ return [
   |
   */
 
-  'title' => 'Visualisierungs-Akademie Schweiz GmbH',
+  'title' => 'Visualisierungs-Akademie',
 
   /*
   |--------------------------------------------------------------------------
