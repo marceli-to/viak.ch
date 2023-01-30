@@ -69,6 +69,6 @@ return [
   |
   */
 
-  'payment_period' => 30, 
+  'payment_period' => 10, 
 
 ];

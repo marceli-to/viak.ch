@@ -165,7 +165,7 @@
           </div>
         </div>
         <div v-else>
-          <p class="no-results">{{ __('Du hast keine bevorstehenden Kurse.') }}</p>
+          <p class="no-results">{{ __('Du hast keine abgeschlossenen Kurse.') }}</p>
         </div>
       </template>
     </collapsible>

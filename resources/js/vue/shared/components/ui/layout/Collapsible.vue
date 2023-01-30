@@ -52,7 +52,6 @@ export default {
 
   mounted() {
     this.isOpen = this.$props.expanded ? true : false;
-    console.log(this.isOpen);
     this.collapsibles = this.$store.state.collapsibles;
 
     if (this.findInState(this.$props.uuid)) {

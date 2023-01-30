@@ -51,7 +51,6 @@
     </div>
   </article>
 </section>
-
 <section class="container container-course">
 
   <x-collapsible title="{{ __('Aktuelle Kurse') }}" :expanded="true" id="app-events">
@@ -65,7 +64,7 @@
   </x-collapsible>
 
   @if ($course->publishedVideos->count() > 0)
-    <x-collapsible title="{{ __('Videos') }}">
+    <x-collapsible title="{{ __('Videos') }}" :expanded="true">
       @foreach($course->publishedVideos as $video)
         <x-card-text class="card-video">
           <x-slot name="aside">
@@ -82,7 +81,7 @@
   @endif
 
   @if ($course->facts_column_1 || $course->facts_column_2 || $course->facts_column_3)
-    <x-collapsible title="{{ __('Facts') }}">
+    <x-collapsible title="{{ __('Facts') }}" :expanded="true">
       <div class="sm:grid-cols-12">
         @if ($course->facts_column_1)
           <div class="mb-4x sm:mb-0 sm:span-4 text-item">
@@ -104,7 +103,7 @@
   @endif
   
   @if ($course->full_description)
-    <x-collapsible title="{{ __('Detailbeschrieb') }}">
+    <x-collapsible title="{{ __('Detailbeschrieb') }}" :expanded="true">
       <div class="sm:grid-cols-12">
         <div class="span-8">
           {!! $course->full_description !!}
@@ -114,7 +113,7 @@
   @endif
 
   @if ($course->additional_information || $course->reviews)
-    <x-collapsible title="{{ __('Weitere Informationen') }}">
+    <x-collapsible title="{{ __('Weitere Informationen') }}" :expanded="true">
       <div class="sm:grid-cols-12">
         @if ($course->additional_information)
           <div class="mb-4x sm:mb-0 sm:span-4 text-item">

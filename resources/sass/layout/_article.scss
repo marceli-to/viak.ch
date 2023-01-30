@@ -46,11 +46,16 @@ article.content-text-media {
       a:not([class^=btn-]) {
         color: $color-secondary;
         text-decoration: underline;
-        text-underline-offset: 8px;
-        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
 
         &:hover {
           text-decoration: none;
+        }
+
+        @include bp-sm() {
+          text-underline-offset: 5px;
+          text-decoration-thickness: 2px;
         }
       }
     }

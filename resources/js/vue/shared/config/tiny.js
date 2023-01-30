@@ -21,5 +21,5 @@ export default {
     ],
   }],
 
-  link_list: '/filelist',
+  //link_list: '/filelist',
 };
