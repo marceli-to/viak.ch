@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Requests;
+namespace App\Http\Requests\Dashboard;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -32,6 +32,7 @@ class ExpertUpdateRequest extends FormRequest
       'city' => 'required',
       'gender_id' =>  'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id',
+      'roles' => 'required|array|min:1',
       'new_email' => 'nullable|email|max:255|unique:users,email',
       'new_password' => 'nullable|required_with:new_password_confirmation|same:new_password_confirmation|min:8',
       'new_password_confirmation' => 'nullable|min:8',
@@ -82,6 +83,10 @@ class ExpertUpdateRequest extends FormRequest
       'country_id.exists' => [
         'field' => 'country_id',
         'error' => 'Land wird benötigt'
+      ],
+      'roles.required' => [
+        'field' => 'roles',
+        'error' => 'Benutzerrolle wird benötigt'
       ],
       'new_email.email' => [
         'field' => 'new_email',

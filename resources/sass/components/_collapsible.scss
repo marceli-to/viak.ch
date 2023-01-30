@@ -39,6 +39,12 @@
     }
   }
 
+  &.is-invalid {
+    .btn-collapsible {
+      color: $color-danger !important;
+    }
+  }
+
   .btn-collapsible {
     @extend %fs-14x;
     @extend %sm\:fs-16x;

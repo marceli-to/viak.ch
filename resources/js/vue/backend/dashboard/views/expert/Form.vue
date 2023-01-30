@@ -86,7 +86,36 @@
         </form-group>
       </grid>
       
-      <collapsible class="">
+      <collapsible :expanded="true">
+        <template #title>
+          <template v-if="errors.roles">
+            <div class="text-danger">{{ errors.roles }}</div> 
+          </template>
+          <template v-else>Benutzer-Rollen</template>
+        </template>
+        <template #content>
+
+          <grid class="sm:grid-cols-12 pt-4x">
+            <form-group 
+              v-for="role in settings.roles" :key="role.id"
+              class="span-3">
+              <div class="form-group__checkbox">
+                <input 
+                  type="checkbox" 
+                  :id="`role-${role.id}`" 
+                  name="roles[]" 
+                  :value="role.id" 
+                  v-model="data.roles"
+                  @change="removeValidationError('roles')">
+                <label :for="`role-${role.id}`">{{ role.name }}</label>
+              </div>
+            </form-group>
+          </grid>
+
+        </template>
+      </collapsible>
+
+      <collapsible>
         <template #title>Über</template>
         <template #content>
           <form-group :label="'Titel'" class="mt-2x sm:mt-4x">
@@ -194,6 +223,7 @@ export default {
         gender_id: 2,
         publish: 0,
         visisble: 0,
+        roles: [],
         subscribe_newsletter: 0,
       },
 
@@ -257,7 +287,8 @@ export default {
     fetch() {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
-        this.data = response.data;
+        this.data = response.data; 
+        this.data.roles = response.data.roles.map(i => i['id']);
         this.isFetched = true;
         NProgress.done();
       });
@@ -304,6 +335,7 @@ export default {
     },
 
     update() {
+
       NProgress.start();
       this.$store.commit('isLoading', true); 
       this.axios.put(`${this.routes.update}/${this.data.id}`, this.data).then(response => {

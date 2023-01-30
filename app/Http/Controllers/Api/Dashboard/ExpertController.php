@@ -6,8 +6,8 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\RoleUser;
 use App\Facades\NewsletterSubscriber;
-use App\Http\Requests\ExpertStoreRequest;
-use App\Http\Requests\ExpertUpdateRequest;
+use App\Http\Requests\Dashboard\ExpertStoreRequest;
+use App\Http\Requests\Dashboard\ExpertUpdateRequest;
 use App\Events\ExpertCreated;
 use Illuminate\Http\Request;
 
@@ -73,7 +73,7 @@ class ExpertController extends Controller
         ]
       )
     );
-    $user->roles()->attach(Role::EXPERT);
+    $user->roles()->sync($request->input('roles'));
     $user->save();
 
     // Handle newsletter subscription
@@ -96,8 +96,7 @@ class ExpertController extends Controller
   {
     $user = User::findOrFail($user->id);
     $user->update($request->all());
-
-    // @todo: Sync roles
+    $user->roles()->sync($request->input('roles'));
 
     // Handle newsletter subscription
     NewsletterSubscriber::update($user);
