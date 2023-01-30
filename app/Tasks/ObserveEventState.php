@@ -11,14 +11,12 @@ class ObserveEventState
     {
       foreach($events as $event)
       {
-        // Create a job for the confirmation email to each student
         \App\Models\Job::create([
           'recipient' => env('MAIL_TO'),
           'mailable_id' => $event->id,
           'mailable_type' => \App\Models\Event::class,
           'mailable_class' => \App\Mail\EventCancelOrConfirmReminder::class
         ]);
-
         $event->flag('hasCancelOrConfirmReminder');
       }
     }

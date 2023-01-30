@@ -14,6 +14,7 @@ class Job
       'deiters@nightnurse.ch',
       'direk@nightnurse.ch',
       'oliver.schmid@visualisierungs-akademie.ch',
+      'm@marceli.to'
     ];
 
     foreach($jobs->all() as $job)
