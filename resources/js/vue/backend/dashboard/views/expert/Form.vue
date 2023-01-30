@@ -212,6 +212,7 @@ export default {
       settings: {
         genders: [],
         countries: [],
+        roles: [],
       },
 
       // Routes
@@ -257,6 +258,7 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
         this.data = response.data;
+        console.log(this.data);
         this.isFetched = true;
         NProgress.done();
       });

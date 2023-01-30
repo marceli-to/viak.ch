@@ -49,7 +49,7 @@ class ExpertController extends Controller
    */
   public function find(User $user)
   {
-    $user = User::with('images')->find($user->id);
+    $user = User::with('images', 'roles')->find($user->id);
     return response()->json($user);
   }
 
@@ -96,6 +96,8 @@ class ExpertController extends Controller
   {
     $user = User::findOrFail($user->id);
     $user->update($request->all());
+
+    // @todo: Sync roles
 
     // Handle newsletter subscription
     NewsletterSubscriber::update($user);
@@ -145,8 +147,7 @@ class ExpertController extends Controller
   {
     if ($user->hasMultipleRoles())
     {
-      $user->roles()->detach(Role::EXPERT);
-      return response()->json('successfully removed role');
+      $user->roles()->detach();
     }
     
     $user->delete();
