@@ -32,6 +32,7 @@ class ExpertStoreRequest extends FormRequest
       'email' => 'required|email|max:255|unique:users',
       'gender_id' =>  'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id',
+      'roles' => 'required|array|min:1',
     ];
   }
 
@@ -79,6 +80,10 @@ class ExpertStoreRequest extends FormRequest
       'country_id.exists' => [
         'field' => 'country_id',
         'error' => 'Land wird benötigt'
+      ],
+      'roles.required' => [
+        'field' => 'roles',
+        'error' => 'Benutzerrolle wird benötigt'
       ],
     ];
   }
