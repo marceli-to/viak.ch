@@ -173,7 +173,7 @@
           {{ __('Gebuchte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.events.length > 0">
+          <div v-if="user.events && user.events.length > 0">
             <div v-for="(booking, index) in user.events" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
@@ -204,7 +204,7 @@
           {{ __('Absolvierte Kurse') }}
         </template>
         <template #content>
-          <div v-if="user.events_participated.length > 0">
+          <div v-if="user.events_participated && user.events_participated.length > 0">
             <div v-for="(booking, index) in user.events_participated" :key="index">
               <stacked-list-event 
                 :event="booking.event" 
@@ -234,7 +234,7 @@
           {{ __('Dokumente') }}
         </template>
         <template #content>
-          <div v-if="user.documents.length > 0">
+          <div v-if="user.documents && user.documents.length > 0">
             <stacked-list-document 
               v-for="document in user.documents" 
               :key="document.uuid" 

@@ -159,7 +159,7 @@ export default {
         store: '/api/dashboard/student',
         update: '/api/dashboard/student',
         delete: '/api/dashboard/student',
-        settings: '/api/user/settings/',
+        settings: '/api/user/settings',
       },
 
       // States

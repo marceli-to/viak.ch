@@ -221,7 +221,7 @@ export default {
         store: '/api/dashboard/expert',
         update: '/api/dashboard/expert',
         delete: '/api/dashboard/expert',
-        settings: '/api/user/settings/',
+        settings: '/api/user/settings',
       },
 
       // States
@@ -258,7 +258,6 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
         this.data = response.data;
-        console.log(this.data);
         this.isFetched = true;
         NProgress.done();
       });
@@ -270,6 +269,7 @@ export default {
       this.axios.get(`${this.routes.settings}`).then(response => {
         this.settings.genders = response.data.genders;
         this.settings.countries = response.data.countries;
+        this.settings.roles = response.data.roles;
         this.isFetchedSettings = true;
         NProgress.done();
       });

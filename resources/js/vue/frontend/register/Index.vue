@@ -175,7 +175,7 @@ export default {
         user: {
           register: '/api/student/register',
         },
-        settings: '/api/user/settings/',
+        settings: '/api/user/settings',
         login: '/login',
         logout: '/logout',
       },

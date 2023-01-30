@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\Gender;
+use App\Models\Role;
 use App\Http\Resources\CountryResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -40,6 +41,12 @@ class UserController extends Controller
         Country::orderBy('order')->get()
       )
     ];
+
+    if (auth()->user()->isAdmin())
+    {
+      $data['roles'] = Role::get();
+    }
+
     return response()->json($data);
   }
 }
