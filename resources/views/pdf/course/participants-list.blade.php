@@ -25,7 +25,9 @@
   <div class="page__content">
     <table class="content-table">
       <thead>
-        <th style="width: 100mm">{{ __('Teilnehmer') }}</th>
+        <th style="width: 84mm;">{{ __('Teilnehmer') }}</th>
+        <th style="width: 34mm;">{{ __('Telefon') }}
+          <th style="width: 50mm;">{{ __('E-Mail') }}
       </thead>
       <tbody>
         @foreach($data['bookings'] as $booking)
@@ -34,6 +36,12 @@
               <strong>
                 {{ $booking->user->fullname }}, {{ $booking->user->city }}
               </strong>
+            </td>
+            <td>
+              {{ $booking->user->phone ?? '-' }}
+            </td>
+            <td>
+              {{ $booking->user->email ?? '-' }}
             </td>
           </tr>
         @endforeach
