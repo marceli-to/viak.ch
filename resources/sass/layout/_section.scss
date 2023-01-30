@@ -79,7 +79,7 @@
   a:not([class*="btn-"]) {
     color: $color-primary;
     text-decoration: underline;
-    text-underline-offset: 1px;
+    text-underline-offset: 2px;
     
     &:hover {
       text-decoration: none;
