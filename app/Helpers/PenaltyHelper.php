@@ -5,12 +5,9 @@ use Illuminate\Support\Carbon;
 
 class PenaltyHelper
 {
-  const RANGE_MIN = 16;
-  const RANGE_MAX =  8;
-
   public static function get($eventData, $eventFee)
   { 
-    // Penalties
+    // Penalties in percent
     $penalties = [
       'full' => '100',
       'half'  => '50'
@@ -22,12 +19,12 @@ class PenaltyHelper
     // Diff between today and the event date
     $days = Carbon::parse($eventData)->diffInDays(Carbon::now());
 
-    if ($days == 0 || $days < self::RANGE_MAX)
+    if ($days == 0 || $days < config('invoice.days_penalty_full'))
     {
       $penalty = $penalties['full'];
       $amount  = $eventFee / 100 * $penalties['full'];
     }
-    else if ($days < self::RANGE_MIN)
+    else if ($days < config('invoice.days_penalty_half'))
     {
       $penalty = $penalties['half'];
       $amount  = $eventFee / 100 * $penalties['half'];
@@ -43,7 +40,8 @@ class PenaltyHelper
   public static function has($eventData)
   {
     // Diff between today and the event date
+    // TRUE if the difference is within the minimum range (days_penalty_half)
     $days = Carbon::parse($eventData)->diffInDays(Carbon::now());
-    return $days < self::RANGE_MIN ? TRUE : FALSE;
+    return $days < config('invoice.days_penalty_half') ? TRUE : FALSE;
   }
 }

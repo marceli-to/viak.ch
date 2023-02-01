@@ -15,11 +15,11 @@ class InvoiceController extends Controller
   public function get()
   {
     return response()->json([
-      'pending' => Invoice::with('user', 'booking')->pending()->orderBy('number', 'DESC')->get(),
-      'paid' => Invoice::with('user', 'booking')->paid()->get(),
-      'cancelled' => Invoice::with('user', 'booking')->cancelled()->get(),
+      'open' => Invoice::with('user', 'booking')->open()->orderBy('number', 'DESC')->get(),
+      'paid' => Invoice::with('user', 'booking')->paid()->orderBy('number', 'DESC')->get(),
+      'cancelled' => Invoice::with('user', 'booking')->cancelled()->orderBy('number', 'DESC')->get(),
+      'overdue' => Invoice::with('user', 'booking')->overdue()->orderBy('number', 'DESC')->get(),
     ]);
-
   }
 
 }

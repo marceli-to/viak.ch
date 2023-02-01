@@ -3,6 +3,18 @@ namespace App\Traits;
 
 trait InvoiceScopes
 {
+
+  /**
+   * Scope a query to only include open invoices
+   *
+   * @param  \Illuminate\Database\Eloquent\Builder  $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeOpen($query)
+  {
+    return $query->where('status', 'OPEN');
+  }
+
   /**
    * Scope a query to only include paid invoices
    *
@@ -11,7 +23,7 @@ trait InvoiceScopes
    */
   public function scopePaid($query)
   {
-    return $query->whereNotNull('paid_at');
+    return $query->where('status', 'PAID');
   }
 
   /**
@@ -22,17 +34,17 @@ trait InvoiceScopes
    */
   public function scopeCancelled($query)
   {
-    return $query->whereNotNull('cancelled_at');
+    return $query->where('status', 'CANCELLED');
   }
 
   /**
-   * Scope a query to only include pending invoices
+   * Scope a query to only include open invoices
    *
    * @param  \Illuminate\Database\Eloquent\Builder  $query
    * @return \Illuminate\Database\Eloquent\Builder
    */
-  public function scopePending($query)
+  public function scopeOverdue($query)
   {
-    return $query->whereNull('paid_at')->whereNull('cancelled_at');
+    return $query->where('status', 'OVERDUE');
   }
 }

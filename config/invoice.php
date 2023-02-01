@@ -81,4 +81,24 @@ return [
 
   'payment_period' => 10, 
 
+  /*
+  |--------------------------------------------------------------------------
+  | Amount of days in which a user has to pay a penalty
+  | of 50% for cancelling a booking
+  |--------------------------------------------------------------------------
+  |
+  */
+
+  'days_penalty_half' => 16, 
+
+  /*
+  |--------------------------------------------------------------------------
+  | Amount of days in which a user has to pay a penalty
+  | of 100% for cancelling a booking
+  |--------------------------------------------------------------------------
+  |
+  */
+
+  'days_penalty_full' => 8, 
+
 ];

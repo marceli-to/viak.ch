@@ -23,7 +23,7 @@ class Invoice
 
   public static function findFromBooking(Booking $booking)
   {
-    return InvoiceModel::pending()->where('booking_id', $booking->id)->first();
+    return InvoiceModel::open()->where('booking_id', $booking->id)->first();
   }
 
   /**
@@ -117,7 +117,7 @@ class Invoice
     // Cancel an existing invoice
     if ($existingInvoice)
     {
-      $existingInvoice->flag('isCancelled');
+      $existingInvoice->status = 'CANCELLED';
       $existingInvoice->cancelled_at = \Carbon\Carbon::now();
       $existingInvoice->cancel_reason = 'Replaced by Invoice No. ' . $invoiceWithPenalty->number;
       $existingInvoice->save();

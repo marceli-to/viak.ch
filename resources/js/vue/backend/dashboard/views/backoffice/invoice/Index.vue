@@ -15,7 +15,7 @@
     </content-list-header>
   
     <collapsible-container>
-      <collapsible :expanded="true" :uuid="'pending-invoices'">
+      <collapsible :expanded="true" :uuid="'open-invoices'">
         <template #title>Offene Rechnungen</template>
         <template #content>
           <stacked-list-item class="stacked-list-item--header">
@@ -26,7 +26,7 @@
               <div class="span-6">Student</div>
             </div>
           </stacked-list-item>
-          <stacked-list-item v-for="invoice in query('pending')" :key="invoice.id" class="relative">
+          <stacked-list-item v-for="invoice in query('open')" :key="invoice.id" class="relative">
             <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank" class="icon-download mt-3x">
               <icon-download />
             </a>
@@ -50,6 +50,80 @@
           </stacked-list-item>
         </template>
       </collapsible>
+
+      <collapsible :uuid="'paid-invoices'" v-if="query('paid').length">
+        <template #title>Bezahlte Rechnungen</template>
+        <template #content>
+          <stacked-list-item class="stacked-list-item--header">
+            <div>
+              <div class="span-2">Nummer</div>
+              <div class="span-2">Datum</div>
+              <div class="span-2">Betrag</div>
+              <div class="span-6">Student</div>
+            </div>
+          </stacked-list-item>
+          <stacked-list-item v-for="invoice in query('paid')" :key="invoice.id" class="relative">
+            <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank" class="icon-download mt-3x">
+              <icon-download />
+            </a>
+            <div>
+              <div class="span-2">
+                <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank">
+                  {{ invoice.number }}
+                </a>
+              </div>
+              <div class="span-2">
+                {{ invoice.date_short }}
+              </div>
+              <div class="span-2">
+                {{ invoice.total | moneyFormat() }}
+              </div>
+              <div class="span-6" v-if="invoice.user">
+                {{ invoice.user.fullname }}, {{ invoice.user.city }}
+              </div>
+
+            </div>
+          </stacked-list-item>
+        </template>
+      </collapsible>
+
+      <collapsible :uuid="'cancelled-invoices'" v-if="query('cancelled').length">
+        <template #title>Stornierte Rechnungen</template>
+        <template #content>
+          <stacked-list-item class="stacked-list-item--header">
+            <div>
+              <div class="span-2">Nummer</div>
+              <div class="span-2">Datum</div>
+              <div class="span-2">Betrag</div>
+              <div class="span-6">Student</div>
+            </div>
+          </stacked-list-item>
+          <stacked-list-item v-for="invoice in query('cancelled')" :key="invoice.id" class="relative">
+            <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank" class="icon-download mt-3x">
+              <icon-download />
+            </a>
+            <div>
+              <div class="span-2">
+                <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank">
+                  {{ invoice.number }}
+                </a>
+              </div>
+              <div class="span-2">
+                {{ invoice.date_short }}
+              </div>
+              <div class="span-2">
+                {{ invoice.total | moneyFormat() }}
+              </div>
+              <div class="span-6" v-if="invoice.user">
+                {{ invoice.user.fullname }}, {{ invoice.user.city }}
+              </div>
+
+            </div>
+          </stacked-list-item>
+        </template>
+      </collapsible>
+
+
     </collapsible-container>
   </div>
   </template>
@@ -94,6 +168,10 @@
       return {
   
         data: {
+          open: null,
+          paid: null,
+          cancelled: null,
+          overdue: null
         },
   
         searchQuery: null,
@@ -119,9 +197,10 @@
         NProgress.start();
         this.isLoaded = false;
         this.axios.get(`${this.routes.get}`).then(response => {
-          this.data.pending = response.data.pending;
+          this.data.open = response.data.open;
           this.data.paid = response.data.paid;
           this.data.cancelled = response.data.cancelled;
+          this.data.overdue = response.data.overdue;
           this.isLoaded = true;
           NProgress.done();
         });

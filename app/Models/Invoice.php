@@ -70,6 +70,18 @@ class Invoice extends Base
   */
 
   /**
+   * Check for open state
+   * 
+   * @return Boolean
+   */
+
+   public function isOpen()
+   {
+     return $this->status == 'OPEN' ? TRUE : FALSE;
+   }
+ 
+
+  /**
    * Check for paid state
    * 
    * @return Boolean
@@ -77,7 +89,7 @@ class Invoice extends Base
 
   public function isPaid()
   {
-    return $this->hasFlag('isPaid');
+    return $this->status == 'PAID' ? TRUE : FALSE;
   }
 
   /**
@@ -88,8 +100,19 @@ class Invoice extends Base
 
   public function isCancelled()
   {
-    return $this->hasFlag('isCancelled');
+    return $this->status == 'CANCELLED' ? TRUE : FALSE;
   }
+
+  /**
+   * Check for overdue state
+   * 
+   * @return Boolean
+   */
+
+   public function isOverdue()
+   {
+    return $this->status == 'OVERDUE' ? TRUE : FALSE;
+   }
 
 
   /*
