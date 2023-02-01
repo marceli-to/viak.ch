@@ -2,6 +2,7 @@
 namespace App\Facades;
 use Illuminate\Http\Request;
 use App\Models\Invoice as InvoiceModel;
+use App\Actions\RMA\CreateInvoice as CreateInvoiceAction;
 use App\Services\Pdf\Invoice\EventInvoice;
 use App\Models\User;
 use App\Models\UserAddress;
@@ -72,6 +73,9 @@ class Invoice
     // Write invoice as PDF
     $pdf = (new EventInvoice())->create($invoice);
 
+    // Action create invoice in Run My Accounts
+    (new CreateInvoiceAction())->execute($invoice);
+
     // Update invoice
     $invoice->filename = $pdf['filename'];
     $invoice->save();
@@ -114,6 +118,9 @@ class Invoice
     $invoiceWithPenalty->filename = $pdf['filename'];
     $invoiceWithPenalty->save();
 
+    // Action create invoice in Run My Accounts
+    (new CreateInvoiceAction())->execute($invoice);
+
     // Cancel an existing invoice
     if ($existingInvoice)
     {
@@ -121,6 +128,8 @@ class Invoice
       $existingInvoice->cancelled_at = \Carbon\Carbon::now();
       $existingInvoice->cancel_reason = 'Replaced by Invoice No. ' . $invoiceWithPenalty->number;
       $existingInvoice->save();
+
+      // @todo: cancel invoice in Run My Accounts
     }
 
     return $invoiceWithPenalty;

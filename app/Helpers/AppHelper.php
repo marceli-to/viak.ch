@@ -12,7 +12,7 @@ class AppHelper
 
   public static function linkTarget($url = NULL)
   {
-    if (!\Str::contains($url, env('APP_URL')))
+    if (!\Str::contains($url, config('app.url')))
     {
       return '_blank';
     }

@@ -8,7 +8,6 @@ class CreateInvoice
 {
   public function execute(Invoice $invoice)
   {
-
     $headers = [
       'content-type' => 'application/json',
       'accept' => 'application/json'
@@ -18,11 +17,11 @@ class CreateInvoice
     $esr_data = (new Qr($invoice))->get();
 
     // Get url to invoice pdf
-    $invoice_url = env('APP_URL') . "/storage/files/" . $invoice->user?->uuid . "/" . $invoice->filename;
+    $invoice_url = config('app.url') . "/storage/files/" . $invoice->user?->uuid . "/" . $invoice->filename;
    
     // Create data
     $data = [
-      "invnumber" => "VIAK_" . $invoice->number,
+      "invnumber" => config('invoice.prefix') . $invoice->number,
       "ordnumber" => $invoice->booking?->number,
       "dcn" => str_replace(' ', '', $esr_data['reference_number']),
       "currency" => "CHF",
@@ -34,7 +33,7 @@ class CreateInvoice
       "intnotes" => "",
       "taxincluded" => "false", 
       "customer" => [
-        "customernumber" => "VIAK_" . $invoice->user?->id,
+        "customernumber" => $invoice->user?->id,
         "name" => $invoice->user?->fullname,
       ],
       "incomeentries" => [
@@ -51,13 +50,11 @@ class CreateInvoice
         ]
       ]
     ];
-
-    $url = env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_POST');
-
+    
     return Http::withHeaders([
       'content-type' => 'application/json',
       'accept' => 'application/json'
-    ])->post($url, $data);
+    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_POST'), json_encode($data));
   }
 
 }
