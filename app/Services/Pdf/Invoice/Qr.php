@@ -28,7 +28,7 @@ class Qr
    */
   private function getReferenceNumberString()
   {
-    $esr_customer_id = config('sipt.esr_customer_id');
+    $esr_customer_id = config('invoice.esr_customer_id');
     $str = $esr_customer_id . ' 00000 ' . $this->getClientNumberString() . ' ' . $this->getInvoiceNumberString();
     $str = $str . $this->getModulo10(str_replace(' ', '', $str));
     return $str;

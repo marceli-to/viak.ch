@@ -15,26 +15,34 @@
     </content-list-header>
   
     <collapsible-container>
-      <collapsible :expanded="true" :uuid="'dashboard-discounts-valid'">
+      <collapsible :expanded="true" :uuid="'pending-invoices'">
         <template #title>Offene Rechnungen</template>
         <template #content>
+          <stacked-list-item class="stacked-list-item--header">
+            <div>
+              <div class="span-2">Nummer</div>
+              <div class="span-2">Datum</div>
+              <div class="span-2">Betrag</div>
+              <div class="span-6">Student</div>
+            </div>
+          </stacked-list-item>
           <stacked-list-item v-for="invoice in query('pending')" :key="invoice.id" class="relative">
             <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank" class="icon-download mt-3x">
               <icon-download />
             </a>
             <div>
-              <div class="span-1">
+              <div class="span-2">
                 <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank">
                   {{ invoice.number }}
                 </a>
               </div>
               <div class="span-2">
-                {{ invoice.date_short }}<br><em class="text-xsmall">(Fällig: {{ invoice.due_at_short }}</em>)
+                {{ invoice.date_short }}
               </div>
               <div class="span-2">
-                CHF {{ invoice.total | moneyFormat() }}
+                {{ invoice.total | moneyFormat() }}
               </div>
-              <div class="span-4" v-if="invoice.user">
+              <div class="span-6" v-if="invoice.user">
                 {{ invoice.user.fullname }}, {{ invoice.user.city }}
               </div>
 
@@ -43,8 +51,6 @@
         </template>
       </collapsible>
     </collapsible-container>
-  
-
   </div>
   </template>
   <script>
@@ -88,7 +94,6 @@
       return {
   
         data: {
-  
         },
   
         searchQuery: null,

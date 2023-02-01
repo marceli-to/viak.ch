@@ -168,7 +168,23 @@
 // Stacked list for various items
 .stacked-list-item {
   @extend %stacked-list;
-}
 
+  &--header {
+    background-color: $color-white;
+    border-top: none;
+    padding: $space-2x 0;
+    position: sticky !important;
+    top: 0;
+    z-index: 100;
+
+    > div {
+      @extend %md\:fs-16x;
+    }
+
+    + .stacked-list-item {
+      margin-top: $space-2x;
+    }
+  }
+}
 
  

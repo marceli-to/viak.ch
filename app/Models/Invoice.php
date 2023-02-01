@@ -41,6 +41,7 @@ class Invoice extends Base
     'uuid',
     'booking_id',
     'user_id',
+    'status',
     'due_at',
     'paid_at',
     'cancelled_at',
