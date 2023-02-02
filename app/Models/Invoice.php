@@ -42,6 +42,7 @@ class Invoice extends Base
     'booking_id',
     'user_id',
     'status',
+    'queued',
     'due_at',
     'paid_at',
     'cancelled_at',
@@ -69,18 +70,17 @@ class Invoice extends Base
   |
   */
 
-  /**
-   * Check for open state
-   * 
-   * @return Boolean
-   */
+/**
+ * Check for open state
+ * 
+ * @return Boolean
+ */
 
-   public function isOpen()
-   {
-     return $this->status == 'OPEN' ? TRUE : FALSE;
-   }
+  public function isOpen()
+  {
+    return $this->status == 'OPEN' ? TRUE : FALSE;
+  }
  
-
   /**
    * Check for paid state
    * 
@@ -113,7 +113,6 @@ class Invoice extends Base
    {
     return $this->status == 'OVERDUE' ? TRUE : FALSE;
    }
-
 
   /*
   |--------------------------------------------------------------------------

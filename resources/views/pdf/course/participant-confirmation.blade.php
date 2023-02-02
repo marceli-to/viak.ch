@@ -37,9 +37,8 @@
         </tr>
       </tbody>
     </table>
-    <p>{{ __('Wir bestätigen, dass Marcel Stadelmann oben aufgeführte Kurse erfolgreich absolviert hat.') }}</p>
+    <p>{{ __('Wir bestätigen, dass :fullname den oben aufgeführten Kurs erfolgreich absolviert hat.', ['fullname' => $booking->user->fullname]) }}</p>
     @if ($booking->event->course->summary)
-      <div style="margin-bottom: 1mm"><strong>Kursinhalt / Beschreibung / Einleitung</strong></div>
       {!! $booking->event->course->summary !!}
       <br>
     @endif

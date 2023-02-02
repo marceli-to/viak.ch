@@ -1,7 +1,7 @@
 <?php
 namespace App\Console\Commands\RMA;
 use App\Models\Invoice;
-use App\Actions\RMA\GetInvoiceStatus as GetInvoiceStatusAction;
+use App\Actions\RMA\GetInvoice as GetInvoiceAction;
 use Illuminate\Console\Command;
 
 class GetInvoice extends Command
@@ -18,18 +18,18 @@ class GetInvoice extends Command
    *
    * @var string
    */
-  protected $description = 'Get the state of an invoice from run my accounts';
+  protected $description = 'Get an invoice from run my accounts';
 
-  protected $getInvoiceStatusAction;
+  protected $getInvoiceAction;
 
   /**
    * Create a new command instance.
    *
    * @return void
    */
-  public function __construct(GetInvoiceStatusAction $getInvoiceStatusAction)
+  public function __construct(GetInvoiceAction $getInvoiceAction)
   {
-    $this->getInvoiceStatusAction = $getInvoiceStatusAction;
+    $this->getInvoiceAction = $getInvoiceAction;
     parent::__construct();
   }
 
@@ -38,10 +38,11 @@ class GetInvoice extends Command
    *
    * @return int
    */
-  public function handle(): mixed
+  public function handle()
   {
     $searchTerm = $this->ask('Enter invoice number: ');
     $invoice = Invoice::with('user')->where('number', 'LIKE', "%$searchTerm%")->first();
-    return $this->getInvoiceStatusAction->execute($invoice);
+    $response = $this->getInvoiceAction->execute($invoice);
+    dd($response);
   }
 }

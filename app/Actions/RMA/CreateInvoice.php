@@ -50,11 +50,11 @@ class CreateInvoice
         ]
       ]
     ];
-    
+   
     return Http::withHeaders([
       'content-type' => 'application/json',
       'accept' => 'application/json'
-    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_POST'), json_encode($data));
+    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_POST'), $data);
   }
 
 }

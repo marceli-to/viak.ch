@@ -47,7 +47,7 @@
 
   .text-item {
     a {
-      @extend %link-underline-hover;
+      @extend %link-underline;
     }
   }
 }

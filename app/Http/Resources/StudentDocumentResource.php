@@ -12,18 +12,37 @@ class StudentDocumentResource extends JsonResource
    */
   public function toArray($request)
   {
-    return [
+    $data = [
       'uuid' => $this->uuid,
       'date' => $this->date_short,
       'name' => $this->name,
       'uri' => $this->uri,
       'type' => $this->type,
       'document_title' => $this->getType($this->type),
-      'course_title' => $this->type = 'INVOICE' ? $this->invoice->booking->event->course->title : '',
-      'course_date' =>  $this->type = 'INVOICE' ? $this->invoice->booking->event->date_short : '',
-      'number' => $this->type = 'INVOICE' ? $this->invoice->number : NULL,
-      'total' => $this->type = 'INVOICE' ? $this->invoice->total : NULL
     ];
+
+    if ($this->type == 'INVOICE')
+    {
+      $invoice_data = [
+        'course_title' => $this->invoice->booking->event->course->title,
+        'course_date' =>  $this->invoice->booking->event->date_short,
+        'number' => $this->invoice->number,
+        'total' => $this->invoice->total,
+      ];
+
+      $data = array_merge($data, $invoice_data);
+    }
+
+    if ($this->type == 'PARTICIPATION_CONFIRMATION')
+    {
+      $confirmation_data = [
+        'course_title' => $this->booking?->event->course->title,
+        'course_date' =>  $this->booking?->event->date_short,       
+      ];
+      $data = array_merge($data, $confirmation_data);
+    }
+
+    return $data;
   }
 
   public function getType($type)

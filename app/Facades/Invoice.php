@@ -14,7 +14,6 @@ use App\Models\DiscountCode;
 
 class Invoice
 {
-  
   /**
    * Check for an existing invoice for a booking.
    * 
@@ -42,7 +41,6 @@ class Invoice
     {
       return $invoice;
     }
-
     return self::createFromBooking($booking);
   }
 

@@ -105,7 +105,7 @@
   @if ($course->full_description)
     <x-collapsible title="{{ __('Detailbeschrieb') }}" :expanded="true">
       <div class="sm:grid-cols-12">
-        <div class="span-8">
+        <div class="span-8 text-item">
           {!! $course->full_description !!}
         </div>
       </div>
@@ -121,7 +121,7 @@
           </div>
         @endif
         @if ($course->additional_information_1)
-        <div class="mb-4x sm:mb-0 sm:span-4">
+        <div class="mb-4x sm:mb-0 sm:span-4 text-item">
           {!! $course->additional_information_1 !!}
         </div>
         @endif

@@ -25,6 +25,7 @@ a.link-sm {
   @extend %md\:fs-18x;
 }
 
+%link-underline,
 a.link-underline {
   text-decoration: underline;
   text-underline-offset: 3px;

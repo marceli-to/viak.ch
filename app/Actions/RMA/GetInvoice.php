@@ -3,7 +3,7 @@ namespace App\Actions\RMA;
 use Illuminate\Support\Facades\Http;
 use App\Models\Invoice;
 
-class GetInvoiceStatus
+class GetInvoice
 {
   public function execute(Invoice $invoice)
   {
@@ -11,7 +11,7 @@ class GetInvoiceStatus
     $response = Http::acceptJson()->get($url);
     if ($response->status() == 200)
     {
-      return $response->json('status');
+      return $response->object();
     }
     return NULL;
   }
