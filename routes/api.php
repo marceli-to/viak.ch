@@ -66,7 +66,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::put('/basket/add/user', [BasketController::class, 'addUser']);
   Route::put('/basket/add/payment-info', [BasketController::class, 'addPayment']);
   Route::get('/discount-code/check/{code}', [DiscountCodeController::class, 'check']);
-
 });
 
 Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
@@ -281,7 +280,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::put('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'update']);
   Route::delete('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'destroy']);
 
-  // Team member
+  // Team member (@has testcase)
   Route::get('team-members', [DashboardTeamMemberController::class, 'get']);
   Route::get('team-member/{teamMember}', [DashboardTeamMemberController::class, 'find']);
   Route::post('team-member', [DashboardTeamMemberController::class, 'store']);
@@ -289,7 +288,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::post('team-members/order', [DashboardTeamMemberController::class, 'order']);
   Route::delete('team-member/{teamMember}', [DashboardTeamMemberController::class, 'destroy']);
 
-  // News
+  // News (@has testcase)
   Route::get('news-items', [DashboardNewsController::class, 'get']);
   Route::get('news/{news}', [DashboardNewsController::class, 'find']);
   Route::post('news', [DashboardNewsController::class, 'store']);
@@ -297,7 +296,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::post('news/order', [DashboardNewsController::class, 'order']);
   Route::delete('news/{news}', [DashboardNewsController::class, 'destroy']);
 
-  // News
+  // Heroes (@has testcase)
   Route::get('heroes', [DashboardHeroController::class, 'get']);
   Route::get('hero/{hero}', [DashboardHeroController::class, 'find']);
   Route::post('hero', [DashboardHeroController::class, 'store']);
@@ -320,48 +319,53 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   // Settings
   Route::prefix('settings')->group(function() {
 
-    // Categories
+    // Categories (@has testcase)
     Route::get('categories', [DashboardCategoryController::class, 'get']);
     Route::get('category/{category}', [DashboardCategoryController::class, 'find']);
     Route::post('category', [DashboardCategoryController::class, 'store']);
     Route::put('category/{category}', [DashboardCategoryController::class, 'update']);
     Route::delete('category/{category}', [DashboardCategoryController::class, 'destroy']);
 
-    // Languages
+    // Languages (@has testcase)
     Route::get('languages', [DashboardLanguageController::class, 'get']);
     Route::get('language/{language}', [DashboardLanguageController::class, 'find']);
     Route::post('language', [DashboardLanguageController::class, 'store']);
     Route::put('language/{language}', [DashboardLanguageController::class, 'update']);
     Route::delete('language/{language}', [DashboardLanguageController::class, 'destroy']);
 
-    // Level
+    // Level (@has testcase)
     Route::get('levels', [DashboardLevelController::class, 'get']);
     Route::get('level/{level}', [DashboardLevelController::class, 'find']);
     Route::post('level', [DashboardLevelController::class, 'store']);
     Route::put('level/{level}', [DashboardLevelController::class, 'update']);
     Route::delete('level/{level}', [DashboardLevelController::class, 'destroy']);
 
-    // Software
+    // Software (@has testcase)
     Route::get('softwares', [DashboardSoftwareController::class, 'get']);
     Route::get('software/{software}', [DashboardSoftwareController::class, 'find']);
     Route::post('software', [DashboardSoftwareController::class, 'store']);
     Route::put('software/{software}', [DashboardSoftwareController::class, 'update']);
     Route::delete('software/{software}', [DashboardSoftwareController::class, 'destroy']);
 
-    // Tag
-    Route::get('tags', [DashboardTagController::class, 'get']);
-    Route::get('tag/{tag}', [DashboardTagController::class, 'find']);
-    Route::post('tag', [DashboardTagController::class, 'store']);
-    Route::put('tag/{tag}', [DashboardTagController::class, 'update']);
-    Route::delete('tag/{tag}', [DashboardTagController::class, 'destroy']);
+    // Tag (@has testcase)
+    Route::controller(DashboardTagController::class)->group(function () {
+      Route::get('tags', 'get');
+      Route::get('tag/{tag}', 'find');
+      Route::post('tag', 'store');
+      Route::put('tag/{tag}', 'update');
+      Route::delete('tag/{tag}', 'destroy');    
+    });
 
-    // Location
-    Route::get('locations', [DashboardLocationController::class, 'get']);
-    Route::get('location/{location}', [DashboardLocationController::class, 'find']);
-    Route::post('location', [DashboardLocationController::class, 'store']);
-    Route::put('location/{location}', [DashboardLocationController::class, 'update']);
-    Route::delete('location/{location}', [DashboardLocationController::class, 'destroy']);
-  });
+    // Location (@has testcase)
+    Route::controller(DashboardLocationController::class)->group(function () {
+      Route::get('locations', 'get');
+      Route::get('location/{location}', 'find');
+      Route::post('location', 'store');
+      Route::put('location/{location}', 'update');
+      Route::delete('location/{location}', 'destroy');
+    });
+
+  }); //-- Settings
 
 });
 

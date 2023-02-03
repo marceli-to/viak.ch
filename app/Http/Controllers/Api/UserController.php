@@ -42,7 +42,7 @@ class UserController extends Controller
       )
     ];
 
-    if (auth()->user()->isAdmin())
+    if (auth()->user() && auth()->user()->isAdmin())
     {
       $data['roles'] = Role::get();
     }

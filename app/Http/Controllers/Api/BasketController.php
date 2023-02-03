@@ -145,7 +145,10 @@ class BasketController extends Controller
 
   public function destroy(Event $event)
   {
-    $this->store->removeItem($event->uuid);
+    if ($this->store->hasAttribute('items'))
+    {
+      $this->store->removeItem($event->uuid);
+    }
     return response()->json($this->store->get());
   }
 

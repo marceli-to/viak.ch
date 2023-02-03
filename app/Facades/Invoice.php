@@ -72,7 +72,10 @@ class Invoice
     $pdf = (new EventInvoice())->create($invoice);
 
     // Action create invoice in Run My Accounts
-    (new CreateInvoiceAction())->execute($invoice);
+    if (app()->environment() !== 'local')
+    {
+      (new CreateInvoiceAction())->execute($invoice);
+    }
 
     // Update invoice
     $invoice->filename = $pdf['filename'];
@@ -117,7 +120,10 @@ class Invoice
     $invoiceWithPenalty->save();
 
     // Action create invoice in Run My Accounts
-    (new CreateInvoiceAction())->execute($invoice);
+    if (app()->environment() !== 'locale')
+    {
+      (new CreateInvoiceAction())->execute($invoice);
+    }
 
     // Cancel an existing invoice
     if ($existingInvoice)

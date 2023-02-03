@@ -11,15 +11,15 @@ class TranslationController extends Controller
    * @param String $locale 
    * @return \Illuminate\Http\Response
    */
-  public function fetch($locale = NULL)
+  public function fetch($locale)
   { 
-    if (!$locale)
-    {
-      return NULL;
-    }
     $path = resource_path('lang/'. $locale .'.json');
-    $translations = file_get_contents($path);
-    return response()->json($translations);
+    
+    if (file_exists($path))
+    {
+      $translations = file_get_contents($path);
+      return response()->json($translations);      
+    }
+    return NULL;
   }
-
 }

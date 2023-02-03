@@ -33,7 +33,7 @@ class CreateInvoice
       "intnotes" => "",
       "taxincluded" => "false", 
       "customer" => [
-        "customernumber" => $invoice->user?->id,
+        "customernumber" => config('invoice.prefix') . $invoice->user?->id,
         "name" => $invoice->user?->fullname,
       ],
       "incomeentries" => [
