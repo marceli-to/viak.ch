@@ -11,6 +11,13 @@ test('admin can create, retrieve, update and destroy a news', function () {
   // Login user
   Auth::login($user);
 
+  // Create a new news
+  $response = $this->post('/api/dashboard/news', [
+    'title' => 'Lorem',
+  ]);
+  $newsId = $response->json('newsId');
+  expect($newsId)->toBeInt();
+
   // Get a news from database
   $news = News::first();
   expect($news)->toBeInstanceOf(News::class);
@@ -19,17 +26,9 @@ test('admin can create, retrieve, update and destroy a news', function () {
   $response = $this->get('/api/dashboard/news/' . $news->id);
   expect($response->status())->toBe(200);
 
-  // Get all newses via the endpoint
+  // Get all news via the endpoint
   $response = $this->get('/api/dashboard/news-items');
   expect($response->status())->toBe(200);
-
-  // Create a new news
-  $response = $this->post('/api/dashboard/news', [
-    'title' => 'Lorem',
-  ]);
-
-  $newsId = $response->json('newsId');
-  expect($newsId)->toBeInt();
 
   // Update the newly created news
   $response = $this->put('/api/dashboard/news/' . $newsId, [
