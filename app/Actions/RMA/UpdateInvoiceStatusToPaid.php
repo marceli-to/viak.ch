@@ -14,12 +14,12 @@ class UpdateInvoiceStatusToPaid
       "payment_accno" => "1107"
     ];
 
-    $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', config('invoice.prefix') . $invoice->number, env('RMA_ROUTE_API_PUT'));
+    $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', config('invoice.prefix') . $invoice->number, env('RMA_ROUTE_API_UPDATE'));
 
     return Http::withHeaders([
       'content-type' => 'application/json',
       'accept' => 'application/json'
     ])->post($url, $data);
+
   }
-  
 }

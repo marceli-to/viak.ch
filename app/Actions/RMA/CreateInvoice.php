@@ -6,7 +6,7 @@ use App\Services\Pdf\Invoice\Qr;
 
 class CreateInvoice
 {
-  public function execute(Invoice $invoice)
+  public function execute(Invoice $invoice, $isCancellation = FALSE)
   {
     $headers = [
       'content-type' => 'application/json',
@@ -18,10 +18,14 @@ class CreateInvoice
 
     // Get url to invoice pdf
     $invoice_url = config('app.url') . "/storage/files/" . $invoice->user?->uuid . "/" . $invoice->filename;
-   
-    // Create data
+    
+    // Build invoice number, add 'cancellation suffix' if needed
+    $invoice_number = $isCancellation ? 
+                      config('invoice.prefix') . $invoice->number .  config('invoice.cancellation_suffix') : 
+                      config('invoice.prefix') . $invoice->number;
+    // Build data
     $data = [
-      "invnumber" => config('invoice.prefix') . $invoice->number,
+      "invnumber" => $invoice_number,
       "ordnumber" => $invoice->booking?->number,
       "dcn" => str_replace(' ', '', $esr_data['reference_number']),
       "currency" => "CHF",
@@ -38,7 +42,7 @@ class CreateInvoice
       ],
       "incomeentries" => [
         "incomeentry" => [
-          "amount" => $invoice->grand_total,
+          "amount" => $isCancellation ? "-" . $invoice->grand_total : $invoice->grand_total,
           "income_accno" => "3400",
           "description" => ""
         ]
@@ -54,7 +58,7 @@ class CreateInvoice
     return Http::withHeaders([
       'content-type' => 'application/json',
       'accept' => 'application/json'
-    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_POST'), $data);
+    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_CREATE'), $data);
   }
 
 }

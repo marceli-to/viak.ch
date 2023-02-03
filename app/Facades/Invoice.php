@@ -3,6 +3,8 @@ namespace App\Facades;
 use Illuminate\Http\Request;
 use App\Models\Invoice as InvoiceModel;
 use App\Actions\RMA\CreateInvoice as CreateInvoiceAction;
+use App\Actions\RMA\CloseInvoice as CloseInvoiceAction;
+use App\Actions\UserDocument\DeleteUserDocument as DeleteUserDocumentAction;
 use App\Services\Pdf\Invoice\EventInvoice;
 use App\Models\User;
 use App\Models\UserAddress;
@@ -72,10 +74,7 @@ class Invoice
     $pdf = (new EventInvoice())->create($invoice);
 
     // Action create invoice in Run My Accounts
-    if (app()->environment() !== 'local')
-    {
-      (new CreateInvoiceAction())->execute($invoice);
-    }
+    (new CreateInvoiceAction())->execute($invoice);
 
     // Update invoice
     $invoice->filename = $pdf['filename'];
@@ -119,11 +118,8 @@ class Invoice
     $invoiceWithPenalty->filename = $pdf['filename'];
     $invoiceWithPenalty->save();
 
-    // Action create invoice in Run My Accounts
-    if (app()->environment() !== 'locale')
-    {
-      (new CreateInvoiceAction())->execute($invoice);
-    }
+    // Create an invoice in "Run My Accounts"
+    (new CreateInvoiceAction())->execute($invoiceWithPenalty);
 
     // Cancel an existing invoice
     if ($existingInvoice)
@@ -133,7 +129,21 @@ class Invoice
       $existingInvoice->cancel_reason = 'Replaced by Invoice No. ' . $invoiceWithPenalty->number;
       $existingInvoice->save();
 
-      // @todo: cancel invoice in Run My Accounts
+      // Creates a cancellaction invoice in "Run My Accounts"
+      // with the same invoice data but a negative amount and
+      // the cancellation suffix
+      (new CreateInvoiceAction())->execute($existingInvoice, TRUE);
+
+      // Closes the above created cancellation invoice in "Run My Accounts"
+      // with the same invoice data but a negative amount and
+      // the cancellation suffix
+      (new CloseInvoiceAction())->execute($existingInvoice, TRUE);
+
+      // Closes the existing invoice in "Run My Accounts"
+      (new CloseInvoiceAction())->execute($existingInvoice);
+
+      // Deletes the document from "user_documents" table
+      (new DeleteUserDocumentAction())->execute($existingInvoice->id);
     }
 
     return $invoiceWithPenalty;
