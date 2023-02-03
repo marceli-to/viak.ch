@@ -93,14 +93,14 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->gr
 |--------------------------------------------------------------------------
 */
 
-Route::get('/course/filters', [FilterController::class, 'settings']);
-Route::post('/course/filter', [FilterController::class, 'filter']);
-Route::post('/course/search', [FilterController::class, 'search']);
-Route::delete('/course/filter', [FilterController::class, 'reset']);
-Route::get('/translations/{locale}', [TranslationController::class, 'fetch']);
-Route::get('/genders', [GenderController::class, 'get']);
-Route::get('/countries', [CountryController::class, 'get']);
-Route::get('/user/settings', [UserController::class, 'settings']);
+Route::get('/course/filters', [FilterController::class, 'settings']); // (@has testcase)
+Route::post('/course/filter', [FilterController::class, 'filter']); // (@has testcase)
+Route::post('/course/search', [FilterController::class, 'search']); // (@has testcase)
+Route::delete('/course/filter', [FilterController::class, 'reset']); // (@has testcase)
+Route::get('/translations/{locale}', [TranslationController::class, 'fetch']); // (@has testcase)
+Route::get('/genders', [GenderController::class, 'get']); // (@has testcase)
+Route::get('/countries', [CountryController::class, 'get']); // (@has testcase)
+Route::get('/user/settings', [UserController::class, 'settings']); // (@has testcase)
 
 
 /*
