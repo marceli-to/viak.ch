@@ -31,4 +31,9 @@ class HomeController extends BaseController
       ]
     );
   }
+
+  public function maintenance()
+  {
+    return view($this->viewPath . 'maintenance');
+  }
 }
