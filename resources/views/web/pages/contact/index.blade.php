@@ -27,7 +27,7 @@
   </x-collapsible>
 </section>
 
-@if ($members)
+@if ($members->count() > 0)
   <section class="container-team">
     <x-collapsible title="{{ __('Team') }}">
       @include('web.pages.contact.partials.team')
