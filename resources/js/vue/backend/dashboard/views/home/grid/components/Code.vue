@@ -18,6 +18,7 @@
       <form-group :label="'Seitenverhältnis (Videos)'">
         <div class="select-wrapper">
           <select v-model="ratio">
+            <option value="null">Bitte wählen...</option>
             <option value="16:9">16:9</option>
             <option value="16:10">16:10</option>
             <option value="4:3">4:3</option>
