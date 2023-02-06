@@ -37,13 +37,31 @@ mix.js(
 .version();
 
 // Frontend: register.js
-mix.js('resources/js/vue/frontend/register/Index.js', 'public/assets/js/global/register.js').version();
+mix.js(
+  'resources/js/vue/frontend/register/Index.js',
+  'public/assets/js/global/register.js'
+).version();
+
+// Frontend: newsletter.js
+mix.js(
+  'resources/js/vue/frontend/newsletter/Index.js', 
+  'public/assets/js/global/newsletter.js'
+).version();
 
 // Backend: Administrator
-mix.js('resources/js/vue/backend/dashboard/App.js', 'public/assets/js/dashboard/app.js').version();
+mix.js(
+  'resources/js/vue/backend/dashboard/App.js',
+  'public/assets/js/dashboard/app.js'
+).version();
 
 // Backend: Expert
-mix.js('resources/js/vue/backend/expert/App.js', 'public/assets/js/expert/app.js').version();
+mix.js(
+  'resources/js/vue/backend/expert/App.js',
+  'public/assets/js/expert/app.js'
+).version();
 
 // Backend: Student
-mix.js('resources/js/vue/backend/student/App.js', 'public/assets/js/student/app.js').version();
+mix.js(
+  'resources/js/vue/backend/student/App.js',
+  'public/assets/js/student/app.js'
+).version();

@@ -81,6 +81,14 @@
   }
 }
 
+%grid-gap-narrow,
+.grid-gap-narrow {
+  grid-gap: $space-4x;
+  @include bp-md() {
+    grid-gap: $space-6x;
+  }
+}
+
 %grid-column-gap,
 .grid-column-gap {
   grid-column-gap: $space-4x;

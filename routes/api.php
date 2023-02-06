@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\EventMessageController;
 use App\Http\Controllers\Api\EventFileController;
+use App\Http\Controllers\Api\NewsletterSubscriberController;
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
@@ -101,6 +102,7 @@ Route::get('/translations/{locale}', [TranslationController::class, 'fetch']); /
 Route::get('/genders', [GenderController::class, 'get']); // (@has testcase)
 Route::get('/countries', [CountryController::class, 'get']); // (@has testcase)
 Route::get('/user/settings', [UserController::class, 'settings']); // (@has testcase)
+Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'subscribe']);
 
 
 /*

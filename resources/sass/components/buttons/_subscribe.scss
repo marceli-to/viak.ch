@@ -1,22 +1,22 @@
 /**
  * -----------------------------------------------------------------------------
- * File: components/buttons/basket
+ * File: components/buttons/subscribe
  * -----------------------------------------------------------------------------
  */
 
-.btn-next,
-.btn-previous {
+.btn-subscribe {
   @extend %link;
   @extend %fs-16x;
   @extend %sm\:fs-18x;
   @extend %md\:fs-24x;
-  @extend %py-3x;
-  @extend %sm\:py-4x;
+  @extend %py-2x;
+  @extend %sm\:py-2x;
   align-items: center;
   color: $color-primary;
   display: flex;
   line-height: 1 !important;
-  
+  text-decoration: none !important;
+
   &:hover {
     color: $color-secondary;
   }
@@ -26,24 +26,25 @@
     opacity: .6;
   }
 
-}
-
-.btn-next {
-
-  span {
-    @extend %mr-2x;
-    @extend %sm\:mr-3x;
+  * {
+    line-height: 1 !important;
   }
 
-  &.btn-next-wide {
-    justify-content: space-between;
-    width: 100%;
+  span {
+    @extend %ml-1x;
+    @extend %sm\:ml-2x;
+    display: block;
+    margin-top: -2px;
   }
 }
 
-.btn-previous {
+form .btn-subscribe {
+  @extend %py-3x;
+  @extend %sm\:py-4x;
+  @include font-bold();
+  color: $color-quaternary;
+
   span {
-    @extend %ml-2x;
-    @extend %sm\:ml-3x;
+    margin-top: 0;
   }
 }

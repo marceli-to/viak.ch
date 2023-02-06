@@ -1,0 +1,50 @@
+/**
+ * -----------------------------------------------------------------------------
+ * File: layout/footer
+ * -----------------------------------------------------------------------------
+ */
+
+footer.site-footer {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %mt-8x;
+  @extend %md\:mt-12x;
+  @extend %py-4x;
+  @extend %sm\:py-7x;
+  border-top: 1px solid $color-primary;
+
+  > div {
+    @extend %sm\:grid-cols-12;
+    @extend %grid-column-gap;
+  }
+
+  h2, p, a, label {
+    @extend %fs-14x;
+    @extend %sm\:fs-16x;
+  }
+
+  a {
+    &:hover {
+      text-decoration-color: $color-quaternary;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  h2 {
+    @extend %mb-3x;
+    color: $color-quaternary;
+    @include font-bold();
+
+    a {
+      color: $color-quaternary;
+      display: block;
+      text-decoration: none;
+    }
+  }
+
+  .form-group {
+    @extend %mb-3x;
+    @extend %md\:mb-6x;
+  }
+}
