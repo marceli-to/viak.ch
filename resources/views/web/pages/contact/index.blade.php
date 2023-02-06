@@ -27,11 +27,13 @@
   </x-collapsible>
 </section>
 
-<section class="container-team">
-  <x-collapsible title="{{ __('Team') }}">
-    @include('web.pages.contact.partials.team')
-  </x-collapsible>
-</section>
+@if ($members)
+  <section class="container-team">
+    <x-collapsible title="{{ __('Team') }}">
+      @include('web.pages.contact.partials.team')
+    </x-collapsible>
+  </section>
+@endif
 
 <section class="container-about">
   <x-collapsible title="{{ __('Impressum') }}">
