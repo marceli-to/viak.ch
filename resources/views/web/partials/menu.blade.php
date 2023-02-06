@@ -6,12 +6,12 @@
     <div class="site-menu__main">
       <ul>
         <li>
-          <a href="{{ localized_route('page.courses')}}" class="{{ request()->routeIs('page.course*') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
+          <a href="{{ localized_route('page.courses')}}" class="{{ request()->routeIs('*.page.course*') ? 'is-active' : '' }}" title="{{ __('Kurse') }}">
             {{ __('Kurse') }}
           </a>
         </li>
         <li>
-          <a href="{{ localized_route('page.experts')}}" class="{{ request()->routeIs('page.experts') || request()->routeIs('page.expert') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
+          <a href="{{ localized_route('page.experts')}}" class="{{ request()->routeIs('*.page.experts') || request()->routeIs('page.expert') ? 'is-active' : '' }}" title="{{ __('Experten') }}">
             {{ __('Experten') }}
           </a>
         </li>
