@@ -7,6 +7,7 @@
     @endif
     <div class="card-code__code {{ $item->ratio ? 'ratio-container ratio-container--' . $item->ratio : '' }}">
       {!! $item->code !!}
+      {{ $item->ratio }}
     </div>
   </div>
 </article>
