@@ -18,10 +18,10 @@ class StudentSeeder extends Seeder
 
     // Test student 1
     $user = User::create([
-      'firstname' => 'Patrick',
-      'name' => 'Schneider',
+      'firstname' => 'Peter',
+      'name' => 'Müller',
       'company' => 'Acme Inc',
-      'street' => 'Breitestrasse',
+      'street' => 'Dorfstrasse',
       'street_no' => '9',
       'zip' => '8400',
       'city' => 'Winterthur',
@@ -42,13 +42,13 @@ class StudentSeeder extends Seeder
 
     // Test student 2
     $user = User::create([
-      'firstname' => 'Michel',
-      'name' => 'Blanc',
+      'firstname' => 'Paul',
+      'name' => 'Huber',
       'company' => '',
-      'street' => 'Dorfstrasse',
+      'street' => 'Unter den Linen',
       'street_no' => '12',
-      'zip' => '5400',
-      'city' => 'Remigen',
+      'zip' => '5000',
+      'city' => 'Aarau',
       'phone' => '076 642 01 04',
       'email' => 'viak-student2@0704.ch',
       'email_verified_at' => \Carbon\Carbon::now(),
@@ -66,13 +66,13 @@ class StudentSeeder extends Seeder
 
     // Test student 3
     $user = User::create([
-      'firstname' => 'Raphael',
-      'name' => 'Bichsel',
-      'company' => 'Bichsel Flugzeugwerke GmbH',
-      'street' => 'Konrudstrasse',
+      'firstname' => 'Klaus',
+      'name' => 'Steiner',
+      'company' => 'Steiner 3D',
+      'street' => 'Bertastrasse',
       'street_no' => '4a',
-      'zip' => '8400',
-      'city' => 'Winterthur',
+      'zip' => '8000',
+      'city' => 'Zürich',
       'phone' => '077 870 09 20',
       'email' => 'viak-student3@0704.ch',
       'email_verified_at' => \Carbon\Carbon::now(),
@@ -90,10 +90,10 @@ class StudentSeeder extends Seeder
 
     // Test student 4
     $user = User::create([
-      'firstname' => 'Balint',
-      'name' => 'Kalotay',
+      'firstname' => 'Petra',
+      'name' => 'Dora',
       'company' => '',
-      'street' => 'Billrothstrasse',
+      'street' => 'Schanzenstrasse',
       'street_no' => '5',
       'zip' => '8000',
       'city' => 'Zürich',
@@ -115,12 +115,12 @@ class StudentSeeder extends Seeder
 
     // Test student 5
     $user = User::create([
-      'firstname' => 'Gabriela',
-      'name' => 'Morf',
+      'firstname' => 'Hans',
+      'name' => 'Muster',
       'company' => '',
-      'street' => 'Letzigraben',
-      'street_no' => '149',
-      'zip' => '8047',
+      'street' => 'Bahnhofstrasse',
+      'street_no' => '23',
+      'zip' => '8004',
       'city' => 'Zürich',
       'phone' => '077 666 55 88',
       'email' => 'viak-student5@0704.ch',
@@ -139,13 +139,13 @@ class StudentSeeder extends Seeder
 
     // Test student 5
     $user = User::create([
-      'firstname' => 'Mats',
-      'name' => 'Thommen',
+      'firstname' => 'Gilbert',
+      'name' => 'Huber',
       'company' => '',
       'street' => 'Feldstrasse',
-      'street_no' => '33',
-      'zip' => '8400',
-      'city' => 'Winterthur',
+      'street_no' => '99',
+      'zip' => '4000',
+      'city' => 'Basel',
       'phone' => '079 456 21 21',
       'email' => 'viak-student6@0704.ch',
       'email_verified_at' => \Carbon\Carbon::now(),
