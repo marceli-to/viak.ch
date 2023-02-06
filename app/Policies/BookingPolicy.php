@@ -17,7 +17,7 @@ class BookingPolicy
    */
   public function view(User $user, Booking $booking)
   {
-    return $user->id === $booking->user_id;
+    return $user->id === $booking->user_id || auth()->user()->isAdmin();
   }
 
   /**
@@ -29,7 +29,7 @@ class BookingPolicy
    */
   public function viewEvent(User $user, Booking $booking)
   {
-    return $user->id === $booking->user_id;
+    return $user->id === $booking->user_id || auth()->user()->isAdmin();
   }
 
   /**
@@ -41,7 +41,7 @@ class BookingPolicy
    */
   public function cancel(User $user, Booking $booking)
   {
-    return $user->id === $booking->user_id;
+    return $user->id === $booking->user_id || auth()->user()->isAdmin();
   }
 
   /**

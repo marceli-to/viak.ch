@@ -28,7 +28,7 @@
   </div>
   <footer class="site-menu__footer">
     <div>
-      <a href="mailto:kontakt@viak.ch" class="icon-mail" target="_blank" title="{{ __('Kontakt') }}">
+      <a href="mailto:hallo@visualisierungs-akademie.ch" class="icon-mail" target="_blank" title="{{ __('Kontakt') }}">
         @include('web.partials.icons.mail')
       </a>
       <a href="https://instagram.com" class="icon-instagram" target="_blank" title="{{ __('Viak auf Instagram') }}">

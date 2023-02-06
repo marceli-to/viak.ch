@@ -17,7 +17,7 @@ use App\Models\DiscountCode;
 class Invoice
 {
   /**
-   * Check for an existing invoice for a booking.
+   * Find an existing invoice for a booking.
    * 
    * @param Booking $booking
    * @return $invoice
@@ -74,7 +74,10 @@ class Invoice
     $pdf = (new EventInvoice())->create($invoice);
 
     // Action create invoice in Run My Accounts
-    (new CreateInvoiceAction())->execute($invoice);
+    if (app()->environment() == 'production')
+    {
+      (new CreateInvoiceAction())->execute($invoice);
+    }
 
     // Update invoice
     $invoice->filename = $pdf['filename'];
@@ -94,10 +97,10 @@ class Invoice
   public static function createFromBookingWithPenalty(Booking $booking, $cancellation)
   {
     // Check for an existing invoice for a booking
-    $existingInvoice = self::findFromBooking($booking);
+    $oldInvoice = self::findFromBooking($booking);
     
-    // Create invoice
-    $invoiceWithPenalty = InvoiceModel::create([
+    // Create new invoice
+    $newInvoice = InvoiceModel::create([
       'uuid' => \Str::uuid(),
       'number' => self::getNumber(),
       'date' => \Carbon\Carbon::now(),
@@ -111,42 +114,61 @@ class Invoice
       'due_at' => \Carbon\Carbon::now()->addDays(config('invoice.payment_period'))
     ]);
 
-    // Write invoice as PDF
-    $pdf = (new EventInvoice())->create($invoiceWithPenalty);
+    // Write new invoice as PDF
+    $pdf = (new EventInvoice())->create($newInvoice);
 
-    // Update invoice
-    $invoiceWithPenalty->filename = $pdf['filename'];
-    $invoiceWithPenalty->save();
+    // Update new invoice
+    $newInvoice->filename = $pdf['filename'];
+    $newInvoice->save();
 
-    // Create an invoice in "Run My Accounts"
-    (new CreateInvoiceAction())->execute($invoiceWithPenalty);
-
-    // Cancel an existing invoice
-    if ($existingInvoice)
+    // Create an new invoice in "Run My Accounts"
+    if (app()->environment() == 'production')
     {
-      $existingInvoice->status = 'CANCELLED';
-      $existingInvoice->cancelled_at = \Carbon\Carbon::now();
-      $existingInvoice->cancel_reason = 'Replaced by Invoice No. ' . $invoiceWithPenalty->number;
-      $existingInvoice->save();
+      (new CreateInvoiceAction())->execute($newInvoice);
+    }
 
-      // Creates a cancellaction invoice in "Run My Accounts"
-      // with the same invoice data but a negative amount and
-      // the cancellation suffix
-      (new CreateInvoiceAction())->execute($existingInvoice, TRUE);
+    // Cancel an old invoice
+    if ($oldInvoice)
+    {
+      self::cancel($oldInvoice, $newInvoice);
+    }
+
+    return $newInvoice;
+  }
+
+  /**
+   * Cancel an existing invoice
+   * 
+   * @param Invoice $oldInvoice
+   * @param Invoice $newInvoice
+   * @return Boolean
+   */
+
+  public static function cancel(Invoice $oldInvoice, Invoice $newInvoice)
+  {
+    $oldInvoice->status = 'CANCELLED';
+    $oldInvoice->cancelled_at = \Carbon\Carbon::now();
+    $oldInvoice->cancel_reason = 'Replaced by Invoice No. ' . $newInvoice->number;
+    $oldInvoice->save();
+
+    // Creates a cancellaction invoice in "Run My Accounts"
+    // with the same invoice data but a negative amount and
+    // the cancellation suffix
+    if (app()->environment() == 'production')
+    {
+      (new CreateInvoiceAction())->execute($oldInvoice, TRUE);
 
       // Closes the above created cancellation invoice in "Run My Accounts"
       // with the same invoice data but a negative amount and
       // the cancellation suffix
-      (new CloseInvoiceAction())->execute($existingInvoice, TRUE);
-
+      (new CloseInvoiceAction())->execute($oldInvoice, TRUE);
+  
       // Closes the existing invoice in "Run My Accounts"
-      (new CloseInvoiceAction())->execute($existingInvoice);
-
+      (new CloseInvoiceAction())->execute($oldInvoice);
+  
       // Deletes the document from "user_documents" table
-      (new DeleteUserDocumentAction())->execute($existingInvoice->id);
+      (new DeleteUserDocumentAction())->execute($oldInvoice->id);
     }
-
-    return $invoiceWithPenalty;
   }
 
   /**

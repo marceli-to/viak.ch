@@ -61,4 +61,15 @@
   &:hover {
     color: $color-secondary;
   }
+
+  &.is-absolute {
+    position: absolute;
+    top: $space-10x;
+    right: 0;
+
+    svg {
+      height: auto;
+      width: 20px;
+    }
+  }
 }

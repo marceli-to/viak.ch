@@ -15,7 +15,6 @@ const routes = [
     path: '/en/student/profile',
     component: StudentIndex,
   },
-
   {
     name: 'de-student-documents',
     path: '/de/student/profil/dokumente',
@@ -26,7 +25,6 @@ const routes = [
     path: '/en/student/profile/documents',
     component: StudentDocuments,
   },
-
   {
     name: 'de-student-course-event',
     path: '/de/student/profil/kurs/veranstaltung/:uuid',
@@ -37,7 +35,6 @@ const routes = [
     path: '/en/student/profile/course/event/:uuid',
     component: StudentCourse,
   },
-
   {
     name: 'de-student-address-create',
     path: '/de/student/profil/adresse/erstellen',
@@ -48,7 +45,6 @@ const routes = [
     path: '/en/student/profile/address/create',
     component: StudentAddressCreate,
   },
-
   {
     name: 'de-student-address-edit',
     path: '/de/student/profil/adresse/bearbeiten/:uuid',
@@ -59,6 +55,7 @@ const routes = [
     path: '/en/student/profile/address/edit/:uuid',
     component: StudentAddressEdit,
   },
+
 ];
 
 export default routes;

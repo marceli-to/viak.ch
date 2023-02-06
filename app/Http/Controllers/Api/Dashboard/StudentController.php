@@ -2,11 +2,14 @@
 namespace App\Http\Controllers\Api\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\StudentDocumentResource;
 use App\Models\User;
 use App\Models\Role;
 use App\Facades\NewsletterSubscriber;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
+
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -48,8 +51,24 @@ class StudentController extends Controller
   public function find(User $user)
   {
     $user = User::find($user->id);
+    $user = new StudentResource(User::with('invoiceAddresses')->findOrFail($user->id));
+
     return response()->json($user);
   }
+
+  /**
+   * Get a student with:
+   * 
+   * - Documents
+   * @param User $user
+   * @return \Illuminate\Http\Response
+   */
+  public function getDocuments(User $user)
+  { 
+    $user = User::findOrFail($user->id);
+    return response()->json(StudentDocumentResource::collection($user->documents()->get()));
+  }
+
 
   /**
    * Store a newly created user

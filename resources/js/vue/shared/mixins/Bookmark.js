@@ -10,7 +10,7 @@ export default {
     IconHeart
   },
 
-  mixins: [i18n],
+  mixins: [i18n, Validation],
 
   data() {
     return {

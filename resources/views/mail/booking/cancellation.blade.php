@@ -16,6 +16,6 @@
     <td>{{ collect($data->event->dates->pluck('date_short')->all())->implode(', ') }}</td>
   </tr>
 </table>
-<p>{{ __('Möchtest Du stattdessen einen anderen Kurs besuchen? Unser Schulungsangebot findest Du unter:') }} <a href="{{ localized_route('page.courses') }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>viak.ch/kurse</strong></a></p>
+<p>{{ __('Möchtest Du stattdessen einen anderen Kurs besuchen? Unser Schulungsangebot findest Du unter:') }} <a href="{{ localized_route('page.courses') }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>visualisierungs-akademie.ch/kurse</strong></a></p>
 @include('mail.partials.signature')
 @endcomponent

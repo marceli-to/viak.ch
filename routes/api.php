@@ -81,7 +81,7 @@ Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
   Route::post('/booking', [BookingController::class, 'store'])->middleware(['role:student']);
   Route::post('/booking/participation', [BookingController::class, 'updateParticipation'])->middleware(['role:admin,expert']);
-  Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel'])->middleware(['role:student']);;
+  Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel'])->middleware(['role:admin,student']);;
   Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store'])->middleware(['role:student']);;
   Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy'])->middleware(['role:student']);;
 });
@@ -254,6 +254,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::get('invoices', [DashboardInvoiceController::class, 'get']);
 
   // Students
+  Route::get('student/documents/{user}', [DashboardStudentController::class, 'getDocuments']);
   Route::get('students/{constraint?}', [DashboardStudentController::class, 'get']);
   Route::get('students/search/{keyword}', [DashboardStudentController::class, 'search']);
   Route::get('student/{user}', [DashboardStudentController::class, 'find']);

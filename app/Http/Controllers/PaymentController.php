@@ -5,19 +5,12 @@ use App\Models\Booking;
 use App\Models\Invoice;
 use App\Events\InvoicePaid;
 use App\Stores\PaymentStore;
-use App\Actions\RMA\UpdateInvoiceStatusToPaid;
+use App\Actions\RMA\UpdateInvoiceStatusToPaid as UpdateInvoiceStatusToPaidAction;
 use Illuminate\Http\Request;
 
 class PaymentController extends BaseController
 {
   protected $viewPath = 'web.pages.payment.';
-
-  protected $updateInvoiceStatusToPaid;
-
-  public function __construct(UpdateInvoiceStatusToPaid $updateInvoiceStatusToPaid)
-  {
-    $this->updateInvoiceStatusToPaid = $updateInvoiceStatusToPaid;
-  }
 
   /**
    * Show the invoice / booking
@@ -109,7 +102,10 @@ class PaymentController extends BaseController
     $invoice->save();
 
     // Update invoice in Run My Accounts
-    $this->updateInvoiceStatusToPaid->execute($invoice);
+    if (app()->environment() == 'production')
+    {
+      (new UpdateInvoiceStatusToPaidAction())->execute($invoice);
+    }
 
     // Clear session
     (new PaymentStore())->clear();

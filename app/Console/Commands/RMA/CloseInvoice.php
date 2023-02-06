@@ -1,35 +1,35 @@
 <?php
 namespace App\Console\Commands\RMA;
 use App\Models\Invoice;
-use App\Actions\RMA\GetInvoice as GetInvoiceAction;
+use App\Actions\RMA\CloseInvoice as CloseInvoiceAction;
 use Illuminate\Console\Command;
 
-class GetInvoice extends Command
+class CloseInvoice extends Command
 {
   /**
    * The name and signature of the console command.
    *
    * @var string
    */
-  protected $signature = 'get:invoice';
+  protected $signature = 'close:invoice';
 
   /**
    * The console command description.
    *
    * @var string
    */
-  protected $description = 'Get an invoice from run my accounts';
+  protected $description = 'Close an invoice in Run My Accounts';
 
-  protected $getInvoiceAction;
+  protected $closeInvoiceAction;
 
   /**
    * Create a new command instance.
    *
    * @return void
    */
-  public function __construct(GetInvoiceAction $getInvoiceAction)
+  public function __construct(CloseInvoiceAction $closeInvoiceAction)
   {
-    $this->getInvoiceAction = $getInvoiceAction;
+    $this->closeInvoiceAction = $closeInvoiceAction;
     parent::__construct();
   }
 
@@ -41,11 +41,10 @@ class GetInvoice extends Command
   public function handle()
   {
     $askInvoiceNumber = $this->ask('Enter invoice number: ');
-    $askCancellation = $this->ask('Add cancellation suffix? (y/n)');
+    $askCancellation = $this->ask('Use a negative value? (y/n)');
     $askCancellation = $askCancellation == 'y' ? TRUE : FALSE;
-    $invoice = Invoice::with('user')->where('number', 'LIKE', "%$askInvoiceNumber%")->first();
-    $response = $this->getInvoiceAction->execute($invoice, $askCancellation);
-    
+    $invoice = Invoice::with('booking', 'user')->where('number', 'LIKE', "%$askInvoiceNumber%")->first();
+    $response = $this->closeInvoiceAction->execute($invoice, $askCancellation);
     dd($response);
   }
 }

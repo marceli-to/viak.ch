@@ -22,6 +22,9 @@
           <router-link :to="{ name: 'student-edit', params: { id: student.id } }" class="icon-edit mt-3x">
             <icon-edit />
           </router-link>
+          <router-link :to="{ name: 'student-show', params: { id: student.id }  }" class="icon-arrow-right is-absolute">
+            <icon-arrow-right />
+          </router-link>
           <div>
             <div class="span-4">
               {{ student.fullname }}<span v-if="student.city">, {{ student.city }}</span>
@@ -29,6 +32,7 @@
             <div class="span-8">
               <a :href="`mailto:${student.email}`" target="_blank">{{ student.email }}</a>
             </div>
+
           </div>
         </stacked-list-item>
       </template>
@@ -49,6 +53,7 @@ import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.v
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
 
@@ -64,7 +69,8 @@ export default {
     StackedListFooter,
     CollapsibleContainer,
     Collapsible,
-    IconEdit
+    IconEdit,
+    IconArrowRight
   },
 
   mixins: [],
