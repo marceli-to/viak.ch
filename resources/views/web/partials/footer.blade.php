@@ -4,7 +4,7 @@
     <div class="sm:span-7" id="app-newsletter">
       <newsletter-form />
     </div>
-    <div class="sm:span-4 start-9 mt-12x sm:mt-0">
+    <div class="sm:span-4 start-9 mt-6x sm:mt-0">
       <h2>{{ __('Kontakt') }}</h2>
       <p>Visualisierungs-Akademie Schweiz GmbH<br>Limmatstrasse 291<br>CH-8005 Zürich<br>Schweiz</p>
       <p><a href='tel:+41435014040' title='{{ __('per Telefon') }}'>+41 43 501 40 40</a><br><a href='mailto:hallo@visualisierungs-akademie.ch' title='{{ __('per E-Mail') }}'>hallo@visualisierungs-akademie.ch</a></p>
