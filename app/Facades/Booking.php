@@ -106,7 +106,7 @@ class Booking
       User::find($booking->user_id), 
       BookingModel::find($booking->id)
     ));
-    
+   
     return TRUE;
   }
 

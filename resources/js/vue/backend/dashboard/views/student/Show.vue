@@ -160,7 +160,6 @@
         routes: {
           user: {
             find: '/api/dashboard/student',
-            update: '/api/student',
           },
           settings: '/api/user/settings',
           booking: {

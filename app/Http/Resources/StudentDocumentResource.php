@@ -25,6 +25,7 @@ class StudentDocumentResource extends JsonResource
         'course_date' =>  $this->invoice->booking->event->date_short,
         'number' => $this->invoice->number,
         'total' => $this->invoice->total,
+        'grand_total' => $this->invoice->grand_total,
         'status' => $this->invoice->status
       ];
     }

@@ -321,7 +321,7 @@ export default {
 
       routes: {
         user: {
-          find: '/api/student',
+          find: '/api/student/profile',
           update: '/api/student',
         },
         settings: '/api/user/settings',

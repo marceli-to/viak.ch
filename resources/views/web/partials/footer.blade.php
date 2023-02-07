@@ -21,8 +21,8 @@
     </div>
   </div>
 </footer>
-@endif
 <script src="{{ mix('assets/js/global/newsletter.js') }}" type="text/javascript"></script>
+@endif
 <script src="{{ mix('assets/js/app.js') }}" type="text/javascript"></script>
 </body>
 <!-- made with ❤ by wbg.ch & marceli.to -->

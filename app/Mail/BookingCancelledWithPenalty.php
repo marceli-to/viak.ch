@@ -46,7 +46,8 @@ class BookingCancelledWithPenalty extends Mailable
                  ->subject(__('Annullationsbestätigung') . ' – ' . $booking->event->course->title)
                  ->with([
                    'data' => $booking,
-                   'cancellation' => $cancellation
+                   'cancellation' => $cancellation,
+                   'invoice' => $invoice
                  ])
                  ->markdown('mail.booking.cancellation-with-penalty');
 

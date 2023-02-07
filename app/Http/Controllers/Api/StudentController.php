@@ -16,15 +16,34 @@ class StudentController extends Controller
    * 
    * - Bookings
    * - Bookmarks
-   * - Documents
    * 
    * @return \Illuminate\Http\Response
    */
   public function find()
   { 
-    $data = new StudentResource(User::with('invoiceAddresses')->findOrFail(auth()->user()->id));
+    $data = StudentResource::make(
+      User::with('invoiceAddresses')->findOrFail(auth()->user()->id)
+    );
     return response()->json($data);
   }
+
+/**
+   * Get a students profile info with:
+   * 
+   * - Bookings
+   * - Bookmarks
+   * - Documents
+   * 
+   * @return \Illuminate\Http\Response
+   */
+  public function profile()
+  { 
+    $data = StudentResource::make(
+      User::with('invoiceAddresses')->findOrFail(auth()->user()->id)
+    )->withAllData(true);
+    return response()->json($data);
+  }
+
 
   /**
    * Get a student with:

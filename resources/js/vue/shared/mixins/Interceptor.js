@@ -27,6 +27,10 @@ export default {
       this.contentTooLarge(data);
     });
 
+    window.intercepted.$on('response:418', data => {
+      this.validationError(data);
+    });
+
     window.intercepted.$on('response:419', data => {
       this.unauthorized(data);
     });

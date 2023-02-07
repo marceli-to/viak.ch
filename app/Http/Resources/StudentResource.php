@@ -8,6 +8,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudentResource extends JsonResource
 {
+
+  protected $appendAllData = false;
+
+  /**
+   * Allow documents to be appended
+   */
+  public function withAllData(bool $value = false)
+  {
+    $this->appendAllData = $value;
+    return $this;
+  }
+
   /**
    * Transform the resource into an array.
    *
@@ -35,11 +47,13 @@ class StudentResource extends JsonResource
       'email' => $this->email,
       'gender_id' => $this->gender_id,
       'country_id' => $this->country_id,
-      'events' => BookingResource::collection($this->bookings)->sortBy('event.date')->toArray(),
-      'events_participated' => BookingResource::collection($this->bookingsParticipated)->sortBy('event.date')->toArray(),
-      'events_concluded' => BookingResource::collection($this->bookingsConcluded)->sortBy('event.date')->toArray(),
-      'bookmarks' => BookmarkResource::collection($this->bookmarks),
-      'documents' => StudentDocumentResource::collection($this->documents()->take(5)->get()),
+      $this->mergeWhen($this->appendAllData, [
+        'events' => BookingResource::collection($this->bookings)->sortBy('event.date')->toArray(),
+        'events_participated' => BookingResource::collection($this->bookingsParticipated)->sortBy('event.date')->toArray(),
+        'events_concluded' => BookingResource::collection($this->bookingsConcluded)->sortBy('event.date')->toArray(),
+        'bookmarks' => BookmarkResource::collection($this->bookmarks),
+        'documents' => StudentDocumentResource::collection($this->documents()->take(5)->get()),
+      ]),
     ];
   }
 }

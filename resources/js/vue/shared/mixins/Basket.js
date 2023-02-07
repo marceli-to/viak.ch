@@ -53,6 +53,8 @@ export default {
       this.axios.get(`${this.routes.basket.get}`).then(response => {
         this.basket = response.data;
         this.isLoaded = true;
+        this.$store.commit('isLoading', false);
+        NProgress.done();
       });
     },
 
@@ -67,6 +69,8 @@ export default {
           type: 'dialog',
           style: 'success',
         });
+        this.$store.commit('isLoading', false);
+        NProgress.done();
       })
       .catch(error => {
         this.handleValidationErrors(error.response.data);
@@ -79,6 +83,8 @@ export default {
       this.axios.delete(`${this.routes.basket.delete}/${uuid}`).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = false;
+        this.$store.commit('isLoading', false);
+        NProgress.done();
         this.$toast.open(this.__('Der Kurs wurde aus dem Warenkorb gelöscht.'));
         if (reload) {
           this.getBasket();

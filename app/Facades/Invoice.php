@@ -25,7 +25,7 @@ class Invoice
 
   public static function findFromBooking(Booking $booking)
   {
-    return InvoiceModel::open()->where('booking_id', $booking->id)->first();
+    return InvoiceModel::where('booking_id', $booking->id)->first();
   }
 
   /**
@@ -98,6 +98,12 @@ class Invoice
   {
     // Check for an existing invoice for a booking
     $oldInvoice = self::findFromBooking($booking);
+
+    // Return the existing invoice if it's already paid
+    if ($oldInvoice && $oldInvoice->isPaid())
+    {
+      return $oldInvoice;
+    }
     
     // Create new invoice
     $newInvoice = InvoiceModel::create([
@@ -139,12 +145,12 @@ class Invoice
   /**
    * Cancel an existing invoice
    * 
-   * @param Invoice $oldInvoice
-   * @param Invoice $newInvoice
+   * @param InvoiceModel $oldInvoice
+   * @param InvoiceModel $newInvoice
    * @return Boolean
    */
 
-  public static function cancel(Invoice $oldInvoice, Invoice $newInvoice)
+  public static function cancel(InvoiceModel $oldInvoice, InvoiceModel $newInvoice)
   {
     $oldInvoice->status = 'CANCELLED';
     $oldInvoice->cancelled_at = \Carbon\Carbon::now();
@@ -165,10 +171,46 @@ class Invoice
   
       // Closes the existing invoice in "Run My Accounts"
       (new CloseInvoiceAction())->execute($oldInvoice);
-  
-      // Deletes the document from "user_documents" table
-      (new DeleteUserDocumentAction())->execute($oldInvoice->id);
     }
+
+    // Deletes the document from "user_documents" table
+    (new DeleteUserDocumentAction())->execute($oldInvoice->id);
+  }
+
+  /**
+   * Delete an existing invoice
+   * 
+   * @param InvoiceModel $invoice
+   * @return Boolean
+   */
+
+   public static function delete(InvoiceModel $invoice)
+   {
+    $invoice->status = 'CANCELLED';
+    $invoice->cancelled_at = \Carbon\Carbon::now();
+    $invoice->cancel_reason = 'Invoice deleted because of cancelled booking';
+    $invoice->save();
+ 
+     // Creates a cancellaction invoice in "Run My Accounts"
+     // with the same invoice data but a negative amount and
+     // the cancellation suffix
+     if (app()->environment() == 'production')
+     {
+       (new CreateInvoiceAction())->execute($invoice, TRUE);
+ 
+       // Closes the above created cancellation invoice in "Run My Accounts"
+       // with the same invoice data but a negative amount and
+       // the cancellation suffix
+       (new CloseInvoiceAction())->execute($invoice, TRUE);
+   
+       // Closes the existing invoice in "Run My Accounts"
+       (new CloseInvoiceAction())->execute($invoice);
+     }
+     
+    // Deletes the document from "user_documents" table
+    (new DeleteUserDocumentAction())->execute($invoice->id);
+
+    $invoice->delete();
   }
 
   /**

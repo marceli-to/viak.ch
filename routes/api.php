@@ -112,6 +112,7 @@ Route::post('/newsletter/subscribe', [NewsletterSubscriberController::class, 'su
 */
 
 Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function() {
+  Route::get('/student/profile', [StudentController::class, 'profile']);
   Route::get('/student/address/{userAddress:uuid}', [StudentAddressController::class, 'find']);
   Route::post('/student/address', [StudentAddressController::class, 'store']);
   Route::put('/student/address/{userAddress:uuid}', [StudentAddressController::class, 'update']);

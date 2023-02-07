@@ -2,8 +2,12 @@
 <h1>{{ __('Annullationsbestätigung') . ' – ' . $data->event->course->title }}</h1>
 <p>{{ __('Guten Tag') }} {{ $data->user->fullname }}</p>
 <p>{{ __('Wir haben Deine Annullation für den Kurs «:attribute» erhalten.', ['attribute' => $data->event->course->title]) }}</p>
-<p>{{ __('Die kurzfristige Annullation hat gemäss unseren AGB Kosten zur Folge. Diese belaufen sich auf CHF :amount.– (:penalty% der Kurskosten)', ['amount' => $cancellation['amount'], 'penalty' => $cancellation['penalty']]) }}</p>
+<p>{{ __('Die kurzfristige Annullation hat gemäss unseren AGB Kosten zur Folge. Diese belaufen sich auf CHF :amount.– (:penalty% der Kurskosten).', ['amount' => $cancellation['amount'], 'penalty' => $cancellation['penalty']]) }}</p>
+@if ($invoice->isPaid())
+<p>{{ __('Da die Rechnung bereits bezahlt ist, musst Du nichts weiter unternehmen.') }}</p>
+@else
 <p>{{ __('Die entsprechende Rechnung liegt diesem Mail bei.') }}</p>
+@endif
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Buchung') }}</td>
