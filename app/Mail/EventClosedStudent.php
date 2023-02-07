@@ -38,6 +38,7 @@ class EventClosedStudent extends Mailable
     $pdf = (new EventParticipationConfirmation())->create($booking);
 
     // Create the mail
+    
     $mail = $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                  ->subject(__('Teilnahmebestätigung') . ' – ' . $booking->event->course->title)
                  ->with(

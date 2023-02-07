@@ -113,6 +113,7 @@ li {
 .footer {
   bottom: -2mm;
   position: fixed;
+  z-index: 100;
 }
 
 .break {

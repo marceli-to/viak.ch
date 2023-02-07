@@ -24,7 +24,7 @@ class EventClosedHandler
       foreach($bookings as $booking)
       { 
         // Create a job for the confirmation email to each student
-        if ($booking->hasFlag('hasParticipated'))
+        if ($booking->hasFlag('hasParticipated') && !$booking->hasFlag('isConcluded'))
         {
           Job::create([
             'recipient' => $booking->user->email,
@@ -32,8 +32,8 @@ class EventClosedHandler
             'mailable_type' => \App\Models\Booking::class,
             'mailable_class' => \App\Mail\EventClosedStudent::class
           ]);
+          $booking->flag('isConcluded');
         }
-        $booking->flag('isConcluded');
       }
     }
   }
