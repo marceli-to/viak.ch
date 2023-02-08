@@ -25,7 +25,7 @@
   <x-slot name="content">
     <p>{!! __('Design und Branding:<br>WBG AG, Zürich, <a href="https://www.wbg.ch" target="_blank" title="WBG AG, Zürich">www.wbg.ch</a>') !!}</p>
     <p>{!! __('Programmierung:<br>Marcel Stadelmann, Zürich, <a href="https://www.marceli.to" target="_blank" title="Marcel Stadelmann, marceli.to">www.marceli.to</a>') !!}</p>
-    <p>{!! __('Portraits:<br>Simon Hallström, <a href="https://www.simonhallstroem.com" target="_blank" title="Simon Hallström">www.simonhallstroem.com</a>') !!}</p>
+    <p>{!! __('Portraits:<br>Simon Hallström, <a href="https://www.simonhallstroem.com" target="_blank" title="Simon Hallström">www.simonhallstroem.com</a><br>Christoph Deiters, <a href="https://www.nightnurse.ch" target="_blank" title="Christoph Deiters">www.nightnurse.ch</a><br>Oliver Schmid, <a href="https://www.visualisierungs-akademie.ch" target="_blank" title="Oliver Schmid">www.visualisierungs-akademie.chm</a>') !!}</p>
   </x-slot>
 </x-card-text>
 
