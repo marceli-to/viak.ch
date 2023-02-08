@@ -108,12 +108,12 @@
           </div>
           <ul>
             <li>
-              <a href="/media/downloads/viak_agb.pdf" target="_blank" :title="__('Download AGB')">
+              <a href="/media/downloads/Visualisierungs-Akademie_AGB.pdf" target="_blank" :title="__('Download Allgemeine Geschäftsbedingungen')">
                 {{ __('Allgemeine Geschäftsbedingungen') }}
               </a>
             </li>
             <li>
-              <a href="/media/downloads/viak_datenschutzbestimmungen.pdf" target="_blank" :title="__('Download Datenschutzbestimmungen')">
+              <a href="/media/downloads/Visualisierungs-Akademie_Datenschutzbestimmungen.pdf" target="_blank" :title="__('Download Datenschutzbestimmungen')">
                 {{ __('Datenschutzbestimmungen') }}
               </a>
             </li>
