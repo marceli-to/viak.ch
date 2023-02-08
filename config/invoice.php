@@ -103,8 +103,8 @@ return [
 
   /*
   |--------------------------------------------------------------------------
-  | Amount of days in which a user has to pay a penalty
-  | of 50% for cancelling a booking
+  | Amount of days (before the event) in which a user has to pay 
+  | a penalty of 50% for cancelling a booking
   |--------------------------------------------------------------------------
   |
   */
@@ -113,12 +113,12 @@ return [
 
   /*
   |--------------------------------------------------------------------------
-  | Amount of days in which a user has to pay a penalty
-  | of 100% for cancelling a booking
+  | Amount of days (before the event) in which a user has to pay 
+  | a penalty of 100% for cancelling a booking
   |--------------------------------------------------------------------------
   |
   */
 
-  'days_penalty_full' => 8, 
+  'days_penalty_full' => 9,
 
 ];
