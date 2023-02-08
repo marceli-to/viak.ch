@@ -57,8 +57,8 @@ test('admin can create, retrieve, update and destroy a discount code', function 
     'amount' => '50',
     'fix' => 0,
     'percent' => 1,
-    'valid_from' => null,
-    'valid_to' => null,
+    'valid_from' => \Carbon\Carbon::now()->format('Y-m-d'),
+    'valid_to' => \Carbon\Carbon::now()->addYears(1)->format('Y-m-d'),
   ]);
   expect($discountCodeOnTheFly)->toBeInstanceOf(DiscountCode::class);
   

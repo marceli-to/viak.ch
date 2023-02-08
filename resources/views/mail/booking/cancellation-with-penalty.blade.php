@@ -4,7 +4,7 @@
 <p>{{ __('Wir haben Deine Annullation für den Kurs «:attribute» erhalten.', ['attribute' => $data->event->course->title]) }}</p>
 <p>{{ __('Die kurzfristige Annullation hat gemäss unseren AGB Kosten zur Folge. Diese belaufen sich auf CHF :amount.– (:penalty% der Kurskosten).', ['amount' => $cancellation['amount'], 'penalty' => $cancellation['penalty']]) }}</p>
 @if ($invoice->isPaid() && $discountCode)
-<p>{!! __('Da die gesamte Rechnung bereits bezahlt ist, haben wir dir einen Rabatt-Code für den zuviel bezahlten Betrag ausgestellt. Dieser kann bei der nächsten Buchung angewendet werden und lautet: <nobr><strong>:code</strong></nobr>. Falls du lieber eine Rückerstattung des zuviel bezahlten Betrages möchtest, nimm mit uns kontakt auf.', ['code' => $discountCode->code]) !!}</p>
+<p>{!! __('Da die gesamte Rechnung bereits bezahlt ist, haben wir dir einen Rabatt-Code für den zuviel bezahlten Betrag ausgestellt. Dieser kann bei der nächsten Buchung angewendet werden und lautet: <nobr><strong>:code</strong></nobr>. Falls du lieber eine Rückerstattung des zuviel bezahlten Betrages möchtest, dann nimm bitte mit uns Kontakt auf.', ['code' => $discountCode->code]) !!}</p>
 @elseif ($invoice->isPaid())
 <p>{{ __('Da die Rechnung bereits bezahlt ist, musst Du nichts weiter unternehmen.') }}</p>
 @else

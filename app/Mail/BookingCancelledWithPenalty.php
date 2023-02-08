@@ -50,8 +50,8 @@ class BookingCancelledWithPenalty extends Mailable
         'amount' => $cancellation['amount'],
         'fix' => 1,
         'percent' => 0,
-        'valid_from' => null,
-        'valid_to' => null,
+        'valid_from' => \Carbon\Carbon::now()->format('Y-m-d'),
+        'valid_to' => \Carbon\Carbon::now()->addYears(1)->format('Y-m-d'),
       ]);
     }
 
