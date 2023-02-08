@@ -43,7 +43,6 @@
     <h2>{{ __('Datenschutzerklärung') }}
   </x-slot>
   <x-slot name="content">
-    <h1>Datenschutzerklärung</h1>
     <p>Mit dieser <strong>Datenschutzerklärung</strong> informieren wir, welche Personendaten wir im Zusammenhang mit unseren <strong>Aktivitäten und Tätigkeiten</strong> einschliesslich unserer <strong><nobr>https://visualisierungs-akademie.ch/</nobr>-Website</strong> bearbeiten. Wir informieren insbesondere, wofür, wie und wo wir Personendaten bearbeiten. Wir informieren ausserdem über die Rechte von Personen, deren Daten wir bearbeiten.</p>
     <p>Für einzelne oder zusätzliche Aktivitäten und Tätigkeiten können weitere Datenschutzerklärungen sowie sonstige rechtliche Dokumente wie Allgemeine Geschäftsbedingungen (AGB), Nutzungsbedingungen oder Teilnahmebedingungen gelten.</p>
     <p>Wir unterliegen dem schweizerischen Datenschutzrecht sowie allenfalls anwendbarem ausländischem Datenschutzrecht wie insbesondere jenem der Europäischen Union (EU) mit der Datenschutz-Grundverordnung (DSGVO). Die Europäische Kommission <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32000D0518" rel="nofollow noopener noreferrer" target="_blank">anerkennt</a>, dass das schweizerische Datenschutzrecht einen angemessenen Datenschutz gewährleistet.</p>
