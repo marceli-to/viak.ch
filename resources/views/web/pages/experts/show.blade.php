@@ -1,5 +1,5 @@
 @extends('web.layout.frontend')
-@section('seo_title', $expert->fullname . "&bull;" . __('Experte'))
+@section('seo_title', $expert->fullname . "•" . __('Experte'))
 @section('page_title', __('Experte'))
 @section('og_image', url('/') . '/img/cache/' . $expert->visualImage->name .'/1500/'. $expert->visualImage->name)
 @section('content')
