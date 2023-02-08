@@ -1,0 +1,16 @@
+.privacy {
+  h2,
+  ul {
+    margin-bottom: $space-3x !important;
+    @include bp-md() {
+      margin-bottom: $space-4x !important;
+    }
+  }
+
+  h3 {
+    margin-bottom: $space-1x !important;
+    @include bp-md() {
+      margin-bottom: $space-2x !important;
+    }
+  }
+}
