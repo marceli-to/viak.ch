@@ -2,6 +2,7 @@
 namespace App\Mail;
 use App\Models\Booking;
 use App\Facades\Invoice;
+use App\Facades\Discount as DiscountFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -41,13 +42,27 @@ class BookingCancelledWithPenalty extends Mailable
     // Find or create the invoice for this booking
     $invoice = Invoice::createFromBookingWithPenalty($booking, $cancellation);
 
+    // Check for 50% penalty
+    $discountCode = NULL;
+    if (isset($cancellation['penalty']) && $cancellation['penalty'] == '50')
+    {
+      $discountCode = DiscountFacade::store([
+        'amount' => $cancellation['amount'],
+        'fix' => 1,
+        'percent' => 0,
+        'valid_from' => null,
+        'valid_to' => null,
+      ]);
+    }
+
     // Create the mail
     $mail = $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                  ->subject(__('Annullationsbestätigung') . ' – ' . $booking->event->course->title)
                  ->with([
                    'data' => $booking,
                    'cancellation' => $cancellation,
-                   'invoice' => $invoice
+                   'invoice' => $invoice,
+                   'discountCode' => $discountCode
                  ])
                  ->markdown('mail.booking.cancellation-with-penalty');
 

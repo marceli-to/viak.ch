@@ -56,13 +56,7 @@ class DiscountCodeController extends Controller
    */
   public function store(DiscountCodeStoreRequest $request)
   {
-    $discountCode = DiscountCodeModel::create(
-      array_merge(
-        $request->all(), 
-        ['uuid' => \Str::uuid()]
-      )
-    );
-
+    $discountCode = DiscountFacade::store($request->all());
     return response()->json(['discountCodeId' => $discountCode->id]);
   }
 

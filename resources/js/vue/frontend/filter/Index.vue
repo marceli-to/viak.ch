@@ -132,6 +132,11 @@
               {{ __('Zurücksetzen') }}
             </a>
           </div>
+          <a href="/de/individualschulungen" class="card-teaser-training">
+            <p>Wünschen Sie eine massgeschneiderte Individualschulung für Einzelpersonen oder Ihre Firma?</p>
+            <icon-arrow-right />
+          </a>
+
         </div>
       </form>
     </div> 
@@ -144,6 +149,7 @@ import i18n from "@/shared/mixins/i18n";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
 import IconFilter from "@/shared/components/ui/icons/Filter.vue";
+import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import Card from "@/frontend/filter/components/Card.vue";
 
 export default {
@@ -151,6 +157,7 @@ export default {
   components: {
     NProgress,
     IconFilter,
+    IconArrowRight,
     Grid,
     GridCol,
     Card,

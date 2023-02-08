@@ -1,6 +1,7 @@
 @extends('web.layout.frontend')
 @section('seo_title', __('Experte'))
 @section('page_title', __('Experte'))
+@section('og_image', url('/') . '/img/cache/' . $expert->visualImage .'/1500/'. $expert->visualImage)
 @section('content')
 <section class="container">
   <article class="content-text-media">

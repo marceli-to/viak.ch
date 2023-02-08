@@ -103,3 +103,26 @@
     }
   }
 }
+
+.card-teaser-training {
+  @extend %card;
+  @extend %mt-8x;
+  background-color: $color-secondary;
+  color: $color-white;
+  display: block;
+  padding: $space-3x !important;
+  position: relative;
+
+  p {
+    @extend %fs-16x;
+    @extend %md\:fs-18x;
+    @extend %word-break;
+    @include font-bold();
+    color: $color-white;
+    line-height: 1.4;
+  }
+
+  svg {
+    color: $color-white;
+  }
+}

@@ -52,7 +52,7 @@ class PaymentController extends BaseController
     $items[] = [
       'price_data' => [
         'currency' => 'chf',
-        'unit_amount' => (int) $invoice->booking->event->fee * 100,
+        'unit_amount' => (int) $invoice->grand_total * 100,
         'product_data' => [
           'name' => $invoice->booking->event->course->title . ", " . collect($invoice->booking->event->dates->pluck('date_short')->all())->implode(', '),
         ],
@@ -110,7 +110,7 @@ class PaymentController extends BaseController
     // Clear session
     (new PaymentStore())->clear();
 
-    // No cancellation penalty
+    // Send notifications
     event(new InvoicePaid($invoice));
 
     return view($this->viewPath . 'success', ['invoice' => $invoice]);

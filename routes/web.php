@@ -16,6 +16,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\IndividualTrainingController;
 use App\Http\Controllers\TestController;
 
 
@@ -35,6 +36,9 @@ Route::get('/en', [HomeController::class, 'index'])->name('en.page.home')->middl
 
 Route::multilingual('kontakt', [ContactController::class, 'index'])->name('page.contact');
 Route::multilingual('kurse', [CourseController::class, 'list'])->name('page.courses');
+
+Route::multilingual('individualschulungen', [IndividualTrainingController::class, 'index'])->name('page.individual-training');
+
 
 Route::get('de/kurs/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('de.page.course');
 Route::get('en/course/{slug?}/{course:uuid}', [CourseController::class, 'show'])->name('en.page.course')->middleware(['role:admin']); // remove MIDDLEWARE if multilanguage for all users

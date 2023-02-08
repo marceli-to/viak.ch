@@ -184,7 +184,9 @@ em {
   text-decoration: none !important;
 }
 
-.content-inner a strong {
+.content-inner a strong,
+.content-inner b,
+.content-inner strong {
   font-weight: bold !important;
 }
 

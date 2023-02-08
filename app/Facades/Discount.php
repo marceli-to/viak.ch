@@ -21,6 +21,26 @@ class Discount
   }
 
   /**
+   * Store a discount code
+   * 
+   * @param Array $data
+   */
+  public static function store($data)
+  {
+    // Generates a code if necessary
+    if (!isset($data['code']))
+    {
+      $data['code'] = self::generate();
+    }
+
+    return DiscountCodeModel::create(
+      array_merge(
+        $data, ['uuid' => \Str::uuid()]
+      )
+    );
+  }
+
+  /**
    * Update a discount
    * 
    * @param DiscountCode $discountCode

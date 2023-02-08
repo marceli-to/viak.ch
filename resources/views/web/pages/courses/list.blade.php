@@ -12,6 +12,7 @@
       </div>
     @endif
   </course-filter>
+  
 </section>
 <script src="{{ mix('assets/js/global/app.js') }}" type="text/javascript" defer></script>
 @endsection

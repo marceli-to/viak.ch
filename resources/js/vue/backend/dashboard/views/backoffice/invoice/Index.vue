@@ -17,7 +17,7 @@
     <collapsible-container>
       <collapsible :expanded="true" :uuid="'open-invoices'">
         <template #title>Offene Rechnungen</template>
-        <template #content>
+        <template #content v-if="query('open').length">
           <stacked-list-item class="stacked-list-item--header">
             <div>
               <div class="span-2">Nummer</div>
@@ -40,7 +40,7 @@
                 {{ invoice.date_short }}
               </div>
               <div class="span-2">
-                {{ invoice.total | moneyFormat() }}
+                {{ invoice.grand_total | moneyFormat() }}
               </div>
               <div class="span-6" v-if="invoice.user">
                 {{ invoice.user.fullname }}, {{ invoice.user.city }}
@@ -48,6 +48,9 @@
 
             </div>
           </stacked-list-item>
+        </template>
+        <template #content v-else>
+          <p class="no-results">Es sind keine offenen Rechnungen vorhanden...</p>
         </template>
       </collapsible>
 
@@ -76,7 +79,7 @@
                 {{ invoice.date_short }}
               </div>
               <div class="span-2">
-                {{ invoice.total | moneyFormat() }}
+                {{ invoice.grand_total | moneyFormat() }}
               </div>
               <div class="span-6" v-if="invoice.user">
                 {{ invoice.user.fullname }}, {{ invoice.user.city }}
@@ -112,7 +115,7 @@
                 {{ invoice.date_short }}
               </div>
               <div class="span-2">
-                {{ invoice.total | moneyFormat() }}
+                {{ invoice.grand_total | moneyFormat() }}
               </div>
               <div class="span-6" v-if="invoice.user">
                 {{ invoice.user.fullname }}, {{ invoice.user.city }}
@@ -148,7 +151,7 @@
                 {{ invoice.date_short }}
               </div>
               <div class="span-2">
-                {{ invoice.total | moneyFormat() }}
+                {{ invoice.grand_total | moneyFormat() }}
               </div>
               <div class="span-6" v-if="invoice.user">
                 {{ invoice.user.fullname }}, {{ invoice.user.city }}

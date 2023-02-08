@@ -9,7 +9,7 @@
       <h1 class="xs:hide">{{ __('Kreditkartenzahlung') }}</h1>
     </x-slot>
     <x-slot name="content">
-      <p>Informationen bezüglich akzeptiere Kreditkarten, Weiterleitung auf Seite des Anbieters etc.</p>
+      <p>&nbsp;</p>
     </x-slot>
   </x-article-text>
   <div class="stacked-list-container">
@@ -54,7 +54,7 @@
         </div>
         <div class="justify-end stacked-list__col stacked-list__col--action">
           <div>
-            <div>CHF {{ $booking->event->fee }}</div>
+            <div>CHF {{ $invoice->grand_total }}</div>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <strong>{{ __('Total') }}</strong><br>{{ __('inkl. 0% Mehrwertsteuer') }}
         </div>
         <div class="sm:span-8 sm:align-right">
-          <strong>CHF {{ $booking->event->fee }}</strong>
+          <strong>CHF {{ $invoice->grand_total }}</strong>
         </div>
       </div>
     </article>

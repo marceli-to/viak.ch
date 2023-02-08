@@ -1,6 +1,7 @@
 <?php
 use App\Models\User;
 use App\Models\DiscountCode;
+use App\Facades\Discount as DiscountFacade;
 
 test('admin can create, retrieve, update and destroy a discount code', function () {
 
@@ -15,17 +16,6 @@ test('admin can create, retrieve, update and destroy a discount code', function 
   $response = $this->get('/api/dashboard/discount-code/create');
   expect($response->status())->toBe(200);
 
-  // Get all discount codes via the endpoint
-  $response = $this->get('/api/dashboard/discount-codes');
-  expect($response->status())->toBe(200);
-
-  // Get a news from database
-  $discountCode = DiscountCode::first();
-  expect($discountCode)->toBeInstanceOf(DiscountCode::class);
-
-  // Create a new discount code
-  $response = $this->get('/api/dashboard/discount-code/create');
-
   // Store the new discount code
   $response = $this->post('/api/dashboard/discount-code', [
     'code' => $response->getData(),
@@ -38,6 +28,15 @@ test('admin can create, retrieve, update and destroy a discount code', function 
   $discountCodeId = $response->json('discountCodeId');
   expect($discountCodeId)->toBeInt();
 
+  // Get all discount codes via the endpoint
+  $response = $this->get('/api/dashboard/discount-codes');
+  expect($response->status())->toBe(200);
+
+  // Get a discount code from database
+  $discountCode = DiscountCode::first();
+  expect($discountCode)->toBeInstanceOf(DiscountCode::class);
+
+
   // Use that discount code to test the endpoint
   $response = $this->get('/api/dashboard/discount-code/' . $discountCodeId);
   expect($response->status())->toBe(200);
@@ -49,8 +48,18 @@ test('admin can create, retrieve, update and destroy a discount code', function 
   ]);
   expect($response->status())->toBe(200);
 
-  // Delete the newly created news
+  // Delete the newly created discount code
   $response = $this->delete('/api/dashboard/discount-code/' . $discountCodeId);
   expect($response->status())->toBe(200);
+
+  // Create and store a discount code on the fly
+  $discountCodeOnTheFly = DiscountFacade::store([
+    'amount' => '50',
+    'fix' => 0,
+    'percent' => 1,
+    'valid_from' => null,
+    'valid_to' => null,
+  ]);
+  expect($discountCodeOnTheFly)->toBeInstanceOf(DiscountCode::class);
   
 });
