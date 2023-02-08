@@ -136,7 +136,6 @@
             <p>Wünschen Sie eine massgeschneiderte Individualschulung für Einzelpersonen oder Ihre Firma?</p>
             <icon-arrow-right />
           </a>
-
         </div>
       </form>
     </div> 
