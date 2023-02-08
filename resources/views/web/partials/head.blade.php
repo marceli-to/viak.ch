@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@if(trim($__env->yieldContent('seo_title')))@yield('seo_title') &bull; {{config('seo.title')}}@else{{config('seo.title')}}@endif</title>
+<title>@if(trim($__env->yieldContent('seo_title')))@yield('seo_title') • {{config('seo.title')}}@else{{config('seo.title')}}@endif</title>
 <meta name="description" content="@if(trim($__env->yieldContent('seo_description')))@yield('seo_description')@else{{config('seo.description')}}@endif">
 <meta name="keywords" content="@if(trim($__env->yieldContent('seo_keywords')))@yield('seo_keywords')@else{{config('seo.keywords')}}@endif">
 <meta property="og:title" content="@if(trim($__env->yieldContent('seo_title')))@yield('seo_title') &bull; {{config('seo.title')}}@else{{config('seo.title')}}@endif">
