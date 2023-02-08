@@ -276,7 +276,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::get('expert/state/{user}', [DashboardExpertController::class, 'toggle']);
   Route::delete('expert/{user}', [DashboardExpertController::class, 'destroy']);
 
-  // DiscountCodes
+  // DiscountCodes (@has testcase)
   Route::get('discount-codes', [DashboardDiscountCodeController::class, 'get']);
   Route::get('discount-code/create', [DashboardDiscountCodeController::class, 'create']);
   Route::get('discount-code/{discountCode}', [DashboardDiscountCodeController::class, 'find']);

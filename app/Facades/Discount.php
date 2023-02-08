@@ -124,7 +124,7 @@ class Discount
       }
     }
 
-    while(self::exists($string) === FALSE)
+    while(self::exists($string))
     {
       self::generate();
     }
@@ -141,6 +141,6 @@ class Discount
 
   public static function exists($code)
   {
-    return DiscountCodeModel::where('code', $code)->first() == NULL ? TRUE : FALSE;
+    return DiscountCodeModel::where('code', $code)->first() == NULL ? FALSE : TRUE;
   }
 }
