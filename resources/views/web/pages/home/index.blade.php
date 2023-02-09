@@ -3,7 +3,6 @@
 @section('content')
 <section class="container">
   <article class="content-text-media is-reverse">
-    
     @if ($hero)
       @if ($hero->publishedImages && $hero->publishedImages->count() > 1)
         <div class="swiper">
@@ -31,14 +30,12 @@
         </figure>
       @endif
     @endif
-
-
     <div class="text-media__body">
       <aside>
         <h1>{{ __('Ihre Zukunft ist visuell') }}</h1>
       </aside>
       <div>
-        {!! __('<p>Visualisieren ist die Schlüsselkompetenz der Zukunft. Wir machen Dich fit: zum Beispiel in unseren vielseitigen Kursen oder massgeschneiderten Individualschulungen.</p><p>Wir sind führend, wenn es um Visualisierung geht.</p>') !!}        
+        {!! __('<p>Visualisieren ist die Schlüsselkompetenz der Zukunft.<br>Wir machen Sie fit: zum Beispiel in unseren vielseitigen Kursen oder massgeschneiderten Individualschulungen.</p><p>Wir sind führend, wenn es um Visualisierung geht.</p>') !!}        
       </div>
     </div>
   </article>
