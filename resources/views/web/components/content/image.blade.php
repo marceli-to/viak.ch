@@ -6,7 +6,7 @@
       @else
         <img 
           data-src="/img/cache/{{ $image->name }}/{{ $maxSize }}/{{ $image->coords }}/{{ $ratio }}" 
-          src="/media/viak-placeholder-teaser.png"
+          src="/media/viak-placeholder-visual.png"
           width="{{ $width }}" 
           height="{{ $height }}"
           title="{{ $image->title }}"
