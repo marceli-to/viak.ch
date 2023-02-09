@@ -6,7 +6,7 @@
       </header>
     @endif
     <div class="card-code__code {{ $item->ratio && $item->ratio != 'null' ? 'ratio-container ratio-container--' . $item->ratio : '' }}">
-      {!! $item->code !!}
+      {!! str_replace('allowfullscreen', 'allowfullscreen loading="lazy"', $item->code) !!}
     </div>
   </div>
 </article>
