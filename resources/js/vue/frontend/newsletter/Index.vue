@@ -4,7 +4,7 @@
     <template v-if="!isSubscribed">
       <p>
         {{ __('Regelmässig über neue Kurse und Angebote informiert werden:') }}
-        <a href="" @click.prevent="showForm()" :title="__('Newsletter Formular anzeigen')" class="btn-subscribe" v-if="!hasForm">
+        <a href="javascript:;" @click.prevent="showForm()" :title="__('Newsletter Formular anzeigen')" class="btn-subscribe" v-if="!hasForm">
           <icon-arrow-right :size="'sm'" />
           <span>{{ __('Abonnieren') }}</span>
         </a>
@@ -22,7 +22,7 @@
           <input type="email" v-model="form.email" required autocomplete="new-email" aria-autocomplete="new-email" @focus="removeValidationError('email')" />
         </form-group>
         <form-group class="mb-0">
-          <a href="" @click.prevent="store()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-subscribe']">
+          <a href="javascript:;" @click.prevent="store()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-subscribe']" :title="__('Newsletter abonnieren')">
             <icon-arrow-right :size="'sm'" />
             <span>{{ __('Abonnieren') }}</span>
           </a>
