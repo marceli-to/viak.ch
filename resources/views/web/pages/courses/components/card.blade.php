@@ -24,7 +24,7 @@
               </li>
               @if ($course->online)
                 <li>
-                  {{ __('Online Schulung') }}
+                  {{ __('Onlinekurs') }}
                 </li>
               @endif
               <li>

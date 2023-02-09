@@ -18,7 +18,7 @@
       </div>
       <div class="stacked-list__col">
         <template v-if="$props.event.online">
-          {{ __('Online') }}
+          {{ __('Onlinekurs') }}
         </template>
         <template v-else-if="$props.event.location && $props.event.location.description">
           <a :href="$props.event.location.map" target="_blank" :title="__('Karte öffnen')" v-if="$props.event.location.map">
@@ -85,7 +85,7 @@
       <div class="stacked-list__col">
         
         <template v-if="$props.event.online">
-          {{ __('Online') }}
+          {{ __('Onlinekurs') }}
         </template>
 
         <template v-else-if="$props.event.location && $props.event.location.description">

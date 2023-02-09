@@ -31,7 +31,7 @@
       <a href="mailto:hallo@visualisierungs-akademie.ch" class="icon-mail" target="_blank" title="{{ __('Kontakt') }}">
         @include('web.partials.icons.mail')
       </a>
-      <a href="https://instagram.com" class="icon-instagram" target="_blank" title="{{ __('Viak auf Instagram') }}">
+      <a href="https://www.instagram.com/viak.ch/" class="icon-instagram" target="_blank" title="{{ __('Visualisierungs-Akademie auf Instagram') }}">
         @include('web.partials.icons.instagram')
       </a>
     </div>

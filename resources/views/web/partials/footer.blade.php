@@ -7,7 +7,17 @@
     <div class="sm:span-4 start-9 mt-6x sm:mt-0">
       <h2>{{ __('Kontakt') }}</h2>
       <p>Visualisierungs-Akademie Schweiz GmbH<br>Limmatstrasse 291<br>CH-8005 Zürich</p>
-      <p><a href='tel:+41435014040' title='{{ __('per Telefon') }}'>+41 43 501 40 40</a><br><a href='mailto:hallo@visualisierungs-akademie.ch' title='{{ __('per E-Mail') }}'>hallo@visualisierungs-akademie.ch</a></p>
+      <p>
+        <a href='tel:+41435014040' title='{{ __('per Telefon') }}'>+41 43 501 40 40</a><br><a href='mailto:hallo@visualisierungs-akademie.ch' title='{{ __('per E-Mail') }}'>hallo@visualisierungs-akademie.ch</a>
+      </p>  
+      <div class="flex">
+        <a href="https://www.instagram.com/viak.ch/" class="mr-3x" target="_blank" title="{{ __('Visualisierungs-Akademie auf Instagram') }}" rel="noopener">
+          Instagram
+        </a>
+        <a href="https://www.facebook.com/ViAkSchweiz" target="_blank" title="{{ __('Visualisierungs-Akademie auf Facebook') }}" rel="noopener">
+          Facebook
+        </a>
+      </div>
     </div>
   </div>
 </footer>

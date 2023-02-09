@@ -59,7 +59,7 @@
           <div class="mr-16x md:mr-20x">
             <div class="form-group__checkbox">
               <input type="checkbox" id="online" name="online" :value="1" v-model="data.online">
-              <label for="online">Online</label>
+              <label for="online">Onlinekurs</label>
             </div>
           </div>
           <div>

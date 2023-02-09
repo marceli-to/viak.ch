@@ -42,7 +42,7 @@
     </div>
     <div class="stacked-list__col">
       @if ($event->online)
-        {{ __('Online') }}
+        {{ __('Onlinekurs') }}
       @else
         @if ($event->location->map)
           <a href="{{ $event->location->map }}" target="_blank" title="{{ __('Karte anzeigen') }}">

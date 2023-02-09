@@ -44,7 +44,7 @@
         </div>
         <div class="stacked-list__col">
           @if ($booking->event->online)
-            {{ __('Online') }}
+            {{ __('Onlinekurs') }}
           @elseif ($booking->event->location && $booking->event->location->description)
             {{ $booking->event->location->description }}
           @endif
