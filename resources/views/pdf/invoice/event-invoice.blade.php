@@ -14,7 +14,7 @@
       <td class="page-info__right">
         @if ($invoice->invoice_address)
         {{ __('Rechnungsadresse') }}<br>
-          {!! $invoice->invoice_address !!}
+          {!! nl2br($invoice->invoice_address) !!}
         @endif
       </td>
     </tr>

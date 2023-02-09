@@ -183,7 +183,7 @@
       <div>
         <h2>Zahlbar durch</h2>
         @if ($invoice->invoice_address)
-          <p>{!! $invoice->invoice_address !!}</p>
+          <p>{!! nl2br($invoice->invoice_address) !!}</p>
         @else
           <p>{!! $invoice->booking->user->address !!}</p>
         @endif
@@ -241,7 +241,7 @@
         <div>
           <h2>Zahlbar durch</h2>
           @if ($invoice->invoice_address)
-            <p>{!! $invoice->invoice_address !!}</p>
+            <p>{!! nl2br($invoice->invoice_address) !!}</p>
           @else
             <p>{!! $invoice->booking->user->address !!}</p>
           @endif

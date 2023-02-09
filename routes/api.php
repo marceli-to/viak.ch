@@ -255,6 +255,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
 
   // Backoffice Invoices
   Route::get('invoices', [DashboardInvoiceController::class, 'get']);
+  Route::get('invoice/{invoice}', [DashboardInvoiceController::class, 'find']);
+  Route::put('invoice/{invoice}', [DashboardInvoiceController::class, 'update']);
 
   // Students
   Route::get('student/documents/{user}', [DashboardStudentController::class, 'getDocuments']);
@@ -369,7 +371,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
       Route::delete('location/{location}', 'destroy');
     });
 
-  }); //-- Settings
+  });
 
 });
 

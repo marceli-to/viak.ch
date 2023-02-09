@@ -56,6 +56,38 @@ class EventInvoice
     ];
   }
 
+  /**
+   * Update an existing Invoice
+   * 
+   * @param Invoice $invoice
+   * @return Array
+   */
+
+   public function update(Invoice $invoice)
+   {
+     // Invoice with relations
+     $invoice = $invoice->with('booking.event.course', 'booking.user')->find($invoice->id);
+ 
+     // Set view data
+     $this->viewData['invoice'] = $invoice;
+     $this->viewData['qr'] = (new Qr($invoice))->get();
+ 
+     // Set storage folder
+     $this->setStoragePath($invoice->user->uuid);
+     $this->setStorageUri($invoice->user->uuid);
+ 
+     // Load view and save file to disk
+     $pdf = DomPDF::loadView('pdf.invoice.event-invoice', $this->viewData);
+     $fileName = 'viak-rechnung-' . date('d-m-Y', time()) . '-' . $invoice->number . '.pdf';
+     $pdf->save($this->storagePath . '/' . $fileName);
+ 
+     return [
+       'uri' => public_path() . $this->storageUri . '/' . $fileName,
+       'path' => $this->storagePath . '/' . $fileName,
+       'filename' => $fileName
+     ];
+   }
+
   protected function getStoragePath()
   {
     return $this->storagePath;
