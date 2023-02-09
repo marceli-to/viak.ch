@@ -1,7 +1,9 @@
 <?php
 namespace App\Mail;
 use App\Models\Booking;
-use App\Facades\Invoice;
+use App\Models\Invoice;
+use App\Facades\Invoice as InvoiceFacade;
+use App\Facades\Discount as DiscountFacade;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -33,6 +35,29 @@ class EventCancelStudent extends Mailable
   {
     // Get the booking
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
+    $invoice = Invoice::where('booking_id', $booking->id)->first();
+    $discount = NULL;
+
+    if ($invoice)
+    {
+      // Generate discount code for PAID invoices
+      if ($invoice->isPaid())
+      {
+        $discount = DiscountFacade::store([
+          'amount' => $invoice->grand_total,
+          'fix' => 1,
+          'percent' => 0,
+          'valid_from' => \Carbon\Carbon::now()->format('Y-m-d'),
+          'valid_to' => \Carbon\Carbon::now()->addYears(1)->format('Y-m-d'),
+        ]);
+      }
+
+      // Delete any NOT YET PAID invoices
+      if ($invoice->isPending())
+      {
+        InvoiceFacade::delete($invoice);
+      }
+    }
 
     // Create the mail
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
@@ -41,7 +66,8 @@ class EventCancelStudent extends Mailable
                     [
                       'event' => $booking->event,
                       'booking' => $booking,
-                      'user' => $booking->user
+                      'user' => $booking->user,
+                      'discount' => $discount
                     ]
                   )
                 ->markdown('mail.event.cancel', ['recipient' => 'student']);

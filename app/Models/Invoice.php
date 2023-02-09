@@ -114,6 +114,18 @@ class Invoice extends Base
     return $this->status == 'OVERDUE' ? TRUE : FALSE;
    }
 
+
+  /**
+   * Check for pending invoice
+   * 
+   * @return Boolean
+   */
+
+   public function isPending()
+   {
+    return $this->status != 'PAID' && $this->status != 'CANCELLED' ? TRUE : FALSE;
+   }
+
   /*
   |--------------------------------------------------------------------------
   | Relationships

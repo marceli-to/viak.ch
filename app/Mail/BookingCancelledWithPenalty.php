@@ -43,10 +43,10 @@ class BookingCancelledWithPenalty extends Mailable
     $invoice = Invoice::createFromBookingWithPenalty($booking, $cancellation);
 
     // Check for 50% penalty
-    $discountCode = NULL;
+    $discount = NULL;
     if (isset($cancellation['penalty']) && $cancellation['penalty'] == '50')
     {
-      $discountCode = DiscountFacade::store([
+      $discount = DiscountFacade::store([
         'amount' => $cancellation['amount'],
         'fix' => 1,
         'percent' => 0,
@@ -62,7 +62,7 @@ class BookingCancelledWithPenalty extends Mailable
                    'data' => $booking,
                    'cancellation' => $cancellation,
                    'invoice' => $invoice,
-                   'discountCode' => $discountCode
+                   'discount' => $discount
                  ])
                  ->markdown('mail.booking.cancellation-with-penalty');
 

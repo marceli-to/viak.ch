@@ -17,13 +17,6 @@ class BookingCancelledHandler
    */
   public function handle(BookingCancelled $bookingCancelledEvent)
   {
-    // Delete any NOT YET PAID invoices
-    $invoice = Invoice::where('booking_id', $bookingCancelledEvent->booking->id)->first();
-    if ($invoice && !$invoice->isPaid())
-    {
-      InvoiceFacade::delete($invoice);
-    }
-
     Job::create([
       'recipient' => $bookingCancelledEvent->user->email,
       'mailable_id' => $bookingCancelledEvent->booking->id,
