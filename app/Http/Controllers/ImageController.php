@@ -55,7 +55,7 @@ class ImageController extends ImageCacheController
 
     // filter template found
     case class_exists($template):
-      return new $template($this->maxSize, $this->coords);
+      return new $template($this->maxSize, $this->coords, $this->ratio);
 
     default:
       // template not found
