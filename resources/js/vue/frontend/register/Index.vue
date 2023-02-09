@@ -113,7 +113,7 @@
               </a>
             </li>
             <li>
-              <a href="/media/downloads/Visualisierungs-Akademie_Datenschutzbestimmungen.pdf" target="_blank" :title="__('Download Datenschutzbestimmungen')">
+              <a href="/media/downloads/Visualisierungs-Akademie_Datenschutzerklaerung.pdf" target="_blank" :title="__('Download Datenschutzerklärung')">
                 {{ __('Datenschutzbestimmungen') }}
               </a>
             </li>

@@ -26,6 +26,7 @@
         <div class="relative">
           <div class="sm:span-4">
             <strong>{{ __('Rechnungsadresse') }}</strong>
+            <p class="text-xsmall mt-4x">{{ __('Sollte Ihre Kursteilnahme vom RAV bezahlt werden, so geben Sie bitte die Adresse des RAVs ein, welche Sie gemeinsam mit dem Entscheid erhalten haben. Sie brauchen die Rechnung weder zu bezahlen noch ans RAV weiterzuleiten. Dies übernehmen alles wir. Sie müssen lediglich die korrekte Rechnungsadresse des RAV erfassen.') }}</p>
           </div>
           <div class="sm:span-8">
             <form-group>

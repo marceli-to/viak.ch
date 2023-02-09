@@ -34,6 +34,9 @@
       <a href="https://www.instagram.com/viak.ch/" class="icon-instagram" target="_blank" title="{{ __('Visualisierungs-Akademie auf Instagram') }}">
         @include('web.partials.icons.instagram')
       </a>
+      <a href="https://www.facebook.com/ViAkSchweiz" class="icon-facebook" target="_blank" title="{{ __('Visualisierungs-Akademie auf Facebook') }}">
+        @include('web.partials.icons.facebook')
+      </a>
     </div>
     <div>
       <a href="javascript:;" title="Menü" class="icon-menu icon-menu__cross js-menu-btn-hide" title="{{ __('Menü anzeigen') }}">
