@@ -1,5 +1,8 @@
 @extends('web.layout.frontend')
 @section('seo_title', __('Home'))
+@if ($openGraphImage)
+  @section('og_image', url('/') . '/img/cache/' . $openGraphImage->name . '/1500/' . $openGraphImage->coords)
+@endif
 @section('content')
 <section class="container">
   <article class="content-text-media is-reverse">
@@ -46,7 +49,7 @@
         @foreach($row->items as $item)
         <div>
           @if ($item->course)
-            <x-course-card :uuid="$item->course->uuid" />
+            <x-course-card :uuid="$item->uuid" />
           @endif
           @if ($item->news)
             <x-news-card :id="$item->news->id" />

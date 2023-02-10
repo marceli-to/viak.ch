@@ -16,7 +16,7 @@
           :imageRatioH="9"
           :type="'Hero'"
           :typeId="hero.id"
-          :hasTypes="false"
+          :hasTypes="true"
           :allowRatioSwitch="false"
           :previewItemClass="'!span-3'"
           :images="hero.images">

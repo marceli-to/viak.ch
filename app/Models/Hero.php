@@ -43,4 +43,10 @@ class Hero extends Base
     return $this->morphOne(Image::class, 'imageable')->where('publish', 1)->orderBy('order');
   }
 
+  public function openGraphImage()
+  {
+    return $this->morphOne(Image::class, 'imageable')->where('type', 'open-graph')->where('publish', 1);
+  }
+
+
 }

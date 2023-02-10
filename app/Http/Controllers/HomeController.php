@@ -27,6 +27,7 @@ class HomeController extends BaseController
     return view(
       $this->viewPath . 'index', [
         'hero' => Hero::published()->with('publishedImages')->where('slug', 'home')->first(),
+        'openGraphImage' => Hero::published()->with('openGraphImage')->where('slug', 'home')->first()->openGraphImage,
         'grid' => GridRow::with('items.course.teaserImage', 'items.news.publishedImage', 'items')->orderBy('order')->get()
       ]
     );
