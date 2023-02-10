@@ -42,7 +42,6 @@
       </div>
     </div>
   </article>
-
   @if ($grid)
     @foreach($grid as $row)
       <section class="content-grid content-grid--{{$row->layout}}">
@@ -62,9 +61,5 @@
       </section>
     @endforeach
   @endif
-
-
-
-
 </section>
 @endsection
