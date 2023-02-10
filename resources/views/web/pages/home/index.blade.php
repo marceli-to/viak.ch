@@ -49,7 +49,7 @@
         @foreach($row->items as $item)
         <div>
           @if ($item->course)
-            <x-course-card :uuid="$item->uuid" />
+            <x-course-card :uuid="$item->course->uuid" />
           @endif
           @if ($item->news)
             <x-news-card :id="$item->news->id" />
