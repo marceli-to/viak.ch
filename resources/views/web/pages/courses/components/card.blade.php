@@ -1,5 +1,5 @@
 <article class="card-teaser span-6" data-touch>
-  <a href="{{ route(locale() . '.page.course', ['slug' => $course->slug ? $course->slug : '', 'course' => $course->uuid]) }}">
+  <a href="{{ route(locale() . '.page.course', ['slug' => $course?->slug ? $course->slug : '', 'course' => $course?->uuid]) }}">
     <header>
       <div class="card-teaser__category">
         @if ($course->categories)
