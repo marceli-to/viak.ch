@@ -21,7 +21,6 @@ class CourseCard extends Component
   public function __construct($uuid)
   {
     $this->course = Course::where('uuid', $uuid)->first();
-    dd($this->course);
   }
 
   /**
