@@ -287,7 +287,7 @@ class Event extends Base
   public function getDateLongAttribute()
   {   
     //return date('d. F Y', strtotime($this->date));
-    return \Carbon\Carbon::parse($this->date)->format('d. F Y');
+    return \Carbon\Carbon::parse($this->date)->format('d. F Y')->locale('de_CH.utf8');
   }
 
   /**
