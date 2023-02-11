@@ -119,7 +119,7 @@ class EventDate extends Base
   public function getDateAttribute($value)
   {   
     //return date('d. F Y', strtotime($value));
-    return \Carbon\Carbon::parse($value)->format('d. F Y')->locale('de_CH.utf8');
+    return \Carbon\Carbon::parse($value)->format('d. F Y');
   }
 
   /**
@@ -132,7 +132,7 @@ class EventDate extends Base
   public function getDateStrAttribute($value)
   {   
     //return date('d. F Y', strtotime($this->date));
-    return \Carbon\Carbon::parse($this->date)->format('d. F Y')->locale('de_CH.utf8');
+    return \Carbon\Carbon::parse($this->date)->format('d. F Y');
    }
 
   /**
