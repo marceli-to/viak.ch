@@ -192,7 +192,7 @@ class Invoice extends Base
 
   public function getDateStrAttribute()
   {   
-    return date('d. F Y', strtotime($this->date));
+    return \Carbon\Carbon::parse($this->date)->translatedFormat('d. F Y');
   }
 
   /**
