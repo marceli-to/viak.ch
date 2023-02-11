@@ -60,7 +60,7 @@ class StudentRegisterController extends Controller
     NewsletterSubscriber::update($user);
 
     // Log the user in
-    Auth::login($user);
+    // Auth::login($user);
 
     return response()->json($user->uuid);
   }
