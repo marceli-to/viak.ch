@@ -131,7 +131,7 @@ class EventDate extends Base
   public function getDateStrAttribute($value)
   {   
     return \Carbon\Carbon::parse($this->date)->translatedFormat('d. F Y');
-   }
+  }
 
   /**
    * Get the date for an event_date.
