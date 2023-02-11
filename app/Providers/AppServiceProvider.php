@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
   public function boot()
   {
     // Set locales
-    setLocale(LC_ALL, 'de_CH');
-    \Carbon\Carbon::setLocale('de_CH');
+    setLocale(LC_ALL, 'de_DE.utf8');
+    \Carbon\Carbon::setLocale('de_DE.utf8');
 
     // Set global mailto address
     if ($this->app->environment('local') || $this->app->environment('staging'))
