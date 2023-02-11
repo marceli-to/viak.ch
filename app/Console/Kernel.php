@@ -25,12 +25,11 @@ class Kernel extends ConsoleKernel
    */
   protected function schedule(Schedule $schedule)
   {
-    $schedule->call(new Job)->everyMinute();
-    $schedule->call(new CleanUpTempFolder)->everyMinute();
-    $schedule->call(new ObserveEventState)->everyMinute();
-    
     if (app()->environment() == 'production')
     {
+      $schedule->call(new Job)->everyMinute();
+      $schedule->call(new CleanUpTempFolder)->everyMinute();
+      $schedule->call(new ObserveEventState)->everyMinute();
       $schedule->call(new PrepareInvoiceBatchProcess)->dailyAt('01:00');
       $schedule->call(new RunInvoiceBatchProcess)->everyMinute();
     }
