@@ -11,8 +11,11 @@ class Job
 
     foreach($jobs->all() as $job)
     {
-      // $recipient = $job->recipient;
       $recipient = env('MAIL_TO');
+      if ((app()->environment() == 'production') && $job->recipient)
+      {
+        $recipient = $job->recipient;
+      }
       
       try
       {

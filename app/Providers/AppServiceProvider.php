@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     \Carbon\Carbon::setLocale('de_CH');
 
     // Set global mailto address
-    if ($this->app->environment('local') || $this->app->environment('staging') || $this->app->environment('production'))
+    if ($this->app->environment('local') || $this->app->environment('staging'))
     {
       Mail::alwaysTo(env('MAIL_TO'));
     }
