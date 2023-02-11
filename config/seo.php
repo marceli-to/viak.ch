@@ -22,7 +22,7 @@ return [
   |
   */
 
-  'description' => 'Visualisierungs-Akademie Schweiz GmbH - Seminare, Workshops und Visualisierungs-Projekte',   
+  'description' => 'Visualisierungs-Akademie Schweiz GmbH - Seminare, Workshops und Individualschulungen',   
 
   /*
   |--------------------------------------------------------------------------
