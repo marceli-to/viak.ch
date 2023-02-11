@@ -8,11 +8,12 @@
   @extend %mx-2x;
   display: block;
   height: 24px;
-  width: auto;
+  overflow: hidden;
+  width: 34px;
 
   svg {
     display: block;
-    height: auto;
-    width: 100%;
+    height: 24px;
+    width: 34px;
   }
 }
