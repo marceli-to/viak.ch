@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
   {
     // Set locales
     setLocale(LC_ALL, 'de_CH.utf8');
+    setlocale (LC_TIME, 'de_CH.utf8');
     \Carbon\Carbon::setLocale('de_CH.utf8');
 
     // Set global mailto address
