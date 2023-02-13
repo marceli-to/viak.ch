@@ -10,7 +10,7 @@ class Pdf
 
   public function __construct()
   {
-    $this->storageFolder = public_path() . '/storage/files/';
+    $this->storageFolder = storage_path('app/public/files') . '/';
 
     if (!File::isDirectory(storage_path('app/public/files')))
     {
