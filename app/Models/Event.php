@@ -202,8 +202,7 @@ class Event extends Base
   
   public function bookings()
   {
-    //return $this->hasMany(Booking::class, 'event_id', 'id')->notFlagged('isCancelled');
-    return $this->hasMany(Booking::class, 'event_id', 'id');
+    return $this->hasMany(Booking::class, 'event_id', 'id')->notFlagged('isCancelled');
   }
 
   /**
