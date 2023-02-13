@@ -53,7 +53,6 @@ class StudentController extends Controller
     $data = StudentResource::make(
       User::with('bookings', 'invoiceAddresses')->findOrFail($user->id)
     )->withAllData(true);
-
     return response()->json($data);
   }
 
