@@ -93,7 +93,7 @@ class UserDocument extends Base
 
   public function getDateShortAttribute()
   {   
-    return date('d.m.Y', strtotime($this->date));
+    return \Carbon\Carbon::parse($value)->translatedFormat('d.m.Y');
   }
 
 }
