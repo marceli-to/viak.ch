@@ -51,7 +51,7 @@ class StudentController extends Controller
   public function find(User $user)
   {
     $user = User::find($user->id);
-    $user = new StudentResource(User::with('invoiceAddresses')->findOrFail($user->id));
+    $user = new StudentResource(User::with('bookings', 'invoiceAddresses')->findOrFail($user->id));
 
     return response()->json($user);
   }
