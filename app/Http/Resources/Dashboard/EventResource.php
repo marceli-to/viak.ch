@@ -34,7 +34,6 @@ class EventResource extends JsonResource
           'time_end' => $date->time_end,
         ];
       }),
-      //'bookings' => $this->is_cancelled ? $this->cancelledBookings->count() : $this->bookings->count(),
       'bookings' => collect($this->hasFlag('isCancelled') ? $this->cancelledBookings : $this->bookings)->count(),
       'experts' => collect($this->experts->pluck('fullname')->all())->implode(', '),
       'is_confirmed' => $this->is_confirmed,
