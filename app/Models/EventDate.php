@@ -35,6 +35,7 @@ class EventDate extends Base
 
   protected $appends = [
     'date_short',
+    'date_long'
   ];
 
 
@@ -118,8 +119,21 @@ class EventDate extends Base
 
   public function getDateAttribute($value)
   {   
-    return \Carbon\Carbon::parse($value)->translatedFormat('d. F Y');
+    return date('d. F Y', strtotime($value));
   }
+
+  /**
+   * Get the date for an event date.
+   *
+   * @param  string $value
+   * @return string $date
+   */
+
+  public function getDateLongAttribute()
+  {   
+    return \Carbon\Carbon::parse($this->date)->translatedFormat('d. F Y');
+  }
+
 
   /**
    * Get the date for an event_date.
@@ -142,7 +156,7 @@ class EventDate extends Base
 
   public function getDateShortAttribute()
   {   
-    //return \Carbon\Carbon::parse(strtotime($this->date))->translatedFormat('d.m.Y');
+    //dd(strtotime($this->date));
     return date('d.m.Y', strtotime($this->date));
   }
 }
