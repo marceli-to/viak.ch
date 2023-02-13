@@ -50,10 +50,11 @@ class StudentController extends Controller
    */
   public function find(User $user)
   {
-    $user = User::find($user->id);
-    $user = new StudentResource(User::with('bookings', 'invoiceAddresses')->findOrFail($user->id));
+    $data = StudentResource::make(
+      User::with('bookings', 'invoiceAddresses')->findOrFail($user->id)
+    )->withAllData(true);
 
-    return response()->json($user);
+    return response()->json($data);
   }
 
   /**
