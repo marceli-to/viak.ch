@@ -142,6 +142,7 @@ class EventDate extends Base
 
   public function getDateShortAttribute()
   {   
-    return date('d.m.Y', strtotime($this->date));
+    return \Carbon\Carbon::parse($this->date)->translatedFormat('d.m.Y');
+    //return date('d.m.Y', strtotime($this->date));
   }
 }
