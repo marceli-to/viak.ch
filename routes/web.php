@@ -162,7 +162,7 @@ Route::match(['get', 'post'], 'register', function(){
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('/email/verify', function () {
-  if (auth()->user()) {
+  if (auth()->user()->hasVerifiedEmail()) {
     return redirect()->route('de.page.home');
   }
   return view('auth.verify');

@@ -1,4 +1,5 @@
 @extends('web.layout.frontend')
+@section('seo_title', __('Kontakt'))
 @section('page_title', __('Kontakt'))
 @section('content')
 <section class="container-contact">
