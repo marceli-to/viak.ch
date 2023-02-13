@@ -31,11 +31,11 @@
             </h2>
             @if ($booking->event->dates)
               @if ($booking->event->dates->count() == 1)
-                <strong>{{ $booking->event->dates[0]->date }}</strong><br>
+                <strong>{{ $booking->event->dates[0]->date_long }}</strong><br>
                 {{ $booking->event->dates[0]->time_start }} – {{ $booking->event->dates[0]->time_end }} {{ __('Uhr') }}
               @else
                 @foreach($booking->event->dates as $date)
-                  <strong>{{ $date->date }}</strong><br>
+                  <strong>{{ $date->date_long }}</strong><br>
                   {{ $date->time_start }} – {{ $date->time_end }} {{ __('Uhr') }}<br>
                 @endforeach
               @endif

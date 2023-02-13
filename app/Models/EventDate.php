@@ -134,7 +134,6 @@ class EventDate extends Base
     return \Carbon\Carbon::parse($this->date)->translatedFormat('d. F Y');
   }
 
-
   /**
    * Get the date for an event_date.
    *
@@ -156,7 +155,6 @@ class EventDate extends Base
 
   public function getDateShortAttribute()
   {   
-    //dd(strtotime($this->date));
     return date('d.m.Y', strtotime($this->date));
   }
 }

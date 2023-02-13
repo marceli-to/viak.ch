@@ -6,11 +6,11 @@
         <div>
           <template v-if="$props.event.dates">
             <template v-if="$props.event.dates.length == 1">
-              <strong>{{ $props.event.dates[0].date }}</strong><br>{{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
+              <strong>{{ $props.event.dates[0].date_long }}</strong><br>{{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
             </template>
             <template v-else>
               <div v-for="(date, index) in $props.event.dates" :key="index">
-                <strong>{{ date.date }}</strong><br>{{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
+                <strong>{{ date.date_long }}</strong><br>{{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
               </div>
             </template>
           </template>
@@ -69,11 +69,11 @@
             </h2>
             <template v-if="$props.event.dates">
               <template v-if="$props.event.dates.length == 1">
-                <strong>{{ $props.event.dates[0].date }}</strong><br>{{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
+                <strong>{{ $props.event.dates[0].date_long }}</strong><br>{{ $props.event.dates[0].time_start }} – {{ $props.event.dates[0].time_end }} {{ __('Uhr') }}
               </template>
               <template v-else>
                 <div v-for="(date, index) in $props.event.dates" :key="index">
-                  <strong>{{ date.date }}</strong><br>{{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
+                  <strong>{{ date.date_long }}</strong><br>{{ date.time_start }} – {{ date.time_end }} {{ __('Uhr') }}
                 </div>
               </template>
             </template>

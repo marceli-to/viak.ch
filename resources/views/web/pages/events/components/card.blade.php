@@ -27,11 +27,11 @@
             <div>
               @if ($event->dates->count() > 1)
                 @foreach($event->dates as $date)
-                  <strong>{{ $date->date }}</strong><br>{{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
+                  <strong>{{ $date->date_long }}</strong><br>{{ $date->time_start }} – {{ $date->time_end }} Uhr<br>
                 @endforeach
               @else
                 @foreach($event->dates as $date)
-                  <strong>{{ $date->date }}</strong><br>
+                  <strong>{{ $date->date_long }}</strong><br>
                   {{ $date->time_start }} – {{ $date->time_end }} Uhr
                 @endforeach
               @endif
