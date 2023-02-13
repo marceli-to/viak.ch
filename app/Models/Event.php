@@ -296,9 +296,9 @@ class Event extends Base
    * @return string $date
    */
 
-  public function getDateShortAttribute($value)
+  public function getDateShortAttribute()
   {   
-    return \Carbon\Carbon::parse($value)->translatedFormat('d.m.Y');
+    return date('d.m.Y', strtotime($this->date));
   }
 
   /**
