@@ -54,7 +54,7 @@ class EventConfirmationStudent extends Mailable
     if ($invoice)
     {
       $mail->attach(
-        public_path() . "/storage/files/{$booking->user->uuid}/{$invoice->filename}",
+        storage_path() . "/app/public/files/{$booking->user->uuid}/{$invoice->filename}",
         ['mime' => 'application/pdf']
       );
     }
