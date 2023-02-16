@@ -184,6 +184,18 @@ class Invoice extends Base
   }
 
   /**
+   * Set the due date.
+   *
+   * @param  string $value
+   * @return void
+   */
+
+   public function setDueAtAttribute($value)
+   {
+     $this->attributes['due_at'] = \Carbon\Carbon::parse($value)->format('Y-m-d');
+   }
+
+  /**
    * Get the date string for an invoice.
    *
    * @param  string $value
