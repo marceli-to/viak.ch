@@ -50,7 +50,7 @@ class EventParticipationConfirmation
     ]);
 
     return [
-      'uri' => public_path() . $this->storageUri . '/' . $fileName,
+      'uri' => storage_path() . $this->storageUri . '/' . $fileName,
       'path' => $this->storagePath . '/' . $fileName,
       'filename' => $fileName
     ];
@@ -78,7 +78,7 @@ class EventParticipationConfirmation
 
   protected function setStorageUri($userUuid)
   {
-    $this->storageUri = "/storage/files/{$userUuid}";
+    $this->storageUri = "/app/public/files/{$userUuid}";
   }
   
 }
