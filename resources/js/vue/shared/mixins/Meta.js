@@ -10,8 +10,10 @@ export default {
 
   methods: {
     setTitle(value) {
-      this.siteTitle.textContent = value;
-      this.pageTitle.textContent = value + this.pageTitleSuffix;
+      if (this.siteTitle && this.pageTitle) {
+        this.siteTitle.textContent = value;
+        this.pageTitle.textContent = value + this.pageTitleSuffix;
+      }
     }
   }
 

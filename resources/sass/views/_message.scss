@@ -42,6 +42,28 @@
       }
     }
 
+    ul, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      margin-left: $space-5x;
+      margin-bottom: $space-4x;
+    }
+
+    li {
+      display: list-item;
+      list-style-type: disc
+    }
+
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
     footer {
       @extend %mt-3x;
       @extend %pt-2x;

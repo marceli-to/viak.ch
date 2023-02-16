@@ -9,12 +9,11 @@
         @focus="removeValidationError('subject')" />
     </form-group>
     <form-group :label="'Nachricht'" :required="true" :error="errors.body">
-      <textarea 
-        v-model="data.body" 
-        required 
-        class="is-large"
-        @focus="removeValidationError('body')">
-      </textarea>
+      <tinymce-editor
+        :api-key="tinyApiKey"
+        :init="tinyConfig"
+        v-model="data.body"
+      ></tinymce-editor>
     </form-group>
     <form-group :label="'Anhänge'">
       <files 
@@ -42,6 +41,8 @@
 import NProgress from 'nprogress';
 import Validation from "@/shared/mixins/Validation";
 import i18n from "@/shared/mixins/i18n";
+import TinymceEditor from "@tinymce/tinymce-vue";
+import tinyConfig from "@/shared/config/tiny.js";
 import Helpers from "@/shared/mixins/Helpers";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
@@ -53,7 +54,8 @@ export default {
     NProgress,
     FormGroup,
     IconArrowRight,
-    Files
+    Files,
+    TinymceEditor
   },
 
   mixins: [Validation, Helpers, i18n],
@@ -93,6 +95,10 @@ export default {
       isLoading: false,
       isAdmin: false,
       isExpert: false,
+
+      // Tiny configuration
+      tinyConfig: tinyConfig,
+      tinyApiKey: 'vuaywur9klvlt3excnrd9xki1a5lj25v18b2j0d0nu5tbwro',
 
       // Messages
       messages: {

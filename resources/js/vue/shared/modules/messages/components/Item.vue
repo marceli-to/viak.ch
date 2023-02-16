@@ -39,7 +39,7 @@
           <p v-if="$props.message.subject">
             {{ $props.message.subject }}
           </p>
-          <p v-html="nl2br($props.message.body)"></p>
+          <p v-html="$props.message.body"></p>
           <footer v-if="$props.message.files && $props.message.files.length > 0">
             <div class="text-xsmall mb-1x">
               {{ __('Anhänge') }}

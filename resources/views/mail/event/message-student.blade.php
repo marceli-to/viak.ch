@@ -1,8 +1,6 @@
 @component('mail::message')
 <p><small><em>{{ $message->user->fullname }} ({{ $message->user->email }}) {{ __('hat folgende Nachricht gesendet:') }}</em></small></p>
-{!! nl2br($message->body) !!}
-<br>
-<br>
+{!! $message->body !!}
 @if ($message->files->count() > 0)
   <div>Anhänge</div>
   @foreach($message->files as $file)
@@ -13,7 +11,6 @@
     </div>
   @endforeach
 @endif
-
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Kurs') }}</td>
