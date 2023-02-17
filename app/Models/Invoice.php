@@ -238,8 +238,8 @@ class Invoice extends Base
    * @return string $date
    */
 
-   public function getDueAtShortAttribute()
-   {   
-     return date('d.m.Y', strtotime($this->due_at));
-   }
+  public function getDueAtShortAttribute()
+  {   
+    return date('d.m.Y', strtotime($this->due_at));
+  }
 }
