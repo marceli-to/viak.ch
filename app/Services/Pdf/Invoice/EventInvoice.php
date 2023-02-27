@@ -78,7 +78,7 @@ class EventInvoice
  
      // Load view and save file to disk
      $pdf = DomPDF::loadView('pdf.invoice.event-invoice', $this->viewData);
-     $fileName = 'viak-rechnung-' . date('d-m-Y', time()) . '-' . $invoice->number . '.pdf';
+     $fileName = 'viak-rechnung-' . str_replace('.', '-', $invoice->date_short) . '-' . $invoice->number . '.pdf';
      $pdf->save($this->storagePath . '/' . $fileName);
  
      return [
