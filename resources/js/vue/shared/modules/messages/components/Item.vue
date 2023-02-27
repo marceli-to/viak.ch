@@ -7,7 +7,7 @@
           <div class="sm:hide mb-2x">{{ $props.message.date }} – {{ $props.message.user }}</div>
           <div class="sm:span-2 mb-1x xs:hide">{{ $props.message.date }}</div>
           <div class="sm:span-3 mb-1x xs:hide">{{ $props.message.user }}</div>
-          <div class="sm:span-4 md:span-5 mb-1x">{{ $props.message.body | truncate(35, '...')  }}</div>
+          <div class="sm:span-4 md:span-5 mb-1x" v-html="$options.filters.truncate($props.message.body, 35, '...')"></div>
           <div class="sm:span-3 md:span-2 xs:mt-6x">
             <a href="javascript:;" class="btn-primary btn-auto-w" @click.prevent="show()">Anzeigen</a>
           </div>
