@@ -102,9 +102,9 @@
             </div>
           </stacked-list-item>
           <stacked-list-item v-for="invoice in query('overdue')" :key="invoice.id" class="relative">
-            <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank" class="icon-download mt-3x">
-              <icon-download />
-            </a>
+            <router-link :to="{ name: 'backoffice-invoice-edit', params: { id: invoice.id } }" class="icon-edit mt-3x">
+              <icon-edit />
+            </router-link>
             <div>
               <div class="span-2">
                 <a :href="`/storage/files/${invoice.user.uuid}/${invoice.filename}`" title="Download" target="_blank">
