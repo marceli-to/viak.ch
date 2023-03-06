@@ -19,7 +19,7 @@ class NewsletterSubscriber
     if ($user->subscribe_newsletter == 1)
     {
       Newsletter::subscribeOrUpdate($user->email, ['FNAME'=> $user->firstname, 'LNAME'=> $user->name]);
-      Newsletter::addTags([env('MAILCHIMP_TAGS')], $user->email);
+      Newsletter::addTags([env('MAILCHIMP_TAGS'), 'Deutsch'], $user->email);
       $user->subscribe_newsletter = 1;
     }
     else

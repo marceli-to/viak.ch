@@ -22,7 +22,7 @@ class NewsletterSubscriberController extends Controller
         'LNAME'=> $request->input('name')
       ]
     );
-    Newsletter::addTags([env('MAILCHIMP_TAGS')], $request->input('email'));
+    Newsletter::addTags([env('MAILCHIMP_TAGS'), 'Deutsch'], $request->input('email'));
     return response()->json(200);
   }
 
