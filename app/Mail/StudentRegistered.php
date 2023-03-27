@@ -32,7 +32,7 @@ class StudentRegistered extends Mailable
     // Create verification url
     $verifyUrl = \URL::temporarySignedRoute(
       'verification.verify',
-      \Carbon\Carbon::now()->addMinutes(\Config::get('auth.verification.expire', 60)),
+      \Carbon\Carbon::now()->addMinutes(\Config::get('auth.verification.expire', 360)),
       [
         'id' => $this->data->id,
         'hash' => sha1($this->data->email)
