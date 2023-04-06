@@ -6,7 +6,7 @@ class ObserveEventState
   public function __invoke()
   {
     $constraint = \Carbon\Carbon::now()->addDays(10)->format('Y-m-d');
-    $events = \App\Models\Event::where('date', $constraint)->notFlagged('hasCancelOrConfirmReminder')->get();
+    $events = \App\Models\Event::where('date', $constraint)->notFlagged('isCancelled')->notFlagged('hasCancelOrConfirmReminder')->get();
     if ($events)
     {
       foreach($events as $event)
