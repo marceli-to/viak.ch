@@ -25,6 +25,20 @@
 @if ($discount)
 <p>{!! __('Da die Rechnung bereits bezahlt ist, haben wir Dir einen Rabatt-Code für den bezahlten Betrag ausgestellt. Dieser kann bei der nächsten Buchung angewendet werden und lautet: <nobr><strong>:code</strong></nobr>. Falls du lieber eine Rückerstattung des Betrages möchtest, dann nimm bitte mit uns Kontakt auf.', ['code' => $discount->code]) !!}</p>
 @endif
+{{-- @if ($nextEvents)
+<p>{{ __('Falls Du einen anderen Kurs besuchen möchtest, so haben wir Dir eine Auswahl an Alternativen zusammengestellt:') }}</p>
+<ul>
+@foreach ($nextEvents as $nextEvent)
+  <li>
+    <a href="{{ route('de.page.course', ['slug' => $nextEvent->course->slug, 'course' => $nextEvent->course->uuid]) }}" target="_blank" style="color: #000000; text-decoration: none;">
+      <strong>{{ $nextEvent->course->title }}</strong>, {{ collect($nextEvent->dates->pluck('date_short')->all())->implode('/') }}
+    </a>
+  </li>
+@endforeach
+</ul>
+@else
+<p>{{ __('Falls der Kurs an einem neuen Datum stattfinden wird, so findest Du dieses in Kürze auf unserer Website.') }}</p>
+@endif --}}
 <p>{{ __('Falls der Kurs an einem neuen Datum stattfinden wird, so findest Du dieses in Kürze auf unserer Website.') }}</p>
 <p>{{ __('Bei Fragen stehen wir Dir natürlich gerne zur Verfügung.') }}</p>
 <p>{{ __('Möchtest Du eine andere Schulung besuchen? Unsere Kurse und Angebote findest Du ') }} <a href="{{ localized_route('page.courses') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>hier</strong></a>.</p>

@@ -32,9 +32,9 @@ class CreateInvoice
       "ar_accno" => "1100",
       "transdate" => \Carbon\Carbon::parse($invoice->date)->toIso8601String(),
       "duedate" => \Carbon\Carbon::parse($invoice->date)->addDays(config('invoice.payment_period'))->toIso8601String(),
-      "description" => $invoice->booking?->event?->course?->title . ' (<a href=\"'. $invoice_url .'\" target=\"_blank\">Rechnung</a>)',     
+      "description" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',     
       "notes" => "", 
-      "intnotes" => "",
+      "intnotes" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',
       "taxincluded" => "false", 
       "customer" => [
         "customernumber" => config('invoice.prefix') . $invoice->user?->id,

@@ -68,6 +68,21 @@ p {
   text-align: left;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin-bottom: 18px;
+}
+
+li {
+  display: list-item;
+  list-style-type: disc;
+  margin-left: 18px;
+}
+
 table td {
   vertical-align: top
 }

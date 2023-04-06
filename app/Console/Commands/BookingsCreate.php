@@ -13,7 +13,7 @@ class BookingsCreate extends Command
    *
    * @var string
    */
-  protected $signature = 'booking:create {event}';
+  protected $signature = 'booking:create';
 
   /**
    * The console command description.
@@ -39,8 +39,11 @@ class BookingsCreate extends Command
    */
   public function handle()
   {
+    // Ask for event uuid as input
+    $eventUuid = $this->ask('Please enter the event uuid:');
+
     // Get the event
-    $event = Event::where('uuid', $this->argument('event'))->first();
+    $event = Event::where('uuid', $eventUuid)->first();
 
     // Get users
     $users = User::where('email', 'like', 'viak-student%@0704.ch')->get();

@@ -24,7 +24,7 @@
     <td>{{ __('Ort') }}</td>
     <td>
       @if ($event->online)
-       {{ __('Onlinekurs') }}
+        {{ __('Onlinekurs') }}
       @else
         {{ $event->location->description }}
       @endif
