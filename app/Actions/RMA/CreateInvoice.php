@@ -34,7 +34,7 @@ class CreateInvoice
       "duedate" => \Carbon\Carbon::parse($invoice->date)->addDays(config('invoice.payment_period'))->toIso8601String(),
       "description" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',     
       "notes" => "", 
-      "intnotes" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',
+      "intnotes" => $invoice->filename,
       "taxincluded" => "false", 
       "customer" => [
         "customernumber" => config('invoice.prefix') . $invoice->user?->id,
