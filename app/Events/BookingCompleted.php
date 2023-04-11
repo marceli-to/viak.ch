@@ -21,6 +21,6 @@ class BookingCompleted
   public function __construct(User $user, Booking $booking)
   { 
     $this->user = $user;
-    $this->booking = Booking::with('event.course')->find($booking->id);
+    $this->booking = Booking::with('event.course', 'event.experts')->find($booking->id);
   }
 }
