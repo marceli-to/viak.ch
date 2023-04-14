@@ -62,9 +62,9 @@ class EventCancelStudent extends Mailable
 
     // Get the next 2 events after the just cancelled event
     $nextEvents = Event::upcoming()
-      ->active()
       ->where('course_id', $booking->event->course->id)
       ->where('date', '>', $booking->event->date)
+      ->active()
       ->orderBy('date', 'asc')
       ->take(2)
       ->get();

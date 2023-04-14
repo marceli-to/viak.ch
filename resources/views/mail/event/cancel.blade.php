@@ -25,7 +25,7 @@
 @if ($discount)
 <p>{!! __('Da die Rechnung bereits bezahlt ist, haben wir Dir einen Rabatt-Code für den bezahlten Betrag ausgestellt. Dieser kann bei der nächsten Buchung angewendet werden und lautet: <nobr><strong>:code</strong></nobr>. Falls du lieber eine Rückerstattung des Betrages möchtest, dann nimm bitte mit uns Kontakt auf.', ['code' => $discount->code]) !!}</p>
 @endif
-@if ($nextEvents)
+@if ($nextEvents->count() > 0)
 <p>{{ __('Es würde uns natürlich freuen, wenn Du Dich für die nächste Durchführung dieses Kurses erneut anmelden würdest. Hier die nächsten Daten:') }}</p>
 <ul>
 @foreach ($nextEvents as $nextEvent)
