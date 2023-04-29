@@ -31,7 +31,9 @@
         "spatie/laravel-newsletter": "^4.11",
         "spatie/laravel-translatable": "^5.2.0",
         "sprain/swiss-qr-bill": "^3.2",
-        "stripe/stripe-php": "^9.8"
+        "stripe/stripe-php": "^9.8",
+        "symfony/http-client": "^6.2",
+        "symfony/mailgun-mailer": "^6.2"
     },
     "require-dev": {
         "amirami/localizator": "^0.11.0@alpha",
