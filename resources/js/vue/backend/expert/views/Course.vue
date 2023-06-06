@@ -33,6 +33,7 @@
               <div>
                 <div class="sm:span-4 md:span-3">{{ participant.fullname }}</div>
                 <div class="sm:span-2 md:span-3">{{ participant.city }}</div>
+                <div class="sm:span-2 md:span-3">{{ participant.company }}</div>
               </div>
             </stacked-list-item>
             <div class="mt-5x sm:mt-10x" v-if="!data.event.is_cancelled">
