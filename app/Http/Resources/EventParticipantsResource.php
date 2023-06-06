@@ -18,6 +18,7 @@ class EventParticipantsResource extends JsonResource
       'name' => $this->user->name,
       'firstname' => $this->user->firstname,
       'city' => $this->user->city,
+      'company' => $this->user->company,
       'email' => auth()->user()->isAdmin() ? $this->user->email : null,
       'hasParticipated' => $this->hasFlag('hasParticipated') ? true : false
     ];
