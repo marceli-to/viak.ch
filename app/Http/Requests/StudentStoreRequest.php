@@ -94,7 +94,7 @@ class StudentStoreRequest extends FormRequest
       ],
       'name.required' => [
         'field' => 'name',
-        'error' => 'Name wird benötigt'
+        'error' => 'Nachname wird benötigt'
       ],
       'firstname.required' => [
         'field' => 'firstname',

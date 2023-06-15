@@ -11,7 +11,7 @@
         <form-group :label="__('Vorname')" class="sm:span-6" :error="errors.firstname">
           <input type="text" v-model="data.firstname" @focus="removeValidationError('firstname')" />
         </form-group>
-        <form-group :label="__('Name')" class="sm:span-6" :error="errors.name">
+        <form-group :label="__('Nachname')" class="sm:span-6" :error="errors.name">
           <input type="text" v-model="data.name" @focus="removeValidationError('name')" />
         </form-group>
       </grid>

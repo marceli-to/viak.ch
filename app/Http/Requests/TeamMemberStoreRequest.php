@@ -44,7 +44,7 @@ class TeamMemberStoreRequest extends FormRequest
       ],
       'name.required' => [
         'field' => 'name',
-        'error' => 'Name wird benötigt'
+        'error' => 'Nachname wird benötigt'
       ],
     ];
   }
