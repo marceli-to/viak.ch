@@ -11263,9 +11263,6 @@ nav.site-menu-dashboard .site-menu__overflow-items ul li a.logout {
  * File: views/message
  * -----------------------------------------------------------------------------
  */
-.message {
-  overflow-y: auto;
-}
 .message.is-visible {
   cursor: pointer;
 }
@@ -11274,6 +11271,7 @@ nav.site-menu-dashboard .site-menu__overflow-items ul li a.logout {
 }
 .message .message__inner {
   max-width: 700px;
+  overflow-y: auto;
   width: 90%;
 }
 @media only screen and (min-width: 700px) {

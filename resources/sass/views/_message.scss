@@ -6,7 +6,6 @@
 
 .message {
   @extend %lightbox;
-  overflow-y: auto;
 
   &.is-visible {
     cursor: pointer;
@@ -19,6 +18,7 @@
     @extend %p-2x;
     @extend %sm\:p-4x;
     max-width: 700px;
+    overflow-y: auto;
     width: 90%;
 
     @include bp-sm() {
