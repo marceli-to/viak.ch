@@ -32,7 +32,7 @@
         <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
           <input type="text" v-model="form.firstname" required @focus="removeValidationError('firstname')" />
         </form-group>
-        <form-group :label="__('Name')" :required="true" :error="errors.name">
+        <form-group :label="__('Nachname')" :required="true" :error="errors.name">
           <input type="text" v-model="form.name" required @focus="removeValidationError('name')" />
         </form-group>
         <form-group :label="__('Firma')">
