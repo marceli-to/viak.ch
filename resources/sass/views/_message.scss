@@ -18,7 +18,9 @@
   .message__inner {
     @extend %p-2x;
     @extend %sm\:p-4x;
-    max-width: 740px;
+    max-width: 700px;
+    height: 100%;
+    overflow-y: auto;
     width: 90%;
 
     @include bp-sm() {

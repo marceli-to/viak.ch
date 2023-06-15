@@ -11273,7 +11273,9 @@ nav.site-menu-dashboard .site-menu__overflow-items ul li a.logout {
   cursor: default;
 }
 .message .message__inner {
-  max-width: 740px;
+  max-width: 700px;
+  height: 100%;
+  overflow-y: auto;
   width: 90%;
 }
 @media only screen and (min-width: 700px) {
