@@ -6,6 +6,7 @@
 
 .message {
   @extend %lightbox;
+  overflow-y: auto;
 
   &.is-visible {
     cursor: pointer;
