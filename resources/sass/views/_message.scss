@@ -7,7 +7,7 @@
 .message {
   @extend %lightbox;
   overflow-y: auto;
-  @extend %sm\:my-4x;
+  @extend %sm\:py-4x;
 
   &.is-visible {
     cursor: pointer;
