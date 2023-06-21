@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Resources;
+use App\Http\Resources\UserAddressResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventParticipantsResource extends JsonResource
@@ -19,6 +20,7 @@ class EventParticipantsResource extends JsonResource
       'firstname' => $this->user->firstname,
       'city' => $this->user->city,
       'company' => $this->user->company,
+      'invoice_address' => UserAddressResource::make($this->user->invoiceAddresses()->first()),
       'email' => auth()->user()->isAdmin() ? $this->user->email : null,
       'hasParticipated' => $this->hasFlag('hasParticipated') ? true : false
     ];

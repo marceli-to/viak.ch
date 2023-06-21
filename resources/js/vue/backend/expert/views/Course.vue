@@ -33,7 +33,14 @@
               <div>
                 <div class="sm:span-4 md:span-3">{{ participant.fullname }}</div>
                 <div class="sm:span-2 md:span-3">{{ participant.city }}</div>
-                <div class="sm:span-2 md:span-3">{{ participant.company }}</div>
+                <div class="sm:span-2 md:span-3">
+                  <template v-if="participant.company">
+                    {{ participant.company }}
+                  </template>
+                  <template v-else-if="participant.invoice_address && participant.invoice_address.company">
+                    {{ participant.invoice_address.company }}
+                  </template>
+                </div>
               </div>
             </stacked-list-item>
             <div class="mt-5x sm:mt-10x" v-if="!data.event.is_cancelled">

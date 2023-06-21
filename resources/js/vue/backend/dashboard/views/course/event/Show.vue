@@ -47,7 +47,14 @@
               <div>
                 <div class="sm:span-3 md:span-3">{{ participant.fullname }}</div>
                 <div class="sm:span-2 md:span-2">{{ participant.city }}</div>
-                <div class="sm:span-2 md:span-2">{{ participant.company }}</div>
+                <div class="sm:span-2 md:span-2">
+                  <template v-if="participant.company">
+                    {{ participant.company }}
+                  </template>
+                  <template v-else-if="participant.invoice_address && participant.invoice_address.company">
+                    {{ participant.invoice_address.company }}
+                  </template>
+                </div>
                 <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
                 <div class="sm:span-1 md:span-2 flex justify-end mr-2x">
                   <template v-if="!data.event.is_cancelled">
