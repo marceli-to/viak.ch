@@ -28,29 +28,32 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
 
     $data = [];
 
-    if ($course->pastEvents->count() > 2)
-    {
-      dd($course, $course->pastEvents);
-    }
+    // if ($course->pastEvents->count() > 2)
+    // {
+    //   dd($course->pastEvents);
+    // }
 
-
-    foreach($course->pastEvents as $event)
+    foreach($course->pastEvents as $events)
     {
-      foreach($event->bookings as $booking)
+      foreach($events as $event)
       {
-        $data[] = [
-          'firstname' => $booking->user->firstname,
-          'name' => $booking->user->name,
-          'company' => $booking->user->company,
-          'street' => $booking->user->street,
-          'street_no' => $booking->user->street_no,
-          'zip' => $booking->user->zip,
-          'city' => $booking->user->city,
-          'phone' => $booking->user->phone,
-          'email' => $booking->user->email,
-          'date' => $event->date
-        ];
+        foreach($event->bookings as $booking)
+        {
+          $data[] = [
+            'firstname' => $booking->user->firstname,
+            'name' => $booking->user->name,
+            'company' => $booking->user->company,
+            'street' => $booking->user->street,
+            'street_no' => $booking->user->street_no,
+            'zip' => $booking->user->zip,
+            'city' => $booking->user->city,
+            'phone' => $booking->user->phone,
+            'email' => $booking->user->email,
+            'date' => $event->date
+          ];
+        }
       }
+
     }    
     return collect($data);
   }
