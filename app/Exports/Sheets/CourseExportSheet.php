@@ -31,6 +31,8 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
     if ($course->pastEvents->count() > 2) {
       $data2 = [];
       foreach ($course->pastEvents as $event) {
+        echo $event->date;
+        echo '<br>';
         foreach ($event->bookings as $booking) {
           $data2[] = [
             'firstname' => $booking->user->firstname,
@@ -49,7 +51,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
     
       dd($data2);
     }
-    
+
     foreach($course->pastEvents as $event)
     {
       foreach($event->bookings as $booking)
