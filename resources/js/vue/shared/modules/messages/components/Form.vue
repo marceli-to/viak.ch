@@ -15,7 +15,7 @@
         v-model="data.body"
       ></tinymce-editor>
     </form-group>
-    <form-group :label="'Anhänge'">
+    <form-group :label="'Anhänge (max. 32 MB)'">
       <files 
         class="form-group__upload"
         :fetchFiles="false"

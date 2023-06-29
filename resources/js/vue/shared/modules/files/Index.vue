@@ -3,7 +3,7 @@
   <template v-if="isFetched">
     <div class="mt-2x sm:mt-4x">
       <file-upload
-        :restrictions="'pdf, zip, txt, doc, ppt, xls | max. 32 MB'"
+        :restrictions="'pdf, zip, txt, doc, ppt, xls'"
         :maxFiles="99"
         :maxFilesize="32"
         :acceptedFiles="'.pdf,.zip,.txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx'"
