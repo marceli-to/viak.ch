@@ -24,10 +24,11 @@ class CoursesExport implements WithMultipleSheets
     foreach($courses as $course)
     {
       // filter out courses without bookings
-      if($course->pastEvents->isEmpty())
+      if($course->pastEvents->count() == 0)
       {
         continue;
       }
+
 
       // Create a sheet for each course
       $sheets[] = new CourseExportSheet($course);
