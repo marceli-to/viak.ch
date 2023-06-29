@@ -29,6 +29,7 @@ class TestController extends BaseController
   public function index()
   { 
     $timestamp = date('d.m.Y', time());
+    dd($timestamp);
     return Excel::download(new CoursesExport, 'viak-kurse-'.$timestamp.'-'.\Str::random(8).'.xlsx');
     // Get a courses with pastEvents
     // $courses = Course::with('pastEvents.bookings.user')->get();
