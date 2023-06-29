@@ -33,6 +33,8 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
       foreach ($course->pastEvents as $event) {
         echo $event->date;
         echo '<br>';
+        echo 'bookings count: ' . $event->bookings->count();
+        echo '<br>';
         foreach ($event->bookings as $booking) {
           $data2[] = [
             'firstname' => $booking->user->firstname,
