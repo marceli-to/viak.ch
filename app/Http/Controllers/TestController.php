@@ -13,6 +13,8 @@ use App\Services\Pdf\EventParticipationConfirmation;
 use App\Http\Resources\EventParticipantsResource;
 use App\Events\BookingCompleted;
 use Newsletter;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CoursesExport;
 use Illuminate\Http\Request;
 
 class TestController extends BaseController
@@ -26,6 +28,8 @@ class TestController extends BaseController
 
   public function index()
   { 
+    $timestamp = date('d.m.Y', time());
+    return Excel::download(new CoursesExport, 'viak-kurse-'.$timestamp.'-'.\Str::random(8).'.xlsx');
     // Get a courses with pastEvents
     // $courses = Course::with('pastEvents.bookings.user')->get();
     // dd($courses[0]->pastEvents[0]);

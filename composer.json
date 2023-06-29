@@ -24,6 +24,7 @@
         "laravel/scout": "^9.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.36",
         "nunomaduro/termwind": "^1.15",
         "opcodesio/log-viewer": "^1.9",
