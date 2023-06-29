@@ -28,10 +28,12 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
 
     $data = [];
 
+    if ($course->pastEvents->count() > 2)
+    {
+      dd($course->pastEvents);
+    }
 
 
-
-    dd($course->pastEvents->count());
     foreach($course->pastEvents as $event)
     {
       foreach($event->bookings as $booking)
