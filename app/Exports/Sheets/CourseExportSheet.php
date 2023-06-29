@@ -27,6 +27,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
     $course = Course::with('pastEvents.bookings.user')->find($this->course->id);
 
     $data = [];
+    dd($course->pastEvents);
     foreach($course->pastEvents as $event)
     {
       foreach($event->bookings as $booking)
