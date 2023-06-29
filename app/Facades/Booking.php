@@ -13,6 +13,7 @@ use App\Events\BookingCompleted;
 use App\Events\BookingCancelled;
 use App\Events\BookingCancelledWithPenalty;
 use App\Facades\ParticipantsChange;
+use App\Facades\Message as MessageFacade;
 
 class Booking
 {
@@ -66,6 +67,9 @@ class Booking
 
           // Handle event participant change
           ParticipantsChange::handle($booking->event);
+
+          // Handle messages for this event
+          MessageFacade::past($booking->event, $user);
         }
       }
     }

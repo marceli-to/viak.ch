@@ -195,8 +195,8 @@ em {
 }
 
 .content-inner a {
-  color: #000000 !important;
-  text-decoration: none !important;
+  color: #46baba !important;
+  text-decoration: underline !important;
 }
 
 .content-inner a strong,

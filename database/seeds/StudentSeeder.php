@@ -64,101 +64,101 @@ class StudentSeeder extends Seeder
       'user_id' => $user->id
     ]);
 
-    // // Test student 3
-    // $user = User::create([
-    //   'firstname' => 'Klaus',
-    //   'name' => 'Steiner',
-    //   'company' => 'Steiner 3D',
-    //   'street' => 'Bertastrasse',
-    //   'street_no' => '4a',
-    //   'zip' => '8000',
-    //   'city' => 'Zürich',
-    //   'phone' => '077 870 09 20',
-    //   'email' => 'viak-student3@0704.ch',
-    //   'email_verified_at' => \Carbon\Carbon::now(),
-    //   'password' => \Hash::make('7aq31rr23'),
-    //   'uuid' => \Str::uuid(),
-    //   'gender_id' => 1,
-    //   'country_id' => 1,
-    //   'visible' => 1,
-    // ]);
+    // Test student 3
+    $user = User::create([
+      'firstname' => 'Klaus',
+      'name' => 'Steiner',
+      'company' => 'Steiner 3D',
+      'street' => 'Bertastrasse',
+      'street_no' => '4a',
+      'zip' => '8000',
+      'city' => 'Zürich',
+      'phone' => '077 870 09 20',
+      'email' => 'viak-student3@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
 
-    // RoleUser::create([
-    //   'role_id' => 3,
-    //   'user_id' => $user->id
-    // ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
 
-    // // Test student 4
-    // $user = User::create([
-    //   'firstname' => 'Petra',
-    //   'name' => 'Dora',
-    //   'company' => '',
-    //   'street' => 'Schanzenstrasse',
-    //   'street_no' => '5',
-    //   'zip' => '8000',
-    //   'city' => 'Zürich',
-    //   'phone' => '077 888 88 88',
-    //   'email' => 'viak-student4@0704.ch',
-    //   'email_verified_at' => \Carbon\Carbon::now(),
-    //   'password' => \Hash::make('7aq31rr23'),
-    //   'uuid' => \Str::uuid(),
-    //   'gender_id' => 1,
-    //   'country_id' => 1,
-    //   'visible' => 1,
-    // ]);
+    // Test student 4
+    $user = User::create([
+      'firstname' => 'Petra',
+      'name' => 'Dora',
+      'company' => '',
+      'street' => 'Schanzenstrasse',
+      'street_no' => '5',
+      'zip' => '8000',
+      'city' => 'Zürich',
+      'phone' => '077 888 88 88',
+      'email' => 'viak-student4@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
 
-    // RoleUser::create([
-    //   'role_id' => 3,
-    //   'user_id' => $user->id
-    // ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
 
-    // // Test student 5
-    // $user = User::create([
-    //   'firstname' => 'Hans',
-    //   'name' => 'Muster',
-    //   'company' => '',
-    //   'street' => 'Bahnhofstrasse',
-    //   'street_no' => '23',
-    //   'zip' => '8004',
-    //   'city' => 'Zürich',
-    //   'phone' => '077 666 55 88',
-    //   'email' => 'viak-student5@0704.ch',
-    //   'email_verified_at' => \Carbon\Carbon::now(),
-    //   'password' => \Hash::make('7aq31rr23'),
-    //   'uuid' => \Str::uuid(),
-    //   'gender_id' => 2,
-    //   'country_id' => 1,
-    //   'visible' => 1,
-    // ]);
+    // Test student 5
+    $user = User::create([
+      'firstname' => 'Hans',
+      'name' => 'Muster',
+      'company' => '',
+      'street' => 'Bahnhofstrasse',
+      'street_no' => '23',
+      'zip' => '8004',
+      'city' => 'Zürich',
+      'phone' => '077 666 55 88',
+      'email' => 'viak-student5@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 2,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
 
-    // RoleUser::create([
-    //   'role_id' => 3,
-    //   'user_id' => $user->id
-    // ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
 
-    // // Test student 6
-    // $user = User::create([
-    //   'firstname' => 'Gilbert',
-    //   'name' => 'Huber',
-    //   'company' => '',
-    //   'street' => 'Feldstrasse',
-    //   'street_no' => '99',
-    //   'zip' => '4000',
-    //   'city' => 'Basel',
-    //   'phone' => '079 456 21 21',
-    //   'email' => 'viak-student6@0704.ch',
-    //   'email_verified_at' => \Carbon\Carbon::now(),
-    //   'password' => \Hash::make('7aq31rr23'),
-    //   'uuid' => \Str::uuid(),
-    //   'gender_id' => 1,
-    //   'country_id' => 1,
-    //   'visible' => 1,
-    // ]);
+    // Test student 6
+    $user = User::create([
+      'firstname' => 'Gilbert',
+      'name' => 'Huber',
+      'company' => '',
+      'street' => 'Feldstrasse',
+      'street_no' => '99',
+      'zip' => '4000',
+      'city' => 'Basel',
+      'phone' => '079 456 21 21',
+      'email' => 'viak-student6@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('7aq31rr23'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
 
-    // RoleUser::create([
-    //   'role_id' => 3,
-    //   'user_id' => $user->id
-    // ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
 
 
     // for($i = 0; $i<=20; $i++)
