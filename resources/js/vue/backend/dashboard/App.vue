@@ -63,6 +63,11 @@
                         Rechnungen
                       </router-link>
                     </li>
+                    <li>
+                      <router-link :to="{name: 'backoffice-exports'}" :class="[$route.name.startsWith('backoffice-exports') ? 'is-active' : '', '']">
+                        Exporte
+                      </router-link>
+                    </li>
                   </ul>
                 </li>
                 <li>

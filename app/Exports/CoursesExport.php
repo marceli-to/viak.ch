@@ -16,9 +16,6 @@ class CoursesExport implements WithMultipleSheets
   {
     $sheets = []; 
 
-    // Summary sheet
-    // $sheets[] = new VotesSummarySheet();
-
     // Create a sheet per course
     $courses = Course::with('pastEvents.bookings.user')->get();
 

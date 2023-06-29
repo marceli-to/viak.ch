@@ -17,6 +17,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\IndividualTrainingController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\TestController;
 
 
@@ -29,7 +30,7 @@ use App\Http\Controllers\TestController;
 
 // Route::get('/en/{any?}')->middleware(['role:admin']); // remove ROUTE if multilanguage for all users
 Route::get('/maintenance', [HomeController::class, 'maintenance']);
-Route::get('/test', [TestController::class, 'index']);
+// Route::get('/test', [TestController::class, 'index']);
 
 Route::get('/', [HomeController::class, 'index'])->name('de.page.home');
 Route::get('/de', [HomeController::class, 'index'])->name('de.page.home');
@@ -144,6 +145,9 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 
   // Documents
   Route::get('/pdf/teilnehmer-liste/{event:uuid}', [DocumentController::class, 'participantsList'])->name('pdf.course-participants-list')->middleware(['role:admin,expert']);
+
+  // Exports
+  Route::get('/export/kurs-liste', [ExportController::class, 'index'])->middleware(['role:admin']);
 
 });
 
