@@ -35,7 +35,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
       {
         foreach($event->bookings as $booking)
         {
-          $data[] = [
+          $data2[] = [
             'firstname' => $booking->user->firstname,
             'name' => $booking->user->name,
             'company' => $booking->user->company,
