@@ -25,25 +25,42 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
   public function collection()
   {
     $course = Course::with('pastEvents.bookings.user')->find($this->course->id);
-    dd($course);
-    // $data = [];
-    // foreach($votes as $v)
-    // {
-    //   $data[] = [
-    //     'Datum' => $v->dateExport,
-    //     'IP Adresse' => $v->voter->ip_address,
-    //     'Hash' => $v->voter->hash
-    //   ];
-    // }
+
+    $data = [];
+    foreach($course->pastEvents as $event)
+    {
+      foreach($event->bookings as $booking)
+      {
+        $data[] = [
+          'firstname' => $booking->user->firstname,
+          'name' => $booking->user->name,
+          'company' => $booking->user->company,
+          'street' => $booking->user->street,
+          'street_no' => $booking->user->street_no,
+          'zip' => $booking->user->zip,
+          'city' => $booking->user->city,
+          'phone' => $booking->user->phone,
+          'email' => $booking->user->email,
+          'date' => $event->date
+        ];
+      }
+    }    
     return collect($data);
   }
 
   public function headings(): array
   {
     return [
-      'Datum',
-      'IP Adresse',
-      'Hash'
+      'Vorname',
+      'Nachname',
+      'Firmenname',
+      'Strasse',
+      'Hausnummer',
+      'PLZ',
+      'Ort',
+      'Tel',
+      'E-Mail',
+      'Kursdatum'
     ];
   }
 
