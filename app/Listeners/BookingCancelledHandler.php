@@ -17,11 +17,20 @@ class BookingCancelledHandler
    */
   public function handle(BookingCancelled $bookingCancelledEvent)
   {
+    // Send confirmation to user
     Job::create([
       'recipient' => $bookingCancelledEvent->user->email,
       'mailable_id' => $bookingCancelledEvent->booking->id,
       'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\BookingCancelled::class
+    ]);
+
+    // Send info to admin
+    Job::create([
+      'recipient' => env('MAIL_TO'),
+      'mailable_id' => $bookingCancelledEvent->booking->event->id,
+      'mailable_type' => \App\Models\Event::class,
+      'mailable_class' => \App\Mail\BookingCancelledInfoAdmin::class
     ]);
   }
 }
