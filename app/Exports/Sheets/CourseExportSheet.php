@@ -33,7 +33,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
       dd($course->pastEvents);
     }
 
-    foreach($course->pastEvents as $events)
+    foreach($course->pastEvents as $event)
     {
       foreach($event->bookings as $booking)
       {
