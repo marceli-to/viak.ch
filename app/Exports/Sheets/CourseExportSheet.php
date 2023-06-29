@@ -37,6 +37,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
     {
       foreach($events as $event)
       {
+        dd($event);
         foreach($event->bookings as $booking)
         {
           $data[] = [
@@ -53,7 +54,6 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
           ];
         }
       }
-
     }    
     return collect($data);
   }
