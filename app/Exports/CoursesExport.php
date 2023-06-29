@@ -23,6 +23,13 @@ class CoursesExport implements WithMultipleSheets
     $courses = Course::with('pastEvents.bookings.user')->get();
     foreach($courses as $course)
     {
+      // filter out courses without bookings
+      if($course->pastEvents->isEmpty())
+      {
+        continue;
+      }
+
+      // Create a sheet for each course
       $sheets[] = new CourseExportSheet($course);
     }
     return $sheets;
