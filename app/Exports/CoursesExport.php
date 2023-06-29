@@ -29,7 +29,6 @@ class CoursesExport implements WithMultipleSheets
         continue;
       }
 
-      asdfa
       // Create a sheet for each course
       $sheets[] = new CourseExportSheet($course);
     }
