@@ -28,10 +28,10 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
 
     $data = [];
 
-    if ($course->pastEvents->count() > 2)
-    {
-      dd($course->pastEvents);
-    }
+    // if ($course->pastEvents->count() > 2)
+    // {
+    //   dd($course->pastEvents);
+    // }
 
     foreach($course->pastEvents as $event)
     {
@@ -47,7 +47,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
           'city' => $booking->user->city,
           'phone' => $booking->user->phone,
           'email' => $booking->user->email,
-          'date' => $event->date
+          'date' => $booking->event->date
         ];
       }
     }    
