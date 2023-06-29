@@ -30,7 +30,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
 
     if ($course->pastEvents->count() > 2)
     {
-      dd($course->pastEvents);
+      dd($course, $course->pastEvents);
     }
 
 
