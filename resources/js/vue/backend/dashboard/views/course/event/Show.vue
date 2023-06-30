@@ -55,7 +55,9 @@
                     {{ participant.invoice_address.company }}
                   </template>
                 </div>
-                <div class="sm:span-3 md:span-3">{{ participant.email }}</div>
+                <div class="sm:span-3 md:span-3">
+                  <a :href="`mailto:${participant.email}`">{{ participant.email }}</a>
+                </div>
                 <div class="sm:span-1 md:span-2 flex justify-end mr-2x">
                   <template v-if="!data.event.is_cancelled">
                     <div class="form-group__checkbox" v-if="!data.event.is_closed">

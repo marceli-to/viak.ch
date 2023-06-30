@@ -135,7 +135,7 @@
       <template #content v-else>
         <div>
           <p><pre v-html="user.address"></pre></p>
-          <p>{{ user.email }}</p>
+          <p><a :href="`mailto:${user.email}`">{{ user.email }}</a></p>
         </div>
       </template>
     </article-text>
