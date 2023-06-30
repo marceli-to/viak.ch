@@ -32,8 +32,11 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
     {
       foreach($event->bookings as $booking)
       {
+        // gender ids are 1 male, 2 female, 3 other
+        // set gender using ternary operator
+        $gender = ($booking->user->gender->id == 1) ? 'Herr' : (($booking->user->gender->id == 2)  ? 'Frau' : 'Andere');
         $data[] = [
-          'gender' => $booking->user->gender->description,
+          'gender' => $gender,
           'firstname' => $booking->user->firstname,
           'name' => $booking->user->name,
           'company' => $booking->user->company,
