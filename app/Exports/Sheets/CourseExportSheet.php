@@ -42,7 +42,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
           'city' => $booking->user->city,
           'phone' => $booking->user->phone,
           'email' => $booking->user->email,
-          'date' => $booking->event->date
+          'date' => $booking->event->date_short
         ];
       }
     }    
