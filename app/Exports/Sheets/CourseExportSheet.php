@@ -24,7 +24,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
    */
   public function collection()
   {
-    $course = Course::with('pastEvents.bookings.user')->find($this->course->id);
+    $course = Course::with('pastEvents.bookings.user.gender')->find($this->course->id);
 
     $data = [];
 
@@ -33,6 +33,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
       foreach($event->bookings as $booking)
       {
         $data[] = [
+          'gender' => $booking->user->gender->description,
           'firstname' => $booking->user->firstname,
           'name' => $booking->user->name,
           'company' => $booking->user->company,
@@ -52,6 +53,7 @@ class CourseExportSheet implements FromCollection, WithTitle, WithHeadings, Shou
   public function headings(): array
   {
     return [
+      'Anrede',
       'Vorname',
       'Nachname',
       'Firmenname',
