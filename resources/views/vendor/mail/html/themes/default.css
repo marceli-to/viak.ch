@@ -80,6 +80,7 @@ ul {
 li {
   display: list-item;
   list-style-type: disc;
+  font-size: 16px !important;
   margin-left: 18px;
 }
 
