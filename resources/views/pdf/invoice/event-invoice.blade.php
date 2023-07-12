@@ -68,7 +68,7 @@
         </tr>
       </tbody>
     </table>
-    <p>{{ config('invoice.account_data') }}</p>
+    {{-- <p>{{ config('invoice.account_data') }}</p> --}}
   </div>
 </div>
 @include('pdf.invoice.partials.qr')
