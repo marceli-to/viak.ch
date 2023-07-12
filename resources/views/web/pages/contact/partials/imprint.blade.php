@@ -63,7 +63,7 @@
     <p><a href="mailto:oliver.schmid@visualisierungs-akademie.ch">oliver.schmid@visualisierungs-akademie.ch</a></p>
     <h3>1.2 Datenschutz-Vertretung im Europäischen Wirtschaftsraum (EWR)</h3>
     <p>Wir verfügen über nachfolgende Datenschutz-Vertretung gemäss <a href="https://steigerlegal.ch/dsgvo/dsgvo-27/" rel="nofollow noopener noreferrer" target="_blank">Art. 27 DSGVO</a>. Die Datenschutz-Vertretung dient Aufsichtsbehörden und betroffenen Personen in der Europäischen Union (EU) und im übrigen Europäischen Wirtschaftsraum (EWR) als <em>zusätzliche</em> Anlaufstelle für Anfragen im Zusammenhang mit der Datenschutz-Grundverordnung (DSGVO):</p>
-    <p><a href="https://www.datenschutzpartner.eu/kontakt/" rel="nofollow noopener noreferrer" target="_blank"><strong>VGS Datenschutzpartner UG</strong></a><br />
+    <p><a href="https://www.datenschutzpartner.eu/kontakt/" rel="nofollow noopener noreferrer" target="_blank"><strong>VGS Datenschutzpartner GmbH</strong></a><br />
     Am Kaiserkai 69<br />
     20457 Hamburg<br />
     Deutschland</p>
