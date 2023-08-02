@@ -8,11 +8,10 @@ class CleanUpTempFolder
   public function __invoke()
   {
     $files = \Storage::listContents('public/temp');
-    collect($files)->each(function($file)
-    {
-      if($file['timestamp'] < now()->subMinutes(120)->getTimestamp())
+    collect($files)->each(function($file) {
+      if ($file->lastModified() < now()->subMinutes(120)->getTimestamp())
       {
-        \Storage::delete($file['path']);
+        \Storage::delete($file->path());
       }
     });
   }
