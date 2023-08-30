@@ -464,7 +464,7 @@ export default {
     confirmDestroy() {
       this.actionToBeConfirmed = 'destroy';
       this.$refs.notification.init({
-        message: 'Bitte «Veranstaltung bestätigen» bestätigen!',
+        message: 'Bitte «Veranstaltung löschen» bestätigen!',
         type: 'dialog',
         style: 'info',
       });
