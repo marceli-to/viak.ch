@@ -45,7 +45,7 @@
         {{ __('Onlinekurs') }}
       @else
         @if ($event->location->map)
-          Kursort: 
+          Kursort:<br>
           <a href="{{ $event->location->map }}" target="_blank" title="{{ __('Karte anzeigen') }}">
             {{ $event->location->description }}
           </a>
