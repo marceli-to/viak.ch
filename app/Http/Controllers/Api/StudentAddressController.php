@@ -39,7 +39,7 @@ class StudentAddressController extends Controller
         ]
       )
     );
-    return response()->json(['userAddress' => $userAddress->uuid]);
+    return response()->json(['userAddress' => $userAddress->uuid, 'address' => $userAddress]);
   }
 
   /**

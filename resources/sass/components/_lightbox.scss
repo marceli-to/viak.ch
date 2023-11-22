@@ -14,6 +14,7 @@
   height: 100%;
   left: 0;
   justify-content: center;
+  overflow-y: auto;
   opacity: 0;
   pointer-events: none;
   position: fixed;
@@ -34,6 +35,10 @@
     background-color: $color-white;
     border: 2px solid $color-quaternary;
     max-width: 900px;
+
+    @include bp-xs() {
+      max-width: 90%;
+    }
 
     @include bp-sm() {
       min-width: 600px;
@@ -75,6 +80,12 @@
         background-color: $color-light;
       }
     }
+  }
+
+  .lightbox-overflow {
+    @extend %px-1x;
+    max-height: 90vh;
+    overflow-y: auto;
   }
 
 }

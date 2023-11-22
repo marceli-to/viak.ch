@@ -48,11 +48,16 @@
                     </option>
                   </select>
                 </div>
-                <div class="mt-1x sm:mt-2x align-right">
+                <div class="mt-1x sm:mt-3x flex justify-between">
+                  <a href="javascript:;" @click="showAddressForm()" class="flex justify-between items-center text-xsmall link-underline">
+                    <icon-plus :size="'tiny'" class="mr-2x mt-1x" />
+                    {{ __('Rechnungsadresse erstellen') }}
+                  </a>
                   <a href="/de/student/profil" class="text-xsmall link-underline">
                     {{ __('Adressen verwalten') }}
                   </a>
                 </div>
+                <address-form ref="addressForm" @addressCreated="addressCreated($event)" />
               </template>
             </form-group>
           </div>
@@ -91,7 +96,9 @@ import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.v
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
+import AddressForm from "@/frontend/checkout/views/components/AddressForm.vue";
 
 export default {
 
@@ -104,8 +111,10 @@ export default {
     StackedListFooter,
     IconArrowRight,
     IconArrowLeft,
+    IconPlus,
     IconEdit,
-    FormGroup
+    FormGroup,
+    AddressForm
   },
 
   mixins: [Validation, i18n, Helpers],
@@ -203,6 +212,15 @@ export default {
         this.form.address_uuid = null;
       }
     },
+
+    showAddressForm() {
+      this.$refs.addressForm.show();
+    },
+
+    addressCreated($event) {
+      this.form.address_uuid = $event.userAddress;
+      this.user.invoice_addresses.push($event.address);
+    }
 
   },
 }
