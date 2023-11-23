@@ -37,7 +37,7 @@
                 </label>
               </div>
               <template v-if="hasAdresses">
-                <div class="select-wrapper">
+                <div class="select-wrapper" v-if="user.invoice_addresses.length">
                   <select v-model="form.address_uuid">
                     <option :value="null">{{ __('Bitte wählen...') }}</option>
                     <option 
@@ -51,7 +51,7 @@
                 <div class="mt-1x sm:mt-3x flex justify-between">
                   <a href="javascript:;" @click="showAddressForm()" class="flex justify-between items-center text-xsmall link-underline">
                     <icon-plus :size="'tiny'" class="mr-2x mt-1x" />
-                    {{ __('Rechnungsadresse erstellen') }}
+                    {{ __('Adresse erfassen') }}
                   </a>
                   <a href="/de/student/profil" class="text-xsmall link-underline">
                     {{ __('Adressen verwalten') }}

@@ -81,7 +81,7 @@
             </div>
           </form-group>
 
-          <collapsible class="mt-14x">
+          <collapsible :expanded="true" class="mt-14x">
             <template #title class="mb-3x">
               <div class="mb-3x">{{ __('Rechnungsadressen') }}</div>
             </template>

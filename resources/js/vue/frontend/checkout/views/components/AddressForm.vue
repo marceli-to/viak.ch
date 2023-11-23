@@ -3,7 +3,7 @@
     <div class="lightbox-widget">
       <div class="lightbox-overflow">
         <header class="flex justify-between">
-          <h1>{{ __('Rechnungsadresse erstellen') }}</h1>
+          <h1>{{ __('Adresse erfassen') }}</h1>
           <a href="javascript:;" class="feather-icon btn-close" @click.prevent="hide()">
             <x-icon size="24"></x-icon>
           </a>
@@ -48,10 +48,11 @@
               </select>
             </div>
           </form-group>
-          <form-group>
+          <form-group class="flex direction-column items-center">
             <a href="" @click.prevent="store()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
               Speichern
             </a>
+            <a href="javascript:;" @click="hide()" class="mt-4x lg:mt-6x text-xsmall link-underline">{{ __('Abbrechen') }}</a>
           </form-group>
         </div>
       </div>
@@ -84,6 +85,7 @@ export default {
   data() {
     return {
       data: {
+        country_id: 1,
       },
 
       settings: {
