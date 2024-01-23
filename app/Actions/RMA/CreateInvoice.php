@@ -32,7 +32,8 @@ class CreateInvoice
       "ar_accno" => "1100",
       "transdate" => \Carbon\Carbon::parse($invoice->date)->toIso8601String(),
       "duedate" => \Carbon\Carbon::parse($invoice->date)->addDays(config('invoice.payment_period'))->toIso8601String(),
-      "description" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',     
+      // "description" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',
+      "description" => $invoice->booking?->event?->course?->title . ' ('. $invoice_url .')',     
       "notes" => "", 
       "intnotes" => $invoice->filename,
       "taxincluded" => "false", 
@@ -54,11 +55,13 @@ class CreateInvoice
         ]
       ]
     ];
+
+    dd($data);
   
-    return Http::withHeaders([
-      'content-type' => 'application/json',
-      'accept' => 'application/json'
-    ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_CREATE'), $data);
+    // return Http::withHeaders([
+    //   'content-type' => 'application/json',
+    //   'accept' => 'application/json'
+    // ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_CREATE'), $data);
   }
 
 }
