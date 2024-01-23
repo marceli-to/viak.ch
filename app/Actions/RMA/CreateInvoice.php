@@ -55,9 +55,10 @@ class CreateInvoice
         ]
       ]
     ];
+    
+    Log::info($data);
 
-    dd($data);
-  
+
     // return Http::withHeaders([
     //   'content-type' => 'application/json',
     //   'accept' => 'application/json'
