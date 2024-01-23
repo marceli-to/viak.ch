@@ -56,7 +56,7 @@ class CreateInvoice
       ]
     ];
     
-    Log::info($data);
+    \Log::info($data);
 
 
     // return Http::withHeaders([
