@@ -160,7 +160,7 @@ class Invoice
     // Creates a cancellaction invoice in "Run My Accounts"
     // with the same invoice data but a negative amount and
     // the cancellation suffix
-    if (app()->environment() == 'production' || app()->environment() == 'staging')
+    if (app()->environment() == 'production')
     {
       (new CreateInvoiceAction())->execute($oldInvoice, TRUE);
 
