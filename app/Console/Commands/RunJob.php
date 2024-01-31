@@ -49,14 +49,12 @@ class RunJob extends Command
       // Reset jobs
       Job::query()->update(['error' => null, 'processed' => 0]);
     }
-
     
     $jobs = Job::with('mailable')->unprocessed()->get();
     $jobs = collect($jobs)->splice(0,1);
     $env  = app()->environment();
 
     $this->info('Starting jobs...');
-
 
     foreach($jobs->all() as $j)
     {
