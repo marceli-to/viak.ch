@@ -43,7 +43,7 @@ class EventParticipationConfirmation
       'date' => $booking->event->closed_at,
       'name' => $fileName,
       'type' => 'PARTICIPATION_CONFIRMATION',
-      'uri' =>   $this->storageUri . '/' . $fileName,
+      'uri' => str_replace('app/public', 'storage', $this->storageUri) . '/' . $fileName,
       'user_id' => $booking->user->id,
       'fileable_type' => "App\Models\Booking",
       'fileable_id' => $booking->id
