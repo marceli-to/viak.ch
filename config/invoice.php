@@ -109,7 +109,7 @@ return [
   |
   */
 
-  'days_penalty_half' => 16, 
+  'days_penalty_half' => 20, 
 
   /*
   |--------------------------------------------------------------------------
@@ -119,6 +119,6 @@ return [
   |
   */
 
-  'days_penalty_full' => 9,
+  'days_penalty_full' => 11,
 
 ];
