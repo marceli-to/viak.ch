@@ -13,11 +13,23 @@ class CreateInvoice
       'accept' => 'application/json'
     ];
 
+    // invoice name prefix
+    $inv_prefix = 'viak-rechnung-';
+    
+    // invoice date (dd-mm-yyyy)
+    $inv_date = \Carbon\Carbon::parse($invoice->date)->format('d-m-Y');
+
+    // invoice number
+    $inv_number = $invoice->number;
+
+    // invoice name
+    $inv_name = $inv_prefix . $inv_date . '-' . $inv_number . '.pdf';
+
     // Get ESR Data from QR Invoice Slip
     $esr_data = (new Qr($invoice))->get();
 
     // Get url to invoice pdf
-    $invoice_url = config('app.url') . "/storage/files/" . $invoice->user?->uuid . "/" . $invoice->filename;
+    $invoice_url = config('app.url') . "/storage/files/" . $invoice->user?->uuid . "/" . $inv_name;
     
     // Build invoice number, add 'cancellation suffix' if needed
     $invoice_number = $isCancellation ? 
@@ -34,7 +46,7 @@ class CreateInvoice
       "duedate" => \Carbon\Carbon::parse($invoice->date)->addDays(config('invoice.payment_period'))->toIso8601String(),
       "description" => $invoice->booking?->event?->course?->title . ' (<a href="'. $invoice_url .'" target="_blank">Rechnung</a>)',
       "notes" => "", 
-      "intnotes" => $invoice->filename,
+      "intnotes" => $inv_name,
       "taxincluded" => "false", 
       "customer" => [
         "customernumber" => config('invoice.prefix') . $invoice->user?->id,

@@ -1,27 +1,27 @@
 @include('pdf.partials.header')
-<div class="page">
+<div class="page {{ $invoice->invoice_address ? 'has-invoice-address' : '' }}">
   
   <table class="page-info">
     <tr>
       <td class="page-info__left">
+        @if ($invoice->invoice_address)
+          <div style="margin-bottom: 1.5mm">{{ __('Rechnungsadresse') }}</div>
+          {!! nl2br($invoice->invoice_address) !!}
+          <br><br><br>
+          <div style="margin-bottom: 1.5mm">{{__('Kursteilnehmer:in') }}</div>
+        @endif
         {!! $invoice->booking->user->address !!}
-        <br><br>
+        <br><br><br>
         {{ __('Buchung') }}
         {{ $invoice->booking->number }}<br>
         {{ __('Zahlbar bis') }}
         {{ $invoice->due_at_short }}<br>
       </td>
-      <td class="page-info__right">
-        @if ($invoice->invoice_address)
-        {{ __('Rechnungsadresse') }}<br>
-          {!! nl2br($invoice->invoice_address) !!}
-        @endif
-      </td>
     </tr>
   </table>
 
   <h1 class="page__title">
-    {{ __('Rechnung') }}<br>{{ $invoice->number }}
+    {{ __('Rechnung') }} {{ $invoice->number }}
   </h1>
   <div class="page__date">Zürich, {{ $invoice->date_short }}</div>
   <div class="page__content">

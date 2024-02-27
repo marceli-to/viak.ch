@@ -168,6 +168,18 @@ li {
   width: 168mm;
 }
 
+.page.has-invoice-address .page__title {
+  top: 117mm;
+}
+
+.page.has-invoice-address .page__date {
+  top: 132mm;
+}
+
+.page.has-invoice-address .page__content {
+  padding-top: 145mm;
+}
+
 .content-table {
   margin-bottom: 10mm;
   width: 100%;
