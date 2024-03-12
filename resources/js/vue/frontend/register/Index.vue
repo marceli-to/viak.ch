@@ -39,7 +39,7 @@
         </form-group>
 
         <form-group :label="__('Telefon')" :required="true" :error="errors.phone">
-          <input type="text" v-model="form.phone" required maxlength="30" />
+          <input type="text" v-model="form.phone" required maxlength="30" @focus="removeValidationError('phone')" />
         </form-group>
 
         <grid class="sm:grid-cols-12">
