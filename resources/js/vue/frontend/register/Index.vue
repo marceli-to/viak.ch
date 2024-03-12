@@ -27,11 +27,15 @@
         </form-group>
 
         <form-group :label="__('Vorname')" :required="true" :error="errors.firstname">
-          <input type="text" v-model="form.firstname" required @focus="removeValidationError('firstname')" />
+          <input type="text" v-model="form.firstname" @focus="removeValidationError('firstname')" />
         </form-group>
 
         <form-group :label="__('Nachname')" :required="true" :error="errors.name">
-          <input type="text" v-model="form.name" required @focus="removeValidationError('name')" />
+          <input type="text" v-model="form.name" @focus="removeValidationError('name')" />
+        </form-group>
+
+        <form-group :label="__('Firma')">
+          <input type="text" v-model="form.company" />
         </form-group>
 
         <form-group :label="__('Telefon')" :required="true" :error="errors.phone">

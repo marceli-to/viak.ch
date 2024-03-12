@@ -36,6 +36,7 @@ class StudentRegisterController extends Controller
     $user = User::create([
       'firstname' => $request->input('firstname'),
       'name' => $request->input('name'),
+      'company' => $request->input('company'),
       'street' => $request->input('street'),
       'street_no' => $request->input('street_no') ? $request->input('street_no') : NULL,
       'zip' => $request->input('zip'),
