@@ -73,15 +73,15 @@ class Invoice
     // Write invoice as PDF
     $pdf = (new EventInvoice())->create($invoice);
 
+    // Update invoice
+    $invoice->filename = $pdf['filename'];
+    $invoice->save();
+
     // Action create invoice in Run My Accounts
     if (app()->environment() == 'production')
     {
       (new CreateInvoiceAction())->execute($invoice);
     }
-
-    // Update invoice
-    $invoice->filename = $pdf['filename'];
-    $invoice->save();
 
     return $invoice;
   }
@@ -255,5 +255,4 @@ class Invoice
   {
     return str_pad($number, $length, "0", STR_PAD_LEFT);
   }
-
 }
