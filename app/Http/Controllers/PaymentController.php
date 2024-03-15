@@ -92,6 +92,8 @@ class PaymentController extends BaseController
     // Abort if uuid is missing
     if (!$invoice_uuid)
     {
+      // Log error
+      \Log::error('Payment success page called without invoice uuid');
       abort(403);
     }
 

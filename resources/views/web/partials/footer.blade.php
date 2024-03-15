@@ -25,7 +25,21 @@
 @endif
 <script src="{{ mix('assets/js/app.js') }}"></script>
 @production
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M3L7WVP');</script>
+{{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M3L7WVP');</script> --}}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M3L7WVP');</script>
+<script type="text/plain" data-category="analytics">gtag('consent', 'update', {'analytics_storage': 'granted'});</script>
+<script type="text/plain" data-category="!analytics">gtag('consent', 'update', {'analytics_storage': 'denied'});</script>
+<script type="text/plain" data-category="ads">gtag('consent', 'update', {'ad_storage': 'granted'});</script>
+<script type="text/plain" data-category="!ads">gtag('consent', 'update', {'ad_storage': 'denied'});</script>
+<script type="module" src="/assets/cookieconsent/cookieconsent-init.js?t={{ time() }}"></script>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M3L7WVP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 @endproduction
 </body>
