@@ -160,25 +160,28 @@ class StudentSeeder extends Seeder
       'user_id' => $user->id
     ]);
 
+    $user = User::create([
+      'firstname' => 'Peter',
+      'name' => 'Test',
+      'company' => '',
+      'street' => 'Teststrasse',
+      'street_no' => '99',
+      'zip' => '8000',
+      'city' => 'Testhausen',
+      'phone' => '079 999 88 77',
+      'email' => 'viak-test@0704.ch',
+      'email_verified_at' => \Carbon\Carbon::now(),
+      'password' => \Hash::make('viak-test-0704-2024'),
+      'uuid' => \Str::uuid(),
+      'gender_id' => 1,
+      'country_id' => 1,
+      'visible' => 1,
+    ]);
 
-    // for($i = 0; $i<=20; $i++)
-    // {
-    //   $user = User::create([
-    //     'firstname' => $faker->firstName,
-    //     'name' => $faker->lastName,
-    //     'company' => $faker->company,
-    //     'email' => $faker->unique()->email(),
-    //     'email_verified_at' => \Carbon\Carbon::now(),
-    //     'password' => \Hash::make('7aq31rr23'),
-    //     'uuid' => \Str::uuid(),
-    //     'gender_id' => rand(1,2),
-    //     'country_id' => 1
-    //   ]);
+    RoleUser::create([
+      'role_id' => 3,
+      'user_id' => $user->id
+    ]);
 
-    //   RoleUser::create([
-    //     'role_id' => 3,
-    //     'user_id' => $user->id
-    //   ]);
-    // }
   }
 }
