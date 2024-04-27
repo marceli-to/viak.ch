@@ -38,6 +38,9 @@
           <div :class="[$props.event.bookings >= $props.event.max_participants ? 'text-success' : '', '']">
             {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
           </div>
+          <template v-if="$props.event.rentals_available">
+            {{ $props.event.rentals_booked }}&thinsp;/&thinsp;{{ $props.event.rentals_available }} Geräte
+          </template>
         </div>
         <div class="stacked-list__action">
           <slot name="action" />
@@ -79,7 +82,6 @@
             </template>
           </div>
         </div>
-        
       </div>
       
       <div class="stacked-list__col">
@@ -100,7 +102,7 @@
         <template v-if="$props.event.experts && $props.showExperts">
           <div>{{ __('mit') }} {{ $props.event.experts }}</div>
         </template>
-        <event-state :event="$props.event" v-if="!$props.basket" />
+        <event-state :event="$props.event" v-if="!$props.is_basket" />
       </div>
 
       <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
@@ -118,6 +120,54 @@
           <slot name="action" />
         </div>
       </div>
+
+      <!-- Additional row in basket for booked rentals -->
+      <template v-if="$props.event.has_rental">
+        <div class="stacked-list__col">
+          <strong>{{ __('Mietgerät') }}</strong>
+        </div>
+        <div class="stacked-list__col">&nbsp;</div>
+        <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
+          <div>
+            <div>CHF 50.00</div>
+          </div>
+          <div class="stacked-list__action" v-if="$slots.action">
+            <a href="" class="btn-secondary btn-auto-w" @click.prevent="removeRentalFromBasket(event.uuid, true)">
+              {{ __('Entfernen') }}
+            </a>
+          </div>
+        </div>
+      </template>
+
+      <!-- Additional row in basket for rental booking -->
+      <template v-if="$slots.rental_booking_action && $props.event.has_rentals && ($props.booking && !$props.booking.has_rental)">
+        <div class="span-12">
+          <slot name="rental_booking_action" />
+        </div>
+      </template>
+
+      <!-- Additional row in dashboard for booked rentals -->
+      <template v-if="$props.booking && $props.booking.has_rental">
+        <div class="stacked-list__col">
+          <div :class="[$slots.icon ? 'sm:flex' : '']">
+            <div class="stacked-list__icon" v-if="$slots.icon">
+              <slot name="icon" />
+            </div>
+            <div>
+              <h2>{{ __('Mietgerät') }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="stacked-list__col">&nbsp;</div>
+        <div class="stacked-list__col flex justify-between">
+          <div>CHF 50.00</div>
+          <div>
+            <div class="stacked-list__action" v-if="$slots.rental_cancel_action">
+              <slot name="rental_cancel_action" />
+            </div>
+          </div>
+        </div>
+      </template>
       
     </div>
   </article>
@@ -129,16 +179,20 @@ import NProgress from 'nprogress';
 import i18n from "@/shared/mixins/i18n";
 import Helpers from "@/shared/mixins/Helpers";
 import Bookmark from "@/shared/mixins/Bookmark";
+import Basket from "@/shared/mixins/Basket";
 import EventState from "@/shared/components/ui/misc/EventState";
+import Notification from "@/shared/components/ui/misc/Notification";
+import { template } from 'lodash';
 
 export default {
 
   components: {
     NProgress,
-    EventState
+    EventState,
+    Notification
   },
 
-  mixins: [i18n, Bookmark, Helpers],
+  mixins: [i18n, Bookmark, Helpers, Basket],
 
   props: {
 
@@ -159,7 +213,7 @@ export default {
       default: false,
     },
 
-    basket: {
+    is_basket: {
       type: [Number, Boolean],
       default: false,
     },

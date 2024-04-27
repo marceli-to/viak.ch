@@ -62,7 +62,7 @@
     <article data-touch="" class="stacked-list-item">
       <div>
         <div class="sm:span-4">
-          <strong>{{ __('Total') }}</strong><br>{{ __('inkl. 0% Mehrwertsteuer') }}
+          <strong>{{ __('Total') }}</strong><br>{{ $invoice->is_rental ? __('inkl. 8.1% Mehrwertsteuer') : __('inkl. 0% Mehrwertsteuer') }}
         </div>
         <div class="sm:span-8 sm:align-right">
           <strong>CHF {{ $invoice->grand_total }}</strong>

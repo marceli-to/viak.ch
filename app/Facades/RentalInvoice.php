@@ -5,17 +5,14 @@ use App\Models\Invoice as InvoiceModel;
 use App\Actions\RMA\CreateInvoice as CreateInvoiceAction;
 use App\Actions\RMA\CloseInvoice as CloseInvoiceAction;
 use App\Actions\UserDocument\DeleteUserDocument as DeleteUserDocumentAction;
-use App\Services\Pdf\Invoice\EventInvoice;
+use App\Services\Pdf\Invoice\RentalInvoice as RentalInvoiceService;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\UserDocument;
 use App\Models\Event;
 use App\Models\Booking;
-use App\Facades\Discount;
-use App\Facades\RentalInvoice;
-use App\Models\DiscountCode;
 
-class Invoice
+class RentalInvoice
 {
   /**
    * Find an existing invoice for a booking.
@@ -26,7 +23,7 @@ class Invoice
 
   public static function findFromBooking(Booking $booking)
   {
-    return InvoiceModel::where('booking_id', $booking->id)->where('is_rental', 0)->first();
+    return InvoiceModel::where('booking_id', $booking->id)->where('is_rental', 1)->first();
   }
 
   /**
@@ -56,24 +53,22 @@ class Invoice
 
   public static function createFromBooking(Booking $booking)
   {
-    // Create invoice
     $invoice = InvoiceModel::create([
       'uuid' => \Str::uuid(),
       'number' => self::getNumber(),
       'date' => \Carbon\Carbon::now(),
-      'total' => $booking->course_fee,
-      'discount' => $booking->discount_amount,
-      'vat' => 0.00,
-      'grand_total' => self::getGrandTotal($booking->course_fee, $booking->discount_amount),
+      'total' => config('invoice.cost_rental'),
+      'vat' => self::getVat(config('invoice.cost_rental')),
+      'grand_total' => self::getGrandTotal(config('invoice.cost_rental')),
       'invoice_address' => $booking->invoice_address ? $booking->invoice_address : NULL,
       'booking_id' => $booking->id,
       'user_id' => $booking->user->id,
-      'is_rental'=> 0,
+      'is_rental'=> 1,
       'due_at' => \Carbon\Carbon::now()->addDays(config('invoice.payment_period'))
     ]);
 
     // Write invoice as PDF
-    $pdf = (new EventInvoice())->create($invoice);
+    $pdf = (new RentalInvoiceService())->create($invoice);
 
     // Update invoice
     $invoice->filename = $pdf['filename'];
@@ -85,70 +80,6 @@ class Invoice
       (new CreateInvoiceAction())->execute($invoice);
     }
     return $invoice;
-  }
-
-  /**
-   * Create an invoice from a booking with a penalty for late cancellation.
-   * 
-   * @param Booking $booking
-   * @param Array $cancellation
-   * @return $invoice
-   */
-
-  public static function createFromBookingWithPenalty(Booking $booking, $cancellation)
-  {
-    // Check for an existing invoice for a booking
-    $oldInvoice = self::findFromBooking($booking);
-
-    // Return the existing invoice if it's already paid
-    if ($oldInvoice && $oldInvoice->isPaid())
-    {
-      return $oldInvoice;
-    }
-    
-    // Create new invoice
-    $newInvoice = InvoiceModel::create([
-      'uuid' => \Str::uuid(),
-      'number' => self::getNumber(),
-      'date' => \Carbon\Carbon::now(),
-      'total' => $cancellation['amount'],
-      'discount' => NULL,
-      'vat' => 0.00,
-      'grand_total' => self::getGrandTotal($cancellation['amount']),
-      'invoice_address' => $booking->invoice_address ? $booking->invoice_address : NULL,
-      'booking_id' => $booking->id,
-      'user_id' => $booking->user->id,
-      'due_at' => \Carbon\Carbon::now()->addDays(config('invoice.payment_period'))
-    ]);
-
-    // Write new invoice as PDF
-    $pdf = (new EventInvoice())->create($newInvoice);
-
-    // Update new invoice
-    $newInvoice->filename = $pdf['filename'];
-    $newInvoice->save();
-
-    // Create an new invoice in "Run My Accounts"
-    if (app()->environment() == 'production')
-    {
-      (new CreateInvoiceAction())->execute($newInvoice);
-    }
-
-    // Cancel an old invoice
-    if ($oldInvoice)
-    {
-      self::cancel($oldInvoice, $newInvoice);
-    }
-
-    // Handle rental invoice
-    if ($booking->has_rental)
-    {
-      RentalInvoice::delete(
-        RentalInvoice::findOrCreateFromBooking($booking)
-      );
-    }
-
-    return $newInvoice;
   }
 
   /**
@@ -193,11 +124,11 @@ class Invoice
    * @return Boolean
    */
 
-   public static function delete(InvoiceModel $invoice)
-   {
+  public static function delete(InvoiceModel $invoice)
+  {
     $invoice->status = 'CANCELLED';
     $invoice->cancelled_at = \Carbon\Carbon::now();
-    $invoice->cancel_reason = 'Invoice deleted because of cancelled booking';
+    $invoice->cancel_reason = 'Invoice deleted because of cancelled rental';
     $invoice->save();
  
      // Creates a cancellaction invoice in "Run My Accounts"
@@ -226,13 +157,12 @@ class Invoice
    * Get the grand total
    * 
    * @param Decimal $fee
-   * @param Decimal $discount
    * @return Decimal $grand_total
    */
 
-  public static function getGrandTotal($fee, $discount = NULL)
+  public static function getGrandTotal($fee)
   {
-    return $discount ? $fee - $discount : $fee;
+    return $fee + self::getVat($fee);
   }
   
   /**

@@ -14,7 +14,7 @@
         v-for="event in basket.events" 
         :key="event.uuid" 
         :event="event"
-        :basket="true">
+        :is_basket="true">
         <template #action>
           <a href="" class="btn-secondary btn-auto-w" @click.prevent="removeFromBasket(event.uuid, true)">
             {{ __('Entfernen') }}

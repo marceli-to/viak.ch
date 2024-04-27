@@ -82,9 +82,13 @@ class BasketController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function store(Event $event)
+  public function store(Event $event, $rental = NULL)
   {
     $this->store->addItem($event->uuid);
+    if ($rental)
+    {
+      $this->store->addRental($event->uuid);
+    }
     return response()->json($this->store->get());
   }
 
@@ -152,6 +156,22 @@ class BasketController extends Controller
     return response()->json($this->store->get());
   }
 
+    /**
+   * Remove an rental item from the basket
+   * 
+   * @param Event $event
+   * @return \Illuminate\Http\Response
+   */
+
+   public function removeRental(Event $event)
+   {
+     if ($this->store->hasAttribute('items'))
+     {
+       $this->store->removeRentalFromItem($event->uuid);
+     }
+     return response()->json($this->store->get());
+   }
+
   /**
    * Get events based on store items
    * 
@@ -163,7 +183,10 @@ class BasketController extends Controller
   {
     foreach($items as $item)
     {
-      $events[] = Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item)->first();
+      $events[] = [
+        'event' => Event::with('course', 'location', 'experts', 'dates')->where('uuid', $item['uuid'])->first(),
+        'rental' => isset($item['rental']) ? $item['rental'] : FALSE,
+      ];
     }
     
     return $map ? $this->map($events) : $events;
@@ -179,20 +202,29 @@ class BasketController extends Controller
   private function getTotals($events, $discountCode = NULL)
   {
     $total = collect($events)->sum('fee');
+    
     $discount = 0;
     if ($discountCode)
     {
       $discount = Discount::apply($discountCode, $total);
     }
 
+    // get all events that have rentals == true
+    $events_with_rentals = collect($events)->filter(function($event) {
+      return $event['has_rental'];
+    });
+
+    // add rentals cost to total. get the cost from config/invoice.php
+    $total_rentals = count($events_with_rentals) * config('invoice.cost_rental');
+
     // @todo: fix vat on event
-    $vat = round( ( ( $total - $discount ) / 100 * 7.7 ) * 20 ) / 20;
+    $vat = round( ( ( $total - $discount ) / 100 * config('invoice.vat_rate')) * 20 ) / 20;
     $vat = 0;
     return [
       'discount' => $discount,
-      'total' => $total,
+      'total' => $total + $total_rentals,
       'vat' => $vat,
-      'grandTotal' => ($total - $discount) + $vat
+      'grandTotal' => $total + $total_rentals
     ];
   }
 
@@ -204,7 +236,8 @@ class BasketController extends Controller
    */
   private function map($events)
   {
-    $data = collect($events)->map(function($event) {
+    $data = collect($events)->map(function($ev) {
+      $event = $ev['event'];
       return [
         'uuid' => $event->uuid,
         'date' => $event->date,
@@ -216,6 +249,8 @@ class BasketController extends Controller
           'map' => $event->location && $event->location->map ? $event->location->map : NULL,
         ],
         'isBooked' => BookingFacade::has($event, auth()->user()),
+        'has_rentals' => $event->has_rentals,
+        'has_rental' => $ev['rental'],
         'dates' => $event->dates->map(function($date) {
           return [
             'date' => $date->date,

@@ -49,6 +49,12 @@
           </form-group>
         </grid>
 
+        <form-group :label="'Verfügbare Geräte'">
+          <input 
+            type="number" 
+            v-model="data.rentals_available" />
+        </form-group>
+
         <form-group :label="'Kosten'">
           <input 
             type="number" 
@@ -285,6 +291,7 @@ export default {
         registration_until: null,
         min_participants: null,
         max_participants: null,
+        rentals_available: 0,
         fee: null,
         dates: [],
         location_id: 1,

@@ -29,7 +29,7 @@
       v-for="event in basket.events" 
       :key="event.uuid" 
       :event="event" 
-      :basket="true">
+      :is_basket="true">
     </stacked-list-event>
 
     <stacked-list-item v-if="basket.totals.discount > 0">
@@ -57,10 +57,15 @@
       <div>
         <div class="sm:span-4">
           <strong>{{ __('Total') }}</strong><br>
-          {{ __('inkl. 0% Mehrwertsteuer') }}
+          {{ __('exkl. Mehrwertsteuer') }}
         </div>
         <div class="sm:span-8 sm:align-right">
-          <strong>CHF {{ basket.totals.grandTotal | currency }}</strong>
+          <template v-if="basket.totals.discount > 0">
+            <strong>CHF {{ basket.totals.grandTotal - basket.totals.discount | currency }}</strong>
+          </template>
+          <template v-else>
+            CHF {{ basket.totals.grandTotal | currency }}
+          </template>
         </div>
       </div>
     </stacked-list-item>
@@ -94,6 +99,7 @@ import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
+import { template } from 'lodash';
 
 export default {
 

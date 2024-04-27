@@ -36,27 +36,30 @@ class EventCancelStudent extends Mailable
   {
     // Get the booking
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
-    $invoice = Invoice::where('booking_id', $booking->id)->first();
+    $invoices = Invoice::where('booking_id', $booking->id)->get();
     $discount = NULL;
 
-    if ($invoice)
+    if ($invoices)
     {
-      // Generate discount code for PAID invoices
-      if ($invoice->isPaid())
+      foreach($invoices as $invoice)
       {
-        $discount = DiscountFacade::store([
-          'amount' => $invoice->grand_total,
-          'fix' => 1,
-          'percent' => 0,
-          'valid_from' => \Carbon\Carbon::now()->format('Y-m-d'),
-          'valid_to' => \Carbon\Carbon::now()->addYears(1)->format('Y-m-d'),
-        ]);
-      }
+        // Generate discount code for PAID invoices
+        if ($invoice->isPaid())
+        {
+          $discount = DiscountFacade::store([
+            'amount' => $invoice->grand_total,
+            'fix' => 1,
+            'percent' => 0,
+            'valid_from' => \Carbon\Carbon::now()->format('Y-m-d'),
+            'valid_to' => \Carbon\Carbon::now()->addYears(1)->format('Y-m-d'),
+          ]);
+        }
 
-      // Delete any NOT YET PAID invoices
-      if ($invoice->isPending())
-      {
-        InvoiceFacade::delete($invoice);
+        // Delete any NOT YET PAID invoices
+        if ($invoice->isPending())
+        {
+          InvoiceFacade::delete($invoice);
+        }
       }
     }
 

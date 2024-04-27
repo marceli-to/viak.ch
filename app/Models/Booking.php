@@ -37,6 +37,7 @@ class Booking extends Base
     'discount_amount',
     'event_id',
     'user_id',
+    'has_rental',
     'booked_at',
     'cancelled_at',
   ];

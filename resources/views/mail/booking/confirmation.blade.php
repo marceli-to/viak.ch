@@ -34,6 +34,12 @@
     <td>{{ __('Kosten') }}</td>
     <td>CHF {{ $event->courseFee }}</td>
   </tr>
+  @if ($booking->has_rental)
+    <tr>
+      <td>{{ __('Mietgerät') }}</td>
+      <td>gebucht</td>
+    </tr>
+  @endif
 </table>
 <p>{{ __('Die Rechnung sowie die definitive Einladung für den Kurs erhältst Du, sobald wir wissen, dass die Mindestanzahl Teilnehmende erreicht ist und der Kurs definitiv stattfinden wird.') }}</p>
 <p>{{ __('Um diese Buchung zu annullieren, klicke bitte') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none;"><strong>{{ __('hier') }}</strong></a>.</p>

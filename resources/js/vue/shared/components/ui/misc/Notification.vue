@@ -17,6 +17,11 @@
 
       <template v-if="type == 'dialog'">
         <div class="notification-message" v-html="message"></div>
+        <template v-if="$slots.text">
+          <div class="notification-text">
+            <slot name="text" />
+          </div>
+        </template>
         <template v-if="$slots.actions">
           <div class="notification-actions">
             <slot name="actions" />

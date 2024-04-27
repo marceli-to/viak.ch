@@ -49,13 +49,17 @@
   width: auto;
 }
 
-
 .btn-auto-w {
   width: auto;
 }
 
 .\!btn-auto-w {
   display: inline-block;
+  width: auto !important;
+}
+
+.btn-inline-flex {
+  display: inline-flex !important;
   width: auto !important;
 }
 

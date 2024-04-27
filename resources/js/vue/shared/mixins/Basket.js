@@ -16,6 +16,11 @@ export default {
     exists: {
       type: Number,
       default: 0,
+    },
+
+    rentals: {
+      type: [Boolean, String, Number],
+      default: 0,
     }
   },
 
@@ -27,15 +32,24 @@ export default {
         events: [],
       },
 
+      // Temp. event uuid
+      eventUuid: null,
+
       // Item state
       inBasket: false,
+
+      // Rentals
+      hasRentals: false, 
 
       // Routes
       routes: {
         basket: {
           get: '/api/basket',
           add: '/api/basket',
-          delete: '/api/basket'
+          delete: '/api/basket',
+          rental: {
+            delete: '/api/basket/rental',
+          }
         }
       },
     };
@@ -43,6 +57,7 @@ export default {
   
   mounted() {
     this.inBasket = this.$props.exists;
+    this.hasRentals = this.$props.rentals;
   },
 
   methods: {
@@ -58,10 +73,11 @@ export default {
       });
     },
 
-    addToBasket(uuid) {
+    addToBasket(uuid, rental = false) {
       NProgress.start();
       this.$store.commit('isLoading', true);
-      this.axios.put(`${this.routes.basket.add}/${uuid}`).then(response => {
+      const uri = rental ? `${this.routes.basket.add}/${uuid}/${rental}` : `${this.routes.basket.add}/${uuid}`;
+      this.axios.put(uri).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = true;
         this.$refs.notification.init({
@@ -71,6 +87,7 @@ export default {
         });
         this.$store.commit('isLoading', false);
         NProgress.done();
+        this.getBasket();
       })
       .catch(error => {
         this.handleValidationErrors(error.response.data);
@@ -93,6 +110,32 @@ export default {
       })
       .catch(error => {
         this.handleValidationErrors(error.response.data);
+      });
+    },
+
+    removeRentalFromBasket(uuid, reload = false) {
+      this.$store.commit('isLoading', true);
+      this.axios.delete(`${this.routes.basket.rental.delete}/${uuid}`).then(response => {
+        this.$store.commit('isLoading', false);
+        NProgress.done();
+        this.$toast.open(this.__('Das Mietgerät wurde aus dem Warenkorb gelöscht.'));
+        if (reload) {
+          // reload the current page
+          this.$router.go();
+          return;
+        }
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
+      });
+    },
+
+    showRentalDialog(uuid) {
+      this.eventUuid = uuid;
+      this.$refs.dialog_rental.init({
+        message: 'Mietgerät ausleihen',
+        type: 'dialog',
+        style: 'confirmation',
       });
     },
   }

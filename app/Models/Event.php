@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 use App\Models\Base;
+use App\Models\Bookings;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\EventScopes;
@@ -36,6 +37,7 @@ class Event extends Base
     'registration_until',
     'min_participants',
     'max_participants',
+    'rentals_available',
     'online',
     'fee',
     'course_id',
@@ -56,6 +58,8 @@ class Event extends Base
     'course_fee',
     'course_online',
     'expert_ids',
+    'has_rentals',
+    'rentals_booked',
     'is_past',
     'is_upcoming',
     'is_confirmed',
@@ -150,6 +154,7 @@ class Event extends Base
   {
     return $this->bookings->count() >= $this->max_participants ? TRUE : FALSE;
   }
+
 
 
   /*
@@ -419,5 +424,25 @@ class Event extends Base
   public function getIsClosedAttribute()
   {
     return $this->isClosed();
+  }
+
+  /**
+   * Get the events 'rentals_booked' state
+   *
+   */
+
+  public function getRentalsBookedAttribute()
+  {
+    return Booking::where('event_id', $this->id)->where('has_rental', 1)->where('cancelled_at', NULL)->count();
+  }
+
+  /**
+   * Get the events 'has_rentals_available' state
+   *
+   */
+  public function getHasRentalsAttribute()
+  {
+    // Check if rentals are available, count the rentals booked and compare
+   return $this->rentals_available > Booking::where('event_id', $this->id)->where('has_rental', 1)->where('cancelled_at', NULL)->count() ? TRUE : FALSE;
   }
 }

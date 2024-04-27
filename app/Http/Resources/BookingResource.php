@@ -18,6 +18,7 @@ class BookingResource extends JsonResource
       'uuid' => $this->uuid,
       'number' => $this->number,
       'booked_at' => $this->booked_at,
+      'has_rental' => $this->has_rental,
       'event' => EventResource::make($this->event),
       'cancellation' => PenaltyHelper::get($this->event->date, $this->event->courseFee),
     ];

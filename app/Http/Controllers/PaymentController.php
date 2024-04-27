@@ -52,7 +52,7 @@ class PaymentController extends BaseController
     $items[] = [
       'price_data' => [
         'currency' => 'chf',
-        'unit_amount' => (int) $invoice->grand_total * 100,
+        'unit_amount' => (int) ($invoice->grand_total * 100),
         'product_data' => [
           'name' => $invoice->booking->event->course->title . ", " . collect($invoice->booking->event->dates->pluck('date_short')->all())->implode(', '),
         ],

@@ -53,6 +53,33 @@ class BookingController extends Controller
   }
 
   /**
+   * Cancel a rental in booking
+   * 
+   * @param Booking $booking
+   * @return \Illuminate\Http\Response
+   */
+
+   public function addRental(Booking $booking)
+   { 
+     BookingFacade::addRental($booking);
+     return response()->json('successfully added');
+   }
+
+  /**
+   * Cancel a rental in booking
+   * 
+   * @param Booking $booking
+   * @return \Illuminate\Http\Response
+   */
+
+   public function cancelRental(Booking $booking)
+   { 
+     $this->authorize('cancel', $booking);
+     BookingFacade::cancelRental($booking);
+     return response()->json('successfully cancelled');
+   }
+
+  /**
    * Update participation for a booking
    * 
    * @param BookingParticipationRequest $request

@@ -69,7 +69,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:student'])->group(function(
   Route::get('/discount-code/check/{code}', [DiscountCodeController::class, 'check']);
 });
 
-Route::put('/basket/{event:uuid}', [BasketController::class, 'store']);
+Route::put('/basket/{event:uuid}/{rental?}', [BasketController::class, 'store']);
+Route::delete('/basket/rental/{event:uuid}', [BasketController::class, 'removeRental']);
 Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 
 
@@ -82,6 +83,8 @@ Route::delete('/basket/{event:uuid}', [BasketController::class, 'destroy']);
 Route::middleware(['auth:sanctum', 'verified', 'role:admin,expert,student'])->group(function() {
   Route::post('/booking', [BookingController::class, 'store'])->middleware(['role:student']);
   Route::post('/booking/participation', [BookingController::class, 'updateParticipation'])->middleware(['role:admin,expert']);
+  Route::put('/booking/rental/add/{booking:uuid}', [BookingController::class, 'addRental'])->middleware(['role:admin,student']);;
+  Route::put('/booking/rental/cancel/{booking:uuid}', [BookingController::class, 'cancelRental'])->middleware(['role:admin,student']);;
   Route::put('/booking/cancel/{booking:uuid}', [BookingController::class, 'cancel'])->middleware(['role:admin,student']);;
   Route::put('/bookmark/{event:uuid}', [BookmarkController::class, 'store'])->middleware(['role:student']);;
   Route::delete('/bookmark/{bookmark:uuid}', [BookmarkController::class, 'destroy'])->middleware(['role:student']);;

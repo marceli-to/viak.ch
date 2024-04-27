@@ -34,7 +34,7 @@ class BookingCancelled extends Mailable
   public function build()
   {    
     $booking = Booking::with('user', 'event')->find($this->data->id);
-    $invoice = Invoice::where('booking_id', $booking->id)->first();
+    $invoice = Invoice::where('booking_id', $booking->id)->where('is_rental', 0)->first();
     $discount = NULL;
 
     if ($invoice)
@@ -55,6 +55,16 @@ class BookingCancelled extends Mailable
       if ($invoice->isPending())
       {
         InvoiceFacade::delete($invoice);
+      }
+    }
+
+    if ($booking->has_rental)
+    {
+      $rental_invoice = Invoice::where('booking_id', $booking->id)->where('is_rental', 1)->first();
+      // Delete any NOT YET PAID invoices
+      if ($rental_invoice->isPending())
+      {
+        InvoiceFacade::delete($rental_invoice);
       }
     }
 

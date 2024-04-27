@@ -110,6 +110,12 @@
       @include font-bold();
       text-align: center;
     }
+
+    .notification-text {
+      @extend %fs-16x;
+      @extend %mt-4x;
+      text-align: center;
+    }
   }
 
   &.is-error {

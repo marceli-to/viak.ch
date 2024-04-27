@@ -140,6 +140,11 @@
       color: $color-primary;
     }
   }
+
+  &.is-confirmation {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
 }
 
 .form-helper {

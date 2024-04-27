@@ -26,7 +26,7 @@ class BasketStore extends Store
 
     if (!in_array($item, $store['items']))
     {
-      $store['items'][] = $item;
+      $store['items'][] = ['uuid' => $item];
       $store['count'] = collect($store['items'])->count();
     }
 
@@ -46,7 +46,11 @@ class BasketStore extends Store
     $store = $this->get();
     if (isset($store['items']))
     {
-      $index = collect($store['items'])->search($item);
+      // Find the item index in $store['items'] by its uuid
+      $index = collect($store['items'])->search(function($value, $key) use ($item) {
+        return $value['uuid'] == $item;
+      });
+
       if ($index !== FALSE)
       {
         unset($store['items'][$index]);
@@ -56,6 +60,32 @@ class BasketStore extends Store
     session([$this->key => $store]);
     return $store;
   }
+
+    /**
+   * Remove a rental an item
+   * 
+   * @param String $item
+   * @return Array $store
+   */
+
+   public function removeRentalFromItem($item)
+   { 
+     $store = $this->get();
+     if (isset($store['items']))
+     {
+       // Find the item index in $store['items'] by its uuid
+       $index = collect($store['items'])->search(function($value, $key) use ($item) {
+         return $value['uuid'] == $item;
+       });
+ 
+       if ($index !== FALSE)
+       {
+         unset($store['items'][$index]['rental']);
+       }
+     }
+     session([$this->key => $store]);
+     return $store;
+   }
 
   /**
    * Get all basket items
@@ -85,7 +115,10 @@ class BasketStore extends Store
     $store = $this->get();
     if (isset($store['items']))
     {
-      return collect($store['items'])->search($item) !== FALSE ? TRUE : FALSE;
+      $index = collect($store['items'])->search(function($value, $key) use ($item) {
+        return $value['uuid'] == $item;
+      });
+      return $index !== FALSE ? TRUE : FALSE;
     }
     return FALSE;
   }
@@ -135,6 +168,31 @@ class BasketStore extends Store
       unset($store[$attribute]);
       session([$this->key => $store]);
     }
+    return $store;
+  }
+
+  /**
+   * Add a rental to an item
+   */
+
+  public function addRental($item)
+  { 
+    $store = $this->get();
+    if (isset($store['items']))
+    {
+      $index = collect($store['items'])->search(function($value, $key) use ($item) {
+        return $value['uuid'] == $item;
+      });
+
+      if ($index !== FALSE)
+      {
+        if (!isset($store['items'][$index]['rental']))
+        {
+          $store['items'][$index]['rental'] = true;
+        }
+      }
+    }
+    session([$this->key => $store]);
     return $store;
   }
 }

@@ -2,6 +2,7 @@
 namespace App\Mail;
 use App\Models\Booking;
 use App\Facades\Invoice;
+use App\Facades\RentalInvoice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -37,6 +38,9 @@ class EventConfirmationStudent extends Mailable
     // Find or create the invoice for this booking
     $invoice = Invoice::findOrCreateFromBooking($booking);
 
+    // Find or create the rental invoice for this booking if it has rental
+    $rental_invoice = $booking->has_rental ? RentalInvoice::findOrCreateFromBooking($booking) : NULL;
+
     // Create the mail
     $mail = $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
                  ->subject(__('Kursbestätigung') . ' – ' . $booking->event->course->title)
@@ -45,16 +49,24 @@ class EventConfirmationStudent extends Mailable
                         'event' => $booking->event,
                         'booking' => $booking,
                         'user' => $booking->user,
-                        'invoice' => $invoice
+                        'invoice' => $invoice,
+                        'rental_invoice' => $rental_invoice,
                       ]
                     )
                  ->markdown('mail.event.confirmation', ['recipient' => 'student']);
-
-
+                      
     if ($invoice)
     {
       $mail->attach(
         storage_path() . "/app/public/files/{$booking->user->uuid}/{$invoice->filename}",
+        ['mime' => 'application/pdf']
+      );
+    }
+
+    if ($rental_invoice)
+    {
+      $mail->attach(
+        storage_path() . "/app/public/files/{$booking->user->uuid}/{$rental_invoice->filename}",
         ['mime' => 'application/pdf']
       );
     }

@@ -41,6 +41,7 @@ class Invoice extends Base
     'uuid',
     'booking_id',
     'user_id',
+    'is_rental',
     'status',
     'queued',
     'due_at',

@@ -29,8 +29,8 @@ class BookingCompletedHandler
     {
       Job::create([
         'recipient' => $expert->email,
-        'mailable_id' => $bookingCompletedEvent->booking->event->id,
-        'mailable_type' => \App\Models\Event::class,
+        'mailable_id' => $bookingCompletedEvent->booking->id,
+        'mailable_type' => \App\Models\Booking::class,
         'mailable_class' => \App\Mail\BookingCreatedInfoExpert::class
       ]);
     }
@@ -38,10 +38,20 @@ class BookingCompletedHandler
     // Send info email to admin
     Job::create([
       'recipient' => env('MAIL_TO'),
-      'mailable_id' => $bookingCompletedEvent->booking->event->id,
-      'mailable_type' => \App\Models\Event::class,
+      'mailable_id' => $bookingCompletedEvent->booking->id,
+      'mailable_type' => \App\Models\Booking::class,
       'mailable_class' => \App\Mail\BookingCreatedInfoAdmin::class
     ]);
+
+    if ($bookingCompletedEvent->booking->has_rental)
+    {
+      Job::create([
+        'recipient' => env('MAIL_TO'),
+        'mailable_id' => $bookingCompletedEvent->booking->id,
+        'mailable_type' => \App\Models\Booking::class,
+        'mailable_class' => \App\Mail\RentalAddedInfoAdmin::class
+      ]);
+    }
 
     // Send event confirmed email
     if ($bookingCompletedEvent->booking->event->hasFlag('isConfirmed'))

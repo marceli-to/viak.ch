@@ -85,7 +85,7 @@
           @endif
         @else
           @if (!$hasBooking)
-            <basket-button uuid="{{ $event->uuid }}" :exists="{{ $inBasket }}" />
+            <basket-button uuid="{{ $event->uuid }}" rentals="{{ $event->has_rentals ? 1 : 0 }}" :exists="{{ $inBasket }}" />
           @else
             <a href="{{ route(locale() . '.page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
               {{ __('Verwalten')}}

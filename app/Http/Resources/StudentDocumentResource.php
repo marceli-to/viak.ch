@@ -21,12 +21,12 @@ class StudentDocumentResource extends JsonResource
         'uri' => $this->uri,
         'type' => $this->type,
         'document_title' => $this->getType($this->type),
-        'course_title' => $this->invoice->booking->event->course->title,
-        'course_date' =>  $this->invoice->booking->event->date_short,
-        'number' => $this->invoice->number,
-        'total' => $this->invoice->total,
-        'grand_total' => $this->invoice->grand_total,
-        'status' => $this->invoice->status
+        'course_title' => $this->invoice?->booking?->event->course->title,
+        'course_date' =>  $this->invoice?->booking?->event->date_short,
+        'number' => $this->invoice?->number,
+        'total' => $this->invoice?->total,
+        'grand_total' => $this->invoice?->grand_total,
+        'status' => $this->invoice?->status
       ];
     }
 

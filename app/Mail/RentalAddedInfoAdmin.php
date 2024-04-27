@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class BookingCreatedInfoAdmin extends Mailable
+class RentalAddedInfoAdmin extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -31,16 +31,12 @@ class BookingCreatedInfoAdmin extends Mailable
    */
   public function build()
   {
-    // Get the Booking
+    // Get the booking
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
 
-    // Get the user by email
-    $email = collect($this->to)->pluck('address')->first();
-    $user = User::where('email', $email)->first();
-
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject(__('Neue Anmeldung für ') . $booking->event->course->title)
-                ->with(['booking' => $booking, 'user' => $user])
-                ->markdown('mail.booking.created-info', ['recipient' => 'admin']);
+                ->subject(__('Buchung Mietgerät für ') . $booking->event->course->title)
+                ->with(['booking' => $booking])
+                ->markdown('mail.booking.rental-added-info');
   }
 }

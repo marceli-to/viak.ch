@@ -2,7 +2,6 @@
 <div>
   <div v-if="isFetched">
     <article-text>
-      
       <template #icon>
         <a href="" class="icon-edit" @click.prevent="toggleForm()">
           <icon-edit />
@@ -186,9 +185,26 @@
                   <router-link :to="{ name: `${_getLocale()}-student-course-event`, params: { uuid: booking.event.uuid } }" class="btn-primary btn-auto-w mb-2x" :title="__('Detail')">
                     {{ __('Detail')}}
                   </router-link>
-                  <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirm(booking.uuid, booking)">
+                  <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirmBookingCancellation(booking.uuid, booking)">
                     {{ __('Annullieren') }}
                   </a>
+                </template>
+                <template #rental_cancel_action>
+                  <a href="" class="btn-secondary btn-auto-w" @click.prevent="confirmRentalCancellation(booking.uuid, booking)">
+                    {{ __('Annullieren') }}
+                  </a>
+                </template>
+                <template #rental_booking_action>
+                  <div class="flex">
+                    <div class="pr-10x md:pr-20x">
+                      {{ __('Falls dein Laptop den Anforderungen dieses Kurses nicht genügt, kannst du bei uns ein Gerät mieten. Die Kosten dafür belaufen sich auf CHF 50.– (exkl. MwSt.)') }}
+                    </div>
+                    <div>
+                      <a href="" class="btn-secondary max-w-200px" @click.prevent="addRental(booking.uuid)">
+                        {{ __('Buchen') }}
+                      </a>
+                    </div>
+                  </div>
                 </template>
               </stacked-list-event>
             </div>
@@ -261,7 +277,13 @@
       <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">{{ __('Abbrechen') }}</a>
     </template>
   </notification>
- </div>
+  <notification ref="notificationRental">
+    <template #actions>
+      <a href="javascript:;" @click="cancelRental()" class="btn-primary">{{ __('Bestätigen') }}</a>
+      <a href="javascript:;" @click="$refs.notification.hide()" class="btn-secondary">{{ __('Abbrechen') }}</a>
+    </template>
+  </notification>
+</div>
 </template>
 
 <script>
@@ -328,7 +350,11 @@ export default {
         login: '/login',
         logout: '/logout',
         booking: {
-          cancel: '/api/booking/cancel'
+          cancel: '/api/booking/cancel',
+          rental: {
+            add: '/api/booking/rental/add',
+            cancel: '/api/booking/rental/cancel'
+          },
         },
       },
     };

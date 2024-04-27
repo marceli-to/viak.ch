@@ -10,12 +10,33 @@
       </a>
     </template>
   </notification>
-  <a href="javascript:;" class="btn-primary btn-auto-w" @click.prevent="addToBasket($props.uuid)" v-if="!inBasket">
-    {{ __('Buchen') }}
-  </a>
-  <a href="javascript:;" class="btn-secondary btn-auto-w" @click.prevent="removeFromBasket($props.uuid)" v-else>
-    {{ __('Entfernen') }}
-  </a>
+
+  <notification ref="dialog_rental">
+    <template #text>
+      {{ __('Falls dein Laptop den Anforderungen dieses Kurses nicht genügt, kannst du bei uns ein Gerät mieten. Die Kosten dafür belaufen sich auf CHF 50.– (exkl. MwSt.)') }}
+    </template>
+    <template #actions>
+      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, true)" class="btn-primary">
+        {{ __('Ja gerne') }}
+      </a>
+      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, false)" class="btn-secondary is-outline">
+        {{ __('Nein danke') }}
+      </a>
+    </template>
+  </notification>
+  <template v-if="!inBasket">
+    <a href="javascript:;" class="btn-primary btn-auto-w" @click.prevent="showRentalDialog($props.uuid)" v-if="hasRentals == 1">
+      {{ __('Buchen') }}
+    </a>
+    <a href="javascript:;" class="btn-primary btn-auto-w" @click.prevent="addToBasket($props.uuid, false)" v-else>
+      {{ __('Buchen') }}
+    </a>
+  </template>
+  <template v-else>
+    <a href="javascript:;" class="btn-secondary btn-auto-w" @click.prevent="removeFromBasket($props.uuid)">
+      {{ __('Entfernen') }}
+    </a>
+  </template>
 </div>
 </template>
 <script>

@@ -4,14 +4,19 @@ use Illuminate\Http\Request;
 use App\Helpers\PenaltyHelper;
 use App\Models\Booking as BookingModel;
 use App\Facades\Bookmark as BookmarkFacade;
+use App\Facades\Invoice as InvoiceFacade;
+use App\Facades\RentalInvoice as RentalInvoiceFacade;
 use App\Models\User;
 use App\Models\UserAddress;
 use App\Models\Event;
 use App\Facades\Discount;
+use App\Models\Invoice;
 use App\Models\DiscountCode;
 use App\Events\BookingCompleted;
 use App\Events\BookingCancelled;
 use App\Events\BookingCancelledWithPenalty;
+use App\Events\RentalAdded;
+use App\Events\RentalCancelled;
 use App\Facades\ParticipantsChange;
 use App\Facades\Message as MessageFacade;
 
@@ -36,7 +41,7 @@ class Booking
       foreach($basket['items'] as $item)
       {
         // Get the event
-        $event = Event::where('uuid', $item)->first();
+        $event = Event::where('uuid', $item['uuid'])->first();
 
         if (BookingFacade::can($event, $user))
         {
@@ -50,6 +55,7 @@ class Booking
             'discount_amount' => $discount ? Discount::apply($discount->uuid, $event->courseFee) : NULL,
             'event_id' => $event->id,
             'user_id' => $user->id,
+            'has_rental' => isset($item['rental']) ? 1 : 0,
             'booked_at' => \Carbon\Carbon::now(),
           ]);
           
@@ -111,6 +117,54 @@ class Booking
       BookingModel::find($booking->id)
     ));
    
+    return TRUE;
+  }
+
+  /**
+   * Add a rental to a booking
+   */
+
+  public static function addRental(BookingModel $booking)
+  {
+    // Add rental to booking
+    $booking = BookingModel::find($booking->id);
+    $booking->has_rental = 1;
+    $booking->save();
+
+    event(new RentalAdded(
+      User::find($booking->user_id), 
+      BookingModel::find($booking->id)
+    ));
+
+    return TRUE;
+  }
+
+  /**
+   * Cancel a rental in booking
+   * 
+   * @param BookingModel $booking
+   * @return Boolean
+   */
+
+  public static function cancelRental(BookingModel $booking)
+  {
+    // Cancel booking
+    $booking = BookingModel::find($booking->id);
+    $booking->has_rental = 0;
+    $booking->save();
+
+    // Cancel the invoice
+    $invoice = Invoice::where('booking_id', $booking->id)->where('is_rental', 1)->first();
+    if ($invoice)
+    {
+      InvoiceFacade::delete($invoice);
+    }
+
+    event(new RentalCancelled(
+      User::find($booking->user_id), 
+      BookingModel::find($booking->id)
+    ));
+
     return TRUE;
   }
 

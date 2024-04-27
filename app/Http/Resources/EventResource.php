@@ -34,6 +34,7 @@ class EventResource extends JsonResource
       'is_confirmed' => $this->hasFlag('isConfirmed'),
       'is_closed' => $this->hasFlag('isClosed'),
       'is_cancelled' => $this->hasFlag('isCancelled'),
+      'has_rentals' => $this->has_rentals
     ];
 
     // Additional data for role 'Expert' or 'Admin'
@@ -42,6 +43,8 @@ class EventResource extends JsonResource
       $data['bookings'] = collect($this->hasFlag('isCancelled') ? $this->cancelledBookings : $this->bookings)->count();
       $data['min_participants'] = $this->min_participants;
       $data['max_participants'] = $this->max_participants;
+      $data['rentals_available'] = $this->rentals_available;
+      $data['rentals_booked'] = $this->rentals_booked;
       $data['confirmed_at'] = $this->confirmed_at;
       $data['cancelled_at'] = $this->cancelled_at;
       $data['closed_at'] = $this->closed_at;
