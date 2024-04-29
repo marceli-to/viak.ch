@@ -59,7 +59,7 @@
         <x-event-card :event="$event" />
       @endforeach
     @else
-      <p class="no-results">Zur Zeit sind keine Kurse geplant.</p>
+      <p class="no-results">Neues Kursdatum folgt in Kürze</p>
     @endif
   </x-collapsible>
 
