@@ -4,7 +4,7 @@
 <p>{{ __('Vielen Dank für Deine Anmeldung für den Kurs') }} «{{ $event->course->title }}». {{ __('Gerne bestätigen wir Deine Anmeldung wie folgt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="120">{{ __('Buchung') }}</td>
+    <td width="125">{{ __('Buchung') }}</td>
     <td>{{ $booking->number }}</td>
   </tr>
   <tr>
