@@ -237,6 +237,7 @@ em {
 }
 
 .content-table td:first-of-type {
+  padding-right: 5px;
   width: 130px;
 }
 
