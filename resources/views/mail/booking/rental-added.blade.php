@@ -1,7 +1,7 @@
 @component('mail::message')
-<h1>{{ __('Buchung Mietgerät') . ' – ' . $event->course->title }}</h1>
+<h1>{{ __('Buchung Mietcomputer') . ' – ' . $event->course->title }}</h1>
 <p>{{ __('Guten Tag') }} {{ $user->fullname }}</p>
-<p>{{ __('Gerne bestätigen wir die Buchung des Mietgeräts wie folgt:') }}</p>
+<p>{{ __('Gerne bestätigen wir die Buchung des Mietcomputers wie folgt:') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Buchung') }}</td>
@@ -21,7 +21,7 @@
   </tr>
 </table>
 @if ($rental_invoice)
-<p>{!! __('Die Rechnung für das Mietgerät findest Du im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
+<p>{!! __('Die Rechnung für den Mietcomputer findest Du im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
 <p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $rental_invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
 @else
 <p>{{ __('Die Rechnung erhältst Du, sobald wir wissen, dass die Mindestanzahl Teilnehmende erreicht ist und der Kurs definitiv stattfinden wird.') }}</p>

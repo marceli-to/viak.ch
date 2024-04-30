@@ -26,7 +26,7 @@ export default {
     confirmRentalCancellation(uuid) {
       this.uuidRentalToDelete = uuid;
       this.$refs.notificationRental.init({
-        message: this.__('Möchtest Du das Mietgerät wirklich stornieren?'),
+        message: this.__('Möchtest Du den Mietcomputer wirklich stornieren?'),
         type: 'dialog',
         style: 'info',
       });
@@ -55,7 +55,7 @@ export default {
       NProgress.start();
       this.axios.put(`${this.routes.booking.rental.cancel}/${this.uuidRentalToDelete}`).then(response => {
         this.uuidRentalToDelete = null;
-        this.$toast.open(this.__('Das Mietgerät wurde storniert.'));
+        this.$toast.open(this.__('Der Mietcomputer wurde storniert.'));
         this.find();
       })
       .catch(error => {
@@ -66,7 +66,7 @@ export default {
     addRental(uuid) {
       NProgress.start();
       this.axios.put(`${this.routes.booking.rental.add}/${uuid}`).then(response => {
-        this.$toast.open(this.__('Das Mietgerät wurde gebucht.'));
+        this.$toast.open(this.__('Der Mietcomputer wurde gebucht.'));
         this.find();
       })
       .catch(error => {

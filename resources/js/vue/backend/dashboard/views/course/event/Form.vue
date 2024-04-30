@@ -49,7 +49,7 @@
           </form-group>
         </grid>
 
-        <form-group :label="'Verfügbare Geräte'">
+        <form-group :label="'Verfügbare Mietcomputer'">
           <input 
             type="number" 
             v-model="data.rentals_available" />

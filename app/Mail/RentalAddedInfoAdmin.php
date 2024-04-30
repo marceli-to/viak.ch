@@ -35,7 +35,7 @@ class RentalAddedInfoAdmin extends Mailable
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
 
     return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject(__('Buchung Mietgerät für ') . $booking->event->course->title)
+                ->subject(__('Buchung Mietcomputer für ') . $booking->event->course->title)
                 ->with(['booking' => $booking])
                 ->markdown('mail.booking.rental-added-info');
   }

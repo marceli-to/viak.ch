@@ -118,7 +118,7 @@ export default {
       this.axios.delete(`${this.routes.basket.rental.delete}/${uuid}`).then(response => {
         this.$store.commit('isLoading', false);
         NProgress.done();
-        this.$toast.open(this.__('Das Mietgerät wurde aus dem Warenkorb gelöscht.'));
+        this.$toast.open(this.__('Der Mietcomputer wurde aus dem Warenkorb gelöscht.'));
         if (reload) {
           // reload the current page
           this.$router.go();
@@ -133,7 +133,7 @@ export default {
     showRentalDialog(uuid) {
       this.eventUuid = uuid;
       this.$refs.dialog_rental.init({
-        message: 'Mietgerät ausleihen',
+        message: 'Computer mieten',
         type: 'dialog',
         style: 'confirmation',
       });

@@ -34,7 +34,7 @@
       </thead>
       <tbody>
         <tr>
-          <td style="width: 75mm"><strong>Mietgerät für {{ $invoice->booking->event->course->title }}</strong></td>
+          <td style="width: 75mm"><strong>Mietcomputer für {{ $invoice->booking->event->course->title }}</strong></td>
           <td style="width: 31mm">{{ $invoice->booking->event->date_short }}</td>
           <td style="width: 31mm">{{ $invoice->booking->event->number }}</td>
           <td style="width: 22mm" class="align-right">

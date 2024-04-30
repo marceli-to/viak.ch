@@ -36,7 +36,7 @@
   </tr>
   @if ($booking->has_rental)
     <tr>
-      <td>{{ __('Mietgerät') }}</td>
+      <td>{{ __('Mietcomputer') }}</td>
       <td>gebucht</td>
     </tr>
   @endif

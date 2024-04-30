@@ -39,7 +39,7 @@
             {{ $props.event.bookings }}&thinsp;/&thinsp;{{ $props.event.max_participants }} Teilnehmer
           </div>
           <template v-if="$props.event.rentals_available">
-            {{ $props.event.rentals_booked }}&thinsp;/&thinsp;{{ $props.event.rentals_available }} Geräte
+            {{ $props.event.rentals_booked }}&thinsp;/&thinsp;{{ $props.event.rentals_available }} Mietcomputer
           </template>
         </div>
         <div class="stacked-list__action">
@@ -124,7 +124,7 @@
       <!-- Additional row in basket for booked rentals -->
       <template v-if="$props.event.has_rental">
         <div class="stacked-list__col">
-          <strong>{{ __('Mietgerät') }}</strong>
+          <strong>{{ __('Mietcomputer') }}</strong>
         </div>
         <div class="stacked-list__col">&nbsp;</div>
         <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
@@ -154,7 +154,7 @@
               <slot name="icon" />
             </div>
             <div>
-              <h2>{{ __('Mietgerät') }}</h2>
+              <h2>{{ __('Mietcomputer') }}</h2>
             </div>
           </div>
         </div>

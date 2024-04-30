@@ -13,14 +13,14 @@
 
   <notification ref="dialog_rental">
     <template #text>
-      {{ __('Falls dein Laptop den Anforderungen dieses Kurses nicht genügt, kannst du bei uns ein Gerät mieten. Die Kosten dafür belaufen sich auf CHF 50.– (exkl. MwSt.)') }}
+      {{ __('Falls Du keinen Laptop hast, oder dieser den Anforderungen nicht genügt, kannst Du bei uns einen Computer mieten. Die Kosten dafür belaufen sich auf CHF 50.– (exkl. MwSt.)\n\n(Du kannst dies auch später noch anpassen)') }}
     </template>
     <template #actions>
-      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, true)" class="btn-primary">
+      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, true)" class="btn-primary !max-w-none">
         {{ __('Ja gerne') }}
       </a>
-      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, false)" class="btn-secondary is-outline">
-        {{ __('Nein danke') }}
+      <a href="javascript:;" @click.prevent="addToBasket(eventUuid, false)" class="btn-secondary is-outline !max-w-none">
+        {{ __('Nein, ich bringe meinen eigenen Laptop') }}
       </a>
     </template>
   </notification>

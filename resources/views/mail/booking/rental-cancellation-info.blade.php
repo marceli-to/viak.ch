@@ -1,6 +1,6 @@
 @component('mail::message')
 <p>{{ __('Hallo') }}</p>
-<p>{{ __('Die Gerätemiete für ') }} «{{ $booking->event->course->title }}» {{ __('wurde storniert') }}</p>
+<p>{{ __('Ein Mietcomputer für ') }} «{{ $booking->event->course->title }}» {{ __('wurde storniert') }}</p>
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td>{{ __('Student:in') }}</td>

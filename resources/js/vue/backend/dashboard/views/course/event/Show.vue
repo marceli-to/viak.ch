@@ -60,7 +60,7 @@
                 </div>
                 <div class="sm:span-1">
                   <template v-if="participant.hasRental">
-                    Mietgerät
+                    Mietcomputer
                   </template>
                 </div>
                 <div class="sm:span-1 md:span-2 flex justify-end mr-2x">

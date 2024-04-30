@@ -46,7 +46,7 @@ class RentalAdded extends Mailable
     }
   
     $mail = $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
-                ->subject(__('Buchung Mietgerät für ') . $booking->event->course->title)
+                ->subject(__('Buchung Mietcomputer für ') . $booking->event->course->title)
                 ->with([
                     'event' => $booking->event,
                     'booking' => $booking,
