@@ -22,7 +22,8 @@ class EventParticipantsResource extends JsonResource
       'company' => $this->user->company,
       'invoice_address' => UserAddressResource::make($this->user->invoiceAddresses()->first()),
       'email' => auth()->user()->isAdmin() ? $this->user->email : null,
-      'hasParticipated' => $this->hasFlag('hasParticipated') ? true : false
+      'hasParticipated' => $this->hasFlag('hasParticipated') ? true : false,
+      'hasRental' => $this->has_rental ? true : false,
     ];
   }
 }

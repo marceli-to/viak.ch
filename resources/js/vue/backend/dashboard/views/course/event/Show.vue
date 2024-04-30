@@ -45,7 +45,7 @@
             </div>
             <stacked-list-item v-for="(participant, index) in data.participants" :key="index" :class="[index == 0 ? 'mt-2x sm:mt-2x md:mt-3x' : '', '']">
               <div>
-                <div class="sm:span-3 md:span-3">{{ participant.fullname }}</div>
+                <div class="sm:span-3 md:span-2">{{ participant.fullname }}</div>
                 <div class="sm:span-2 md:span-2">{{ participant.city }}</div>
                 <div class="sm:span-2 md:span-2">
                   <template v-if="participant.company">
@@ -57,6 +57,11 @@
                 </div>
                 <div class="sm:span-3 md:span-3">
                   <a :href="`mailto:${participant.email}`">{{ participant.email }}</a>
+                </div>
+                <div class="sm:span-1">
+                  <template v-if="participant.hasRental">
+                    Mietgerät
+                  </template>
                 </div>
                 <div class="sm:span-1 md:span-2 flex justify-end mr-2x">
                   <template v-if="!data.event.is_cancelled">
@@ -153,6 +158,7 @@ import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
 import ButtonFileDelete from "@/shared/modules/files/components/ButtonDelete.vue";
 import BackLink from '@/shared/components/ui/misc/BackLink.vue';
+import { template } from 'lodash';
 
 export default {
 
@@ -200,6 +206,7 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
+        console.log(this.data);
         this.isFetched = true;
       });
     },
