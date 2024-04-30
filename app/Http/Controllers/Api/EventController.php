@@ -5,7 +5,6 @@ use App\Http\Resources\EventResource;
 use App\Http\Resources\EventParticipantsResource;
 use App\Http\Resources\EventMessageResource;
 use App\Http\Resources\BookingResource;
-use App\Http\Resources\RentalResource;
 use App\Http\Resources\FileResource;
 use App\Models\User;
 use App\Models\Event;
