@@ -106,7 +106,9 @@ class EventController extends Controller
   public function update(Event $event, EventStoreRequest $request)
   {
     $event = Event::findOrFail($event->id);
-    $event->update($request->except(['date', 'dates']));
+    $event->update($request->except(['date', 'dates', 'rentals_available']));
+
+    $event->rentals_available = $request->input('rentals_available') ? $request->input('rentals_available') : 0;
 
     // Sync experts
     $event->experts()->sync($request->input('expert_ids'));
