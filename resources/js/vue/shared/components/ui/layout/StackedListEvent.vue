@@ -129,7 +129,7 @@
         <div class="stacked-list__col">&nbsp;</div>
         <div :class="[!$slots.action ? 'justify-end' : '', 'stacked-list__col stacked-list__col--action']">
           <div>
-            <div>CHF 50.00</div>
+            <div>CHF 80.00</div>
           </div>
           <div class="stacked-list__action" v-if="$slots.action">
             <a href="" class="btn-secondary btn-auto-w" @click.prevent="removeRentalFromBasket(event.uuid, true)">
@@ -160,7 +160,7 @@
         </div>
         <div class="stacked-list__col">&nbsp;</div>
         <div class="stacked-list__col flex justify-between">
-          <div>CHF 50.00</div>
+          <div>CHF 80.00</div>
           <div>
             <div class="stacked-list__action" v-if="$slots.rental_cancel_action">
               <slot name="rental_cancel_action" />

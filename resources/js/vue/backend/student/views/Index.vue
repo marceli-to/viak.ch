@@ -197,7 +197,7 @@
                 <template #rental_booking_action>
                   <div class="flex">
                     <div class="pr-10x md:pr-20x">
-                      {{ __('Falls Du keinen Laptop hast, oder dieser den Anforderungen nicht genügt, kannst Du bei uns einen Computer mieten. Die Kosten dafür belaufen sich auf CHF 50.– (exkl. MwSt.)') }}
+                      {{ __('Falls Du keinen Laptop hast, oder dieser den Anforderungen nicht genügt, kannst Du bei uns einen Computer mieten. Die Kosten dafür belaufen sich auf CHF 80.– (exkl. MwSt.)') }}
                     </div>
                     <div>
                       <a href="" class="btn-secondary max-w-200px" @click.prevent="addRental(booking.uuid)">
