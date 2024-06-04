@@ -201,6 +201,11 @@ class BasketController extends Controller
 
   private function getTotals($events, $discountCode = NULL)
   {
+
+    // change the following line so that events with "free_of_charge" are not included in the total
+    $events = collect($events)->filter(function($event) {
+      return !$event['free_of_charge'];
+    });
     $total = collect($events)->sum('fee');
     
     $discount = 0;
@@ -242,6 +247,7 @@ class BasketController extends Controller
         'uuid' => $event->uuid,
         'date' => $event->date,
         'fee'  => $event->courseFee,
+        'free_of_charge' => $event->free_of_charge,
         'online' => $event->online ? TRUE : FALSE,
         'location' => [
           'description' => $event->location ? $event->location->description : NULL,

@@ -113,7 +113,12 @@
             </div>
           </template>
           <div v-if="$props.showFee">
-            CHF {{ $props.event.fee | currency }}
+            <template v-if="$props.event.free_of_charge">
+              {{ __('kostenlos') }}
+            </template>
+            <template v-else>
+              CHF {{ $props.event.fee | currency }}
+            </template>
           </div>
         </div>
         <div class="stacked-list__action" v-if="$slots.action">

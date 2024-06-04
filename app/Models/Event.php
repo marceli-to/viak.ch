@@ -40,6 +40,7 @@ class Event extends Base
     'rentals_available',
     'online',
     'fee',
+    'free_of_charge',
     'course_id',
     'location_id',
     'publish',

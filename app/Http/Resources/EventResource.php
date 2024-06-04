@@ -19,6 +19,7 @@ class EventResource extends JsonResource
       'date' => $this->date_long,
       'online' => $this->online,
       'fee' => $this->courseFee,
+      'free_of_charge' => $this->free_of_charge,
       'course' => CourseResource::make($this->course),
       'location' => LocationResource::make($this->location),
       'dates' => $this->dates->map(function($date) {

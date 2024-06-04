@@ -68,6 +68,12 @@
               <label for="online">Onlinekurs</label>
             </div>
           </div>
+          <div class="mr-16x md:mr-20x">
+            <div class="form-group__checkbox">
+              <input type="checkbox" id="free_of_charge" name="free_of_charge" :value="1" v-model="data.free_of_charge">
+              <label for="free_of_charge">Gratiskurs</label>
+            </div>
+          </div>
           <div>
             <div class="form-group__checkbox">
               <input type="checkbox" id="publish" name="publish" :value="1" v-model="data.publish">
@@ -293,6 +299,7 @@ export default {
         max_participants: null,
         rentals_available: 0,
         fee: null,
+        free_of_charge: 0,
         dates: [],
         location_id: 1,
         expert_ids: [],

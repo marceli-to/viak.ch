@@ -53,7 +53,7 @@
         </div>
       </div>
     </stacked-list-item>
-    <stacked-list-item>
+    <stacked-list-item v-if="basket.totals.grandTotal > 0">
       <div>
         <div class="sm:span-4">
           <strong>{{ __('Total') }}</strong><br>

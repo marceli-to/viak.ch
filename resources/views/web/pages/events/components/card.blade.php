@@ -68,7 +68,11 @@
     </div>
     <div class="stacked-list__col stacked-list__col--action">
       <div>
-        {{ $event->courseFee }}
+        @if ($event->free_of_charge)
+          {{ __('kostenlos') }}
+        @else
+          {{ $event->courseFee }}
+        @endif
       </div>
       <div class="stacked-list__action">
 

@@ -25,6 +25,7 @@ class EventResource extends JsonResource
       'rentals_booked' => $this->rentals_booked,
       'has_rentals' => $this->has_rentals,
       'online' => $this->online,
+      'free_of_charge' => $this->free_of_charge,
       'fee' => $this->fee,
       'publish' => $this->publish,
       'location' => LocationResource::make($this->location),

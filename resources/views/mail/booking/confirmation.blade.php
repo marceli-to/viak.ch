@@ -32,7 +32,13 @@
   @endif
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $event->courseFee }}</td>
+    <td>
+      @if ($event->free_of_charge)
+        {{ __('kostenlos') }}
+      @else
+        CHF {{ $event->courseFee }}
+      @endif
+    </td>
   </tr>
   @if ($booking->has_rental)
     <tr>

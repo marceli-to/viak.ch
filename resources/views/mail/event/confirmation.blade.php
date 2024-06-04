@@ -33,12 +33,19 @@
   @endif
   <tr>
     <td>{{ __('Kosten') }}</td>
-    <td>CHF {{ $event->courseFee }}</td>
+    <td>
+      @if ($event->free_of_charge)
+        {{ __('kostenlos') }}
+      @else
+        CHF {{ $event->courseFee }}
+      @endif
+    </td>
   </tr>
 </table>
+@if ($invoice)
 <p>{!! __('Die Rechnung für die Kurskosten findest Du im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
 <p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
-
+@endif
 @if ($rental_invoice)
 <p>{!! __('Die Rechnung für den Mietcomputer findest Du ebenfalls im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
 <p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $rental_invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>

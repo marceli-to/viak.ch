@@ -20,7 +20,7 @@ class BookingResource extends JsonResource
       'booked_at' => $this->booked_at,
       'has_rental' => $this->has_rental,
       'event' => EventResource::make($this->event),
-      'cancellation' => PenaltyHelper::get($this->event->date, $this->event->courseFee),
+      'cancellation' => $this->event->free_of_charge ? ['penalty' => null] : PenaltyHelper::get($this->event->date, $this->event->courseFee),
     ];
   }
 }

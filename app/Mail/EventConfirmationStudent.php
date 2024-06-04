@@ -36,7 +36,11 @@ class EventConfirmationStudent extends Mailable
     $booking = Booking::with('event.course', 'user')->find($this->data->id);
     
     // Find or create the invoice for this booking
-    $invoice = Invoice::findOrCreateFromBooking($booking);
+    $invoice = NULL;
+    if (!$booking->event->free_of_charge)
+    {
+      $invoice = Invoice::findOrCreateFromBooking($booking);
+    }
 
     // Find or create the rental invoice for this booking if it has rental
     $rental_invoice = $booking->has_rental ? RentalInvoice::findOrCreateFromBooking($booking) : NULL;
