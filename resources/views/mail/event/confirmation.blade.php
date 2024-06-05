@@ -2,16 +2,27 @@
 <h1>{{ __('Kursbestätigung') . ' – ' . $event->course->title }}</h1>
 @if ($recipient == 'student')
 <p>{{ __('Guten Tag') }} {{ $user->fullname }}</p>
+@if ($event->free_of_charge)
+<p>{{ __('Hiermit bestätigen wir die Durchführung des oben erwähnten Events:') }}</p>
+@else
 <p>{{ __('Hiermit bestätigen wir die Durchführung des oben erwähnten Kurses:') }}</p>
+@endif
 <table class="content-table" cellpadding="0" cellspacing="0">
   <tr>
     <td width="120">{{ __('Buchung') }}</td>
     <td>{{ $booking->number }}</td>
   </tr>
-  <tr>
-    <td>{{ __('Kurs') }}</td>
-    <td>{{ $event->course->title }}</td>
-  </tr>
+  @if ($event->free_of_charge)
+    <tr>
+      <td>{{ __('Event') }}</td>
+      <td>{{ $event->course->title }}</td>
+    </tr>
+  @else
+    <tr>
+      <td>{{ __('Kurs') }}</td>
+      <td>{{ $event->course->title }}</td>
+    </tr>
+  @endif
   <tr>
     <td>{{ __('Datum') }}</td>
     <td>{{ collect($event->dates->pluck('date_short')->all())->implode(', ') }}</td>
@@ -50,7 +61,6 @@
 <p>{!! __('Die Rechnung für den Mietcomputer findest Du ebenfalls im Anhang.<br>Falls Du die Rechnung lieber mit Kreditkarte bezahlen möchtest, dann klicke bitte auf den nachfolgenden Link.') !!}</p>
 <p class="py-2x"><a href="{{ route(locale() . '.page.payment.overview', ['invoice' => $rental_invoice->uuid]) }}" target="_blank" class="button button-primary" style="text-decoration: none;"><strong>{{ __('Zahlung per Kreditkarte') }}</strong></a></p>
 @endif
-
 <p>{{ __('Bei Fragen stehen wir Dir gerne zur Verfügung.') }}</p>
 <p>{{ __('Möchtest Du weitere Schulungen besuchen? Verwalte Deine Kurse und Deine persönlichen Daten bequem und einfach unter:') }} <a href="{{ route(locale() . '.page.student.profile') }}" target="_blank" style="color: #000000; text-decoration: none; font-weight:bold"><strong>visualisierungs-akademie.ch/profil</strong></a></p>
 @endif
