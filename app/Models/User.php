@@ -324,7 +324,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
   public function getCourses(User $user)
   {
-    return $user->events()->with('course')->get();
+    $events = $user->events()->with('course')->get();
+    return $events->filter(function($event) {
+      return $event->date >= date('Y-m-d', time());
+    });
   }
   
   /**
