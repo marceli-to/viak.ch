@@ -35,7 +35,7 @@ class Hero extends Base
  
   public function publishedImages()
   {
-    return $this->morphMany(Image::class, 'imageable')->where('publish', 1)->orderBy('order');
+    return $this->morphMany(Image::class, 'imageable')->where('publish', 1)->where('type', '!=', 'open-graph')->orderBy('order');
   }
 
   public function publishedImage()
