@@ -45,7 +45,6 @@
 
         <form-group :label="'Kurzbeschrieb'" :required="true" :error="errors.short_description">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.short_description.de"
           ></tinymce-editor>
@@ -53,7 +52,6 @@
 
         <form-group :label="'Detailbeschrieb'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.full_description.de"
           ></tinymce-editor>
@@ -61,12 +59,10 @@
 
         <form-group :label="'Weitere Informationen'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.additional_information.de"
           ></tinymce-editor>
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.additional_information_1.de"
           ></tinymce-editor>
@@ -74,7 +70,6 @@
 
         <form-group :label="'Kursbeschreibung (PDF)'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.summary.de"
           ></tinymce-editor>
@@ -86,21 +81,18 @@
             <template #content>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_1.de"
                 ></tinymce-editor>
               </form-group>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_2.de"
                 ></tinymce-editor>
               </form-group>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_3.de"
                 ></tinymce-editor>
@@ -247,7 +239,6 @@
 
         <form-group :label="'Kurzbeschrieb'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.short_description.en"
           ></tinymce-editor>
@@ -255,7 +246,6 @@
 
         <form-group :label="'Detailbeschrieb'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.full_description.en"
           ></tinymce-editor>
@@ -263,12 +253,10 @@
 
         <form-group :label="'Weitere Informationen'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.additional_information.en"
           ></tinymce-editor>
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.additional_information_1.en"
           ></tinymce-editor>
@@ -276,7 +264,6 @@
 
         <form-group :label="'Kursbeschreibung (PDF)'">
           <tinymce-editor
-            :api-key="tinyApiKey"
             :init="tinyConfig"
             v-model="data.summary.en"
           ></tinymce-editor>
@@ -288,21 +275,18 @@
             <template #content>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_1.en"
                 ></tinymce-editor>
               </form-group>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_2.en"
                 ></tinymce-editor>
               </form-group>
               <form-group>
                 <tinymce-editor
-                :api-key="tinyApiKey"
                 :init="tinyConfig"
                 v-model="data.facts_column_3.en"
                 ></tinymce-editor>

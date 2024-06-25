@@ -22,6 +22,7 @@
 <meta name="format-detection" content="telephone=no">
 <link href="https://use.typekit.net/kcs4ept.css" rel="stylesheet">
 <link href="{{ mix('assets/css/app.css') }}" rel="stylesheet">
+<script src="/assets/js/vendor/tiny/tinymce.min.js"></script>
 <script src="/assets/js/modernizr.js"></script>
 </head>
 <body>
