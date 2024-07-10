@@ -33,7 +33,7 @@
     <h2>{{ __('Allgemeine Geschäftsbedingungen') }}
   </x-slot>
   <x-slot name="content">
-    <p>{!! __('Unsere Allgemeine Geschäftsbedingungen finden Sie <a href="/media/downloads/Visualisierungs-Akademie_AGB_Feb24.pdf" target="_blank">hier</a>.') !!}</p>
+    <p>{!! __('Unsere Allgemeine Geschäftsbedingungen finden Sie <a href="/media/downloads/Visualisierungs-Akademie_AGB_Jul24.pdf" target="_blank">hier</a>.') !!}</p>
   </x-slot>
 </x-card-text>
 <x-card-text class="card-text">

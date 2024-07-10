@@ -112,7 +112,7 @@
           </div>
           <ul>
             <li>
-              <a href="/media/downloads/Visualisierungs-Akademie_AGB_Feb24.pdf" target="_blank" :title="__('Download Allgemeine Geschäftsbedingungen')">
+              <a href="/media/downloads/Visualisierungs-Akademie_AGB_Jul24.pdf" target="_blank" :title="__('Download Allgemeine Geschäftsbedingungen')">
                 {{ __('Allgemeine Geschäftsbedingungen') }}
               </a>
             </li>
