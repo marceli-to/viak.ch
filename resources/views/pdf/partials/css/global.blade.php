@@ -169,15 +169,15 @@ li {
 }
 
 .page.has-invoice-address .page__title {
-  top: 117mm;
+  top: 127mm;
 }
 
 .page.has-invoice-address .page__date {
-  top: 132mm;
+  top: 142mm;
 }
 
 .page.has-invoice-address .page__content {
-  padding-top: 145mm;
+  padding-top: 155mm;
 }
 
 .content-table {
