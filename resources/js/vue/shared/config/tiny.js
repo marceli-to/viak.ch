@@ -1,16 +1,13 @@
 export default {
   license_key: 'gpl',
-  // skin_url: '/assets/js/vendor/tinymce/skins/custom',
   branding: false,
   menubar: false,
   statusbar: false,
-  // external_plugins: {
-  //   link: '/assets/js/vendor/tinymce/plugins/link/plugin.min.js',
-  // },
   plugins: ['lists', 'code', 'link'],
   toolbar: 'undo redo | bold | bullist | link | superscript | removeformat | styleselect',
   paste_as_text: true,
   height: "320px",
+  convert_urls: false,
   style_formats_merge: false,
   style_formats: [{
     title: 'Text',
