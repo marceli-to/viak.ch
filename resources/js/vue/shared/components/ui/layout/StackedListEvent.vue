@@ -117,7 +117,12 @@
               {{ __('kostenlos') }}
             </template>
             <template v-else>
-              CHF {{ $props.event.fee | currency }}
+              <template v-if="$props.booking">
+                CHF {{ $props.event.fee - $props.booking.discount_amount | currency }}
+              </template>
+              <template v-else>
+                CHF {{ $props.event.fee | currency }}
+              </template>
             </template>
           </div>
         </div>

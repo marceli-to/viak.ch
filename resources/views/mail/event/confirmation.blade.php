@@ -48,7 +48,7 @@
       @if ($event->free_of_charge)
         {{ __('kostenlos') }}
       @else
-        CHF {{ $event->courseFee }}
+        CHF {{ $event->courseFee - $booking->discount_amount }}
       @endif
     </td>
   </tr>
