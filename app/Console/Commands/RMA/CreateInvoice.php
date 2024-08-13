@@ -43,6 +43,7 @@ class CreateInvoice extends Command
     $searchTerm = $this->ask('Enter invoice number: ');
     $isCancellation = $this->confirm('Is this a cancellation?');
     $invoice = Invoice::with('booking', 'user')->where('number', 'LIKE', "%$searchTerm%")->first();
-    $response = $this->createInvoiceAction->execute($invoice, $isCancellation);
+    dd($invoice);
+    // $response = $this->createInvoiceAction->execute($invoice, $isCancellation);
   }
 }
