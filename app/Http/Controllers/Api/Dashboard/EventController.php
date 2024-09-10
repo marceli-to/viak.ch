@@ -118,6 +118,7 @@ class EventController extends Controller
 
     // Set the new 'main' date from the dates array
     $dates = collect($request->input('dates'));
+    dd($dates, $request->input('dates'), $dates->min('date_short'));
     $event->date = $dates->min('date_short');
     $event->save();
 
