@@ -116,19 +116,8 @@ class EventController extends Controller
     // Delete current dates
     $event->dates()->delete();
 
-    // Extract date_short from dates array
+    // Set the new 'main' date from the dates array
     $dates = collect($request->input('dates'));
-    $dates = $dates->map(function($date) {
-      return $date['date_short'];
-    });
-
-    // Get the lowest date_short
-    $date = $dates->min('date_short');
-    dd($date);
-
-
-
-
     $event->date = $dates->min('date_short');
     $event->save();
 
