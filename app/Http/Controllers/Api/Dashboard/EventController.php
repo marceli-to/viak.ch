@@ -120,8 +120,11 @@ class EventController extends Controller
     $dates = collect($request->input('dates'));
 
     // some how the dates are not set correctly, 'date_short' is in the format 'dd.mm.YYYY'
-    $event->date = $dates->min('date_short')->format('Y-m-d');
-    dd($event->date);
+    // min() does not work obviously
+    $min_date = $dates->min(function($date) {
+      return $date['date_short'];
+    });
+    dd($min_date);
     $event->date = $dates->min('date_short');
     $event->save();
 
