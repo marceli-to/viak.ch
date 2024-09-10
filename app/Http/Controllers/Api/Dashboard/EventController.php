@@ -79,9 +79,12 @@ class EventController extends Controller
     // Add experts
     $event->experts()->attach($request->input('expert_ids'));
 
-    // Set the 'main' date from the dates array
-    $dates = collect($request->input('dates'));
-    $event->date = $dates->min('date_short');
+    // Set the new 'main' date from the dates array
+    // Get lowest date from dates array
+    $lowestDateTimestamp = collect($dates)->min(function ($date) {
+      return \Carbon\Carbon::createFromFormat('d.m.Y', $date)->timestamp;
+    });
+    $event->date = date('d.m.Y', $lowestDateTimestamp);
     $event->save();
 
     foreach($request->input('dates') as $date)
@@ -113,12 +116,18 @@ class EventController extends Controller
     // Sync experts
     $event->experts()->sync($request->input('expert_ids'));
 
+    // Get 'date_short' only from dates array
+    $dates = collect($request->input('dates'))->pluck('date_short');
+
     // Delete current dates
     $event->dates()->delete();
 
     // Set the new 'main' date from the dates array
-    $dates = collect($request->input('dates'));
-    $event->date = $dates->min('date_short');
+    // Get lowest date from dates array
+    $lowestDateTimestamp = collect($dates)->min(function ($date) {
+      return \Carbon\Carbon::createFromFormat('d.m.Y', $date)->timestamp;
+    });
+    $event->date = date('d.m.Y', $lowestDateTimestamp);
     $event->save();
 
     foreach($request->input('dates') as $date)
