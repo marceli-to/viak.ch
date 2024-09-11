@@ -81,6 +81,10 @@ class EventController extends Controller
 
     // Set the new 'main' date from the dates array
     // Get lowest date from dates array
+    
+    // Get 'date_short' only from dates array
+    $dates = collect($request->input('dates'))->pluck('date_short');
+
     $lowestDateTimestamp = collect($dates)->min(function ($date) {
       return \Carbon\Carbon::createFromFormat('d.m.Y', $date)->timestamp;
     });
