@@ -74,7 +74,11 @@
         </form-group>
 
         <form-group :label="__('E-Mail')" :required="true" :error="errors.email">
-          <input type="email" v-model="form.email" required autocomplete="new-email" aria-autocomplete="new-email" @focus="removeValidationError('email')" />
+          <input type="email" v-model="form.email" required @focus="removeValidationError('email')" />
+        </form-group>
+
+        <form-group :label="__('E-Mail wiederholen')" :required="true" :error="errors.email_confirmation">
+          <input type="email" v-model="form.email_confirmation" required @focus="removeValidationError('email_confirmation')" onpaste="event.preventDefault();" />
         </form-group>
 
         <form-group :label="__('Passwort')" :required="true" :error="errors.password">
@@ -183,7 +187,6 @@ export default {
         login: '/login',
         logout: '/logout',
       },
-
     };
   },
 

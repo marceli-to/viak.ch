@@ -25,6 +25,7 @@ class StudentStoreRequest extends FormRequest
   {
     return [
       'email' => 'required|email|max:255|unique:users',
+      'email_confirmation' => 'required|email|max:255|same:email',
       'password' => 'required|required_with:password_confirmation|same:password_confirmation|min:8',
       'password_confirmation' => 'required|min:8',
       'name' => 'required',
@@ -63,6 +64,18 @@ class StudentStoreRequest extends FormRequest
       'email.max' => [
         'field' => 'email',
         'error' => 'E-Mail darf nicht länger als 255 Zeichen sein'
+      ],
+      'email_confirmation.required' => [
+        'field' => 'email_confirmation',
+        'error' => 'E-Mail wiederholen wird benötigt'
+      ],
+      'email_confirmation.email' => [
+        'field' => 'email_confirmation',
+        'error' => 'E-Mail wiederholen ist nicht gültig'
+      ],
+      'email_confirmation.same' => [
+        'field' => 'email_confirmation',
+        'error' => 'E-Mail wiederholen muss mit E-Mail übereinstimmen'
       ],
       'password.required' => [
         'field' => 'password',
