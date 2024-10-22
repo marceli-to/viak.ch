@@ -2,6 +2,7 @@
 namespace App\Helpers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use App\Models\Booking;
 
 class PenaltyHelper
 {
@@ -44,11 +45,29 @@ class PenaltyHelper
 
   }
 
+  /**
+   * Check if the penalty applies in terms of days
+   * 
+   * @param String $eventDate
+   * @return Boolean
+   */
   public static function has($eventDate)
   {
     // Diff between today and the event date
     // TRUE if the difference is within the minimum range (days_penalty_half)
     $days = Carbon::parse($eventDate)->diffInDays(Carbon::now());
     return $days < config('invoice.days_penalty_half') ? TRUE : FALSE;
+  }
+
+  /**
+   * Check if the penalty applies in terms of course fee and amount
+   * 
+   * @param String $uuid
+   * @return Boolean
+   */
+  public static function applies($uuid)
+  {
+    $booking = Booking::where('uuid', $uuid)->firstOrFail();
+    return $booking->course_fee > $booking->discount_amount ? TRUE : FALSE;
   }
 }

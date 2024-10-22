@@ -102,7 +102,7 @@ class Booking
     ParticipantsChange::handle($booking->event, TRUE);
 
     // Check for cancellation penalty and fire events
-    if (!$booking->event->free_of_charge && PenaltyHelper::has($booking->event->date))
+    if (!$booking->event->free_of_charge && PenaltyHelper::has($booking->event->date) && PenaltyHelper::applies($booking->uuid))
     {
       event(new BookingCancelledWithPenalty(
         User::find($booking->user_id), 
