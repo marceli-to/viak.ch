@@ -10,7 +10,10 @@
         <template #content>
           <div>
             <p><pre v-html="user.address"></pre></p>
-            <p><a :href="`mailto:${user.email}`">{{ user.email }}</a></p>
+            <p>
+              <a :href="`mailto:${user.email}`">{{ user.email }}</a><br>
+              <a :href="`tel:${user.phone}`">{{ user.phone }}</a>
+            </p>
           </div>
         </template>
       </article-text>
