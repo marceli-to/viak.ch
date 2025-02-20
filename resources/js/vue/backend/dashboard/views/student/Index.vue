@@ -29,10 +29,12 @@
             <div class="span-4">
               {{ student.fullname }}<span v-if="student.city">, {{ student.city }}</span>
             </div>
-            <div class="span-8">
+            <div class="span-4">
               <a :href="`mailto:${student.email}`" target="_blank">{{ student.email }}</a>
             </div>
-
+            <div class="span-4">
+              <a :href="`tel:${student.phone}`" target="_blank">{{ student.phone }}</a>
+            </div>
           </div>
         </stacked-list-item>
       </template>
