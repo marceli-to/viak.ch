@@ -25,7 +25,7 @@
       @click="toggleSortMode">
       <icon-arrow-switcher />
       <span>
-        {{ sortMode === 'chronological' ? __('Veranstaltungen') : __('Kurse') }}
+        {{ sortMode === 'chronological' ? __('Kurse') : __('Veranstaltungen') }}
       </span>
     </a>
   </div>
