@@ -256,15 +256,16 @@ export default {
     },
 
     sortedEvents() {
-      let eventsList = this.data.flatMap(course =>
-        course.events.map(event => ({
+      const eventsList = this.data.flatMap(course => {
+        const events = Array.isArray(course.events) ? course.events : [];
+        return events.map(event => ({
           ...event,
           courseTitle: course.title,
           courseId: course.id,
           courseUuid: course.uuid,
           courseNumber: course.course_number
-        }))
-      );
+        }));
+      });
 
       // Apply search filter
       if (this.searchQuery) {
