@@ -52,6 +52,9 @@
 
   h2 {
     @include font-bold();
+    em {
+      @include font-bold();
+    }
   }
 
   a:not([class*="btn-"]) {
@@ -151,6 +154,26 @@
       > div:not(.stacked-list__action) {
         margin-right: $space-12x;
       }
+    }
+  }
+}
+
+// Stacked list for 'Courses > Events'
+.stacked-list-item--course-events {
+  @extend %stacked-list;
+
+  &:first-of-type {
+    margin-top: $space-3x;
+  }
+
+  border-top: 1px solid $color-quaternary;
+  @include bp-sm() {
+    border-top-width: 2px;
+  }
+  
+  h2 {
+    span {
+      margin-left: $space-2x;
     }
   }
 }

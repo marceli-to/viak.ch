@@ -7,6 +7,10 @@
 .collapsible-container {
   @extend %mt-12x;
   @extend %md\:mt-16x;
+
+  &.is-course-events {
+    @extend %mt-3x;
+  }
 }
 
 .collapsible {
