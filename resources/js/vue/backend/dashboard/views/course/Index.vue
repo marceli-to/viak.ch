@@ -238,7 +238,6 @@ export default {
     toggleSortMode() {
       this.sortMode = this.sortMode === 'chronological' ? 'custom' : 'chronological';
     }
-
   },
   
   computed: {
@@ -256,8 +255,9 @@ export default {
     },
 
     sortedEvents() {
-      const eventsList = this.data.flatMap(course => {
-        const events = Array.isArray(course.events) ? course.events : [];
+      let eventsList = this.data.flatMap(course => {
+        //const events = Array.isArray(course.events) ? course.events : [];
+        const events = Object.values(course.events || {});
         return events.map(event => ({
           ...event,
           courseTitle: course.title,
@@ -274,11 +274,11 @@ export default {
 
         eventsList = eventsList.filter(event => {
           return terms.every(term =>
-            event.courseNumber?.toLowerCase().includes(term) ||
-            event.courseTitle?.toLowerCase().includes(term) ||
-            event.experts?.toLowerCase().includes(term) ||
-            event.location?.description?.toLowerCase().includes(term) ||
-            event.dates?.some(d => d.date_long?.toLowerCase().includes(term))
+            (event.courseNumber?.toLowerCase() ?? '').includes(term) ||
+            (event.courseTitle?.toLowerCase() ?? '').includes(term) ||
+            (event.experts?.toLowerCase() ?? '').includes(term) ||
+            (event.location?.description?.toLowerCase() ?? '').includes(term) ||
+            (event.dates?.some(d => (d.date_long ?? '').toLowerCase().includes(term)) ?? false)
           );
         });
       }
