@@ -34,6 +34,7 @@ class DiscountCode extends Base
     'fix',
     'percent',
     'uuid',
+    'remarks'
   ];
 
   /*

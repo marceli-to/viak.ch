@@ -28,8 +28,11 @@
             <icon-edit />
           </router-link>
           <div>
-            <div class="span-3">
-              {{ code.code }}
+            <div class="span-4">
+              <strong>{{ code.code }}</strong>
+              <template v-if="code.valid_from && code.valid_to">
+                <br>Gültig: {{ code.valid_from }} – {{ code.valid_to }}
+              </template>
             </div>
             <div class="span-2">
               <template v-if="code.fix">
@@ -39,10 +42,8 @@
                 {{ code.amount }}%
               </template>
             </div>
-            <div class="span-5">
-              <template v-if="code.valid_from && code.valid_to">
-                Gültig: {{ code.valid_from }} – {{ code.valid_to }}
-              </template>
+            <div class="span-4">
+              {{ code.remarks }}
             </div>
           </div>
         </stacked-list-item>
@@ -59,8 +60,11 @@
             <icon-edit />
           </router-link> -->
           <div>
-            <div class="span-3">
-              {{ code.code }}
+            <div class="span-4">
+              <strong>{{ code.code }}</strong>
+              <template v-if="code.valid_from && code.valid_to">
+                <br>Gültig: {{ code.valid_from }} – {{ code.valid_to }}
+              </template>
             </div>
             <div class="span-2">
               <template v-if="code.fix">
@@ -70,10 +74,8 @@
                 {{ code.amount }}%
               </template>
             </div>
-            <div class="span-5">
-              <template v-if="code.valid_from && code.valid_to">
-                Gültig: {{ code.valid_from }} – {{ code.valid_to }}
-              </template>
+            <div class="span-4">
+              {{ code.remarks }}
             </div>
           </div>
         </stacked-list-item>

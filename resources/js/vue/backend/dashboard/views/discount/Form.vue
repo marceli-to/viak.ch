@@ -58,6 +58,14 @@
         </grid-col>
       </grid>
 
+      <grid>
+        <grid-col>
+          <form-group :label="'Bemerkungen'" :error="errors.remarks">
+            <textarea v-model="data.remarks"></textarea>
+          </form-group>
+        </grid-col>
+      </grid>
+
       <form-group>
         <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
@@ -121,6 +129,7 @@ export default {
         valid_from: null,
         valid_to: null,
         percent: 0,
+        remarks: null,
         fix: 1,
       },
 
