@@ -3,7 +3,7 @@
 @section('seo_description', $course->seo_description ? $course->seo_description : '')
 @section('seo_keywords', $course->seo_tags ? $course->seo_tags : '')
 @if ($course->openGraphImage)
-  @section('og_image', url('/') . '/img/cache/' . $course->openGraphImage->name . '/1500/' . $course->openGraphImage->coords)
+  @section('og_image', url('/') . '/img/crop/' . $course->openGraphImage->name . '/1500/' . $course->openGraphImage->coords)
 @endif
 @section('page_title', __('Kurse'))
 @section('content')

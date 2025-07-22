@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
-use Intervention\Image\ImageCacheController;
+use Illuminate\Routing\Controller;
 use Intervention\Image\ImageManager;
 use Illuminate\Http\Request;
+use MarceliTo\ImageCache\Facades\ImageCache;
+use Illuminate\Support\Facades\File;
 use Config;
 
-class ImageController extends ImageCacheController
+class ImageController extends Controller
 {
   protected $maxSize;
   protected $coords;
@@ -61,6 +63,76 @@ class ImageController extends ImageCacheController
       // template not found
       abort(404);
       break;
+    }
+  }
+
+  /**
+   * Get original image
+   */
+  protected function getOriginal($filename)
+  {
+    try {
+      $paths = config('imagecache.paths', []);
+      foreach ($paths as $path) {
+        $filePath = $path . '/' . $filename;
+        if (File::exists($filePath)) {
+          return response()->file($filePath);
+        }
+      }
+      abort(404, 'Image not found');
+    } catch (\Exception $e) {
+      abort(500, 'Error serving image');
+    }
+  }
+
+  /**
+   * Get download response
+   */
+  protected function getDownload($filename)
+  {
+    try {
+      $paths = config('imagecache.paths', []);
+      foreach ($paths as $path) {
+        $filePath = $path . '/' . $filename;
+        if (File::exists($filePath)) {
+          return response()->download($filePath);
+        }
+      }
+      abort(404, 'Image not found');
+    } catch (\Exception $e) {
+      abort(500, 'Error serving image download');
+    }
+  }
+
+  /**
+   * Get processed image
+   */
+  protected function getImage($template, $filename)
+  {
+    try {
+      $params = [];
+      
+      if ($this->maxSize) {
+        $params['maxSize'] = $this->maxSize;
+      }
+      if ($this->coords) {
+        $params['coords'] = $this->coords;
+      }
+      if ($this->ratio) {
+        $params['ratio'] = $this->ratio;
+      }
+      
+      $cachedImagePath = ImageCache::getCachedImage($template, $filename, $params);
+      
+      if (!$cachedImagePath) {
+        abort(404, 'Image not found');
+      }
+      
+      return response()->file($cachedImagePath);
+    } catch (\InvalidArgumentException $e) {
+      abort(400, $e->getMessage());
+    } catch (\Exception $e) {
+      abort(500, 'Error processing image');
     }
   }
 }

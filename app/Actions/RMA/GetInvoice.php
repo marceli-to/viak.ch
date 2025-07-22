@@ -12,11 +12,14 @@ class GetInvoice
                       config('invoice.prefix') . $invoice->number .  config('invoice.cancellation_suffix') : 
                       config('invoice.prefix') . $invoice->number;
 
-    $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', $invoice_number, env('RMA_ROUTE_API_GET'));
-    $response = Http::acceptJson()->get($url);
-    if ($response->status() == 200)
+    if (app()->environment() == 'production')
     {
-      return $response->object();
+      $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', $invoice_number, env('RMA_ROUTE_API_GET'));
+      $response = Http::acceptJson()->get($url);
+      if ($response->status() == 200)
+      {
+        return $response->object();
+      }
     }
     return NULL;
   }

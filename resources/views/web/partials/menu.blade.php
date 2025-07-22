@@ -22,7 +22,7 @@
       <ul>
         <x-menu-item-basket />
         <x-menu-item-profile />
-        <x-menu-item-language />
+        {{-- <x-menu-item-language /> --}}
       </ul>
     </div>
   </div>

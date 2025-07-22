@@ -58,7 +58,10 @@ class StudentRegisterController extends Controller
     event(new StudentRegistered($user));
 
     // Add user to Mailchimp List
-    NewsletterSubscriber::update($user);
+    // if ($this->app->environment('production'))
+    // {
+    //   NewsletterSubscriber::update($user);
+    // }
 
     // Log the user in
     Auth::login($user);

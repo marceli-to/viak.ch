@@ -1,7 +1,7 @@
 @extends('web.layout.frontend')
 @section('seo_title', __('Home'))
 @if ($openGraphImage)
-  @section('og_image', url('/') . '/img/cache/' . $openGraphImage->name . '/1500/' . $openGraphImage->coords)
+  @section('og_image', url('/') . '/img/crop/' . $openGraphImage->name . '/1500/' . $openGraphImage->coords)
 @endif
 @section('content')
 <section class="container">

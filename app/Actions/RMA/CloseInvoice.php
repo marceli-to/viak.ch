@@ -19,12 +19,16 @@ class CloseInvoice
       "payment_accno" => "1090"
     ];
 
-    $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', $invoice_number, env('RMA_ROUTE_API_UPDATE'));
+    if (app()->environment() == 'production')
+    {
+      $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', $invoice_number, env('RMA_ROUTE_API_UPDATE'));
 
-    return Http::withHeaders([
-      'content-type' => 'application/json',
-      'accept' => 'application/json'
-    ])->post($url, $data);
+      return Http::withHeaders([
+        'content-type' => 'application/json',
+        'accept' => 'application/json'
+      ])->post($url, $data);
+    }
+    return TRUE;
 
   }
 }

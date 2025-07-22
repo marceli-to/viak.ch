@@ -2,7 +2,7 @@
 @section('seo_title', $expert->fullname)
 @section('page_title', __('Experte'))
 @if ($expert->visualImage)
-@section('og_image', url('/') . '/img/cache/' . $expert->visualImage->name . '/1500/' . $expert->visualImage->coords)
+@section('og_image', url('/') . '/img/crop/' . $expert->visualImage->name . '/1500/' . $expert->visualImage->coords)
 @endif
 @section('content')
 <section class="container">
