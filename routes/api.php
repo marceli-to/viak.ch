@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\EventFileController;
 use App\Http\Controllers\Api\NewsletterSubscriberController;
 use App\Http\Controllers\Api\Dashboard\ExpertController as DashboardExpertController;
 use App\Http\Controllers\Api\Dashboard\StudentController as DashboardStudentController;
+use App\Http\Controllers\Api\Dashboard\StudentAddressController as DashboardStudentAddressController;
 use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseController;
 use App\Http\Controllers\Api\Dashboard\CourseVideoController as DashboardCourseVideoController;
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
@@ -260,6 +261,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::get('invoices', [DashboardInvoiceController::class, 'get']);
   Route::get('invoice/{invoice}', [DashboardInvoiceController::class, 'find']);
   Route::put('invoice/{invoice}', [DashboardInvoiceController::class, 'update']);
+
+  // Student addresses
+  Route::get('student/address/{userAddress:uuid}', [DashboardStudentAddressController::class, 'find']);
+  Route::post('student/address', [DashboardStudentAddressController::class, 'store']);
+  Route::put('student/address/{userAddress:uuid}', [DashboardStudentAddressController::class, 'update']);
+  Route::delete('student/address/{userAddress:uuid}', [DashboardStudentAddressController::class, 'destroy']);
 
   // Students
   Route::get('student/documents/{user}', [DashboardStudentController::class, 'getDocuments']);

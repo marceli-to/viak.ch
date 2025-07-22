@@ -69,6 +69,29 @@
           <label for="subscribe_newsletter">Newsletter abonnieren</label>
         </div>
       </form-group>
+
+      <collapsible :expanded="true" class="mt-14x">
+        <template #title class="mb-3x">
+          <div class="mb-3x">Rechnungsadressen</div>
+        </template>
+        <template #content>
+          <stacked-list-item 
+            v-for="(address, index) in data.invoice_addresses"
+            :key="address.uuid"
+            :class="[index == 0 ? 'md:mt-3x' : '', '']">
+            {{ address.address_str }}
+            <router-link :to="{ name: `student-address-edit`, params: { id: data.id, uuid: address.uuid } }" class="icon-edit mt-2x sm:mt-4x">
+              <icon-edit />
+            </router-link>
+          </stacked-list-item>
+          <div class="flex justify-start mt-6x">
+            <router-link :to="{ name: `student-address-create`, params: { id: data.id } }" class="icon-plus">
+              <icon-plus />
+            </router-link>
+          </div>
+        </template>
+      </collapsible>
+
       <form-group>
         <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
@@ -98,6 +121,9 @@ import tinyConfig from "@/shared/config/tiny.js";
 import ArticleText from "@/shared/components/ui/layout/ArticleText.vue";
 import Grid from "@/shared/components/ui/layout/Grid.vue";
 import GridCol from "@/shared/components/ui/layout/GridCol.vue";
+import StackedListItem from "@/shared/components/ui/layout/StackedListItem.vue";
+import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
 import FormGroupHeader from "@/shared/components/ui/form/FormGroupHeader.vue";
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
@@ -118,7 +144,10 @@ export default {
     Images,
     BackLink,
     CollapsibleContainer,
-    Collapsible
+    Collapsible,
+    StackedListItem,
+    IconEdit,
+    IconPlus,
   },
 
   mixins: [Validation, Helpers],
