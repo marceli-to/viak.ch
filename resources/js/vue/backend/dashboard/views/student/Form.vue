@@ -70,33 +70,59 @@
         </div>
       </form-group>
 
-      <collapsible :expanded="true" class="mt-14x">
-        <template #title class="mb-3x">
-          <div class="mb-3x">Rechnungsadressen</div>
-        </template>
-        <template #content>
-          <stacked-list-item 
-            v-for="(address, index) in data.invoice_addresses"
-            :key="address.uuid"
-            :class="[index == 0 ? 'md:mt-3x' : '', '']">
-            {{ address.address_str }}
-            <router-link :to="{ name: `student-address-edit`, params: { id: data.id, uuid: address.uuid } }" class="icon-edit mt-2x sm:mt-4x">
-              <icon-edit />
-            </router-link>
-          </stacked-list-item>
-          <div class="flex justify-start mt-6x">
-            <router-link :to="{ name: `student-address-create`, params: { id: data.id } }" class="icon-plus">
-              <icon-plus />
-            </router-link>
-          </div>
-        </template>
-      </collapsible>
+      <template v-if="type == 'create'">
+        <collapsible :expanded="true" class="mt-14x">
+          <template #title class="mb-3x">
+            <div class="mb-3x">Zugangsdaten</div>
+          </template>
+          <template #content>
+            <form-group label="E-Mail" :error="errors.email">
+              <input type="email" v-model="data.email" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeValidationError('email')" />
+            </form-group>
+            <form-group label="E-Mail wiederholen" :error="errors.email_confirmation">
+              <input type="email" v-model="data.email_confirmation" autocomplete="new-email" aria-autocomplete="new-email" @focus="removeValidationError('email_confirmation')" />
+            </form-group>
+            <form-group label="Passwort" :error="errors.password">
+              <input type="password" v-model="data.password" required autocomplete="new-password" aria-autocomplete="off" @focus="removeValidationError('password')" />
+              <div class="requirements">min. 8 Zeichen</div>
+            </form-group>
+            <form-group label="Passwort wiederholen" :error="errors.password_confirmation">
+              <input type="password" v-model="data.password_confirmation" autocomplete="new-password-confirmation" aria-autocomplete="off" @focus="removeValidationError('password_confirmation')" />
+            </form-group>
+          </template>
+        </collapsible>
+      </template>
+
+      <template v-if="type == 'edit'">
+        <collapsible :expanded="true" class="mt-14x">
+          <template #title class="mb-3x">
+            <div class="mb-3x">Rechnungsadressen</div>
+          </template>
+          <template #content>
+            <stacked-list-item 
+              v-for="(address, index) in data.invoice_addresses"
+              :key="address.uuid"
+              :class="[index == 0 ? 'md:mt-3x' : '', '']">
+              {{ address.address_str }}
+              <router-link :to="{ name: `student-address-edit`, params: { id: data.id, uuid: address.uuid } }" class="icon-edit mt-2x sm:mt-4x">
+                <icon-edit />
+              </router-link>
+            </stacked-list-item>
+            <div class="flex justify-start mt-6x">
+              <router-link :to="{ name: `student-address-create`, params: { id: data.id } }" class="icon-plus">
+                <icon-plus />
+              </router-link>
+            </div>
+          </template>
+        </collapsible>
+      </template>
 
       <form-group>
         <a href="" @click.prevent="submit()" :class="[$store.state.isLoading ? 'is-disabled' : '', 'btn-primary']">
           Speichern
         </a>
       </form-group>
+
       <div class="form-danger-zone is-danger" v-if="$props.type == 'edit'">
         <h2>Student löschen</h2>
         <p>Mit dieser Aktion wird der Student gelöscht.</p>
@@ -161,7 +187,9 @@ export default {
       
       // Model
       data: {
-        subscribe_newsletter: 0,
+        gender_id: 2,
+        country_id: 1,
+        subscribe_newsletter: 1,
       },
 
       // Validation
@@ -172,7 +200,10 @@ export default {
         zip: null,
         city: null,
         email: null,
+        email_confirmation: null,
         password: null,
+        password_confirmation: null,
+        country_id: null,
         gender_id: null,
       },
 
@@ -213,6 +244,9 @@ export default {
     if (this.$props.type == 'edit') {
       this.fetch();
     }
+    if (this.$props.type == 'create') {
+      this.isFetched = true;
+    }
     this.fetchSettings();
   },
 
@@ -222,6 +256,7 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
         this.data = response.data;
+        console.log(this.data.operating_system);
         this.isFetched = true;
         NProgress.done();
       });
@@ -253,6 +288,11 @@ export default {
       this.$store.commit('isLoading', true); 
       this.axios.post(this.routes.store, this.data).then(response => {
         this.$router.push({ name: 'students'});
+      })
+      .catch(error => {
+        this.handleValidationErrors(error.response.data);
+        this.$store.commit('isLoading', false); 
+        NProgress.done();
       });
     },
 
@@ -264,6 +304,8 @@ export default {
       })
       .catch(error => {
         this.handleValidationErrors(error.response.data);
+        this.$store.commit('isLoading', false); 
+        NProgress.done();
       });
     },
 

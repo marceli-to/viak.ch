@@ -5,7 +5,12 @@
       <grid-col class="span-4">
         <h1>Studenten</h1>
       </grid-col>
-      <grid-col class="span-8">
+      <grid-col class="span-4">
+        <router-link :to="{ name: 'student-create' }" class="icon-plus">
+          <icon-plus />
+        </router-link>
+      </grid-col>
+      <grid-col class="span-4">
         <search-container @clear="fetch()" :input="searchQuery ? true : false">
           <form v-on:submit.prevent="search()">
             <input type="text" v-model="searchQuery" maxlength="" placeholder="Suchbegriff..." />
@@ -55,6 +60,7 @@ import StackedListFooter from "@/shared/components/ui/layout/StackedListFooter.v
 import CollapsibleContainer from "@/shared/components/ui/layout/CollapsibleContainer.vue";
 import Collapsible from "@/shared/components/ui/layout/Collapsible.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
+import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 
 export default {
@@ -72,7 +78,8 @@ export default {
     CollapsibleContainer,
     Collapsible,
     IconEdit,
-    IconArrowRight
+    IconArrowRight,
+    IconPlus,
   },
 
   mixins: [],

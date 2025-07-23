@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Api\Dashboard;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DataCollection;
 use App\Http\Resources\StudentResource;
@@ -9,8 +10,7 @@ use App\Models\Role;
 use App\Facades\NewsletterSubscriber;
 use App\Http\Requests\StudentStoreRequest;
 use App\Http\Requests\StudentUpdateRequest;
-
-use Illuminate\Http\Request;
+use App\Events\StudentRegistered;
 
 class StudentController extends Controller
 {
@@ -78,10 +78,35 @@ class StudentController extends Controller
    */
   public function store(StudentStoreRequest $request)
   {
-    $user = User::create($request->all());
+    $user = User::create([
+      'firstname' => $request->input('firstname'),
+      'name' => $request->input('name'),
+      'company' => $request->input('company'),
+      'street' => $request->input('street'),
+      'street_no' => $request->input('street_no') ? $request->input('street_no') : NULL,
+      'zip' => $request->input('zip'),
+      'city' => $request->input('city'),
+      'phone' => $request->input('phone') ? $request->input('phone') : NULL,
+      'operating_system' => $request->input('operating_system') ? collect($request->input('operating_system'))->implode(',') : NULL,
+      'subscribe_newsletter' => $request->input('subscribe_newsletter'),
+      'email' => $request->input('email'),
+      'password' => \Hash::make($request->input('password')),
+      'uuid' => \Str::uuid(),
+      'gender_id' => $request->input('gender_id'),
+      'country_id' => $request->input('country_id')
+    ]);
 
-    // Handle newsletter subscription
-    NewsletterSubscriber::update($user);
+    // Attach role
+    $user->roles()->attach(Role::STUDENT);
+
+    // Send confirmation email
+    event(new StudentRegistered($user));
+
+    // Add user to Mailchimp List
+    if (app()->environment('production'))
+    {
+      NewsletterSubscriber::update($user);
+    }
 
     return response()->json(['userId' => $user->id]);
   }

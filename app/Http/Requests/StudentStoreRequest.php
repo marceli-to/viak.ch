@@ -34,7 +34,7 @@ class StudentStoreRequest extends FormRequest
       'zip' => 'required',
       'city' => 'required',
       'phone' => 'required',
-      'accept_tos' => 'accepted',
+      'accept_tos' => 'sometimes|accepted',
       'gender_id' => 'required|exists:App\Models\Gender,id',
       'country_id' => 'required|exists:App\Models\Country,id'
     ];
