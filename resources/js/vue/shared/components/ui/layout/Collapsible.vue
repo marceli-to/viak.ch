@@ -12,6 +12,7 @@
     <div v-show="isOpen">
       <slot name="content" />
     </div>
+    <slot name="footer" />
   </div>
 </template>
 <script>

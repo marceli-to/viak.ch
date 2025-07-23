@@ -50,6 +50,12 @@ input[type=time] {
   @extend %md\:fs-24x;
 }
 
+input[type=text].is-small {
+  @extend %fs-14x;
+  @extend %sm\:fs-16x;
+  @extend %md\:fs-18x;
+}
+ 
 textarea, 
 select {
   @extend %fs-14x;

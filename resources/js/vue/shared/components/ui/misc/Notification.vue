@@ -1,8 +1,7 @@
 <template>
   <div 
     :class="`is-modal ${style}`" 
-    v-show="isOpen" 
-    @click="hide()">
+    v-show="isOpen">
     <div class="notification__inner">
 
       <template v-if="type == 'alert'">

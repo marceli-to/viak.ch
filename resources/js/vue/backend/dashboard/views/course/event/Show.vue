@@ -34,7 +34,7 @@
     </collapsible-container>
 
     <collapsible-container>
-      <collapsible :items="data.participants" :uuid="'dashboard-course-event-participants'">
+      <collapsible :items="data.participants" :expanded="false" :uuid="'dashboard-course-event-participants'">
         <template #title>
           {{ __('Teilnehmer') }}
         </template>
@@ -88,6 +88,13 @@
             </p>
           </template>
         </template>
+        <template #action>
+          <div class="mt-5x">
+            <a href="javascript:;" @click="showBookingDialog">
+              <IconPlus />
+            </a>
+          </div>
+        </template>
       </collapsible>
     </collapsible-container>
 
@@ -138,6 +145,54 @@
         </template>
       </collapsible>
     </collapsible-container>
+
+    <!-- Add Student Dialog -->
+    <notification ref="bookingDialog" type="dialog">
+      <template #text>
+        <div class="min-w-250px">
+
+          <form-group class="mb-0">
+            <input 
+              type="text" 
+              v-model="searchKeyword" 
+              @input="searchStudents"
+              class="is-small"
+              :placeholder="__('Name oder Vorname eingeben...')">
+          </form-group>
+          
+          <div class="mt-4x" v-if="searchResults.length > 0">
+            <form-group class="mb-0">
+              <div class="select-wrapper">
+                <select v-model="selectedStudent">
+                  <option 
+                    v-for="student in searchResults" 
+                    :key="student.id"
+                    :value="student">
+                    {{ student.fullname }}, {{ student.city }}
+                  </option>
+                </select>
+              </div>
+            </form-group>
+          </div>
+          
+          <div class="mt-4x" v-if="searchKeyword && !isSearching && searchResults.length === 0">
+            <p>{{ __('Keine Studenten gefunden') }}</p>
+          </div>
+        </div>
+      </template>
+      
+      <template #actions>
+        <button 
+          @click="addSelectedStudent" 
+          :disabled="!selectedStudent || isAddingStudent"
+          class="btn-primary">
+          {{ isAddingStudent ? __('Speichern...') : __('Hinzufügen') }}
+        </button>
+        <button @click="hideBookingDialog" class="btn-secondary">
+          {{ __('Abbrechen') }}
+        </button>
+      </template>
+    </notification>
   </div>
 </template>
 <script>
@@ -158,7 +213,7 @@ import IconPlus from "@/shared/components/ui/icons/Plus.vue";
 import Messages from "@/shared/modules/messages/Index.vue";
 import ButtonFileDelete from "@/shared/modules/files/components/ButtonDelete.vue";
 import BackLink from '@/shared/components/ui/misc/BackLink.vue';
-import { template } from 'lodash';
+import FormGroup from '@/shared/components/ui/form/FormGroup.vue';
 
 export default {
 
@@ -176,7 +231,8 @@ export default {
     IconPlus,
     Messages,
     ButtonFileDelete,
-    BackLink
+    BackLink,
+    FormGroup
   },
 
   mixins: [Validation, i18n, Helpers],
@@ -188,9 +244,19 @@ export default {
 
       isFetched: false,
 
+      // Add student dialog data
+      searchKeyword: '',
+      searchResults: [],
+      selectedStudent: null,
+      isSearching: false,
+      isAddingStudent: false,
+      searchTimeout: null,
+
       routes: {
         show: '/api/expert/course/event',
-        updateParticipation: '/api/booking/participation'
+        updateParticipation: '/api/booking/participation',
+        searchStudents: '/api/dashboard/students/search',
+        booking: '/api/dashboard/booking'
       },
     };
   },
@@ -230,6 +296,91 @@ export default {
       .catch(error => {
         this.handleValidationErrors(error.response.data);
       });
+    },
+
+    showBookingDialog() {
+      this.resetDialog();
+      this.$refs.bookingDialog.init({
+        message: this.__('Teilnehmer hinzufügen'),
+        type: 'dialog',
+        style: 'info'
+      });
+    },
+
+    hideBookingDialog() {
+      this.$refs.bookingDialog.hide();
+      this.resetDialog();
+    },
+
+    resetDialog() {
+      this.searchKeyword = '';
+      this.searchResults = [];
+      this.selectedStudent = null;
+      this.isSearching = false;
+      this.isAddingStudent = false;
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+    },
+
+    searchStudents() {
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+
+      if (this.searchKeyword.length < 2) {
+        this.searchResults = [];
+        return;
+      }
+
+      this.isSearching = true;
+      this.searchTimeout = setTimeout(() => {
+        this.axios.get(`${this.routes.searchStudents}/${encodeURIComponent(this.searchKeyword)}`)
+          .then(response => {
+            this.searchResults = response.data.data || [];
+            // Auto-select the first student if multiple results are found
+            if (this.searchResults.length > 0) {
+              this.selectedStudent = this.searchResults[0];
+            }
+            this.isSearching = false;
+          })
+          .catch(error => {
+            console.error('Search error:', error);
+            this.searchResults = [];
+            this.selectedStudent = null;
+            this.isSearching = false;
+          });
+      }, 300);
+    },
+
+    selectStudent(student) {
+      this.selectedStudent = student;
+    },
+
+    addSelectedStudent() {
+      if (!this.selectedStudent) return;
+
+      this.isAddingStudent = true;
+      const data = {
+        event_uuid: this.$route.params.uuid,
+        user_uuid: this.selectedStudent.uuid
+      };
+
+      this.axios.post(this.routes.booking, data)
+        .then(response => {
+          this.$toast.open(this.__('Buchung erstellt'));
+          this.hideBookingDialog();
+          this.fetch(); // Refresh the participant list
+        })
+        .catch(error => {
+          this.isAddingStudent = false;
+          if (error.response && error.response.data && error.response.data.message) {
+            this.$toast.open(error.response.data.message);
+            this.hideBookingDialog();
+          } else {
+            this.$toast.open(this.__('Fehler beim Erstellen der Buchung'));
+          }
+        });
     }
   },
 }

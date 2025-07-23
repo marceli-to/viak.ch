@@ -28,6 +28,7 @@ use App\Http\Controllers\Api\Dashboard\CourseController as DashboardCourseContro
 use App\Http\Controllers\Api\Dashboard\CourseVideoController as DashboardCourseVideoController;
 use App\Http\Controllers\Api\Dashboard\CourseSettingsController as DashboardCourseSettingsController;
 use App\Http\Controllers\Api\Dashboard\EventController as DashboardEventController;
+use App\Http\Controllers\Api\Dashboard\BookingController as DashboardBookingController;
 use App\Http\Controllers\Api\Dashboard\EventSettingsController as DashboardEventSettingsController;
 use App\Http\Controllers\Api\Dashboard\DiscountCodeController as DashboardDiscountCodeController;
 use App\Http\Controllers\Api\Dashboard\Settings\CategoryController as DashboardCategoryController;
@@ -277,6 +278,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('dashboard
   Route::put('student/{user}', [DashboardStudentController::class, 'update']);
   Route::get('student/state/{user}', [DashboardStudentController::class, 'toggle']);
   Route::delete('student/{user}', [DashboardStudentController::class, 'destroy']);
+  
+  // Bookings
+  Route::post('booking', [DashboardBookingController::class, 'create']);
 
   // Experts
   Route::get('experts', [DashboardExpertController::class, 'get']);

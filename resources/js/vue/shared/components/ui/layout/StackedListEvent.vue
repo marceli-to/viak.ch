@@ -192,7 +192,6 @@ import Bookmark from "@/shared/mixins/Bookmark";
 import Basket from "@/shared/mixins/Basket";
 import EventState from "@/shared/components/ui/misc/EventState";
 import Notification from "@/shared/components/ui/misc/Notification";
-import { template } from 'lodash';
 
 export default {
 

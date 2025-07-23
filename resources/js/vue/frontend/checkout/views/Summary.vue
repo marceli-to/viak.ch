@@ -99,7 +99,6 @@ import IconArrowRight from "@/shared/components/ui/icons/ArrowRight.vue";
 import IconArrowLeft from "@/shared/components/ui/icons/ArrowLeft.vue";
 import IconEdit from "@/shared/components/ui/icons/Edit.vue";
 import FormGroup from "@/shared/components/ui/form/FormGroup.vue";
-import { template } from 'lodash';
 
 export default {
 
