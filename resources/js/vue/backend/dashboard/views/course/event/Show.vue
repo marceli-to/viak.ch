@@ -75,7 +75,11 @@
                 </div>
               </div>
             </stacked-list-item>
-            <div class="mt-5x sm:mt-10x" v-if="!data.event.is_cancelled">
+            <div class="mt-5x sm:mt-10x flex justify-between" v-if="!data.event.is_cancelled">
+              <a href="javascript:;" @click="showBookingDialog" class="icon-plus icon-plus--label">
+                <span>{{ __('Teilnehmer hinzufügen') }}</span>
+                <IconPlus />
+              </a>
               <a :href="`/pdf/teilnehmer-liste/${data.event.uuid}?v=${randomString()}`" target="_blank" class="icon-arrow-right:below" :title="__('Download Teilnehmerliste')">
                 <span>{{ __('Teilnehmerliste (PDF)') }}</span>
                 <icon-arrow-right />
@@ -193,6 +197,7 @@
         </button>
       </template>
     </notification>
+
   </div>
 </template>
 <script>

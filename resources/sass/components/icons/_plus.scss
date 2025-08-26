@@ -14,4 +14,10 @@
   &:hover {
     color: $color-secondary;
   }
+
+  &--label {
+    @extend %link;
+    width: auto;
+  }
+
 }
