@@ -73,7 +73,7 @@ class AdminUpdateRequest extends FormRequest
       ],
       'new_email.unique' => [
         'field' => 'new_email',
-        'error' => 'E-Mail kann nicht verwendet werden'
+        'error' => 'E-Mail existiert bereits im System'
       ],
       'new_email.max' => [
         'field' => 'new_email',

@@ -59,7 +59,7 @@ class StudentStoreRequest extends FormRequest
       ],
       'email.unique' => [
         'field' => 'email',
-        'error' => 'E-Mail kann nicht verwendet werden'
+        'error' => 'E-Mail existiert bereits im System'
       ],
       'email.max' => [
         'field' => 'email',
