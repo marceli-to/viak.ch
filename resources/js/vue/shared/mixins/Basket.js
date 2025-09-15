@@ -80,6 +80,7 @@ export default {
       this.axios.put(uri).then(response => {
         this.updateBasketCounter(response.data.count);
         this.inBasket = true;
+        this.$refs.dialog_rental.hide();
         this.$refs.notification.init({
           message: 'Der Kurs wurde im Warenkorb abgelegt.',
           type: 'dialog',

@@ -89,7 +89,11 @@
           @endif
         @else
           @if (!$hasBooking)
-            <basket-button uuid="{{ $event->uuid }}" rentals="{{ $event->has_rentals ? 1 : 0 }}" :exists="{{ $inBasket }}" />
+            @if ($user && !$user->email_verified_at)
+             <a href="/email/verify" class="btn-primary btn-auto-w">{{ __('Buchen') }}</a>
+            @else
+              <basket-button uuid="{{ $event->uuid }}" rentals="{{ $event->has_rentals ? 1 : 0 }}" :exists="{{ $inBasket }}" />
+            @endif
           @else
             <a href="{{ route(locale() . '.page.student.profile') }}" title="Buchung verwalten" class="btn-primary is-outline">
               {{ __('Verwalten')}}

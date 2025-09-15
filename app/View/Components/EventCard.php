@@ -8,6 +8,15 @@ use App\Facades\Bookmark as BookmarkFacade;
 
 class EventCard extends Component
 {
+
+  /**
+   * User
+   *
+   * @var User $user
+   */
+
+  public $user;
+
   /**
    * Event
    *
@@ -69,6 +78,7 @@ class EventCard extends Component
   public function __construct(Event $event, $events = [])
   {
     $this->event    = $event;
+    $this->user     = auth()->user() ?? null;
     $this->bookmark = NULL;
     $this->experts  = collect($event->experts->pluck('fullname')->all());
     $this->inBasket = (int) (new BasketStore())->hasItem($this->event->uuid);
