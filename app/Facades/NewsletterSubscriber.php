@@ -31,9 +31,9 @@ class NewsletterSubscriber
           'error' => $e->getMessage()
         ]);
 
-        Mail::raw('Newsletter subscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
-          $message->to('m@marceli.to')->subject('Newsletter Subscription Error');
-        });
+        // Mail::raw('Newsletter subscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
+        //   $message->to('m@marceli.to')->subject('Newsletter Subscription Error');
+        // });
       }
     }
     else
@@ -48,9 +48,9 @@ class NewsletterSubscriber
           'error' => $e->getMessage()
         ]);
 
-        Mail::raw('Newsletter unsubscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
-          $message->to('m@marceli.to')->subject('Newsletter Unsubscription Error');
-        });
+        // Mail::raw('Newsletter unsubscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
+        //   $message->to('m@marceli.to')->subject('Newsletter Unsubscription Error');
+        // });
       }
     }
     return $user->save();
