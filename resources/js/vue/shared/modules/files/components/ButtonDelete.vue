@@ -53,6 +53,7 @@ export default {
       NProgress.start();
       this.axios.delete(`${this.routes.delete}/${this.$props.file.uuid}`).then(response => {
         this.$emit('fileDeleted', this.$props.file);
+        this.$refs.notification.hide()
         NProgress.done();
       })
       .catch(error => {

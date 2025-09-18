@@ -238,6 +238,7 @@ export default {
           this.data.splice(index, 1);
         }
         this.videoToDelete = null;
+        this.$refs.notification.hide();
       })
       .catch(error => {
         this.handleValidationErrors(error.response.data);

@@ -7,16 +7,19 @@
       @vdropzone-complete="complete"
     ></vue-dropzone-file>
     <span class="requirements">{{restrictions}}</span>
+    <notification ref="notification"></notification>
   </div>
 </template>
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import dropzoneConfig from "@/shared/modules/files/config/upload.js";
+import Notification from "@/shared/components/ui/misc/Notification.vue";
 
 export default {
 
   components: {
     vueDropzoneFile: vue2Dropzone,
+    Notification,
   },
 
   props: {
@@ -29,10 +32,15 @@ export default {
   data() {
     return {
       dropzoneConfig: dropzoneConfig,
-      messages: {
-        uploadError: 'Ungültiges Format oder Datei zu gross. Erlaubt sind die Formate "PDF", "ZIP", "TXT" und "DOC" bis max. 16 MB!'
-      }
+      messages: {}
     };
+  },
+
+  computed: {
+    uploadError() {
+      const formats = this.acceptedFiles.replace(/\./g, '').replace(/,/g, ', ').toUpperCase();
+      return `Ungültiges Format oder Datei zu gross. Erlaubt sind: ${formats} | max. ${this.maxFilesize} MB`;
+    }
   },
 
   created() {
@@ -46,7 +54,7 @@ export default {
     complete(file) {
       if (file.status == "error" || file.accepted == false) {
         this.$refs.notification.init({
-          message: this.messages.uploadError,
+          message: this.uploadError,
           type: 'alert',
           style: 'error',
         });

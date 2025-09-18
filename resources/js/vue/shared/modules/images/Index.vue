@@ -176,6 +176,7 @@ export default {
         this.currentImage = null;
         this.$toast.open(this.__(this.notifications.deleted));
         NProgress.done();
+        this.$refs.notification.hide();
       });
     },
 

@@ -4,7 +4,7 @@ export default {
   maxFilesize: 24,
   maxFiles: 1,
   createImageThumbnails: false,
-  acceptedFiles: '.pdf, .txt, .zip, .doc',
+  acceptedFiles: '.pdf,.zip,.txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx',
   headers: {
     'Authorization': 'Bearer ' + localStorage.getItem('token')
   }

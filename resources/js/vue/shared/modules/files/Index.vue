@@ -146,6 +146,7 @@ export default {
         const index = this.data.findIndex(x => x.uuid === this.currentFile.uuid);
         this.data.splice(index, 1);
         this.currentFile = null;
+        this.$refs.notification.hide();
         this.$toast.open(this.__(this.notifications.deleted));
         NProgress.done();
       });
