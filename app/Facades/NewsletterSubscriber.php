@@ -3,9 +3,6 @@ namespace App\Facades;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Newsletter;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use MarceliTo\AppLog\Facades\AppLog;
 
 class NewsletterSubscriber
 {
