@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db7e24790f73868af7fa0ebb0ea515fb",
+    "content-hash": "ec56d98030cbea77905eb15e5fcb6175",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3724,16 +3724,16 @@
         },
         {
             "name": "marceli-to/wiretap",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marceli-to/wiretap-package.git",
-                "reference": "dbe732be1eb84174f1fe1cfc370bbe657047115d"
+                "reference": "d8f7f8a932308b729cd48527ffb64ecae3fa12ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marceli-to/wiretap-package/zipball/dbe732be1eb84174f1fe1cfc370bbe657047115d",
-                "reference": "dbe732be1eb84174f1fe1cfc370bbe657047115d",
+                "url": "https://api.github.com/repos/marceli-to/wiretap-package/zipball/d8f7f8a932308b729cd48527ffb64ecae3fa12ab",
+                "reference": "d8f7f8a932308b729cd48527ffb64ecae3fa12ab",
                 "shasum": ""
             },
             "require": {
@@ -3775,9 +3775,9 @@
             "description": "A simplified logging package for Laravel with webhook capabilities",
             "support": {
                 "issues": "https://github.com/marceli-to/wiretap-package/issues",
-                "source": "https://github.com/marceli-to/wiretap-package/tree/v1.2.0"
+                "source": "https://github.com/marceli-to/wiretap-package/tree/v1.3.0"
             },
-            "time": "2025-09-18T13:32:33+00:00"
+            "time": "2025-09-18T16:58:32+00:00"
         },
         {
             "name": "markbaker/complex",
