@@ -36,15 +36,12 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
-      Wiretap::error('Exception occurred', [
-        'message' => $exception->getMessage(),
-        'file' => $exception->getFile(),
-        'line' => $exception->getLine(),
+      Wiretap::exception($exception, [
         'url' => request()->fullUrl(),
         'method' => request()->method(),
         'user_id' => auth()->id(),
         'ip' => request()->ip()
-    ]);
+      ]);
       parent::report($exception);
     }
 

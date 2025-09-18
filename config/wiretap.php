@@ -60,16 +60,29 @@ return [
 
         /*
         |--------------------------------------------------------------------------
+        | Webhook Secret
+        |--------------------------------------------------------------------------
+        |
+        | Bearer token secret for webhook authentication. When configured,
+        | the Authorization: Bearer {secret} header will be included with
+        | all webhook requests.
+        |
+        */
+
+        'secret' => env('WIRETAP_WEBHOOK_SECRET'),
+
+        /*
+        |--------------------------------------------------------------------------
         | Custom Headers
         |--------------------------------------------------------------------------
         |
         | Additional headers to send with webhook requests. Useful for
-        | authentication tokens, API keys, etc.
+        | authentication tokens, API keys, etc. Note: If webhook secret is
+        | configured above, Authorization header will be automatically added.
         |
         */
 
         'headers' => [
-            // 'Authorization' => 'Bearer your-token-here',
             // 'X-API-Key' => 'your-api-key',
         ],
 
@@ -125,7 +138,7 @@ return [
         'Illuminate\Validation\ValidationException' => 'skip',
 
         // Authentication required
-        'Illuminate\Auth\AuthenticationException' => 'warning',
+        'Illuminate\Auth\AuthenticationException' => 'skip',
 
         // Authorization failures
         'Illuminate\Auth\Access\AuthorizationException' => 'warning',
@@ -146,10 +159,10 @@ return [
         'Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException' => 'warning',
 
         // 405 Method Not Allowed
-        'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException' => 'skip',
+        'Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException' => 'info',
 
         // 422 Unprocessable Entity
-        'Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException' => 'skip',
+        'Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException' => 'info',
 
         // 429 Too Many Requests
         'Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException' => 'warning',
