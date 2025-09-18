@@ -5,6 +5,7 @@ use App\Models\User;
 use Newsletter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use MarceliTo\AppLog\Facades\AppLog;
 
 class NewsletterSubscriber
 {
@@ -20,38 +21,23 @@ class NewsletterSubscriber
   {
     if ($user->subscribe_newsletter == 1)
     {
-      try {
-        Newsletter::subscribeOrUpdate($user->email, ['FNAME'=> $user->firstname, 'LNAME'=> $user->name]);
-        Newsletter::addTags([env('MAILCHIMP_TAGS'), 'Deutsch'], $user->email);
-        $user->subscribe_newsletter = 1;
-      } catch (\Exception $e) {
-        Log::error('Newsletter subscription failed', [
-          'user_id' => $user->id,
-          'email' => $user->email,
-          'error' => $e->getMessage()
-        ]);
+      Newsletter::subscribeOrUpdate($user->email, ['FNAME'=> $user->firstname, 'LNAME'=> $user->name]);
 
-        // Mail::raw('Newsletter subscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
-        //   $message->to('m@marceli.to')->subject('Newsletter Subscription Error');
-        // });
-      }
+      $api = Newsletter::getApi();
+      $listId = config('newsletter.lists.subscribers.id');
+      $memberHash = $api->subscriberHash($user->email);
+      $api->patch("lists/{$listId}/members/{$memberHash}/tags", [
+        'tags' => [
+          ['name' => env('MAILCHIMP_TAGS'), 'status' => 'active'],
+          ['name' => 'Deutsch', 'status' => 'active']
+        ]
+      ]);
+      $user->subscribe_newsletter = 1;
     }
     else
     {
-      try {
-        Newsletter::unsubscribe($user->email);
-        $user->subscribe_newsletter = 0;
-      } catch (\Exception $e) {
-        Log::error('Newsletter unsubscription failed', [
-          'user_id' => $user->id,
-          'email' => $user->email,
-          'error' => $e->getMessage()
-        ]);
-
-        // Mail::raw('Newsletter unsubscription failed for user ' . $user->email . '. Error: ' . $e->getMessage(), function ($message) {
-        //   $message->to('m@marceli.to')->subject('Newsletter Unsubscription Error');
-        // });
-      }
+      Newsletter::unsubscribe($user->email);
+      $user->subscribe_newsletter = 0;
     }
     return $user->save();
   }

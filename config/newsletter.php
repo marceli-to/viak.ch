@@ -16,6 +16,14 @@ return [
     'apiKey' => env('MAILCHIMP_APIKEY'),
 
     /*
+     * The driver arguments to use to interact with MailChimp API.
+     */
+    'driver_arguments' => [
+      'api_key' => env('MAILCHIMP_APIKEY'),
+      'endpoint' => null,
+  ],
+
+    /*
      * The listName to use when no listName has been specified in a method.
      */
     'defaultListName' => 'subscribers',
