@@ -22,7 +22,17 @@ class NewsletterSubscriberController extends Controller
         'LNAME'=> $request->input('name')
       ]
     );
-    Newsletter::addTags([env('MAILCHIMP_TAGS'), 'Deutsch'], $request->input('email'));
+
+    $api = Newsletter::getApi();
+    $listId = config('newsletter.lists.subscribers.id');
+    $memberHash = $api->subscriberHash($request->input('email'));
+    $api->patch("lists/{$listId}/members/{$memberHash}/tags", [
+      'tags' => [
+        ['name' => env('MAILCHIMP_TAGS'), 'status' => 'active'],
+        ['name' => 'Deutsch', 'status' => 'active']
+      ]
+    ]);
+
     return response()->json(200);
   }
 
