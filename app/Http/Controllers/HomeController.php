@@ -5,6 +5,7 @@ use App\Models\GridRow;
 use App\Models\GridRowItem;
 use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
+use MarceliTo\Wiretap\Facades\Wiretap;
 
 class HomeController extends BaseController
 {
@@ -24,6 +25,7 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
+    Wiretap::info('User logged in', ['user_id' => 123]);
     return view(
       $this->viewPath . 'index', [
         'hero' => Hero::published()->with('publishedImages')->where('slug', 'home')->first(),
