@@ -256,7 +256,6 @@ export default {
       NProgress.start();
       this.axios.get(`${this.routes.find}/${this.$route.params.id}`).then(response => {
         this.data = response.data;
-        console.log(this.data.operating_system);
         this.isFetched = true;
         NProgress.done();
       });

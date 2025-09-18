@@ -277,7 +277,6 @@ export default {
       this.isFetched = false;
       this.axios.get(`${this.routes.show}/${this.$route.params.uuid}`).then(response => {
         this.data = response.data;
-        console.log(this.data);
         this.isFetched = true;
       });
     },

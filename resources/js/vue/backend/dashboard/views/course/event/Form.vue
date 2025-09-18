@@ -473,6 +473,7 @@ export default {
       if (this.actionToBeConfirmed == 'close') {
         this.closeEvent();
       }
+      this.$refs.notification.hide();
     },
 
     confirmDestroy() {
