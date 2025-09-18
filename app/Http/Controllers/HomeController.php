@@ -25,6 +25,7 @@ class HomeController extends BaseController
 
   public function index(Request $request)
   {
+    throw new \Exception('Test exception');
     return view(
       $this->viewPath . 'index', [
         'hero' => Hero::published()->with('publishedImages')->where('slug', 'home')->first(),
