@@ -223,7 +223,7 @@ export default {
         gender_id: 2,
         publish: 0,
         visisble: 0,
-        roles: [],
+        roles: [2],
         subscribe_newsletter: 0,
       },
 

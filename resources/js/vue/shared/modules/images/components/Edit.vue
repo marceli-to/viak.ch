@@ -20,7 +20,7 @@
               draggable=".is-draggable">
               <div class="media-uploads-item is-draggable" v-for="(image, index) in imageData" :key="index">
                 <figure>
-                  <img :src="getSource(image, 'thumbnail')" height="300" width="300">
+                  <img :src="getSource(image, 'crop')" height="300" width="300">
                 </figure>
                 <div class="media-uploads-item__description">
                   <div class="mb-2x sm:mb-3x">
@@ -43,8 +43,8 @@
             :key="index"
             :class="`media-uploads-item ${$props.previewItemClass}`">
             <figure>
-              <a :href="getSource(image, 'cache')" target="_blank" class="media-uploads-item__preview">
-                <img :src="getSource(image, 'thumbnail')" :class="[image.publish == 0 ? 'is-hidden' : '', '']" height="300" width="300">
+              <a :href="getSource(image, 'crop')" target="_blank" class="media-uploads-item__preview">
+                <img :src="getSource(image, 'crop')" :class="[image.publish == 0 ? 'is-hidden' : '', '']" height="300" width="300">
                 <template  v-if="$props.hasTypes">
                   <figcaption v-if="image.type == 'teaser'">Vorschau</figcaption>
                   <figcaption v-if="image.type == 'visual'">Hauptbild</figcaption>
@@ -142,7 +142,7 @@
         </a>
         <div class="sm:grid-cols-12">
           <figure class="sm:span-6">
-              <img :src="getSource(currentImage, 'thumbnail')" height="300" width="300" v-if="isEdit">
+              <img :src="getSource(currentImage, 'crop')" height="300" width="300" v-if="isEdit">
           </figure>
           <div class="mt-4x sm:mt-0 sm:span-6">
             <form-group :label="__('Bildlegende')">

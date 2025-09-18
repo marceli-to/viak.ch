@@ -1,16 +1,16 @@
 <template>
   <picture>
     <img 
-      :data-src="`/img/cache/${$props.image.name}/700/${$props.image.coords}/1x1`"
+      :data-src="`/img/crop/${$props.image.name}/700/${$props.image.coords}/1x1`"
       src="/media/viak-placeholder-teaser.png"
       width="600" 
       height="600" 
       title="" 
-      alt="Storytelling – Workshop" 
+      alt="" 
       class="is-responsive lazy"> 
     <source 
       media="(min-width: 700px)" 
-      :data-srcset="`/img/cache/${$props.image.name}/1100/${$props.image.coords}/1x1`" 
+      :data-srcset="`/img/crop/${$props.image.name}/1100/${$props.image.coords}/1x1`" 
       class="is-responsive lazy">
   </picture>
 </template>

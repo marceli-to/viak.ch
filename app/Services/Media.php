@@ -3,7 +3,8 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Media
 { 
@@ -88,9 +89,8 @@ class Media
 
     if (in_array(strtolower($filetype), $this->image_types))
     {
-      $img = \Image::make(
-        $this->upload_path . DIRECTORY_SEPARATOR . $filename
-      );
+      $manager = new ImageManager(new Driver());
+      $img = $manager->read($this->upload_path . DIRECTORY_SEPARATOR . $filename);
       $orientation = $img->width() >= $img->height() ? 'l' : 'p';
     }
 
