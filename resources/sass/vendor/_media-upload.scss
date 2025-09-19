@@ -204,6 +204,9 @@
     @extend %lightbox;
 
     > div {
+      display: flex; 
+      flex-direction: column; 
+      max-height: 90vh;
       position: relative;
 
       &.is-l {
@@ -219,6 +222,7 @@
       @extend %fs-12x;
       @extend %sm\:fs-14x;
       color: $color-primary;
+      flex-shrink: 0;
       position: absolute;
       right: $space-6x;
       top: $space-4x;
@@ -228,6 +232,12 @@
     .media-uploads-cropper__formats {
       display: flex;
       margin-bottom: 15px;
+      flex-shrink: 0;
+    }
+
+    .media-uploads-cropper__container {
+      flex-grow: 1;
+      overflow-y: scroll;
     }
     
     .btn-crop-format {

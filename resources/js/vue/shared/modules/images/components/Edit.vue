@@ -56,7 +56,7 @@
                   :image="image" 
                   :hasPreview="false"
                   :publish="image.publish" 
-                  :imagePreviewRoute="'cache'"
+                  :imagePreviewRoute="'crop'"
                   @toggleEdit="toggleEdit(image)"
                   @toggleImage="toggleImage(image)"
                   @destroyImage="destroyImage(image)"
@@ -93,22 +93,26 @@
               1:1
             </a>
           </div>
-          <div class="media-uploads-cropper__info">{{ cropW }} x {{ cropH }}px</div>
-          <cropper
-            :src="cropImage"
-            :defaultPosition="defaultPosition"
-            :defaultSize="defaultSize"
-            :stencilProps="{
-              aspectRatio: this.ratio.w/this.ratio.h,
-              linesClassnames: {
-                default: 'line',
-              },
-              handlersClassnames: {
-                default: 'handler'
-              }
-            }"
-            @change="change"
-          ></cropper>
+          <div class="media-uploads-cropper__info">
+            {{ cropW }} x {{ cropH }}px
+          </div>
+          <div class="media-uploads-cropper__container">
+            <cropper
+              :src="cropImage"
+              :defaultPosition="defaultPosition"
+              :defaultSize="defaultSize"
+              :stencilProps="{
+                aspectRatio: this.ratio.w/this.ratio.h,
+                linesClassnames: {
+                  default: 'line',
+                },
+                handlersClassnames: {
+                  default: 'handler'
+                }
+              }"
+              @change="change"
+            ></cropper>
+          </div>
           <div class="mt-2x">
             <div class="grid-cols-12">
               <a

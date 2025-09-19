@@ -13,7 +13,7 @@
     <div class="mt-2x sm:mt-4x">
       <image-edit 
         :images="data"
-        :imagePreviewRoute="'cache'"
+        :imagePreviewRoute="'crop'"
         :ratioW="$props.imageRatioW"
         :ratioH="$props.imageRatioH"
         :allowRatioSwitch="$props.allowRatioSwitch"
