@@ -118,7 +118,7 @@ class Image extends Base
     $coords = '0,0,0,0';
     if ($this->coords_w && $this->coords_h)
     {
-      $coords = floor($this->coords_w) . ',' .  floor($this->coords_h) . ',' .  floor($this->coords_x) . ',' .  floor($this->coords_y);
+      $coords = floor($this->coords_w ?: 0) . ',' .  floor($this->coords_h ?: 0) . ',' .  floor($this->coords_x ?: 0) . ',' .  floor($this->coords_y ?: 0);
     }
     return $coords;
   }
