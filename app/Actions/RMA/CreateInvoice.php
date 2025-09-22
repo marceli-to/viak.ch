@@ -71,7 +71,8 @@ class CreateInvoice
     {
       return Http::withHeaders([
         'content-type' => 'application/json',
-        'accept' => 'application/json'
+        'accept' => 'application/json',
+        'Authorization' => 'Bearer ' . env('RMA_API_KEY')
       ])->post(env('RMA_ROUTE_API_BASE') . env('RMA_ROUTE_API_CREATE'), $data);
     }
     return TRUE;

@@ -20,7 +20,8 @@ class UpdateInvoiceStatusToPaid
 
       return Http::withHeaders([
         'content-type' => 'application/json',
-        'accept' => 'application/json'
+        'accept' => 'application/json',
+        'Authorization' => 'Bearer ' . env('RMA_API_KEY')
       ])->post($url, $data);
     }
     return TRUE;

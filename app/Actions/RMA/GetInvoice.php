@@ -15,7 +15,9 @@ class GetInvoice
     if (app()->environment() == 'production')
     {
       $url = env('RMA_ROUTE_API_BASE') . str_replace('%INVOICE_NO%', $invoice_number, env('RMA_ROUTE_API_GET'));
-      $response = Http::acceptJson()->get($url);
+      $response = Http::withHeaders([
+        'Authorization' => 'Bearer ' . env('RMA_API_KEY')
+      ])->acceptJson()->get($url);
       if ($response->status() == 200)
       {
         return $response->object();
