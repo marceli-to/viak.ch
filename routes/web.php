@@ -162,7 +162,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function() {
 Auth::routes(['verify' => true, 'register' => true]);
 
 Route::match(['get', 'post'], 'register', function(){
-  return redirect()->route('page.register.form');
+  return redirect()->route(app()->getLocale() . '.page.register.form');
 });
 Route::get('/logout', [LoginController::class, 'logout']);
 
