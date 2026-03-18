@@ -36,8 +36,8 @@ class ExpertController extends Controller
   public function search($keyword = NULL)
   {
     return response()->json([
-      'active' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->published()->orderBy('expert_order', 'ASC')->get(),
-      'inactive' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->unpublished()->orderBy('expert_order', 'ASC')->get(),
+      'active' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->orWhereLike('email', $keyword)->orWhereLike('city', $keyword)->published()->orderBy('expert_order', 'ASC')->get(),
+      'inactive' =>  User::experts()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->orWhereLike('email', $keyword)->orWhereLike('city', $keyword)->unpublished()->orderBy('expert_order', 'ASC')->get(),
     ]);
   }
 
