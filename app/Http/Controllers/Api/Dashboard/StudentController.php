@@ -38,7 +38,7 @@ class StudentController extends Controller
   public function search($keyword = NULL)
   {
     return new DataCollection(
-      User::students()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->published()->orderBy('name', 'ASC')->get()
+      User::students()->whereLike('firstname', $keyword)->orWhereLike('name', $keyword)->orWhereLike('email', $keyword)->orWhereLike('city', $keyword)->published()->orderBy('name', 'ASC')->get()
     );
   }
 
