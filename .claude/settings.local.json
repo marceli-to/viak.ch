@@ -5,7 +5,10 @@
       "Bash(php:*)",
       "Bash(composer update:*)",
       "Bash(grep -n \"city\\\\|location\\\\|address\\\\|zip\\\\|place\" /Users/marceli.to/Jamon.digital/Webroot/viak.ch/database/migrations/*users*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }

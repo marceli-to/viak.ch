@@ -34,7 +34,7 @@
         @endif
       </figure>
     @endif
-     <div class="text-media__body">
+     <div class="text-media__body is-course">
       <aside>
         @if ($course->title)
           <h1>{{ $course->title }}</h1>
